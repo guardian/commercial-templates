@@ -9,7 +9,7 @@ export function reportClick(node) {
         }
         node = node.parentNode;
     }
-    sendMessage('click', { linkName: dataLinkName.join(' | ') });
+    sendMessage('click', dataLinkName.join(' | '));
 }
 
 function sendMessage(type, data) {
