@@ -1,0 +1,22 @@
+{
+  "name": "commercial-templates",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "rollup": "^0.34.1"
+  },
+  "devDependencies": {
+    "autoprefixer": "^6.3.7",
+    "babel-preset-es2015-rollup": "^1.1.1",
+    "csso": "^2.2.1",
+    "rollup": "^0.34.1",
+    "rollup-plugin-babel": "^2.6.1",
+    "rollup-plugin-uglify": "^1.0.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
