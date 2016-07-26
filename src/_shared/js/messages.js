@@ -1,5 +1,7 @@
+// Will send a concatenated string of all the data-link-name attributes
+// from the clicked node all the way up to the root of the document
 export function reportClick(node) {
-    let dataLinkName = []
+    let dataLinkName = [];
     while( node ) {
         const dln = node.getAttribute('data-link-name');
         if( dln ) {
