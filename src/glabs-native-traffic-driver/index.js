@@ -1,3 +1,3 @@
-import { reportClick } from '../_shared/js/messages.js';
+import { getWebfonts } from '../_shared/js/messages.js';
 
-console.log('hello world');
+getWebfonts(['GuardianSansWeb', 'GuardianTextSansWeb']);
