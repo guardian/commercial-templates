@@ -1,35 +1,31 @@
-<div class="creative creative--paid paidfor-content">
-    <div class="u-responsive-ratio inlined-image">
-        <a href="%%CLICK_URL_UNESC%%[%articleUrl%]" data-link-name="[%linkTracking%] | article image">
-            <img src="[%pictureUrl%]" alt="[%linkLabel%]" class="lineitem__image">
-        </a>
-        <a href="https://www.theguardian.com/[%glabsUrl%]" class="paidfor-content__glabs-logo" title="glabs" data-link-name="[%linkTracking%] | labs logo">
-            <img src="glabs.svg">
-        </a>
-    </div>
-    <div class="paidfor-meta">
-        <span class="paidfor-meta__label">Paid content</span>
-        <div class="paidfor-label paidfor-meta__more has-popup">
-            <button class="u-button-reset paidfor-label__btn popup__toggle" data-toggle="js-paidfor-popup">About <img src="chevron-down.svg"></button>
-            <div class="popup popup--paidfor is-off js-paidfor-popup">
-                <h3 class="popup--paidfor__title">Paid content is paid for and controlled by an advertiser and produced by the Guardian Labs team</h3>
-                <a class="popup--paidfor__link" href="https://www.theguardian.com/content-funding">Learn more about Guardian Labs content <img src="arrow-right.svg"></a>
+<div class="creative creative--glabs-mpu" data-link-name="[%OmnitureId%]">
+    <div class="creative__meta">
+        <span class="">Paid content</span>
+        <div class="has-popup">
+            <button class="u-button-reset js-toggle" aria-controls="popup" aria-expanded="true">About <img src="chevron-down.svg" alt></button>
+            <div id="popup" class="popup">
+                <h3>Paid content is paid for and controlled by an advertiser and produced by the Guardian Labs team</h3>
+                <a href="#">Learn more about Guardian Labs content <img src="arrow-right.svg" alt></a>
             </div>
         </div>
     </div>
-    <a href="%%CLICK_URL_UNESC%%[%articleUrl%]" class="paidfor-box paidfor-box--header" data-link-name="[%linkTracking%] | article title">
-        <h2 class="gu-title">[%articleTitle%]</h2>
-    </a>
-    <a href="%%CLICK_URL_UNESC%%[%articleUrl%]" class="paidfor-box paidfor-box--text" data-link-name="[%linkTracking%] | article text">
-        <div class="gu-text">[%text%]</div>
-    </a>
-    <a href="%%CLICK_URL_UNESC%%[%articleUrl%]" class="paidfor-box paidfor-box--logo" data-link-name="[%linkTracking%] | advertiser logo">
-        <div class="paidfor-brand">
-            <span class="paidfor-note">Paid for by:</span>
-            <img src="[%logoUrl%]" alt="[%brand%]" class="paidfor-logo"/>
+    <div class="creative__image">
+        <a class="creative__ctu" href="%%CLICK_URL_UNESC%%%%DEST_URL%%" data-link-name="article image">
+            <img src="[%ArticleImage%]" alt="[%ArticleImageAlternateText%]">
+        </a>
+        <a href="#" class="creative__glabs-link js-glabs-link" data-link-name="labs logo">
+            <img src="glabs.svg" alt="Guardian Labs">
+        </a>
+    </div>
+    <a class="creative__ctu" href="%%CLICK_URL_UNESC%%%%DEST_URL%%" data-link-name="article">
+        <h2 class="creative__title">[%ArticleHeaderText%]</h2>
+        <div class="creative__standfirst">[%ArticleText%]</div>
+        <div class="creative__brand">
+            Paid for by:
+            <img src="[%BrandLogo%]" alt="[%Brand%]">
         </div>
     </a>
+    <img src="[%Trackingpixel%]%%CACHEBUSTER%%" class="creative__pixel" height="1px" width="1px">
 </div>
-<img src="[%trackingPx%]" class="creative__tracking-pixel" height="1px" width="1px">
 
-<script>!function(){"use strict";document.addEventListener("DOMContentLoaded",function(){console.log("hello world")})}();</script>
+<script>!function(){"use strict";document.addEventListener("DOMContentLoaded",function(){function e(e){var t=["GuardianTextEgyptianWeb","GuardianEgyptianWeb","GuardianTextSansWeb","GuardianSansWeb"],a=void 0===e?".webfont":e.filter(function(e){return t.includes(e)}).map(function(e){return'.webfont[data-cache-name="'+e+'"]'}).join(",");return r.classList.add("wf-loading"),n("get-styles",{selector:a}).then(function(e){var n=document.createDocumentFragment();e.map(function(e){var n=document.createElement("style");return n.textContent=e,n}).forEach(function(e){return n.appendChild(e)}),document.head.appendChild(n),r.classList.remove("wf-loading"),r.classList.add("wf-active")}).catch(function(){r.classList.remove("wf-loading"),r.classList.add("wf-inactive")})}function n(e,n){var r=t();return new Promise(function(t,o){self.addEventListener("message",function e(n){var a=n.data,i=n.source;if(i===window.top)try{var s=JSON.parse(a),c=s.id,u=s.error,d=s.result;if(c!==r)return;self.removeEventListener("message",e),console.log(d),null===u?t(d):o(u)}catch(e){return void o(e)}}),window.top.postMessage(JSON.stringify({id:r,type:e,value:n}),location.protocol+("true"===a?"//localhost:9000":"//www.theguardian.com"))})}function t(){function e(){return Math.floor(65536*(1+Math.random())).toString(16).substr(1)}return""+e()+e()+"-"+e()+"-"+e()+"-"+e()+"-"+e()+e()+e()}var a="[%DevMode%]",r=document.documentElement;e(["GuardianSansWeb","GuardianTextSansWeb"])})}();</script>
