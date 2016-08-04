@@ -1,17 +1,17 @@
 <div class="creative creative--glabs-mpu" data-link-name="[%OmnitureId%]">
     <div class="creative__meta">
-        <span class="">Paid content</span>
-        <div class="has-popup">
+        <span class="creative__meta-type">Paid content</span>
+        <div class="creative__meta-about has-popup">
             <button class="u-button-reset js-toggle" aria-controls="popup" aria-expanded="true">About <img src="chevron-down.svg" alt></button>
             <div id="popup" class="popup">
-                <h3>Paid content is paid for and controlled by an advertiser and produced by the Guardian Labs team</h3>
+                <p>Paid content is paid for and controlled by an advertiser and produced by the Guardian Labs team</p>
                 <a href="#">Learn more about Guardian Labs content <img src="arrow-right.svg" alt></a>
             </div>
         </div>
     </div>
-    <div class="creative__image">
+    <div class="creative__image-container">
         <a class="creative__ctu" href="%%CLICK_URL_UNESC%%%%DEST_URL%%" data-link-name="article image">
-            <img src="[%ArticleImage%]" alt="[%ArticleImageAlternateText%]">
+            <img class="creative__image" src="[%ArticleImage%]" alt="[%ArticleImageAlternateText%]">
         </a>
         <a href="#" class="creative__glabs-link js-glabs-link" data-link-name="labs logo">
             <img src="glabs.svg" alt="Guardian Labs">
@@ -21,8 +21,8 @@
         <h2 class="creative__title">[%ArticleHeaderText%]</h2>
         <div class="creative__standfirst">[%ArticleText%]</div>
         <div class="creative__brand">
-            Paid for by:
-            <img src="[%BrandLogo%]" alt="[%Brand%]">
+            Paid for by
+            <img class="creative__brand-image" src="[%BrandLogo%]" alt="[%Brand%]">
         </div>
     </a>
     <img src="[%Trackingpixel%]%%CACHEBUSTER%%" class="creative__pixel" height="1px" width="1px">

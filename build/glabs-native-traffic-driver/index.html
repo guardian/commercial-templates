@@ -1,17 +1,17 @@
 <div class="creative creative--glabs-mpu" data-link-name="[%OmnitureId%]">
     <div class="creative__meta">
-        <span class="">Paid content</span>
-        <div class="has-popup">
+        <span class="creative__meta-type">Paid content</span>
+        <div class="creative__meta-about has-popup">
             <button class="u-button-reset js-toggle" aria-controls="popup" aria-expanded="true">About <img src="chevron-down.svg" alt></button>
             <div id="popup" class="popup">
-                <h3>Paid content is paid for and controlled by an advertiser and produced by the Guardian Labs team</h3>
+                <p>Paid content is paid for and controlled by an advertiser and produced by the Guardian Labs team</p>
                 <a href="#">Learn more about Guardian Labs content <img src="arrow-right.svg" alt></a>
             </div>
         </div>
     </div>
-    <div class="creative__image">
+    <div class="creative__image-container">
         <a class="creative__ctu" href="%%CLICK_URL_UNESC%%%%DEST_URL%%" data-link-name="article image">
-            <img src="[%ArticleImage%]" alt="[%ArticleImageAlternateText%]">
+            <img class="creative__image" src="[%ArticleImage%]" alt="[%ArticleImageAlternateText%]">
         </a>
         <a href="#" class="creative__glabs-link js-glabs-link" data-link-name="labs logo">
             <img src="glabs.svg" alt="Guardian Labs">
@@ -21,11 +21,11 @@
         <h2 class="creative__title">[%ArticleHeaderText%]</h2>
         <div class="creative__standfirst">[%ArticleText%]</div>
         <div class="creative__brand">
-            Paid for by:
-            <img src="[%BrandLogo%]" alt="[%Brand%]">
+            Paid for by
+            <img class="creative__brand-image" src="[%BrandLogo%]" alt="[%Brand%]">
         </div>
     </a>
     <img src="[%Trackingpixel%]%%CACHEBUSTER%%" class="creative__pixel" height="1px" width="1px">
 </div>
 
-<script>!function(){"use strict";document.addEventListener("DOMContentLoaded",function(){function e(e){var t=["GuardianTextEgyptianWeb","GuardianEgyptianWeb","GuardianTextSansWeb","GuardianSansWeb"],a=void 0===e?".webfont":e.filter(function(e){return t.includes(e)}).map(function(e){return'.webfont[data-cache-name="'+e+'"]'}).join(",");return r.classList.add("wf-loading"),n("get-styles",{selector:a}).then(function(e){var n=document.createDocumentFragment();e.map(function(e){var n=document.createElement("style");return n.textContent=e,n}).forEach(function(e){return n.appendChild(e)}),document.head.appendChild(n),r.classList.remove("wf-loading"),r.classList.add("wf-active")}).catch(function(){r.classList.remove("wf-loading"),r.classList.add("wf-inactive")})}function n(e,n){var r=t();return new Promise(function(t,o){self.addEventListener("message",function e(n){var a=n.data,i=n.source;if(i===window.top)try{var s=JSON.parse(a),c=s.id,u=s.error,d=s.result;if(c!==r)return;self.removeEventListener("message",e),console.log(d),null===u?t(d):o(u)}catch(e){return void o(e)}}),window.top.postMessage(JSON.stringify({id:r,type:e,value:n}),location.protocol+("true"===a?"//localhost:9000":"//www.theguardian.com"))})}function t(){function e(){return Math.floor(65536*(1+Math.random())).toString(16).substr(1)}return""+e()+e()+"-"+e()+"-"+e()+"-"+e()+"-"+e()+e()+e()}var a="[%DevMode%]",r=document.documentElement;e(["GuardianSansWeb","GuardianTextSansWeb"])})}();</script>
+<script>!function(){"use strict";document.addEventListener("DOMContentLoaded",function(){function t(t){return new Promise(function(n){return window.requestAnimationFrame(function(){t(),n()})})}function n(n){var r=["GuardianTextEgyptianWeb","GuardianEgyptianWeb","GuardianTextSansWeb","GuardianSansWeb"],i=void 0===n?".webfont":n.filter(function(t){return r.includes(t)}).map(function(t){return'.webfont[data-cache-name="'+t+'"]'}).join(",");return t(function(){return u.classList.add("wf-loading")}).then(function(){return e("get-styles",{selector:i})}).then(function(n){var e=document.createDocumentFragment();return n.map(function(t){var n=document.createElement("style");return n.textContent=t,n}).forEach(function(t){return e.appendChild(t)}),t(function(){document.head.appendChild(e),u.classList.remove("wf-loading"),u.classList.add("wf-active")})}).catch(function(){return t(function(){u.classList.remove("wf-loading"),u.classList.add("wf-inactive")})})}function e(t,n){var e=r();return new Promise(function(r,i){self.addEventListener("message",function t(n){var a=n.data,o=n.source;if(o===window.top)try{var u=JSON.parse(a),c=u.id,d=u.error,s=u.result;if(c!==e)return;self.removeEventListener("message",t),console.log(s),null===d?r(s):i(d)}catch(t){return void i(t)}}),window.top.postMessage(JSON.stringify({id:e,type:t,value:n}),location.protocol+("true"===o?"//localhost:9000":"//www.theguardian.com"))})}function r(){function t(){return Math.floor(65536*(1+Math.random())).toString(16).substr(1)}return""+t()+t()+"-"+t()+"-"+t()+"-"+t()+"-"+t()+t()+t()}function i(){Array.from(document.getElementsByClassName("js-toggle")).forEach(a)}function a(n){function e(){t(function(){n.setAttribute("aria-expanded","false"),i.setAttribute("hidden","hidden")})}function r(){t(function(){n.setAttribute("aria-expanded","true"),i.removeAttribute("hidden")})}var i=document.getElementById(n.getAttribute("aria-controls"));e(),n.addEventListener("click",function(){i.hasAttribute("hidden")?r():e()})}window.requestAnimationFrame||(window.requestAnimationFrame=window.webkitRequestAnimationFrame||function(t){return setTimeout(t,1e3/60)});var o="[%DevMode%]",u=document.documentElement;n(["GuardianSansWeb","GuardianTextSansWeb"]),i()})}();</script>
