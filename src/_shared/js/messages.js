@@ -1,3 +1,5 @@
+import { read, write } from './dom.js';
+
 const devMode = '[%DevMode%]';
 const rootElement = document.documentElement;
 
@@ -27,8 +29,9 @@ export function getWebfonts(fontFamilies) {
         '.webfont' :
         fontFamilies.filter(ff => families.includes(ff)).map(ff => `.webfont[data-cache-name="${ff}"]`).join(',')
 
-    rootElement.classList.add('wf-loading');
-    return sendMessage('get-styles', { selector }).then(styleSheets => {
+    return write(() => rootElement.classList.add('wf-loading'))
+    .then(() => sendMessage('get-styles', { selector }))
+    .then(styleSheets => {
         // add stylesheets to the document
         const frag = document.createDocumentFragment();
         styleSheets.map(sheet => {
@@ -36,14 +39,19 @@ export function getWebfonts(fontFamilies) {
             style.textContent = sheet;
             return style;
         }).forEach(style => frag.appendChild(style));
-        document.head.appendChild(frag);
 
-        // advertises fonts are available
-        rootElement.classList.remove('wf-loading');
-        rootElement.classList.add('wf-active');
+        return write(() => {
+            document.head.appendChild(frag);
+
+            // advertises fonts are available
+            rootElement.classList.remove('wf-loading');
+            rootElement.classList.add('wf-active');
+        });
     }).catch(() => {
-        rootElement.classList.remove('wf-loading');
-        rootElement.classList.add('wf-inactive');
+        return write(() => {
+            rootElement.classList.remove('wf-loading');
+            rootElement.classList.add('wf-inactive');
+        });
     });
 }
 
