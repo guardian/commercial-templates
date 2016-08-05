@@ -51,9 +51,17 @@ $f-sans-serif-headline: 'Guardian Sans Web', 'Helvetica Neue', Helvetica, Arial,
     padding: 10px;
 
     background: rgba(0, 0, 0, .5);
-    backdrop-filter: blur(2px);
     border-radius: 4px;
 
     > :first-child { margin-top: 0; }
     > :last-child { margin-bottom: 0; }
+}
+
+.icon {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.icon path {
+    fill: inherit;
 }

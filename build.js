@@ -2,6 +2,7 @@ const build = require('./lib/build');
 
 // options
 const options = {
+    banner: '<base target="_top">',
     src: 'src',
     dst: 'build'
 };

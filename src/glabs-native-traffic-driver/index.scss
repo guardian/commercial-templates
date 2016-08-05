@@ -25,8 +25,8 @@ $brand-colour: #69d1ca;
 
 .creative__glabs-link {
     position: absolute;
-    top: 0;
-    right: 0;
+    top: 4px;
+    right: 10px;
 }
 
 .creative__title {
@@ -75,7 +75,7 @@ $brand-colour: #69d1ca;
 }
 
 .popup {
-    background: rgba($card-foreground, .8);
+    background: $card-foreground;
     color: #fff;
     font-size: 14px;
     line-height: 16px;
@@ -89,4 +89,18 @@ $brand-colour: #69d1ca;
             text-decoration: underline;
         }
     }
+}
+
+.icon--glabs-logo {
+    width: 75px;
+    fill: white;
+}
+
+.icon--arrow-down {
+    width: 12px;
+}
+
+.icon--arrow-right {
+    width: 20px;
+    fill: currentColor;
 }
