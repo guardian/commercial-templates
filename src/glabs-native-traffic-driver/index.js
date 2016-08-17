@@ -1,5 +1,6 @@
-import { getWebfonts } from '../_shared/js/messages.js';
+import { getWebfonts, resizeIframeHeight } from '../_shared/js/messages.js';
 import { enableToggles } from '../_shared/js/ui.js';
 
-getWebfonts(['GuardianSansWeb', 'GuardianTextSansWeb']);
+getWebfonts(['GuardianSansWeb', 'GuardianTextSansWeb'])
+.then(resizeIframeHeight);
 enableToggles();
