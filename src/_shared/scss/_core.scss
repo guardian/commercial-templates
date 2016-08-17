@@ -65,3 +65,7 @@ $f-sans-serif-headline: 'Guardian Sans Web', 'Helvetica Neue', Helvetica, Arial,
 .icon path {
     fill: inherit;
 }
+
+.js-toggle[aria-expanded="true"] > .icon--arrow-down {
+    transform: rotate(180deg);
+}
