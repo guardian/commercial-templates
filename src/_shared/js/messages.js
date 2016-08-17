@@ -55,6 +55,20 @@ export function getWebfonts(fontFamilies) {
     });
 }
 
+export function resizeIframeHeight() {
+    return new Promise(resolve => {
+        if( document.readyState === 'complete' ) {
+            resolve();
+        } else {
+            window.addEventListener('load', resolve);
+        }
+    })
+    .then(() => read(() => window.innerHeight))
+    .then(function(height) {
+        return sendMessage('resize', { height });
+    });
+}
+
 export function sendMessage(type, value) {
     const id = generateId();
 
@@ -72,7 +86,6 @@ export function sendMessage(type, value) {
                 }
 
                 self.removeEventListener('message', onMessage);
-                console.log(result);
                 if( error === null ) {
                     resolve(result);
                 } else {
