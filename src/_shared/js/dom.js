@@ -1,5 +1,5 @@
-const matches = 'matches' in Element ? 'matches' : 'msMatchesSelector';
-export const closest = 'closest' in Element ?
+const matches = 'matches' in Element.prototype ? 'matches' : 'msMatchesSelector';
+export const closest = 'closest' in Element.prototype ?
     (node, selector) => node.closest(selector) :
     (node, selector) => {
         while( node && !node[matches](selector) ) {
