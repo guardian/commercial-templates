@@ -1,3 +1,6 @@
-import { reportClick } from '../_shared/js/messages.js';
+import { getWebfonts, resizeIframeHeight } from '../_shared/js/messages.js';
+import { enableToggles } from '../_shared/js/ui.js';
 
-console.log('hello world');
+getWebfonts(['GuardianSansWeb', 'GuardianTextSansWeb'])
+.then(resizeIframeHeight);
+enableToggles();
