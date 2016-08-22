@@ -1,0 +1,96 @@
+@import '_core';
+
+
+.creative--hosted {
+    font-family: $f-sans-serif-text;
+    display: flex;
+}
+
+.creative--hosted__content {
+    height: 300px;
+    flex: 1;
+    position: relative;
+}
+
+
+.hostedbadge {
+    margin: 10px;
+    bottom: 0;
+    width: 80px;
+    position: absolute;
+    @media (min-width: $leftCol) {
+        width: 112px;
+    }
+}
+
+.hostedbadge__info {
+    font-size: 13px;
+    line-height: 11px;
+    height: auto;
+    padding: 3px 0 2px;
+    color: #333333;
+    margin: 0;
+    text-align: center;
+}
+
+.hostedbadge__logo {
+    width: 100%;
+    display: block;
+}
+
+.hosted-trafficdriver__tile {
+    display: inline-block;
+    position: relative;
+    width: 240px;
+    height: 240px;
+    background-size: cover;
+    background-position: center
+}
+
+.hosted-trafficdriver__title {
+    position: absolute;
+    bottom: 0;
+    left:0;
+    right:0;
+}
+
+.fc-container__header__title {
+    float: left;
+    width: 140px;
+}
+
+@mixin side-margins-position($container-width) {
+    // stupid fix for sasslint AST error
+    $size: $container-width + 40px;
+
+    &:before,
+    &:after {
+        width: calc((100% - #{$size}) / 2);
+    }
+}
+
+.l-side-margins {
+    position: relative;
+    height: 100%;
+
+    @media (min-width: $tablet) {
+        &:after,
+        &:before {
+            content: '';
+            width: 0;
+        }
+        @include side-margins-position(gs-span(9));
+    }
+
+    @media (min-width: $desktop) {
+        @include side-margins-position(gs-span(12));
+    }
+
+    @media (min-width: $leftCol) {
+        @include side-margins-position(gs-span(14));
+    }
+
+    @media (min-width: $wide) {
+        @include side-margins-position(gs-span(16));
+    }
+}
