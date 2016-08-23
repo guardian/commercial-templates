@@ -6,15 +6,14 @@
     display: flex;
 }
 
-.creative--hosted__content {
-    height: 300px;
+.fc-container__inner {
     flex: 1;
     position: relative;
+    padding: 6px 20px 24px;
+    border-top: 1px solid #333333;
 }
 
-
 .hostedbadge {
-    margin: 10px;
     bottom: 0;
     width: 80px;
     position: absolute;
@@ -41,10 +40,46 @@
 .hosted-trafficdriver__tile {
     display: inline-block;
     position: relative;
-    width: 240px;
-    height: 240px;
-    background-size: cover;
-    background-position: center
+    flex: 1;
+    &:not(:first-child){
+        margin-left: 20px;
+    }
+
+    .hosted-trafficdriver__image{
+        position: absolute;
+        top:0;
+        left:0;
+        right:0;
+        bottom:0;
+        background-size: cover;
+        background-position: center;
+    }
+
+    &:before {
+        content: '';
+        padding-top: 100%;
+        display: block;
+    }
+
+    .with-2-elements &:nth-child(3),
+    .with-2-elements &:nth-child(4),
+    .with-3-elements &:nth-child(4) {
+        display: none;
+    }
+}
+
+.with-2-elements .hosted-trafficdriver__tile:before {
+    padding-top: 50%;
+}
+
+.with-2-elements .hosted-trafficdriver__image {
+    right: 50%;
+}
+
+.with-2-elements .hosted-trafficdriver__title {
+    top: 0;
+    left: 50%;
+    font-size: 18px;
 }
 
 .hosted-trafficdriver__title {
@@ -52,11 +87,30 @@
     bottom: 0;
     left:0;
     right:0;
+    padding: 5px 5px 12px;
+    font-size: 16px;
+}
+
+.hosted-trafficdriver__content-type {
+    opacity: 0.5;
+}
+
+.hosted-trafficdriver__body {
+    position: relative;
+    display: flex;
+    margin-left: 160px;
 }
 
 .fc-container__header__title {
     float: left;
     width: 140px;
+    font-size: 22px;
+    line-height: 28px;
+    margin: 0;
+    @media (min-width: $tablet) and (max-width: $leftCol){
+        font-size: 20px;
+        line-height: 24px;
+    }
 }
 
 @mixin side-margins-position($container-width) {
