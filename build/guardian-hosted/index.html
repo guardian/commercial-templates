@@ -1,26 +1,59 @@
 <base target="_top">
-<div class="creative creative--hosted l-side-margins fc-container__inner"
+<div class="creative creative--hosted l-side-margins with-[%numberOfElements%]-elements"
      data-link-name="Hosted Thrasher Multi">
-    <div class="creative--hosted__content">
+    <div class="fc-container__inner">
         <p class="fc-container__header__title">
             from our advertisers
         </p>
+        <div class="hostedbadge" style="
+            background-color: [%BadgeBackgroundColour%];
+        ">
+            <p class="hostedbadge__info" style="
+                color: [%BadgeTextColour%];
+            ">Advertiser content</p>
+            <img class="hostedbadge__logo" src="[%logo%]">
+        </div>
         <div class="fc-container__body hosted-trafficdriver__body" data-link-name="">
             <a class="hosted-trafficdriver__tile" href="[%link1%]" data-link-name="[%linkTracking1%]" style="
-                background-image: url([%image1%]);
+                background-color: [%CardBackgroundColour%];
             ">
+                <div class="hosted-trafficdriver__image" style="
+                    background-image: url([%image1%]);
+                "></div>
                 <div class="hosted-trafficdriver__title" style="
-                    background-color: [%BrandColour%];
-                    color: #ffffff;
-                ">[%Title%]</div>
+                    color: [%CardTextColour%];
+                "><span class="hosted-trafficdriver__content-type">[%contentType1%] / </span>[%title1%]</div>
             </a>
-            <div class="hostedbadge" style="
-                background-color: [%BrandColour%];
-                color: #ffffff;
+            <a class="hosted-trafficdriver__tile" href="[%link2%]" data-link-name="[%linkTracking2%]" style="
+                background-color: [%CardBackgroundColour%];
             ">
-                <p class="hostedbadge__info">Advertiser content</p>
-                <img class="hostedbadge__logo" src="[%logo%]">
-            </div>
+                <div class="hosted-trafficdriver__image" style="
+                    background-image: url([%image2%]);
+                "></div>
+                <div class="hosted-trafficdriver__title" style="
+                    color: [%CardTextColour%];
+                "><span class="hosted-trafficdriver__content-type">[%contentType2%] / </span>[%title2%]</div>
+            </a>
+            <a class="hosted-trafficdriver__tile" href="[%link3%]" data-link-name="[%linkTracking3%]" style="
+                background-color: [%CardBackgroundColour%];
+            ">
+                <div class="hosted-trafficdriver__image" style="
+                    background-image: url([%image3%]);
+                "></div>
+                <div class="hosted-trafficdriver__title" style="
+                    color: [%CardTextColour%];
+                "><span class="hosted-trafficdriver__content-type">[%contentType3%] / </span>[%title3%]</div>
+            </a>
+            <a class="hosted-trafficdriver__tile" href="[%link4%]" data-link-name="[%linkTracking4%]>" style="
+                background-color: [%CardBackgroundColour%];
+            ">
+                <div class="hosted-trafficdriver__image" style="
+                    background-image: url([%image4%]);
+                "></div>
+                <div class="hosted-trafficdriver__title" style="
+                    color: [%CardTextColour%];
+                "><span class="hosted-trafficdriver__content-type">[%contentType4%] / </span>[%title4%]</div>
+            </a>
         </div>
     </div>
 </div>
