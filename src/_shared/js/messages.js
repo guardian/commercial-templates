@@ -95,34 +95,48 @@ export function sendMessage(type, value) {
     const id = generateId();
 
     return new Promise((resolve, reject) => {
-        self.addEventListener('message', function onMessage({ data, source }) {
-            if( source !== window.top ) {
+        self.addEventListener('message', function onMessage({ data }) {
+            let msgId, error, result;
+            try {
+                ({ id: msgId, error, result } = JSON.parse(data));
+            } catch(_) { return; }
+
+            if( msgId !== id ) {
                 return;
             }
 
-            try {
-                let { id: msgId, error, result } = JSON.parse(data);
-
-                if( msgId !== id ) {
-                    return;
-                }
-
-                self.removeEventListener('message', onMessage);
-                if( error === null ) {
-                    resolve(result);
-                } else {
-                    reject(error);
-                }
-            } catch( ex ) {
-                reject(ex);
-                return;
+            self.removeEventListener('message', onMessage);
+            if( error === null ) {
+                resolve(result);
+            } else {
+                reject(error);
             }
         });
 
-        // TODO Allow localhost:9000 when developing
-        // and m.code.dev-theguardian.com when testing
-        window.top.postMessage(JSON.stringify({ id, type, value }), location.protocol + (devMode === 'true' ? '//localhost:9000' : '//www.theguardian.com'));
-    })
+        post(id, iframeId, type, value);
+    });
+}
+
+export function onScroll(callback) {
+    const id = generateId();
+    const type = 'scroll';
+
+    self.addEventListener('message', function onMessage({ data }) {
+        try {
+            let { id: msgId, result } = JSON.parse(data);
+
+            if( msgId !== id ) {
+                return;
+            }
+
+            if( !callback(result) === false ) {
+                post(id, iframeId, type, false);
+                self.removeEventListener(onMessage);
+            }
+        } catch( ex ) { /* noop */ }
+    });
+
+    post(id, frameId, type, true);
 }
 
 function generateId() {
