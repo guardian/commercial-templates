@@ -3,6 +3,28 @@ import { read, write } from './dom.js';
 const devMode = '[%DevMode%]';
 const rootElement = document.documentElement;
 
+let iframeId;
+
+// First thing that happens when a native ad is delivered is that the parent
+// frame will send a message with the ID of the corresponding iframe. This is
+// because of some f**d-up handling of the name attribute that is supposed to
+// do the work.
+export function getIframeId() {
+    return new Promise(resolve => {
+        self.addEventListener('message', function onMessage(evt) {
+            let json;
+            try {
+                json = JSON.parse(evt.data);
+            } catch(_) { return; }
+            const keys = Object.keys(json);
+            if( !(keys.length === 1 && keys[0] === 'id' )) return;
+
+            self.removeEventListener('message', onMessage);
+            resolve(iframeId = json.id);
+        });
+    });
+}
+
 // Will send a concatenated string of all the data-link-name attributes
 // from the clicked node all the way up to the root of the document
 export function reportClick(node) {
@@ -109,4 +131,10 @@ function generateId() {
     function _4chars() {
         return Math.floor((1 + Math.random()) * 0x10000).toString(16).substr(1);
     }
+}
+
+function post(id, iframeId, type, value) {
+    // TODO Allow localhost:9000 when developing
+    // and m.code.dev-theguardian.com when testing
+    window.top.postMessage(JSON.stringify({ id, iframeId, type, value }), location.protocol + (devMode === 'true' ? '//localhost:9000' : '//www.theguardian.com'));
 }
