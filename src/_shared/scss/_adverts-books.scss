@@ -1,0 +1,123 @@
+.adverts--books {
+    > .adverts__header {
+        .search {
+            position: relative;
+        }
+
+        .search__input {
+            @include fs-textSans(2);
+            box-sizing: border-box;
+            border-radius: 18px;
+            background-color: rgba(#ffffff, .9);
+            border: 0;
+            width: 100%;
+            height: $gs-row-height;
+            padding: $gs-baseline/2 $gs-gutter $gs-baseline/4;
+
+            &:hover,
+            &:focus {
+                outline: none;
+            }
+            &:focus {
+                background-color: #ffffff;
+                box-shadow: 0 0 0 2px rgba(#000000, .3), inset 0 1px 2px 0 rgba(#000000, .3);
+            }
+        }
+
+        .button {
+            color: #ffffff;
+            border-color: rgba(#ffffff, .3);
+            margin-right: 0;
+
+            &:hover,
+            &:focus,
+            &:active {
+                border-color: #ffffff;
+            }
+        }
+    }
+
+}
+
+.adverts--tone-books {
+    > .adverts__header {
+        background: $features-main-1;
+    }
+
+    &.adverts--legacy-inline {
+        .inline-logo-bookshop__svg {
+            opacity: .8;
+        }
+    }
+}
+
+.advert--book {
+    .advert__meta[itemprop='author'] {
+        margin-bottom: 1em;
+    }
+}
+
+.adverts--tone-books .button--legacy-single,
+.advert--book .button {
+    @include button-colour(
+        $features-main-2,
+        null
+    );
+}
+
+.advert--book {
+    &:hover,
+    &:focus,
+    &:active {
+        .button {
+            @include button-colour(
+                darken($features-main-2, 5%),
+                null
+            );
+        }
+    }
+
+    &.adverts--legacy-inline {
+        @include mq(mobileLandscape) {
+            width: gs-span(2);
+        }
+
+        .advert > :not(.advert__image-container) {
+            margin-left: 0;
+            margin-right: 0;
+        }
+
+        .adverts__body {
+            padding: $gs-baseline / 2 $gs-gutter / 4 0;
+        }
+
+        .advert__meta {
+            margin-top: $gs-baseline / 2;
+        }
+    }
+
+}
+
+.adverts--tone-books .button--legacy-single {
+    &:hover,
+    &:focus,
+    &:active {
+        @include button-colour(
+            darken($features-main-2, 5%),
+            null
+        );
+    }
+}
+
+.advert-blended--books .advert-blended__title {
+    padding-top: 5px;
+    padding-bottom: 4px;
+}
+
+.logo--tone-books {
+    fill: $features-main-1;
+}
+
+.tone-book-highlight {
+    color: $features-main-2;
+}
