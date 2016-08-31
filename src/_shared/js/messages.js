@@ -136,7 +136,7 @@ export function onScroll(callback) {
         } catch( ex ) { /* noop */ }
     });
 
-    post(id, frameId, type, true);
+    post(id, iframeId, type, true);
 }
 
 function generateId() {
