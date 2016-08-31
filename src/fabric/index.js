@@ -1,7 +1,7 @@
 import { getIframeId, resizeIframeHeight, onScroll } from '../_shared/js/messages.js';
 import { write } from '../_shared/js/dom.js';
 
-getIframeId().then(iframeId => {
+getIframeId().then(() => {
     resizeIframeHeight();
 
     const scrollType = '[%ScrollType%]';
