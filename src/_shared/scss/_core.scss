@@ -22,6 +22,10 @@ $f-sans-serif-headline: 'Guardian Sans Web', 'Helvetica Neue', Helvetica, Arial,
     font: inherit;
     padding: 0;
     margin: 0;
+
+    &:focus {
+        outline: none;
+    }
 }
 
 .creative {
