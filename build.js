@@ -2,7 +2,7 @@ const build = require('./lib/build');
 
 // options
 const options = {
-    banner: '<base target="_top">',
+    banner: '<base target="_top" href="https://www.theguardian.com">',
     src: 'src',
     dst: 'build'
 };

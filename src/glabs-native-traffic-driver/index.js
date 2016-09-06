@@ -1,6 +1,10 @@
-import { getWebfonts, resizeIframeHeight } from '../_shared/js/messages.js';
+import { getIframeId, getWebfonts, resizeIframeHeight } from '../_shared/js/messages.js';
 import { enableToggles } from '../_shared/js/ui.js';
+import { addTrackingPixel } from '../_shared/js/ads.js';
 
-getWebfonts(['GuardianSansWeb', 'GuardianTextSansWeb'])
-.then(resizeIframeHeight);
-enableToggles();
+getIframeId().then(() => {
+    enableToggles();
+    addTrackingPixel(document.getElementById('creative'));
+    getWebfonts(['GuardianSansWeb', 'GuardianTextSansWeb'])
+    .then(resizeIframeHeight);
+});

@@ -4,6 +4,7 @@ $f-sans-serif-text: 'Guardian Text Sans Web', 'Helvetica Neue', Helvetica, Arial
 $f-sans-serif-headline: 'Guardian Sans Web', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif !default;
 
 @import '_defaults';
+@import '_helpers';
 
 .wf-loading {
     opacity: 0;
@@ -22,6 +23,10 @@ $f-sans-serif-headline: 'Guardian Sans Web', 'Helvetica Neue', Helvetica, Arial,
     font: inherit;
     padding: 0;
     margin: 0;
+
+    &:focus {
+        outline: none;
+    }
 }
 
 .creative {
@@ -31,6 +36,10 @@ $f-sans-serif-headline: 'Guardian Sans Web', 'Helvetica Neue', Helvetica, Arial,
 
 .creative__pixel {
     position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 1px;
+    height: 1px;
 }
 
 .creative__image {
