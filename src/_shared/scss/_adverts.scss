@@ -120,7 +120,7 @@
 
     .adverts__title {
         color: #ffffff;
-        @include fs-header(2);
+        font: 900 18px/24px $f-serif-headline;
     }
 
     .adverts__logo {
@@ -396,7 +396,7 @@
     }
 
     .adverts__title {
-        @include fs-header(1);
+        font: 900 16px/20px $f-serif-headline;
     }
 
     .advert > :not(.advert__image-container) {
@@ -443,7 +443,8 @@
 }
 
 .adverts__title {
-    @include fs-headline(4, true);
+    font-size: 24px;
+    line-height: 28px;
 }
 
 .adverts__ctas,
@@ -579,7 +580,7 @@
 }
 
 .adverts__badge {
-    @include fs-textSans(1);
+    font: normal 12px/16px $f-sans-serif-text;
     color: $neutral-2;
     font-weight: bold;
     margin-top: $gs-baseline / 2;
@@ -617,7 +618,8 @@
     }
 
     > .adverts__badge__help {
-        @include font-size(11);
+        font-size: 11px;
+        line-height: 1;
     }
 }
 
@@ -674,7 +676,7 @@
     }
 
     .adverts__blurb {
-        @include fs-headline(1);
+        font: normal 14px/18px $f-serif-headline;
         color: #ffffff;
 
         @include mq($until: desktop) {
@@ -682,7 +684,7 @@
         }
 
         @include mq(leftCol) {
-            @include fs-headline(2);
+            font: normal 15px/20px $f-serif-headline;
         }
     }
 

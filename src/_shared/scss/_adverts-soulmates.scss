@@ -97,7 +97,7 @@
     }
 
     .adverts__blurb {
-        @include fs-headline(2);
+        font: bold 16px/20px $f-serif-headline;
         font-weight: bold;
 
         &::before {
@@ -118,7 +118,7 @@
     }
 
     .search {
-        @include fs-textSans(2);
+        font: normal 13px/18px $f-sans-serif-text;
     }
 }
 

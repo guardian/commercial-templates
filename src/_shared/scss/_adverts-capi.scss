@@ -24,7 +24,7 @@
     }
 
     .adverts__title {
-        @include f-headlineSans;
+        font-family: $f-sans-serif-headline;
     }
 
     .adverts__logo {
@@ -187,7 +187,7 @@
 }
 
 .advert--paidfor {
-    @include f-textSans;
+    font-family: $f-sans-serif-text;
     background: $paid-article-subheader;
     border-top-color: $paid-article-brand;
 
@@ -197,7 +197,7 @@
     }
 
     .advert__title {
-        @include f-headlineSans;
+        font-family: $f-sans-serif-headline;
         font-weight: 400;
 
         > .inline-icon svg {
@@ -250,7 +250,8 @@
 
     > .advert__title {
         @include mq(desktop) {
-            @include font-size(get-font-size(headline, 3), get-line-height(headline, 3));
+            font-size: 20px;
+            line-height: 24px;
         }
     }
 

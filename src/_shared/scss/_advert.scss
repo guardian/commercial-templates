@@ -150,7 +150,7 @@
 }
 
 .advert__meta {
-    @include f-textSans;
+    font-family: $f-sans-serif-text;
     color: $neutral-2;
 }
 

@@ -3,8 +3,32 @@ $f-serif-headline: 'Guardian Egyptian Web', Georgia, serif !default;
 $f-sans-serif-text: 'Guardian Text Sans Web', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif !default;
 $f-sans-serif-headline: 'Guardian Sans Web', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif !default;
 
+// grid settings
+$gs-gutter: 20px;
+$gs-baseline: 12px;
+$gs-column-width: 60px;
+$gs-row-height: 36px;
+$gs-max-columns: 16;
+
+// sass-mq configuration
+$mq-responsive: true;
+$mq-breakpoints: (
+    mobile:  320px,
+    tablet:  740px,
+    desktop: 980px,
+    leftCol: 1140px,
+    wide:    1300px,
+
+    // Tweakpoints
+    desktopAd: 810px,
+    mobileLandscape: 480px
+);
+
+@import '_mq';
 @import '_defaults';
 @import '_helpers';
+@import '_palette';
+@import '_ui';
 
 .wf-loading {
     opacity: 0;

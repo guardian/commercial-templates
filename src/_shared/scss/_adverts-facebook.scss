@@ -8,7 +8,7 @@
 }
 
 .advert--facebook {
-    @include f-headlineSans;
+    font-family: $f-sans-serif-headline;
     background: $neutral-6;
     padding-bottom: $gs-baseline;
 
