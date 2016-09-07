@@ -10,6 +10,7 @@
 }
 
 .adverts {
+    font-family: $f-serif-text;
     padding: 0 $gs-gutter / 2;
     position: relative;
 
@@ -255,23 +256,6 @@
                 > :first-child:nth-last-child(2),
                 > :nth-child(2):last-child {
                     width: calc(50% - #{$gs-gutter});
-                }
-            }
-        }
-
-        @supports(scroll-snap-type: mandatory) {
-            @include mq($until: tablet) {
-                display: flex;
-                scroll-snap-type: mandatory;
-
-                > * {
-                    width: min-content;
-                    scroll-snap-align: start;
-                }
-
-                > * + * {
-                    margin-top: 0;
-                    margin-left: $gs-gutter;
                 }
             }
         }
