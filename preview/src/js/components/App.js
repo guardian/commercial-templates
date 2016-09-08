@@ -1,6 +1,9 @@
 const React = require('react');
+// libs
 const fetch = require('../lib/fetch');
+// components
 const SelectTemplate = require('./SelectTemplate');
+const Preview = require('./Preview');
 
 module.exports = React.createClass({
 	getInitialState: function() {
@@ -38,8 +41,10 @@ module.exports = React.createClass({
             <div>
                 <SelectTemplate 
                 	templates={this.state.templates} 
-                	selectedTemplate={this.state.selectedTemplate}
                 	onSelectFormChange={this.onSelectFormChange}
+                />
+                <Preview 
+                	selectedTemplate={this.state.selectedTemplate}
                 />
             </div>
         );

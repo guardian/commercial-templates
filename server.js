@@ -6,7 +6,7 @@ const path = require('path');
 const app = express();
 
 const templates = require('./lib/templates');
-// const template = require('./lib/template');
+const template = require('./lib/template');
 
 app.set('port', (process.env.PORT || 3000));
 
@@ -22,13 +22,17 @@ app.get("/templates", (req, res, next) => {
 	res.send(templates());
 });
 
-// app.get("/template/:id", (req, res, next) => {
-// 	template(req.params.id)
-// 	.then(html => {
-// 		res.send(html);
-// 	})
-// 	.catch(next)
-// });
+app.get("/template", (req, res, next) => {
+	res.send("please select template to preview");
+});
+
+app.get("/template/:id", (req, res, next) => {
+	template(req.params.id)
+	.then(html => {
+		res.send(html);
+	})
+	.catch(next)
+});
 
 app.listen(app.get('port'), () => {
     console.log('Server started: http://localhost:' + app.get('port') + '/');

@@ -1,6 +1,4 @@
-// modules
-var React = require('react'),
-    ReactDOM = require('react-dom');
+const React = require('react');
 
 module.exports = React.createClass({
     handleSelectChange: function (e) {
@@ -14,7 +12,7 @@ module.exports = React.createClass({
     },
 
     render: function () {
-        var listItems = this.props.templates.map(function (template) {
+        const listItems = this.props.templates.map(function (template) {
             return (
                 <option value={template}>
                     {template}
