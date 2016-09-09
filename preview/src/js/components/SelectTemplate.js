@@ -8,7 +8,7 @@ module.exports = React.createClass({
             delete this.value;
         }
 
-        this.props.onSelectFormChange(this.value);
+        this.props.onSelectFormChange(this.value || '');
     },
 
     render: function () {
