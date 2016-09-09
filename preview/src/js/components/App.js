@@ -43,9 +43,15 @@ module.exports = React.createClass({
 			return results;
 		});
 
-		messenger.register('resize', function(data) {
-			document.querySelector('.preview-template').style.height = data.value.height + 'px';
-		});
+		messenger.register('resize', this.resizeIframe);
+		window.addEventListener('resize', this.resizeIframe);
+	},
+
+	resizeIframe: function() {
+		const iframe = document.querySelector('.preview-template');
+
+		iframe.style.height = 'auto';
+		iframe.style.height = iframe.contentWindow.document.body.scrollHeight + 'px';
 	},
 
     render: function() {
