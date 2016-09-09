@@ -161,20 +161,15 @@
     }
 
     .button {
-        @include button-colour(
-            $soulmates-accent-colour,
-            null
-        );
+        background: $soulmates-accent-colour;
+        color: #fff;
     }
 
     &:hover,
     &:focus,
     &:active {
         .button {
-            @include button-colour(
-                $neutral-2,
-                null
-            );
+            background: $neutral-2;
         }
     }
 }

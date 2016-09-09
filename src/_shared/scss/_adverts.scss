@@ -44,7 +44,7 @@
         padding: 0;
     }
 
-    @include mq(mobileLandscape, desktop) {
+    @include mq(mobileLandscape, leftCol) {
         > .adverts__header {
             flex-direction: row;
             justify-content: space-between;
@@ -90,12 +90,6 @@
     }
 
     > .adverts__header {
-        .inline-logo-guardian {
-            @include mq(leftCol) {
-                display: none;
-            }
-        }
-
         @include mq($until: mobileLandscape) {
             padding: $gs-baseline / 2 $gs-gutter / 2;
         }
@@ -128,24 +122,21 @@
         color: #ffffff;
         display: flex;
 
-        @include mq($until: desktop) {
+        @include mq($until: leftCol) {
             align-items: center;
 
-            .inline-marque-54 {
+            .icon--marque {
                 margin-right: $gs-gutter / 2;
-            }
-
-            .inline-marque-54 > svg {
                 width: 36px;
                 height: 36px;
             }
 
-            .inline-logo-guardian {
+            .icon--guardian {
                 margin-right: $gs-gutter / 4;
             }
         }
 
-        @include mq(desktop) {
+        @include mq(leftCol) {
             flex-direction: column;
 
             /* http://alistapart.com/article/axiomatic-css-and-lobotomized-owls */
@@ -154,7 +145,7 @@
             }
         }
 
-        svg {
+        .icon {
             display: block;
             fill: #ffffff;
             max-width: 100%;
@@ -369,11 +360,8 @@
         color: #ffffff;
         fill: #ffffff;
 
-        > .inline-icon {
+        > .icon {
             margin-bottom: $gs-baseline / 2;
-        }
-
-        > .inline-logo > svg {
             height: auto;
             max-width: 100%;
         }
@@ -429,6 +417,7 @@
 .adverts__title {
     font-size: 24px;
     line-height: 28px;
+    margin: 0;
 }
 
 .adverts__ctas,
@@ -530,9 +519,7 @@
 }
 
 @include mq(tablet) {
-    .adverts__row--2x1x1 > :nth-child(1),
-    .adverts__row--1x2x1 > :nth-child(2),
-    .adverts__row--1x1x2 > :nth-child(3) {
+    .adverts__row--prominent-true > :nth-child(1) {
         flex-basis: calc(50% - #{$gs-gutter} - 1px);
         flex-grow: 0;
 
@@ -540,15 +527,8 @@
             width: calc(50% - #{$gs-gutter} - 1px);
         }
     }
-
-    .adverts__row--3x1 > :nth-child(1),
-    .adverts__row--1x3 > :nth-child(2) {
-        flex-basis: calc(75% - #{$gs-gutter});
-        flex-grow: 0;
-
-        .has-no-flex & {
-            width: calc(75% - #{$gs-gutter});
-        }
+    .adverts__row--prominent-true > :nth-child(4) {
+        display: none;
     }
 }
 
@@ -613,43 +593,6 @@
     vertical-align: middle;
 }
 
-.adverts__more {
-    @include mq(tablet) {
-        margin: $gs-baseline 0;
-    }
-
-    > summary {
-        cursor: pointer;
-        display: block;
-        margin: 0 $gs-gutter / 2;
-        outline: none;
-        width: max-content;
-        border-radius: 1000px;
-
-        &::-webkit-details-marker {
-            display: none;
-        }
-
-        @include mq(mobileLandscape) {
-            margin: 0 $gs-gutter;
-        }
-    }
-
-    &:not([open]) .inline-minus,
-    &[open] .inline-plus {
-        display: none;
-    }
-
-    &:not([open]) > *:not(summary) {
-        display: none;
-    }
-
-    .has-no-flex & {
-        clear: both;
-        padding-top: $gs-baseline;
-    }
-}
-
 
 /* Theming */
 .adverts--legacy {
@@ -663,12 +606,12 @@
         font: normal 14px/18px $f-serif-headline;
         color: #ffffff;
 
-        @include mq($until: desktop) {
+        @include mq($until: leftCol) {
             display: none;
         }
 
         @include mq(leftCol) {
-            font: normal 15px/20px $f-serif-headline;
+            font: normal 16px/20px $f-serif-headline;
         }
     }
 
@@ -676,103 +619,6 @@
         margin-right: 0;
     }
 }
-
-.adverts--framed {
-    @include mq(tablet) {
-        &::before,
-        &::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            width: calc(50% - 370px);
-            background: rgba(51, 51, 51, .06);
-        }
-
-        &::before { left: 0; }
-        &::after { right: 0; }
-    }
-
-    @include mq(desktop) {
-        &::before,
-        &::after {
-            width: calc(50% - 490px);
-        }
-    }
-
-    @include mq(leftCol) {
-        &::before,
-        &::after {
-            width: calc(50% - 570px);
-        }
-    }
-
-    @include mq(wide) {
-        &::before,
-        &::after {
-            width: calc(50% - 650px);
-        }
-    }
-}
-
-/* Let's remove this shit when we revamp badges: */
-.adverts {
-    .ad-slot--paid-for-badge--front {
-        border: 0;
-        clear: none;
-        float: none;
-        min-height: 0;
-        overflow: visible;
-        margin: auto $gs-gutter / 4 0;
-        padding: 0;
-        position: static;
-        width: auto;
-
-        &::before,
-        &::after {
-            content: none;
-        }
-    }
-
-    .ad-slot--paid-for-badge--front .ad-slot--paid-for-badge__link {
-        margin-top: 0;
-    }
-
-    .ad-slot--paid-for-badge .ad-slot--paid-for-badge__inner {
-        overflow: visible;
-        display: flex;
-        align-items: center;
-        justify-content: flex-end;
-    }
-
-    .ad-slot--paid-for-badge .ad-slot--paid-for-badge__header {
-        clear: none;
-        display: inline;
-        overflow: visible;
-    }
-
-    .ad-slot--paid-for-badge .ad-slot--paid-for-badge__link {
-        display: inline-block;
-        float: none;
-        clear: none;
-        margin-left: $gs-gutter / 2;
-    }
-
-    .ad-slot--paid-for-badge .ad-slot--paid-for-badge__logo {
-        display: inline-block;
-        vertical-align: middle;
-        max-height: 5 * $gs-baseline;
-    }
-
-    .ad-slot--paid-for-badge--front .ad-slot--paid-for-badge__link:after {
-        content: none;
-    }
-
-    .ad-slot--paid-for-badge__help {
-        display: none;
-    }
-}
-/* /remove */
 
 @import '_adverts-books';
 @import '_adverts-masterclasses';

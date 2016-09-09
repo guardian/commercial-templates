@@ -1,44 +1,36 @@
-.adverts--tone-membership {
+.adverts--tone-memberships {
     > .adverts__header {
         background: $membership-default;
     }
 }
 
-.adverts--tone-membership .advert__more,
-.adverts--tone-membership .button--legacy-single,
+.adverts--tone-memberships .advert__more,
+.adverts--tone-memberships .button--legacy-single,
 .advert--membership .button {
-    @include button-colour(
-        $membership-default,
-        null
-    );
+    background: $membership-default;
+    color: #fff;
 }
 
-.adverts--membership,
+.adverts--memberships,
 .advert--membership {
     &:hover,
     &:focus,
     &:active {
         .button {
-            @include button-colour(
-                darken($membership-default, 5%),
-                null
-            );
+            background: darken($membership-default, 5%);
         }
     }
 }
 
-.adverts--tone-membership .button--legacy-single {
+.adverts--tone-memberships .button--legacy-single {
     &:hover,
     &:focus,
     &:active {
-        @include button-colour(
-            darken($membership-default, 5%),
-            null
-        );
+        background: darken($membership-default, 5%);
     }
 }
 
-.adverts--membership {
+.adverts--memberships {
     .advert__standfirst {
         font-size: 1rem;
         letter-spacing: -.03em;

@@ -1,18 +1,16 @@
 .adverts--live {
 }
 
-.adverts--tone-live {
+.adverts--tone-lives {
     > .adverts__header {
         background: $live-main-1;
     }
 }
 
-.adverts--tone-live .button--legacy-single,
+.adverts--tone-lives .button--legacy-single,
 .advert--live .button {
-    @include button-colour(
-        $live-main-1,
-        null
-    );
+    background: $live-main-1;
+    color: #fff;
 }
 
 .advert--live {
@@ -20,21 +18,15 @@
     &:focus,
     &:active {
         .button {
-            @include button-colour(
-                darken($live-main-1, 5%),
-                null
-            );
+            background: darken($live-main-1, 5%);
         }
     }
 }
 
-.adverts--tone-live .button--legacy-single {
+.adverts--tone-lives .button--legacy-single {
     &:hover,
     &:focus,
     &:active {
-        @include button-colour(
-            darken($live-main-1, 5%),
-            null
-        );
+        background: darken($live-main-1, 5%);
     }
 }

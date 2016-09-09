@@ -43,30 +43,6 @@
         background: $paid-article-subheader-bg;
     }
 
-    .adverts__more > summary {
-        background: $paidfor-background;
-        border-color: $paidfor-background;
-
-        .inline-icon {
-            fill: $neutral-2;
-        }
-
-        @include mq(desktop) {
-            float: left;
-            margin-bottom: $gs-baseline;
-
-            & + * {
-                clear: left;
-            }
-        }
-    }
-
-    .adverts__more[open] > summary {
-        background: none;
-        border-color: $neutral-4;
-        color: $neutral-1;
-    }
-
     .button {
         @include button-colour(
             $paid-article-brand,
@@ -148,7 +124,7 @@
     .advert__title {
         margin-bottom: .5em;
 
-        > .inline-icon svg {
+        > .icon {
             width: 1.1em;
             height: .75em;
             margin-right: .3em;
@@ -200,7 +176,7 @@
         font-family: $f-sans-serif-headline;
         font-weight: 400;
 
-        > .inline-icon svg {
+        > .icon {
             fill: $paid-article-icon;
         }
     }
@@ -242,7 +218,7 @@
         }
 
         .advert__title {
-            > .inline-icon svg {
+            > .icon {
                 fill: $multimedia-main-2;
             }
         }

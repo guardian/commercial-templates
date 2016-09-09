@@ -1,18 +1,16 @@
 .adverts--shop {
 }
 
-.adverts--tone-shop {
+.adverts--tone-shops {
     > .adverts__header {
         background: $features-main-1;
     }
 }
 
-.adverts--tone-shop .button--legacy-single,
+.adverts--tone-shops .button--legacy-single,
 .advert--shop .button {
-    @include button-colour(
-        $features-support-4,
-        null
-    );
+    background: $features-support-4;
+    color: #fff;
 }
 
 .advert--shop {
@@ -20,10 +18,7 @@
     &:focus,
     &:active {
         .button {
-            @include button-colour(
-                darken($features-support-4, 5%),
-                null
-            );
+            background: darken($features-support-4, 5%);
         }
     }
 
@@ -33,13 +28,10 @@
     }
 }
 
-.adverts--tone-shop .button--legacy-single {
+.adverts--tone-shops .button--legacy-single {
     &:hover,
     &:focus,
     &:active {
-        @include button-colour(
-            darken($features-support-4, 5%),
-            null
-        );
+        background: darken($features-support-4, 5%);
     }
 }

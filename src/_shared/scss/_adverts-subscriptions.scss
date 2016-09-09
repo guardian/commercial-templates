@@ -9,10 +9,8 @@
 
 .adverts--tone-subscriptions .button--legacy-single,
 .advert--subscription .button {
-    @include button-colour(
-        $news-main-2,
-        null
-    );
+    background: $news-main-2;
+    color: #fff;
 }
 
 .advert--subscription {
@@ -20,10 +18,7 @@
     &:focus,
     &:active {
         .button {
-            @include button-colour(
-                darken($news-main-2, 5%),
-                null
-            );
+            background: darken($news-main-2, 5%);
         }
     }
 }
@@ -32,9 +27,6 @@
     &:hover,
     &:focus,
     &:active {
-        @include button-colour(
-            darken($news-main-2, 5%),
-            null
-        );
+        background: darken($news-main-2, 5%);
     }
 }

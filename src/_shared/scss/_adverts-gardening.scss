@@ -1,40 +1,32 @@
-.adverts--gardening {
+.adverts--gardens {
 }
 
-.adverts--tone-gardening {
+.adverts--tone-gardens {
     > .adverts__header {
         background: $maps-main-1;
     }
 }
 
-.adverts--tone-gardening .button--legacy-single,
-.advert--gardening .button {
-    @include button-colour(
-        $maps-support-2,
-        null
-    );
+.adverts--tone-gardens .button--legacy-single,
+.advert--garden .button {
+    background: $maps-support-2;
+    color: #fff;
 }
 
-.advert--gardening {
+.advert--garden {
     &:hover,
     &:focus,
     &:active {
         .button {
-            @include button-colour(
-                darken($maps-support-2, 5%),
-                null
-            );
+            background: darken($maps-support-2, 5%);
         }
     }
 }
 
-.adverts--tone-gardening .button--legacy-single {
+.adverts--tone-gardens .button--legacy-single {
     &:hover,
     &:focus,
     &:active {
-        @include button-colour(
-            darken($maps-support-2, 5%),
-            null
-        );
+        background: darken($maps-support-2, 5%);
     }
 }

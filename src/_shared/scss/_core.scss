@@ -53,6 +53,45 @@ $mq-breakpoints: (
     }
 }
 
+.button {
+    border-radius: 1000px;
+    font: bold 13px/20px $f-sans-serif-text;
+    text-decoration: none;
+    display: inline-flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: $gs-gutter / 2;
+}
+
+.button--bordered {
+    border: 1px solid currentColor;
+}
+
+.button--large {
+    padding-left: $gs-gutter / 5 * 3;
+}
+
+.button > .icon {
+    fill: currentColor;
+    width: 30px;
+    height: 30px;
+}
+
+.button--large > .icon {
+    width: 36px;
+    height: 36px;
+}
+
+.button--small {
+    font-size: 12px;
+    padding-left: $gs-gutter / 5 * 2;
+
+    > .icon {
+        width: 24px;
+        height: 24px;
+    }
+}
+
 .creative {
     display: block;
     position: relative;
@@ -101,4 +140,16 @@ $mq-breakpoints: (
 
 .js-toggle[aria-expanded="true"] > .icon--arrow-down {
     transform: rotate(180deg);
+}
+
+.blink {
+    display: block;
+    text-decoration: none;
+
+    &:hover,
+    &:focus {
+        .blink__anchor {
+            text-decoration: underline;
+        }
+    }
 }

@@ -8,15 +8,6 @@
     line-height: 1rem;
     padding-bottom: $gs-baseline / 2;
 
-    &:hover,
-    &:focus {
-        text-decoration: none;
-
-        .advert__title {
-            text-decoration: underline;
-        }
-    }
-
     &,
     &:active {
         color: inherit;
@@ -28,7 +19,7 @@
     }
 }
 
-.advert--landscape {
+.advert--prominent-true {
     .has-no-flex & {
         overflow: hidden;
 
@@ -104,6 +95,7 @@
 .advert__title {
     font-size: 1rem;
     line-height: 1.25;
+    margin: 0;
 
     &.u-text-hyphenate {
         max-width: 100%;
@@ -167,7 +159,7 @@
 }
 
 @include mq(tablet) {
-    .advert--large {
+    .advert--prominent-true {
         flex-direction: row;
         align-items: stretch;
         padding-bottom: 0;
@@ -191,24 +183,11 @@
             height: auto;
             order: 0;
             margin-bottom: 0;
-            margin-left: $gs-gutter / 2;
+            margin-right: $gs-gutter / 2;
         }
 
         .advert__image {
             width: 100%;
-        }
-    }
-
-    .advert--inverse {
-        flex-direction: row-reverse;
-
-        > .advert__text {
-            padding: $gs-baseline / 2 0 $gs-baseline / 2 $gs-gutter / 2;
-        }
-
-        > .advert__image-container {
-            margin-left: 0;
-            margin-right: $gs-gutter / 2;
         }
     }
 
@@ -225,28 +204,16 @@
         }
     }
 
-    .advert--large--1x3 > .advert__image-container {
-        flex-basis: calc(75% - #{$gs-gutter / 2});
-    }
-
-    .advert--large--1x2 > .advert__image-container {
+    .advert--prominent-true > .advert__image-container {
         flex-basis: calc(66.67% - #{$gs-gutter / 2});
     }
 
     .has-no-flex {
-        .advert--large--1x3 > .advert__image-container {
-            width:  calc(75% - #{$gs-gutter / 2});
-        }
-
-        .advert--large--1x2 > .advert__image-container {
+        .advert--prominent-true > .advert__image-container {
             width:  calc(66.67% - #{$gs-gutter / 2});
         }
 
-        .advert--large--1x3 > .advert__text {
-            width:  calc(25% - #{$gs-gutter / 2});
-        }
-
-        .advert--large--1x2 > .advert__text {
+        .advert--prominent-true > .advert__text {
             width:  calc(33.33% - #{$gs-gutter / 2});
         }
     }
