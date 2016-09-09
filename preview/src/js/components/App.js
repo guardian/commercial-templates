@@ -1,6 +1,7 @@
 const React = require('react');
 // libs
 const fetch = require('../lib/fetch');
+const messenger = require('../lib/messenger');
 // components
 const SelectTemplate = require('./SelectTemplate');
 const Preview = require('./Preview');
@@ -34,6 +35,17 @@ module.exports = React.createClass({
 		}.bind(this)).catch(function (err) {
             console.error('Argh, there was an error!');
         });
+
+		messenger.register('get-styles', function(data) {
+			const styleSheets = document.querySelectorAll(data.value.selector),
+				  results = Array.from(styleSheets, s => s.textContent);
+
+			return results;
+		});
+
+		messenger.register('resize', function(data) {
+			document.querySelector('.preview-template').style.height = data.value.height + 'px';
+		});
 	},
 
     render: function() {
