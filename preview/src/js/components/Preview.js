@@ -5,7 +5,7 @@ module.exports = React.createClass({
         const src = '/template/' + this.props.selectedTemplate;
 
         return (
-            <iframe className="preview-template" src={src}></iframe>
+            <iframe className="preview-template" src={src}></iframe> 
         );
     }
 });

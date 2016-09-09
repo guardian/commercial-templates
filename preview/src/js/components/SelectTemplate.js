@@ -21,12 +21,14 @@ module.exports = React.createClass({
         }.bind(this));
 
         return (
-            <select className='select-template' onChange={this.handleSelectChange}>
-                <option value=''>
-                    Please select...    
-                </option>
-                {listItems}
-            </select>
+            <div className='select-container'>
+                <select className='select-template' onChange={this.handleSelectChange}>
+                    <option value=''>
+                        Please select...    
+                    </option>
+                    {listItems}
+                </select>
+            </div>
         );
     }
 });

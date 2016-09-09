@@ -5,6 +5,7 @@ const messenger = require('../lib/messenger');
 // components
 const SelectTemplate = require('./SelectTemplate');
 const Preview = require('./Preview');
+const Refresh = require('./Refresh');
 
 module.exports = React.createClass({
 	getInitialState: function() {
@@ -60,6 +61,9 @@ module.exports = React.createClass({
                 <SelectTemplate 
                 	templates={this.state.templates} 
                 	onSelectFormChange={this.onSelectFormChange}
+                />
+                <Refresh
+                	onRefresh={this.onRefresh}
                 />
                 <Preview 
                 	selectedTemplate={this.state.selectedTemplate}
