@@ -126,6 +126,12 @@
 .hosted-trafficdriver__title {
     padding: 6px 6px 24px;
     font-size: 16px;
+    line-height: 22px;
+
+    @media (max-width: $desktop) {
+        font-size: 20px;
+        line-height: 24px;
+    }    
 }
 
 .hosted-trafficdriver__content-type {
