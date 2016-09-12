@@ -33,7 +33,8 @@
   },
   "scripts": {
     "build": "node build.js",
-    "serve": "nodemon server.js"
+    "serve-preview": "nodemon preview/server.js",
+    "build-preview": "node preview/build.js"
   },
   "author": "",
   "license": "ISC"

@@ -5,8 +5,8 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const app = express();
 
-const templates = require('./lib/templates');
-const template = require('./lib/template');
+const templates = require('./src/js/lib/templates');
+const template = require('./src/js/lib/template');
 
 app.set('port', (process.env.PORT || 9000));
 
@@ -16,7 +16,7 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 
-app.use('/', express.static(path.join(__dirname, 'preview/public')));
+app.use('/', express.static(path.join(__dirname, '/public')));
 
 app.get("/templates", (req, res, next) => {
 	res.send(templates());

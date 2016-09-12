@@ -31,6 +31,7 @@ rollup({
     moduleName: 'main'
   });
 })
+.then(() => console.log("... preview has been built :)"))
 .catch((error) => {
   console.error(error);
 });

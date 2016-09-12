@@ -1,11 +1,10 @@
 const Promise = require('bluebird');
-const fsExtra = require('fs-extra');
+const fs = Promise.promisifyAll(require('fs'));
 
-const fs = Promise.promisifyAll(fsExtra);
 const buildPath = './build/';
 const srcPath = './src/';
 
-let filePaths = {};
+let filePaths;
 let builtHTML;
 
 function buildHTML() {
@@ -21,9 +20,7 @@ function getFileContents(filePath) {
 function replacePlaceholders() {
 	const placeholders = builtHTML.match(/\[%(.*?)\%]/g);
 
-	placeholders.map(function (placeholder) {
-		replacePlaceholder(placeholder);
-	});
+	placeholders.map(replacePlaceholder);
 }
 
 function replacePlaceholder(placeholder) {
@@ -60,6 +57,7 @@ function getHTML(id) {
 			resolve(builtHTML);
 		})
 		.catch((err) => {
+			console.log(err);
 			reject(new Error('sorry there was an error'));
 		});
     });

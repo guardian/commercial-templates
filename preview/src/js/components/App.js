@@ -36,16 +36,19 @@ module.exports = React.createClass({
 		}.bind(this)).catch(function (err) {
             console.error('Argh, there was an error!');
         });
-
-		messenger.register('get-styles', function(data) {
-			const styleSheets = document.querySelectorAll(data.value.selector),
-				  results = Array.from(styleSheets, s => s.textContent);
-
-			return results;
-		});
-
+		// return font styles to iframe
+		messenger.register('get-styles', this.getStyles);
+		// resize iframe height on resize message
 		messenger.register('resize', this.resizeIframe);
+		// resize iframe height on window resize
 		window.addEventListener('resize', this.resizeIframe);
+	},
+
+	getStyles: function(data) {
+		const styleSheets = document.querySelectorAll(data.value.selector),
+			  results = Array.from(styleSheets, s => s.textContent);
+
+		return results;
 	},
 
 	resizeIframe: function() {

@@ -21,7 +21,7 @@ function on(window) {
 function onMessage(event) {
 	const data = JSON.parse(event.data);
 
-	if (!listeners[data.type]) {
+	if (!data.type || !listeners[data.type]) {
 		return;
 	}
 
