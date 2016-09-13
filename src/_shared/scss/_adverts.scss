@@ -157,7 +157,7 @@
             margin-top: $gs-baseline / 3;
         }
 
-        .button--tertiary {
+        .button {
             border-color: rgba(255, 255, 255, .3);
 
             &:hover,
@@ -264,34 +264,10 @@
         }
     }
 
-    .adverts__2cols {
-        @include mq(tablet) {
-            > * {
-                position: relative;
-                z-index: 1;
-            }
-
-            &::after {
-                @include separator($neutral-4, calc((100% - #{$gs-gutter}) / 2), $gs-gutter / 2);
-            }
-        }
-    }
-
-    .adverts__3cols {
-        @include mq(tablet) {
-            > * {
-                position: relative;
-                z-index: 1;
-            }
-
-            &::before {
-                @include separator($neutral-4, calc((100% - #{$gs-gutter}) / 3), $gs-gutter / 2);
-            }
-
-            &::after {
-                @include separator($neutral-4, calc((100% - #{$gs-gutter}) / 3 * 2), $gs-gutter / 2);
-            }
-        }
+    .adverts__row--4cards > :nth-child(4) ~ *,
+    .adverts__row--3cards > :nth-child(3) ~ *,
+    .adverts__row--2cards > :nth-child(2) ~ * {
+        display: none;
     }
 }
 
@@ -619,20 +595,3 @@
         margin-right: 0;
     }
 }
-
-@import '_adverts-books';
-@import '_adverts-masterclasses';
-@import '_adverts-jobs';
-@import '_adverts-soulmates';
-@import '_adverts-capi';
-@import '_adverts-brand';
-@import '_adverts-membership';
-@import '_adverts-travel';
-@import '_adverts-subscriptions';
-@import '_adverts-live';
-@import '_adverts-networks';
-@import '_adverts-shop';
-@import '_adverts-money';
-@import '_adverts-gardening';
-@import '_adverts-blended';
-@import '_adverts-facebook';
