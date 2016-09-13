@@ -27,7 +27,7 @@
         }
     }
 
-    > .adverts__header .inline-logo-soulmates > svg {
+    > .adverts__header .icon--soulmates-logo {
         width: 100px;
         height: 21px;
 
@@ -86,6 +86,10 @@
 
     .search__submit {
         float: right;
+    }
+
+    .icon--soulmates-join {
+        fill: initial;
     }
 }
 
