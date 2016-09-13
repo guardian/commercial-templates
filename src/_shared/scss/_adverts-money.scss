@@ -1,0 +1,32 @@
+.adverts--money {
+}
+
+.adverts--tone-moneys {
+    > .adverts__header {
+        background: $news-main-2;
+    }
+}
+
+.adverts--tone-moneys .button--legacy-single,
+.advert--money .button {
+    background: $news-support-2;
+    color: #fff;
+}
+
+.advert--money {
+    &:hover,
+    &:focus,
+    &:active {
+        .button {
+            background: darken($news-support-2, 5%);
+        }
+    }
+}
+
+.adverts--tone-moneys .button--legacy-single {
+    &:hover,
+    &:focus,
+    &:active {
+        background: darken($news-support-2, 5%);
+    }
+}

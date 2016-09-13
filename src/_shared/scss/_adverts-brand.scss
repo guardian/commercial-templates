@@ -1,0 +1,29 @@
+.adverts--tone-brands {
+    > .adverts__header {
+        background: $news-support-2;
+    }
+}
+
+.adverts--tone-brands .button--legacy-single,
+.advert--brand .button {
+    background: $news-main-2;
+    color: #fff;
+}
+
+.advert--brand {
+    &:hover,
+    &:focus,
+    &:active {
+        .button {
+            background: darken($news-main-2, 5%);
+        }
+    }
+}
+
+.adverts--tone-brands .button--legacy-single {
+    &:hover,
+    &:focus,
+    &:active {
+        background: darken($news-main-2, 5%);
+    }
+}

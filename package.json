@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "rollup": "^0.34.1"
+    "rollup": "^0.34.1",
+    "sass-mq": "^3.2.9"
   },
   "devDependencies": {
     "autoprefixer": "^6.3.7",

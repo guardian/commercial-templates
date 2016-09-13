@@ -1,0 +1,91 @@
+.adverts--books {
+    > .adverts__header {
+        .button {
+            color: #ffffff;
+            border-color: rgba(#ffffff, .3);
+            margin-right: 0;
+
+            &:hover,
+            &:focus,
+            &:active {
+                border-color: #ffffff;
+            }
+        }
+    }
+
+}
+
+.adverts--tone-books {
+    > .adverts__header {
+        background: $features-main-1;
+    }
+
+    &.adverts--legacy-inline {
+        .inline-logo-bookshop__svg {
+            opacity: .8;
+        }
+    }
+}
+
+.advert--book {
+    .advert__meta[itemprop='author'] {
+        margin-bottom: 1em;
+    }
+}
+
+.adverts--tone-books .button--legacy-single,
+.advert--book .button {
+    color: #fff;
+    background: $features-main-2;
+}
+
+.advert--book {
+    &:hover,
+    &:focus,
+    &:active {
+        .button {
+            background: darken($features-main-2, 5%);
+        }
+    }
+
+    &.adverts--legacy-inline {
+        @include mq(mobileLandscape) {
+            width: gs-span(2);
+        }
+
+        .advert > :not(.advert__image-container) {
+            margin-left: 0;
+            margin-right: 0;
+        }
+
+        .adverts__body {
+            padding: $gs-baseline / 2 $gs-gutter / 4 0;
+        }
+
+        .advert__meta {
+            margin-top: $gs-baseline / 2;
+        }
+    }
+
+}
+
+.adverts--tone-books .button--legacy-single {
+    &:hover,
+    &:focus,
+    &:active {
+        background: darken($features-main-2, 5%);
+    }
+}
+
+.advert-blended--books .advert-blended__title {
+    padding-top: 5px;
+    padding-bottom: 4px;
+}
+
+.logo--tone-books {
+    fill: $features-main-1;
+}
+
+.tone-book-highlight {
+    color: $features-main-2;
+}
