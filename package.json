@@ -17,8 +17,6 @@
     "body-parser": "^1.14.1",
     "csso": "^2.2.1",
     "express": "^4.13.3",
-    "fs-extra": "0.30.0",
-    "glob": "7.0.3",
     "hogan.js": "^3.0.2",
     "node-sass": "^3.8.0",
     "react": "^0.14.3",
