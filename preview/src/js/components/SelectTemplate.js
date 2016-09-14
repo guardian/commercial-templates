@@ -18,7 +18,7 @@ module.exports = React.createClass({
                     {template}
                 </option>
             );
-        }.bind(this));
+        });
 
         return (
             <div className='select-container'>

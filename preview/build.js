@@ -7,13 +7,13 @@ const uglify = require('rollup-plugin-uglify');
 const minify = require('uglify-js').minify;
 
 rollup({
-  entry: './src/js/main.js',
+  entry: './preview/src/js/main.js',
   plugins: [
     replace({
       'process.env.NODE_ENV': JSON.stringify( 'production' )
     }),
     babel({
-      exclude: ['../node_modules/**']
+      exclude: ['./node_modules/**']
     }),
     nodeResolve({
         jsnext: false,
@@ -26,7 +26,7 @@ rollup({
 })
 .then((bundle) => {
   bundle.write({
-    dest: './public/main.js',
+    dest: './preview/public/main.js',
     format: 'iife',
     moduleName: 'main'
   });
