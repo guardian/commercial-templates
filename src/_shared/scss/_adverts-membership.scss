@@ -4,14 +4,12 @@
     }
 }
 
-.adverts--tone-memberships .advert__more,
 .adverts--tone-memberships .button--legacy-single,
 .advert--membership .button {
     background: $membership-default;
     color: #fff;
 }
 
-.adverts--memberships,
 .advert--membership {
     &:hover,
     &:focus,
@@ -22,7 +20,7 @@
     }
 }
 
-.adverts--tone-memberships .button--legacy-single {
+.adverts--tone-memberships .adverts__ctas .button {
     &:hover,
     &:focus,
     &:active {
