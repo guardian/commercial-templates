@@ -18,17 +18,6 @@
   </header>
   <div class="adverts__body">
     <div class="adverts__row">
-
-        {{#soulmates}}
-          <a class="advert advert--soulmate" href="%%CLICK_URL_ESC%%{{profileUrl}}" data-link-name="merchandising-soulmates-v2_2_2014-03-28-profile-@{soulmate.gender}">
-            <h2 class="advert__title u-text-hyphenate" itemprop="name">{{username}}</h2>
-            <div class="advert__image-container">
-              <img class="advert__image" src="{{profilePhoto}}">
-            </div>
-            <div class="advert__meta">{{age}}, {{location}}</div>
-          </a>
-        {{/soulmates}}
-
       <form class="search hide-until-tablet" action="{{soulmates_url}}/find" method="get">
         <div class="search__field">
           <label for="my_gender" class="search__label">I am a</label>
@@ -68,3 +57,12 @@
     </div>
   </div>
 </aside>
+<template id="soulmate-card">
+  <a class="advert advert--soulmate" href="" data-link-name="">
+    <h2 class="advert__title u-text-hyphenate" itemprop="name"></h2>
+    <div class="advert__image-container">
+      <img class="advert__image" src="">
+    </div>
+    <div class="advert__meta"></div>
+  </a>
+</template>
