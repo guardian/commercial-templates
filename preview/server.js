@@ -1,4 +1,4 @@
-require("babel-core/register");
+require('babel-core/register');
 
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -18,15 +18,15 @@ app.use(bodyParser.urlencoded({
 
 app.use('/', express.static(path.join(__dirname, '/public')));
 
-app.get("/templates", (req, res, next) => {
+app.get('/templates', (req, res, next) => {
 	res.send(templates());
 });
 
-app.get("/template", (req, res, next) => {
-	res.send("please select template to preview");
+app.get('/template', (req, res, next) => {
+	res.send('please select template to preview');
 });
 
-app.get("/template/:id", (req, res, next) => {
+app.get('/template/:id', (req, res, next) => {
 	template(req.params.id)
 	.then(html => {
 		res.send(html);
