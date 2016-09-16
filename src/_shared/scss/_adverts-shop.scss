@@ -1,0 +1,37 @@
+.adverts--shop {
+}
+
+.adverts--tone-shops {
+    > .adverts__header {
+        background: $features-main-1;
+    }
+}
+
+.adverts--tone-shops .button--legacy-single,
+.advert--shop .button {
+    background: $features-support-4;
+    color: #fff;
+}
+
+.advert--shop {
+    &:hover,
+    &:focus,
+    &:active {
+        .button {
+            background: darken($features-support-4, 5%);
+        }
+    }
+
+    .advert__image-container {
+        height: auto;
+        min-height: 11 * $gs-baseline;
+    }
+}
+
+.adverts--tone-shops .button--legacy-single {
+    &:hover,
+    &:focus,
+    &:active {
+        background: darken($features-support-4, 5%);
+    }
+}
