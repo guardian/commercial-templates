@@ -1,4 +1,4 @@
-<aside class="gimbap-wrap" role="complementary" data-link-name="creative | ad multiple manual | <%=omnitureId%>">
+<aside class="gimbap-wrap" role="complementary" data-link-name="creative | ad multiple manual | [%OmnitureId%]">
     <div class="gimbap-wrap__box">
         <%if( !headless ){%>
         <header class="gimbap-wrap__header">
@@ -8,38 +8,38 @@
         </header>
         <%}%>
         <%=marque36icon%>
-        <div class="gimbap-wrap__body gimbap-wrap__body--<%=layout%>">
-            <a class="gimbap gimbap--<%=style%> gimbap--tone-<%=offer1tone%><% if (hasAuthorImage) { %> gimbap--has-author<% } %>"
-               href="<%=clickMacro%><%=offer1url%>"
-               data-link-name="<%=offer1title%>">
+        <div class="gimbap-wrap__body gimbap-wrap__body--[%Layout%]">
+            <a class="gimbap gimbap--[%Style%] gimbap--tone-[%Offer1Tone%]<% if (hasAuthorImage) { %> gimbap--has-author<% } %>"
+               href="<%=clickMacro%>[%Offer1URL%]"
+               data-link-name="[%Offer1Title%]">
                 <% if (hasAuthorImage) { %>
-                <img class="gimbap__author" src="<%=offer1authorimage%>" alt="" />
+                <img class="gimbap__author" src="[%Offer1AuthorImage%]" alt="" />
                 <% } %>
-                <h3 class="gimbap__title"><%=offer1HasQuotes%><%=offer1title%></h3>
-                <p class="gimbap__cta"><%=offer1subtitle%><%=arrowRight%></p>
-                <div class="gimbap-logo<%=gimbapLogoStyle %> gimbap-logo--tone-<%=offer1tone%>"><%=offer1logo%></div>
+                <h3 class="gimbap__title"><%=offer1HasQuotes%>[%Offer1Title%]</h3>
+                <p class="gimbap__cta">[%Offer1Subtitle%]<%=arrowRight%></p>
+                <div class="gimbap-logo<%=gimbapLogoStyle %> gimbap-logo--tone-[%Offer1Tone%]"><%=offer1logo%></div>
             </a>
-            <a class="gimbap gimbap--<%=style%> gimbap--tone-<%=offer2tone%>"
-               href="<%=clickMacro%><%=offer2url%>"
-               data-link-name="<%=offer2title%>">
-                <h3 class="gimbap__title"><%=offer2HasQuotes%><%=offer2title%></h3>
-                <p class="gimbap__cta"><%=offer2subtitle%><%=arrowRight%></p>
-                <div class="gimbap-logo<%=gimbapLogoStyle %> gimbap-logo--tone-<%=offer2tone%>"><%=offer2logo%></div>
+            <a class="gimbap gimbap--[%Style%] gimbap--tone-[%Offer2Tone%]"
+               href="<%=clickMacro%>[%Offer2URL%]"
+               data-link-name="[%Offer2Title%]">
+                <h3 class="gimbap__title"><%=offer2HasQuotes%>[%Offer2Title%]</h3>
+                <p class="gimbap__cta">[%Offer2Subtitle%]<%=arrowRight%></p>
+                <div class="gimbap-logo<%=gimbapLogoStyle %> gimbap-logo--tone-[%Offer2Tone%]">[%Offer2Logo%]</div>
             </a>
-            <a class="gimbap gimbap--<%=style%> gimbap--tone-<%=offer3tone%>"
-               href="<%=clickMacro%><%=offer3url%>"
-               data-link-name="<%=offer3title%>">
-                <h3 class="gimbap__title"><%=offer3HasQuotes%><%=offer3title%></h3>
-                <p class="gimbap__cta"><%=offer3subtitle%><%=arrowRight%></p>
-                <div class="gimbap-logo<%=gimbapLogoStyle %> gimbap-logo--tone-<%=offer3tone%>"><%=offer3logo%></div>
+            <a class="gimbap gimbap--[%Style%] gimbap--tone-[%Offer3Tone%]"
+               href="<%=clickMacro%>[%Offer3URL%]"
+               data-link-name="[%Offer3Title%]">
+                <h3 class="gimbap__title"><%=offer3HasQuotes%>[%Offer3Title%]</h3>
+                <p class="gimbap__cta">[%Offer3Subtitle%]<%=arrowRight%></p>
+                <div class="gimbap-logo<%=gimbapLogoStyle %> gimbap-logo--tone-[%Offer3Tone%]">[%Offer3Logo%]</div>
             </a>
             <% if (layout == '1x1x1x1') { %>
-            <a class="gimbap gimbap--<%=style%> gimbap--tone-<%=offer4tone%>"
-               href="<%=clickMacro%><%=offer4url%>"
-               data-link-name="<%=offer4title%>">
-                <h3 class="gimbap__title"><%=offer4HasQuotes%><%=offer4title%></h3>
-                <p class="gimbap__cta"><%=offer4subtitle%><%=arrowRight%></p>
-                <div class="gimbap-logo<%=gimbapLogoStyle %> gimbap-logo--tone-<%=offer4tone%>"><%=offer4logo%></div>
+            <a class="gimbap gimbap--[%Style%] gimbap--tone-[%Offer4Tone%]"
+               href="<%=clickMacro%>[%Offer4URL%]"
+               data-link-name="[%Offer4Title%]">
+                <h3 class="gimbap__title"><%=offer4HasQuotes%>[%Offer4Title%]</h3>
+                <p class="gimbap__cta">[%Offer4Subtitle%]<%=arrowRight%></p>
+                <div class="gimbap-logo<%=gimbapLogoStyle %> gimbap-logo--tone-[%Offer4Tone%]">[%Offer4Logo%]</div>
             </a>
             <% } %>
         </div>
