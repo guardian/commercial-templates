@@ -9,7 +9,7 @@
         <%}%>
         {{#svg}}marque-36{{/svg}}
         <div class="gimbap-wrap__body gimbap-wrap__body--[%Layout%]">
-            <a class="gimbap gimbap--[%Style%] gimbap--tone-[%Offer1Tone%]<% if (hasAuthorImage) { %> gimbap--has-author<% } %>"
+            <a class="gimbap gimbap--[%Style%] gimbap--tone-[%Offer1Tone%]"
                href="<%=clickMacro%>[%Offer1URL%]"
                data-link-name="[%Offer1Title%]">
                 <% if (hasAuthorImage) { %>
@@ -33,7 +33,6 @@
                 <p class="gimbap__cta">[%Offer3Subtitle%]{{#svg}}arrow-right{{/svg}}</p>
                 <div class="gimbap-logo gimbap-logo--[%Style%] gimbap-logo--tone-[%Offer3Tone%]"></div>
             </a>
-            <% if (layout == '1x1x1x1') { %>
             <a class="gimbap gimbap--[%Style%] gimbap--tone-[%Offer4Tone%]"
                href="<%=clickMacro%>[%Offer4URL%]"
                data-link-name="[%Offer4Title%]">
@@ -41,7 +40,6 @@
                 <p class="gimbap__cta">[%Offer4Subtitle%]{{#svg}}arrow-right{{/svg}}</p>
                 <div class="gimbap-logo gimbap-logo--[%Style%] gimbap-logo--tone-[%Offer4Tone%]"></div>
             </a>
-            <% } %>
         </div>
     </div>
 </aside>
