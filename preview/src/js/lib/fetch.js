@@ -16,7 +16,6 @@ function fetch(opts) {
         };
         
         xhr.onerror = function() {
-            console.log('wut');
             reject({
                 status: this.status,
                 statusText: xhr.statusText
