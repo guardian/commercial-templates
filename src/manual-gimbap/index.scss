@@ -1,6 +1,7 @@
 @import '_core';
-@import '_adverts';
-@import '_advert';
+@import '_gimbap-branding';
+@import '_gimbap-wrap';
+@import '_gimbap';
 
 .gimbap-wrap__body--2x1x1 > :nth-child(4) {
 	display: none;
