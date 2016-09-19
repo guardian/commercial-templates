@@ -1,15 +1,15 @@
-import { ajaxCall } from './ajax';
+import { ajaxCall } from '../_shared/js/ajax.js';
 
-requestSoulmates([%Subfeed%])
-  .catch( (error) => {throw new AJAXError(error); })
+requestSoulmates('[%Subfeed%]')
+  .catch( (error) => {throw new Error(error); })
   .then(JSON.parse)
-  .catch( (error) => {throw new JSONError(error); })
+  .catch( (error) => {throw new Error(error); })
   .then( (parsedSoulmates) => addSoulmateCards(parsedSoulmates));
 
 function requestSoulmates(group) {
   ajaxCall('https://theguardian.com/commercial/soulmates.json',
-           'group=' + group)
-});
+           'group=' + group);
+};
 
 function addSoulmateCards(soulmates) {
   /*
@@ -25,7 +25,7 @@ function addSoulmateCards(soulmates) {
   }
 
   function supportsTemplate (){
-    return 'content' in document.createElement('template')
+    return 'content' in document.createElement('template');
   }
 
   function generateWithTemplate() {
@@ -46,6 +46,7 @@ function addSoulmateCards(soulmates) {
       // copy the template into the card container
       var clone = document.importNode(t.content, true);
       card_container.appendChild(clone);
+    }
   }
 
   function generateWithoutTemplate() {
@@ -61,7 +62,7 @@ function addSoulmateCards(soulmates) {
       heading.classList.add("advert__title", "u-text-hyphenate");
       heading.setAttribute("data-link-name", "merchandising-soulmates-v2_2_2014-03-28-profile-" + soulmate.gender);
       heading.setAttribute("itemprop", "name");
-      heading.textContent = soulmate.username
+      heading.textContent = soulmate.username;
 
       let photo_container = document.createElement("div");
       photo_container.classList.add("advert__image-container");
@@ -71,7 +72,7 @@ function addSoulmateCards(soulmates) {
       photo.src = soulmate.profilePhoto;
 
       let location = document.createElement("div");
-      location.classList.add("advert__meta")
+      location.classList.add("advert__meta");
       location.textContent = soulmate.age + ", " + soulmate.location;
 
       // add them to the dom
