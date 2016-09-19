@@ -1,4 +1,4 @@
-export function ajaxCall(url, data) {
+export function ajaxCall(url) {
   return new Promise(function(resolve, reject) {
     let req = new XMLHttpRequest();
     req.open("GET", url, true);
@@ -13,6 +13,6 @@ export function ajaxCall(url, data) {
     };
 
     req.onerror = () => reject(new Error("Network error"));
-    req.send(data);
+    req.send();
   });
 }

@@ -7,8 +7,7 @@ requestSoulmates('[%Subfeed%]')
   .then( (parsedSoulmates) => addSoulmateCards(parsedSoulmates));
 
 function requestSoulmates(group) {
-  ajaxCall('https://theguardian.com/commercial/soulmates.json',
-           'group=' + group);
+  ajaxCall('https://theguardian.com/commercial/soulmates/' + group + '.json');
 };
 
 function addSoulmateCards(soulmates) {
