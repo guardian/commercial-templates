@@ -15,21 +15,21 @@
                 <% if (hasAuthorImage) { %>
                 <img class="gimbap__author" src="[%Offer1AuthorImage%]" alt="" />
                 <% } %>
-                <h3 class="gimbap__title"><%=offer1HasQuotes%>[%Offer1Title%]</h3>
+                <h3 class="gimbap__title">[%Offer1Title%]</h3>
                 <p class="gimbap__cta">[%Offer1Subtitle%]{{#svg}}arrow-right{{/svg}}</p>
                 <div class="gimbap-logo gimbap-logo--[%Style%] gimbap-logo--tone-[%Offer1Tone%]"><%=offer1logo%></div>
             </a>
             <a class="gimbap gimbap--[%Style%] gimbap--tone-[%Offer2Tone%]"
                href="<%=clickMacro%>[%Offer2URL%]"
                data-link-name="[%Offer2Title%]">
-                <h3 class="gimbap__title"><%=offer2HasQuotes%>[%Offer2Title%]</h3>
+                <h3 class="gimbap__title">[%Offer2Title%]</h3>
                 <p class="gimbap__cta">[%Offer2Subtitle%]{{#svg}}arrow-right{{/svg}}</p>
                 <div class="gimbap-logo gimbap-logo--[%Style%] gimbap-logo--tone-[%Offer2Tone%]"><%=offer2logo%></div>
             </a>
             <a class="gimbap gimbap--[%Style%] gimbap--tone-[%Offer3Tone%]"
                href="<%=clickMacro%>[%Offer3URL%]"
                data-link-name="[%Offer3Title%]">
-                <h3 class="gimbap__title"><%=offer3HasQuotes%>[%Offer3Title%]</h3>
+                <h3 class="gimbap__title">[%Offer3Title%]</h3>
                 <p class="gimbap__cta">[%Offer3Subtitle%]{{#svg}}arrow-right{{/svg}}</p>
                 <div class="gimbap-logo gimbap-logo--[%Style%] gimbap-logo--tone-[%Offer3Tone%]"><%=offer3logo%></div>
             </a>
@@ -37,7 +37,7 @@
             <a class="gimbap gimbap--[%Style%] gimbap--tone-[%Offer4Tone%]"
                href="<%=clickMacro%>[%Offer4URL%]"
                data-link-name="[%Offer4Title%]">
-                <h3 class="gimbap__title"><%=offer4HasQuotes%>[%Offer4Title%]</h3>
+                <h3 class="gimbap__title">[%Offer4Title%]</h3>
                 <p class="gimbap__cta">[%Offer4Subtitle%]{{#svg}}arrow-right{{/svg}}</p>
                 <div class="gimbap-logo gimbap-logo--[%Style%] gimbap-logo--tone-[%Offer4Tone%]"><%=offer4logo%></div>
             </a>
@@ -48,4 +48,10 @@
 
 <script>
 var quoteSvg = '{{#svg}}quote{{/svg}}';
+var logoSvgs = {
+    'bookshop': '{{#svg}}logo-bookshop-horizontal{{/svg}}',
+    'jobs': '{{#svg}}logo-jobs-horizontal{{/svg}}',
+    'masterclasses': '{{#svg}}logo-masterclasses-horizontal{{/svg}}',
+    'membership': '{{#svg}}logo-membership-horizontal{{/svg}}'
+};
 </script>
