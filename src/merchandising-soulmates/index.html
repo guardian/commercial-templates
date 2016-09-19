@@ -37,17 +37,17 @@
         <div class="search__field">
           <label for="age_min" class="search__label">Aged from</label>
           <select id="age_min" name="age_min" class="search__dropdown">
-            {{#min_ages}}
-            <option {{#selected}} selected="selected" {{/selected}}>{{age}}</option>
-            {{/min_ages}}
+            {{#ages.min_ages}}
+            <option {{#selected_default}} selected="selected" {{/selected_default}}>{{age}}</option>
+            {{/ages.min_ages}}
           </select>
         </div>
         <div class="search__field">
           <label for="age_max" class="search__label">To</label>
           <select id="age_max" name="age_max" class="search__dropdown">
-            {{#max_ages}}
-            <option {{#selected}} selected="selected" {{/selected}}>{{age}}</option>
-            {{/max_ages}}
+            {{#ages.max_ages}}
+            <option {{#selected_default}} selected="selected" {{/selected_default}}>{{age}}</option>
+            {{/ages.max_ages}}
           </select>
         </div>
         <button type="submit" class="search__submit button button--tone-media button--small" data-link-name="merchandising-soulmates-v2_2_2014-03-28-find-a-soulmate">
@@ -57,6 +57,8 @@
     </div>
   </div>
 </aside>
+
+<!-- for generating each successive soulmate card -->
 <template id="soulmate-card">
   <a class="advert advert--soulmate" href="" data-link-name="">
     <h2 class="advert__title u-text-hyphenate" itemprop="name"></h2>
