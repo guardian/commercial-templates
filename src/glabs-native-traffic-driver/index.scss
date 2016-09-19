@@ -9,6 +9,8 @@ $brand-colour: #69d1ca;
     color: $card-foreground;
     display: flex;
     flex-direction: column;
+    margin: auto;
+    max-width: 320px;
 
     font-family: $f-sans-serif-text;
     line-height: 20px;
