@@ -8,7 +8,7 @@ const app = express();
 const templates = require('./src/js/lib/templates');
 const template = require('./src/js/lib/template');
 
-app.set('port', (process.env.PORT || 9000));
+app.set('port', (process.env.PORT || 7000));
 
 app.use(bodyParser.json());
 

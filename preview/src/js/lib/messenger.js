@@ -30,7 +30,7 @@ function onMessage(event) {
 	});
 
 	function respond(error, result) {
-		event.source.postMessage(JSON.stringify({ id: data.id, error: error, result: result }), 'http://localhost:9000');
+		event.source.postMessage(JSON.stringify({ id: data.id, error: error, result: result }), 'http://localhost:7000');
 	}
 }
 
