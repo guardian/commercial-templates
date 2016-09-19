@@ -150,5 +150,5 @@ function generateId() {
 function post(id, iframeId, type, value) {
     // TODO Allow localhost:9000 when developing
     // and m.code.dev-theguardian.com when testing
-    window.top.postMessage(JSON.stringify({ id, iframeId, type, value }), location.protocol + (devMode === 'true' ? '//localhost:9000' : '//www.theguardian.com'));
+    window.top.postMessage(JSON.stringify({ id, iframeId, type, value }), location.protocol + (devMode === 'true' ? '//localhost:7000' : '//www.theguardian.com'));
 }
