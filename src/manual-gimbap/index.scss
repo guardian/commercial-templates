@@ -6,3 +6,15 @@
 .gimbap-wrap__body--2x1x1 > :nth-child(4) {
 	display: none;
 }
+
+.gimbap__arrow {
+	display: none;
+}
+
+.gimbap__arrow--show {
+	display: inline;
+}
+
+.gimbap {
+	text-decoration: none;
+}
