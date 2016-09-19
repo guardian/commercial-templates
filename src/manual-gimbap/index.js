@@ -11,7 +11,13 @@ Array.from(document.getElementsByClassName('gimbap-logo'), (logo, idx) => {
 	logo.insertAdjacentHtml('afterbegin', logoSvgs[offerTones[idx]]);
 });
 
-// Adds author class if there is an author image URL present in DFP.
+// Adds author image if there is an author image URL present in DFP.
 if ('[%Offer1AuthorImage%]') {
-	document.getElementsByClassName('gimbap')[0].classList.add('gimbap--has-author');
+
+	var firstGimbap = document.getElementsByClassName('gimbap')[0];
+
+	firstGimbap.classList.add('gimbap--has-author');
+	firstGimbap.insertAdjacentHtml('afterbegin',
+		'<img class="gimbap__author" src="[%Offer1AuthorImage%]" alt="" />');
+
 }
