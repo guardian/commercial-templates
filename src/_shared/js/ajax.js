@@ -2,7 +2,7 @@ export function ajaxCall(url) {
   return new Promise(function(resolve, reject) {
     let req = new XMLHttpRequest();
     req.open("GET", url, true);
-    req.send(data);
+    req.send();
 
     req.onload = () => {
       if (req.status === 200) {
@@ -13,6 +13,5 @@ export function ajaxCall(url) {
     };
 
     req.onerror = () => reject(new Error("Network error"));
-    req.send();
   });
 }
