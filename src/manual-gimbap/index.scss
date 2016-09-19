@@ -1,5 +1,6 @@
 @import '_core';
 @import '_gimbap-branding';
+@import '_gimbap-logo';
 @import '_gimbap-wrap';
 @import '_gimbap';
 
@@ -17,4 +18,8 @@
 
 .gimbap {
 	text-decoration: none;
+}
+
+.gimbap__title {
+	margin-top: 0;
 }
