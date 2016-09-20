@@ -5,7 +5,7 @@
                 guardian offers
             </h3>
         </header>
-        {{#svg}}marque-36{{/svg}}
+        <span class="gimbap-wrap__mainlogo inline-marque-36 inline-icon">{{#svg}}marque-36{{/svg}}</span>
         <div class="gimbap-wrap__body gimbap-wrap__body--[%Layout%]">
             <a class="gimbap gimbap--[%Style%] gimbap--tone-[%Offer1Tone%]"
                href="<%=clickMacro%>[%Offer1URL%]"
@@ -40,7 +40,7 @@
 </aside>
 
 <script>
-var quoteSvg = `{{#svg}}quote{{/svg}}`;
+var quoteSvg = `<span class="gimbap__quote inline-quote inline-icon">{{#svg}}quote{{/svg}}</span>`;
 var logoSvgs = {
     'bookshop': `{{#svg}}logo-bookshop-horizontal{{/svg}}`,
     'jobs': `{{#svg}}logo-jobs-horizontal{{/svg}}`,
