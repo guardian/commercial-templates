@@ -6,8 +6,15 @@ getIframeId().then(() => {
 });
 
 // Adds quotes to title if set in DFP.
-Array.from(document.getElementsByClassName('gimbap__title'), (title) => {
-	title.insertAdjacentHTML('afterbegin', quoteSvg);
+var offerQuotes = ['[%Offer1Quotes%]', '[%Offer2Quotes%]', '[%Offer3Quotes%]',
+	'[%Offer4Quotes%]'];
+
+Array.from(document.getElementsByClassName('gimbap__title'), (title, idx) => {
+
+	if (offerQuotes[idx] === 'yes') {
+		title.insertAdjacentHTML('afterbegin', quoteSvg);
+	}
+
 });
 
 // Inserts appropriate SVG logos for certain tones.
