@@ -5,7 +5,35 @@
 - Generate `index.html`, `index.scss` and `index.js` following current standards and the specification doc
 - Generate build files to test your template by running **`npm run build`**
 
-## Testing
+## Testing Locally (Previewing)
+
+There is a local test server included in the `preview` directory. To use it simply mock up DFP variables in a test JSON file.
+
+For example, if you're working on `manual-multiple`, create `test.json` in the `manual-multiple` directory and populate it as follows:
+
+```
+{
+    "Title": "My Title",
+    "Tone": "brand",
+    "NumberOfCards": "4"
+}
+```
+
+and so on...
+
+Then, to run the server:
+
+```
+npm run build
+npm run build-preview
+npm run serve-preview
+```
+
+and visit `localhost:7000`, where you can view each ad using the dropdown.
+
+**Note:** if the preview section cuts off part of the ad once it's selected, resizing the window or opening the dev console should cause the page to redraw and fix the problem.
+
+## Testing on Frontend
 
 There will shortly be an easier way to preview, but for now:
 
