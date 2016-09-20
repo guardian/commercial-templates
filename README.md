@@ -1,6 +1,6 @@
 # Commercial templates
 
-- Templates live in `src`, and current versions can be viewed at commercial/test-page
+- Templates live in `src`, and current versions can be viewed at commercial/test-page (either on CODE, or when running frontend locally)
 - Create a `src/template-name` for the template you're migrating
 - Generate `index.html`, `index.scss` and `index.js` following current standards and the specification doc
 - Generate build files to test your template by running **`npm run build`**
@@ -31,7 +31,9 @@ npm run serve-preview
 
 and visit `localhost:7000`, where you can view each ad using the dropdown.
 
-**Note:** if the preview section cuts off part of the ad once it's selected, resizing the window or opening the dev console should cause the page to redraw and fix the problem.
+You can modify variables in `test.json` while the server is running, and reload with the refresh button. However, any changes to HTML/JS/CSS will require a rebuild.
+
+**Note:** if the preview section cuts off part of the ad once it's selected, resizing the window or opening the dev tools should cause the page to redraw and fix the problem.
 
 ## Testing on Frontend
 
