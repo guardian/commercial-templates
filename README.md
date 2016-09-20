@@ -47,3 +47,8 @@ There will shortly be an easier way to preview, but for now:
 - Key-value pairs for *Slot* (e.g. `merchandising-high`) and *Ad test* cookie (e.g. `native-template-name`)
 - Fill in the template variables in your form
 - Approve & activate
+
+## Tips
+
+- DFP variables can be used in JS strings, because the `index.js` file gets minified and attached to the bottom of the page during the build process.
+
