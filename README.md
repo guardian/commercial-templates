@@ -48,7 +48,7 @@ There will shortly be an easier way to preview, but for now:
 - Fill in the template variables in your form
 - Approve & activate
 
-## Tips
+## Useful Info
 
 - DFP variables can be used in JS strings, because the `index.js` file gets minified and attached to the bottom of the page during the build process.
 
