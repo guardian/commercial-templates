@@ -27,7 +27,7 @@ function replacePlaceholder(placeholder) {
 	const templateJSON = JSON.parse(filePaths.JSON.contents);
 	const key = placeholder.slice(2, -2);
 
-	if (templateJSON[key]) {
+	if (templateJSON[key] !== undefined) {
 		while (builtHTML.indexOf(placeholder) !== -1) {
 			builtHTML = builtHTML.replace(placeholder, templateJSON[key]);
 		}
