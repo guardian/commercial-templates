@@ -25,6 +25,8 @@ Array.from(document.getElementsByClassName('gimbap-logo'), (logo, idx) => {
 	logo.insertAdjacentHTML('afterbegin', logoSvgs[offerTones[idx]]);
 });
 
+var authorImage = '[%Offer1AuthorImage%]';
+
 // Adds author image if there is an author image URL present in DFP.
 if (authorImage !== "") {
 
@@ -37,6 +39,8 @@ if (authorImage !== "") {
 }
 
 // Displays arrows if set in DFP.
+var arrowLinks = '[%LinksWithArrows%]';
+
 if (arrowLinks === 'yes') {
 
 	Array.from(document.getElementsByClassName('gimbap__arrow'), (arrow) => {
