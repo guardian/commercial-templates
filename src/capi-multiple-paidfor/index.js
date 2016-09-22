@@ -8,6 +8,9 @@ function retrieveCapiData () {
 	// Do request stuff.
 	var capiData = {};
 
+	return Promise(resolve => {
+		resolve(capiData);
+	});
 
 }
 
