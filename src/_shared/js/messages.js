@@ -1,9 +1,9 @@
 import { read, write } from './dom.js';
 import { timeout } from './impl/promises';
 
-const devMode = '[%DevMode%]';
 const rootElement = document.documentElement;
 
+let parentOrigin = 'http://localhost:9000';
 let iframeId;
 
 // First thing that happens when a native ad is delivered is that the parent
@@ -17,11 +17,13 @@ export function getIframeId() {
             try {
                 json = JSON.parse(evt.data);
             } catch(_) { return; }
+
             const keys = Object.keys(json);
-            if( !(keys.length === 1 && keys[0] === 'id' )) return;
+            if( keys.length !== 2 || !keys.includes('id') || !keys.includes('host') ) return;
 
             self.removeEventListener('message', onMessage);
-            resolve(iframeId = json.id);
+            ({ id: iframeId, host: parentOrigin } = json);
+            resolve();
         });
     });
 }
@@ -61,7 +63,7 @@ export function getWebfonts(fontFamilies) {
             const style = document.createElement('style');
             style.textContent = sheet;
             return style;
-        }).forEach(style => frag.appendChild(style));
+        }).forEach(frag.appendChild, frag);
 
         return write(() => {
             document.head.appendChild(frag);
@@ -149,7 +151,5 @@ function generateId() {
 }
 
 function post(id, iframeId, type, value) {
-    // TODO Allow localhost:9000 when developing
-    // and m.code.dev-theguardian.com when testing
-    window.top.postMessage(JSON.stringify({ id, iframeId, type, value }), location.protocol + (devMode === 'true' ? '//localhost:7000' : '//www.theguardian.com'));
+    window.top.postMessage(JSON.stringify({ id, iframeId, type, value }), parentOrigin);
 }
