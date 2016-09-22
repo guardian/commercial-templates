@@ -2,11 +2,17 @@
 import { getIframeId, getWebfonts } from '../_shared/js/messages.js';
 import { write } from '../_shared/js/dom.js';
 
+// Glabs edition links.
+const GLABS_EDITION = {
+	default: 'https://theguardian.com/guardian-labs',
+	au: 'https://theguardian.com/guardian-labs-australia'
+}
+
 // Loads the card data from CAPI in JSON format.
 function retrieveCapiData () {
 
 	// Do request stuff.
-	var capiData = {};
+	var capiData = [];
 
 	return Promise(resolve => {
 		resolve(capiData);
@@ -49,17 +55,27 @@ function buildCards (cardsInfo) {
 
 	let cardList = document.createDocumentFragment();
 
-	cardsInfo.foreach(info => {
+	cardsInfo.forEach(info => {
 		cardList.appendChild(buildCard(info));
 	});
 
 	// DOM mutation function.
 	return () => {
 
-		let advertRow = document.getElementsByClassName('adverts__row')[0];
+		let advertRow = document.querySelector('.adverts__row');
 		advertRow.appendChild(cardList);
 
 	};
+
+}
+
+// Sets correct glabs link based on edition (AU/All others).
+function editionLink () {
+
+	let edition = guardian.config.page.edition;
+	let link = edition === 'AU' ? GLABS_EDITION.au : GLABS_EDITION.default;
+
+	document.querySelector('.adverts__badge__link').href = link;
 
 }
 
