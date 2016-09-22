@@ -2,4 +2,3 @@
 node_modules
 build/*
 preview/public/main.js
-preview/public/index.html
