@@ -1,4 +1,5 @@
 import { read, write } from './dom.js';
+import { timeout } from './impl/promises';
 
 const devMode = '[%DevMode%]';
 const rootElement = document.documentElement;
@@ -94,7 +95,7 @@ export function resizeIframeHeight() {
 export function sendMessage(type, value) {
     const id = generateId();
 
-    return new Promise((resolve, reject) => {
+    return timeout(new Promise((resolve, reject) => {
         self.addEventListener('message', function onMessage({ data }) {
             let msgId, error, result;
             try {
@@ -114,7 +115,7 @@ export function sendMessage(type, value) {
         });
 
         post(id, iframeId, type, value);
-    });
+    }), 300);
 }
 
 export function onScroll(callback) {
