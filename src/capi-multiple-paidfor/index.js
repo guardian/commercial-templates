@@ -20,17 +20,27 @@ function retrieveCapiData () {
 
 }
 
+// Sets up media icon information on a card (SVG and class).
+function setMediaIcon (card, title, mediaType) {
+
+	title.insertAdjacentHTML('afterbegin', mediaIcons[mediaType]);
+	card.classList.add('advert--media');
+
+}
+
 // Constructs the title part of the card: headline and media icon.
 function buildTitle (card, cardInfo) {
 
 	let title = document.querySelector('.advert__title');
 
 	if (cardInfo.isVideo) {
-		title.insertAdjacentHTML('afterbegin', mediaIcons.video);
+		setMediaIcon(card, title, 'video');
 	} else if (cardInfo.isGallery) {
-		title.insertAdjacentHTML('afterbegin', mediaIcons.video);
+		setMediaIcon(card, title, 'camera');
 	} else if (cardInfo.isAudio) {
-		title.insertAdjacentHTML('afterbegin', mediaIcons.volume);
+		setMediaIcon(card, title, 'volume');
+	} else {
+		card.classList.add('advert--text');
 	}
 
 	title.textContent = cardInfo.headline;
@@ -39,12 +49,17 @@ function buildTitle (card, cardInfo) {
 }
 
 // Constructs an individual card.
-function buildCard (cardInfo) {
+function buildCard (cardInfo, cardNumber) {
 
 	let cardTemplate = document.getElementById('paidfor-card');
 	let card = document.importNode(cardTemplate.card, true);
 
 	card = buildTitle(card, cardInfo);
+
+	// Only first two cards show on mobile portrait.
+	if (cardNumber >= 2) {
+		card.classList.add('hide-until-mobile-landscape');
+	}
 
 	return card;
 
@@ -55,8 +70,8 @@ function buildCards (cardsInfo) {
 
 	let cardList = document.createDocumentFragment();
 
-	cardsInfo.forEach(info => {
-		cardList.appendChild(buildCard(info));
+	cardsInfo.forEach((info, idx) => {
+		cardList.appendChild(buildCard(info, idx));
 	});
 
 	// DOM mutation function.
