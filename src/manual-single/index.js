@@ -1,5 +1,5 @@
-import { getIframeId, getWebfonts } from '../_shared/js/messages.js';
+import { getIframeId, getWebfonts, resizeIframeHeight } from '../_shared/js/messages.js';
 
-getIframeId().then(() => {
-    getWebfonts();
-});
+getIframeId()
+.then(getWebfonts)
+.then(resizeIframeHeight);
