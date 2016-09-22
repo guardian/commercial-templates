@@ -2,7 +2,6 @@ import config from '../_shared/js/config';
 import { write } from '../_shared/js/dom';
 import { getIframeId, getWebfonts, resizeIframeHeight } from '../_shared/js/messages';
 
-let host = '[%DevMode%]' === 'false' ? 'https://www.theguardian.com' : 'http://localhost:9000'
 let container = document.getElementsByClassName('adverts__row')[0];
 
 getIframeId()
