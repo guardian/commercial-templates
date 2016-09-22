@@ -8,7 +8,7 @@ getIframeId()
 .then(() => getWebfonts())
 .then(() => fetch(host + config.travelUrl))
 .then(response => response.json())
-.then(offers => offers.map(createAdvert))
+.then(offers => offers.slice(0, '[%NumberofCards%]').map(createAdvert))
 .then(html => write(() => container.innerHTML = html.join('')))
 .then(resizeIframeHeight);
 
