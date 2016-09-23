@@ -12,9 +12,13 @@ const GLABS_EDITION = {
 function retrieveCapiData () {
 
 	// Do request stuff.
-	var capiData = [];
+	var capiData = [
+		{
+			headline: ' Scientists climb to bottom of Siberian sinkhole - in pictures'
+		}
+	];
 
-	return Promise(resolve => {
+	return new Promise(resolve => {
 		resolve(capiData);
 	});
 
@@ -31,7 +35,7 @@ function setMediaIcon (card, title, mediaType) {
 // Constructs the title part of the card: headline and media icon.
 function buildTitle (card, cardInfo) {
 
-	let title = document.querySelector('.advert__title');
+	let title = card.querySelector('.advert__title');
 
 	if (cardInfo.isVideo) {
 		setMediaIcon(card, title, 'video');
@@ -44,7 +48,6 @@ function buildTitle (card, cardInfo) {
 	}
 
 	title.textContent = cardInfo.headline;
-	return card;
 
 }
 
@@ -52,16 +55,17 @@ function buildTitle (card, cardInfo) {
 function buildCard (cardInfo, cardNumber) {
 
 	let cardTemplate = document.getElementById('paidfor-card');
-	let card = document.importNode(cardTemplate.card, true);
+	let cardFragment = document.importNode(cardTemplate.content, true);
+	let card = cardFragment.querySelector('.advert--paidfor');
 
-	card = buildTitle(card, cardInfo);
+	buildTitle(card, cardInfo);
 
 	// Only first two cards show on mobile portrait.
 	if (cardNumber >= 2) {
 		card.classList.add('hide-until-mobile-landscape');
 	}
 
-	return card;
+	return cardFragment;
 
 }
 
