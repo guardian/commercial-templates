@@ -156,7 +156,7 @@ $mq-breakpoints: (
 
 .justify--start { justify-content: flex-start; }
 
-// ----- Gimbap ----- //
+// Gimbap fonts
 
 $news-accent: $news-main-2;
 
@@ -207,6 +207,10 @@ $font-scale: (
     font-weight: normal;
 }
 
+@mixin f-headlineSans {
+    font-family: $f-sans-serif-headline;
+}
+
 @mixin fs-headline($level, $size-only: false) {
     @include font-size(get-font-size(headline, $level), get-line-height(headline, $level));
 
@@ -224,6 +228,21 @@ $font-scale: (
     border-radius: 1000px; // Android 2.3 cannot deal with '50%'
 }
 
+// Hide content visually, still readable by screen readers
+@mixin u-h {
+    border: 0 !important;
+    clip: rect(0 0 0 0) !important;
+    height: 1px !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    padding: 0 !important;
+    position: absolute !important;
+    width: 1px !important;
+}
+
+@mixin f-textSans {
+    font-family: $f-sans-serif-text;
+}
 
 // Functions
 
