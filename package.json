@@ -31,10 +31,11 @@
     "uglify-js": "^2.7.0"
   },
   "scripts": {
-    "build": "node build.js",
     "clean": "node clean.js",
+    "build": "npm run clean && node build.js",
+    "build-preview": "npm run build && node preview/build.js",
     "serve-preview": "nodemon preview/server.js",
-    "build-preview": "node preview/build.js"
+    "preview": "npm run clean && npm run build && npm run build-preview && npm run serve-preview"
   },
   "author": "",
   "license": "ISC"

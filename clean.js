@@ -4,7 +4,7 @@ const fs = Promise.promisifyAll(require('fs'));
 
 const targetToClean = './build';
 
-console.log('Time to clean...');
+console.log('\x1b[32m%s\x1b[0m', '\n==> Cleaning... Time to clean...');
 clean()
 console.log('... all done!');
 
