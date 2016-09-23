@@ -7,7 +7,7 @@ const options = {
     dst: 'build'
 };
 
-console.log("Let's do this!");
+console.log('\x1b[32m%s\x1b[0m', "\n==> Building... Let's do this!");
 build(options)
 .then(() => console.log("... that was fast :)"))
 .catch((ex) => console.log("... damn Daniel!" + ex));
