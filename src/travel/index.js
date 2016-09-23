@@ -4,9 +4,15 @@ import { getIframeId, getWebfonts, resizeIframeHeight } from '../_shared/js/mess
 
 let container = document.getElementsByClassName('adverts__row')[0];
 
+let ids = '[%IDs%]'.split(',');
+let params = new URLSearchParams();
+if( ids.length ) {
+    ids.forEach(id => params.append('t', id.trim()));
+}
+
 getIframeId()
 .then(() => getWebfonts())
-.then(() => fetch(host + config.travelUrl))
+.then(({ host }) => fetch(`${host}${config.travelUrl}?${params}`))
 .then(response => response.json())
 .then(offers => offers.slice(0, '[%NumberofCards%]').map(createAdvert))
 .then(html => write(() => container.innerHTML = html.join('')))
