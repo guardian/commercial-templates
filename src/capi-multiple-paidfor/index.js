@@ -105,6 +105,7 @@ function buttonListener () {
 	return () => {
 
 		let aboutButton = document.querySelector('.popup__toggle');
+		let popup = document.querySelector('.popup');
 
 		aboutButton.addEventListener('click', () => {
 
@@ -112,6 +113,7 @@ function buttonListener () {
 
 				if (aboutButton.classList.contains('is-active')) {
 					aboutButton.classList.remove('is-active');
+					
 				} else {
 					aboutButton.classList.add('is-active');
 				}
