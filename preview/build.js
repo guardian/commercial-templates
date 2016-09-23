@@ -6,6 +6,8 @@ const replace = require('rollup-plugin-replace');
 const uglify = require('rollup-plugin-uglify');
 const minify = require('uglify-js').minify;
 
+console.log('\x1b[32m%s\x1b[0m', '\n==> Building preview...')
+
 rollup({
   entry: './preview/src/js/main.js',
   plugins: [
@@ -31,7 +33,7 @@ rollup({
     moduleName: 'main'
   });
 })
-.then(() => console.log('... preview has been built :)'))
+.then(() => console.log('... preview has been built :)\n'))
 .catch((error) => {
   console.error(error);
 });

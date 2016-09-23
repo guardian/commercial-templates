@@ -23,7 +23,7 @@ export function getIframeId() {
 
             self.removeEventListener('message', onMessage);
             ({ id: iframeId, host: parentOrigin } = json);
-            resolve();
+            resolve(json);
         });
     });
 }

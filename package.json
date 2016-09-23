@@ -20,6 +20,7 @@
     "node-sass": "^3.8.0",
     "react": "^0.14.3",
     "react-dom": "^0.14.3",
+    "rimraf": "^2.5.4",
     "rollup": "^0.34.1",
     "rollup-plugin-babel": "^2.6.1",
     "rollup-plugin-commonjs": "^4.1.0",
@@ -30,9 +31,11 @@
     "uglify-js": "^2.7.0"
   },
   "scripts": {
-    "build": "node build.js",
+    "clean": "node clean.js",
+    "build": "npm run clean && node build.js",
+    "build-preview": "npm run build && node preview/build.js",
     "serve-preview": "nodemon preview/server.js",
-    "build-preview": "node preview/build.js"
+    "preview": "npm run build-preview && npm run serve-preview"
   },
   "author": "",
   "license": "ISC"
