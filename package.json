@@ -35,7 +35,7 @@
     "build": "npm run clean && node build.js",
     "build-preview": "npm run build && node preview/build.js",
     "serve-preview": "nodemon preview/server.js",
-    "preview": "npm run clean && npm run build && npm run build-preview && npm run serve-preview"
+    "preview": "npm run build-preview && npm run serve-preview"
   },
   "author": "",
   "license": "ISC"
