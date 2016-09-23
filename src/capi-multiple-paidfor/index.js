@@ -13,9 +13,10 @@ function retrieveCapiData () {
 
 	// Do request stuff.
 	var capiData = [
-		{
-			headline: ' Scientists climb to bottom of Siberian sinkhole - in pictures'
-		}
+		{ headline: "Pussy Riot's tour of London – video" },
+		{ headline: 'Scientists climb to bottom of Siberian sinkhole - in pictures' },
+		{ headline: 'The greatest record sleeves – as chosen by the designers' },
+		{ headline: "Jimmy Page: 'Led Zeppelin weren't gonna fit on Top of the Pops'"}
 	];
 
 	return new Promise(resolve => {
