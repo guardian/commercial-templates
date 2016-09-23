@@ -99,9 +99,37 @@ function editionLink () {
 
 }
 
+// Toggles the about information.
+function buttonListener () {
+
+	return () => {
+
+		let aboutButton = document.querySelector('.popup__toggle');
+
+		aboutButton.addEventListener('click', () => {
+
+			write(() => {
+
+				if (aboutButton.classList.contains('is-active')) {
+					aboutButton.classList.remove('is-active');
+				} else {
+					aboutButton.classList.add('is-active');
+				}
+
+			});
+
+		});
+
+	};
+
+}
+
 // Inserts cards into the advert, retrieving their data from CAPI.
-retrieveCapiData().then((data) => {
-	return buildCards(data);
-}).then(write).catch(err => {
+retrieveCapiData()
+.then(buildCards)
+.then(write)
+.then(buttonListener)
+.then(write)
+.catch(err => {
 	console.log(err);
 });
