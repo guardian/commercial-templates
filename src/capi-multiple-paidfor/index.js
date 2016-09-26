@@ -99,6 +99,23 @@ function editionLink () {
 
 }
 
+// Displays or hides a popup.
+function togglePopup (button, popup) {
+
+	if (button.classList.contains('is-active')) {
+
+		button.classList.remove('is-active');
+		popup.classList.add('is-off');
+
+	} else {
+
+		button.classList.add('is-active');
+		popup.classList.remove('is-off');
+
+	}
+
+}
+
 // Toggles the about information.
 function buttonListener () {
 
@@ -110,14 +127,7 @@ function buttonListener () {
 		aboutButton.addEventListener('click', () => {
 
 			write(() => {
-
-				if (aboutButton.classList.contains('is-active')) {
-					aboutButton.classList.remove('is-active');
-					
-				} else {
-					aboutButton.classList.add('is-active');
-				}
-
+				togglePopup(aboutButton, popup)
 			});
 
 		});
