@@ -10,6 +10,13 @@ $gs-column-width: 60px;
 $gs-row-height: 36px;
 $gs-max-columns: 16;
 
+// For popups
+$headerHeight: 36px;
+$popup-toggle-arrow-size: 4px;
+$old-ie: false !default;
+// Search modal.
+$zindex-modal: 1030;
+
 // sass-mq configuration
 $mq-responsive: true;
 $mq-breakpoints: (
@@ -233,6 +240,22 @@ $font-scale: (
 
 @mixin circular {
     border-radius: 1000px; // Android 2.3 cannot deal with '50%'
+}
+
+@mixin f-textSans {
+    font-family: $f-sans-serif-text;
+}
+
+@mixin fs-textSans($level, $size-only: false) {
+    @include font-size(get-font-size(textSans, $level), get-line-height(textSans, $level));
+
+    @if $size-only == false {
+        @include f-textSans;
+    }
+}
+
+@mixin f-headlineSans {
+    font-family: $f-sans-serif-headline;
 }
 
 

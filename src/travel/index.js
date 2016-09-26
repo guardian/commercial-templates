@@ -15,7 +15,7 @@ getIframeId()
 .then(({ host }) => fetch(`${host}${config.travelUrl}?${params}`))
 .then(response => response.json())
 .then(offers => offers.slice(0, '[%NumberofCards%]').map(createAdvert))
-.then(html => write(() => container.innerHTML = html.join('')))
+.then(html => write(() => container.innerHTML = html))
 .then(resizeIframeHeight);
 
 
