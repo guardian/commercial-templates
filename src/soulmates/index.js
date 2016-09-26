@@ -6,7 +6,7 @@ const cardContainer = document.getElementsByClassName("adverts__row")[0];
 const soulmatesGroup = '[%Subfeed%]';
 
 getIframeId()
-  .then(({host}) => fetch(`${portify(host)}/commercial/soulmates/api/${soulmatesGroup}.json`))
+  .then(({host}) => fetch(`${portify(host)}${soulmatesUrl}/${soulmatesGroup}`))
   .then(response => response.json())
   .then(soulmates => soulmates.map(createSoulmateCard))
   .then(cards => addSoulmatesCards(cards))
