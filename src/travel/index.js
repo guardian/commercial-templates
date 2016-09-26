@@ -14,8 +14,8 @@ if( ids.length ) {
 getIframeId()
 .then(({ host }) => fetch(`${portify(host)}${config.travelUrl}?${params}`))
 .then(response => response.json())
-.then(offers => offers.slice(0, '[%NumberofCards%]').map(createAdvert))
-.then(html => Promise.all([getWebfonts(), write(() => container.innerHTML = html.join(''))]))
+.then(offers => offers.slice(0, '[%NumberofCards%]').map(createAdvert).join(''))
+.then(html => Promise.all([getWebfonts(), write(() => container.innerHTML = html)]))
 .then(resizeIframeHeight);
 
 
