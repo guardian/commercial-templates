@@ -5,7 +5,7 @@ import { portify } from '../_shared/js/dev';
 
 let container = document.getElementsByClassName('adverts__row')[0];
 
-let ids = '[%ISBNs%]'.trim();
+let ids = '[%IDs%]'.trim();
 let params = new URLSearchParams();
 if( ids.length ) {
     ids.split(',').forEach(id => params.append('t', id.trim()));
