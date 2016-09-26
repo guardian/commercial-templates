@@ -81,17 +81,27 @@ export function getWebfonts(fontFamilies) {
 }
 
 export function resizeIframeHeight() {
-    return new Promise(resolve => {
-        if( document.readyState === 'complete' ) {
-            resolve();
-        } else {
-            window.addEventListener('load', resolve);
-        }
-    })
+    return Promise.all([
+        isDocumentLoaded(),
+        ...areImagesLoaded()
+    ])
     .then(() => read(() => window.innerHeight))
     .then(function(height) {
         return sendMessage('resize', { height });
     });
+}
+
+function isDocumentLoaded() {
+    return document.readyState === 'complete' ?
+        Promise.resolve() :
+        new Promise(resolve => window.addEventListener('load', resolve));
+}
+
+function areImagesLoaded() {
+    return Array.from(
+        document.getElementsByTagName('img'),
+        img => img.complete ? Promise.resolve() : new Promise(resolve => img.onload = resolve)
+    );
 }
 
 export function sendMessage(type, value) {
