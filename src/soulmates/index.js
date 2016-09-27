@@ -1,12 +1,12 @@
+import config from '../_shared/js/config';
 import { getIframeId, getWebfonts, resizeIframeHeight } from '../_shared/js/messages';
 import { write } from '../_shared/js/dom';
 import { portify } from '../_shared/js/dev';
 
 const cardContainer = document.getElementsByClassName("adverts__row")[0];
-const soulmatesGroup = '[%Subfeed%]';
 
 getIframeId()
-  .then(({host}) => fetch(`${portify(host)}${soulmatesUrl}/${soulmatesGroup}`))
+  .then(({host}) => fetch(`${portify(host)}${config.soulmatesUrl}`))
   .then(response => response.json())
   .then(soulmates => soulmates.map(createSoulmateCard))
   .then(cards => addSoulmatesCards(cards))
