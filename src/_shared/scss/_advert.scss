@@ -19,11 +19,6 @@
     }
 }
 
-a.advert {
-  text-decoration: none;
-  cursor: pointer;
-}
-
 .advert--prominent-true, .advert--landscape {
     .has-no-flex & {
         overflow: hidden;

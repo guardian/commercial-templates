@@ -9,14 +9,13 @@ getIframeId()
   .then(({host}) => fetch(`${portify(host)}${config.soulmatesUrl}`))
   .then(response => response.json())
   .then(soulmates => soulmates.map(createSoulmateCard))
-  .then(cards => addSoulmatesCards(cards))
-  .then(() => getWebfonts())
+  .then(cards => Promise.all([addSoulmatesCards(cards), getWebfonts()]))
   .then(resizeIframeHeight);
 
 function createSoulmateCard(soulmate, index) {
 
-  return `<a class="advert advert--soulmate" href="%%CLICK_URL_ESC%%${soulmate.profilePhoto}" data-link-name="merchandising-soulmates-v2_2_2014-03-28-profile-${soulmate.gender}">
-      <h2 class="advert__title u-text-hyphenate" itemprop="name">${soulmate.username}</h2>
+  return `<a class="advert advert--soulmate blink" href="%%CLICK_URL_ESC%%${soulmate.profilePhoto}" data-link-name="merchandising-soulmates-v2_2_2014-03-28-profile-${soulmate.gender}">
+      <h2 class="advert__title u-text-hyphenate blink__anchor" itemprop="name">${soulmate.username}</h2>
       <div class="advert__image-container">
         <img class="advert__image" src="${soulmate.profilePhoto}" />
       </div>
