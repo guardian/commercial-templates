@@ -1,6 +1,7 @@
-// Webfonts
+import config from '../_shared/js/config';
 import { getIframeId, getWebfonts } from '../_shared/js/messages.js';
 import { write } from '../_shared/js/dom.js';
+import { portify } from '../_shared/js/dev';
 
 // Glabs edition links.
 const GLABS_EDITION = {
@@ -9,25 +10,32 @@ const GLABS_EDITION = {
 }
 
 // Loads the card data from CAPI in JSON format.
-function retrieveCapiData () {
+function retrieveCapiData ({ host }) {
 
-	// Do request stuff.
-	var capiData = [
-		{ headline: "Pussy Riot's tour of London – video" },
-		{ headline: 'Scientists climb to bottom of Siberian sinkhole - in pictures' },
-		{ headline: 'The greatest record sleeves – as chosen by the designers' },
-		{ headline: "Jimmy Page: 'Led Zeppelin weren't gonna fit on Top of the Pops'"}
-	];
+	const articleOverrides = ['[%Article1URL%]', '[%Article2URL%]',
+		'[%Article3URL%]', '[%Article4URL%]'];
 
-	return new Promise(resolve => {
-		resolve(capiData);
-	});
+	let params = new URLSearchParams();
+	params.append('k', '[%SeriesURL%]');
+
+	articleOverrides.map(url => {
+
+		if (url !== '') {
+			params.append('t', url);
+		}
+
+	})
+
+	let url = `${portify(host)}${config.capiMultipleUrl}?${params}`;
+
+	return fetch(url).then(response => response.json());
 
 }
 
 // Sets up media icon information on a card (SVG and class).
 function setMediaIcon (card, title, mediaType) {
 
+	console.log(title, mediaIcons[mediaType]);
 	title.insertAdjacentHTML('afterbegin', mediaIcons[mediaType]);
 	card.classList.add('advert--media');
 
@@ -38,17 +46,17 @@ function buildTitle (card, cardInfo) {
 
 	let title = card.querySelector('.advert__title');
 
-	if (cardInfo.isVideo) {
+	if (cardInfo.videoTag) {
 		setMediaIcon(card, title, 'video');
-	} else if (cardInfo.isGallery) {
+	} else if (cardInfo.galleryTag) {
 		setMediaIcon(card, title, 'camera');
-	} else if (cardInfo.isAudio) {
+	} else if (cardInfo.audioTag) {
 		setMediaIcon(card, title, 'volume');
 	} else {
 		card.classList.add('advert--text');
 	}
 
-	title.textContent = cardInfo.headline;
+	title.textContent = cardInfo.articleHeadline;
 
 }
 
@@ -60,6 +68,7 @@ function buildCard (cardInfo, cardNumber) {
 	let card = cardFragment.querySelector('.advert--paidfor');
 
 	buildTitle(card, cardInfo);
+	card.querySelector('a.advert').href = cardInfo.articleUrl;
 
 	// Only first two cards show on mobile portrait.
 	if (cardNumber >= 2) {
@@ -75,7 +84,7 @@ function buildCards (cardsInfo) {
 
 	let cardList = document.createDocumentFragment();
 
-	cardsInfo.forEach((info, idx) => {
+	cardsInfo.articles.forEach((info, idx) => {
 		cardList.appendChild(buildCard(info, idx));
 	});
 
@@ -137,7 +146,8 @@ function buttonListener () {
 }
 
 // Inserts cards into the advert, retrieving their data from CAPI.
-retrieveCapiData()
+getIframeId()
+.then(retrieveCapiData)
 .then(buildCards)
 .then(write)
 .then(buttonListener)
