@@ -14,10 +14,10 @@ getIframeId()
 
 function createSoulmateCard(soulmate, index) {
 
-  return `<a class="advert advert--soulmate blink" href="%%CLICK_URL_ESC%%${soulmate.profilePhoto}" data-link-name="merchandising-soulmates-v2_2_2014-03-28-profile-${soulmate.gender}">
+  return `<a class="advert advert--soulmate blink" href="%%CLICK_URL_ESC%%${soulmate.profile_url}" data-link-name="merchandising-soulmates-v2_2_2014-03-28-profile-${soulmate.gender}">
       <h2 class="advert__title u-text-hyphenate blink__anchor" itemprop="name">${soulmate.username}</h2>
       <div class="advert__image-container">
-        <img class="advert__image" src="${soulmate.profilePhoto}" />
+        <img class="advert__image" src="${soulmate.profile_photo}" />
       </div>
       <div class="advert__meta">${soulmate.age}, ${soulmate.location}</div>
     </a>`;
