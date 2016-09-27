@@ -4,7 +4,7 @@ import { write } from '../_shared/js/dom';
 import { getIframeId, getWebfonts, resizeIframeHeight } from '../_shared/js/messages';
 import { portify } from '../_shared/js/dev';
 
-let container = document.getElementsByClassName('adverts__row')[0];
+let container = document.getElementsByClassName('adverts__body')[0];
 let params = new URLSearchParams();
 let keywords = '[%SeriesUrl%]';
 let customUrl = '[%CustomUrl%]';
@@ -15,10 +15,10 @@ if (customUrl !== '') {
   params.append('k', keywords);
 }
 
-// const GLABS_EDITION = {
-// 	default: 'https://theguardian.com/guardian-labs',
-// 	au: 'https://theguardian.com/guardian-labs-australia'
-// }
+const GLABS_EDITION = {
+	default: 'https://theguardian.com/guardian-labs',
+	au: 'https://theguardian.com/guardian-labs-australia'
+}
 
 enableToggles();
 getIframeId()
@@ -32,10 +32,11 @@ function getValue(value, fallback) { return value || fallback; }
 
 /* Outputs the HTML for a travel advert */
 function populateCard(responseJson) {
-
+    checkEdition();
     let icon = checkIcon(responseJson)
 
-    return( `<a class="blink advert advert--large advert--capi advert--media advert--inverse advert--paidfor" href="%%CLICK_URL_UNESC%%${getValue('[%ArticleUrl%]', responseJson.articleUrl)} data-link-name="merchandising | capi | single">
+    return( `<div class="adverts__row adverts__row--single">
+      <a class="blink advert advert--large advert--capi advert--media advert--inverse advert--paidfor" href="%%CLICK_URL_UNESC%%${getValue('[%ArticleUrl%]', responseJson.articleUrl)} data-link-name="merchandising | capi | single">
       <div class="advert__text">
         <h2 class="blink__anchor advert__title">
           ${icon}
@@ -52,17 +53,23 @@ function populateCard(responseJson) {
     <a class="hide-until-mobile-landscape button button--large button--legacy-single" href="%%CLICK_URL_UNESC%%https://theguardian.com/[%SeriesUrl%]"  data-link-name="merchandising-single-more">
       See more
       ${arrowRight}
-    </a>`)
-
+    </a>
+    </div>
+    <div class="adverts__badge js-badge">
+      Paid for by ${getValue('[%BrandName%]', responseJson.branding.sponsorName)}
+      <a class="adverts__badge__link" href="" data-link-name="logo link">
+        <img class="adverts__badge__logo" src="${getValue('[%BrandLogo%]', responseJson.branding.sponsorLogo.url)}" alt="">
+      </a>
+    </div>`)
 };
-//
-// function checkEdition(){
-//   let edition = guardian.config.page.edition;
-//   let badgeLink = edition === 'AU' ? GLABS_EDITION.au : GLABS_EDITION.default;
-//
-//   document.querySelector('.adverts__badge__link').href = badgeLink;
-// };
-//
+
+function checkEdition(){
+  let edition = guardian.config.page.edition;
+  let badgeLink = edition === 'AU' ? GLABS_EDITION.au : GLABS_EDITION.default;
+
+  document.querySelector('.adverts__badge__link').href = badgeLink;
+};
+
 function checkIcon(responseJson) {
     return responseJson.audioTag ?
         audioIcon :
