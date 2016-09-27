@@ -1,4 +1,5 @@
 import config from '../_shared/js/config';
+import { enableToggles } from '../_shared/js/ui.js';
 import { write } from '../_shared/js/dom';
 import { getIframeId, getWebfonts, resizeIframeHeight } from '../_shared/js/messages';
 
@@ -7,7 +8,7 @@ let params = new URLSearchParams();
 let keywords = '[%SeriesUrl%]';
 let customUrl = '[%CustomUrl%]';
 
-if (typeof customUrl !== 'undefined') {
+if (customUrl !== '') {
   params.append('t', customUrl);
 } else {
   params.append('k', keywords);
@@ -20,6 +21,7 @@ if (typeof customUrl !== 'undefined') {
 
 
 getIframeId()
+.then(() => enableToggles())
 .then(() => getWebfonts())
 .then(() => fetch(`${config.capiSingleUrl}?${params}`))
 .then(response => response.json())
@@ -41,11 +43,14 @@ function populateCard(responseJson) {
      ['[%ArticleImage%]', responseJson.articleHeadline]
   ].map(getValue)
 
-  checkIcon(responseJson)
+  var icon = checkIcon(responseJson)
 
     return( `<a class="blink advert advert--large advert--capi advert--media advert--inverse advert--paidfor" href="%%CLICK_URL_UNESC%%${overrideData[1]} data-link-name="merchandising | capi | single">
       <div class="advert__text">
-        <h2 class="blink__anchor advert__title">${overrideData[0]}</h2>
+        <h2 class="blink__anchor advert__title">
+          ${icon}
+          ${overrideData[0]}
+        </h2>
         <p class="advert_standfirst">${overrideData[2]}</p>
       </div>
       <div class="advert__image-container">
@@ -53,8 +58,8 @@ function populateCard(responseJson) {
       </div>
     </a>
     <a class="hide-until-mobile-landscape button button--primary button--large button--legacy-single" href="%%CLICK_URL_UNESC%%https://theguardian.com/[%SeriesUrl%]"  data-link-name="merchandising-single-more">
-      [%ViewAll%]
-      {{#svg}}arrow-right{{/svg}}
+      See more
+      ${arrowRight}
     </a>`)
 
 };
@@ -69,13 +74,11 @@ function populateCard(responseJson) {
 function checkIcon(responseJson) {
 
     if (responseJson.audioTag) {
-      console.log("audio icon");
+      return audioIcon;
     } else if (responseJson.galleryTag) {
-      console.log("gallery icon");
+      return imageIcon;
     } else if (responseJson.videoTag) {
-      console.log("video icon");
-    } else {
-      console.log("no icon type");
-    }
+      return videoIcon;
+    } else;
 
 };

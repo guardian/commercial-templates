@@ -3,20 +3,12 @@
     <div class="adverts_kicker">
       <div class="paidfor-meta">
         <span class="paidfor-meta_label">Paid content</span>
-        <div class="paidfor-label paidfor-meta-more has-popup">
-          <button class="u-button-reset paidfor-label__btn popup__toggle js-toggle-ready" data-toggle="js-paidfor-popup" data-node-uid="11">
-            About
-            {{#svg}}arrow-right{{/svg}}
-          </button>
-          <div class="popup popup--paidfor is-off js-paidfor-popup">
-            <h3 class="popup--paidfor__title">
-              Paid content is paid for and controlled by an advertiser and produced by the Guardian Labs team
-            </h3>
-            <a class="popup--paidfor__link" href="/content-funding">
-              Learn more about Guardian Labs content
-              {{#svg}}arrow-right{{/svg}}
-            </a>
-          </div>
+        <div class="creative__meta-about has-popup">
+            <button class="u-button-reset js-toggle" aria-controls="popup" aria-expanded="true">About {{#svg}}arrow-down{{/svg}}</button>
+            <div id="popup" class="popup">
+                <p>Paid content is paid for and controlled by an advertiser and produced by the Guardian Labs team</p>
+                <a href="/content-funding">Learn more about Guardian Labs content {{#svg}}arrow-right{{/svg}}</a>
+            </div>
         </div>
       </div>
     </div>
@@ -25,7 +17,7 @@
         "[%ComponentTitle%]"
       </a>
     </h1>
-    <div class="adverts_stamp">
+    <div class="adverts__stamp">
       <a href="/guardian-labs" class="creative__glabs-link js-glabs-link" data-link-name="labs logo">
         {{#svg}}glabs-logo{{/svg}}
       </a>
@@ -42,3 +34,9 @@
     </div>
   </div>
 </aside>
+<script>
+var arrowRight = '{{#svg}}arrow-right{{/svg}}';
+var audioIcon = '{{#svg}}audio-icon{{/svg}}';
+var imageIcon = '{{#svg}}image-icon{{/svg}}';
+var videoIcon = '{{#svg}}video-icon{{/svg}}';
+</script>

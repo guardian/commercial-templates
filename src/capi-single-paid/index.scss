@@ -1,7 +1,44 @@
 @import '_core';
 @import '_adverts';
-@import '_adverts-capi';
 @import '_advert';
-@import '_popup';
-@import '_popup-paidfor';
+@import '_adverts-capi';
+// @import '_paidfor-content';
+// @import '_popup';
+// @import '_popup-paidfor';
 @import '_paidfor-meta';
+
+// // SVG dimensions.
+// .inline-arrow-down > svg {
+// 	width: 24;
+// 	height: 18;
+// }
+//
+// .inline-arrow-right > svg {
+// 	width: 30;
+// 	height: 30;
+// }
+//
+// .inline-glabs-logo > svg {
+// 	width: 100;
+// 	height: 31;
+// }
+//
+// // Glabs logo text for screen readers.
+// .u-h {
+// 	@include u-h;
+// }
+//
+// // For cards 3 and 4.
+// .hide-until-mobile-landscape {
+//     @include mq($until: mobileLandscape) {
+//         display: none !important;
+//     }
+// }
+//
+// a {
+// 	text-decoration: none;
+// }
+//
+// .adverts__logo:hover {
+// 	text-decoration: underline;
+// }

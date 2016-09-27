@@ -90,6 +90,12 @@
     }
 
     > .adverts__header {
+        .inline-logo-guardian {
+          @include mq(leftCol) {
+            display: none;
+          }
+        }
+
         @include mq($until: mobileLandscape) {
             padding: $gs-baseline / 2 $gs-gutter / 2;
         }

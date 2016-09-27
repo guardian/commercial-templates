@@ -225,6 +225,10 @@ $font-scale: (
     font-weight: normal;
 }
 
+@mixin f-headlineSans {
+  font-family: $f-serif-headline;
+}
+
 @mixin fs-headline($level, $size-only: false) {
     @include font-size(get-font-size(headline, $level), get-line-height(headline, $level));
 
@@ -236,6 +240,18 @@ $font-scale: (
 @mixin font-size($size, $line-height: $size) {
     font-size: convert-to-px($size);
     line-height: convert-to-px($line-height);
+}
+
+// Hide content visually, still readable by screen readers
+@mixin u-h {
+    border: 0 !important;
+    clip: rect(0 0 0 0) !important;
+    height: 1px !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    padding: 0 !important;
+    position: absolute !important;
+    width: 1px !important;
 }
 
 @mixin circular {
@@ -258,6 +274,15 @@ $font-scale: (
     font-family: $f-sans-serif-headline;
 }
 
+@mixin content-gutter {
+    padding-left: $gs-gutter/2;
+    padding-right: $gs-gutter/2;
+
+    @include mq(mobileLandscape) {
+        padding-left: $gs-gutter;
+        padding-right: $gs-gutter;
+    }
+}
 
 // Functions
 
