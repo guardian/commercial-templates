@@ -41,6 +41,8 @@ function populateCard(responseJson) {
      ['[%ArticleImage%]', responseJson.articleHeadline]
   ].map(getValue)
 
+  checkIcon(responseJson)
+
     return( `<a class="blink advert advert--large advert--capi advert--media advert--inverse advert--paidfor" href="%%CLICK_URL_UNESC%%${overrideData[1]} data-link-name="merchandising | capi | single">
       <div class="advert__text">
         <h2 class="blink__anchor advert__title">${overrideData[0]}</h2>
@@ -64,9 +66,16 @@ function populateCard(responseJson) {
 //   document.querySelector('.adverts__badge__link').href = badgeLink;
 // };
 //
-// function checkIcon(card, title, mediaType) {
-//
-// 	title.insertAdjacentHTML('afterbegin', mediaIcons[mediaType]);
-// 	card.classList.add('advert--media');
-//
-// };
+function checkIcon(responseJson) {
+
+    if (responseJson.audioTag) {
+      console.log("audio icon");
+    } else if (responseJson.galleryTag) {
+      console.log("gallery icon");
+    } else if (responseJson.videoTag) {
+      console.log("video icon");
+    } else {
+      console.log("no icon type");
+    }
+
+};
