@@ -86,6 +86,14 @@
 
     .search__submit {
         float: right;
+        border-radius: 62.5rem;
+        border-width: 0.0625rem;
+        border-style: solid;
+        box-sizing: border-box;
+        vertical-align: top;
+        width: auto;
+        background-color: #262626;
+        color: #bdbdbd;
     }
 
     .icon--soulmates-join {
@@ -155,6 +163,12 @@
             margin-left: $gs-gutter / 2;
         }
     }
+}
+
+.adverts--soulmates {
+  .button {
+      align-self: flex-start;
+  }
 }
 
 .advert--soulmate {
