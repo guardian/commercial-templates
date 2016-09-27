@@ -1,21 +1,21 @@
 import config from '../_shared/js/config';
 import { write } from '../_shared/js/dom';
 import { getIframeId, getWebfonts, resizeIframeHeight } from '../_shared/js/messages';
+import { portify } from '../_shared/js/dev';
 
 let container = document.getElementsByClassName('adverts__row')[0];
 
-let ids = '[%IDs%]'.split(',');
+let ids = '[%IDs%]'.trim();
 let params = new URLSearchParams();
 if( ids.length ) {
-    ids.forEach(id => params.append('t', id.trim()));
+    ids.split(',').forEach(id => params.append('t', id.trim()));
 }
 
 getIframeId()
-.then(() => getWebfonts())
-.then(({ host }) => fetch(`${host}${config.travelUrl}?${params}`))
+.then(({ host }) => fetch(`${portify(host)}${config.travelUrl}?${params}`))
 .then(response => response.json())
-.then(offers => offers.slice(0, '[%NumberofCards%]').map(createAdvert))
-.then(html => write(() => container.innerHTML = html))
+.then(offers => offers.slice(0, '[%NumberofCards%]').map(createAdvert).join(''))
+.then(html => Promise.all([getWebfonts(), write(() => container.innerHTML = html)]))
 .then(resizeIframeHeight);
 
 
