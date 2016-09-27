@@ -44,6 +44,7 @@ function setMediaIcon (card, title, mediaType) {
 function buildTitle (card, cardInfo) {
 
 	let title = card.querySelector('.advert__title');
+	let headline = document.createTextNode(cardInfo.articleHeadline);
 
 	if (cardInfo.videoTag) {
 		setMediaIcon(card, title, 'video');
@@ -55,7 +56,7 @@ function buildTitle (card, cardInfo) {
 		card.classList.add('advert--text');
 	}
 
-	title.textContent = cardInfo.articleHeadline;
+	title.appendChild(headline);
 
 }
 
@@ -78,7 +79,6 @@ function buildSources (sourceData) {
 		lodpi.sizes = source.sizes;
 		lodpi.srcset = `${window.location.protocol}${source.lodpiSrcset}`;
 
-		console.log(sources);
 		sources.appendChild(hidpi);
 		sources.appendChild(lodpi);
 		return sources;
