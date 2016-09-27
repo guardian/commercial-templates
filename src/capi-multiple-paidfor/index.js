@@ -35,7 +35,6 @@ function retrieveCapiData ({ host }) {
 // Sets up media icon information on a card (SVG and class).
 function setMediaIcon (card, title, mediaType) {
 
-	console.log(title, mediaIcons[mediaType]);
 	title.insertAdjacentHTML('afterbegin', mediaIcons[mediaType]);
 	card.classList.add('advert--media');
 
@@ -60,6 +59,45 @@ function buildTitle (card, cardInfo) {
 
 }
 
+// Creates a set of source elements for an image.
+function buildSources (sourceData) {
+
+	let sourcesFragment = document.createDocumentFragment();
+
+	return sourceData.reduce((sources, source) => {
+
+		let hidpi = document.createElement('source');
+		hidpi.media = `(min-width: ${source.minWidth}px) and
+			(-webkit-min-device-pixel-ratio: 1.25),
+			(min-width: ${source.minWidth}px) and (min-resolution: 120dpi)`;
+		hidpi.sizes = source.sizes;
+		hidpi.srcset = `${window.location.protocol}${source.hidpiSrcset}`;
+
+		let lodpi = document.createElement('source');
+		lodpi.media = `(min-width: ${source.minWidth}px)`;
+		lodpi.sizes = source.sizes;
+		lodpi.srcset = `${window.location.protocol}${source.lodpiSrcset}`;
+
+		console.log(sources);
+		sources.appendChild(hidpi);
+		sources.appendChild(lodpi);
+		return sources;
+
+	}, sourcesFragment);
+
+}
+
+// Inserts the image source into a card.
+function insertImages (card, cardInfo) {
+
+	let backupImg = card.querySelector('.advert__image');
+	backupImg.src = cardInfo.articleImage.backupSrc;
+
+	let sources = buildSources(cardInfo.articleImage.sources);
+	card.querySelector('picture').insertBefore(sources, backupImg);
+
+}
+
 // Constructs an individual card.
 function buildCard (cardInfo, cardNumber) {
 
@@ -69,6 +107,7 @@ function buildCard (cardInfo, cardNumber) {
 
 	buildTitle(card, cardInfo);
 	card.querySelector('a.advert').href = cardInfo.articleUrl;
+	insertImages(card, cardInfo);
 
 	// Only first two cards show on mobile portrait.
 	if (cardNumber >= 2) {
