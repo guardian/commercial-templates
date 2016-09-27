@@ -48,18 +48,13 @@
     }
 
     .button {
-        @include button-colour(
-            $paid-article-brand,
-            null
-        );
+        background-color: $paid-article-brand;
+        color: #fff;
 
         &:hover,
         &:focus,
         &:active {
-            @include button-colour(
-                darken($paid-article-brand, 5%),
-                null
-            );
+            background-color: darken($paid-article-brand, 5%);
         }
     }
 }

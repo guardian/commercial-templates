@@ -270,6 +270,10 @@
         }
     }
 
+    .adverts__row--single {
+        align-items: flex-start;
+    }
+
     .adverts__row--4cards > :nth-child(4) ~ *,
     .adverts__row--3cards > :nth-child(3) ~ *,
     .adverts__row--2cards > :nth-child(2) ~ * {

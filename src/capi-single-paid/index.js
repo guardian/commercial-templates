@@ -2,6 +2,7 @@ import config from '../_shared/js/config';
 import { enableToggles } from '../_shared/js/ui.js';
 import { write } from '../_shared/js/dom';
 import { getIframeId, getWebfonts, resizeIframeHeight } from '../_shared/js/messages';
+import { portify } from '../_shared/js/dev';
 
 let container = document.getElementsByClassName('adverts__row')[0];
 let params = new URLSearchParams();
@@ -19,45 +20,36 @@ if (customUrl !== '') {
 // 	au: 'https://theguardian.com/guardian-labs-australia'
 // }
 
-
+enableToggles();
 getIframeId()
-.then(() => enableToggles())
-.then(() => getWebfonts())
-.then(() => fetch(`${config.capiSingleUrl}?${params}`))
+.then(({ host }) => fetch(`${portify(host)}${config.capiSingleUrl}?${params}`))
 .then(response => response.json())
 .then(capiData => populateCard(capiData))
-.then(html => container.innerHTML = html)
+.then(html => Promise.all([getWebfonts(['GuardianTextSansWeb', 'GuardianSansWeb']), write(() => container.innerHTML = html)]))
 .then(resizeIframeHeight);
 
-function getValue([dfpValue, capiValue]) {
-   return dfpValue || capiValue
-};
+function getValue(value, fallback) { return value || fallback; }
 
 /* Outputs the HTML for a travel advert */
 function populateCard(responseJson) {
 
-  var overrideData = [
-     ['[%ArticleHeadline%]', responseJson.articleHeadline],
-     ['[%ArticleUrl%]', responseJson.articleUrl],
-     ['[%ArticleText%]', responseJson.articleHeadline],
-     ['[%ArticleImage%]', responseJson.articleHeadline]
-  ].map(getValue)
+    let icon = checkIcon(responseJson)
 
-  var icon = checkIcon(responseJson)
-
-    return( `<a class="blink advert advert--large advert--capi advert--media advert--inverse advert--paidfor" href="%%CLICK_URL_UNESC%%${overrideData[1]} data-link-name="merchandising | capi | single">
+    return( `<a class="blink advert advert--large advert--capi advert--media advert--inverse advert--paidfor" href="%%CLICK_URL_UNESC%%${getValue('[%ArticleUrl%]', responseJson.articleUrl)} data-link-name="merchandising | capi | single">
       <div class="advert__text">
         <h2 class="blink__anchor advert__title">
           ${icon}
-          ${overrideData[0]}
+          ${getValue('[%ArticleHeadline%]', responseJson.articleHeadline)}
         </h2>
-        <p class="advert_standfirst">${overrideData[2]}</p>
+        <div class="advert__standfirst">
+            ${getValue('[%ArticleText%]', responseJson.articleText)}
+        </div>
       </div>
       <div class="advert__image-container">
-        <img class="advert__image" src="${overrideData[3]}" alt>
+        <img class="advert__image" src="${getValue('[%ArticleImage%]', responseJson.articleImage[0].item.images.allImages[0].url)}" alt>
       </div>
     </a>
-    <a class="hide-until-mobile-landscape button button--primary button--large button--legacy-single" href="%%CLICK_URL_UNESC%%https://theguardian.com/[%SeriesUrl%]"  data-link-name="merchandising-single-more">
+    <a class="hide-until-mobile-landscape button button--large button--legacy-single" href="%%CLICK_URL_UNESC%%https://theguardian.com/[%SeriesUrl%]"  data-link-name="merchandising-single-more">
       See more
       ${arrowRight}
     </a>`)
@@ -72,13 +64,11 @@ function populateCard(responseJson) {
 // };
 //
 function checkIcon(responseJson) {
-
-    if (responseJson.audioTag) {
-      return audioIcon;
-    } else if (responseJson.galleryTag) {
-      return imageIcon;
-    } else if (responseJson.videoTag) {
-      return videoIcon;
-    } else;
-
-};
+    return responseJson.audioTag ?
+        audioIcon :
+    responseJson.galleryTag ?
+        imageIcon :
+    responseJson.videoTag ?
+        videoIcon :
+        '';
+}
