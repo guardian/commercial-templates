@@ -7,18 +7,22 @@ import { portify } from '../_shared/js/dev';
 const GLABS_EDITION = {
 	default: 'https://theguardian.com/guardian-labs',
 	au: 'https://theguardian.com/guardian-labs-australia'
-}
+};
+
+const OVERRIDES = {
+	urls: ['[%Article1URL%]', '[%Article2URL%]', '[%Article3URL%]',
+		'[%Article4URL%]'],
+	headlines: ['[%Article1Headline%]', '[%Article2Headline%]',
+		'[%Article3Headline%]', '[%Article4Headline%]']
+};
 
 // Loads the card data from CAPI in JSON format.
 function retrieveCapiData ({ host }) {
 
-	const articleOverrides = ['[%Article1URL%]', '[%Article2URL%]',
-		'[%Article3URL%]', '[%Article4URL%]'];
-
 	let params = new URLSearchParams();
 	params.append('k', '[%SeriesURL%]');
 
-	articleOverrides.map(url => {
+	OVERRIDES.urls.map(url => {
 
 		if (url !== '') {
 			params.append('t', url);
@@ -40,11 +44,25 @@ function setMediaIcon (card, title, mediaType) {
 
 }
 
+// Inserts capi headline or DFP override.
+function buildHeadline (title, cardInfo, cardNumber) {
+
+	let headline;
+
+	if (OVERRIDES.headlines[cardNumber] !== '') {
+		headline = document.createTextNode(OVERRIDES.headlines[cardNumber]);
+	} else {
+		headline = document.createTextNode(cardInfo.articleHeadline);
+	}
+
+	title.appendChild(headline);
+
+}
+
 // Constructs the title part of the card: headline and media icon.
-function buildTitle (card, cardInfo) {
+function buildTitle (card, cardInfo, cardNumber) {
 
 	let title = card.querySelector('.advert__title');
-	let headline = document.createTextNode(cardInfo.articleHeadline);
 
 	if (cardInfo.videoTag) {
 		setMediaIcon(card, title, 'video');
@@ -56,7 +74,7 @@ function buildTitle (card, cardInfo) {
 		card.classList.add('advert--text');
 	}
 
-	title.appendChild(headline);
+	buildHeadline(title, cardInfo, cardNumber);
 
 }
 
@@ -105,7 +123,7 @@ function buildCard (cardInfo, cardNumber) {
 	let cardFragment = document.importNode(cardTemplate.content, true);
 	let card = cardFragment.querySelector('.advert--paidfor');
 
-	buildTitle(card, cardInfo);
+	buildTitle(card, cardInfo, cardNumber);
 	card.querySelector('a.advert').href = cardInfo.articleUrl;
 	insertImages(card, cardInfo);
 
