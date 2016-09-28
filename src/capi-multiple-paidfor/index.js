@@ -159,10 +159,14 @@ function buildCards (cardsInfo) {
 // Sets correct glabs link based on edition (AU/All others).
 function editionLink () {
 
-	let edition = guardian.config.page.edition;
-	let link = edition === 'AU' ? GLABS_EDITION.au : GLABS_EDITION.default;
+	return () => {
 
-	document.querySelector('.adverts__badge__link').href = link;
+		let edition = guardian.config.page.edition;
+		let link = edition === 'AU' ? GLABS_EDITION.au : GLABS_EDITION.default;
+
+		document.querySelector('.adverts__stamp a').href = link;
+
+	}
 
 }
 
@@ -207,6 +211,8 @@ function buttonListener () {
 getIframeId()
 .then(retrieveCapiData)
 .then(buildCards)
+.then(write)
+.then(editionLink)
 .then(write)
 .then(buttonListener)
 .then(write)
