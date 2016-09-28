@@ -1,0 +1,16 @@
+@import '_core';
+@import '_adverts';
+@import '_adverts-capi';
+@import '_advert';
+@import '_brandbadge';
+
+// For cards 3 and 4.
+.hide-until-mobile-landscape {
+    @include mq($until: mobileLandscape) {
+        display: none !important;
+    }
+}
+
+a {
+	text-decoration: none;
+}

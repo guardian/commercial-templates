@@ -17,6 +17,10 @@ $old-ie: false !default;
 // Search modal.
 $zindex-modal: 1030;
 
+// For brand badge.
+$left-column:      gs-span(2); // Grows to 3 columns on wide viewports
+$left-column-wide: gs-span(3);
+
 // sass-mq configuration
 $mq-responsive: true;
 $mq-breakpoints: (
