@@ -14,7 +14,9 @@ const OVERRIDES = {
 	urls: ['[%Article1URL%]', '[%Article2URL%]', '[%Article3URL%]',
 		'[%Article4URL%]'],
 	headlines: ['[%Article1Headline%]', '[%Article2Headline%]',
-		'[%Article3Headline%]', '[%Article4Headline%]']
+		'[%Article3Headline%]', '[%Article4Headline%]'],
+	images: ['[%Article1Image%]', '[%Article2Image%]', '[%Article3Image%]',
+		'[%Article4Image%]']
 };
 
 // Loads the card data from CAPI in JSON format.
@@ -107,13 +109,19 @@ function buildSources (sourceData) {
 }
 
 // Inserts the image source into a card.
-function insertImages (card, cardInfo) {
+function insertImages (card, cardInfo, cardNumber) {
 
 	let backupImg = card.querySelector('.advert__image');
-	backupImg.src = cardInfo.articleImage.backupSrc;
 
-	let sources = buildSources(cardInfo.articleImage.sources);
-	card.querySelector('picture').insertBefore(sources, backupImg);
+	if (OVERRIDES.images[cardNumber] !== '') {
+		backupImg.src = OVERRIDES.images[cardNumber];
+	} else {
+
+		backupImg.src = cardInfo.articleImage.backupSrc;
+		let sources = buildSources(cardInfo.articleImage.sources);
+		card.querySelector('picture').insertBefore(sources, backupImg);
+
+	}
 
 }
 
@@ -126,7 +134,7 @@ function buildCard (cardInfo, cardNumber) {
 
 	buildTitle(card, cardInfo, cardNumber);
 	card.querySelector('a.advert').href = cardInfo.articleUrl;
-	insertImages(card, cardInfo);
+	insertImages(card, cardInfo, cardNumber);
 
 	// Only first two cards show on mobile portrait.
 	if (cardNumber >= 2) {
