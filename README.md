@@ -35,7 +35,7 @@ You can modify variables in `test.json` while the server is running, and reload 
 
 **Note:** if the preview section cuts off part of the ad once it's selected, resizing the window or opening the dev tools should cause the page to redraw and fix the problem.
 
-# Testing on Frontend (Local)
+## Testing on Frontend (Local)
 If a native component is to make requests to a frontend endpoint, then both preview and frontend will need to be run simultaneously.
 This will require you to use:
 
