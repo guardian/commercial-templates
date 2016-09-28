@@ -1,5 +1,6 @@
 import config from '../_shared/js/config';
-import { getIframeId, getWebfonts } from '../_shared/js/messages.js';
+import { getIframeId, getWebfonts, resizeIframeHeight } from
+	'../_shared/js/messages.js';
 import { write } from '../_shared/js/dom.js';
 import { portify } from '../_shared/js/dev';
 
@@ -209,6 +210,8 @@ getIframeId()
 .then(write)
 .then(buttonListener)
 .then(write)
+.then(getWebfonts)
+.then(resizeIframeHeight)
 .catch(err => {
 	console.log(err);
 });
