@@ -16,7 +16,8 @@ const OVERRIDES = {
 	headlines: ['[%Article1Headline%]', '[%Article2Headline%]',
 		'[%Article3Headline%]', '[%Article4Headline%]'],
 	images: ['[%Article1Image%]', '[%Article2Image%]', '[%Article3Image%]',
-		'[%Article4Image%]']
+		'[%Article4Image%]'],
+	brandLogo: '[%BrandLogo%]'
 };
 
 // Loads the card data from CAPI in JSON format.
@@ -145,9 +146,26 @@ function buildCard (cardInfo, cardNumber) {
 
 }
 
+// Adds branding information from cAPI or DFP override.
+function addBranding (brandingCard) {
+
+	return () => {
+
+		let brandImage = document.querySelector('.adverts__badge__logo');
+
+		if (OVERRIDES.brandLogo === '') {
+			brandImage.src = brandingCard.branding.sponsorLogo.url;
+		}
+
+	}
+
+}
+
 // Constructs an array of cards from an array of data.
 function buildCards (cardsInfo) {
 
+	// Takes branding from last possible card, in case earlier ones overriden.
+	let brandingChange = addBranding(cardsInfo.articles.slice(-1)[0]);
 	let cardList = document.createDocumentFragment();
 
 	cardsInfo.articles.forEach((info, idx) => {
@@ -157,6 +175,7 @@ function buildCards (cardsInfo) {
 	// DOM mutation function.
 	return () => {
 
+		brandingChange();
 		let advertRow = document.querySelector('.adverts__row');
 		advertRow.appendChild(cardList);
 
