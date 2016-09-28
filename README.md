@@ -40,13 +40,7 @@ If a native component is to make requests to a frontend endpoint, then both prev
 This will require you to use:
 
 - the [`portify`](https://github.com/guardian/commercial-templates/blob/master/src/_shared/js/dev.js) method in `src/_shared/js/dev.js` to programmatically switch between 7000 and 9000 when making outbound requests.
-- the [`JsonComponent`](https://github.com/guardian/frontend/blob/master/common/app/common/JsonComponent.scala) method to serve the JSON response from the frontend controller. This method wraps the JSON response in a [CORS](https://github.com/guardian/frontend/blob/master/common/app/model/Cors.scala) header which allows cross-origin requests from a whitelist of origins specified in...
-- the [`frontend.conf`]('~/.gu/frontend.conf') overrides as such:
-```
-devOverrides {
-        ajax.cors.origin="http://localhost:7000"
-}
-```
+- the [`JsonComponent`](https://github.com/guardian/frontend/blob/master/common/app/common/JsonComponent.scala) method to serve the JSON response from the frontend controller. This method wraps the JSON response in a [CORS](https://github.com/guardian/frontend/blob/master/common/app/model/Cors.scala) header which allows cross-origin requests.
 
 ## Testing on Frontend (Prod)
 
