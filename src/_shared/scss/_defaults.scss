@@ -11,10 +11,12 @@ p {
 }
 
 a {
+    color: $guardian-brand;
     text-decoration-skip: ink;
 }
 
 a,
 button {
     touch-action: manipulation;
+    cursor: pointer;
 }

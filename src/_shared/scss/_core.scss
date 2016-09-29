@@ -32,9 +32,9 @@ $mq-breakpoints: (
 );
 
 @import '_mq';
+@import '_palette';
 @import '_defaults';
 @import '_helpers';
-@import '_palette';
 @import '_ui';
 
 .wf-loading {
@@ -69,6 +69,15 @@ $mq-breakpoints: (
     padding: 0 !important;
     position: absolute !important;
     width: 1px !important;
+}
+
+.u-fauxlink {
+    text-decoration: none;
+
+    &:hover,
+    &:focus {
+        text-decoration: underline;
+    }
 }
 
 .button {

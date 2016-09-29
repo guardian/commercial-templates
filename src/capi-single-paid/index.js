@@ -32,7 +32,6 @@ function getValue(value, fallback) { return value || fallback; }
 
 /* Outputs the HTML for a travel advert */
 function populateCard(responseJson) {
-    checkEdition();
     let icon = checkIcon(responseJson)
 
     return( `<div class="adverts__row adverts__row--single">
@@ -61,18 +60,6 @@ function populateCard(responseJson) {
         <img class="adverts__badge__logo" src="${getValue('[%BrandLogo%]', responseJson.branding.sponsorLogo.url)}" alt="">
       </a>
     </div>`)
-};
-
-function checkEdition(){
-
-  return () => {
-
-    let edition = guardian.config.page.edition;
-    let badgeLink = edition === 'AU' ? GLABS_EDITION.au : GLABS_EDITION.default;
-
-    document.querySelector('.adverts__badge__link').href = badgeLink;
-  }
-
 };
 
 function checkIcon(responseJson) {
