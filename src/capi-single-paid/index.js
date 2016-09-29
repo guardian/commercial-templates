@@ -13,11 +13,11 @@ if (customUrl !== '') {
   params.append('t', customUrl);
 } else {
   params.append('k', keywords);
-};
+}
 
 enableToggles();
 getIframeId()
-.then( => fetch(`${config.capiSingleUrl}?${params}`))
+.then(() => fetch(`${config.capiSingleUrl}?${params}`))
 .then(response => response.json())
 .then(capiData => populateCard(capiData))
 .then(html => Promise.all([getWebfonts(['GuardianTextSansWeb', 'GuardianSansWeb']), write(() => container.innerHTML = html)]))
@@ -29,8 +29,8 @@ function getValue(value, fallback) { return value || fallback; }
 function populateCard(responseJson) {
     let icon = checkIcon(responseJson)
 
-    return( `<div class="adverts__row adverts__row--single">
-      <a class="blink advert advert--large advert--capi advert--media advert--inverse advert--paidfor" href="%%CLICK_URL_UNESC%%${getValue('[%ArticleUrl%]', responseJson.articleUrl)} data-link-name="merchandising | capi | single">
+    return `<div class="adverts__row adverts__row--single">
+      <a class="blink advert advert--large advert--capi advert--media advert--inverse advert--paidfor" href="%%CLICK_URL_UNESC%%${getValue('[%ArticleUrl%]', responseJson.articleUrl)}" data-link-name="merchandising | capi | single">
       <div class="advert__text">
         <h2 class="blink__anchor advert__title">
           ${icon}
@@ -54,8 +54,8 @@ function populateCard(responseJson) {
       <a class="adverts__badge__link" href="" data-link-name="logo link">
         <img class="adverts__badge__logo" src="${getValue('[%BrandLogo%]', responseJson.branding.sponsorLogo.url)}" alt="">
       </a>
-    </div>`)
-};
+    </div>`;
+}
 
 function checkIcon(responseJson) {
     return responseJson.audioTag ?
@@ -65,4 +65,33 @@ function checkIcon(responseJson) {
     responseJson.videoTag ?
         videoIcon :
         '';
-};
+}
+
+function createSourceset(responseJson) {
+
+  let srcsetFragment = document.createDocumentFragment();
+
+  return responseJson.reduce((sources, source) => {
+
+    let highDef = document.createElement('source');
+    highDef.media = `(min-width: ${source.minWidth}px) and
+    (-webkit-min-device-pixel-ratio: 1.25),
+    (min-width: ${source.minWidth}px) and (min-resolution: 120dpi)`;
+    highDef.sizes = source.sizes;
+    highDef.srcset = `${window.location.protocol}${source.highDefSrcset}`;
+
+    let lowDef = document.createElement('source');
+    lowDef.media = `(min-width: ${source.minWidth}px)`;
+    lowDef.sizes = source.sizes;
+    lowDef.srcset = `${window.location.protocol}${source.lowDefSrcset}`;
+
+    sources.appendChild(highDef);
+    sources.appendChild(lowDef);
+
+  }, srcsetFragment);
+}
+
+
+function addImages(){
+  
+}
