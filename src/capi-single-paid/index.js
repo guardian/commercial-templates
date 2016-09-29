@@ -17,7 +17,7 @@ if (customUrl !== '') {
 
 enableToggles();
 getIframeId()
-.then(({ host }) => fetch(`${portify(host)}${config.capiSingleUrl}?${params}`))
+.then( => fetch(`${config.capiSingleUrl}?${params}`))
 .then(response => response.json())
 .then(capiData => populateCard(capiData))
 .then(html => Promise.all([getWebfonts(['GuardianTextSansWeb', 'GuardianSansWeb']), write(() => container.innerHTML = html)]))
