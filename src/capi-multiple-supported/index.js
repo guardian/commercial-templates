@@ -94,12 +94,12 @@ function buildSources (sourceData) {
 			(-webkit-min-device-pixel-ratio: 1.25),
 			(min-width: ${source.minWidth}px) and (min-resolution: 120dpi)`;
 		hidpi.sizes = source.sizes;
-		hidpi.srcset = `${window.location.protocol}${source.hidpiSrcset}`;
+		hidpi.srcset = `${source.hidpiSrcset}`;
 
 		let lodpi = document.createElement('source');
 		lodpi.media = `(min-width: ${source.minWidth}px)`;
 		lodpi.sizes = source.sizes;
-		lodpi.srcset = `${window.location.protocol}${source.lodpiSrcset}`;
+		lodpi.srcset = `${source.lodpiSrcset}`;
 
 		sources.appendChild(hidpi);
 		sources.appendChild(lodpi);
@@ -118,9 +118,11 @@ function insertImages (card, cardInfo, cardNumber) {
 		backupImg.src = OVERRIDES.images[cardNumber];
 	} else {
 
-		backupImg.src = cardInfo.articleImage.backupSrc;
 		let sources = buildSources(cardInfo.articleImage.sources);
+		sources.insertBefore(IE_COMMENTS.before, sources.firstChild);
+		sources.appendChild(IE_COMMENTS.after);
 		card.querySelector('picture').insertBefore(sources, backupImg);
+		backupImg.src = cardInfo.articleImage.backupSrc;
 
 	}
 

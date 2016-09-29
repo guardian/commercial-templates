@@ -20,8 +20,14 @@ const OVERRIDES = {
 	brandLogo: '[%BrandLogo%]'
 };
 
+const IE_COMMENTS = {
+	before: document.createComment(
+		'<!--[if IE 9]><video style="display: none;"><![endif]-->'),
+	after: document.createComment('<!--[if IE 9]></video><![endif]-->')
+};
+
 // Loads the card data from CAPI in JSON format.
-function retrieveCapiData ({ host }) {
+function retrieveCapiData () {
 
 	let params = new URLSearchParams();
 	params.append('k', '[%SeriesURL%]');
@@ -34,7 +40,7 @@ function retrieveCapiData ({ host }) {
 
 	})
 
-	let url = `${portify(host)}${config.capiMultipleUrl}?${params}`;
+	let url = `${config.capiMultipleUrl}?${params}`;
 
 	return fetch(url).then(response => response.json());
 
@@ -118,9 +124,11 @@ function insertImages (card, cardInfo, cardNumber) {
 		backupImg.src = OVERRIDES.images[cardNumber];
 	} else {
 
-		backupImg.src = cardInfo.articleImage.backupSrc;
 		let sources = buildSources(cardInfo.articleImage.sources);
+		sources.insertBefore(IE_COMMENTS.before, sources.firstChild);
+		sources.appendChild(IE_COMMENTS.after);
 		card.querySelector('picture').insertBefore(sources, backupImg);
+		backupImg.src = cardInfo.articleImage.backupSrc;
 
 	}
 
@@ -238,8 +246,8 @@ function buttonListener () {
 getIframeId()
 .then(retrieveCapiData)
 .then(buildCards)
-.then(write)
-.then(editionLink)
+// .then(write)
+// .then(editionLink)
 .then(write)
 .then(buttonListener)
 .then(write)
