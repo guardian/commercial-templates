@@ -94,12 +94,12 @@ function buildSources (sourceData) {
 			(-webkit-min-device-pixel-ratio: 1.25),
 			(min-width: ${source.minWidth}px) and (min-resolution: 120dpi)`;
 		hidpi.sizes = source.sizes;
-		hidpi.srcset = `${window.location.protocol}${source.hidpiSrcset}`;
+		hidpi.srcset = `${source.hidpiSrcset}`;
 
 		let lodpi = document.createElement('source');
 		lodpi.media = `(min-width: ${source.minWidth}px)`;
 		lodpi.sizes = source.sizes;
-		lodpi.srcset = `${window.location.protocol}${source.lodpiSrcset}`;
+		lodpi.srcset = `${source.lodpiSrcset}`;
 
 		sources.appendChild(hidpi);
 		sources.appendChild(lodpi);

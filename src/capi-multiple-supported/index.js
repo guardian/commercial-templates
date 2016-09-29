@@ -21,7 +21,7 @@ const OVERRIDES = {
 };
 
 // Loads the card data from CAPI in JSON format.
-function retrieveCapiData ({ host }) {
+function retrieveCapiData () {
 
 	let params = new URLSearchParams();
 	params.append('k', '[%SeriesURL%]');
@@ -34,7 +34,7 @@ function retrieveCapiData ({ host }) {
 
 	})
 
-	let url = `${portify(host)}${config.capiMultipleUrl}?${params}`;
+	let url = `${config.capiMultipleUrl}?${params}`;
 
 	return fetch(url).then(response => response.json());
 
