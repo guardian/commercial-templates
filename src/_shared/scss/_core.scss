@@ -10,6 +10,9 @@ $gs-column-width: 60px;
 $gs-row-height: 36px;
 $gs-max-columns: 16;
 
+// Search modal.
+$zindex-modal: 1030;
+
 // sass-mq configuration
 $mq-responsive: true;
 $mq-breakpoints: (
@@ -220,30 +223,35 @@ $font-scale: (
     )
 );
 
-// Mixins
-
-@mixin f-headline {
-    font-family: $f-serif-headline;
-    font-weight: normal;
-}
-
-@mixin fs-headline($level, $size-only: false) {
-    @include font-size(get-font-size(headline, $level), get-line-height(headline, $level));
-
-    @if $size-only == false {
-        @include f-headline;
-    }
-}
-
-@mixin font-size($size, $line-height: $size) {
-    font-size: convert-to-px($size);
-    line-height: convert-to-px($line-height);
-}
-
 @mixin circular {
     border-radius: 1000px; // Android 2.3 cannot deal with '50%'
 }
 
+@mixin f-textSans {
+    font-family: $f-sans-serif-text;
+}
+
+@mixin fs-textSans($level, $size-only: false) {
+    @include font-size(get-font-size(textSans, $level), get-line-height(textSans, $level));
+
+    @if $size-only == false {
+        @include f-textSans;
+    }
+}
+
+@mixin f-headlineSans {
+    font-family: $f-sans-serif-headline;
+}
+
+@mixin content-gutter {
+    padding-left: $gs-gutter/2;
+    padding-right: $gs-gutter/2;
+
+    @include mq(mobileLandscape) {
+        padding-left: $gs-gutter;
+        padding-right: $gs-gutter;
+    }
+}
 
 // Functions
 
