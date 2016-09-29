@@ -10,10 +10,6 @@ $gs-column-width: 60px;
 $gs-row-height: 36px;
 $gs-max-columns: 16;
 
-// For popups
-$headerHeight: 36px;
-$popup-toggle-arrow-size: 4px;
-$old-ie: false !default;
 // Search modal.
 $zindex-modal: 1030;
 
@@ -226,42 +222,6 @@ $font-scale: (
         6: (font-size: 18, line-height: 18),
     )
 );
-
-// Mixins
-
-@mixin f-headline {
-    font-family: $f-serif-headline;
-    font-weight: normal;
-}
-
-@mixin f-headlineSans {
-  font-family: $f-serif-headline;
-}
-
-@mixin fs-headline($level, $size-only: false) {
-    @include font-size(get-font-size(headline, $level), get-line-height(headline, $level));
-
-    @if $size-only == false {
-        @include f-headline;
-    }
-}
-
-@mixin font-size($size, $line-height: $size) {
-    font-size: convert-to-px($size);
-    line-height: convert-to-px($line-height);
-}
-
-// Hide content visually, still readable by screen readers
-@mixin u-h {
-    border: 0 !important;
-    clip: rect(0 0 0 0) !important;
-    height: 1px !important;
-    margin: -1px !important;
-    overflow: hidden !important;
-    padding: 0 !important;
-    position: absolute !important;
-    width: 1px !important;
-}
 
 @mixin circular {
     border-radius: 1000px; // Android 2.3 cannot deal with '50%'

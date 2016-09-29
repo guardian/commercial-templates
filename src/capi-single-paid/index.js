@@ -13,16 +13,11 @@ if (customUrl !== '') {
   params.append('t', customUrl);
 } else {
   params.append('k', keywords);
-}
-
-const GLABS_EDITION = {
-	default: 'https://theguardian.com/guardian-labs',
-	au: 'https://theguardian.com/guardian-labs-australia'
 };
 
 enableToggles();
 getIframeId()
-.then(({ host }) => fetch(`${config.capiSingleUrl}?${params}`))
+.then(({ host }) => fetch(`${portify(host)}${config.capiSingleUrl}?${params}`))
 .then(response => response.json())
 .then(capiData => populateCard(capiData))
 .then(html => Promise.all([getWebfonts(['GuardianTextSansWeb', 'GuardianSansWeb']), write(() => container.innerHTML = html)]))
