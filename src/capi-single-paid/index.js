@@ -18,11 +18,11 @@ if (customUrl !== '') {
 const GLABS_EDITION = {
 	default: 'https://theguardian.com/guardian-labs',
 	au: 'https://theguardian.com/guardian-labs-australia'
-}
+};
 
 enableToggles();
 getIframeId()
-.then(({ host }) => fetch(`${portify(host)}${config.capiSingleUrl}?${params}`))
+.then(({ host }) => fetch(`${config.capiSingleUrl}?${params}`))
 .then(response => response.json())
 .then(capiData => populateCard(capiData))
 .then(html => Promise.all([getWebfonts(['GuardianTextSansWeb', 'GuardianSansWeb']), write(() => container.innerHTML = html)]))
@@ -56,7 +56,7 @@ function populateCard(responseJson) {
     </a>
     </div>
     <div class="adverts__badge js-badge">
-      Paid for by ${getValue('[%BrandName%]', responseJson.branding.sponsorName)}
+      Paid for by
       <a class="adverts__badge__link" href="" data-link-name="logo link">
         <img class="adverts__badge__logo" src="${getValue('[%BrandLogo%]', responseJson.branding.sponsorLogo.url)}" alt="">
       </a>
@@ -64,10 +64,15 @@ function populateCard(responseJson) {
 };
 
 function checkEdition(){
-  let edition = guardian.config.page.edition;
-  let badgeLink = edition === 'AU' ? GLABS_EDITION.au : GLABS_EDITION.default;
 
-  document.querySelector('.adverts__badge__link').href = badgeLink;
+  return () => {
+
+    let edition = guardian.config.page.edition;
+    let badgeLink = edition === 'AU' ? GLABS_EDITION.au : GLABS_EDITION.default;
+
+    document.querySelector('.adverts__badge__link').href = badgeLink;
+  }
+
 };
 
 function checkIcon(responseJson) {
@@ -78,4 +83,4 @@ function checkIcon(responseJson) {
     responseJson.videoTag ?
         videoIcon :
         '';
-}
+};

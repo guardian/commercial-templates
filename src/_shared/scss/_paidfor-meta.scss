@@ -10,26 +10,9 @@
 
 .paidfor-meta__more {
     padding-left: $gs-gutter / 4;
+        position: absolute;
 }
 
 .paidfor-meta__label {
     font-weight: 700;
 }
-
-// .paidfor-label .popup__toggle {
-//     border-left: 1px solid rgba(0, 0, 0, .2);
-//     border-right: 1px solid rgba(0, 0, 0, .2);
-//     display: inline-block;
-//
-//     &:before,
-//     &:after {
-//         content: none;
-//     }
-//
-//     svg {
-//         width: 12px;
-//         height: 9px;
-//         fill: $neutral-1;
-//
-//     }
-// }
