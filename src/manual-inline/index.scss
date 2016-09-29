@@ -1,0 +1,40 @@
+@import '_core';
+@import '_adverts';
+@import '_advert';
+@import '_adverts-books';
+@import '_adverts-brand';
+@import '_adverts-jobs';
+@import '_adverts-subscriptions';
+@import '_adverts-networks';
+@import '_adverts-soulmates';
+@import '_adverts-live';
+@import '_adverts-membership';
+@import '_adverts-masterclasses';
+@import '_adverts-travel';
+@import '_adverts-shop';
+@import '_adverts-money';
+@import '_adverts-gardening';
+
+a.adverts__logo {
+  text-decoration: none;
+
+}
+
+a.adverts__logo:hover {
+  text-decoration: underline;
+}
+
+.adverts__body a {
+  text-decoration: none;
+}
+
+.adverts__body a:hover {
+  h2 {
+    text-decoration: underline;
+  }
+}
+
+
+img.advert__image {
+  max-height: 20px;
+}
