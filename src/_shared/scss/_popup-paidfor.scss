@@ -13,7 +13,7 @@
 
     &,
     h3 {
-        @include f-headlineSans;
+        font-family: $f-sans-serif-headline;
     }
 
     &::before {
@@ -32,14 +32,14 @@
 }
 
 .popup--paidfor__title {
-    font-size: get-font-size(textSans, 3);
-    line-height: get-line-height(textSans, 1);
+    font-size: 14px;
+    line-height: 16px;
     margin: 0 0 1em;
 }
 
 .popup--paidfor__link {
     color: $paidfor-background;
-    font-size: get-font-size(textSans, 2);
+    font-size: 13px;
     line-height: .8;
     display: block;
 
