@@ -64,12 +64,12 @@
     padding-bottom: 4px;
 }
 
+.advert-blended--jobs .icon--logo-jobs {
+    fill: $news-support-2;
+}
+
 .adverts--tone-jobs {
     > .adverts__header {
         background: $news-support-2;
     }
-}
-
-.logo--tone-jobs {
-    fill: $news-support-2;
 }

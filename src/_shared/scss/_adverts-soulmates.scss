@@ -139,17 +139,16 @@
     box-sizing: border-box;
     padding: 0 $gs-gutter / 4;
 
-    .inline-logo-soulmates {
-        > svg {
-            height: 22px;
-            width: 116px;
-        }
+    .icon--soulmates-logo {
+        height: 22px;
+        width: 116px;
+        fill: #fff;
     }
 
     .advert-blended__title {
         background: $soulmates-colour;
         margin: 0 $gs-gutter / -4 5px;
-        padding: 4px $gs-gutter / 4 0;
+        padding: 4px $gs-gutter / 4 7px;
     }
 
     .advert-blended__body {
@@ -161,6 +160,16 @@
 
         > * + * {
             margin-left: $gs-gutter / 2;
+        }
+    }
+
+    .button--small {
+        color: #bdbdbd;
+        background-color: #333;
+
+        &:hover,
+        &:focus {
+            background-color: darken(#333, 5%);
         }
     }
 }
@@ -190,8 +199,4 @@
             background: $neutral-2;
         }
     }
-}
-
-.logo--tone-soulmates {
-    fill: #ffffff;
 }
