@@ -57,7 +57,9 @@ $control-offset: 36 + $gs-gutter/2;
 }
 
 .popup__group-header {
-    @include fs-textSans(2);
+    font-size: 13;
+    line-height: 18;
+    font-family: $f-sans-serif-text;
     color: $neutral-2;
     padding: $gs-baseline/2 $gs-gutter/2;
     border-top: 1px solid $neutral-4;

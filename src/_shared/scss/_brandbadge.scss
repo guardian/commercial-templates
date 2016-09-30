@@ -1,5 +1,7 @@
 .badge {
-    @include fs-textSans(1);
+    font-size: 12;
+    line-height: 16;
+    font-family: $f-sans-serif-text;
     color: $neutral-2;
     font-weight: bold;
     margin-top: $gs-baseline / 2;
