@@ -94,7 +94,7 @@ $gimbap-width-quarter: calc(25% - 20px);
     display: none;
 
     @include mq(leftCol) {
-        @include fs-headline(1);
+        //@include fs-headline(1);
 
         display: block;
         width: $gimbap-wrap-left-space-leftCol - 30px;
