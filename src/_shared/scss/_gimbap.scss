@@ -166,7 +166,7 @@
     }
 
     .gimbap__title {
-        @include fs-headline(4);
+        font: normal 24px/28px $f-serif-headline;
 
         @include mq(desktop) {
             font-size: 48px;
@@ -200,10 +200,8 @@
 }
 
 .gimbap__title {
-    @include fs-headline(5);
-
+    font: 500 28px/32px $f-serif-headline;
     width: 100%;
-    font-weight: 500;
     align-self: flex-start;
     margin-bottom: $gs-baseline / 2;
     word-wrap: break-word;
@@ -223,30 +221,24 @@
 }
 
 .gimbap__cta {
-    @include fs-headline(2);
-
+    font: 500 16px/20px $f-serif-headline;
     align-self: flex-start;
     flex-grow: 1;
-    font-weight: 500;
     word-wrap: break-word;
     width: 100%;
 }
 
 .gimbap__cta--simple {
-    @include fs-headline(1);
-
+    font: bold 14px/18px $f-serif-headline;
     position: absolute;
     top: 55%;
     left: 0;
     right: 0;
     text-align: center;
-    font-weight: bold;
     text-shadow: 0 0 5px rgba(0, 0, 0, .3);
 
     @include mq(tablet) {
-        @include fs-headline(3);
-
-        font-weight: bold;
+        font: bold 20px/24px $f-serif-headline;
     }
 
     .gimbap--tone-jobs & {
