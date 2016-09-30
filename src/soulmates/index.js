@@ -3,10 +3,13 @@ import { getIframeId, getWebfonts, resizeIframeHeight } from '../_shared/js/mess
 import { write } from '../_shared/js/dom';
 import { portify } from '../_shared/js/dev';
 
+const params = new URLSearchParams();
+params.append('t', '[%SubFeed%]');
+
 const cardContainer = document.getElementsByClassName("adverts__row")[0];
 
 getIframeId()
-  .then(({host}) => fetch(`${portify(host)}${config.soulmatesUrl}`))
+  .then(({host}) => fetch(`${portify(host)}${config.soulmatesUrl}?${params}`))
   .then(response => response.json())
   .then(soulmates => soulmates.map(createSoulmateCard))
   .then(cards => Promise.all([addSoulmatesCards(cards), getWebfonts()]))
