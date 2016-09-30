@@ -19,8 +19,8 @@ enableToggles();
 getIframeId()
 .then(() => fetch(`${config.capiSingleUrl}?${params}`))
 .then(response => response.json())
-.then(capiData => populateCard(capiData))
-.then(html => Promise.all([getWebfonts(['GuardianTextSansWeb', 'GuardianSansWeb']), write(() => container.innerHTML = html)]))
+.then(capiData => [addSourceset(capiData.articleImage.sources), populateCard(capiData)])
+.then(([sources, html]) => Promise.all([getWebfonts(['GuardianTextSansWeb', 'GuardianSansWeb']), write(() => container.innerHTML = html)]).then(() => insertBetweenComments(sources)))
 .then(resizeIframeHeight);
 
 function getValue(value, fallback) { return value || fallback; }
@@ -58,7 +58,9 @@ function populateCard(responseJson) {
           </p>
         </div>
         <div class="advert__image-container">
-          <img class="advert__image" src="${getValue('[%ArticleImage%]', responseJson.articleImage[0].item.images.allImages[0].url)}" alt>
+          <picture>
+            <img class="advert__image" src="${getValue('[%ArticleImage%]', responseJson.articleImage.backupSrc)}" alt="">
+          </picture>
         </div>
       </a>
       <a class="hide-until-mobile-landscape button button--primary button--large button--legacy-single" href="%%CLICK_URL_ESC%%[%SeriesURL%]"  data-link-name="merchandising-single-more">
@@ -77,4 +79,38 @@ function checkIcon(responseJson) {
     responseJson.videoTag ?
         videoIcon :
         '';
+}
+
+function addSourceset(responseJson) {
+
+  let srcsetFragment = document.createDocumentFragment();
+
+  return responseJson.reduce((sources, source) => {
+
+    let highDef = document.createElement('source');
+    highDef.media = `(min-width: ${source.minWidth}px) and
+    (-webkit-min-device-pixel-ratio: 1.25),
+    (min-width: ${source.minWidth}px) and (min-resolution: 120dpi)`;
+    highDef.sizes = source.sizes;
+    highDef.srcset = `${window.location.protocol}${source.highDefSrcset}`;
+
+    let lowDef = document.createElement('source');
+    lowDef.media = `(min-width: ${source.minWidth}px)`;
+    lowDef.sizes = source.sizes;
+    lowDef.srcset = `${window.location.protocol}${source.lowDefSrcset}`;
+
+    sources.appendChild(highDef);
+    sources.appendChild(lowDef);
+    return sources;
+  },
+    srcsetFragment);
+}
+
+function insertBetweenComments(sources) {
+
+	let pictures = Array.from(document.querySelector('picture'));
+
+  return write(() => {
+		pictures.forEach((picture, index) => picture.insertBefore(sources[index], picture.firstChild));
+	});
 }
