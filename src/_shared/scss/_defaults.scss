@@ -1,13 +1,22 @@
 body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    font-kerning: normal;
+    font-variant-ligatures: common-ligatures;
+}
+
+p {
+    margin: 0 0 0.5em;
 }
 
 a {
+    color: $guardian-brand;
     text-decoration-skip: ink;
 }
 
 a,
 button {
     touch-action: manipulation;
+    cursor: pointer;
 }

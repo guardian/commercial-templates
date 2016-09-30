@@ -109,6 +109,7 @@
 
     &.u-text-hyphenate {
         max-width: 100%;
+        word-wrap: break-word;
     }
 
     .advert-blended__body & {

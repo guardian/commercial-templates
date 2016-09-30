@@ -90,6 +90,12 @@
     }
 
     > .adverts__header {
+        .inline-logo-guardian {
+          @include mq(leftCol) {
+            display: none;
+          }
+        }
+
         @include mq($until: mobileLandscape) {
             padding: $gs-baseline / 2 $gs-gutter / 2;
         }
@@ -262,6 +268,10 @@
                 content: none;
             }
         }
+    }
+
+    .adverts__row--single {
+        align-items: flex-start;
     }
 
     .adverts__row--4cards > :nth-child(4) ~ *,

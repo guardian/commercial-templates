@@ -28,14 +28,16 @@
     "rollup-plugin-node-resolve": "^2.0.0",
     "rollup-plugin-replace": "^1.1.1",
     "rollup-plugin-uglify": "^1.0.1",
-    "uglify-js": "^2.7.0"
+    "uglify-js": "^2.7.0",
+    "yargs": "^5.0.0"
   },
   "scripts": {
     "clean": "node clean.js",
-    "build": "npm run clean && node build.js",
-    "build-preview": "npm run build && node preview/build.js",
-    "serve-preview": "nodemon preview/server.js",
-    "preview": "npm run build-preview && npm run serve-preview"
+    "build": "npm run clean && node build.js --minify",
+    "build-dev": "npm run clean && node build.js",
+    "build-preview": "npm run build-dev && node preview/build.js",
+    "preview": "npm run build-preview && npm run serve-preview",
+    "serve-preview": "nodemon preview/server.js"
   },
   "author": "",
   "license": "ISC"

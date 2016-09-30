@@ -36,9 +36,9 @@ $mq-breakpoints: (
 );
 
 @import '_mq';
+@import '_palette';
 @import '_defaults';
 @import '_helpers';
-@import '_palette';
 @import '_ui';
 
 .wf-loading {
@@ -73,6 +73,15 @@ $mq-breakpoints: (
     padding: 0 !important;
     position: absolute !important;
     width: 1px !important;
+}
+
+.u-fauxlink {
+    text-decoration: none;
+
+    &:hover,
+    &:focus {
+        text-decoration: underline;
+    }
 }
 
 .button {
@@ -222,11 +231,22 @@ $font-scale: (
     )
 );
 
-// Mixins
-
 @mixin f-headline {
     font-family: $f-serif-headline;
     font-weight: normal;
+}
+
+@mixin font-size($size, $line-height: $size) {
+    font-size: convert-to-px($size);
+    line-height: convert-to-px($line-height);
+}
+
+@mixin circular {
+    border-radius: 1000px; // Android 2.3 cannot deal with '50%'
+}
+
+@mixin f-textSans {
+    font-family: $f-sans-serif-text;
 }
 
 @mixin f-headlineSans {
@@ -237,17 +257,31 @@ $font-scale: (
     @include font-size(get-font-size(headline, $level), get-line-height(headline, $level));
 
     @if $size-only == false {
-        @include f-headline;
+        @include f-textSans;
     }
 }
 
-@mixin font-size($size, $line-height: $size) {
-    font-size: convert-to-px($size);
-    line-height: convert-to-px($line-height);
+@mixin fs-textSans($level, $size-only: false) {
+    @include font-size(get-font-size(textSans, $level), get-line-height(textSans, $level));
+
+    @if $size-only == false {
+        @include f-textSans;
+    }
 }
 
-@mixin circular {
-    border-radius: 1000px; // Android 2.3 cannot deal with '50%'
+@mixin f-headlineSans {
+    font-family: $f-sans-serif-headline;
+}
+
+@mixin content-gutter {
+    padding-left: $gs-gutter/2;
+    padding-right: $gs-gutter/2;
+
+    @include mq(mobileLandscape) {
+        padding-left: $gs-gutter;
+        padding-right: $gs-gutter;
+    }
+
 }
 
 // Hide content visually, still readable by screen readers
@@ -264,14 +298,6 @@ $font-scale: (
 
 @mixin f-textSans {
     font-family: $f-sans-serif-text;
-}
-
-@mixin fs-textSans($level, $size-only: false) {
-    @include font-size(get-font-size(textSans, $level), get-line-height(textSans, $level));
-
-    @if $size-only == false {
-        @include f-textSans;
-    }
 }
 
 // Functions
