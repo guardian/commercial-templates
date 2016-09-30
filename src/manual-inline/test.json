@@ -1,8 +1,8 @@
 {
-  "className" : "brands",
-  "componentTitle": "The Guardian Bookshop",
-  "type": "inline",
-  "offerTitle": "Title",
-  "offerText": "Meta",
-  "offerImage": ""
+  "Tone" : "moneys",
+  "ComponentTitle": "The Guardian Bookshop",
+  "Type": "inline",
+  "OfferTitle": "Title",
+  "OfferText": "Meta",
+  "OfferImage": ""
 }
