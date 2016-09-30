@@ -177,6 +177,18 @@ function addBranding (brandingCard) {
 
 }
 
+// Sets correct glabs link based on edition (AU/All others).
+function editionLink (edition) {
+
+	return () => {
+
+		let link = edition === 'AU' ? GLABS_EDITION.au : GLABS_EDITION.default;
+		document.querySelector('.adverts__stamp a').href = link;
+
+	}
+
+}
+
 // Constructs an array of cards from an array of data.
 function buildCards (cardsInfo) {
 
@@ -192,24 +204,11 @@ function buildCards (cardsInfo) {
 	return () => {
 
 		brandingChange();
+		editionLink(cardsInfo.articles[0].edition)();
 		let advertRow = document.querySelector('.adverts__row');
 		advertRow.appendChild(cardList);
 
 	};
-
-}
-
-// Sets correct glabs link based on edition (AU/All others).
-function editionLink () {
-
-	return () => {
-
-		let edition = guardian.config.page.edition;
-		let link = edition === 'AU' ? GLABS_EDITION.au : GLABS_EDITION.default;
-
-		document.querySelector('.adverts__stamp a').href = link;
-
-	}
 
 }
 
@@ -254,8 +253,6 @@ function buttonListener () {
 getIframeId()
 .then(retrieveCapiData)
 .then(buildCards)
-// .then(write)
-// .then(editionLink)
 .then(write)
 .then(buttonListener)
 .then(write)
