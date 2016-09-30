@@ -20,12 +20,6 @@ const OVERRIDES = {
 	brandLogo: '[%BrandLogo%]'
 };
 
-const IE_COMMENTS = {
-	before: document.createComment(
-		'<!--[if IE 9]><video style="display: none;"><![endif]-->'),
-	after: document.createComment('<!--[if IE 9]></video><![endif]-->')
-};
-
 // Loads the card data from CAPI in JSON format.
 function retrieveCapiData () {
 
@@ -115,6 +109,22 @@ function buildSources (sourceData) {
 
 }
 
+// Insert between IE comments, a pain.
+function insertBetweenComments (card, sources) {
+
+	let picture = card.querySelector('picture');
+	let pictureElems = picture.childNodes;
+
+	for (var i = pictureElems.length - 1; i >= 0; i--) {
+
+		if (pictureElems[i].nodeType === Node.COMMENT_NODE) {
+			return picture.insertBefore(sources, pictureElems[i]);
+		}
+
+	}
+
+}
+
 // Inserts the image source into a card.
 function insertImages (card, cardInfo, cardNumber) {
 
@@ -125,9 +135,7 @@ function insertImages (card, cardInfo, cardNumber) {
 	} else {
 
 		let sources = buildSources(cardInfo.articleImage.sources);
-		sources.insertBefore(IE_COMMENTS.before, sources.firstChild);
-		sources.appendChild(IE_COMMENTS.after);
-		card.querySelector('picture').insertBefore(sources, backupImg);
+		insertBetweenComments(card, sources);
 		backupImg.src = cardInfo.articleImage.backupSrc;
 
 	}
