@@ -97,7 +97,7 @@ function isDocumentLoaded() {
 function areImagesLoaded() {
     return Array.from(
         document.getElementsByTagName('img'),
-        function (img) { return img.complete ? Promise.resolve() : new Promise(resolve => img.onload = resolve); }
+        img => img.complete ? Promise.resolve() : new Promise(resolve => img.onload = resolve)
     );
 }
 
