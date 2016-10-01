@@ -2,6 +2,7 @@ import config from '../_shared/js/config';
 import { write } from '../_shared/js/dom';
 import { getIframeId, getWebfonts, resizeIframeHeight } from '../_shared/js/messages';
 import { portify } from '../_shared/js/dev';
+import { formatPrice } from '../_shared/js/utils';
 
 let container = document.getElementsByClassName('adverts__row')[0];
 
@@ -38,8 +39,4 @@ function createAdvert(book, index) {
             </span>
         </div>
     </a>`;
-}
-
-function formatPrice(price) {
-    return `<span>£${price.toFixed(2)}</span>`;
 }

@@ -2,6 +2,7 @@ import config from '../_shared/js/config';
 import { write } from '../_shared/js/dom';
 import { getIframeId, getWebfonts, resizeIframeHeight } from '../_shared/js/messages';
 import { portify } from '../_shared/js/dev';
+import { formatPrice, formatDuration } from '../_shared/js/utils';
 
 let container = document.getElementsByClassName('adverts__row')[0];
 
@@ -61,10 +62,6 @@ function createBook(book) {
             <img class="advert__image" src="${book.jacketUrl}">
         </div>
     </a>`;
-}
-
-function formatPrice(price) {
-    return `<span>£${price.toFixed(2)}</span>`;
 }
 
 function createJob(job) {
@@ -143,8 +140,4 @@ function createTravel(offer) {
             </span>
         </div>
     </a>`;
-}
-
-function formatDuration(duration) {
-    return `${duration} night${duration > 1 ? 's' : ''}`;
 }
