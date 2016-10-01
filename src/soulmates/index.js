@@ -6,7 +6,7 @@ import { portify } from '../_shared/js/dev';
 const cardContainer = document.getElementsByClassName("adverts__row")[0];
 
 getIframeId()
-  .then(({host}) => fetch(`${portify(host)}${config.soulmatesUrl}`))
+  .then(({host}) => fetch(`${portify(host)}${config.soulmatesUrl.replace(':subfeed:', '[%SubFeed%]')}`))
   .then(response => response.json())
   .then(soulmates => soulmates.map(createSoulmateCard))
   .then(cards => Promise.all([addSoulmatesCards(cards), getWebfonts()]))

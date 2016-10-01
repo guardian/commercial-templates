@@ -3,5 +3,5 @@ export default {
     booksUrl: '/commercial/books/api/books.json',
     jobsUrl: '/commercial/jobs/api/jobs.json',
     blendedUrl: '/commercial/api/multi.json',
-    soulmatesUrl: '/commercial/soulmates/api/[%SubFeed%].json'
+    soulmatesUrl: '/commercial/soulmates/api/:subfeed:.json'
 }
