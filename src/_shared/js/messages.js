@@ -81,11 +81,8 @@ export function getWebfonts(fontFamilies) {
 }
 
 export function resizeIframeHeight() {
-    return Promise.all([
-        isDocumentLoaded(),
-        ...areImagesLoaded()
-    ])
-    .then(() => read(() => window.innerHeight))
+    return Promise.all([isDocumentLoaded()].concat(areImagesLoaded()))
+    .then(() => read(() => document.body.getBoundingClientRect().height))
     .then(function(height) {
         return sendMessage('resize', { height });
     });
@@ -100,7 +97,7 @@ function isDocumentLoaded() {
 function areImagesLoaded() {
     return Array.from(
         document.getElementsByTagName('img'),
-        img => img.complete ? Promise.resolve() : new Promise(resolve => img.onload = resolve)
+        function (img) { return img.complete ? Promise.resolve() : new Promise(resolve => img.onload = resolve); }
     );
 }
 
