@@ -27,7 +27,7 @@ function retrieveCapiData () {
 	let params = new URLSearchParams();
 	params.append('k', '[%SeriesURL%]');
 
-	OVERRIDES.urls.map(url => {
+	OVERRIDES.urls.forEach(url => {
 
 		if (url !== '') {
 			params.append('t', url);
