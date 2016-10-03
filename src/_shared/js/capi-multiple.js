@@ -186,12 +186,12 @@ function editionLink (edition, isPaid) {
 
 }
 
-// Constructs an array of cards from an array of data.
-function buildCards (cardsInfo, isPaid) {
+// Uses cAPI data to build the ad content.
+function buildFromCapi (cardsInfo, isPaid) {
 
-	// Takes branding from last possible card, in case earlier ones overriden.
 	let cardList = document.createDocumentFragment();
 
+	// Constructs an array of cards from an array of data.
 	cardsInfo.articles.forEach((info, idx) => {
 		cardList.appendChild(buildCard(info, idx, isPaid));
 	});
@@ -199,6 +199,7 @@ function buildCards (cardsInfo, isPaid) {
 	// DOM mutation function.
 	return () => {
 
+		// Takes branding from last possible card, in case earlier ones overriden.
 		addBranding(cardsInfo.articles.slice(-1)[0], isPaid);
 		let advertRow = document.querySelector('.adverts__row');
 		advertRow.appendChild(cardList);
@@ -214,7 +215,7 @@ export default function capiMultiple (adType) {
 
 	getIframeId()
 	.then(retrieveCapiData)
-	.then(capiData => buildCards(capiData, isPaid))
+	.then(capiData => buildFromCapi(capiData, isPaid))
 	.then(write)
 	.then(() => {
 		if (isPaid) {
