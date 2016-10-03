@@ -3,6 +3,7 @@ import { enableToggles } from '../_shared/js/ui.js';
 import { write } from '../_shared/js/dom';
 import { getIframeId, getWebfonts, resizeIframeHeight } from '../_shared/js/messages';
 import { portify } from '../_shared/js/dev';
+import { addSourceset, insertBetweenComments, checkIcon } from '../_shared/js/images.js';
 
 let container = document.getElementsByClassName('adverts--supported')[0];
 let params = new URLSearchParams();
@@ -69,48 +70,4 @@ function populateCard(responseJson) {
       </a>
     </div>
     </div>`;
-}
-
-function checkIcon(responseJson) {
-    return responseJson.audioTag ?
-        audioIcon :
-    responseJson.galleryTag ?
-        imageIcon :
-    responseJson.videoTag ?
-        videoIcon :
-        '';
-}
-
-function addSourceset(responseJson) {
-
-  let srcsetFragment = document.createDocumentFragment();
-
-  return responseJson.reduce((sources, source) => {
-
-    let highDef = document.createElement('source');
-    highDef.media = `(min-width: ${source.minWidth}px) and
-    (-webkit-min-device-pixel-ratio: 1.25),
-    (min-width: ${source.minWidth}px) and (min-resolution: 120dpi)`;
-    highDef.sizes = source.sizes;
-    highDef.srcset = `${window.location.protocol}${source.highDefSrcset}`;
-
-    let lowDef = document.createElement('source');
-    lowDef.media = `(min-width: ${source.minWidth}px)`;
-    lowDef.sizes = source.sizes;
-    lowDef.srcset = `${window.location.protocol}${source.lowDefSrcset}`;
-
-    sources.appendChild(highDef);
-    sources.appendChild(lowDef);
-    return sources;
-  },
-    srcsetFragment);
-}
-
-function insertBetweenComments(sources) {
-
-	let pictures = Array.from(document.querySelector('picture'));
-
-  return write(() => {
-		pictures.forEach((picture, index) => picture.insertBefore(sources[index], picture.firstChild));
-	});
 }
