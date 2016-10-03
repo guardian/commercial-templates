@@ -27,8 +27,6 @@ $mq-breakpoints: (
     mobileLandscape: 480px
 );
 
-@mixin fs-headline($test){};
-
 @import '_mq';
 @import '_palette';
 @import '_defaults';
