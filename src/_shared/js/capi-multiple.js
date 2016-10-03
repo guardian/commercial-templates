@@ -1,6 +1,7 @@
 import { getIframeId, getWebfonts, resizeIframeHeight } from
 	'./messages.js';
 import { write } from './dom.js';
+import { enableToggles } from './ui.js';
 
 const ENDPOINT = 'https://api.nextgen.guardianapps.co.uk/commercial/api/capi-multiple.json';
 
@@ -250,7 +251,7 @@ export default function capiMultiple (adType) {
 	.then(write)
 	.then(() => {
 		if (isPaid) {
-			write(buttonListener);
+			write(enableToggles);
 		}
 	})
 	.then(getWebfonts)

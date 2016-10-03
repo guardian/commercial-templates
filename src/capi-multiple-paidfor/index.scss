@@ -6,7 +6,7 @@
 @import '_paidfor-meta';
 
 // SVG dimensions.
-.inline-arrow-down > svg {
+.icon--arrow-down > svg {
 	width: 24px;
 	height: 18px;
 }
@@ -46,6 +46,6 @@ a {
 }
 
 // About popup.
-.popup__toggle:hover {
+.js-toggle:hover {
 	cursor: pointer;
 }

@@ -4,9 +4,9 @@
 			<div class="paidfor-meta">
 				<span class="paidfor-meta__label">Paid content</span>
 				<div class="paidfor-label paidfor-meta__more has-popup">
-					<button class="u-button-reset paidfor-label__btn popup__toggle" data-toggle="js-paidfor-popup">About <span class="inline-arrow-down inline-icon">{{#svg}}arrow-down{{/svg}}</span>
+					<button class="u-button-reset paidfor-label__btn popup__toggle js-toggle" aria-controls="popup" aria-expanded="false" data-toggle="js-paidfor-popup">About {{#svg}}arrow-down{{/svg}}
 					</button>
-					<div class="popup popup--paidfor is-off js-paidfor-popup">
+					<div id="popup" class="popup popup--paidfor js-paidfor-popup">
 						<h3 class="popup--paidfor__title">Paid content is paid for and controlled by an advertiser and produced by the Guardian Labs team</h3>
 						<a class="popup--paidfor__link" href="%%CLICK_URL_UNESC%%https://theguardian.com/content-funding">Learn more about Guardian Labs content <span class="inline-arrow-down inline-icon">{{#svg}}arrow-right{{/svg}}</span>
 						</a>
