@@ -19,7 +19,7 @@ export function getIframeId() {
             } catch(_) { return; }
 
             const keys = Object.keys(json);
-            if( keys.length !== 3 || !keys.includes('id') || !keys.includes('host') ) return;
+            if( keys.length < 2 || !keys.includes('id') || !keys.includes('host') ) return;
 
             self.removeEventListener('message', onMessage);
             ({ id: iframeId, host: parentOrigin } = json);
