@@ -1,7 +1,6 @@
-import config from '../_shared/js/config';
 import { write } from '../_shared/js/dom';
 import { getIframeId, getWebfonts, resizeIframeHeight } from '../_shared/js/messages';
-import { portify } from '../_shared/js/dev';
+import { getApiBaseUrl } from '../_shared/js/dev';
 import { formatPrice } from '../_shared/js/utils';
 
 let container = document.getElementsByClassName('adverts__row')[0];
@@ -13,7 +12,7 @@ if( ids.length ) {
 }
 
 getIframeId()
-.then(({ host }) => fetch(`${portify(host)}${config.booksUrl}?${params}`))
+.then(({ host, preview }) => fetch(`${getApiBaseUrl(host, preview)}/commercial/books/api/books.json?${params}`))
 .then(response => response.json())
 .then(books => books.slice(0, '[%NumberofCards%]').map(createAdvert).join(''))
 .then(html => Promise.all([getWebfonts(), write(() => container.innerHTML = html)]))
