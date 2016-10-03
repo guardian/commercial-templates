@@ -55,7 +55,7 @@ $gimbap-width-quarter: calc(25% - 20px);
 
 .gimbap-wrap__box {
     position: relative;
-    border-top: 1px solid $news-accent;
+    border-top: 1px solid $news-main-2;
 }
 
 .gimbap-wrap__header {
@@ -94,8 +94,8 @@ $gimbap-width-quarter: calc(25% - 20px);
     display: none;
 
     @include mq(leftCol) {
-        //@include fs-headline(1);
 
+        font: normal 14px/18px $f-serif-headline;
         display: block;
         width: $gimbap-wrap-left-space-leftCol - 30px;
         position: absolute;
