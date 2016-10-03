@@ -1,8 +1,8 @@
-import config from './config';
 import { getIframeId, getWebfonts, resizeIframeHeight } from
 	'./messages.js';
 import { write } from './dom.js';
-import { portify } from './dev';
+
+const ENDPOINT = 'https://api.nextgen.guardianapps.co.uk/commercial/api/capi-multiple.json';
 
 // Glabs edition links.
 const GLABS_EDITION = {
@@ -34,7 +34,7 @@ function retrieveCapiData () {
 
 	})
 
-	let url = `${config.capiMultipleUrl}?${params}`;
+	let url = `${ENDPOINT}?${params}`;
 
 	return fetch(url).then(response => response.json());
 
