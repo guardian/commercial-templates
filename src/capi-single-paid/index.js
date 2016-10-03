@@ -18,7 +18,7 @@ if (customUrl !== '') {
 
 enableToggles();
 getIframeId()
-.then(() => fetch(`${config.capiSingleUrl}?${params}`))
+.then(() => fetch(`https://api.nextgen.guardianapps.co.uk/commercial/api/capi-single.json?${params}`))
 .then(response => response.json())
 .then(capiData => [addSourceset(capiData.articleImage.sources), populateCard(capiData)])
 .then(([sources, html]) => Promise.all([getWebfonts(['GuardianTextSansWeb', 'GuardianSansWeb']), write(() => container.innerHTML = html)]).then(() => insertBetweenComments(sources)))
