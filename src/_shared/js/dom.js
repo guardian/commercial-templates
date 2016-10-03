@@ -1,5 +1,5 @@
 const matches = 'matches' in Element.prototype ? 'matches' : 'msMatchesSelector';
-export const closest = 'closest' in Element.prototype ?
+const closest = 'closest' in Element.prototype ?
     (node, selector) => node.closest(selector) :
     (node, selector) => {
         while( node && !node[matches](selector) ) {
@@ -24,3 +24,23 @@ function read(fn, ...args) {
         resolve(fn(...args));
     }));
 }
+
+function createElement(tagName) {
+    return function(props = {}, attrs = {}) {
+        let elem = document.createElement(tagName);
+        Object.assign(elem, props);
+        Object.keys(attrs).forEach(attr => img.setAttribute(attr, attrs[attr]));
+        return elem;
+    }
+}
+
+let img = createElement('img');
+let div = createElement('div');
+
+export {
+    closest,
+    write,
+    read,
+    img,
+    div
+};
