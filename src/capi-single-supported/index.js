@@ -1,8 +1,6 @@
-import config from '../_shared/js/config';
 import { enableToggles } from '../_shared/js/ui.js';
 import { write } from '../_shared/js/dom';
 import { getIframeId, getWebfonts, resizeIframeHeight } from '../_shared/js/messages';
-import { portify } from '../_shared/js/dev';
 import { addSourceset, insertBetweenComments, checkIcon } from '../_shared/js/images.js';
 
 let container = document.getElementsByClassName('adverts--supported')[0];
