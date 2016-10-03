@@ -131,7 +131,7 @@ function sendMessage(type, value) {
 }
 
 let onScroll = listen.bind(null, 'scroll');
-let onResize = listen.bind(null, 'viewport');
+let onViewport = listen.bind(null, 'viewport');
 
 function listen(type) {
     const id = generateId();
@@ -171,5 +171,5 @@ export {
     getWebfonts,
     resizeIframeHeight,
     onScroll,
-    onResize
+    onViewport
 };
