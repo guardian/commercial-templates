@@ -113,7 +113,7 @@ function buildSources (sourceData) {
 // Insert between IE comments, a pain.
 function insertBetweenComments (card, sources) {
 
-	let picture = card.querySelector('picture');
+	let picture = card.getElementsByTagName('picture')[0];
 	let pictureElems = picture.childNodes;
 
 	for (var i = pictureElems.length - 1; i >= 0; i--) {
