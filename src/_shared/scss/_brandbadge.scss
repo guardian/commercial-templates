@@ -52,7 +52,8 @@
     }
 
     > .badge__help {
-        @include font-size(11);
+        font-size: 11px;
+        line-height: 11px;
         color: $paid-article-icon;
         font-weight: normal;
     }

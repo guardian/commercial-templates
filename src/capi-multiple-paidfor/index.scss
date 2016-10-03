@@ -2,7 +2,6 @@
 @import '_adverts';
 @import '_adverts-capi';
 @import '_advert';
-@import '_popup';
 @import '_popup-paidfor';
 @import '_paidfor-meta';
 
@@ -40,6 +39,10 @@ a {
 
 .adverts__logo:hover {
 	text-decoration: underline;
+}
+
+.popup {
+	box-sizing: border-box;
 }
 
 // About popup.
