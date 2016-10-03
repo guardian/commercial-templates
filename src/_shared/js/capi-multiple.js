@@ -219,7 +219,7 @@ export default function capiMultiple (adType) {
 	.then(write)
 	.then(() => {
 		if (isPaid) {
-			write(enableToggles);
+			enableToggles();
 		}
 	})
 	.then(getWebfonts)
