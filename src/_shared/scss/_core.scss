@@ -38,8 +38,8 @@ $mq-breakpoints: (
 @import '_mq';
 @import '_palette';
 @import '_defaults';
-@import '_helpers';
 @import '_ui';
+@import '_helpers';
 
 .wf-loading {
     opacity: 0;
@@ -48,6 +48,10 @@ $mq-breakpoints: (
 .wf-active,
 .wf-inactive {
     opacity: 1;
+}
+
+.u-root {
+    position: relative;
 }
 
 .u-button-reset {
@@ -125,7 +129,6 @@ $mq-breakpoints: (
 
 .creative {
     display: block;
-    position: relative;
 }
 
 .creative__pixel {
