@@ -1,14 +1,13 @@
-import config from '../_shared/js/config';
 import { getIframeId, getWebfonts, resizeIframeHeight } from '../_shared/js/messages';
 import { write } from '../_shared/js/dom';
-import { portify } from '../_shared/js/dev';
+import { getApiBaseUrl } from '../_shared/js/dev';
 
 const params = new URLSearchParams();
 params.append('t', '[%SubFeed%]');
 
 const cardContainer = document.getElementsByClassName("adverts__row")[0];
 getIframeId()
-  .then(json => fetch(`${deriveEndpoint(json.host, json.preview)}?${params}`))
+  .then(({ host, preview }) => fetch(`${getApiBaseUrl(host, preview)}/commercial/api/soulmates.json?${params}`))
   .then(response => response.json())
   .then(soulmates => soulmates.map(createSoulmateCard))
   .then(cards => Promise.all([addSoulmatesCards(cards), getWebfonts()]))

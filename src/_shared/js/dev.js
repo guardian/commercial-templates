@@ -7,6 +7,6 @@ let apiBaseUrl = 'https://api.nextgen.guardianapps.co.uk';
 
 /*  The PROD endpoint for Soulmates is not on theguardian.com, so we must detect
     whether we are in DEV or PROD before supplying the full endpoint */
-export function deriveEndpoint(host, isPreview) {
+export function getApiBaseUrl(host, isPreview) {
     return isPreview ? portify(host): apiBaseUrl;
 }

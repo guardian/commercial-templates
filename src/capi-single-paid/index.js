@@ -1,8 +1,7 @@
-import config from '../_shared/js/config';
 import { enableToggles } from '../_shared/js/ui.js';
 import { write } from '../_shared/js/dom';
 import { getIframeId, getWebfonts, resizeIframeHeight } from '../_shared/js/messages';
-import { portify } from '../_shared/js/dev';
+import { getApiBaseUrl } from '../_shared/js/dev';
 
 let container = document.getElementsByClassName('adverts__body')[0];
 let params = new URLSearchParams();
@@ -17,7 +16,7 @@ if (customUrl !== '') {
 
 enableToggles();
 getIframeId()
-.then( => fetch(`${config.capiSingleUrl}?${params}`))
+.then(({ host, preview }) => fetch(`${getApiBaseUrl(host, preview)}/commercial/api/capi-single.json?${params}`))
 .then(response => response.json())
 .then(capiData => populateCard(capiData))
 .then(html => Promise.all([getWebfonts(['GuardianTextSansWeb', 'GuardianSansWeb']), write(() => container.innerHTML = html)]))
