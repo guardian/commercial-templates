@@ -44,3 +44,14 @@
         background: darken($maps-support-4, 5%);
     }
 }
+
+.advert-blended--travels {
+    .advert-blended__title {
+        padding-top: 5px;
+        padding-bottom: 4px;
+    }
+
+    .icon--logo-holidays {
+        fill: #5ebfba;
+    }
+}
