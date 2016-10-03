@@ -208,39 +208,6 @@ function buildCards (cardsInfo, isPaid) {
 
 }
 
-// Displays or hides a popup.
-function togglePopup (button, popup) {
-
-	if (button.classList.contains('is-active')) {
-
-		button.classList.remove('is-active');
-		popup.classList.add('is-off');
-
-	} else {
-
-		button.classList.add('is-active');
-		popup.classList.remove('is-off');
-
-	}
-
-}
-
-// Toggles the about information.
-function buttonListener () {
-
-	let aboutButton = document.querySelector('.popup__toggle');
-	let popup = document.querySelector('.popup');
-
-	aboutButton.addEventListener('click', () => {
-
-		write(() => {
-			togglePopup(aboutButton, popup)
-		});
-
-	});
-
-}
-
 export default function capiMultiple (adType) {
 
 	const isPaid = (adType === 'paidfor');
