@@ -18,7 +18,7 @@ export function addSourceset(responseJson) {
 
     srcsetFragment.appendChild(highDef);
     srcsetFragment.appendChild(lowDef);
-  };
+  });
     return srcsetFragment;
 }
 
