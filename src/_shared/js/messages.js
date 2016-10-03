@@ -10,7 +10,7 @@ let iframeId;
 // frame will send a message with the ID of the corresponding iframe. This is
 // because of some f**d-up handling of the name attribute that is supposed to
 // do the work.
-export function getIframeId() {
+function getIframeId() {
     return new Promise(resolve => {
         self.addEventListener('message', function onMessage(evt) {
             let json;
@@ -30,7 +30,7 @@ export function getIframeId() {
 
 // Will send a concatenated string of all the data-link-name attributes
 // from the clicked node all the way up to the root of the document
-export function reportClick(node) {
+function reportClick(node) {
     let dataLinkName = [];
     while( node ) {
         const dln = node.getAttribute('data-link-name');
@@ -42,7 +42,7 @@ export function reportClick(node) {
     sendMessage('click', dataLinkName.join(' | '));
 }
 
-export function getWebfonts(fontFamilies) {
+function getWebfonts(fontFamilies) {
     const families = [
         'GuardianTextEgyptianWeb',
         'GuardianEgyptianWeb',
@@ -80,7 +80,7 @@ export function getWebfonts(fontFamilies) {
     });
 }
 
-export function resizeIframeHeight() {
+function resizeIframeHeight() {
     return Promise.all([
         isDocumentLoaded(),
         ...areImagesLoaded()
@@ -104,7 +104,7 @@ function areImagesLoaded() {
     );
 }
 
-export function sendMessage(type, value) {
+function sendMessage(type, value) {
     const id = generateId();
 
     return timeout(new Promise((resolve, reject) => {
@@ -130,9 +130,11 @@ export function sendMessage(type, value) {
     }), 300);
 }
 
-export function onScroll(callback) {
+let onScroll = listen.bind(null, 'scroll');
+let onResize = listen.bind(null, 'viewport');
+
+function listen(type) {
     const id = generateId();
-    const type = 'scroll';
 
     self.addEventListener('message', function onMessage({ data }) {
         try {
@@ -163,3 +165,11 @@ function generateId() {
 function post(id, iframeId, type, value) {
     window.top.postMessage(JSON.stringify({ id, iframeId, type, value }), parentOrigin);
 }
+
+export {
+    getIframeId,
+    getWebfonts,
+    resizeIframeHeight,
+    onScroll,
+    onResize
+};
