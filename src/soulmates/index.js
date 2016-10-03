@@ -14,16 +14,6 @@ getIframeId()
   .then(cards => Promise.all([addSoulmatesCards(cards), getWebfonts()]))
   .then(resizeIframeHeight);
 
-/*  The PROD endpoint for Soulmates is not on theguardian.com, so we must detect
-    whether we are in DEV or PROD before supplying the full endpoint */
-function deriveEndpoint(host, isPreview) {
-  if (isPreview)
-    host = portify(host);
-  else
-    host = config.apiBaseUrl;
-
-  return `${host}/${config.soulmatesUrl}`;
-}
 
 function createSoulmateCard(soulmate, index) {
 
