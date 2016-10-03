@@ -4,7 +4,6 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "nodemon": "^1.10.2",
     "sass-mq": "^3.2.9"
   },
   "devDependencies": {
