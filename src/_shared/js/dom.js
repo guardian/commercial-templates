@@ -13,15 +13,14 @@ if( ! window.requestAnimationFrame ) {
     window.requestAnimationFrame = window.webkitRequestAnimationFrame || (callback => setTimeout(callback, 1000 / 60));
 }
 
-export function write(fn) {
+function write(fn, ...args) {
     return new Promise(resolve => window.requestAnimationFrame(() => {
-        fn();
-        resolve();
+        resolve(fn(...args));
     }));
 }
 
-export function read(fn) {
+function read(fn, ...args) {
     return new Promise(resolve => window.requestAnimationFrame(() => {
-        resolve(fn());
+        resolve(fn(...args));
     }));
 }
