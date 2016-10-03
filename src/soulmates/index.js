@@ -3,14 +3,27 @@ import { getIframeId, getWebfonts, resizeIframeHeight } from '../_shared/js/mess
 import { write } from '../_shared/js/dom';
 import { portify } from '../_shared/js/dev';
 
-const cardContainer = document.getElementsByClassName("adverts__row")[0];
+const params = new URLSearchParams();
+params.append('t', '[%SubFeed%]');
 
+const cardContainer = document.getElementsByClassName("adverts__row")[0];
 getIframeId()
-  .then(({host}) => fetch(`${portify(host)}${config.soulmatesUrl.replace(':subfeed:', '[%SubFeed%]')}`))
+  .then(json => fetch(`${deriveEndpoint(json.host, json.preview)}?${params}`))
   .then(response => response.json())
   .then(soulmates => soulmates.map(createSoulmateCard))
   .then(cards => Promise.all([addSoulmatesCards(cards), getWebfonts()]))
   .then(resizeIframeHeight);
+
+/*  The PROD endpoint for Soulmates is not on theguardian.com, so we must detect
+    whether we are in DEV or PROD before supplying the full endpoint */
+function deriveEndpoint(host, isPreview) {
+  if (isPreview)
+    host = portify(host);
+  else
+    host = config.apiBaseUrl;
+
+  return `${host}/${config.soulmatesUrl}`;
+}
 
 function createSoulmateCard(soulmate, index) {
 

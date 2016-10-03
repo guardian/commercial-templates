@@ -1,0 +1,18 @@
+.paidfor-meta {
+    font: normal 13px/18px $f-sans-serif-text;
+    padding: $gs-baseline / 3 0;
+}
+
+.paidfor-meta__label,
+.paidfor-meta__more {
+    display: inline-block;
+}
+
+.paidfor-meta__more {
+    padding-left: $gs-gutter / 4;
+        position: absolute;
+}
+
+.paidfor-meta__label {
+    font-weight: 700;
+}

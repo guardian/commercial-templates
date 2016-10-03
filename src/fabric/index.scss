@@ -1,7 +1,11 @@
 @import '_core';
 
 .creative--fabric {
-    height: 250px;
+
+    &,
+    & > .creative__link {
+        height: 250px;
+    }
 
     .creative__layer1 { z-index: 1; }
     .creative__layer2 { z-index: 2; }

@@ -6,7 +6,6 @@ export function enableToggles() {
 
 function enableToggle(toggle) {
     const target = document.getElementById(toggle.getAttribute('aria-controls'));
-    return close();
 
     toggle.addEventListener('click', () => {
         if( target.hasAttribute('hidden') ) {
@@ -15,6 +14,8 @@ function enableToggle(toggle) {
             close();
         }
     });
+
+    return close();
 
     function close() {
         return write(() => {

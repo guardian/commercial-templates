@@ -19,7 +19,7 @@ export function getIframeId() {
             } catch(_) { return; }
 
             const keys = Object.keys(json);
-            if( keys.length !== 2 || !keys.includes('id') || !keys.includes('host') ) return;
+            if( keys.length !== 3 || !keys.includes('id') || !keys.includes('host') ) return;
 
             self.removeEventListener('message', onMessage);
             ({ id: iframeId, host: parentOrigin } = json);
@@ -81,11 +81,8 @@ export function getWebfonts(fontFamilies) {
 }
 
 export function resizeIframeHeight() {
-    return Promise.all([
-        isDocumentLoaded(),
-        ...areImagesLoaded()
-    ])
-    .then(() => read(() => window.innerHeight))
+    return Promise.all([isDocumentLoaded()].concat(areImagesLoaded()))
+    .then(() => read(() => document.body.getBoundingClientRect().height))
     .then(function(height) {
         return sendMessage('resize', { height });
     });
