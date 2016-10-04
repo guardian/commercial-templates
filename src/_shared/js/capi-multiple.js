@@ -115,7 +115,7 @@ function buildSources (sourceData) {
 function createPicture (cardInfo, imageElem) {
 
 	// Supports responsive images.
-	if (imageElem.srcset === '') {
+	if ('srcset' in imageElem) {
 
 		let picture = document.createElement('picture');
 		let sources = buildSources(cardInfo.articleImage.sources);
