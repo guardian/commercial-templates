@@ -1,7 +1,7 @@
 import { enableToggles } from '../_shared/js/ui';
 import { write } from '../_shared/js/dom';
 import { getIframeId, getWebfonts, resizeIframeHeight } from '../_shared/js/messages';
-import { addSourceset, buildImages, checkIcon } from '../_shared/js/images';
+import { checkIcon } from '../_shared/js/images';
 import { insertImage } from '../_shared/js/capi-images.js';
 
 let container = document.getElementsByClassName('adverts--supported')[0];
