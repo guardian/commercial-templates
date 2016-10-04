@@ -46,12 +46,12 @@ function populateCard(responseJson) {
           [%ComponentTitle%]
         </a>
       </h1>
-      <div class="adverts__badge adverts__badge--alt js-badge">
+      <div class="badge badge--alt js-badge">
         Supported by
-        <a class="adverts__badge__link" href="[%SeriesUrl%]%%" data-link-name="logo link">
-        <img class="adverts__badge__logo" src="${getValue('[%BrandLogo%]', responseJson.branding.sponsorLogo.url)}" alt="">
+        <a class="badge__link" href="[%SeriesUrl%]%%" data-link-name="logo link">
+        <img class="badge__logo" src="${getValue('[%BrandLogo%]', responseJson.branding.sponsorLogo.url)}" alt="">
       </a>
-      <a href="%%CLICK_URL_ESC%%http://theguardian.com/about" class="adverts__badge__help" data-link-name="about link">
+      <a href="%%CLICK_URL_ESC%%http://theguardian.com/about" class="badge__help" data-link-name="about link">
         About this content
       </a>
       </div>

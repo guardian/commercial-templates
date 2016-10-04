@@ -77,10 +77,10 @@ function populateCard(responseJson) {
       ${arrowRight}
     </a>
     </div>
-    <div class="adverts__badge js-badge">
+    <div class="badge js-badge">
       Paid for by
-      <a class="adverts__badge__link" href="" data-link-name="logo link">
-        <img class="adverts__badge__logo" src="${getValue('[%BrandLogo%]', responseJson.branding.sponsorLogo.url)}" alt="">
+      <a class="badge__link" href="" data-link-name="logo link">
+        <img class="badge__logo" src="${getValue('[%BrandLogo%]', responseJson.branding.sponsorLogo.url)}" alt="">
       </a>
     </div>`;
 }
