@@ -144,12 +144,33 @@ function insertImages (card, cardInfo, cardNumber) {
 
 }
 
+// Either from template, or workaround for IE (sigh).
+function importCard (adType) {
+
+	let cardTemplate = document.getElementById(`${adType}-card`);
+
+	// Modern browsers.
+	if (cardTemplate.content) {
+		return document.importNode(cardTemplate.content, true);
+	} else {
+
+		// Internet Explorer doesn't support templates.
+		let cardFragment = document.createDocumentFragment();
+		let tempDiv = document.createElement('div');
+
+		tempDiv.innerHTML = cardTemplate.innerHTML;
+		while (tempDiv.firstChild) cardFragment.appendChild(tempDiv.firstChild);
+		return cardFragment;
+
+	}
+
+}
+
 // Constructs an individual card.
 function buildCard (cardInfo, cardNumber, isPaid) {
 
 	let adType = isPaid ? 'paidfor' : 'supported';
-	let cardTemplate = document.getElementById(`${adType}-card`);
-	let cardFragment = document.importNode(cardTemplate.content, true);
+	let cardFragment = importCard(adType);
 	let card = cardFragment.querySelector(`.advert--${adType}`);
 
 	buildTitle(card, cardInfo, cardNumber);
