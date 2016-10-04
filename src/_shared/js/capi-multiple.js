@@ -112,20 +112,20 @@ function buildSources (sourceData) {
 }
 
 // Creates a picture element with responsive sources, with fallback for IE.
-function createPicture (cardInfo, image) {
+function createPicture (cardInfo, imageElem) {
 
 	// Supports responsive images.
-	if (image.srcset === '') {
+	if (imageElem.srcset === '') {
 
 		let picture = document.createElement('picture');
 		let sources = buildSources(cardInfo.articleImage.sources);
 
 		picture.appendChild(sources);
-		picture.appendChild(image);
+		picture.appendChild(imageElem);
 		return picture;
 
 	} else {
-		return image;
+		return imageElem;
 	}
 
 }
