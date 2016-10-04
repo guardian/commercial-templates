@@ -1,7 +1,6 @@
 import { enableToggles } from '../_shared/js/ui';
 import { write } from '../_shared/js/dom';
 import { getIframeId, getWebfonts, resizeIframeHeight } from '../_shared/js/messages';
-import { getApiBaseUrl } from '../_shared/js/dev';
 import { addSourceset, buildImages, checkIcon } from '../_shared/js/images';
 
 let container = document.getElementsByClassName('adverts__body')[0];
@@ -26,7 +25,7 @@ getIframeId()
 .then(() => fetch(`https://api.nextgen.guardianapps.co.uk/commercial/api/capi-single.json?${params}`))
 .then(response => response.json())
 .then(capiData => [addSourceset(capiData.articleImage.sources), populateCard(capiData)])
-.then(([sources, html]) => Promise.all([getWebfonts(['GuardianTextSansWeb', 'GuardianSansWeb']), write(() => container.innerHTML = html)]).then(() => buildImages(sources)))
+.then(([sources, html]) => Promise.all([getWebfonts(), write(() => container.innerHTML = html)]).then(() => buildImages(sources)))
 .then(resizeIframeHeight);
 
 function getValue(value, fallback) { return value || fallback; }
