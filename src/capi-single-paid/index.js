@@ -3,6 +3,7 @@ import { write } from '../_shared/js/dom';
 import { getIframeId, getWebfonts, resizeIframeHeight } from '../_shared/js/messages';
 import { getApiBaseUrl } from '../_shared/js/dev';
 import { addSourceset, buildImages, checkIcon } from '../_shared/js/images';
+import { insertImage } from '../_shared/js/capi-images.js';
 
 let container = document.getElementsByClassName('adverts__body')[0];
 let params = new URLSearchParams();
@@ -25,8 +26,8 @@ enableToggles();
 getIframeId()
 .then(() => fetch(`https://api.nextgen.guardianapps.co.uk/commercial/api/capi-single.json?${params}`))
 .then(response => response.json())
-.then(capiData => [addSourceset(capiData.articleImage.sources), populateCard(capiData)])
-.then(([sources, html]) => Promise.all([getWebfonts(['GuardianTextSansWeb', 'GuardianSansWeb']), write(() => container.innerHTML = html)]).then(() => buildImages(sources)))
+.then(capiData => [capiData.articleImage, populateCard(capiData)])
+.then(([imageInfo, html]) => Promise.all([getWebfonts(['GuardianTextSansWeb', 'GuardianSansWeb']), write(() => container.innerHTML = html)]).then(() => addImage(imageInfo)))
 .then(resizeIframeHeight);
 
 function getValue(value, fallback) { return value || fallback; }
@@ -39,6 +40,18 @@ function glabsLink(responseJson) {
   responseJson.edition === "US" ?
       logo.href = GLABS_EDITION.us:
       logo.href = GLABS_EDITION.default;
+}
+
+// Adds the ad image to the page.
+function addImage (imageInfo) {
+
+  return write(() => {
+
+    let imageContainer = document.querySelector('.advert__image-container');
+    insertImage(imageContainer, imageInfo, '[%ArticleImage%]');
+
+  });
+
 }
 
 /* Outputs the HTML for a travel advert */
@@ -58,11 +71,7 @@ function populateCard(responseJson) {
             ${getValue('[%ArticleText%]', responseJson.articleText)}
         </div>
       </div>
-      <div class="advert__image-container">
-        <picture>
-          <img class="advert__image" srcset="" src="${getValue('[%ArticleImage%]', responseJson.articleImage.backupSrc)}" alt="">
-        </picture>
-      </div>
+      <div class="advert__image-container"></div>
     </a>
     <a class="hide-until-mobile-landscape button button--large button--legacy-single" href="%%CLICK_URL_UNESC%%https://theguardian.com/[%SeriesUrl%]"  data-link-name="merchandising-single-more">
       See more
