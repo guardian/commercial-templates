@@ -9,6 +9,12 @@ let params = new URLSearchParams();
 let keywords = '[%SeriesUrl%]';
 let customUrl = '[%CustomUrl%]';
 
+const GLABS_EDITION = {
+  default: 'https://theguardian.com/guardian-labs',
+	au: 'https://theguardian.com/guardian-labs-australia',
+	us: 'https://theguardian.com/guardian-labs-us'
+ };
+
 if (customUrl !== '') {
   params.append('t', customUrl);
 } else {
@@ -25,9 +31,21 @@ getIframeId()
 
 function getValue(value, fallback) { return value || fallback; }
 
+function glabsLink(responseJson) {
+  let logo = document.getElementsByClassName('creative__glabs-link')[0];
+
+  responseJson.edition === "AU" ?
+      logo.href = GLABS_EDITION.au:
+  responseJson.edition === "US" ?
+      logo.href = GLABS_EDITION.us:
+      logo.href = GLABS_EDITION.default;
+}
+
 /* Outputs the HTML for a travel advert */
 function populateCard(responseJson) {
     let icon = checkIcon(responseJson)
+    glabsLink(responseJson);
+
 
     return `<div class="adverts__row adverts__row--single">
       <a class="blink advert advert--large advert--capi advert--media advert--inverse advert--paidfor" href="%%CLICK_URL_UNESC%%${getValue('[%ArticleUrl%]', responseJson.articleUrl)}" data-link-name="merchandising | capi | single | [%TrackingId%]">
