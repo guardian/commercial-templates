@@ -111,34 +111,41 @@ function buildSources (sourceData) {
 
 }
 
-// Insert between IE comments, a pain.
-function insertBetweenComments (card, sources) {
+// Creates a picture element with responsive sources, with fallback for IE.
+function createPicture (cardInfo, image) {
 
-	let picture = card.getElementsByTagName('picture')[0];
-	let pictureElems = picture.childNodes;
+	// Supports responsive images.
+	if (image.srcset === '') {
 
-	for (var i = pictureElems.length - 1; i >= 0; i--) {
+		let picture = document.createElement('picture');
+		let sources = buildSources(cardInfo.articleImage.sources);
 
-		if (pictureElems[i].nodeType === Node.COMMENT_NODE) {
-			return picture.insertBefore(sources, pictureElems[i]);
-		}
+		picture.appendChild(sources);
+		picture.appendChild(image);
+		return picture;
 
+	} else {
+		return image;
 	}
 
 }
 
-// Inserts the image source into a card.
-function insertImages (card, cardInfo, cardNumber) {
+// Inserts an image into the card, using the data derived from cAPI.
+function insertImage (card, cardInfo, cardNumber) {
 
-	let backupImg = card.querySelector('.advert__image');
+	let imageContainer = card.querySelector('.advert__image-container');
+	let image = document.createElement('img');
+	image.className += ' advert__image';
 
 	if (OVERRIDES.images[cardNumber] !== '') {
-		backupImg.src = OVERRIDES.images[cardNumber];
+
+		image.src = OVERRIDES.images[cardNumber];
+		imageContainer.appendChild(image);
+
 	} else {
 
-		let sources = buildSources(cardInfo.articleImage.sources);
-		insertBetweenComments(card, sources);
-		backupImg.src = cardInfo.articleImage.backupSrc;
+		image.src = cardInfo.articleImage.backupSrc;
+		imageContainer.appendChild(createPicture(cardInfo, image));
 
 	}
 
@@ -175,7 +182,7 @@ function buildCard (cardInfo, cardNumber, isPaid) {
 
 	buildTitle(card, cardInfo, cardNumber);
 	card.querySelector('a.advert').href = cardInfo.articleUrl;
-	insertImages(card, cardInfo, cardNumber);
+	insertImage(card, cardInfo, cardNumber);
 
 	// Only first two cards show on mobile portrait.
 	if (cardNumber >= 2) {
