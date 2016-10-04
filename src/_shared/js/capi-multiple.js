@@ -8,7 +8,8 @@ const ENDPOINT = 'https://api.nextgen.guardianapps.co.uk/commercial/api/capi-mul
 // Glabs edition links.
 const GLABS_EDITION = {
 	default: 'https://theguardian.com/guardian-labs',
-	au: 'https://theguardian.com/guardian-labs-australia'
+	au: 'https://theguardian.com/guardian-labs-australia',
+	us: 'https://theguardian.com/guardian-labs-us'
 };
 
 const OVERRIDES = {
@@ -180,8 +181,17 @@ function addBranding (brandingCard, isPaid) {
 function editionLink (edition, isPaid) {
 
 	if (isPaid) {
-		let link = edition === 'AU' ? GLABS_EDITION.au : GLABS_EDITION.default;
+
+		let link = GLABS_EDITION.default;
+
+		if (edition === 'AU') {
+			link = GLABS_EDITION.au;
+		} else if (edition === 'US') {
+			link = GLABS_EDITION.us;
+		}
+
 		document.querySelector('.adverts__stamp a').href = link;
+
 	}
 
 }
