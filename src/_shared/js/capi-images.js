@@ -63,3 +63,18 @@ export function insertImage (imageContainer, imageInfo, override) {
 	}
 
 }
+
+// Retrieves svg icons for capi single.
+export function checkIcon (articleInfo) {
+
+	if (articleInfo.audioTag) {
+		return audioIcon;
+	} else if (articleInfo.galleryTag) {
+		return imageIcon;
+	} else if (articleInfo.videoTag) {
+		return videoIcon;
+	}
+
+	return '';
+
+}
