@@ -36,7 +36,7 @@ export function buildImages(sources) {
 
   let imageTag = document.getElementsByTagName('img')[0];
 
-  (imageTag.srcset === '')? insertSrcset(sources) : imageTag;
+  "srcset" in imageTag ? insertSrcset(sources) : imageTag;
 }
 
 export function checkIcon(responseJson) {
