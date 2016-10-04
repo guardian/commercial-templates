@@ -56,7 +56,7 @@ function populateCard(responseJson) {
             ${getValue('[%ArticleText%]', responseJson.articleText)}
           </p>
         </div>
-        <div class="advert__image-container">
+        <div class="advert__image-container"> 
           <picture>
             <img class="advert__image" src="${getValue('[%ArticleImage%]', responseJson.articleImage.backupSrc)}" alt="">
           </picture>

@@ -1,8 +1,8 @@
-import { enableToggles } from '../_shared/js/ui.js';
+import { enableToggles } from '../_shared/js/ui';
 import { write } from '../_shared/js/dom';
 import { getIframeId, getWebfonts, resizeIframeHeight } from '../_shared/js/messages';
 import { getApiBaseUrl } from '../_shared/js/dev';
-import { addSourceset, buildImages, checkIcon } from '../_shared/js/images.js';
+import { addSourceset, buildImages, checkIcon } from '../_shared/js/images';
 
 let container = document.getElementsByClassName('adverts__body')[0];
 let params = new URLSearchParams();
@@ -17,7 +17,7 @@ if (customUrl !== '') {
 
 enableToggles();
 getIframeId()
-.then(({ host, preview }) => fetch(`${getApiBaseUrl(host, preview)}/commercial/api/capi-single.json?${params}`))
+.then(() => fetch(`https://api.nextgen.guardianapps.co.uk/commercial/api/capi-single.json${params}`))
 .then(response => response.json())
 .then(capiData => [addSourceset(capiData.articleImage.sources), populateCard(capiData)])
 .then(([sources, html]) => Promise.all([getWebfonts(['GuardianTextSansWeb', 'GuardianSansWeb']), write(() => container.innerHTML = html)]).then(() => buildImages(sources)))
