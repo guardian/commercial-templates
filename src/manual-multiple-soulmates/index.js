@@ -4,5 +4,5 @@ import { cleanupButtons } from '../_shared/js/creatives.js';
 cleanupButtons();
 
 getIframeId()
-.then(getWebfonts)
+.then(() => getWebfonts())
 .then(resizeIframeHeight);
