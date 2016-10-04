@@ -1,34 +1,42 @@
+import { write } from './dom';
+
 export function addSourceset(responseJson) {
 
-  let srcsetFragment = document.createDocumentFragment();
-
-  responseJson.forEach(source => {
+  return responseJson.map(source => {
 
     let highDef = document.createElement('source');
     highDef.media = `(min-width: ${source.minWidth}px) and
     (-webkit-min-device-pixel-ratio: 1.25),
     (min-width: ${source.minWidth}px) and (min-resolution: 120dpi)`;
     highDef.sizes = source.sizes;
-    highDef.srcset = `${window.location.protocol}${source.highDefSrcset}`;
+    highDef.srcset = `${source.hidpiSrcset}`;
 
     let lowDef = document.createElement('source');
     lowDef.media = `(min-width: ${source.minWidth}px)`;
     lowDef.sizes = source.sizes;
-    lowDef.srcset = `${window.location.protocol}${source.lowDefSrcset}`;
+    lowDef.srcset = `${source.lodpiSrcset}`;
 
-    srcsetFragment.appendChild(highDef);
-    srcsetFragment.appendChild(lowDef);
-  });
-    return srcsetFragment;
+    return [highDef, lowDef];
+   });
 }
 
-export function insertBetweenComments(sources) {
+export function insertSrcset(sources) {
 
-	let pictures = Array.from(document.getElementsByTagName('picture'));
+    let picture = document.getElementsByTagName('picture')[0];
 
-  return write(() => {
-		pictures.forEach((picture, index) => picture.insertBefore(sources[index], picture.firstChild));
-	});
+    return write(() => {
+      sources.forEach((source, index) => {
+        picture.insertBefore(source[0], picture.firstChild);
+        picture.insertBefore(source[1], picture.firstChild);
+      });
+    });
+  }
+
+export function buildImages(sources) {
+
+  let imageTag = document.getElementsByTagName('img')[0];
+
+  "srcset" in imageTag ? insertSrcset(sources) : imageTag;
 }
 
 export function checkIcon(responseJson) {

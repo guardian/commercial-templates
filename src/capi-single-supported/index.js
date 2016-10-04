@@ -1,7 +1,7 @@
-import { enableToggles } from '../_shared/js/ui.js';
+import { enableToggles } from '../_shared/js/ui';
 import { write } from '../_shared/js/dom';
 import { getIframeId, getWebfonts, resizeIframeHeight } from '../_shared/js/messages';
-import { addSourceset, insertBetweenComments, checkIcon } from '../_shared/js/images.js';
+import { addSourceset, buildImages, checkIcon } from '../_shared/js/images';
 
 let container = document.getElementsByClassName('adverts--supported')[0];
 let params = new URLSearchParams();
@@ -19,12 +19,12 @@ getIframeId()
 .then(() => fetch(`https://api.nextgen.guardianapps.co.uk/commercial/api/capi-single.json?${params}`))
 .then(response => response.json())
 .then(capiData => [addSourceset(capiData.articleImage.sources), populateCard(capiData)])
-.then(([sources, html]) => Promise.all([getWebfonts(['GuardianTextSansWeb', 'GuardianSansWeb']), write(() => container.innerHTML = html)]).then(() => insertBetweenComments(sources)))
+.then(([sources, html]) => Promise.all([getWebfonts(['GuardianTextSansWeb', 'GuardianSansWeb']), write(() => container.innerHTML = html)]).then(() => buildImages(sources)))
 .then(resizeIframeHeight);
 
 function getValue(value, fallback) { return value || fallback; }
 
-/* Outputs the HTML for a travel advert */
+/* Outputs the HTML */
 function populateCard(responseJson) {
     let icon = checkIcon(responseJson)
 
@@ -46,7 +46,7 @@ function populateCard(responseJson) {
     </header>
     <div class="adverts__body">
     <div class="adverts__row adverts__row--single">
-      <a class="blink advert advert--large advert--capi advert--media advert--inverse advert--supported" href="%%CLICK_URL_UNESC%%${getValue('[%ArticleUrl%]', responseJson.articleUrl)}" data-link-name="merchandising | capi | single | [%OmnitureId%]">
+      <a class="blink advert advert--large advert--capi advert--media advert--inverse advert--supported" href="%%CLICK_URL_UNESC%%${getValue('[%ArticleUrl%]', responseJson.articleUrl)}" data-link-name="merchandising | capi | single | [%TrackingId%]">
         <div class="advert__text">
           <h2 class="blink__anchor advert__title">
             ${icon}
@@ -58,11 +58,11 @@ function populateCard(responseJson) {
         </div>
         <div class="advert__image-container">
           <picture>
-            <img class="advert__image" src="${getValue('[%ArticleImage%]', responseJson.articleImage.backupSrc)}" alt="">
+            <img class="advert__image" srcset="" src="${getValue('[%ArticleImage%]', responseJson.articleImage.backupSrc)}" alt="">
           </picture>
         </div>
       </a>
-      <a class="hide-until-mobile-landscape button button--primary button--large button--legacy-single" href="%%CLICK_URL_ESC%%[%SeriesURL%]"  data-link-name="merchandising-single-more">
+      <a class="hide-until-mobile-landscape button button--primary button--large button--legacy-single" href="%%CLICK_URL_ESC%%[%SeriesUrl%]"  data-link-name="merchandising-single-more">
         See more
         ${arrowRight}
       </a>
