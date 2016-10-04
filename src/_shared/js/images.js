@@ -18,18 +18,25 @@ export function addSourceset(responseJson) {
 
     return [highDef, lowDef];
    });
-   }
+}
 
-export function insertBetweenComments(sources) {
+export function insertSrcset(sources) {
 
-	let pictures = Array.from(document.getElementsByTagName('picture'));
+    let picture = document.getElementsByTagName('picture')[0];
 
-  return write(() => {
-		pictures.forEach((picture, index) => {
-      picture.insertBefore(sources[index][0], picture.firstChild);
-      picture.insertBefore(sources[index][1], picture.firstChild);
+    return write(() => {
+      sources.forEach((source, index) => {
+        picture.insertBefore(source[0], picture.firstChild);
+        picture.insertBefore(source[1], picture.firstChild);
+      });
     });
-	});
+  }
+
+export function buildImages(sources) {
+
+  let imageTag = document.getElementsByTagName('img')[0];
+
+  (imageTag.srcset === '')? insertSrcset(sources) : imageTag;
 }
 
 export function checkIcon(responseJson) {
