@@ -1,0 +1,47 @@
+@import '_core';
+@import '_adverts';
+@import '_adverts-capi';
+@import '_advert';
+@import '_popup-paidfor';
+@import '_paidfor-meta';
+
+// SVG dimensions.
+.icon--arrow-down > svg {
+	width: 24px;
+	height: 18px;
+}
+
+.inline-arrow-right > svg {
+	width: 30px;
+	height: 30px;
+}
+
+.inline-glabs-logo > svg {
+	width: 100px;
+	height: 31px;
+}
+
+// Glabs logo text for screen readers.
+.u-h {
+	@include u-h;
+}
+
+// For cards 3 and 4.
+.hide-until-mobile-landscape {
+    @include mq($until: mobileLandscape) {
+        display: none !important;
+    }
+}
+
+.adverts__logo:hover {
+	text-decoration: underline;
+}
+
+.popup {
+	box-sizing: border-box;
+}
+
+// About popup.
+.js-toggle:hover {
+	cursor: pointer;
+}
