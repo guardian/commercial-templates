@@ -129,10 +129,9 @@ function buildCard (cardInfo, cardNum, isPaid) {
 }
 
 // Adds branding information from cAPI or DFP override.
-function addBranding (brandingCard, isPaid) {
+function addBranding (brandingCard) {
 
-	let imageClass = `.${isPaid ? 'adverts__' : ''}badge__logo`;
-	let brandImage = document.querySelector(imageClass);
+	let brandImage = document.querySelector('.badge__logo');
 
 	if (OVERRIDES.brandLogo === '') {
 		brandImage.src = brandingCard.branding.sponsorLogo.url;
@@ -173,7 +172,7 @@ function buildFromCapi (cardsInfo, isPaid) {
 	return () => {
 
 		// Takes branding from last possible card, in case earlier ones overriden.
-		addBranding(cardsInfo.articles.slice(-1)[0], isPaid);
+		addBranding(cardsInfo.articles.slice(-1)[0]);
 		let advertRow = document.querySelector('.adverts__row');
 		advertRow.appendChild(cardList);
 		editionLink(cardsInfo.articles[0].edition, isPaid);

@@ -4,6 +4,11 @@
 @import '_advert';
 @import '_popup-paidfor';
 @import '_paidfor-meta';
+@import '_palette';
+
+.adverts {
+	color: $neutral-1;
+}
 
 // SVG dimensions.
 .icon--arrow-down > svg {
