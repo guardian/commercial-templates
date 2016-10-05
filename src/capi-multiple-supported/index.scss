@@ -4,6 +4,10 @@
 @import '_advert';
 @import '_brandbadge';
 
+.adverts {
+	color: #333;
+}
+
 // For cards 3 and 4.
 .hide-until-mobile-landscape {
     @include mq($until: mobileLandscape) {
