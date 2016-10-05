@@ -1,0 +1,34 @@
+<aside class="adverts adverts--legacy adverts--capi adverts--supported adverts--tone-supported">
+	<header class="adverts__header">
+		<h1 class="adverts__title">
+			<a href="%%CLICK_URL_UNESC%%[%SeriesURL%]" class="blink adverts__logo u-text-hyphenate" data-link-name="header link">[%ComponentTitle%]</a>
+		</h1>
+		<div class="badge badge--alt">
+			Supported by
+			<a class="badge__link" href="%%CLICK_URL_UNESC%%[%SeriesURL%]" data-link-name="logo link">
+				<img class="badge__logo" src="[%BrandLogo%]" alt="">
+			</a>
+			<a href="%%CLICK_URL_UNESC%%https://theguardian.com/about" class="blink badge__help" data-link-name="about link">About this content</a>
+		</div>
+	</header>
+	<div class="adverts__body">
+		<div class="adverts__row"></div>
+	</div>
+</aside>
+
+<template id="supported-card">
+	<div class="advert advert--capi advert--supported">
+		<a href="" class="blink advert" data-link-name="[%TrackingId%]">
+			<h2 class="advert__title"></h2>
+			<div class="advert__image-container"></div>
+		</a>
+	</div>
+</template>
+
+<script>
+	var mediaIcons = {
+		camera: '{{#svg}}image{{/svg}}',
+		video: '{{#svg}}video{{/svg}}',
+		volume: '{{#svg}}audio{{/svg}}'
+	};
+</script>

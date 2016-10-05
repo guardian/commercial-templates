@@ -2,3 +2,4 @@
 node_modules
 build/*
 preview/public/main.js
+.idea/

@@ -1,7 +1,7 @@
-import config from '../_shared/js/config';
 import { write } from '../_shared/js/dom';
 import { getIframeId, getWebfonts, resizeIframeHeight } from '../_shared/js/messages';
-import { portify } from '../_shared/js/dev';
+import { getApiBaseUrl } from '../_shared/js/dev';
+import { formatPrice, formatDuration } from '../_shared/js/utils';
 
 let container = document.getElementsByClassName('adverts__row')[0];
 
@@ -12,7 +12,7 @@ if( ids.length ) {
 }
 
 getIframeId()
-.then(({ host }) => fetch(`${portify(host)}${config.travelUrl}?${params}`))
+.then(({ host, preview }) => fetch(`${getApiBaseUrl(host, preview)}/commercial/travel/api/offers.json?${params}`))
 .then(response => response.json())
 .then(offers => offers.slice(0, '[%NumberofCards%]').map(createAdvert).join(''))
 .then(html => Promise.all([getWebfonts(), write(() => container.innerHTML = html)]))
@@ -36,12 +36,4 @@ function createAdvert(offer, index) {
             </span>
         </div>
     </a>`;
-}
-
-function formatDuration(duration) {
-    return `${duration} night${duration > 1 ? 's' : ''}`;
-}
-
-function formatPrice(price) {
-    return `£${(price / 100).toFixed(2)}`;
 }
