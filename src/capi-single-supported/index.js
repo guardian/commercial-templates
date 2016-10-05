@@ -19,7 +19,7 @@ getIframeId()
 .then(() => fetch(`https://api.nextgen.guardianapps.co.uk/commercial/api/capi-single.json?${params}`))
 .then(response => response.json())
 .then(capiData => [addSourceset(capiData.articleImage.sources), populateCard(capiData)])
-.then(([sources, html]) => Promise.all(write(() => container.innerHTML = html)).then(() => buildImages(sources)).then(getWebfonts()))
+.then(([sources, html]) => Promise.all([getWebfonts(), write(() => container.innerHTML = html)]).then(() => buildImages(sources)))
 .then(resizeIframeHeight);
 
 function getValue(value, fallback) { return value || fallback; }
