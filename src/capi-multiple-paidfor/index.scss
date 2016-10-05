@@ -4,9 +4,10 @@
 @import '_advert';
 @import '_popup-paidfor';
 @import '_paidfor-meta';
+@import '_palette';
 
 .adverts {
-	color: #333;
+	color: $neutral-1;
 }
 
 // SVG dimensions.

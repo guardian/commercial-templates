@@ -3,9 +3,10 @@
 @import '_adverts-capi';
 @import '_advert';
 @import '_brandbadge';
+@import '_palette';
 
 .adverts {
-	color: #333;
+	color: $neutral-1;
 }
 
 // For cards 3 and 4.
