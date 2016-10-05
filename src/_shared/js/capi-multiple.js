@@ -131,8 +131,7 @@ function buildCard (cardInfo, cardNum, isPaid) {
 // Adds branding information from cAPI or DFP override.
 function addBranding (brandingCard, isPaid) {
 
-	let imageClass = `.${isPaid ? 'adverts__' : ''}badge__logo`;
-	let brandImage = document.querySelector(imageClass);
+	let brandImage = document.querySelector('.badge__logo');
 
 	if (OVERRIDES.brandLogo === '') {
 		brandImage.src = brandingCard.branding.sponsorLogo.url;
