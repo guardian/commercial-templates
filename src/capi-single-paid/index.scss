@@ -4,3 +4,7 @@
 @import '_adverts-capi';
 @import '_paidfor-meta';
 @import '_popup-paidfor';
+
+.paidfor-meta__more .paidfor-meta__label {
+    font-weight: normal;
+}

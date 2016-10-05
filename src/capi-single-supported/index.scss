@@ -1,4 +1,10 @@
 @import '_core';
 @import '_adverts';
-@import '_advert';
 @import '_adverts-capi';
+@import '_advert';
+@import '_brandbadge';
+
+.button--primary {
+  background-color: #005689;
+  color: #fff;
+}
