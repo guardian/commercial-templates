@@ -26,10 +26,10 @@ function read(fn, ...args) {
 }
 
 function createElement(tagName) {
-    return function(props = {}, attrs = {}) {
+    return (props = {}, attrs = {}) => {
         let elem = document.createElement(tagName);
         Object.assign(elem, props);
-        Object.keys(attrs).forEach(attr => img.setAttribute(attr, attrs[attr]));
+        Object.keys(attrs).forEach(attr => elem.setAttribute(attr, attrs[attr]));
         return elem;
     }
 }
