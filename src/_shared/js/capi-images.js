@@ -3,7 +3,7 @@ function buildSources (sourceData) {
 
 	let sourcesFragment = document.createDocumentFragment();
 
-	return sourceData.reduce((sources, source) => {
+	sourceData.forEach(source => {
 
 		let hidpi = document.createElement('source');
 		hidpi.media = `(min-width: ${source.minWidth}px) and
@@ -17,11 +17,12 @@ function buildSources (sourceData) {
 		lodpi.sizes = source.sizes;
 		lodpi.srcset = `${source.lodpiSrcset}`;
 
-		sources.appendChild(hidpi);
-		sources.appendChild(lodpi);
-		return sources;
+		sourcesFragment.appendChild(hidpi);
+		sourcesFragment.appendChild(lodpi);
 
-	}, sourcesFragment);
+	});
+
+	return sourcesFragment;
 
 }
 
