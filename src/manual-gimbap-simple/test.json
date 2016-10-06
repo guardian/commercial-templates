@@ -1,5 +1,5 @@
 {
-  "componenttone" : "masterclasses",
+  "componenttone" : "money",
   "omnitureId": "test1",
   "gimbapEffects": "Effects",
   "componentmessage": "New masterclasses led by award-winning Guardian professionals now booking ",
@@ -16,5 +16,5 @@
   "offer4url": "https://www.theguardian.com/uk",
   "offer4image": "http://cdn.wallpapersafari.com/13/5/Gz5cpl.jpg",
   "offer4title": "business courses",
-  "linksWithArrows": "no"
+  "linksWithArrows": "yes"
 }

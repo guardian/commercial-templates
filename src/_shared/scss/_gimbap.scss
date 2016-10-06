@@ -63,6 +63,7 @@
 .gimbap--tone-soulmates { background: lighten($gimbap-soulmates-reversed, 49%); color: $gimbap-soulmates-text; }
 .gimbap--tone-jobs { background: lighten($gimbap-jobs-reversed, 42%); color: $gimbap-jobs-text; }
 .gimbap--tone-bookshop { background: lighten($gimbap-bookshop-reversed, 70%); color: $gimbap-bookshop-reversed; }
+.gimbap--tone-money { background: lighten($gimbap-money-reversed, 40%); color: $gimbap-money-reversed; }
 
 .gimbap--normal {
     .gimbap__cta {
@@ -81,6 +82,7 @@
     &.gimbap--tone-masterclasses { background: $gimbap-masterclasses-reversed; }
     &.gimbap--tone-soulmates { background: $gimbap-soulmates-reversed; }
     &.gimbap--tone-jobs { background: $gimbap-jobs-reversed; }
+    &.gimbap--tone-money { background: $gimbap-money-reversed; }
     &.gimbap--tone-bookshop {
         background: $gimbap-bookshop-reversed;
 
@@ -294,6 +296,10 @@
 
     .gimbap--tone-masterclasses & {
         background-color: $gimbap-masterclasses;
+    }
+
+    .gimbap--tone-money & {
+        background-color: $gimbap-money;
     }
 
     .gimbap--tone-jobs & {
