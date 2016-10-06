@@ -230,6 +230,12 @@ $gimbap-width-quarter: calc(25% - 20px);
     }
 }
 
+.gimbap-wrap__logo--holidays {
+    svg {
+        width: 210px;
+    }
+}
+
 .gimbap-wrap__logo--jobs {
     svg {
         width: 160px;
@@ -255,14 +261,15 @@ $gimbap-width-quarter: calc(25% - 20px);
 }
 
 // Each branded component has different styling. Let's loop through them and create unique styles.
-$gimbap-tones: ('members', 'masterclasses', 'jobs', 'soulmates', 'bookshop','money');
+$gimbap-tones: ('members', 'masterclasses', 'jobs', 'soulmates', 'bookshop','money','holidays');
 $gimbap-colors: (
     'members': $gimbap-members,
     'masterclasses': $gimbap-masterclasses,
     'jobs': $gimbap-jobs,
     'soulmates': $gimbap-soulmates,
     'bookshop': $gimbap-bookshop,
-        'money': $gimbap-money
+        'money': $gimbap-money,
+        'holidays': $gimbap-holidays
 );
 
 @each $tone in $gimbap-tones {
