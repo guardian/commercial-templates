@@ -130,7 +130,7 @@ function sendMessage(type, value) {
 let onScroll = listen.bind(null, 'scroll');
 let onViewport = listen.bind(null, 'viewport');
 
-function listen(type) {
+function listen(type, callback) {
     const id = generateId();
 
     self.addEventListener('message', function onMessage({ data }) {
@@ -141,7 +141,7 @@ function listen(type) {
                 return;
             }
 
-            if( !callback(result) === false ) {
+            if( callback(result) === false ) {
                 post(id, iframeId, type, false);
                 self.removeEventListener(onMessage);
             }
