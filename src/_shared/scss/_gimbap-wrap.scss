@@ -224,6 +224,12 @@ $gimbap-width-quarter: calc(25% - 20px);
     }
 }
 
+.gimbap-wrap__logo--money {
+    svg {
+        width: 210px;
+    }
+}
+
 .gimbap-wrap__logo--jobs {
     svg {
         width: 160px;
