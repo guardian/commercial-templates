@@ -36,6 +36,7 @@ function buildFromCapi (data) {
 
 		insertText(data.articleHeadline, 'creative__title', OVERRIDES.headline);
 		insertText(data.articleText, 'creative__standfirst', OVERRIDES.text);
+		document.querySelector('.creative__ctu') = data.articleUrl;
 
 	};
 
