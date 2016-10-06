@@ -6,7 +6,19 @@ const OVERRIDES = {
 	headline: '[%ArticleHeaderText%]'
 };
 
-// Inserts a
+// Loads the article data from CAPI in JSON format.
+function retrieveCapiData () {
+
+	let params = new URLSearchParams();
+	params.append('t', '[%ArticleShortURL%]')
+
+	let url = `${ENDPOINT}?${params}`;
+
+	return fetch(url).then(response => response.json());
+
+}
+
+// Inserts a headline into the ad, from cAPI or using override.
 function insertHeadline (articleInfo) {
 
 	let headline;
@@ -17,7 +29,9 @@ function insertHeadline (articleInfo) {
 		headline = articleInfo.articleHeadline;
 	}
 
-	document.querySelector('.creative__title').textContent = headline;
+	return () => {
+		document.querySelector('.creative__title').textContent = headline;
+	}
 
 }
 
