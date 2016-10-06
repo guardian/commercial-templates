@@ -10,7 +10,7 @@ module.exports = React.createClass({
         const src = '/template/' + this.props.selectedTemplate;
 
         return (
-            <iframe ref="iframe" className="preview-template" src={src}></iframe>
+            <meta name="viewport" content="width=device-width, initial-scale=1"><iframe ref="iframe" className="preview-template" src={src}></iframe></meta>
         );
     }
 });
