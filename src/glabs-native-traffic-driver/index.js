@@ -13,8 +13,8 @@ const GLABS_EDITION = {
 };
 
 const OVERRIDES = {
-	headline: "[%ArticleHeaderText%]",
-	text: "[%ArticleText%]"
+	headline: '[%ArticleHeaderText%]',
+	text: '[%ArticleText%]'
 };
 
 // Loads the article data from CAPI in JSON format.
