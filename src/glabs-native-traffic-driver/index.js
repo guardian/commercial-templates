@@ -3,7 +3,8 @@ import { enableToggles } from '../_shared/js/ui.js';
 import { addTrackingPixel } from '../_shared/js/ads.js';
 
 const OVERRIDES = {
-	headline: '[%ArticleHeaderText%]'
+	headline: '[%ArticleHeaderText%]',
+	text: '[%ArticleText%]'
 };
 
 // Loads the article data from CAPI in JSON format.
@@ -18,20 +19,25 @@ function retrieveCapiData () {
 
 }
 
-// Inserts a headline into the ad, from cAPI or using override.
-function insertHeadline (articleInfo) {
+// Inserts text from capi into container element, with optional DFP override.
+function insertText (capiText, containerClass, override) {
 
-	let headline;
+	let container = document.querySelector(`.${containerClass}`);
+	let text = (override !== '') ? override : capiText;
 
-	if (OVERRIDES.headline !== '') {
-		headline = OVERRIDES.headline;
-	} else {
-		headline = articleInfo.articleHeadline;
-	}
+	container.textContent = text;
+
+}
+
+// Uses cAPI data to build the ad content.
+function buildFromCapi (data) {
 
 	return () => {
-		document.querySelector('.creative__title').textContent = headline;
-	}
+
+		insertText(data.articleHeadline, 'creative__title', OVERRIDES.headline);
+		insertText(data.articleText, 'creative__standfirst', OVERRIDES.text);
+
+	};
 
 }
 
