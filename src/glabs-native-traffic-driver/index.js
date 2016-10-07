@@ -1,9 +1,8 @@
 import { getIframeId, getWebfonts, resizeIframeHeight } from
-	'../_shared/js/messages.js';
-import { enableToggles } from '../_shared/js/ui.js';
-import { addTrackingPixel } from '../_shared/js/ads.js';
-import { write } from '../_shared/js/dom.js';
-import { getApiBaseUrl } from '../_shared/js/dev';
+	'../_shared/js/messages';
+import { enableToggles } from '../_shared/js/ui';
+import { addTrackingPixel } from '../_shared/js/ads';
+import { write } from '../_shared/js/dom';
 import { insertImage } from '../_shared/js/capi-images';
 
 const ENDPOINT = 'https://api.nextgen.guardianapps.co.uk/commercial/api/traffic-driver.json';
