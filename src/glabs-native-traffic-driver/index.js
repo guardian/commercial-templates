@@ -1,18 +1,11 @@
 import { getIframeId, getWebfonts, resizeIframeHeight } from
 	'../_shared/js/messages';
 import { enableToggles } from '../_shared/js/ui';
-import { addTrackingPixel } from '../_shared/js/ads';
+import { addTrackingPixel, setEditionLink } from '../_shared/js/ads';
 import { write } from '../_shared/js/dom';
 import { insertImage } from '../_shared/js/capi-images';
 
 const ENDPOINT = 'https://api.nextgen.guardianapps.co.uk/commercial/api/traffic-driver.json';
-
-// Glabs edition links.
-const GLABS_EDITION = {
-	default: 'https://theguardian.com/guardian-labs',
-	au: 'https://theguardian.com/guardian-labs-australia',
-	us: 'https://theguardian.com/guardian-labs-us'
-};
 
 const OVERRIDES = {
 	headline: '[%ArticleHeaderText%]',
@@ -43,30 +36,17 @@ function insertText (capiText, containerClass, override) {
 
 }
 
-// Sets correct glabs link based on edition (AU/All others).
-function editionLink (edition) {
-
-	let link = GLABS_EDITION.default;
-
-	if (edition === 'AU') {
-		link = GLABS_EDITION.au;
-	} else if (edition === 'US') {
-		link = GLABS_EDITION.us;
-	}
-
-	document.querySelector('.creative__glabs-link').href = link;
-
-}
-
 // Uses cAPI data to build the ad content.
 function buildFromCapi (data) {
 
 	return () => {
 
+		let clickThroughs = document.getElementsByClassName('creative__ctu');
+		let editionLink = document.querySelector('.creative__glabs-link');
+
 		insertText(data.articleHeadline, 'creative__title', OVERRIDES.headline);
 		insertText(data.articleText, 'creative__standfirst', OVERRIDES.text);
-
-		let clickThroughs = document.getElementsByClassName('creative__ctu');
+		setEditionLink(data.edition, editionLink);
 
 		for (var i = clickThroughs.length - 1; i >= 0; i--) {
 			clickThroughs[i].href = data.articleUrl;
@@ -75,8 +55,6 @@ function buildFromCapi (data) {
 		let image = insertImage(clickThroughs[0], data.articleImage,
 			['creative__image'], OVERRIDES.image);
 		image.alt = OVERRIDES.imageAlt;
-
-		editionLink(data.edition);
 
 	};
 
