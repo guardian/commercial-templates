@@ -3,7 +3,7 @@ const args = require('yargs').argv;
 
 // options
 const options = {
-    banner: '<base target="_top" href="https://www.theguardian.com">',
+    banner: '<base target="_blank" href="https://www.theguardian.com">',
     src: 'src',
     dst: 'build',
     minify: args.minify
