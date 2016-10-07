@@ -122,7 +122,6 @@ function sendMessage(type, value) {
                 reject(error);
             }
         });
-        console.log("sending message", id, iframeId, type, value);
         post(id, iframeId, type, value);
     }), 300);
 }

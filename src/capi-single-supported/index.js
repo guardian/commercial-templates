@@ -17,7 +17,7 @@ if (customUrl !== '') {
 getIframeId()
 .then(() => fetch(`https://api.nextgen.guardianapps.co.uk/commercial/api/capi-single.json?${params}`))
 .then(response => response.json())
-.then(capiData => [populateLogo(capiData), populateCard(capiData)])
+.then(capiData => [populateLogo(capiData), populateCard(capiData), capiData.articleImage])
 .then(([logo, body, imageInfo]) => Promise.all([getWebfonts(), write(() => header.innerHTML = logo, container.innerHTML = body).then(() => addImage(imageInfo))]))
 .then(resizeIframeHeight);
 
