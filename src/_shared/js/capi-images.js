@@ -63,6 +63,8 @@ export function insertImage (imageContainer, imageInfo, classes, override) {
 
 	}
 
+	return image;
+
 }
 
 // Retrieves svg icons for capi single.

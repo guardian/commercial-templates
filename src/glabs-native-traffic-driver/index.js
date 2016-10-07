@@ -4,6 +4,9 @@ import { enableToggles } from '../_shared/js/ui.js';
 import { addTrackingPixel } from '../_shared/js/ads.js';
 import { write } from '../_shared/js/dom.js';
 import { getApiBaseUrl } from '../_shared/js/dev';
+import { insertImage } from '../_shared/js/capi-images';
+
+const ENDPOINT = 'https://api.nextgen.guardianapps.co.uk/commercial/api/traffic-driver.json';
 
 // Glabs edition links.
 const GLABS_EDITION = {
@@ -14,17 +17,18 @@ const GLABS_EDITION = {
 
 const OVERRIDES = {
 	headline: '[%ArticleHeaderText%]',
-	text: '[%ArticleText%]'
+	text: '[%ArticleText%]',
+	image: '[%ArticleImage%]',
+	imageAlt: '[%ArticleImageAlternateText%]'
 };
 
 // Loads the article data from CAPI in JSON format.
 function retrieveCapiData ({host, preview}) {
 
-	let endpoint = `${getApiBaseUrl(host, preview)}/commercial/jobs/api/jobs.json?`;
 	let params = new URLSearchParams();
 	params.append('t', '[%ArticleShortURL%]')
 
-	let url = `${endpoint}?${params}`;
+	let url = `${ENDPOINT}?${params}`;
 
 	return fetch(url).then(response => response.json());
 
@@ -62,7 +66,14 @@ function buildFromCapi (data) {
 
 		insertText(data.articleHeadline, 'creative__title', OVERRIDES.headline);
 		insertText(data.articleText, 'creative__standfirst', OVERRIDES.text);
-		document.querySelector('.creative__ctu').href = data.articleUrl;
+
+		let clickThrough = document.querySelector('.creative__ctu');
+		clickThrough.href = data.articleUrl;
+
+		let image = insertImage(clickThrough, data.articleImage,
+			['creative__image'], OVERRIDES.image);
+		image.alt = OVERRIDES.imageAlt;
+
 		editionLink(data.edition);
 
 	};
