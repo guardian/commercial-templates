@@ -67,10 +67,13 @@ function buildFromCapi (data) {
 		insertText(data.articleHeadline, 'creative__title', OVERRIDES.headline);
 		insertText(data.articleText, 'creative__standfirst', OVERRIDES.text);
 
-		let clickThrough = document.querySelector('.creative__ctu');
-		clickThrough.href = data.articleUrl;
+		let clickThroughs = document.getElementsByClassName('creative__ctu');
 
-		let image = insertImage(clickThrough, data.articleImage,
+		for (var i = clickThroughs.length - 1; i >= 0; i--) {
+			clickThroughs[i].href = data.articleUrl;
+		}
+
+		let image = insertImage(clickThroughs[0], data.articleImage,
 			['creative__image'], OVERRIDES.image);
 		image.alt = OVERRIDES.imageAlt;
 
