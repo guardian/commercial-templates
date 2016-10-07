@@ -19,13 +19,14 @@ getIframeId()
             backgroundRepeat
         }));
     } else {
+        let speedFactor = scrollType === 'fixed' ? 1 : 0.3;
         write(insertBgImage, creativeLink, backgroundImage, backgroundRepeat)
         .then(backgroundImageNode => {
             onViewport(({ height }) => {
                 write(() => backgroundImageNode.style.backgroundSize = `100% ${height}px`);
             });
             onScroll(({ top }) => {
-                write(() => backgroundImageNode.style.backgroundPositionY = `-${top}px`)
+                write(() => backgroundImageNode.style.backgroundPositionY = `-${top * speedFactor}px`)
             });
         });
     }
