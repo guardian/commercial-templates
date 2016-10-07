@@ -1,4 +1,4 @@
-import { read, write } from './dom.js';
+import { read, write } from './dom';
 import { timeout } from './impl/promises';
 
 const rootElement = document.documentElement;
@@ -81,7 +81,7 @@ function getWebfonts(fontFamilies) {
 }
 
 function resizeIframeHeight() {
-    return Promise.all([isDocumentLoaded()].concat(areImagesLoaded()))
+    return Promise.all(areImagesLoaded().concat(isDocumentLoaded()))
     .then(() => read(() => document.body.getBoundingClientRect().height))
     .then(function(height) {
         return sendMessage('resize', { height });
@@ -122,7 +122,6 @@ function sendMessage(type, value) {
                 reject(error);
             }
         });
-
         post(id, iframeId, type, value);
     }), 300);
 }
