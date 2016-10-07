@@ -115,13 +115,10 @@ $gimbap-width-quarter: calc(25% - 20px);
 
     @include mq(tablet) {
         padding: 0 $gs-gutter / 2;
-
-        .has-flex & {
-            display: flex;
-            flex-direction: row;
-            flex-wrap: nowrap;
-            align-items: stretch;
-        }
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-items: stretch;
     }
 
     @include mq(leftCol) {
@@ -141,19 +138,15 @@ $gimbap-width-quarter: calc(25% - 20px);
 }
 
 .gimbap-wrap__body--simple {
-    .has-flex & {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: nowrap;
-        align-items: stretch;
-    }
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: stretch;
 }
 
 .gimbap-wrap__body--1x1x1x1 > .gimbap {
     @include mq(tablet) {
-        .has-flex & {
-            flex: $gimbap-width-quarter;
-        }
+        flex: $gimbap-width-quarter;
     }
 }
 
@@ -162,10 +155,7 @@ $gimbap-width-quarter: calc(25% - 20px);
 .gimbap-wrap__body--1x1x2 > .gimbap:nth-child(3) {
     @include mq(tablet) {
         width: calc(66.67% - 20px);
-
-        .has-flex & {
-            flex: 2;
-        }
+        flex: 2;
     }
     @include mq(desktop) {
         width: calc(50% - 20px);

@@ -5,11 +5,8 @@
     overflow: hidden;
     box-sizing: border-box;
     color: #ffffff;
-
-    .has-flex & {
-        display: flex;
-        flex-direction: column;
-    }
+    display: flex;
+    flex-direction: column;
 
     &:hover {
         text-decoration: none;
@@ -32,10 +29,7 @@
         float: left;
         width: $gimbap-width-quarter;
         margin: 0 $gs-gutter / 2;
-
-        .has-flex & {
-            flex: 1;
-        }
+        flex: 1;
     }
 
     @include mq(tablet, desktop) {
@@ -109,10 +103,8 @@
     height: 205px;
     padding: $gs-gutter / 2;
     background-color: #000000;
+    flex: 1;
 
-    .has-flex & {
-        flex: 1;
-    }
 
     position: relative;
 
@@ -158,9 +150,7 @@
     .gimbap__logo {
         text-align: left;
 
-        .has-flex & {
-            align-self: flex-start;
-        }
+        align-self: flex-start;
     }
 }
 
