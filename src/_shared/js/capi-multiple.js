@@ -2,6 +2,7 @@ import { getIframeId, getWebfonts, resizeIframeHeight } from
 	'./messages.js';
 import { write } from './dom.js';
 import { enableToggles } from './ui.js';
+import { insertImage } from './capi-images.js';
 
 const ENDPOINT = 'https://api.nextgen.guardianapps.co.uk/commercial/api/capi-multiple.json';
 
@@ -84,73 +85,6 @@ function buildTitle (card, cardInfo, cardNumber) {
 
 }
 
-// Creates a set of source elements for an image.
-function buildSources (sourceData) {
-
-	let sourcesFragment = document.createDocumentFragment();
-
-	return sourceData.reduce((sources, source) => {
-
-		let hidpi = document.createElement('source');
-		hidpi.media = `(min-width: ${source.minWidth}px) and
-			(-webkit-min-device-pixel-ratio: 1.25),
-			(min-width: ${source.minWidth}px) and (min-resolution: 120dpi)`;
-		hidpi.sizes = source.sizes;
-		hidpi.srcset = `${source.hidpiSrcset}`;
-
-		let lodpi = document.createElement('source');
-		lodpi.media = `(min-width: ${source.minWidth}px)`;
-		lodpi.sizes = source.sizes;
-		lodpi.srcset = `${source.lodpiSrcset}`;
-
-		sources.appendChild(hidpi);
-		sources.appendChild(lodpi);
-		return sources;
-
-	}, sourcesFragment);
-
-}
-
-// Creates a picture element with responsive sources, with fallback for IE.
-function createPicture (cardInfo, imageElem) {
-
-	// Supports responsive images.
-	if ('srcset' in imageElem) {
-
-		let picture = document.createElement('picture');
-		let sources = buildSources(cardInfo.articleImage.sources);
-
-		picture.appendChild(sources);
-		picture.appendChild(imageElem);
-		return picture;
-
-	} else {
-		return imageElem;
-	}
-
-}
-
-// Inserts an image into the card, using the data derived from cAPI.
-function insertImage (card, cardInfo, cardNumber) {
-
-	let imageContainer = card.querySelector('.advert__image-container');
-	let image = document.createElement('img');
-	image.className += ' advert__image';
-
-	if (OVERRIDES.images[cardNumber] !== '') {
-
-		image.src = OVERRIDES.images[cardNumber];
-		imageContainer.appendChild(image);
-
-	} else {
-
-		image.src = cardInfo.articleImage.backupSrc;
-		imageContainer.appendChild(createPicture(cardInfo, image));
-
-	}
-
-}
-
 // Either from template, or workaround for IE (sigh).
 function importCard (adType) {
 
@@ -174,18 +108,19 @@ function importCard (adType) {
 }
 
 // Constructs an individual card.
-function buildCard (cardInfo, cardNumber, isPaid) {
+function buildCard (cardInfo, cardNum, isPaid) {
 
 	let adType = isPaid ? 'paidfor' : 'supported';
 	let cardFragment = importCard(adType);
 	let card = cardFragment.querySelector(`.advert--${adType}`);
+	let imgContainer = card.querySelector('.advert__image-container');
 
-	buildTitle(card, cardInfo, cardNumber);
+	buildTitle(card, cardInfo, cardNum);
 	card.querySelector('a.advert').href = cardInfo.articleUrl;
-	insertImage(card, cardInfo, cardNumber);
+	insertImage(imgContainer, cardInfo.articleImage, OVERRIDES.images[cardNum]);
 
 	// Only first two cards show on mobile portrait.
-	if (cardNumber >= 2) {
+	if (cardNum >= 2) {
 		card.classList.add('hide-until-mobile-landscape');
 	}
 
@@ -194,10 +129,9 @@ function buildCard (cardInfo, cardNumber, isPaid) {
 }
 
 // Adds branding information from cAPI or DFP override.
-function addBranding (brandingCard, isPaid) {
+function addBranding (brandingCard) {
 
-	let imageClass = `.${isPaid ? 'adverts__' : ''}badge__logo`;
-	let brandImage = document.querySelector(imageClass);
+	let brandImage = document.querySelector('.badge__logo');
 
 	if (OVERRIDES.brandLogo === '') {
 		brandImage.src = brandingCard.branding.sponsorLogo.url;
@@ -238,7 +172,7 @@ function buildFromCapi (cardsInfo, isPaid) {
 	return () => {
 
 		// Takes branding from last possible card, in case earlier ones overriden.
-		addBranding(cardsInfo.articles.slice(-1)[0], isPaid);
+		addBranding(cardsInfo.articles.slice(-1)[0]);
 		let advertRow = document.querySelector('.adverts__row');
 		advertRow.appendChild(cardList);
 		editionLink(cardsInfo.articles[0].edition, isPaid);

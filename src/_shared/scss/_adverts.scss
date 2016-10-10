@@ -524,7 +524,7 @@
     }
 }
 
-.adverts__badge {
+.badge {
     font: normal 12px/16px $f-sans-serif-text;
     color: $neutral-2;
     font-weight: bold;
@@ -541,34 +541,34 @@
     }
 }
 
-.adverts__badge--alt {
+.badge--alt {
     border-top: 1px dotted $neutral-5;
     margin-top: $gs-baseline / 3;
     padding-top: $gs-baseline / 6;
     text-align: left;
 
-    > .adverts__badge__link,
-    .adverts__badge__logo {
+    > .badge__link,
+    .badge__logo {
         display: block;
     }
 
-    .adverts__badge__logo {
+    .badge__logo {
         max-height: 6 * $gs-baseline;
         margin: 0;
     }
 
-    > .adverts__badge__link {
+    > .badge__link {
         border-bottom: 1px dotted $neutral-5;
         margin: 3 / 4 * $gs-baseline 0 $gs-baseline / 3;
     }
 
-    > .adverts__badge__help {
+    > .badge__help {
         font-size: 11px;
         line-height: 1;
     }
 }
 
-.adverts__badge__logo {
+.badge__logo {
     max-height: $gs-baseline * 5;
     margin-left: $gs-gutter / 2;
     vertical-align: middle;

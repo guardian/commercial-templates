@@ -1,4 +1,4 @@
-import { read, write } from './dom.js';
+import { read, write } from './dom';
 import { timeout } from './impl/promises';
 
 const rootElement = document.documentElement;
@@ -10,7 +10,7 @@ let iframeId;
 // frame will send a message with the ID of the corresponding iframe. This is
 // because of some f**d-up handling of the name attribute that is supposed to
 // do the work.
-export function getIframeId() {
+function getIframeId() {
     return new Promise(resolve => {
         self.addEventListener('message', function onMessage(evt) {
             let json;
@@ -19,7 +19,7 @@ export function getIframeId() {
             } catch(_) { return; }
 
             const keys = Object.keys(json);
-            if( keys.length !== 3 || !keys.includes('id') || !keys.includes('host') ) return;
+            if( keys.length < 2 || !keys.includes('id') || !keys.includes('host') ) return;
 
             self.removeEventListener('message', onMessage);
             ({ id: iframeId, host: parentOrigin } = json);
@@ -30,7 +30,7 @@ export function getIframeId() {
 
 // Will send a concatenated string of all the data-link-name attributes
 // from the clicked node all the way up to the root of the document
-export function reportClick(node) {
+function reportClick(node) {
     let dataLinkName = [];
     while( node ) {
         const dln = node.getAttribute('data-link-name');
@@ -42,7 +42,7 @@ export function reportClick(node) {
     sendMessage('click', dataLinkName.join(' | '));
 }
 
-export function getWebfonts(fontFamilies) {
+function getWebfonts(fontFamilies) {
     const families = [
         'GuardianTextEgyptianWeb',
         'GuardianEgyptianWeb',
@@ -80,8 +80,8 @@ export function getWebfonts(fontFamilies) {
     });
 }
 
-export function resizeIframeHeight() {
-    return Promise.all([isDocumentLoaded()].concat(areImagesLoaded()))
+function resizeIframeHeight() {
+    return Promise.all(areImagesLoaded().concat(isDocumentLoaded()))
     .then(() => read(() => document.body.getBoundingClientRect().height))
     .then(function(height) {
         return sendMessage('resize', { height });
@@ -101,7 +101,7 @@ function areImagesLoaded() {
     );
 }
 
-export function sendMessage(type, value) {
+function sendMessage(type, value) {
     const id = generateId();
 
     return timeout(new Promise((resolve, reject) => {
@@ -122,14 +122,15 @@ export function sendMessage(type, value) {
                 reject(error);
             }
         });
-
         post(id, iframeId, type, value);
     }), 300);
 }
 
-export function onScroll(callback) {
+let onScroll = listen.bind(null, 'scroll');
+let onViewport = listen.bind(null, 'viewport');
+
+function listen(type, callback) {
     const id = generateId();
-    const type = 'scroll';
 
     self.addEventListener('message', function onMessage({ data }) {
         try {
@@ -139,7 +140,7 @@ export function onScroll(callback) {
                 return;
             }
 
-            if( !callback(result) === false ) {
+            if( callback(result) === false ) {
                 post(id, iframeId, type, false);
                 self.removeEventListener(onMessage);
             }
@@ -160,3 +161,11 @@ function generateId() {
 function post(id, iframeId, type, value) {
     window.top.postMessage(JSON.stringify({ id, iframeId, type, value }), parentOrigin);
 }
+
+export {
+    getIframeId,
+    getWebfonts,
+    resizeIframeHeight,
+    onScroll,
+    onViewport
+};

@@ -47,6 +47,7 @@ This will require you to use:
 There will shortly be an easier way to preview, but for now:
 
 - Create a new Native Style in DFP
+- Remember to set the targeting in the Native Style
 - Paste in the .html build file and minified CSS
 - Create a new order (one order per dev for testing, multiple line items can be associated with 1 order item) with testing advertiser
 - Create a line item, using the new Native style creative you've made
