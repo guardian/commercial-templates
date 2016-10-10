@@ -1,0 +1,54 @@
+%gu-style-box {
+    padding: $gs-baseline / 2;
+}
+
+.gu-external-icon svg {
+        fill: #ffffff;
+        margin: 0 5px;
+        width: 15px;
+        height: 15px;
+        vertical-align: sub;
+}
+
+$mobile-max-container-width: gs-span(8);
+@include mq-add-breakpoint(containerWidestMobile, $mobile-max-container-width + $gs-gutter * 2);
+
+.ad-slot--frame,
+.gu-style {
+    width: auto;
+    border-top: #fedd79 1px solid;
+
+    @include mq(containerWidestMobile) {
+        margin-left: auto;
+        margin-right: auto;
+        width: 275px;
+    }
+
+    @include mq(tablet) {
+        width: auto;
+        margin-right: $gs-gutter / 2;
+        margin-left: $gs-gutter / 2;
+    }
+
+    @include mq(desktop) {
+        max-width: 300px;
+        margin-left: $gs-gutter / 2;
+        margin-right: $gs-gutter / 2;
+    }
+
+    // Article styles: Right slot width is exactly the size of the banner so we don't want any margin
+    &.ad-slot--right {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    // Gallery & Liveblog sections styles
+    &.ad-slot--gallery-inline,
+    &.ad-slot--liveblog-inline {
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+}

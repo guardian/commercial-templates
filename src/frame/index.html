@@ -1,0 +1,38 @@
+<aside class="frame ad-slot--frame" data-link-name="creative | frame">
+  <div class="gu-comlabel has-popup">
+    <button class="u-button-reset gu-comlabel__btn popup__toggle js-toggle" aria-controls="popup" aria-expanded="true" data-toggle="gu-compopup--dfp-ad--[%slot%]">
+      Ad
+      {{#svg}}arrow-down{{/svg}}
+    </button>
+    <div id="popup" class="popup popup--default gu-compopup gu-compopup--dfp-ad--[%slot%] gu-stylebox">
+      <h3 class="gu-compopup__title">Advertising on the Guardian</h3>
+      <p class="gu-compopup__text">is created and paid for by third parties.</p>
+      <a class="gu-compopup__link blink" href="https://www.theguardian.com/advertising-on-the-guardian" target="[%targetKeyword%]">
+        Learn more about how advertising supports the Guardian.
+      </a>
+    </div>
+  </div>
+  <div class="frame__background">
+    <img class="frame__background-image" src="[%backgroundImage%]">
+  </div>
+  <div class="frame__foreground">
+    <a href="[%destinationUrl%]" class="frame__link-background" data-link-name="image" target="[%targetKeyword%]"></a>
+    <a class="frame__logo frame__logo--[%brandLogoPosition%]" href="[%brandUrl%]" data-link-name="logo" target="[%targetKeyword%]">
+      <img class="frame__logo__image" src="[%brandLogo%]">
+    </a>
+    <a style="color: [%contentColour%]" class="blink frame__content frame__content--[%contentVerticalPosition%] frame__content--[%contentHorizontalPosition%]" href="[%destinationUrl%]" target="[%targetKeyword%]">
+      <h2 style="font-size: [%headerFontSize%]px" class="blink frame__content-title">
+        [%header%]
+      </h2>
+      <p style="font-size: [%textFontSize%]px" class="frame__content-text">
+        [%text%]
+      </p>
+    </a>
+    <a href="[%callToActionUrl%]" class="frame__cta frame__link button button--tertiary button--medium" data-link-name="call to action" target="[%targetKeyword%]">
+      [%callToAction%]
+      <span class="gu-external-icon inline-external-link inline-icon">
+        {{#svg}}external-link{{/svg}}
+      </span>
+    </a>
+  </div>
+</aside>

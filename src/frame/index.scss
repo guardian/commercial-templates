@@ -1,0 +1,73 @@
+@import '_core';
+@import '_frame';
+@import '_gu-comcontent';
+@import '_gu-compopup';
+@import '_gu-comlabel';
+
+.frame {
+  max-width: 300px;
+  max-height: 300px;
+}
+
+.button {
+    // @include button-colour(
+    //     $news-main-2,
+    //     #ffffff,
+    //     $news-main-1
+    // );
+    font-family: $f-sans-serif-text;
+    font-size: 13px;
+    line-height: 28px;
+    height: 30px;
+    padding: 0 10;
+    margin-right: 10;
+    line-height: 28;
+    display: flex;
+    vertical-align: top;
+    width: auto;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 1000px;
+    border-width: 1px;
+    border-style: solid;
+    box-sizing: border-box;
+
+    &:hover,
+    &:focus,
+    &:active {
+        text-decoration: none;
+    }
+
+    .i-left {
+        margin-right: 0;
+        float: left;
+    }
+    .i-right {
+        margin-left: 0;
+        float: right;
+    }
+}
+
+.button--medium {
+    height: 30px;
+    padding: 0 10;
+    margin-right: 10;
+    line-height: 28;
+
+     @include mq($from: desktop) {
+         line-height: (6 * 5) + 2px;
+     }
+ }
+
+
+ .blink {
+     display: block;
+     text-decoration: none;
+
+     &:hover,
+     &:focus {
+         .blink__anchor {
+             text-decoration: underline;
+         }
+     }
+ }
