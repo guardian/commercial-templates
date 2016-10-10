@@ -10,7 +10,6 @@ function formatGimbap() {
     let linksWithArrows = '[%linksWithArrows%]';
     let componentTone   = '[%componenttone%]';
     let gimbapEffects   = '[%gimbapEffects%]';
-    console.log("hello")
 
     Array.from(document.getElementsByClassName('gimbap-logo')).forEach(insertHeaderSvg);
 
