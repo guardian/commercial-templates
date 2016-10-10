@@ -43,9 +43,10 @@ function buildFromCapi (data) {
 
 		let clickThroughs = document.getElementsByClassName('creative__ctu');
 		let editionLink = document.querySelector('.creative__glabs-link');
+		let capiText = data.articleText.replace('<p>', '').replace('</p>', '');
 
 		insertText(data.articleHeadline, 'creative__title', OVERRIDES.headline);
-		insertText(data.articleText, 'creative__standfirst', OVERRIDES.text);
+		insertText(capiText, 'creative__standfirst', OVERRIDES.text);
 		setEditionLink(data.edition, editionLink);
 
 		for (var i = clickThroughs.length - 1; i >= 0; i--) {
