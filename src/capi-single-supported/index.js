@@ -29,7 +29,8 @@ function addImage (imageInfo) {
   return write(() => {
 
     let imageContainer = document.querySelector('.advert__image-container');
-    insertImage(imageContainer, imageInfo, '[%ArticleImage%]');
+    insertImage(imageContainer, imageInfo, ['advert__image'],
+       '[%ArticleImage%]');
 
   });
 

@@ -3,15 +3,9 @@ import { getIframeId, getWebfonts, resizeIframeHeight } from
 import { write } from './dom.js';
 import { enableToggles } from './ui.js';
 import { insertImage } from './capi-images.js';
+import { setEditionLink } from './ads';
 
 const ENDPOINT = 'https://api.nextgen.guardianapps.co.uk/commercial/api/capi-multiple.json';
-
-// Glabs edition links.
-const GLABS_EDITION = {
-	default: 'https://theguardian.com/guardian-labs',
-	au: 'https://theguardian.com/guardian-labs-australia',
-	us: 'https://theguardian.com/guardian-labs-us'
-};
 
 const OVERRIDES = {
 	urls: ['[%Article1URL%]', '[%Article2URL%]', '[%Article3URL%]',
@@ -117,7 +111,8 @@ function buildCard (cardInfo, cardNum, isPaid) {
 
 	buildTitle(card, cardInfo, cardNum);
 	card.querySelector('a.advert').href = cardInfo.articleUrl;
-	insertImage(imgContainer, cardInfo.articleImage, OVERRIDES.images[cardNum]);
+	insertImage(imgContainer, cardInfo.articleImage, ['advert__image'],
+		OVERRIDES.images[cardNum]);
 
 	// Only first two cards show on mobile portrait.
 	if (cardNum >= 2) {
@@ -143,17 +138,7 @@ function addBranding (brandingCard) {
 function editionLink (edition, isPaid) {
 
 	if (isPaid) {
-
-		let link = GLABS_EDITION.default;
-
-		if (edition === 'AU') {
-			link = GLABS_EDITION.au;
-		} else if (edition === 'US') {
-			link = GLABS_EDITION.us;
-		}
-
-		document.querySelector('.adverts__stamp a').href = link;
-
+		setEditionLink(edition, document.querySelector('.adverts__stamp a'));
 	}
 
 }

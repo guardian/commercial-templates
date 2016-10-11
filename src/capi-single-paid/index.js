@@ -2,6 +2,7 @@ import { enableToggles } from '../_shared/js/ui';
 import { write } from '../_shared/js/dom';
 import { getIframeId, getWebfonts, resizeIframeHeight } from '../_shared/js/messages';
 import { insertImage, checkIcon } from '../_shared/js/capi-images.js';
+import { setEditionLink } from '../_shared/js/ads';
 
 let container = document.getElementsByClassName('adverts__body')[0];
 let params = new URLSearchParams();
@@ -46,7 +47,8 @@ function addImage (imageInfo) {
   return write(() => {
 
     let imageContainer = document.querySelector('.advert__image-container');
-    insertImage(imageContainer, imageInfo, '[%ArticleImage%]');
+    insertImage(imageContainer, imageInfo, ['advert__image'],
+      '[%ArticleImage%]');
 
   });
 
@@ -55,7 +57,7 @@ function addImage (imageInfo) {
 /* Outputs the HTML for a travel advert */
 function populateCard(responseJson) {
     let icon = checkIcon(responseJson)
-    glabsLink(responseJson);
+    setEditionLink(responseJson.edition, document.querySelector('.creative__glabs-link'));
 
 
     return `<div class="adverts__row adverts__row--single">
