@@ -244,6 +244,10 @@
         color: $gimbap-jobs-light;
     }
 
+    .gimbap--tone-holidays & {
+        color: $gimbap-holidays-light;
+    }
+
     .gimbap--tone-soulmates & {
         color: $gimbap-soulmates-light;
         text-shadow: 0 0 1px rgba(0, 0, 0, .3);
@@ -300,7 +304,7 @@
     }
 
     .gimbap--tone-holidays & {
-        background-color: $gimbap-holidays;
+        background-color: $gimbap-holidays-light;
     }
 
     .gimbap--tone-jobs & {
