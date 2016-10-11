@@ -56,6 +56,7 @@ function populateCard(responseJson) {
           </p>
         </div>
         <div class="advert__image-container"></div>
+      </a>
       <a class="hide-until-mobile-landscape button button--primary button--large button--legacy-single" href="%%CLICK_URL_UNESC%%https://theguardian.com/[%SeriesUrl%]"  data-link-name="merchandising-single-more">
         See more
         ${arrowRight}

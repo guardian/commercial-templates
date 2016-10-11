@@ -58,16 +58,3 @@
          line-height: (6 * 5) + 2px;
      }
  }
-
-
- .blink {
-     display: block;
-     text-decoration: none;
-
-     &:hover,
-     &:focus {
-         .blink__anchor {
-             text-decoration: underline;
-         }
-     }
- }
