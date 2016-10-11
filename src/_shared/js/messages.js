@@ -28,8 +28,11 @@ function getIframeId() {
     });
 }
 
+function onClick(evt) {
+    reportClick(evt.target);
+}
+
 function reportClicks() {
-    let onClick = (evt) => reportClick(evt.target);
     Array.from(document.getElementsByTagName('a')).forEach(a => a.addEventListener('click', onClick));
 }
 
