@@ -49,7 +49,12 @@
             transform: scale(1.25);
         }
     }
+
+    .gimbap__cta--simple {
+        transform: scale(1);
+    }
 }
+
 
 /* GIMBAP - STYLING */
 .gimbap--tone-members { background: lighten($gimbap-members-text, 36%); color: $gimbap-members-text; }
