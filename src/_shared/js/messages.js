@@ -28,18 +28,26 @@ function getIframeId() {
     });
 }
 
+function reportClicks() {
+    let onClick = (evt) => reportClick(evt.target);
+    Array.from(document.getElementsByTagName('a')).forEach(a => a.addEventListener('click', onClick));
+}
+
 // Will send a concatenated string of all the data-link-name attributes
 // from the clicked node all the way up to the root of the document
 function reportClick(node) {
     let dataLinkName = [];
-    while( node ) {
+    while( node && node !== document.body ) {
         const dln = node.getAttribute('data-link-name');
         if( dln ) {
             dataLinkName.unshift(dln);
         }
         node = node.parentNode;
     }
-    sendMessage('click', dataLinkName.join(' | '));
+
+    if( dataLinkName.length ) {
+        sendMessage('click', dataLinkName.join(' | '));
+    }
 }
 
 function getWebfonts(fontFamilies) {
@@ -167,5 +175,6 @@ export {
     getWebfonts,
     resizeIframeHeight,
     onScroll,
-    onViewport
+    onViewport,
+    reportClicks
 };
