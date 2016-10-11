@@ -8,7 +8,7 @@ let filePaths;
 let builtHTML;
 
 function buildHTML() {
-	builtHTML += '<meta name="viewport" content="width=device-width, initial-scale=1">'+'<style> body { margin: 0 } ' + filePaths.CSS.contents + '</style>' + filePaths.HTML.contents;
+	builtHTML += '<meta name="viewport" content="width=device-width, initial-scale=1"><style> body { margin: 0 } ' + filePaths.CSS.contents + '</style>' + filePaths.HTML.contents;
 } 
 
 function getFileContents(filePath) {
