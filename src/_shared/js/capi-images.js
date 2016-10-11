@@ -49,7 +49,7 @@ function createPicture (imageInfo, imageElem) {
 export function insertImage (imageContainer, imageInfo, classes, override) {
 
 	let image = document.createElement('img');
-	image.classList.add(...classes);
+	image.className = classes.join(' ');
 
 	if (override) {
 

@@ -30,7 +30,7 @@ function retrieveCapiData ({host, preview}) {
 function insertText (capiText, containerClass, override) {
 
 	let container = document.querySelector(`.${containerClass}`);
-	let text = (override !== '') ? override : capiText;
+	let text = override || capiText;
 
 	container.textContent = text;
 
