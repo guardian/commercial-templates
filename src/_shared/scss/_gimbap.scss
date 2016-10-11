@@ -49,7 +49,7 @@
             transform: scale(1.25);
         }
     }
-
+    //This is a hack to fix a firefox bug where the <p> tag content disapeared when transitioning.
     .gimbap__cta--simple {
         transform: scale(1);
     }
