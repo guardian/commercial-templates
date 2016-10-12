@@ -22,8 +22,7 @@ function write(fn, ...args) {
 function read(fn, ...args) {
     return new Promise(resolve => window.requestAnimationFrame(() => {
         resolve(fn(...args));
-      })
-    );
+    }));
 }
 
 function createElement(tagName) {
