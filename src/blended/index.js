@@ -1,5 +1,5 @@
 import { write } from '../_shared/js/dom';
-import { getIframeId, getWebfonts, resizeIframeHeight } from '../_shared/js/messages';
+import { getIframeId, getWebfonts, resizeIframeHeight, reportClicks } from '../_shared/js/messages';
 import { getApiBaseUrl } from '../_shared/js/dev';
 import { formatPrice, formatDuration } from '../_shared/js/utils';
 
@@ -21,6 +21,7 @@ let advertFooter = {
     Soulmates: createSoulmatesFooter
 };
 
+reportClicks();
 getIframeId()
 .then(({ host, preview }) => fetch(`${getApiBaseUrl(host, preview)}/commercial/api/multi.json?${params}`))
 .then(response => response.json())

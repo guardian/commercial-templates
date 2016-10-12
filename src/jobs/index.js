@@ -1,5 +1,5 @@
 import { write } from '../_shared/js/dom';
-import { getIframeId, getWebfonts, resizeIframeHeight } from '../_shared/js/messages';
+import { getIframeId, getWebfonts, resizeIframeHeight, reportClicks } from '../_shared/js/messages';
 import { getApiBaseUrl } from '../_shared/js/dev';
 
 let container = document.getElementsByClassName('adverts__row')[0];
@@ -10,6 +10,7 @@ if( ids.length ) {
     ids.split(',').forEach(id => params.append('t', id.trim()));
 }
 
+reportClicks();
 getIframeId()
 .then(({ host, preview }) => fetch(`${getApiBaseUrl(host, preview)}/commercial/jobs/api/jobs.json?${params}`))
 .then(response => response.json())
