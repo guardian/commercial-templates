@@ -1,20 +1,10 @@
 @import '_core';
 @import '_frame';
 @import '_gu-comcontent';
-@import '_gu-compopup';
 @import '_gu-comlabel';
-
-.frame {
-  max-width: 300px;
-  max-height: 300px;
-}
+@import '_gu-compopup';
 
 .button {
-    // @include button-colour(
-    //     $news-main-2,
-    //     #ffffff,
-    //     $news-main-1
-    // );
     font-family: $f-sans-serif-text;
     font-size: 13px;
     line-height: 28px;
@@ -46,15 +36,21 @@
         margin-left: 0;
         float: right;
     }
+
+    svg {
+      font-weight: normal;
+    }
 }
 
 .button--medium {
+    display: block;
+    text-align: center;
     height: 30px;
-    padding: 0 10;
-    margin-right: 10;
-    line-height: 28;
+    padding: 0px 10px;
+    margin-right: 10px;
+    line-height: 28px;
 
-     @include mq($from: desktop) {
+    @include mq($from: desktop) {
          line-height: (6 * 5) + 2px;
      }
  }

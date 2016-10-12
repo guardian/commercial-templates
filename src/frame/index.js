@@ -3,19 +3,20 @@ import { enableToggles } from '../_shared/js/ui';
 
 enableToggles();
 getIframeId()
+.then(setDataTarget('[%Openlinksinnewwindow%]'))
 .then(getWebfonts())
 .then(resizeIframeHeight);
 
-//     var Frame = function ($adSlot, params) {
-//         this.$adSlot = $adSlot;
-//     };
-//
-//         this.params.target = this.params.newWindow === 'yes' ? '_blank' : '_self';
-//             this.$adSlot.addClass('ad-slot--frame');
-//             if (this.params.trackingPixel) {
-//                 addTrackingPixel(this.$adSlot, this.params.trackingPixel + this.params.cacheBuster);
-//             }
-//             new Toggles(this.$adSlot[0]).init();
-//             return true;
-//         }, this);
-//     };
+function getDataTarget(windowTag) {
+    let clickWindow = windowTag === 'yes' ?'_blank' : '_self';
+    return clickWindow;
+ }
+
+function setDataTarget(windowTag) {
+   let targetAttribute = getDataTarget(windowTag);
+   let links = Array.from(document.getElementsByTagName('a'));
+
+   links.forEach(function(link) {
+     link.target = targetAttribute;
+   });
+ }
