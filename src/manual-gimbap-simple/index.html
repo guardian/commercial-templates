@@ -1,28 +1,36 @@
-<aside class="gimbap-wrap gimbap-wrap--tone-[%Component Tone%]" role="complementary" data-link-name="creative | ad multiple manual | [%TrackingId%]">
+<aside class="gimbap-wrap gimbap-wrap--tone-[%ComponentTone%]" role="complementary" data-link-name="creative | ad multiple manual | [%TrackingId%]">
     <div class="gimbap-wrap__box">
         <header class="gimbap-wrap__header">
             <h3 class="gimbap-wrap__title">
-                <a class="gimbap-wrap__logo gimbap-wrap__logo--[%ComponentTone%] gimbap-logo gimbap-logo--tone-[%Component Tone%]" href="%%CLICK_URL_UNESC%% [%BaseUrl%]" data-link-name="title"></a>
+                <a class="gimbap-wrap__logo gimbap-wrap__logo--[%ComponentTone%] gimbap-logo gimbap-logo--tone-[%ComponentTone%]" href="%%CLICK_URL_UNESC%% [%BaseUrl%]" data-link-name="title"></a>
             </h3>
-            <p class="gimbap-wrap__message">[%Component Message%]</p>
+            <p class="gimbap-wrap__message">[%ComponentMessage%]</p>
         </header>
         <span class="gimbap-wrap__mainlogo inline-marque-36 inline-icon">{{#svg}}marque{{/svg}}</span>
         <div class="gimbap-wrap__body gimbap-wrap__body--simple ">
-            <a class="gimbap gimbap--simple gimbap--tone-[%Component Tone%] [%GimbapEffects%]" href="%%CLICK_URL_UNESC%% [%Offer1Url%]" data-link-name="[%Offer1Title%]">
+            <a class="gimbap gimbap--simple gimbap--tone-[%ComponentTone%] [%GimbapEffects%]" href="%%CLICK_URL_UNESC%% [%Offer1Url%]" data-link-name="[%Offer1Title%]">
                 <img class="gimbap__image" src="[%Offer1Image%]" />
-                <p class="gimbap__cta gimbap__cta--simple">[%Offer1Title%]</p>
+                <p class="gimbap__cta gimbap__cta--simple">[%Offer1Title%]
+                    <span class="gimbap__arrow gimbap__arrow--styled inline-arrow-right inline-icon links-with-arrows--[%LinksWithArrows%]">{{#svg}}arrow-right{{/svg}}</span>
+                </p>
             </a>
             <a class="gimbap gimbap--simple gimbap--tone-[%ComponentTone%] [%GimbapEffects%]" href="%%CLICK_URL_UNESC%% [%Offer2Url%]" data-link-name="[%Offer2Title%]">
                 <img class="gimbap__image" src="[%Offer2Image%]" />
-                <p class="gimbap__cta gimbap__cta--simple ">[%Offer2Title%]</p>
+                <p class="gimbap__cta gimbap__cta--simple ">[%Offer2Title%]
+                    <span class="gimbap__arrow gimbap__arrow--styled inline-arrow-right inline-icon links-with-arrows--[%LinksWithArrows%]">{{#svg}}arrow-right{{/svg}}</span>
+                </p>
             </a>
             <a class="gimbap gimbap--simple gimbap--tone-[%ComponentTone%] [%GimbapEffects%]" href="%%CLICK_URL_UNESC%% [%Offer3Url%]" data-link-name="[%Offer3Title%]">
                 <img class="gimbap__image" src="[%Offer3Image%]" />
-                <p class="gimbap__cta gimbap__cta--simple">[%Offer3Title%]</p>
+                <p class="gimbap__cta gimbap__cta--simple">[%Offer3Title%]
+                    <span class="gimbap__arrow gimbap__arrow--styled inline-arrow-right inline-icon links-with-arrows--[%LinksWithArrows%]">{{#svg}}arrow-right{{/svg}}</span>
+                </p>
             </a>
             <a class="gimbap gimbap--simple gimbap--tone-[%ComponentTone%] [%GimbapEffects%]" href="%%CLICK_URL_UNESC%% [%Offer4Url%]" data-link-name="[%Offer4Title%]">
                 <img class="gimbap__image" src="[%Offer4Image%]" />
-                <p class="gimbap__cta gimbap__cta--simple">[%Offer4Title%]</p>
+                <p class="gimbap__cta gimbap__cta--simple">[%Offer4Title%]
+                    <span class="gimbap__arrow gimbap__arrow--styled inline-arrow-right inline-icon links-with-arrows--[%LinksWithArrows%]">{{#svg}}arrow-right{{/svg}}</span>
+                </p>
             </a>
         </div>
     </div>
@@ -35,6 +43,4 @@
         'money': '{{#svg}}logo-money-horizontal{{/svg}}',
         'holidays': '{{#svg}}logo-holidays-horizontal{{/svg}}'
     };
-
-    var arrowRightSvg = '<span class="gimbap__arrow gimbap__arrow--styled inline-arrow-right inline-icon">{{#svg}}arrow-right{{/svg}}</span>'
 </script>
