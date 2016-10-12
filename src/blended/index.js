@@ -10,11 +10,11 @@ let params = new URLSearchParams();
 ['[%Offer1Id%]','[%Offer2Id%]','[%Offer3Id%]','[%Offer4Id%]'].forEach(offerId => params.append('offerIds', offerId));
 
 let createAdvert = {
-    Book: createBlendedCard.bind(null, 'books', 'http://www.guardianbookshop.co.uk/', logoBookshop, createBook),
-    Job:  createBlendedCard.bind(null, 'jobs', 'http://jobs.theguardian.com/', logoJobs, createJob),
-    Masterclass: createBlendedCard.bind(null, 'masterclass', 'http://theguardian.com/guardian-masterclasses/', logoMasterclasses, createMasterclass),
-    Soulmates: createBlendedCard.bind(null, 'soulmates', 'https://soulmates.theguardian.com/', logoSoulmates, createSoulmates),
-    Travel: createBlendedCard.bind(null, 'travels', 'https://holidays.theguardian.com/', logoHolidays, createTravel)
+    Book: createBlendedCard.bind(null, 'books', 'http://www.guardianbookshop.co.uk/', logoBookshop, 'visit-shop', createBook),
+    Job:  createBlendedCard.bind(null, 'jobs', 'http://jobs.theguardian.com/', logoJobs, 'visit-site', createJob),
+    Masterclass: createBlendedCard.bind(null, 'masterclass', 'http://theguardian.com/guardian-masterclasses/', logoMasterclasses, 'visit-site', createMasterclass),
+    Soulmates: createBlendedCard.bind(null, 'soulmates', 'https://soulmates.theguardian.com/', logoSoulmates,'visit-all', createSoulmates),
+    Travel: createBlendedCard.bind(null, 'travels', 'https://holidays.theguardian.com/', logoHolidays, 'visit-all', createTravel)
 };
 
 let advertFooter = {
@@ -25,15 +25,15 @@ reportClicks();
 getIframeId()
 .then(({ host, preview }) => fetch(`${getApiBaseUrl(host, preview)}/commercial/api/multi.json?${params}`))
 .then(response => response.json())
-.then(offers => offers.map(offer => createAdvert[offer.type](offer.value, advertFooter[offer.type] || null)).join(''))
+.then(offers => offers.map((offer, index) => createAdvert[offer.type](offer.value, index, advertFooter[offer.type] || null)).join(''))
 .then(html => Promise.all([getWebfonts(), write(() => container.innerHTML = html)]))
 .then(resizeIframeHeight);
 
-function createBlendedCard(type, titleUrl, titleLogo, contentFn, content, footerFn = null) {
-    return `<div class="advert-blended advert-blended--${ type }">
+function createBlendedCard(type, titleUrl, titleLogo, titleDln, contentFn, content, index, footerFn = null) {
+    return `<div class="advert-blended advert-blended--${ type }" data-link-name="Offer ${index + 1} | ${type}">
         <div class="advert-blended__title">
             <a href="%%CLICK_URL_UNESC%%${ titleUrl }"
-                data-link-name="">
+                data-link-name="${titleDln}">
                 ${ titleLogo }
             </a>
         </div>
@@ -45,7 +45,7 @@ function createBlendedCard(type, titleUrl, titleLogo, contentFn, content, footer
 }
 
 function createBook(book) {
-    return `<a class="blink advert advert--book advert--large advert--landscape" href="%%CLICK_URL_UNESC%%${ book.buyUrl }" data-link-name="">
+    return `<a class="blink advert advert--book advert--large advert--landscape" href="%%CLICK_URL_UNESC%%${ book.buyUrl }" data-link-name="${book.isbn}-${book.author}-${book.title}">
         <div class="advert__text">
             <h2 class="blink__anchor advert__title">${book.title}</h2>
             <div class="advert__meta">By ${book.author}</div>
@@ -65,7 +65,7 @@ function createBook(book) {
 }
 
 function createJob(job) {
-    return `<a class="blink advert advert--job" href="%%CLICK_URL_UNESC%%${job.listingUrl}" data-link-name="merchandising-jobs-v0_2_2014-04-30-low-job-${job.id}">
+    return `<a class="blink advert advert--job" href="%%CLICK_URL_UNESC%%${job.listingUrl}" data-link-name="${job.id}">
         <h2 class="blink__anchor advert__title" itemprop="name">${job.title}</h2>
         <div class="advert__image-container">
             <img class="advert__image" src="${job.recruiterLogoUrl}">
@@ -84,7 +84,7 @@ function createJob(job) {
 }
 
 function createMasterclass(event) {
-    return `<a class="blink advert advert--masterclass" href="%%CLICK_URL_UNESC%%${event.url}" data-link-name="">
+    return `<a class="blink advert advert--masterclass" href="%%CLICK_URL_UNESC%%${event.url}" data-link-name="${event.name}">
         <div class="advert__image-container">
             <img class="advert__image" src="${location.protocol}${event.pictureUrl}" alt>
         </div>
@@ -108,14 +108,14 @@ function createSoulmates(soulmates) {
 }
 
 function createSoulmatesFooter() {
-    return `<a class="button button--small" href="%%CLICK_URL_UNESC%%https://soulmates.theguardian.com" data-link-name="">
+    return `<a class="button button--small" href="%%CLICK_URL_UNESC%%https://soulmates.theguardian.com" data-link-name="find-soulmate-link">
         <span>Find a Soulmate</span>
         ${arrowRight}
     </a>`;
 }
 
 function createMember(soulmate) {
-    return `<a class="advert advert--soulmate blink" href="%%CLICK_URL_ESC%%${soulmate.profile_url}" data-link-name="merchandising-soulmates-v2_2_2014-03-28-profile-${soulmate.gender}">
+    return `<a class="advert advert--soulmate blink" href="%%CLICK_URL_ESC%%${soulmate.profile_url}" data-link-name="profile-${soulmate.gender}">
         <h2 class="advert__title u-text-hyphenate blink__anchor" itemprop="name">${soulmate.username}</h2>
         <div class="advert__image-container">
           <img class="advert__image" src="${soulmate.profile_photo}" />
@@ -125,7 +125,7 @@ function createMember(soulmate) {
 }
 
 function createTravel(offer) {
-    return `<a class="blink advert advert--travel" href="%%CLICK_URL_UNESC%%${offer.offerUrl}" data-link-name="">
+    return `<a class="blink advert advert--travel" href="%%CLICK_URL_UNESC%%${offer.offerUrl}" data-link-name="${offer.title}">
         <div class="advert__image-container">
             <img class="advert__image" src="${offer.imageUrl}">
         </div>

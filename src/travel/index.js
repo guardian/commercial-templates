@@ -19,10 +19,9 @@ getIframeId()
 .then(html => Promise.all([getWebfonts(), write(() => container.innerHTML = html)]))
 .then(resizeIframeHeight);
 
-
 /* Outputs the HTML for a travel advert */
 function createAdvert(offer, index) {
-    return `<a class="blink advert advert--travel advert--prominent-${ index === 0 ? '[%IsProminent%]' : 'false'} ${ index > 1 ? 'hide-until-tablet' : '' }" href="%%CLICK_URL_UNESC%%${offer.offerUrl}" data-link-name="">
+    return `<a class="blink advert advert--travel advert--prominent-${ index === 0 ? '[%IsProminent%]' : 'false'} ${ index > 1 ? 'hide-until-tablet' : '' }" href="%%CLICK_URL_UNESC%%${offer.offerUrl}" data-link-name="Offer ${index + 1} | ${offer.title}">
         <div class="advert__image-container">
             <img class="advert__image" src="${offer.imageUrl}">
         </div>
