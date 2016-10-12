@@ -7,9 +7,9 @@ getIframeId()
 
 function formatGimbap() {
 
-    let linksWithArrows = '[%linksWithArrows%]';
-    let componentTone   = '[%componenttone%]';
-    let gimbapEffects   = '[%gimbapEffects%]';
+    let linksWithArrows = '[%LinksWithArrows%]';
+    let componentTone   = '[%ComponentTone%]';
+    let gimbapEffects   = '[%GimbapEffects%]';
 
     Array.from(document.getElementsByClassName('gimbap-logo')).forEach(insertHeaderSvg);
 
