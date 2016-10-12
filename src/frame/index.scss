@@ -1,0 +1,56 @@
+@import '_core';
+@import '_frame';
+@import '_gu-comcontent';
+@import '_gu-comlabel';
+@import '_gu-compopup';
+
+.button {
+    font-family: $f-sans-serif-text;
+    font-size: 13px;
+    line-height: 28px;
+    height: 30px;
+    padding: 0 10;
+    margin-right: 10;
+    line-height: 28;
+    display: flex;
+    vertical-align: top;
+    width: auto;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 1000px;
+    border-width: 1px;
+    border-style: solid;
+    box-sizing: border-box;
+
+    &:hover,
+    &:focus,
+    &:active {
+        text-decoration: none;
+    }
+
+    .i-left {
+        margin-right: 0;
+        float: left;
+    }
+    .i-right {
+        margin-left: 0;
+        float: right;
+    }
+
+    svg {
+      font-weight: normal;
+    }
+}
+
+.button--medium {
+    display: block;
+    text-align: center;
+    height: 30px;
+    padding: 0px 10px;
+    margin-right: 10px;
+    line-height: 28px;
+
+    @include mq($from: desktop) {
+         line-height: (6 * 5) + 2px;
+     }
+ }
