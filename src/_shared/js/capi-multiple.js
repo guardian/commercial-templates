@@ -1,4 +1,4 @@
-import { getIframeId, getWebfonts, resizeIframeHeight } from
+import { getIframeId, getWebfonts, resizeIframeHeight, reportClicks } from
 	'./messages.js';
 import { write } from './dom.js';
 import { enableToggles } from './ui.js';
@@ -169,6 +169,7 @@ function buildFromCapi (cardsInfo, isPaid) {
 export default function capiMultiple (adType) {
 
 	const isPaid = (adType === 'paidfor');
+	reportClicks();
 
 	getIframeId()
 	.then(retrieveCapiData)
