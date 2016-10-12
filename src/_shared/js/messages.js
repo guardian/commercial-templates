@@ -29,11 +29,14 @@ function getIframeId() {
 }
 
 function onClick(evt) {
-    reportClick(evt.target);
+    let link = evt.target;
+    while( link && link.tagName !== 'A' ) link = link.parentNode;
+
+    if( link ) reportClick(link);
 }
 
 function reportClicks() {
-    Array.from(document.getElementsByTagName('a')).forEach(a => a.addEventListener('click', onClick));
+    document.addEventListener('click', onClick);
 }
 
 // Will send a concatenated string of all the data-link-name attributes
