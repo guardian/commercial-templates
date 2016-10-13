@@ -115,13 +115,10 @@ $gimbap-width-quarter: calc(25% - 20px);
 
     @include mq(tablet) {
         padding: 0 $gs-gutter / 2;
-
-        .has-flex & {
-            display: flex;
-            flex-direction: row;
-            flex-wrap: nowrap;
-            align-items: stretch;
-        }
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-items: stretch;
     }
 
     @include mq(leftCol) {
@@ -141,19 +138,15 @@ $gimbap-width-quarter: calc(25% - 20px);
 }
 
 .gimbap-wrap__body--simple {
-    .has-flex & {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: nowrap;
-        align-items: stretch;
-    }
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: stretch;
 }
 
 .gimbap-wrap__body--1x1x1x1 > .gimbap {
     @include mq(tablet) {
-        .has-flex & {
-            flex: $gimbap-width-quarter;
-        }
+        flex: $gimbap-width-quarter;
     }
 }
 
@@ -162,10 +155,7 @@ $gimbap-width-quarter: calc(25% - 20px);
 .gimbap-wrap__body--1x1x2 > .gimbap:nth-child(3) {
     @include mq(tablet) {
         width: calc(66.67% - 20px);
-
-        .has-flex & {
-            flex: 2;
-        }
+        flex: 2;
     }
     @include mq(desktop) {
         width: calc(50% - 20px);
@@ -224,6 +214,18 @@ $gimbap-width-quarter: calc(25% - 20px);
     }
 }
 
+.gimbap-wrap__logo--money {
+    svg {
+        width: 210px;
+    }
+}
+
+.gimbap-wrap__logo--holidays {
+    svg {
+        width: 210px;
+    }
+}
+
 .gimbap-wrap__logo--jobs {
     svg {
         width: 160px;
@@ -249,13 +251,15 @@ $gimbap-width-quarter: calc(25% - 20px);
 }
 
 // Each branded component has different styling. Let's loop through them and create unique styles.
-$gimbap-tones: ('members', 'masterclasses', 'jobs', 'soulmates', 'bookshop');
+$gimbap-tones: ('members', 'masterclasses', 'jobs', 'soulmates', 'bookshop','money','holidays');
 $gimbap-colors: (
     'members': $gimbap-members,
     'masterclasses': $gimbap-masterclasses,
     'jobs': $gimbap-jobs,
     'soulmates': $gimbap-soulmates,
-    'bookshop': $gimbap-bookshop
+    'bookshop': $gimbap-bookshop,
+        'money': $gimbap-money,
+        'holidays': $gimbap-holidays
 );
 
 @each $tone in $gimbap-tones {
