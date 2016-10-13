@@ -6,7 +6,6 @@
 
 .gimbap-richmedia__title {
   @extend %gimbap-text-styling;
-  @include fs-headline(3);
 
   font-weight: bold;
   line-height: .8;
@@ -20,7 +19,6 @@
 
 .gimbap-richmedia__headline {
   @extend %gimbap-text-styling;
-  @include fs-headline(2);
 
   width: 65%;
   margin: 0;
@@ -36,7 +34,6 @@
 
 .gimbap-richmedia__meta {
   @extend %gimbap-text-styling;
-  @include fs-textSans(1);
 
   color: #ffffff;
 }
@@ -54,7 +51,6 @@
 
 .gimbap-richmedia__price {
   @extend %gimbap-text-styling;
-  @include fs-headline(3);
 
   font-weight: 500;
 }
