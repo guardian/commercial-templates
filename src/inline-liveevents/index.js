@@ -2,6 +2,7 @@ import { write } from '../_shared/js/dom';
 import { getIframeId, getWebfonts, resizeIframeHeight } from '../_shared/js/messages';
 import { getApiBaseUrl } from '../_shared/js/dev';
 import { formatPrice, formatDuration } from '../_shared/js/utils';
+import { generatePicture } from '../_shared/js/capi-images';
 
 let container = document.getElementsByClassName('adverts__body')[0];
 
@@ -21,7 +22,7 @@ function createAdvert(event) {
 
   return `<a class="blink advert advert--inline advert--brand" href="%%CLICK_URL_ESC%%${event.eventUrl}" data-link-name="merchandising-liveEvents-superHigh-${event.eventId}-${event.name}">
         <div class="advert__image-container">
-            <img class="advert__image" src="http:${event.image.backupSrc}" alt="">
+            ${generatePicture(event.image, ["advert__image"])}
         </div>
         <h2 class="advert__title blink__anchor">${event.name}</h2>
         <div class="advert__meta">

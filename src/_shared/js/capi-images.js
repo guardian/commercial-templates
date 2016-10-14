@@ -29,7 +29,7 @@ function buildSources (sourceData) {
 // Creates a picture element with responsive sources, with fallback for IE.
 function createPicture (imageInfo, imageElem) {
 
-	// Supports responsive images.
+	// Check that the srcset attribute is supported
 	if ('srcset' in imageElem) {
 
 		let picture = document.createElement('picture');
@@ -65,6 +65,39 @@ export function insertImage (imageContainer, imageInfo, classes, override) {
 
 	return image;
 
+}
+
+// Creates the HTML for a s set of source elements for an image.
+function generateSources(source) {
+	return `
+	<source
+		media="(min-width: ${source.minWidth}px) and (-webkit-min-device-pixel-ratio: 1.25),
+					 (min-width: ${source.minWidth}px) and (min-resolution: 120dpi)"
+		srcset="${source.hidpiSrcset}"
+		sizes="${source.sizes}"
+	</source>
+	<source
+		media="(min-width: ${source.minWidth}px)"
+		srcset="${source.lodpiSrcset}"
+		sizes="${source.sizes}"
+	</source>`
+}
+
+// Generates the HTML for a picture element with responsive sources
+export function generatePicture(imageInfo, classes) {
+
+	let image = `<img class="${classes.join(' ')}" src="${imageInfo.backupSrc}">`;
+
+	// Check that the srcset attribute is supported
+	if ('srcset' in new Image()) {
+		return `<picture>
+							${imageInfo.sources.map(generateSources).join('')}
+							${image}
+						</picture>`;
+	}
+	else {
+			return image;
+	}
 }
 
 // Retrieves svg icons for capi single.
