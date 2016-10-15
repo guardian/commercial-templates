@@ -80,12 +80,14 @@ function getWebfonts(fontFamilies) {
     });
 }
 
-function resizeIframeHeight() {
-    return Promise.all(areImagesLoaded().concat(isDocumentLoaded()))
-    .then(() => read(() => document.body.getBoundingClientRect().height))
-    .then(function(height) {
-        return sendMessage('resize', { height });
-    });
+function resizeIframeHeight(height = -1) {
+    return height === -1 ?
+        Promise.all(areImagesLoaded().concat(isDocumentLoaded()))
+        .then(() => read(() => document.body.getBoundingClientRect().height))
+        .then(function(height) {
+            return sendMessage('resize', { height });
+        }) :
+        sendMessage('resize', { height });
 }
 
 function isDocumentLoaded() {
