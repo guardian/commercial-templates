@@ -1,7 +1,9 @@
 import { read, write } from './dom.js';
 
-export function enableToggles() {
-    Array.from(document.getElementsByClassName('js-toggle')).forEach(enableToggle);
+let toggles = {};
+
+export function enableToggles(rootNode = document, closeOnInit = true, callback = null) {
+    Array.from(rootNode.getElementsByClassName('js-toggle')).forEach(toggle => enableToggle(toggle, closeOnInit, callback));
 }
 
 function enableToggle(toggle) {
