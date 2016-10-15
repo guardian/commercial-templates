@@ -46,10 +46,10 @@ function createPicture (imageInfo, imageElem) {
 }
 
 // Inserts an image into the card, using the data derived from cAPI.
-export function insertImage (imageContainer, imageInfo, override) {
+export function insertImage (imageContainer, imageInfo, classes, override) {
 
 	let image = document.createElement('img');
-	image.classList.add('advert__image');
+	image.className = classes.join(' ');
 
 	if (override) {
 
@@ -62,6 +62,8 @@ export function insertImage (imageContainer, imageInfo, override) {
 		imageContainer.appendChild(createPicture(imageInfo, image));
 
 	}
+
+	return image;
 
 }
 
