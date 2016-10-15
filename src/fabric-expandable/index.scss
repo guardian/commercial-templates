@@ -1,0 +1,91 @@
+@import '_core';
+
+.creative--fabric-expandable {
+    .creative__slide {
+        height: 250px;
+    }
+
+    .creative__link {
+        height: 250px;
+        transition: height 1s;
+
+        &[aria-expanded="true"] {
+            height: 500px;
+        }
+    }
+
+    .creative__layer {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
+
+    .toggle {
+        box-sizing: border-box;
+        padding: 0;
+        position: absolute;
+        z-index: 100;
+
+        background: rgba(0, 0, 0, .75);
+        fill: rgba(255, 255, 255, .75);
+        border-color: rgba(255, 255, 255, .75);
+
+        &:focus {
+            outline: none;
+        }
+    }
+
+    .toggle--arrow {
+        bottom: 0;
+        left: 50%;
+        width: 60px;
+        height: 40px;
+        margin-left: -30px;
+
+        border-style: solid;
+        border-radius: 20px 20px 0 0;
+        border-width: 1px 1px 0;
+    }
+
+    .icon--arrow-down {
+        width: 24px;
+    }
+
+    .toggle--cross {
+        top: 10px;
+        right: 10px;
+
+        border-radius: 100%;
+        border-width: 1px;
+
+        transition: transform 1s;
+        transform: rotate(45deg);
+
+        &[aria-expanded="true"] {
+            transform: rotate(0);
+        }
+
+        @include mq(tablet) {
+            right: calc(50% - #{(gs-span(9) + $gs-gutter) / 2});
+        }
+
+        @include mq(desktop) {
+            right: calc(50% - #{(gs-span(12) + $gs-gutter) / 2});
+        }
+
+        @include mq(leftCol) {
+            right: calc(50% - #{(gs-span(14) + $gs-gutter) / 2});
+        }
+
+        @include mq(wide) {
+            right: calc(50% - #{(gs-span($gs-max-columns) + $gs-gutter) / 2});
+        }
+    }
+
+    .show-more--arrow .toggle--cross,
+    .show-more--cross .toggle--arrow {
+        display: none;
+    }
+}
