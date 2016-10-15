@@ -165,6 +165,7 @@ function post(id, iframeId, type, value) {
 }
 
 export {
+    sendMessage,
     getIframeId,
     getWebfonts,
     resizeIframeHeight,
