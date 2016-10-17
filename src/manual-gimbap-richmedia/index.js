@@ -1,7 +1,7 @@
-import { getIframeId, getWebfonts, resizeIframeHeight, reportClicks } from '../_shared/js/messages.js';
+import { getIframeId, getWebfonts, resizeIframeHeight } from '../_shared/js/messages.js';
 
 getIframeId()
-    .then(() => Promise.all([getWebfonts(), formatGimbap(), reportClicks()]))
+    .then(() => Promise.all([getWebfonts(), formatGimbap()]))
     .then(resizeIframeHeight);
 
 function formatGimbap() {
@@ -45,4 +45,4 @@ function formatGimbap() {
     function addEffectClass(div) {
         div.className += " gimbap--effects";
     }
-};
+}
