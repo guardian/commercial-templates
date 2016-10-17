@@ -20,7 +20,7 @@ function createAdvert(event) {
 
   let lastFew = event.ratioTicketsLeft <= 0.1 ? '<div class="advert__meta advert__meta--scarcity">Last few tickets remaining</div>' : '';
 
-  return `<a class="blink advert advert--inline advert--brand" href="%%CLICK_URL_ESC%%${event.eventUrl}" data-link-name="merchandising-liveEvents-superHigh-${event.eventId}-${event.name}">
+  return `<a class="blink advert advert--inline advert--brand" href="%%CLICK_URL_ESC%%${event.eventUrl}" data-link-name="${event.eventId}-${event.name}">
         <div class="advert__image-container">
             ${generatePicture(event.image, ["advert__image"])}
         </div>
@@ -40,8 +40,8 @@ function createAdvert(event) {
 
 function displayPriceRange(tickets) {
 
-  let prices = tickets.map(ticket => ticket.price)
-  let [low, high] = [Math.min.apply(null, prices), Math.max.apply(null, prices)]
+  let prices = tickets.map(ticket => ticket.price);
+  let [low, high] = [Math.min(...prices), Math.max.(...prices)];
 
   let format = (price) => `£${price.toFixed(2)}`;
 
