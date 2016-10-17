@@ -1,11 +1,12 @@
-import { getIframeId, resizeIframeHeight, sendMessage } from '../_shared/js/messages.js';
-import { write, div } from '../_shared/js/dom.js';
+import { getIframeId, resizeIframeHeight, onViewport, onScroll, sendMessage } from '../_shared/js/messages.js';
+import { write } from '../_shared/js/dom.js';
 
 getIframeId()
 .then(resizeIframeHeight)
 .then(() => {
     let scrollType = '[%ScrollType%]';
-    onViewport(({ width }) => {
+    let onScrolling = false;
+    onViewport(({ height, width }) => {
         let isMobile = width <= 739;
         let backgroundColour = '[%BackgroundColour%]';
         let [ backgroundImage, backgroundPosition, backgroundRepeat, creativeLink ] = isMobile ?
@@ -28,15 +29,20 @@ getIframeId()
         } else {
             sendMessage('parallax-background', { backgroundColour, backgroundImage: backgroundImage, backgroundRepeat });
         }
+
+        if( !isMobile ) {
+            if( !onScrolling ) {
+                let layer2 = document.getElementsByClassName('js-layer2')[0];
+                onScrolling = true;
+                onScroll(({ top, bottom }) => {
+                    if( 0 < bottom && top < height ) {
+                        layer2.classList.add('is-animating');
+                        return false;
+                    }
+                });
+            } else {
+                write(() => layer2.style.backgroundPosition = '[%Layer2BackgroundPosition%]');
+            }
+        }
     });
 });
-
-function insertBgImage(creativeLink, backgroundImage, backgroundRepeat) {
-    let image = div({ className: 'creative__background' });
-    Object.assign(image.style, {
-        backgroundImage: `url('${backgroundImage}')`,
-        backgroundRepeat
-    });
-    creativeLink.insertBefore(image, creativeLink.firstChild);
-    return image;
-}
