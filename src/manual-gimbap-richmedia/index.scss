@@ -5,4 +5,32 @@
 @import '_gimbap';
 @import '_gimbap-richmedia';
 
+$gimbap-larger-text: "Guardian Egyptian Web","Guardian Text Egyptian Web",Georgia,serif;
+$gimbap-smaller-text: "Guardian Text Sans Web","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
+
+.gimbap--richmedia {text-decoration: none}
+
 .gimbap--richmedia .metaHide {display : none}
+
+.gimbap-richmedia__title {
+  font-size: 1.25rem;
+  font-family: $gimbap-larger-text;
+  margin: 0px;
+}
+
+.gimbap-richmedia__headline {
+  font-size: 1rem;
+  font-family: $gimbap-larger-text;
+  padding-bottom: 0.25rem;
+}
+
+.gimbap-richmedia__price {
+  font-size: 1.25rem;
+  font-family: $gimbap-larger-text;
+}
+
+.gimbap-richmedia__meta {
+  font-family: $gimbap-smaller-text;
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
