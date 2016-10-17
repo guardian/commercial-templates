@@ -28,6 +28,13 @@
     }
 }
 
+.adverts--tone-memberships {
+  > .button {
+      background: $membership-default;
+      color: #fff;
+    }
+}
+
 .adverts--memberships {
     .advert__standfirst {
         font-size: 1rem;
