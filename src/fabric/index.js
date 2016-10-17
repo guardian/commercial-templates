@@ -27,7 +27,7 @@ getIframeId()
         } else if( scrollType === 'fixed' ) {
             sendMessage('fixed-background', { backgroundColour, backgroundImage: `url('${backgroundImage}')`, backgroundRepeat });
         } else {
-            sendMessage('parallax-background', { backgroundColour, backgroundImage: backgroundImage, backgroundRepeat });
+            sendMessage('parallax-background', { backgroundColour, backgroundImage: backgroundImage, backgroundRepeat, maxHeight: 500 });
         }
 
         if( !isMobile ) {
