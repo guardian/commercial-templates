@@ -13,7 +13,7 @@ function formatGimbap() {
         ['date','[%Offer1Date%]'],
         ['price','[%Offer1Price%]'],
         ['place', '[%Offer1Place%]'],
-        ['saving', '[%Offer1Discount'],
+        ['saving', '[%Offer1Discount%]'],
         ['date','[%Offer2Date%]'],
         ['price','[%Offer2Price%]'],
         ['place', '[%Offer2Place%]'],
@@ -25,7 +25,7 @@ function formatGimbap() {
     if (gimbapEffects === 'yes') Array.from(document.getElementsByClassName('gimbap--simple')).forEach(addEffectClass);
 
     function checkMeta(pair,index,array){
-        if(!pair[1].includes('[%')) {
+        if(pair[1]) {
             if(index < array.length/2){
                 removeHideClass(Array.from(document.getElementsByClassName('gimbap-richmedia__meta--' + pair[0]))[0])
             }else{
