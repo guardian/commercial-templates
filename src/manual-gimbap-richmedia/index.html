@@ -1,4 +1,4 @@
-<aside class="gimbap-wrap gimbap-wrap--tone-[%ComponentTone%]" role="complementary" data-link-name="creative | ad multiple manual | [%omnitureId%]">
+<aside class="gimbap-wrap gimbap-wrap--tone-[%ComponentTone%]" role="complementary" data-link-name="creative | gimbap richmedia | [%omnitureId%]">
     <div class="gimbap-wrap__box">
         <header class="gimbap-wrap__header">
             <h3 class="gimbap-wrap__title">
@@ -11,19 +11,19 @@
             <a class="gimbap gimbap--simple gimbap--richmedia gimbap--tone-[%ComponentTone%] [%GimbapEffects%]" href="%%CLICK_URL_UNESC%% [%Offer1Url%]" data-link-name="[%Offer1Title%]">
                 <h4 class="gimbap-richmedia__title"><span class="gimbap-richmedia__highlight">[%Offer1Highlight%]</span> / [%Offer1Title%]</h4>
                 <p class="gimbap-richmedia__headline">[%Offer1Headline%]</p>
-                <% if ([%Offer1Date%]) { %><span class="gimbap-richmedia__meta gimbap-richmedia__meta--date"><{{#svg}}clock{{/svg}} [%offer1Date%]</span><% } %>
-                <% if ([%Offer1Place%]) { %><span class="gimbap-richmedia__meta gimbap-richmedia__meta--place">[%iconLocation%] [%Offer1Place%]</span><% } %>
-                <% if ([Offer1Price%]) { %><span class="gimbap-richmedia__price">&#163; [%Offer1Price%]</span><% } %>
-                <% if ([Offer1Discount%]) { %><span class="gimbap-richmedia__meta gimbap-richmedia__meta--saving">[%iconBasket%] [%Offer1Discount%]</span><% } %>
+                <span class="gimbap-richmedia__meta gimbap-richmedia__meta--date metaHide">{{#svg}}icon-clock{{/svg}} [%Offer1Date%]</span>
+                <span class="gimbap-richmedia__meta gimbap-richmedia__meta--place metaHide">{{#svg}}icon-location{{/svg}} [%Offer1Place%]</span>
+                <span class="gimbap-richmedia__price gimbap-richmedia__meta--price metaHide">&#163; [%Offer1Price%]</span>
+                <span class="gimbap-richmedia__meta gimbap-richmedia__meta--saving metaHide">{{#svg}}icon-basket{{/svg}} [%Offer1Discount%]</span>
                 <img class="gimbap__image gimbap-richmedia__img" src="[%Offer1Image%]" />
             </a>
             <a class="gimbap gimbap--simple gimbap--richmedia gimbap--tone-[%ComponentTone%] [%GimbapEffects%]" href="%%CLICK_URL_UNESC%% [%Offer1Url%]" data-link-name="[%Offer2Title%]">
                 <h4 class="gimbap-richmedia__title"><span class="gimbap-richmedia__highlight">[%Offer2Highlight%]</span> / [%Offer2Title%]</h4>
                 <p class="gimbap-richmedia__headline">[%Offer2Headline%]</p>
-                <% if ([%Offer2Date%]) { %><span class="gimbap-richmedia__meta gimbap-richmedia__meta--date"><{{#svg}}clock{{/svg}} [%offer2Date%]</span><% } %>
-                <% if ([%Offer2Place%]) { %><span class="gimbap-richmedia__meta gimbap-richmedia__meta--place">[%iconLocation%] [%Offer2Place%]</span><% } %>
-                <% if ([Offer2Price%]) { %><span class="gimbap-richmedia__price">&#163; [%Offer2Price%]</span><% } %>
-                <% if ([Offer2Discount%]) { %><span class="gimbap-richmedia__meta gimbap-richmedia__meta--saving">[%iconBasket%] [%Offer2Discount%]</span><% } %>
+                <span class="gimbap-richmedia__meta gimbap-richmedia__meta--date">{{#svg}}icon-clock{{/svg}} [%Offer2Date%]</span>
+                <span class="gimbap-richmedia__meta gimbap-richmedia__meta--place">{{#svg}}icon-location{{/svg}} [%Offer2Place%]</span>
+                <span class="gimbap-richmedia__price gimbap-richmedia__meta--price">&#163; [%Offer2Price%]</span>
+                <span class="gimbap-richmedia__meta gimbap-richmedia__meta--saving">{{#svg}}icon-basket{{/svg}} [%Offer2Discount%]</span>
                 <img class="gimbap__image gimbap-richmedia__img" src="[%Offer2Image%]" />
             </a>
         </div>
