@@ -1,7 +1,7 @@
-import { getIframeId, getWebfonts, resizeIframeHeight } from '../_shared/js/messages.js';
+import { getIframeId, getWebfonts, resizeIframeHeight, reportClicks } from '../_shared/js/messages.js';
 
 getIframeId()
-    .then(() => Promise.all([getWebfonts(), formatGimbap()]))
+    .then(() => Promise.all([getWebfonts(), formatGimbap(), reportClicks()]))
     .then(resizeIframeHeight);
 
 function formatGimbap() {
@@ -17,7 +17,7 @@ function formatGimbap() {
         ['date','[%Offer2Date%]'],
         ['price','[%Offer2Price%]'],
         ['place', '[%Offer2Place%]'],
-        ['saving', '[%Offer2Discount']
+        ['saving', '[%Offer2Discount%]']
     ].forEach(checkMeta);
 
     Array.from(document.getElementsByClassName('gimbap-logo')).forEach(insertHeaderSvg);
@@ -25,7 +25,6 @@ function formatGimbap() {
     if (gimbapEffects === 'yes') Array.from(document.getElementsByClassName('gimbap--simple')).forEach(addEffectClass);
 
     function checkMeta(pair,index,array){
-
         if(!pair[1].includes('[%')) {
             if(index < array.length/2){
                 removeHideClass(Array.from(document.getElementsByClassName('gimbap-richmedia__meta--' + pair[0]))[0])
