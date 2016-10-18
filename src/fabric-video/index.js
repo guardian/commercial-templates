@@ -3,16 +3,36 @@ import { write } from '../_shared/js/dom';
 
 getIframeId()
 .then(() => {
-    let video = document.getElementsByTagName('video')[0];
-    let layer2 = Array.from(document.getElementsByClassName('creative__layer2'));
-    let inView = false;
     let isUpdating = false;
-    let played = false;
+
+    // We want to know when the slot is in view so we can control the video
+    // and animation
+    let inView = false;
+
+    // This layer has a CSS animation which we want to pause in case the slot
+    // goes out of view
+    let layer2 = Array.from(document.getElementsByClassName('creative__layer2'));
+
+
+    // We'll need an onScroll listener that will be add inside onViewport,
+    // but since onViewport can fire multiple times, we want to make sure
+    // the onScroll listener is added only once.
     let onScrolling = false;
 
+    // We'll start the video when the slot is in view, but we want this
+    // process to happen only once. When the video ends, we let everyone
+    // know about it.
+    let video = document.getElementsByTagName('video')[0];
+    let played = false;
     video.onended = () => played = true;
 
     onViewport(({ height }) => {
+        // That's it, the video has only played once so we don't need
+        // to listen anymore
+        if( played ) {
+            return false;
+        }
+
         if( !onScrolling ) {
             onScrolling = true;
             onScroll(({ top, bottom }) => {
@@ -35,6 +55,7 @@ getIframeId()
         updateAnimation();
     }
 
+    // If the slot goes out of view, we pause the video
     function updateVideo() {
         if (inView) {
             video.play();
@@ -43,6 +64,7 @@ getIframeId()
         }
     }
 
+    // If the slot goes out of view, we pause the animation
     function updateAnimation() {
         if (inView) {
             playAnimation();
