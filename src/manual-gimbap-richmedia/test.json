@@ -1,7 +1,8 @@
 {
   "Layout": "2x2",
+  "BaseUrl": "https://www.theguardian.com/uk",
   "GimbapEffects": "yes",
-  "ComponentTone": "holidays",
+  "ComponentTone": "masterclasses",
   "ComponentHeadline": "masterclasses",
   "ComponentMessage": "New masterclasses led by award-winning Guardian professionals now booking",
   "ComponentEffects":"yes",
