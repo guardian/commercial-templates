@@ -13,8 +13,6 @@ getIframeId()
     video.onended = () => played = true;
 
     onViewport(({ height }) => {
-        let viewportHeight = height;
-
         if( !onScrolling ) {
             onScrolling = true;
             onScroll(({ top, bottom }) => {
@@ -22,7 +20,7 @@ getIframeId()
                     return false;
                 }
 
-                inView = top >= 0 && bottom < viewportHeight;
+                inView = top >= 0 && bottom < height;
                 if (!isUpdating) {
                     isUpdating = true;
                     updateVideo();
