@@ -40,7 +40,7 @@ getIframeId()
                     return false;
                 }
 
-                inView = top >= 0 && bottom < height;
+                inView = top >= 0 && bottom <= height;
                 if (!isUpdating) {
                     isUpdating = true;
                     updateVideo();
