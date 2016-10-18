@@ -42,7 +42,7 @@ function createAdvert(event) {
 function displayPriceRange(tickets) {
 
   let prices = tickets.map(ticket => ticket.price);
-  let [low, high] = [Math.min(...prices), Math.max.(...prices)];
+  let [low, high] = [Math.min(...prices), Math.max(...prices)];
 
   let format = (price) => `£${price.toFixed(2)}`;
 
