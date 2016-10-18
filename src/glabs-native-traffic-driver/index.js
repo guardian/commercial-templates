@@ -1,5 +1,4 @@
-import { getIframeId, getWebfonts, resizeIframeHeight } from
-    '../_shared/js/messages';
+import { getIframeId, getWebfonts, resizeIframeHeight, reportClicks } from '../_shared/js/messages';
 import { enableToggles } from '../_shared/js/ui';
 import { addTrackingPixel, setEditionLink } from '../_shared/js/ads';
 import { write } from '../_shared/js/dom';
@@ -61,6 +60,7 @@ function buildFromCapi (data) {
 
 }
 
+reportClicks();
 getIframeId()
 .then(retrieveCapiData)
 .then(buildFromCapi)

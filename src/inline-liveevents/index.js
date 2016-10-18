@@ -1,5 +1,5 @@
 import { write } from '../_shared/js/dom';
-import { getIframeId, getWebfonts, resizeIframeHeight } from '../_shared/js/messages';
+import { getIframeId, getWebfonts, resizeIframeHeight, reportClicks } from '../_shared/js/messages';
 import { getApiBaseUrl } from '../_shared/js/dev';
 import { formatPrice, formatDuration } from '../_shared/js/utils';
 import { generatePicture } from '../_shared/js/capi-images';
@@ -9,6 +9,7 @@ let container = document.getElementsByClassName('adverts__body')[0];
 let params = new URLSearchParams();
 params.append('t', '[%EventID%]');
 
+reportClicks();
 getIframeId()
 .then(({ host, preview }) => fetch(`${getApiBaseUrl(host, preview)}/commercial/api/liveevent.json?${params}`, {mode: 'cors'}))
 .then(response => response.json())
@@ -41,7 +42,7 @@ function createAdvert(event) {
 function displayPriceRange(tickets) {
 
   let prices = tickets.map(ticket => ticket.price);
-  let [low, high] = [Math.min(...prices), Math.max.(...prices)];
+  let [low, high] = [Math.min(...prices), Math.max(...prices)];
 
   let format = (price) => `£${price.toFixed(2)}`;
 

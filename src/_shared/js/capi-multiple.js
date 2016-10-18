@@ -1,4 +1,4 @@
-import { getIframeId, getWebfonts, resizeIframeHeight } from
+import { getIframeId, getWebfonts, resizeIframeHeight, reportClicks } from
 	'./messages.js';
 import { write } from './dom.js';
 import { enableToggles } from './ui.js';
@@ -46,7 +46,7 @@ function setMediaIcon (card, title, mediaType) {
 }
 
 // Inserts capi headline or DFP override.
-function buildHeadline (title, cardInfo, cardNumber) {
+function buildHeadline (card, title, cardInfo, cardNumber) {
 
 	let headline;
 
@@ -57,7 +57,7 @@ function buildHeadline (title, cardInfo, cardNumber) {
 	}
 
 	title.appendChild(headline);
-
+	card.setAttribute('data-link-name', headline);
 }
 
 // Constructs the title part of the card: headline and media icon.
@@ -75,7 +75,7 @@ function buildTitle (card, cardInfo, cardNumber) {
 		card.classList.add('advert--text');
 	}
 
-	buildHeadline(title, cardInfo, cardNumber);
+	buildHeadline(card, title, cardInfo, cardNumber);
 
 }
 
@@ -169,6 +169,7 @@ function buildFromCapi (cardsInfo, isPaid) {
 export default function capiMultiple (adType) {
 
 	const isPaid = (adType === 'paidfor');
+	reportClicks();
 
 	getIframeId()
 	.then(retrieveCapiData)

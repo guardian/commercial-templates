@@ -1,5 +1,5 @@
 import { write } from '../_shared/js/dom';
-import { getIframeId, getWebfonts, resizeIframeHeight } from '../_shared/js/messages';
+import { getIframeId, getWebfonts, resizeIframeHeight, reportClicks } from '../_shared/js/messages';
 import { getApiBaseUrl } from '../_shared/js/dev';
 import { formatPrice } from '../_shared/js/utils';
 
@@ -11,6 +11,7 @@ if( ids.length ) {
     ids.split(',').forEach(id => params.append('t', id.trim()));
 }
 
+reportClicks();
 getIframeId()
 .then(({ host, preview }) => fetch(`${getApiBaseUrl(host, preview)}/commercial/books/api/books.json?${params}`))
 .then(response => response.json())
@@ -21,7 +22,7 @@ getIframeId()
 
 /* Outputs the HTML for a book advert */
 function createAdvert(book, index) {
-    return `<a class="blink advert advert--book advert--prominent-${ index === 0 ? '[%IsProminent%]' : 'false'} ${ index > 1 ? 'hide-until-tablet' : '' }" href="%%CLICK_URL_UNESC%%${book.buyUrl}" data-link-name="">
+    return `<a class="blink advert advert--book advert--prominent-${ index === 0 ? '[%IsProminent%]' : 'false'} ${ index > 1 ? 'hide-until-tablet' : '' }" href="%%CLICK_URL_UNESC%%${book.buyUrl}" data-link-name="Offer ${index+1} | ${book.isbn}-${book.author}-${book.title}">
         <div class="advert__image-container">
             <img class="advert__image" src="${book.jacketUrl}">
         </div>

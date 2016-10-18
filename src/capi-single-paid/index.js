@@ -1,6 +1,6 @@
 import { enableToggles } from '../_shared/js/ui';
 import { write } from '../_shared/js/dom';
-import { getIframeId, getWebfonts, resizeIframeHeight } from '../_shared/js/messages';
+import { getIframeId, getWebfonts, resizeIframeHeight, reportClicks } from '../_shared/js/messages';
 import { insertImage, checkIcon } from '../_shared/js/capi-images.js';
 import { setEditionLink } from '../_shared/js/ads';
 
@@ -21,6 +21,7 @@ if (customUrl !== '') {
   params.append('k', keywords);
 }
 
+reportClicks();
 enableToggles();
 getIframeId()
 .then(() => fetch(`https://api.nextgen.guardianapps.co.uk/commercial/api/capi-single.json?${params}`))
@@ -54,14 +55,13 @@ function addImage (imageInfo) {
 
 }
 
-/* Outputs the HTML for a travel advert */
 function populateCard(responseJson) {
     let icon = checkIcon(responseJson)
     setEditionLink(responseJson.edition, document.querySelector('.creative__glabs-link'));
 
 
     return `<div class="adverts__row adverts__row--single">
-      <a class="blink advert advert--large advert--capi advert--media advert--inverse advert--paidfor" href="%%CLICK_URL_UNESC%%${getValue('[%ArticleUrl%]', responseJson.articleUrl)}" data-link-name="merchandising | capi | single | [%TrackingId%]">
+      <a class="blink advert advert--large advert--capi advert--media advert--inverse advert--paidfor" href="%%CLICK_URL_UNESC%%${getValue('[%ArticleUrl%]', responseJson.articleUrl)}" data-link-name="Offer | ${getValue('[%ArticleHeadline%]', responseJson.articleHeadline)}">
       <div class="advert__text">
         <h2 class="blink__anchor advert__title">
           ${icon}
@@ -73,14 +73,14 @@ function populateCard(responseJson) {
       </div>
       <div class="advert__image-container"></div>
     </a>
-    <a class="hide-until-mobile-landscape button button--large button--legacy-single" href="%%CLICK_URL_UNESC%%https://theguardian.com/[%SeriesUrl%]"  data-link-name="merchandising-single-more">
+    <a class="hide-until-mobile-landscape button button--large button--legacy-single" href="%%CLICK_URL_UNESC%%https://theguardian.com/[%SeriesUrl%]"  data-link-name="more">
       See more
       ${arrowRight}
     </a>
     </div>
     <div class="badge js-badge">
       Paid for by
-      <a class="badge__link" href="" data-link-name="logo link">
+      <a class="badge__link" href="" data-link-name="badge">
         <img class="badge__logo" src="${getValue('[%BrandLogo%]', responseJson.branding.sponsorLogo.url)}" alt="">
       </a>
     </div>`;
