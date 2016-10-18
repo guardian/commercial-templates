@@ -8,23 +8,28 @@ getIframeId()
     let inView = false;
     let isUpdating = false;
     let played = false;
+    let onScrolling = false;
 
     video.onended = () => played = true;
 
     onViewport(({ height }) => {
         let viewportHeight = height;
-        onScroll(({ top, bottom }) => {
-            if( played ) {
-                return false;
-            }
 
-            inView = top >= 0 && bottom < viewportHeight;
-            if (!isUpdating) {
-                isUpdating = true;
-                updateVideo();
-                write(updateView);
-            }
-        });
+        if( !onScrolling ) {
+            onScrolling = true;
+            onScroll(({ top, bottom }) => {
+                if( played ) {
+                    return false;
+                }
+
+                inView = top >= 0 && bottom < viewportHeight;
+                if (!isUpdating) {
+                    isUpdating = true;
+                    updateVideo();
+                    write(updateView);
+                }
+            });
+        }
     });
 
     function updateView() {
