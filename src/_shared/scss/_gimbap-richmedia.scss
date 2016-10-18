@@ -7,11 +7,8 @@
 .gimbap-richmedia__title {
   @extend %gimbap-text-styling;
 
-  font-size: 1.25rem;
-  font-family: "Guardian Egyptian Web","Guardian Text Egyptian Web",Georgia,serif;
-
-  font-weight: bold;
-  line-height: .8;
+  font: bold 1.25rem/.8 $f-serif-text;
+  margin: 0px;
   color: #ffffff;
   align-self: flex-start;
 
@@ -22,6 +19,8 @@
 
 .gimbap-richmedia__headline {
   @extend %gimbap-text-styling;
+
+  font: normal 1rem/.25 $f-serif-headline;
 
   width: 65%;
   margin: 0;
@@ -37,6 +36,8 @@
 
 .gimbap-richmedia__meta {
   @extend %gimbap-text-styling;
+
+  font: normal 0.75rem/1rem $f-sans-serif-text;
 
   color: #ffffff;
 }
@@ -55,6 +56,7 @@
 .gimbap-richmedia__price {
   @extend %gimbap-text-styling;
 
+  font: normal 1.25rem $f-serif-headline;
   font-weight: 500;
 }
 
