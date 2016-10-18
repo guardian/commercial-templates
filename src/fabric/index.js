@@ -1,43 +1,50 @@
-import { getIframeId, resizeIframeHeight, onScroll, onViewport } from '../_shared/js/messages.js';
-import { write, div } from '../_shared/js/dom.js';
+import { getIframeId, resizeIframeHeight, onViewport, onScroll, sendMessage } from '../_shared/js/messages.js';
+import { write } from '../_shared/js/dom.js';
 
 getIframeId()
 .then(resizeIframeHeight)
 .then(() => {
     let scrollType = '[%ScrollType%]';
-    let isMobile = window.matchMedia('(max-width: 739px)').matches;
-    let [ backgroundImage, backgroundPosition, backgroundRepeat, creativeLink ] = isMobile ?
-        ['[%MobileBackgroundImage%]', '[%MobileBackgroundImagePosition%]', '[%MobileBackgroundImageRepeat%]', document.getElementById('linkMobile')] :
-        ['[%BackgroundImage%]', '[%BackgroundImagePosition%]', '[%BackgroundImageRepeat%]', document.getElementById('linkDesktop')];
+    let onScrolling = false;
+    onViewport(({ height, width }) => {
+        let isMobile = width <= 739;
+        let backgroundColour = '[%BackgroundColour%]';
+        let [ backgroundImage, backgroundPosition, backgroundRepeat, creativeLink ] = isMobile ?
+            ['[%MobileBackgroundImage%]', '[%MobileBackgroundImagePosition%]', '[%MobileBackgroundImageRepeat%]', document.getElementById('linkMobile')] :
+            ['[%BackgroundImage%]', '[%BackgroundImagePosition%]', '[%BackgroundImageRepeat%]', document.getElementById('linkDesktop')];
 
-    if( !backgroundImage ) return;
+        if( !backgroundImage ) return;
 
-    if( scrollType === 'none' ) {
-        write(() => Object.assign(creativeLink.style, {
-            backgroundImage: `url('${backgroundImage}')`,
-            backgroundPosition,
-            backgroundRepeat
-        }));
-    } else {
-        let speedFactor = scrollType === 'fixed' ? 1 : 0.3;
-        write(insertBgImage, creativeLink, backgroundImage, backgroundRepeat)
-        .then(backgroundImageNode => {
-            onViewport(({ height }) => {
-                write(() => backgroundImageNode.style.backgroundSize = `100% ${height}px`);
+        if( scrollType === 'none' ) {
+            write(() => {
+                document.documentElement.style.backgroundColor = backgroundColour;
+                Object.assign(creativeLink.style, {
+                    backgroundImage: `url('${backgroundImage}')`,
+                    backgroundPosition,
+                    backgroundRepeat
+                })
             });
-            onScroll(({ top }) => {
-                write(() => backgroundImageNode.style.backgroundPositionY = `-${top * speedFactor}px`)
-            });
-        });
-    }
-});
+        } else if( scrollType === 'fixed' ) {
+            sendMessage('fixed-background', { backgroundColour, backgroundImage: `url('${backgroundImage}')`, backgroundRepeat });
+        } else {
+            sendMessage('parallax-background', { backgroundColour, backgroundImage: backgroundImage, backgroundRepeat, maxHeight: 500 });
+        }
 
-function insertBgImage(creativeLink, backgroundImage, backgroundRepeat) {
-    let image = div({ className: 'creative__background' });
-    Object.assign(image.style, {
-        backgroundImage: `url('${backgroundImage}')`,
-        backgroundRepeat
+        if( !isMobile ) {
+            if( !onScrolling ) {
+                onScrolling = true;
+                let layer2 = document.getElementById('layer2');
+                if( layer2.classList.contains('creative__layer2--animation-disabled') ) {
+                    write(() => layer2.style.backgroundPosition = '[%Layer2BackgroundPosition%]');
+                } else {
+                    onScroll(({ top, bottom }) => {
+                        if( 0 <= top && bottom <= height ) {
+                            layer2.classList.add('is-animating');
+                            return false;
+                        }
+                    });
+                }
+            }
+        }
     });
-    creativeLink.insertBefore(image, creativeLink.firstChild);
-    return image;
-}
+});
