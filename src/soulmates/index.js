@@ -1,4 +1,4 @@
-import { getIframeId, getWebfonts, resizeIframeHeight } from '../_shared/js/messages';
+import { getIframeId, getWebfonts, resizeIframeHeight, reportClicks } from '../_shared/js/messages';
 import { write } from '../_shared/js/dom';
 import { getApiBaseUrl } from '../_shared/js/dev';
 
@@ -6,6 +6,8 @@ const params = new URLSearchParams();
 params.append('t', '[%SubFeed%]');
 
 const cardContainer = document.getElementsByClassName("adverts__row")[0];
+
+reportClicks();
 getIframeId()
   .then(({ host, preview }) => fetch(`${getApiBaseUrl(host, preview)}/commercial/api/soulmates.json?${params}`))
   .then(response => response.json())

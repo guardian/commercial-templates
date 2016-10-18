@@ -1,7 +1,8 @@
-import { getIframeId, getWebfonts, resizeIframeHeight, onScroll, onViewport } from '../_shared/js/messages';
+import { getIframeId, getWebfonts, resizeIframeHeight, onScroll, onViewport, reportClicks } from '../_shared/js/messages';
 import { enableToggles } from '../_shared/js/ui';
 
 enableToggles();
+reportClicks();
 getIframeId()
 .then(setDataTarget('[%Openlinksinnewwindow%]'))
 .then(getWebfonts())

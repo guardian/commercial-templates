@@ -1,5 +1,5 @@
 import { write } from '../_shared/js/dom';
-import { getIframeId, getWebfonts, resizeIframeHeight } from '../_shared/js/messages';
+import { getIframeId, getWebfonts, resizeIframeHeight, reportClicks } from '../_shared/js/messages';
 import { insertImage, checkIcon } from '../_shared/js/capi-images';
 
 let container = document.getElementsByClassName('adverts__body')[0];
@@ -14,6 +14,7 @@ if (customUrl !== '') {
   params.append('k', keywords);
 };
 
+reportClicks();
 getIframeId()
 .then(() => fetch(`https://api.nextgen.guardianapps.co.uk/commercial/api/capi-single.json?${params}`))
 .then(response => response.json())
@@ -46,7 +47,7 @@ function populateCard(responseJson) {
     let icon = checkIcon(responseJson)
 
     return `<div class="adverts__row adverts__row--single">
-      <a class="blink advert advert--large advert--capi advert--media advert--inverse advert--supported" href="%%CLICK_URL_UNESC%%${getValue('[%ArticleUrl%]', responseJson.articleUrl)}" data-link-name="merchandising | capi | single | [%TrackingId%]">
+      <a class="blink advert advert--large advert--capi advert--media advert--inverse advert--supported" href="%%CLICK_URL_UNESC%%${getValue('[%ArticleUrl%]', responseJson.articleUrl)}" data-link-name="Offer | ${getValue('[%ArticleHeadline%]', responseJson.articleHeadline)}">
         <div class="advert__text">
           <h2 class="blink__anchor advert__title">
             ${icon}
