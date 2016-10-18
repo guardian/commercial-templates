@@ -32,16 +32,18 @@ getIframeId()
 
         if( !isMobile ) {
             if( !onScrolling ) {
-                let layer2 = document.getElementsByClassName('js-layer2')[0];
                 onScrolling = true;
-                onScroll(({ top, bottom }) => {
-                    if( 0 < bottom && top < height ) {
-                        layer2.classList.add('is-animating');
-                        return false;
-                    }
-                });
-            } else {
-                write(() => layer2.style.backgroundPosition = '[%Layer2BackgroundPosition%]');
+                let layer2 = document.getElementById('layer2');
+                if( layer2.classList.contains('creative__layer2--animation-disabled') ) {
+                    write(() => layer2.style.backgroundPosition = '[%Layer2BackgroundPosition%]');
+                } else {
+                    onScroll(({ top, bottom }) => {
+                        if( 0 <= top && bottom <= height ) {
+                            layer2.classList.add('is-animating');
+                            return false;
+                        }
+                    });
+                }
             }
         }
     });
