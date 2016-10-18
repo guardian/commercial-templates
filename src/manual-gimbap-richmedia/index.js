@@ -1,4 +1,5 @@
 import { getIframeId, getWebfonts, resizeIframeHeight } from '../_shared/js/messages.js';
+import { write } from '../_shared/js/dom';
 
 getIframeId()
     .then(() => Promise.all([getWebfonts(), formatGimbap()]))
@@ -7,7 +8,6 @@ getIframeId()
 function formatGimbap() {
 
     let componentTone   = '[%ComponentTone%]';
-    let gimbapEffects   = '[%GimbapEffects%]';
 
     [
         ['date','[%Offer1Date%]'],
@@ -22,27 +22,27 @@ function formatGimbap() {
 
     Array.from(document.getElementsByClassName('gimbap-logo')).forEach(insertHeaderSvg);
 
-    if (gimbapEffects === 'yes') Array.from(document.getElementsByClassName('gimbap--simple')).forEach(addEffectClass);
-
     function checkMeta(pair,index,array){
-        if(pair[1]) {
-            if(index < array.length/2){
-                removeHideClass(Array.from(document.getElementsByClassName('gimbap-richmedia__meta--' + pair[0]))[0])
-            }else{
-                removeHideClass(Array.from(document.getElementsByClassName('gimbap-richmedia__meta--' + pair[0]))[1])
+        return write(() => {
+            if (pair[1]) {
+                if (index < array.length / 2) {
+                    removeHideClass(Array.from(document.getElementsByClassName('gimbap-richmedia__meta--' + pair[0]))[0])
+                } else {
+                    removeHideClass(Array.from(document.getElementsByClassName('gimbap-richmedia__meta--' + pair[0]))[1])
+                }
             }
-        }
+        })
     }
 
     function removeHideClass(div){
-        div.classList.remove('metaHide');
+        return write(() => {
+            div.classList.remove('metaHide');
+        });
     }
 
     function insertHeaderSvg(div) {
-        div.insertAdjacentHTML('afterbegin', logoSvgs[componentTone]);
-    }
-
-    function addEffectClass(div) {
-        div.className += " gimbap--effects";
+        return write(() => {
+            div.insertAdjacentHTML('afterbegin', logoSvgs[componentTone]);
+        });
     }
 }
