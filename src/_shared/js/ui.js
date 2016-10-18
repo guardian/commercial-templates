@@ -1,33 +1,44 @@
 import { read, write } from './dom.js';
 
-export function enableToggles() {
-    Array.from(document.getElementsByClassName('js-toggle')).forEach(enableToggle);
+let toggles = {};
+
+export function enableToggles(rootNode = document, closeOnInit = true, callback = null) {
+    Array.from(rootNode.getElementsByClassName('js-toggle')).forEach(toggle => enableToggle(toggle, closeOnInit, callback));
 }
 
-function enableToggle(toggle) {
-    const target = document.getElementById(toggle.getAttribute('aria-controls'));
+function enableToggle(toggle, closeOnInit = true, callback = null) {
+    let targetId = toggle.getAttribute('aria-controls')
+    let target = document.getElementById(targetId);
+    let isOpen = toggle.getAttribute('aria-expanded') === 'true';
+    let open = tog.bind(null, true, toggle, target, callback);
+    let close = tog.bind(null, false, toggle, target, callback);
+
+    toggles[targetId] ? toggles[targetId].push(toggle) : (toggles[targetId] = [toggle]);
 
     toggle.addEventListener('click', () => {
-        if( target.hasAttribute('hidden') ) {
-            open();
+        if( isOpen ) {
+            close().then(updateIsOpen);
         } else {
-            close();
+            open().then(updateIsOpen);
         }
     });
 
-    return close();
+    return (closeOnInit ? close() : open())
+        .then(updateIsOpen);
 
-    function close() {
-        return write(() => {
-            toggle.setAttribute('aria-expanded', 'false');
-            target.setAttribute('hidden', 'hidden');
-        });
+    function updateIsOpen(_isOpen) {
+        isOpen = _isOpen;
     }
+}
 
-    function open() {
-        return write(() => {
-            toggle.setAttribute('aria-expanded', 'true');
-            target.removeAttribute('hidden');
-        });
-    }
+function tog(doOpen, toggle, target, callback) {
+    return write(() => {
+        target.setAttribute('aria-expanded', doOpen);
+        toggles[target.id].forEach(toggle => toggle.setAttribute('aria-expanded', doOpen));
+    }).then(() => {
+        if( callback ) {
+            callback(doOpen, toggle, target);
+        }
+        return doOpen;
+    });
 }
