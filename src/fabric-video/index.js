@@ -11,8 +11,7 @@ getIframeId()
 
     // This layer has a CSS animation which we want to pause in case the slot
     // goes out of view
-    let layer2 = Array.from(document.getElementsByClassName('creative__layer2'));
-
+    let layer2 = document.getElementById('layer2');
 
     // We'll need an onScroll listener that will be add inside onViewport,
     // but since onViewport can fire multiple times, we want to make sure
@@ -74,11 +73,11 @@ getIframeId()
     }
 
     function playAnimation() {
-        layer2.forEach(function (l) { l.classList.add('is-animating'); });
+        layer2.classList.add('is-animating');
     }
 
     function pauseAnimation() {
-        layer2.forEach(function (l) { l.classList.remove('is-animating'); });
+        layer2.classList.remove('is-animating');
     }
 
 });

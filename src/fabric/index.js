@@ -6,30 +6,42 @@ getIframeId()
 .then(() => {
     let scrollType = '[%ScrollType%]';
     let onScrolling = false;
+    let hasBackground = false;
     onViewport(({ height, width }) => {
         let isMobile = width <= 739;
-        let backgroundColour = '[%BackgroundColour%]';
-        let [ backgroundImage, backgroundPosition, backgroundRepeat, creativeLink ] = isMobile ?
-            ['[%MobileBackgroundImage%]', '[%MobileBackgroundImagePosition%]', '[%MobileBackgroundImageRepeat%]', document.getElementById('linkMobile')] :
-            ['[%BackgroundImage%]', '[%BackgroundImagePosition%]', '[%BackgroundImageRepeat%]', document.getElementById('linkDesktop')];
 
-        if( !backgroundImage ) return;
+        handleBackground(isMobile);
+        handleLayer2(isMobile, height);
+    });
 
-        if( scrollType === 'none' ) {
-            write(() => {
-                document.documentElement.style.backgroundColor = backgroundColour;
-                Object.assign(creativeLink.style, {
-                    backgroundImage: `url('${backgroundImage}')`,
-                    backgroundPosition,
-                    backgroundRepeat
-                })
-            });
-        } else if( scrollType === 'fixed' ) {
-            sendMessage('fixed-background', { backgroundColour, backgroundImage: `url('${backgroundImage}')`, backgroundRepeat });
-        } else {
-            sendMessage('parallax-background', { backgroundColour, backgroundImage: backgroundImage, backgroundRepeat, maxHeight: 500 });
+    function handleBackground(isMobile) {
+        if( !hasBackground ) {
+            hasBackground = true;
+            let backgroundColour = '[%BackgroundColour%]';
+            let [ backgroundImage, backgroundPosition, backgroundRepeat, creativeLink ] = isMobile ?
+                ['[%MobileBackgroundImage%]', '[%MobileBackgroundImagePosition%]', '[%MobileBackgroundImageRepeat%]', document.getElementById('linkMobile')] :
+                ['[%BackgroundImage%]', '[%BackgroundImagePosition%]', '[%BackgroundImageRepeat%]', document.getElementById('linkDesktop')];
+
+            if( !backgroundImage ) return;
+
+            if( scrollType === 'none' ) {
+                write(() => {
+                    document.documentElement.style.backgroundColor = backgroundColour;
+                    Object.assign(creativeLink.style, {
+                        backgroundImage: `url('${backgroundImage}')`,
+                        backgroundPosition,
+                        backgroundRepeat
+                    })
+                });
+            } else if( scrollType === 'fixed' ) {
+                sendMessage('fixed-background', { backgroundColour, backgroundImage: `url('${backgroundImage}')`, backgroundRepeat });
+            } else {
+                sendMessage('parallax-background', { backgroundColour, backgroundImage: backgroundImage, backgroundRepeat, maxHeight: 500 });
+            }
         }
+    }
 
+    function handleLayer2(isMobile, height) {
         if( !isMobile ) {
             if( !onScrolling ) {
                 onScrolling = true;
@@ -46,5 +58,5 @@ getIframeId()
                 }
             }
         }
-    });
+    }
 });
