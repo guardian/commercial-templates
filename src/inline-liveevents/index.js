@@ -7,7 +7,7 @@ import { generatePicture } from '../_shared/js/capi-images';
 let container = document.getElementsByClassName('adverts__body')[0];
 
 let params = new URLSearchParams();
-params.append('t', '[%EventID%]');
+params.append('t', '[%EventId%]');
 
 reportClicks();
 getIframeId()
