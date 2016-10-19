@@ -3,6 +3,7 @@ import { enableToggles } from '../_shared/js/ui';
 import { addTrackingPixel, setEditionLink } from '../_shared/js/ads';
 import { write } from '../_shared/js/dom';
 import { insertImage } from '../_shared/js/capi-images';
+import { URLSearchParams } from '../_shared/js/utils';
 
 const ENDPOINT = 'https://api.nextgen.guardianapps.co.uk/commercial/api/traffic-driver.json';
 
