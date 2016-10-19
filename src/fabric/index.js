@@ -7,6 +7,12 @@ getIframeId()
     let scrollType = '[%ScrollType%]';
     let onScrolling = false;
     let hasBackground = false;
+    let layer2 = document.getElementById('layer2');
+
+    if( layer2.classList.contains('creative__layer2--animation-disabled') ) {
+        write(() => layer2.style.backgroundPosition = '[%Layer2BackgroundPosition%]');
+    }
+
     onViewport(({ height, width }) => {
         let isMobile = width <= 739;
 
@@ -43,19 +49,14 @@ getIframeId()
 
     function handleLayer2(isMobile, height) {
         if( !isMobile ) {
-            if( !onScrolling ) {
+            if( !onScrolling && layer2.classList.contains('creative__layer2--animation-enabled') ) {
                 onScrolling = true;
-                let layer2 = document.getElementById('layer2');
-                if( layer2.classList.contains('creative__layer2--animation-disabled') ) {
-                    write(() => layer2.style.backgroundPosition = '[%Layer2BackgroundPosition%]');
-                } else {
-                    onScroll(({ top, bottom }) => {
-                        if( 0 <= top && bottom <= height ) {
-                            layer2.classList.add('is-animating');
-                            return false;
-                        }
-                    });
-                }
+                onScroll(({ top, bottom }) => {
+                    if( 0 <= top && bottom <= height ) {
+                        layer2.classList.add('is-animating');
+                        return false;
+                    }
+                });
             }
         }
     }
