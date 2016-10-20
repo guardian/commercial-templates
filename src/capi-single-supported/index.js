@@ -54,7 +54,7 @@ function populateCard(responseJson) {
             ${icon}
             ${getValue('[%ArticleHeadline%]', responseJson.articleHeadline)}
           </h2>
-          <p class="advert_standfirst">
+          <p class="advert__standfirst">
             ${getValue('[%ArticleText%]', responseJson.articleText)}
           </p>
         </div>
