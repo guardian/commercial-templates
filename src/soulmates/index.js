@@ -1,6 +1,7 @@
 import { getIframeId, getWebfonts, resizeIframeHeight, reportClicks } from '../_shared/js/messages';
 import { write } from '../_shared/js/dom';
 import { getApiBaseUrl } from '../_shared/js/dev';
+import { URLSearchParams } from '../_shared/js/utils';
 
 const params = new URLSearchParams();
 params.append('t', '[%SubFeed%]');
