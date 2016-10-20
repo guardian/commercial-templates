@@ -27,7 +27,7 @@ getIframeId()
 .then(response => response.json())
 .then(offers => offers.map((offer, index) => createAdvert[offer.type](offer.value, index, advertFooter[offer.type] || null)).join(''))
 .then(html => Promise.all([getWebfonts(), write(() => container.innerHTML = html)]))
-.then(resizeIframeHeight);
+.then(() => resizeIframeHeight());
 
 function createBlendedCard(type, titleUrl, titleLogo, titleDln, contentFn, content, index, footerFn = null) {
     return `<div class="advert-blended advert-blended--${ type }" data-link-name="Offer ${index + 1} | ${type}">

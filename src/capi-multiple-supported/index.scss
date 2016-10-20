@@ -6,16 +6,10 @@
 @import '_palette';
 
 .adverts {
-	color: $neutral-1;
+    color: $neutral-1;
 }
 
-// For cards 3 and 4.
-.hide-until-mobile-landscape {
-    @include mq($until: mobileLandscape) {
-        display: none !important;
-    }
-}
-
-.badge__help:hover, .adverts__logo:hover {
-	text-decoration: underline;
+.badge__help:hover,
+.adverts__logo:hover {
+    text-decoration: underline;
 }
