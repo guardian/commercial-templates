@@ -28,7 +28,7 @@ getIframeId()
 .then(response => response.json())
 .then(capiData => [capiData.articleImage, populateCard(capiData)])
 .then(([imageInfo, html]) => Promise.all([getWebfonts(), write(() => container.innerHTML = html)]).then(() => addImage(imageInfo)))
-.then(resizeIframeHeight);
+.then(() => resizeIframeHeight());
 
 function getValue(value, fallback) { return value || fallback; }
 

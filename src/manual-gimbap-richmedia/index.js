@@ -4,7 +4,7 @@ import { write } from '../_shared/js/dom';
 reportClicks();
 getIframeId()
     .then(() => Promise.all([getWebfonts(), formatGimbap(), reportClicks()]))
-    .then(resizeIframeHeight);
+    .then(() => resizeIframeHeight());
 
 function formatGimbap() {
 

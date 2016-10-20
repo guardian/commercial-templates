@@ -20,7 +20,7 @@ getIframeId()
 .then(response => response.json())
 .then(capiData => [populateLogo(capiData), populateCard(capiData), capiData.articleImage])
 .then(([logo, body, imageInfo]) => Promise.all([getWebfonts(), write(() => header.innerHTML = logo, container.innerHTML = body).then(() => addImage(imageInfo))]))
-.then(resizeIframeHeight);
+.then(() => resizeIframeHeight());
 
 function getValue(value, fallback) { return value || fallback; }
 
