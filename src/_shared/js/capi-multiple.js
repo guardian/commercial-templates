@@ -48,16 +48,8 @@ function setMediaIcon (card, title, mediaType) {
 
 // Inserts capi headline or DFP override.
 function buildHeadline (card, title, cardInfo, cardNumber) {
-
-    let headline;
-
-    if (OVERRIDES.headlines[cardNumber] !== '') {
-        headline = document.createTextNode(OVERRIDES.headlines[cardNumber]);
-    } else {
-        headline = document.createTextNode(cardInfo.articleHeadline);
-    }
-
-    title.appendChild(headline);
+    let headline = OVERRIDES.headlines[cardNumber] || cardInfo.articleHeadline;
+    title.textContent = headline;
     card.setAttribute('data-link-name', headline);
 }
 
@@ -111,7 +103,7 @@ function buildCard (cardInfo, cardNum, isPaid) {
     let imgContainer = card.querySelector('.advert__image-container');
 
     buildTitle(card, cardInfo, cardNum);
-    card.querySelector('a.advert').href = cardInfo.articleUrl;
+    card.href = cardInfo.articleUrl;
     insertImage(imgContainer, cardInfo.articleImage, ['advert__image'],
         OVERRIDES.images[cardNum]);
 

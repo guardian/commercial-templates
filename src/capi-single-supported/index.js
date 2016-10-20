@@ -21,7 +21,7 @@ getIframeId()
 .then(response => response.json())
 .then(capiData => [populateLogo(capiData), populateCard(capiData), capiData.articleImage])
 .then(([logo, body, imageInfo]) => Promise.all([getWebfonts(), write(() => header.innerHTML = logo, container.innerHTML = body).then(() => addImage(imageInfo))]))
-.then(resizeIframeHeight);
+.then(() => resizeIframeHeight());
 
 function getValue(value, fallback) { return value || fallback; }
 
@@ -54,7 +54,7 @@ function populateCard(responseJson) {
             ${icon}
             ${getValue('[%ArticleHeadline%]', responseJson.articleHeadline)}
           </h2>
-          <p class="advert_standfirst">
+          <p class="advert__standfirst">
             ${getValue('[%ArticleText%]', responseJson.articleText)}
           </p>
         </div>

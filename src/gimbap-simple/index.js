@@ -3,7 +3,7 @@ import { getIframeId, getWebfonts, resizeIframeHeight, reportClicks } from '../_
 
 getIframeId()
     .then(() => Promise.all([getWebfonts(), reportClicks(), formatGimbap()]))
-.then(resizeIframeHeight);
+.then(() => resizeIframeHeight());
 
 function formatGimbap() {
 

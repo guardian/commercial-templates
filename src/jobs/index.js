@@ -17,7 +17,7 @@ getIframeId()
 .then(response => response.json())
 .then(jobs => jobs.map(createAdvert).join(''))
 .then(html => Promise.all([getWebfonts(), write(() => container.insertAdjacentHTML('beforeend', html))]))
-.then(resizeIframeHeight);
+.then(() => resizeIframeHeight());
 
 
 /* Outputs the HTML for a job advert */

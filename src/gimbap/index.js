@@ -6,7 +6,7 @@ reportClicks();
 
 getIframeId()
 .then(() => Promise.all([getWebfonts(), formatGimbap()]))
-.then(resizeIframeHeight);
+.then(() => resizeIframeHeight());
 
 function formatGimbap() {
     // Retrieve DFP variables.

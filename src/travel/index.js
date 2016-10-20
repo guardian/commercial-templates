@@ -17,7 +17,7 @@ getIframeId()
 .then(response => response.json())
 .then(offers => offers.slice(0, '[%NumberofCards%]').map(createAdvert).join(''))
 .then(html => Promise.all([getWebfonts(), write(() => container.innerHTML = html)]))
-.then(resizeIframeHeight);
+.then(() => resizeIframeHeight());
 
 /* Outputs the HTML for a travel advert */
 function createAdvert(offer, index) {

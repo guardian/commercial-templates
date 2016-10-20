@@ -14,7 +14,7 @@ getIframeId()
   .then(response => response.json())
   .then(soulmates => soulmates.map(createSoulmateCard))
   .then(cards => Promise.all([addSoulmatesCards(cards), getWebfonts()]))
-  .then(resizeIframeHeight);
+  .then(() => resizeIframeHeight());
 
 
 function createSoulmateCard(soulmate, index) {

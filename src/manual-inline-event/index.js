@@ -15,7 +15,7 @@ getIframeId()
 .then(response => response.json())
 .then(createAdvert)
 .then(html => Promise.all([getWebfonts(), write(() => container.innerHTML = html)]))
-.then(resizeIframeHeight)
+.then(() => resizeIframeHeight())
 
 function createAdvert(event) {
 
