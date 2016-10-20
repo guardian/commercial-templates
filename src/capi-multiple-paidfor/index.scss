@@ -7,28 +7,28 @@
 @import '_palette';
 
 .adverts {
-	color: $neutral-1;
+    color: $neutral-1;
 }
 
 // SVG dimensions.
 .icon--arrow-down > svg {
-	width: 24px;
-	height: 18px;
+    width: 24px;
+    height: 18px;
 }
 
 .inline-arrow-right > svg {
-	width: 30px;
-	height: 30px;
+    width: 30px;
+    height: 30px;
 }
 
 .inline-glabs-logo > svg {
-	width: 100px;
-	height: 31px;
+    width: 100px;
+    height: 31px;
 }
 
 // Glabs logo text for screen readers.
 .u-h {
-	@include u-h;
+    @include u-h;
 }
 
 // For cards 3 and 4.
@@ -39,14 +39,14 @@
 }
 
 .adverts__logo:hover {
-	text-decoration: underline;
+    text-decoration: underline;
 }
 
 .popup {
-	box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 // About popup.
 .js-toggle:hover {
-	cursor: pointer;
+    cursor: pointer;
 }
