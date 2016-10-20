@@ -2,8 +2,22 @@ const build = require('./lib/build');
 const args = require('yargs').argv;
 
 // options
+let features = [
+    'Array.prototype.includes',
+    'Array.from',
+    'Element.prototype.classList',
+    'Element.prototype.closest',
+    'Element.prototype.matches',
+    'fetch',
+    'Object.assign',
+    'Promise',
+    'requestAnimationFrame'
+]
 const options = {
-    banner: '<base target="_blank" href="https://www.theguardian.com">',
+    banner: `
+        <base target="_blank" href="https://www.theguardian.com">
+        <script src="https://polyfill.guim.co.uk/v2/polyfill.min.js?features=${features.join(',')}"></script>
+    `,
     src: 'src',
     dst: 'build',
     minify: args.minify
