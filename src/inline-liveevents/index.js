@@ -1,13 +1,13 @@
 import { write } from '../_shared/js/dom';
 import { getIframeId, getWebfonts, resizeIframeHeight, reportClicks } from '../_shared/js/messages';
 import { getApiBaseUrl } from '../_shared/js/dev';
-import { formatPrice, formatDuration } from '../_shared/js/utils';
+import { formatPrice, formatDuration, URLSearchParams } from '../_shared/js/utils';
 import { generatePicture } from '../_shared/js/capi-images';
 
 let container = document.getElementsByClassName('adverts__body')[0];
 
 let params = new URLSearchParams();
-params.append('t', '[%EventID%]');
+params.append('t', '[%EventId%]');
 
 reportClicks();
 getIframeId()
