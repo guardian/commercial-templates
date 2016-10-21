@@ -11,10 +11,10 @@ let keywords = '[%SeriesUrl%]';
 let customUrl = '[%CustomUrl%]';
 
 const GLABS_EDITION = {
-  default: 'https://theguardian.com/guardian-labs',
-	au: 'https://theguardian.com/guardian-labs-australia',
-	us: 'https://theguardian.com/guardian-labs-us'
- };
+    default: 'https://theguardian.com/guardian-labs',
+    au: 'https://theguardian.com/guardian-labs-australia',
+    us: 'https://theguardian.com/guardian-labs-us'
+};
 
 if (customUrl !== '') {
   params.append('t', customUrl);
