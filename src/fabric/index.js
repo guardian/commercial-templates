@@ -15,13 +15,14 @@ getIframeId()
     let hasBackground = false;
 
     onViewport(({ height, width }) => {
-        let isMobile = width <= 739;
+        let isMobile = width < 740;
+        let isTablet = !isMobile && width < 980;
 
-        handleBackground(isMobile);
+        handleBackground(isMobile, isTablet);
         handleLayer2(isMobile, height);
     });
 
-    function handleBackground(isMobile) {
+    function handleBackground(isMobile, isTablet) {
         if( !hasBackground ) {
             hasBackground = true;
             let backgroundColour = '[%BackgroundColour%]';
@@ -31,7 +32,7 @@ getIframeId()
 
             if( !backgroundImage ) return;
 
-            if( scrollType === 'none' ) {
+            if( scrollType === 'none' || isMobile || isTablet ) {
                 write(() => {
                     document.documentElement.style.backgroundColor = backgroundColour;
                     Object.assign(creativeLink.style, {
