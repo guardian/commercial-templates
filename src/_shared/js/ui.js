@@ -9,14 +9,20 @@ export function enableToggles(rootNode = document, closeOnInit = true, callback 
 function enableToggle(toggle, closeOnInit = true, callback = null) {
     let targetId = toggle.getAttribute('aria-controls')
     let target = document.getElementById(targetId);
-    let isOpen = toggle.getAttribute('aria-expanded') === 'true';
     let open = tog.bind(null, true, toggle, target, callback);
     let close = tog.bind(null, false, toggle, target, callback);
 
-    toggles[targetId] ? toggles[targetId].push(toggle) : (toggles[targetId] = [toggle]);
+    if( toggles[targetId] ) {
+        toggles[targetId].toggles.push(toggle);
+    } else {
+        toggles[targetId] = {
+            isOpen: toggle.getAttribute('aria-expanded') === 'true',
+            toggles: [toggle]
+        };
+    }
 
     toggle.addEventListener('click', () => {
-        if( isOpen ) {
+        if( toggles[targetId].isOpen ) {
             close().then(updateIsOpen);
         } else {
             open().then(updateIsOpen);
@@ -27,14 +33,14 @@ function enableToggle(toggle, closeOnInit = true, callback = null) {
         .then(updateIsOpen);
 
     function updateIsOpen(_isOpen) {
-        isOpen = _isOpen;
+        toggles[targetId].isOpen = _isOpen;
     }
 }
 
 function tog(doOpen, toggle, target, callback) {
     return write(() => {
         target.setAttribute('aria-expanded', doOpen);
-        toggles[target.id].forEach(toggle => toggle.setAttribute('aria-expanded', doOpen));
+        toggles[target.id].toggles.forEach(toggle => toggle.setAttribute('aria-expanded', doOpen));
     }).then(() => {
         if( callback ) {
             callback(doOpen, toggle, target);
