@@ -1,15 +1,16 @@
 @import '_core';
 
+$phablet: 660px;
 
 .creative--hosted {
     font-family: $f-sans-serif-headline;
     min-height: 100px;
     background: #e9e9e9;
     
-    @media (width: $tablet) {
+    @include mq(tablet) {
         border-top: 1px solid;
     }
-    @media (min-width: $tablet) {
+    @include mq(tablet) {
         background: none;
     }
 }
@@ -21,34 +22,34 @@
     margin: 0 auto;
     background: #e9e9e9;
 
-    @media (max-width: $mobileLandscape) {
+    @include mq($until: mobileLandscape) {
         margin-left: 10px;
         margin-right: 10px;
     }
-    @media (min-width: $mobileLandscape) and (max-width: $phablet) {
+    @include mq(mobileLandscape, $phablet) {
         margin-left: 20px;
         margin-right: 20px;
     }
-    @media (min-width: $phablet) {
+    @include mq($phablet) {
         width: 620px;
     }
-    @media (width: $tablet) {
+    @include mq(tablet) {
         border-top: 0;
     }
-    @media (min-width: $tablet) {
-        width: $tablet;
+    @include mq(tablet) {
+        width: map-get($mq-breakpoints, tablet);
         padding-left: 20px;
         padding-right: 20px;
         box-sizing: border-box;
     }
-    @media (min-width: $desktop) {
-        width: $desktop;
+    @include mq(desktop) {
+        width: map-get($mq-breakpoints, desktop);
     }
-    @media (min-width: $leftCol) {
-        width: $leftCol;
+    @include mq(leftCol) {
+        width: map-get($mq-breakpoints, leftCol);
     }
-    @media (min-width: $wide) {
-        width: $wide;
+    @include mq(wide) {
+        width: map-get($mq-breakpoints, wide);
     }
 }
 
@@ -59,7 +60,7 @@
     margin-left: calc(100% - 100px);
     margin-top: 18px;
 
-    @media (min-width: $leftCol) {
+    @include mq(leftCol) {
         position: absolute;
         width: 112px;
         margin-left: 0;
@@ -87,18 +88,18 @@
     position: relative;
     flex: 1;
 
-    @media (max-width: $mobileLandscape - 1) {
+    @include mq($until: mobileLandscape) {
         margin-left: 0;
 
         &:not(:first-child) {
             margin-top: 10px;
-            .hosted-trafficdriver__image{
+            .hosted-trafficdriver__image {
                 display: none;
             }
         }
     }
 
-    @media (min-width: $mobileLandscape) and (max-width: $tablet - 1) {
+    @include mq(mobileLandscape, tablet) {
         margin-left: 0;
 
         &:first-child {
@@ -117,7 +118,7 @@
         }
     }
 
-    @media (min-width: $tablet) {
+    @include mq(tablet) {
         &:not(:first-child) {
             margin-left: 20px;
         }
@@ -141,7 +142,7 @@
     }
 }
 
-@media (min-width: $desktop) {
+@include mq(desktop) {
     .with-2-elements {
         .hosted-trafficdriver__image {
             width: 50%;
@@ -161,7 +162,7 @@
     line-height: 22px;
     font-weight: 600;
 
-    @media (max-width: $desktop) {
+    @include mq($until: desktop) {
         font-size: 20px;
         line-height: 24px;
     }    
@@ -175,19 +176,19 @@
     position: relative;
     display: flex;
 
-    @media (max-width: $mobileLandscape) {
+    @include mq($until: mobileLandscape) {
         flex-direction: column;
     }
 
-    @media (min-width: $mobileLandscape) {
+    @include mq(mobileLandscape) {
         flex-flow: row wrap;
     }
 
-    @media (min-width: $leftCol) {
+    @include mq(leftCol) {
         margin-left: 160px;
     }
 
-    @media (min-width: $wide) {
+    @include mq(wide) {
         margin-left: 240px;
         width: 940px;
     }
@@ -201,12 +202,12 @@
     line-height: 22px;
     margin: 0;
     
-    @media (max-width: $leftCol){
+    @include mq($until: leftCol){
         font-size: 20px;
         line-height: 24px;
     }
 
-    @media (min-width: $leftCol){
+    @include mq(leftCol){
         width: 140px;
     }
 }
@@ -225,7 +226,7 @@
     position: relative;
     height: 100%;
 
-    @media (min-width: $tablet) {
+    @include mq(tablet) {
         &:after,
         &:before {
             content: '';
@@ -234,15 +235,15 @@
         @include side-margins-position(gs-span(9));
     }
 
-    @media (min-width: $desktop) {
+    @include mq(desktop) {
         @include side-margins-position(gs-span(12));
     }
 
-    @media (min-width: $leftCol) {
+    @include mq(leftCol) {
         @include side-margins-position(gs-span(14));
     }
 
-    @media (min-width: $wide) {
+    @include mq(wide) {
         @include side-margins-position(gs-span(16));
     }
 }
