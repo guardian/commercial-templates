@@ -32,7 +32,7 @@ getIframeId()
 
             if( !backgroundImage ) return;
 
-            if( scrollType === 'none' || isMobile || isTablet ) {
+            if( scrollType === 'none' ) {
                 write(() => {
                     document.documentElement.style.backgroundColor = backgroundColour;
                     Object.assign(creativeLink.style, {
@@ -41,7 +41,7 @@ getIframeId()
                         backgroundRepeat
                     })
                 });
-            } else if( scrollType === 'fixed' ) {
+            } else if( scrollType === 'fixed' || (scrollType === 'parallax' && (isMobile || isTablet)) ) {
                 sendMessage('fixed-background', { backgroundColour, backgroundImage: `url('${backgroundImage}')`, backgroundRepeat });
             } else {
                 sendMessage('parallax-background', { backgroundColour, backgroundImage: backgroundImage, backgroundRepeat, maxHeight: 500 });
