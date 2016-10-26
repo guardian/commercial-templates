@@ -84,8 +84,12 @@
         }
     }
 
+    .toggle--cross-to-screen {
+        right: 10px;
+    }
+
     .show-more--arrow .toggle--cross,
-    .show-more--cross .toggle--arrow {
+    .show-more--plus .toggle--arrow {
         display: none;
     }
 
@@ -93,13 +97,9 @@
         cursor: pointer;
     }
 
-    &.right-aligned-video .video-container__cta {
-        display: none;
-
-        @include mq(1024px) {
-            display: block;
-            flex: 1;
-        };
+    .creative__slide-container {
+        display: flex;
+        justify-content: flex-end;
     }
 
     .creative__cta {
@@ -113,7 +113,7 @@
         }
     }
 
-    .creative__cta--to-container {
+    .creative__cta--position-to-container {
         @include mq(wide) {
             right: calc(50% - 640px);
         }
@@ -127,20 +127,59 @@
     .creative__cta--position-top    { top:    10px; }
     .creative__cta--position-bottom { bottom: 10px; }
 
-    .has-no-flex & {
-        &.right-aligned-video .creative__video-cta {
+    .creative__slide-video {
+        position: absolute;
+        top: 0;
+        width: 100%;
+        z-index: 3;
+        visibility: hidden;
+        transition: all 1s, visibility 0s;
+
+        &[aria-expanded="true"] {
+            visibility: visible;
+        }
+    }
+}
+
+@include mq(desktop) {
+    .creative--fabric-video-right-aligned {
+        .creative__slide-video {
+            box-sizing: border-box;
+        }
+
+        .creative__video-container__inner {
+            flex: 1;
+
+            @include mq(1024px) {
+                flex: initial;
+                width: 768px;
+            }
+        }
+
+        .creative__video-cta {
+            display: none;
+
             @include mq(1024px) {
                 display: block;
-                position: absolute;
-                width: calc(100% - 768px);
-                top: 0;
-                bottom: 0;
-                left: 0;
-            }
+                flex: 1;
+            };
+        }
 
-            @include mq(wide) {
-                /* 1300 - 768 = 532 */
-                width: 532px;
+        .has-no-flex & {
+            .creative__video-cta {
+                @include mq(1024px) {
+                    display: block;
+                    position: absolute;
+                    width: calc(100% - 768px);
+                    top: 0;
+                    bottom: 0;
+                    left: 0;
+                }
+
+                @include mq(wide) {
+                    /* 1300 - 768 = 532 */
+                    width: 532px;
+                }
             }
         }
     }
