@@ -1,0 +1,83 @@
+%gimbap-text-styling {
+  position: relative;
+  z-index: 1;
+  text-shadow: 0 0 5px rgba(0, 0, 0, .3);
+}
+
+.gimbap-richmedia__title {
+  @extend %gimbap-text-styling;
+
+  font: bold 1.25rem/.8 $f-serif-text;
+  margin: 0px;
+  color: #ffffff;
+  align-self: flex-start;
+
+  @include mq($until: desktop) {
+    margin-bottom: $gs-gutter / 3;
+  }
+}
+
+.gimbap-richmedia__headline {
+  @extend %gimbap-text-styling;
+
+  font: normal 1rem/.25 $f-serif-headline;
+
+  width: 65%;
+  margin: 0;
+  padding-bottom: 4px; /* To me, the ultimate act of magic is to create something from nothing. */
+  font-weight: bold;
+  line-height: 1;
+  color: #ffffff;
+
+  @include mq($until: desktop) {
+    width: 80%;
+  }
+}
+
+.gimbap-richmedia__meta {
+  @extend %gimbap-text-styling;
+
+  font: normal 0.75rem/1rem $f-sans-serif-text;
+
+  color: #ffffff;
+}
+
+.gimbap-richmedia__meta--place {
+  flex-grow: 1;
+}
+
+.gimbap-richmedia__icon {
+  display: inline-block;
+  vertical-align: middle;
+  width: 11px;
+  text-align: center;
+}
+
+.gimbap-richmedia__price {
+  @extend %gimbap-text-styling;
+
+  font: normal 1.25rem $f-serif-headline;
+  font-weight: 500;
+}
+
+// TONES
+.gimbap-wrap--tone-masterclasses {
+
+  .gimbap-richmedia__highlight {
+    color: $gimbap-masterclasses-text;
+  }
+}
+
+.gimbap-wrap--tone-soulmates {
+
+   .gimbap-richmedia__highlight {
+     color: $gimbap-soulmates-text;
+   }
+ }
+
+.gimbap-wrap--tone-holidays {
+
+  .gimbap-richmedia__highlight {
+    color: $gimbap-holidays;
+  }
+}

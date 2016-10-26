@@ -90,6 +90,12 @@
     }
 
     > .adverts__header {
+        .inline-logo-guardian {
+          @include mq(leftCol) {
+            display: none;
+          }
+        }
+
         @include mq($until: mobileLandscape) {
             padding: $gs-baseline / 2 $gs-gutter / 2;
         }
@@ -264,6 +270,10 @@
         }
     }
 
+    .adverts__row--single {
+        align-items: flex-start;
+    }
+
     .adverts__row--4cards > :nth-child(4) ~ *,
     .adverts__row--3cards > :nth-child(3) ~ *,
     .adverts__row--2cards > :nth-child(2) ~ * {
@@ -314,12 +324,7 @@
 
 .adverts--legacy-inline {
     padding: 0;
-    width: $gs-gutter * 6.5;
     background: #eaeaea;
-
-    @include mq(mobileLandscape) {
-        width: gs-span(3);
-    }
 
     > .adverts__header {
         @include mq($until: mobileLandscape) {
@@ -519,7 +524,7 @@
     }
 }
 
-.adverts__badge {
+.badge {
     font: normal 12px/16px $f-sans-serif-text;
     color: $neutral-2;
     font-weight: bold;
@@ -536,34 +541,34 @@
     }
 }
 
-.adverts__badge--alt {
+.badge--alt {
     border-top: 1px dotted $neutral-5;
     margin-top: $gs-baseline / 3;
     padding-top: $gs-baseline / 6;
     text-align: left;
 
-    > .adverts__badge__link,
-    .adverts__badge__logo {
+    > .badge__link,
+    .badge__logo {
         display: block;
     }
 
-    .adverts__badge__logo {
+    .badge__logo {
         max-height: 6 * $gs-baseline;
         margin: 0;
     }
 
-    > .adverts__badge__link {
+    > .badge__link {
         border-bottom: 1px dotted $neutral-5;
         margin: 3 / 4 * $gs-baseline 0 $gs-baseline / 3;
     }
 
-    > .adverts__badge__help {
+    > .badge__help {
         font-size: 11px;
         line-height: 1;
     }
 }
 
-.adverts__badge__logo {
+.badge__logo {
     max-height: $gs-baseline * 5;
     margin-left: $gs-gutter / 2;
     vertical-align: middle;

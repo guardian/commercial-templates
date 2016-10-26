@@ -1,45 +1,62 @@
-import { read, write } from './dom.js';
+import { read, write } from './dom';
+import { timeout } from './impl/promises';
 
-const devMode = '[%DevMode%]';
 const rootElement = document.documentElement;
 
+let parentOrigin = 'http://localhost:9000';
 let iframeId;
 
 // First thing that happens when a native ad is delivered is that the parent
 // frame will send a message with the ID of the corresponding iframe. This is
 // because of some f**d-up handling of the name attribute that is supposed to
 // do the work.
-export function getIframeId() {
+function getIframeId() {
     return new Promise(resolve => {
         self.addEventListener('message', function onMessage(evt) {
             let json;
             try {
                 json = JSON.parse(evt.data);
             } catch(_) { return; }
+
             const keys = Object.keys(json);
-            if( !(keys.length === 1 && keys[0] === 'id' )) return;
+            if( keys.length < 2 || !keys.includes('id') || !keys.includes('host') ) return;
 
             self.removeEventListener('message', onMessage);
-            resolve(iframeId = json.id);
+            ({ id: iframeId, host: parentOrigin } = json);
+            resolve(json);
         });
     });
 }
 
+function onClick(evt) {
+    let link = evt.target;
+    while( link && link.tagName !== 'A' ) link = link.parentNode;
+
+    if( link ) reportClick(link);
+}
+
+function reportClicks() {
+    document.addEventListener('click', onClick);
+}
+
 // Will send a concatenated string of all the data-link-name attributes
 // from the clicked node all the way up to the root of the document
-export function reportClick(node) {
+function reportClick(node) {
     let dataLinkName = [];
-    while( node ) {
+    while( node && node !== document.body ) {
         const dln = node.getAttribute('data-link-name');
         if( dln ) {
             dataLinkName.unshift(dln);
         }
         node = node.parentNode;
     }
-    sendMessage('click', dataLinkName.join(' | '));
+
+    if( dataLinkName.length ) {
+        sendMessage('click', dataLinkName.join(' | '));
+    }
 }
 
-export function getWebfonts(fontFamilies) {
+function getWebfonts(fontFamilies) {
     const families = [
         'GuardianTextEgyptianWeb',
         'GuardianEgyptianWeb',
@@ -60,7 +77,7 @@ export function getWebfonts(fontFamilies) {
             const style = document.createElement('style');
             style.textContent = sheet;
             return style;
-        }).forEach(style => frag.appendChild(style));
+        }).forEach(frag.appendChild, frag);
 
         return write(() => {
             document.head.appendChild(frag);
@@ -77,24 +94,33 @@ export function getWebfonts(fontFamilies) {
     });
 }
 
-export function resizeIframeHeight() {
-    return new Promise(resolve => {
-        if( document.readyState === 'complete' ) {
-            resolve();
-        } else {
-            window.addEventListener('load', resolve);
-        }
-    })
-    .then(() => read(() => window.innerHeight))
-    .then(function(height) {
-        return sendMessage('resize', { height });
-    });
+function resizeIframeHeight(height = -1) {
+    return height === -1 ?
+        Promise.all(areImagesLoaded().concat(isDocumentLoaded()))
+        .then(() => read(() => document.body.getBoundingClientRect().height))
+        .then(function(height) {
+            return sendMessage('resize', { height });
+        }) :
+        sendMessage('resize', { height });
 }
 
-export function sendMessage(type, value) {
+function isDocumentLoaded() {
+    return document.readyState === 'complete' ?
+        Promise.resolve() :
+        new Promise(resolve => window.addEventListener('load', resolve));
+}
+
+function areImagesLoaded() {
+    return Array.from(
+        document.getElementsByTagName('img'),
+        img => img.complete ? Promise.resolve() : new Promise(resolve => img.onload = resolve)
+    );
+}
+
+function sendMessage(type, value) {
     const id = generateId();
 
-    return new Promise((resolve, reject) => {
+    return timeout(new Promise((resolve, reject) => {
         self.addEventListener('message', function onMessage({ data }) {
             let msgId, error, result;
             try {
@@ -112,14 +138,15 @@ export function sendMessage(type, value) {
                 reject(error);
             }
         });
-
         post(id, iframeId, type, value);
-    });
+    }), 300);
 }
 
-export function onScroll(callback) {
+let onScroll = listen.bind(null, 'scroll');
+let onViewport = listen.bind(null, 'viewport');
+
+function listen(type, callback) {
     const id = generateId();
-    const type = 'scroll';
 
     self.addEventListener('message', function onMessage({ data }) {
         try {
@@ -129,7 +156,7 @@ export function onScroll(callback) {
                 return;
             }
 
-            if( !callback(result) === false ) {
+            if( callback(result) === false ) {
                 post(id, iframeId, type, false);
                 self.removeEventListener(onMessage);
             }
@@ -148,7 +175,15 @@ function generateId() {
 }
 
 function post(id, iframeId, type, value) {
-    // TODO Allow localhost:9000 when developing
-    // and m.code.dev-theguardian.com when testing
-    window.top.postMessage(JSON.stringify({ id, iframeId, type, value }), location.protocol + (devMode === 'true' ? '//localhost:9000' : '//www.theguardian.com'));
+    window.top.postMessage(JSON.stringify({ id, iframeId, type, value }), parentOrigin);
 }
+
+export {
+    sendMessage,
+    getIframeId,
+    getWebfonts,
+    resizeIframeHeight,
+    onScroll,
+    onViewport,
+    reportClicks
+};

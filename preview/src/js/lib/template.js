@@ -8,7 +8,7 @@ let filePaths;
 let builtHTML;
 
 function buildHTML() {
-	builtHTML += '<style> body { margin: 0 } ' + filePaths.CSS.contents + '</style>' + filePaths.HTML.contents;
+	builtHTML += '<meta name="viewport" content="width=device-width, initial-scale=1"><style> body { margin: 0 } ' + filePaths.CSS.contents + '</style>' + filePaths.HTML.contents;
 } 
 
 function getFileContents(filePath) {
@@ -27,7 +27,7 @@ function replacePlaceholder(placeholder) {
 	const templateJSON = JSON.parse(filePaths.JSON.contents);
 	const key = placeholder.slice(2, -2);
 
-	if (templateJSON[key]) {
+	if (templateJSON[key] !== undefined) {
 		while (builtHTML.indexOf(placeholder) !== -1) {
 			builtHTML = builtHTML.replace(placeholder, templateJSON[key]);
 		}

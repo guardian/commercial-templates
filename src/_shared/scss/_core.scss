@@ -10,6 +10,13 @@ $gs-column-width: 60px;
 $gs-row-height: 36px;
 $gs-max-columns: 16;
 
+// Search modal.
+$zindex-modal: 1030;
+
+// For brand badge.
+$left-column:      gs-span(2); // Grows to 3 columns on wide viewports
+$left-column-wide: gs-span(3);
+
 // sass-mq configuration
 $mq-responsive: true;
 $mq-breakpoints: (
@@ -25,11 +32,11 @@ $mq-breakpoints: (
 );
 
 @import '_mq';
+@import '_palette';
 @import '_defaults';
 @import '_grid-system';
-@import '_helpers';
-@import '_palette';
 @import '_ui';
+@import '_helpers';
 
 .wf-loading {
     opacity: 0;
@@ -38,6 +45,10 @@ $mq-breakpoints: (
 .wf-active,
 .wf-inactive {
     opacity: 1;
+}
+
+.u-root {
+    position: relative;
 }
 
 .u-button-reset {
@@ -51,6 +62,26 @@ $mq-breakpoints: (
 
     &:focus {
         outline: none;
+    }
+}
+
+.u-h {
+    border: 0 !important;
+    clip: rect(0 0 0 0) !important;
+    height: 1px !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    padding: 0 !important;
+    position: absolute !important;
+    width: 1px !important;
+}
+
+.u-fauxlink {
+    text-decoration: none;
+
+    &:hover,
+    &:focus {
+        text-decoration: underline;
     }
 }
 
@@ -95,7 +126,6 @@ $mq-breakpoints: (
 
 .creative {
     display: block;
-    position: relative;
 }
 
 .creative__pixel {
@@ -128,6 +158,10 @@ $mq-breakpoints: (
 
     > :first-child { margin-top: 0; }
     > :last-child { margin-bottom: 0; }
+
+    &[aria-expanded="false"] {
+        display: none;
+    }
 }
 
 .icon {
@@ -156,3 +190,43 @@ $mq-breakpoints: (
 }
 
 .justify--start { justify-content: flex-start; }
+
+@mixin circular {
+    border-radius: 1000px; // Android 2.3 cannot deal with '50%'
+}
+
+@mixin content-gutter {
+    padding-left: $gs-gutter/2;
+    padding-right: $gs-gutter/2;
+
+    @include mq(mobileLandscape) {
+        padding-left: $gs-gutter;
+        padding-right: $gs-gutter;
+    }
+
+}
+
+// Hide content visually, still readable by screen readers
+@mixin u-h {
+    border: 0 !important;
+    clip: rect(0 0 0 0) !important;
+    height: 1px !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    padding: 0 !important;
+    position: absolute !important;
+    width: 1px !important;
+}
+
+@mixin f-textSans {
+    font-family: $f-sans-serif-text;
+}
+
+// Functions
+
+@function convert-to-px($value) {
+    @if (type-of($value) == number and $value != 0) {
+        $value: if(unitless($value), $value * 1px, $value);
+    }
+    @return $value;
+}

@@ -1,8 +1,9 @@
-import { getIframeId, getWebfonts } from '../_shared/js/messages.js';
+import { getIframeId, getWebfonts, resizeIframeHeight, reportClicks } from '../_shared/js/messages.js';
 import { cleanupButtons } from '../_shared/js/creatives.js';
 
 cleanupButtons();
 
-getIframeId().then(() => {
-    getWebfonts();
-});
+reportClicks();
+getIframeId()
+.then(() => getWebfonts())
+.then(resizeIframeHeight);

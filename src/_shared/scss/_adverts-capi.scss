@@ -5,6 +5,10 @@
 }
 
 .adverts--paidfor {
+    .adverts__stamp .icon {
+      width: 100px;
+    }
+
     @include mq(mobileLandscape, desktop) {
         > .adverts__header {
             flex-wrap: wrap;
@@ -44,18 +48,13 @@
     }
 
     .button {
-        @include button-colour(
-            $paid-article-brand,
-            null
-        );
+        background-color: $paid-article-brand;
+        color: #fff;
 
         &:hover,
         &:focus,
         &:active {
-            @include button-colour(
-                darken($paid-article-brand, 5%),
-                null
-            );
+            background-color: darken($paid-article-brand, 5%);
         }
     }
 }
@@ -93,7 +92,7 @@
         color: $guardian-brand-dark;
     }
 
-    .adverts__badge__help {
+    .badge__help {
         color: $neutral-2-contrasted;
     }
 }
@@ -234,4 +233,34 @@
     > .advert__standfirst {
         display: none;
     }
+}
+
+.popup {
+    background: #333;
+    color: #fff;
+    font-size: 14px;
+    line-height: 16px;
+
+    a {
+        color: #69d1ca;
+        text-decoration: none;
+
+        &:hover,
+        &:focus {
+            text-decoration: underline;
+        }
+    }
+}
+
+.icon--glabs-logo {
+    width: 75px;
+}
+
+.icon--arrow-down {
+    width: 12px;
+}
+
+.icon--arrow-right {
+    width: 20px;
+    fill: currentColor;
 }

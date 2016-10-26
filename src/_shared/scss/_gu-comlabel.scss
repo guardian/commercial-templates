@@ -1,0 +1,52 @@
+.gu-comlabel {
+    color: $neutral-1;
+
+    .gu-comlabel__btn {
+        font-family: $f-sans-serif-text;
+        @include font-size(14, 10);
+
+        position: absolute;
+        top: $gs-baseline / 2;
+        right: $gs-baseline / 2;
+        width: 33px;
+        padding: 9px 7px 1px;
+        border-radius: 100%;
+        z-index: $zindex-modal;
+        background-color: #fedd79;
+        border: 0;
+        font-weight: bold;
+        text-transform: uppercase;
+
+        &.is-active:before {
+            top: 32px;
+            border-bottom-color: #fedd79;
+            margin-left: -6px;
+        }
+
+        &:after {
+            display: none;
+        }
+
+        @include mq(gs-span(5) + $gs-gutter, tablet) {
+            top: $gs-baseline * 1.5;
+            right: $gs-gutter;
+            padding: 11px 10px 5px;
+            width: 39px;
+
+            &.is-active::before {
+                top: 38px;
+            }
+        }
+    }
+}
+
+.gu-comlabel__icon {
+    display: block;
+
+    svg {
+        width: 13px;
+        height: 13px;
+        fill: $neutral-1;
+        vertical-align: middle;
+    }
+}

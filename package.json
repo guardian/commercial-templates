@@ -4,7 +4,6 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "rollup": "^0.34.1",
     "sass-mq": "^3.2.9"
   },
   "devDependencies": {
@@ -21,6 +20,7 @@
     "node-sass": "^3.8.0",
     "react": "^0.14.3",
     "react-dom": "^0.14.3",
+    "rimraf": "^2.5.4",
     "rollup": "^0.34.1",
     "rollup-plugin-babel": "^2.6.1",
     "rollup-plugin-commonjs": "^4.1.0",
@@ -28,12 +28,16 @@
     "rollup-plugin-node-resolve": "^2.0.0",
     "rollup-plugin-replace": "^1.1.1",
     "rollup-plugin-uglify": "^1.0.1",
-    "uglify-js": "^2.7.0"
+    "uglify-js": "^2.7.0",
+    "yargs": "^5.0.0"
   },
   "scripts": {
-    "build": "node build.js",
-    "serve-preview": "nodemon preview/server.js",
-    "build-preview": "node preview/build.js"
+    "clean": "node clean.js",
+    "build": "npm run clean && node build.js --minify",
+    "build-dev": "npm run clean && node build.js",
+    "build-preview": "npm run build-dev && node preview/build.js",
+    "preview": "npm run build-preview && npm run serve-preview",
+    "serve-preview": "nodemon preview/server.js"
   },
   "author": "",
   "license": "ISC"
