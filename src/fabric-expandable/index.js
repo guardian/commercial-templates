@@ -1,14 +1,14 @@
-import { getIframeId, resizeIframeHeight, sendMessage } from '../_shared/js/messages';
+import { getIframeId, sendMessage, resizeIframeHeight } from '../_shared/js/messages';
 import { enableToggles } from '../_shared/js/ui';
 import { write, div } from '../_shared/js/dom';
 
 getIframeId()
 .then(() => {
-    handleScroll();
+    handleBackground();
     handleToggle();
 });
 
-function handleScroll() {
+function handleBackground() {
     let isMobile = window.matchMedia('(max-width: 739px)').matches;
     let scrollType = '[%ScrollType%]';
     let backgroundColour = '[%BackgroundColour%]';
