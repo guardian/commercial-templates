@@ -9,56 +9,53 @@ if( layer2.classList.contains('creative__layer2--animation-disabled') ) {
 
 getIframeId()
 .then(() => {
-    let scrollType = '[%ScrollType%]';
-    let onScrolling = false;
-    let hasBackground = false;
+    let isMobile = window.matchMedia('(max-width: 739px)').matches;
+    let isTablet = window.matchMedia('(min-width: 740px) and (max-width: 979px)').matches;
 
-    onViewport(({ height, width }) => {
-        let isMobile = width < 740;
-        let isTablet = !isMobile && width < 980;
+    handleBackground(isMobile, isTablet);
 
-        handleBackground(isMobile, isTablet);
-        handleLayer2(isMobile, height);
-    });
-
-    function handleBackground(isMobile, isTablet) {
-        if( !hasBackground ) {
-            hasBackground = true;
-            let backgroundColour = '[%BackgroundColour%]';
-            let [ backgroundImage, backgroundPosition, backgroundRepeat, creativeLink ] = isMobile ?
-                ['[%MobileBackgroundImage%]', '[%MobileBackgroundImagePosition%]', '[%MobileBackgroundImageRepeat%]', document.getElementById('linkMobile')] :
-                ['[%BackgroundImage%]', '[%BackgroundImagePosition%]', '[%BackgroundImageRepeat%]', document.getElementById('linkDesktop')];
-
-            if( !backgroundImage ) return;
-
-            if( scrollType === 'none' ) {
-                write(() => {
-                    document.documentElement.style.backgroundColor = backgroundColour;
-                    Object.assign(creativeLink.style, {
-                        backgroundImage: `url('${backgroundImage}')`,
-                        backgroundPosition,
-                        backgroundRepeat
-                    })
-                });
-            } else if( scrollType === 'fixed' || (scrollType === 'parallax' && (isMobile || isTablet)) ) {
-                sendMessage('fixed-background', { backgroundColour, backgroundImage: `url('${backgroundImage}')`, backgroundRepeat });
-            } else {
-                sendMessage('parallax-background', { backgroundColour, backgroundImage: backgroundImage, backgroundRepeat, maxHeight: 500 });
-            }
-        }
-    }
-
-    function handleLayer2(isMobile, height) {
-        if( !isMobile ) {
-            if( !onScrolling && layer2.classList.contains('creative__layer2--animation-enabled') ) {
-                onScrolling = true;
-                onScroll(({ top, bottom }) => {
-                    if( 0 <= top && bottom <= height ) {
-                        layer2.classList.add('is-animating');
-                        return false;
-                    }
-                });
-            }
-        }
+    if( !isMobile && layer2.classList.contains('creative__layer2--animation-enabled') ) {
+        onViewport(({ height }) => {
+            handleLayer2(height);
+            return false;
+        });
     }
 });
+
+function handleBackground(isMobile, isTablet) {
+    let scrollType = '[%ScrollType%]';
+    let backgroundColour = '[%BackgroundColour%]';
+    let [ backgroundImage, backgroundPosition, backgroundRepeat, creativeLink ] = isMobile ?
+        ['[%MobileBackgroundImage%]', '[%MobileBackgroundImagePosition%]', '[%MobileBackgroundImageRepeat%]', document.getElementById('linkMobile')] :
+        ['[%BackgroundImage%]', '[%BackgroundImagePosition%]', '[%BackgroundImageRepeat%]', document.getElementById('linkDesktop')];
+
+    if( !backgroundImage ) return;
+
+    if( scrollType === 'none' ) {
+        write(() => {
+            document.documentElement.style.backgroundColor = backgroundColour;
+            Object.assign(creativeLink.style, {
+                backgroundImage: `url('${backgroundImage}')`,
+                backgroundPosition,
+                backgroundRepeat
+            })
+        });
+    } else {
+        sendMessage('background', {
+            scrollType: scrollType === 'parallax' && (isMobile || isTablet) ? 'fixed' : scrollType,
+            backgroundColour,
+            backgroundImage: `url('${backgroundImage}')`,
+            backgroundRepeat,
+            backgroundPosition
+        });
+    }
+}
+
+function handleLayer2(height) {
+    onScroll(({ top, bottom }) => {
+        if( 0 <= top && bottom <= height ) {
+            layer2.classList.add('is-animating');
+            return false;
+        }
+    });
+}
