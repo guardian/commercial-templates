@@ -1,4 +1,4 @@
-import { getIframeId, resizeIframeHeight, onViewport, onScroll, sendMessage } from '../_shared/js/messages.js';
+import { getIframeId, onViewport, onScroll, sendMessage } from '../_shared/js/messages.js';
 import { write } from '../_shared/js/dom.js';
 
 let layer2 = document.getElementById('layer2');
@@ -8,7 +8,6 @@ if( layer2.classList.contains('creative__layer2--animation-disabled') ) {
 }
 
 getIframeId()
-.then(resizeIframeHeight)
 .then(() => {
     let scrollType = '[%ScrollType%]';
     let onScrolling = false;
