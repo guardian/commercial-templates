@@ -1,4 +1,4 @@
-import { getIframeId, onScroll, onViewport } from '../_shared/js/messages';
+import { getIframeId, resizeIframeHeight, onScroll, onViewport } from '../_shared/js/messages';
 import { write } from '../_shared/js/dom';
 
 getIframeId()
@@ -80,4 +80,5 @@ getIframeId()
         layer2.classList.remove('is-animating');
     }
 
-});
+})
+.then(() => resizeIframeHeight());

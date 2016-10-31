@@ -35,3 +35,25 @@
         padding: 0 calc(50% - #{(gs-span($gs-max-columns) + $gs-gutter * 2) / 2});
     }
 }
+
+.gs-mcontainer {
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+
+    @include mq(tablet) {
+        max-width: gs-span(9);
+    }
+
+    @include mq(desktop) {
+        max-width: gs-span(12);
+    }
+
+    @include mq(leftCol) {
+        max-width: gs-span(14);
+    }
+
+    @include mq(wide) {
+        max-width: gs-span($gs-max-columns);
+    }
+}
