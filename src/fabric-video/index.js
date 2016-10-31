@@ -3,6 +3,8 @@ import { write } from '../_shared/js/dom';
 
 getIframeId()
 .then(() => {
+    if( '[%ShowLabel%]' === 'yep' ) resizeIframeHeight();
+
     let isUpdating = false;
 
     // We want to know when the slot is in view so we can control the video
@@ -80,5 +82,4 @@ getIframeId()
         layer2.classList.remove('is-animating');
     }
 
-})
-.then(() => resizeIframeHeight());
+});

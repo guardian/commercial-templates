@@ -10,6 +10,7 @@ if('[%VideoOptions%]' === 'right-aligned') {
 
 getIframeId()
 .then(() => {
+    if( '[%ShowLabel%]' === 'yep' ) resizeIframeHeight();
     handleToggle();
     handleCTAs();
 });
