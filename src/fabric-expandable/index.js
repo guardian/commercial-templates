@@ -1,15 +1,16 @@
-import { getIframeId, resizeIframeHeight, sendMessage } from '../_shared/js/messages';
+import { getIframeId, sendMessage, resizeIframeHeight } from '../_shared/js/messages';
 import { enableToggles } from '../_shared/js/ui';
 import { write, div } from '../_shared/js/dom';
 
 getIframeId()
 .then(() => {
-    handleScroll();
+    handleBackground();
     handleToggle();
 });
 
-function handleScroll() {
+function handleBackground() {
     let isMobile = window.matchMedia('(max-width: 739px)').matches;
+    let isTablet = window.matchMedia('(min-width: 740px) and (max-width: 979px)').matches;
     let scrollType = '[%ScrollType%]';
     let backgroundColour = '[%BackgroundColour%]';
     let [ backgroundImage, backgroundPosition, backgroundRepeat, creativeLink ] = isMobile ?
@@ -27,10 +28,14 @@ function handleScroll() {
                 backgroundRepeat
             });
         });
-    } else if( scrollType === 'fixed' ) {
-        sendMessage('fixed-background', { backgroundColour, backgroundImage: `url('${backgroundImage}')`, backgroundRepeat });
     } else {
-        sendMessage('parallax-background', { backgroundColour, backgroundImage: backgroundImage, backgroundRepeat, maxHeight: 500 });
+        sendMessage('background', {
+            scrollType: scrollType === 'parallax' && (isMobile || isTablet) ? 'fixed' : scrollType,
+            backgroundColour,
+            backgroundImage: `url('${backgroundImage}')`,
+            backgroundRepeat,
+            backgroundPosition
+        });
     }
 }
 
