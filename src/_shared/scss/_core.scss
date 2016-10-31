@@ -127,6 +127,21 @@ $mq-breakpoints: (
     display: block;
 }
 
+.creative__label {
+    color: #6e6e6e;
+    font: normal .75rem/1.5em $f-sans-serif-text;
+    height: 1.5em;
+    padding: 0 $gs-gutter / 2;
+
+    @include mq(tablet) {
+        padding: 0 $gs-gutter;
+    }
+}
+
+.creative__label--nope {
+    display: none;
+}
+
 .creative__pixel {
     position: absolute;
     bottom: 0;

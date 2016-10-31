@@ -4,6 +4,7 @@ import { write, div } from '../_shared/js/dom';
 
 getIframeId()
 .then(() => {
+    if( '[%ShowLabel%]' === 'yep' ) resizeIframeHeight();
     handleBackground();
     handleToggle();
 });
