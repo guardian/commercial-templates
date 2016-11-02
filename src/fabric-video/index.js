@@ -1,8 +1,12 @@
-import { getIframeId, onScroll, onViewport } from '../_shared/js/messages';
+import { getIframeId, onScroll, onViewport, resizeIframeHeight } from '../_shared/js/messages';
 import { write } from '../_shared/js/dom';
+
+let showLabel = '[%ShowLabel%]';
 
 getIframeId()
 .then(() => {
+    if( showLabel === 'yep' ) resizeIframeHeight();
+
     let isUpdating = false;
 
     // We want to know when the slot is in view so we can control the video

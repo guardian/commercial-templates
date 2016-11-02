@@ -31,6 +31,8 @@ $mq-breakpoints: (
     mobileLandscape: 480px
 );
 
+$creative-max-width: 1920px;
+
 @import '_mq';
 @import '_palette';
 @import '_defaults';
@@ -125,6 +127,25 @@ $mq-breakpoints: (
 
 .creative {
     display: block;
+}
+
+.creative__label {
+    background-color: $neutral-8;
+    color: #6e6e6e;
+    font: normal .75rem/1.25 $f-sans-serif-text;
+    height: 1.25em;
+}
+
+.creative__label--nope {
+    display: none;
+}
+
+.creative__label-text {
+    padding: 0 $gs-gutter / 2;
+
+    @include mq(tablet) {
+        padding: 0 $gs-gutter;
+    }
 }
 
 .creative__pixel {

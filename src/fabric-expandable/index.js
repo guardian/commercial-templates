@@ -2,8 +2,12 @@ import { getIframeId, sendMessage, resizeIframeHeight } from '../_shared/js/mess
 import { enableToggles } from '../_shared/js/ui';
 import { write, div } from '../_shared/js/dom';
 
+let showLabel = '[%ShowLabel%]';
+
 getIframeId()
 .then(() => {
+    if( showLabel === 'yep' ) resizeIframeHeight();
+
     handleBackground();
     handleToggle();
 });

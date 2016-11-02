@@ -2,6 +2,7 @@
 
 .creative--fabric-video {
     margin: auto;
+    max-width: $creative-max-width;
 
     .creative__link {
         height: 250px;
