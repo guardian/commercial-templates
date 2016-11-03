@@ -96,7 +96,7 @@ function getWebfonts(fontFamilies) {
 
 function resizeIframeHeight(height = -1) {
     return height === -1 ?
-        Promise.all(areImagesLoaded().concat(isDocumentLoaded()))
+        timeout(Promise.all(areImagesLoaded().concat(isDocumentLoaded())), 3000)
         .then(() => read(() => document.body.getBoundingClientRect().height))
         .then(function(height) {
             return sendMessage('resize', { height });
