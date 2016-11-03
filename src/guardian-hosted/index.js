@@ -1,11 +1,13 @@
-import { getIframeId, getWebfonts, resizeIframeHeight, reportClicks } from '../_shared/js/messages';
+import { getIframeId, getWebfonts, resizeIframeHeight, onViewport, reportClicks } from '../_shared/js/messages';
 
 reportClicks();
 getIframeId()
     .then(() => addColourContrastClass())
     .then(() => getWebfonts())
-    .then(resizeIframeHeight);
-
+    .then(resizeIframeHeight)
+    .then(function(){
+        onViewport(() => resizeIframeHeight());
+    });
 
 function addColourContrastClass () {
     var div = document.getElementsByClassName('creative--hosted')[0];
