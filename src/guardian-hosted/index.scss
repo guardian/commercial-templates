@@ -53,6 +53,7 @@ $phablet: 660px;
     position: relative;
     margin-left: calc(100% - 100px);
     margin-top: 18px;
+    background-color: #ffffff;
 
     @include mq(leftCol) {
         position: absolute;
