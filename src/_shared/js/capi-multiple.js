@@ -2,7 +2,7 @@ import { getIframeId, getWebfonts, resizeIframeHeight, reportClicks } from
     './messages.js';
 import { write } from './dom.js';
 import { enableToggles } from './ui.js';
-import { insertImage } from './capi-images.js';
+import { generatePicture } from './capi-images.js';
 import { setEditionLink } from './ads';
 import { URLSearchParams } from './utils';
 
@@ -104,8 +104,14 @@ function buildCard (cardInfo, cardNum, isPaid) {
 
     buildTitle(card, cardInfo, cardNum);
     card.href = cardInfo.articleUrl;
-    insertImage(imgContainer, cardInfo.articleImage, ['advert__image'],
-        OVERRIDES.images[cardNum]);
+
+    let image = generatePicture({
+        url: OVERRIDES.images[cardNum] || cardInfo.articleImage.backupSrc,
+        classes: ['advert__image'],
+        sources: cardInfo.articleImage.sources
+    });
+
+    imgContainer.insertAdjacentHTML('afterbegin', image);
 
     // Only first two cards show on mobile portrait.
     if (cardNum >= 2) {

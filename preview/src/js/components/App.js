@@ -61,14 +61,14 @@ module.exports = React.createClass({
     render: function() {
     	return (
             <div>
-                <SelectTemplate 
-                	templates={this.state.templates} 
+                <SelectTemplate
+                	templates={this.state.templates}
                 	onSelectFormChange={this.onSelectFormChange}
                 />
                 <Refresh
                 	onRefresh={this.onRefresh}
                 />
-                <Preview 
+                <Preview
                 	selectedTemplate={this.state.selectedTemplate}
                 />
             </div>
