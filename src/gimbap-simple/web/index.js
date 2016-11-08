@@ -1,5 +1,5 @@
 // Webfonts
-import { getIframeId, getWebfonts, resizeIframeHeight, reportClicks } from '../_shared/js/messages.js';
+import { getIframeId, getWebfonts, resizeIframeHeight, reportClicks } from '../../_shared/js/messages.js';
 
 getIframeId()
     .then(() => Promise.all([getWebfonts(), reportClicks(), formatGimbap()]))

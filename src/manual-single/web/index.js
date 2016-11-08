@@ -1,4 +1,4 @@
-import { getIframeId, getWebfonts, resizeIframeHeight, reportClicks } from '../_shared/js/messages.js';
+import { getIframeId, getWebfonts, resizeIframeHeight, reportClicks } from '../../_shared/js/messages.js';
 
 reportClicks();
 getIframeId()

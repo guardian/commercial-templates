@@ -1,5 +1,5 @@
-import { getIframeId, onViewport, onScroll, sendMessage, resizeIframeHeight } from '../_shared/js/messages.js';
-import { write } from '../_shared/js/dom.js';
+import { getIframeId, onViewport, onScroll, sendMessage, resizeIframeHeight } from '../../_shared/js/messages.js';
+import { write } from '../../_shared/js/dom.js';
 
 let showLabel = '[%ShowLabel%]';
 let layer2 = document.getElementById('layer2');

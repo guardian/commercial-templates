@@ -1,5 +1,5 @@
-import { getIframeId, onScroll, onViewport, resizeIframeHeight } from '../_shared/js/messages';
-import { write } from '../_shared/js/dom';
+import { getIframeId, onScroll, onViewport, resizeIframeHeight } from '../../_shared/js/messages';
+import { write } from '../../_shared/js/dom';
 
 let showLabel = '[%ShowLabel%]';
 

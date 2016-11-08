@@ -1,5 +1,5 @@
-import { getIframeId, getWebfonts, reportClicks, resizeIframeHeight } from '../_shared/js/messages';
-import { cleanupButtons } from '../_shared/js/creatives';
+import { getIframeId, getWebfonts, reportClicks, resizeIframeHeight } from '../../_shared/js/messages';
+import { cleanupButtons } from '../../_shared/js/creatives';
 
 cleanupButtons();
 reportClicks();

@@ -1,9 +1,9 @@
-import { enableToggles } from '../_shared/js/ui';
-import { write } from '../_shared/js/dom';
-import { getIframeId, getWebfonts, resizeIframeHeight, reportClicks } from '../_shared/js/messages';
-import { insertImage, checkIcon } from '../_shared/js/capi-images.js';
-import { setEditionLink } from '../_shared/js/ads';
-import { URLSearchParams } from '../_shared/js/utils';
+import { enableToggles } from '../../_shared/js/ui';
+import { write } from '../../_shared/js/dom';
+import { getIframeId, getWebfonts, resizeIframeHeight, reportClicks } from '../../_shared/js/messages';
+import { insertImage, checkIcon } from '../../_shared/js/capi-images.js';
+import { setEditionLink } from '../../_shared/js/ads';
+import { URLSearchParams } from '../../_shared/js/utils';
 
 let container = document.getElementsByClassName('adverts__body')[0];
 let params = new URLSearchParams();

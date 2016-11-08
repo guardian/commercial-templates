@@ -1,7 +1,7 @@
-import { write } from '../_shared/js/dom';
-import { getIframeId, getWebfonts, resizeIframeHeight, reportClicks } from '../_shared/js/messages';
-import { insertImage, checkIcon } from '../_shared/js/capi-images';
-import { URLSearchParams } from '../_shared/js/utils';
+import { write } from '../../_shared/js/dom';
+import { getIframeId, getWebfonts, resizeIframeHeight, reportClicks } from '../../_shared/js/messages';
+import { insertImage, checkIcon } from '../../_shared/js/capi-images';
+import { URLSearchParams } from '../../_shared/js/utils';
 
 let container = document.getElementsByClassName('adverts__body')[0];
 let header = document.getElementsByClassName('badge__link')[0];

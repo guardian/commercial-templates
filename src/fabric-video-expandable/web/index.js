@@ -1,6 +1,6 @@
-import { getIframeId, resizeIframeHeight } from '../_shared/js/messages';
-import { enableToggles } from '../_shared/js/ui';
-import { write } from '../_shared/js/dom';
+import { getIframeId, resizeIframeHeight } from '../../_shared/js/messages';
+import { enableToggles } from '../../_shared/js/ui';
+import { write } from '../../_shared/js/dom';
 
 let showLabel = '[%ShowLabel%]';
 let video = document.getElementById('YTPlayer');
