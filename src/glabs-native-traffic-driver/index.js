@@ -23,10 +23,11 @@ function retrieveCapiData() {
 }
 
 // Uses cAPI data to build the ad content.
-function buildFromCapi ({ articleHeadline, articleUrl, articleImage, edition }) {
-    document.getElementById('Ctu').href = articleUrl;
+function buildFromCapi ({ articleHeadline, articleText, articleUrl, articleImage, edition }) {
+    Array.from(document.getElementsByClassName('creative__ctu')).forEach(ctu => ctu.href = articleUrl);
 
     let title = document.getElementById('Title');
+    let text = document.getElementById('Text');
 
     let imageContainer = document.getElementById('ImageContainer');
     let image = generatePicture({
@@ -36,10 +37,11 @@ function buildFromCapi ({ articleHeadline, articleUrl, articleImage, edition }) 
         alt: OVERRIDES.imageAlt
     });
 
-    // setEditionLink(edition, document.getElementById('GlabsLink'));
+    setEditionLink(edition, document.getElementById('GlabsLink'));
 
     return write(() => {
         title.textContent = OVERRIDES.headline || articleHeadline;
+        text.innerHTML = OVERRIDES.text || articleText;
         imageContainer.insertAdjacentHTML('afterbegin', image);
     });
 }
