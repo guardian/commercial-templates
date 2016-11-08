@@ -2,7 +2,7 @@ import { getIframeId, getWebfonts, resizeIframeHeight, reportClicks } from '../_
 import { enableToggles } from '../_shared/js/ui';
 import { addTrackingPixel, setEditionLink } from '../_shared/js/ads';
 import { write } from '../_shared/js/dom';
-import { insertImage } from '../_shared/js/capi-images';
+import { generatePicture } from '../_shared/js/capi-images';
 import { URLSearchParams } from '../_shared/js/utils';
 
 const ENDPOINT = 'https://api.nextgen.guardianapps.co.uk/commercial/api/traffic-driver.json';
@@ -10,68 +10,51 @@ const ENDPOINT = 'https://api.nextgen.guardianapps.co.uk/commercial/api/traffic-
 const OVERRIDES = {
     headline: '[%ArticleHeaderText%]',
     text: '[%ArticleText%]',
-    image: '[%ArticleImage%]',
+    imageUrl: '[%ArticleImage%]',
     imageAlt: '[%ArticleImageAlternateText%]'
 };
 
 // Loads the article data from CAPI in JSON format.
-function retrieveCapiData ({host, preview}) {
-
+function retrieveCapiData() {
     let params = new URLSearchParams();
     params.append('t', '[%ArticleShortURL%]')
-
     let url = `${ENDPOINT}?${params}`;
-
     return fetch(url).then(response => response.json());
-
-}
-
-// Inserts text from capi into container element, with optional DFP override.
-function insertText (capiText, containerClass, override) {
-
-    let container = document.querySelector(`.${containerClass}`);
-    let text = override || capiText;
-
-    container.textContent = text;
-
 }
 
 // Uses cAPI data to build the ad content.
-function buildFromCapi (data) {
+function buildFromCapi ({ articleHeadline, articleUrl, articleImage, edition }) {
+    document.getElementById('Ctu').href = articleUrl;
 
-    return () => {
+    let title = document.getElementById('Title');
 
-        let clickThroughs = document.getElementsByClassName('creative__ctu');
-        let editionLink = document.querySelector('.creative__glabs-link');
-        let capiText = data.articleText.replace('<p>', '').replace('</p>', '');
+    let imageContainer = document.getElementById('ImageContainer');
+    let image = generatePicture({
+        url: OVERRIDES.imageUrl || articleImage.backupSrc,
+        classes: ['creative__image'],
+        sources: articleImage.sources,
+        alt: OVERRIDES.imageAlt
+    });
 
-        insertText(data.articleHeadline, 'creative__title', OVERRIDES.headline);
-        insertText(capiText, 'creative__standfirst', OVERRIDES.text);
-        setEditionLink(data.edition, editionLink);
+    // setEditionLink(edition, document.getElementById('GlabsLink'));
 
-        for (var i = clickThroughs.length - 1; i >= 0; i--) {
-            clickThroughs[i].href = data.articleUrl;
-        }
-
-        let image = insertImage(clickThroughs[0], data.articleImage,
-            ['creative__image'], OVERRIDES.image);
-        image.alt = OVERRIDES.imageAlt;
-
-    };
-
+    return write(() => {
+        title.textContent = OVERRIDES.headline || articleHeadline;
+        imageContainer.insertAdjacentHTML('afterbegin', image);
+    });
 }
 
 reportClicks();
+enableToggles();
 getIframeId()
-.then(retrieveCapiData)
-.then(buildFromCapi)
-.then(write)
 .then(() => {
-    enableToggles();
-    addTrackingPixel(document.getElementById('creative'));
+    return Promise.all([
+        getWebfonts(),
+        retrieveCapiData()
+        .then(buildFromCapi)
+        .then(() => {
+            addTrackingPixel(document.getElementById('creative'));
+        })
+    ])
 })
-.then(getWebfonts)
-.then(resizeIframeHeight)
-.catch(err => {
-    console.log(err);
-});
+.then(() => resizeIframeHeight());

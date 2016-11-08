@@ -4,9 +4,9 @@ const trackingPixel = '[%Trackingpixel%]';
 
 // Glabs edition links.
 const GLABS_EDITION = {
-	DEFAULT: '/guardian-labs',
-	AU: '/guardian-labs-australia',
-	US: '/guardian-labs-us'
+    DEFAULT: '/guardian-labs',
+    AU: '/guardian-labs-australia',
+    US: '/guardian-labs-us'
 };
 
 let pixelTemplate;
@@ -26,5 +26,5 @@ export function addTrackingPixel(rootNode) {
 
 // Sets the 'href' of the glabs edition link to the correct URL.
 export function setEditionLink (edition, linkElement) {
-	linkElement.href = GLABS_EDITION[edition] || GLABS_EDITION.DEFAULT;
+    linkElement.href = GLABS_EDITION[edition] || GLABS_EDITION.DEFAULT;
 }
