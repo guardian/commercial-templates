@@ -1,7 +1,7 @@
 import { enableToggles } from '../../_shared/js/ui';
 import { write } from '../../_shared/js/dom';
 import { getIframeId, getWebfonts, resizeIframeHeight, reportClicks } from '../../_shared/js/messages';
-import { insertImage, checkIcon } from '../../_shared/js/capi-images.js';
+import { generatePicture, checkIcon } from '../../_shared/js/capi-images.js';
 import { setEditionLink } from '../../_shared/js/ads';
 import { URLSearchParams } from '../../_shared/js/utils';
 
@@ -27,8 +27,8 @@ enableToggles();
 getIframeId()
 .then(() => fetch(`https://api.nextgen.guardianapps.co.uk/commercial/api/capi-single.json?${params}`))
 .then(response => response.json())
-.then(capiData => [capiData.articleImage, populateCard(capiData)])
-.then(([imageInfo, html]) => Promise.all([getWebfonts(), write(() => container.innerHTML = html)]).then(() => addImage(imageInfo)))
+.then(populateCard)
+.then(html => Promise.all([getWebfonts(), write(() => container.innerHTML = html)]))
 .then(() => resizeIframeHeight());
 
 function getValue(value, fallback) { return value || fallback; }
@@ -41,19 +41,6 @@ function glabsLink(responseJson) {
   responseJson.edition === "US" ?
       logo.href = GLABS_EDITION.us:
       logo.href = GLABS_EDITION.default;
-}
-
-// Adds the ad image to the page.
-function addImage (imageInfo) {
-
-  return write(() => {
-
-    let imageContainer = document.querySelector('.advert__image-container');
-    insertImage(imageContainer, imageInfo, ['advert__image'],
-      '[%ArticleImage%]');
-
-  });
-
 }
 
 function populateCard(responseJson) {
@@ -72,7 +59,11 @@ function populateCard(responseJson) {
             ${getValue('[%ArticleText%]', responseJson.articleText)}
         </div>
       </div>
-      <div class="advert__image-container"></div>
+      <div class="advert__image-container">${generatePicture({
+          url: '[%ArticleImage%]' || responseJson.articleImage.backupSrc,
+          classes: ['advert__image'],
+          sources: responseJson.articleImage.sources
+      })}</div>
     </a>
     <a class="hide-until-mobile-landscape button button--large button--legacy-single" href="%%CLICK_URL_UNESC%%https://theguardian.com/[%SeriesUrl%]"  data-link-name="more">
       See more
