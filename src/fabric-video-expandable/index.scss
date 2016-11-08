@@ -128,6 +128,7 @@
     .creative__cta--position-bottom { bottom: 10px; }
 
     .creative__slide-video {
+        box-sizing: border-box;
         position: absolute;
         top: 0;
         width: 100%;
@@ -138,6 +139,12 @@
         &[aria-expanded="true"] {
             visibility: visible;
         }
+    }
+}
+
+.creative--fabric-video-full-width {
+    .creative__video-container__inner {
+        width: 100%;
     }
 }
 
