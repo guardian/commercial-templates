@@ -1,6 +1,12 @@
 @import '_core';
 
 .creative--fabric-expandable {
+    .creative__container {
+        @include mq(wide) {
+            padding: 0 calc(50% - 650px);
+        }
+    }
+
     .creative__slide {
         height: 250px;
     }
@@ -100,6 +106,7 @@
     .creative__slide-container {
         display: flex;
         justify-content: flex-end;
+        position: relative;
     }
 
     .creative__cta {
@@ -148,45 +155,43 @@
     }
 }
 
-@include mq(desktop) {
-    .creative--fabric-video-right-aligned {
-        .creative__slide-video {
-            box-sizing: border-box;
-        }
+.creative--fabric-video-right-aligned {
+    .creative__slide-video {
+        box-sizing: border-box;
+    }
 
-        .creative__video-container__inner {
+    .creative__video-container__inner {
+        flex: 1;
+
+        @include mq(1024px) {
+            flex: initial;
+            width: 768px;
+        }
+    }
+
+    .creative__video-cta {
+        display: none;
+
+        @include mq(1024px) {
+            display: block;
             flex: 1;
+        };
+    }
 
-            @include mq(1024px) {
-                flex: initial;
-                width: 768px;
-            }
-        }
-
+    .has-no-flex & {
         .creative__video-cta {
-            display: none;
-
             @include mq(1024px) {
                 display: block;
-                flex: 1;
-            };
-        }
+                position: absolute;
+                width: calc(100% - 768px);
+                top: 0;
+                bottom: 0;
+                left: 0;
+            }
 
-        .has-no-flex & {
-            .creative__video-cta {
-                @include mq(1024px) {
-                    display: block;
-                    position: absolute;
-                    width: calc(100% - 768px);
-                    top: 0;
-                    bottom: 0;
-                    left: 0;
-                }
-
-                @include mq(wide) {
-                    /* 1300 - 768 = 532 */
-                    width: 532px;
-                }
+            @include mq(wide) {
+                /* 1300 - 768 = 532 */
+                width: 532px;
             }
         }
     }
