@@ -1,32 +1,30 @@
-import { getIframeId, resizeIframeHeight } from '../../_shared/js/messages';
+import { getIframeId, getWebfonts, resizeIframeHeight } from '../../_shared/js/messages';
 import { enableToggles } from '../../_shared/js/ui';
 import { write } from '../../_shared/js/dom';
 
 let showLabel = '[%ShowLabel%]';
+let labelHeight = 22;
 let video = document.getElementById('YTPlayer');
+let videoContainer = document.getElementById('video');
+let videoOptions = '[%VideoOptions%]';
+let isWide = window.matchMedia('(min-width: 1300px)').matches;
 
-if('[%VideoOptions%]' === 'right-aligned') {
-    write(() => video.classList.add('gs-container'));
+if(isWide && videoOptions === 'right-aligned') {
+    write(() => videoContainer.classList.add('gs-container'));
 }
 
 getIframeId()
 .then(() => {
-    if( showLabel === 'yep' ) resizeIframeHeight();
-
+    getWebfonts(['GuardianTextSansWeb']);
     handleToggle();
-    handleCTAs();
 });
 
 function handleToggle() {
     enableToggles(document, true, onToggle);
 }
 
-function handleCTAs() {
-    Array.from(document.getElementsByClassName('creative__cta')).forEach(cta => write(() => cta.classList.add(plusIconAlignment)));
-}
-
 function onToggle(isOpen, toggle, target) {
-    resizeIframeHeight(isOpen ? 500 : 250);
+    resizeIframeHeight((isOpen ? 500 : 250) + (showLabel === 'yep' ? labelHeight : 0));
     setTimeout((() => {
         if (video.src.indexOf('autoplay') === -1) {
             video.src += '&amp;autoplay=1';
