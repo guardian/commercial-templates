@@ -9,7 +9,7 @@ let builtHTML;
 
 function buildHTML() {
 	builtHTML += '<meta name="viewport" content="width=device-width, initial-scale=1"><style> body { margin: 0 } ' + filePaths.CSS.contents + '</style>' + filePaths.HTML.contents;
-} 
+}
 
 function getFileContents(filePath) {
 	return fs.readFileAsync(filePaths[filePath].path, 'utf8').then(contents => {
@@ -43,7 +43,7 @@ function getHTML(id) {
 			path: buildPath + id + '/index.css'
 		},
 		JSON: {
-			path: srcPath + id + '/test.json'
+			path: srcPath + id + '/../test.json'
 		}
 	};
 

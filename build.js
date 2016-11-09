@@ -9,6 +9,7 @@ let features = [
     'Element.prototype.closest',
     'Element.prototype.matches',
     'fetch',
+    'matchMedia',
     'Object.assign',
     'Promise',
     'requestAnimationFrame'

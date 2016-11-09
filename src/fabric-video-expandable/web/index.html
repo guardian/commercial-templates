@@ -1,0 +1,90 @@
+<div class="gs-container creative__label creative__label--[%ShowLabel%]">
+    <div class="creative__label-text">
+        Advertisement
+    </div>
+</div>
+<div style="background: [%BackgroundColour%]" id="creative" class="creative creative--fabric-expandable creative--fabric-video-[%VideoOptions%]">
+    <div class="creative__container hide-until-tablet show-more--[%ShowMoreType%]" style="background: url('[%BackgroundImage%]') [%BackgroundRepeat%] [%BackgroundPosition%]">
+        <button class="toggle toggle--arrow js-toggle" aria-controls="video" aria-expanded="false">{{#svg}}arrow-down{{/svg}}</button>
+        <button class="toggle toggle--cross toggle--cross-[%PlusIconAlignment%] js-toggle" aria-controls="video" aria-expanded="false">{{#svg}}cross{{/svg}}</button>
+        <div class="blink creative__link js-toggle" aria-controls="video" aria-expanded="false">
+            <div class="creative__slide creative__slide1 u-root"
+                style="background: [%Slide1BackgroundColour%] url('[%Slide1BackgroundImage%]') [%Slide1BackgroundRepeat%] [%Slide1BackgroundPosition%]">
+                <div class="creative__layer creative__layer1"
+                    style="background-image: url('[%Slide1Layer1BackgroundImage%]');
+                        background-repeat: [%Slide1Layer1BackgroundRepeat%];
+                        background-position: [%Slide1Layer1BackgroundPosition%]"></div>
+                <div class="creative__layer creative__layer2"
+                    style="background-image: url('[%Slide1Layer2BackgroundImage%]');
+                        background-repeat: [%Slide1Layer2BackgroundRepeat%];
+                        background-position: [%Slide1Layer2BackgroundPosition%];"></div>
+                <div class="creative__layer creative__layer3"
+                    style="background-image: url('[%Slide1Layer3BackgroundImage%]');
+                        background-repeat: [%Slide1Layer3BackgroundRepeat%];
+                        background-position: [%Slide1Layer3BackgroundPosition%];"></div>
+            </div>
+            <div class="creative__slide creative__slide2 u-root"
+                style="background: [%Slide2BackgroundColour%] url('[%Slide2BackgroundImage%]') [%Slide2BackgroundPosition%] [%Slide2BackgroundRepeat%];">
+                <div class="creative__layer creative__layer1"
+                    style="background-image: url('[%Slide2Layer1BackgroundImage%]');
+                        background-repeat: [%Slide2Layer1BackgroundRepeat%];
+                        background-position: [%Slide2Layer1BackgroundPosition%];"></div>
+                <div class="creative__layer creative__layer2"
+                    style="background-image: url('[%Slide2Layer2BackgroundImage%]');
+                        background-repeat: [%Slide2Layer2BackgroundRepeat%];
+                        background-position: [%Slide2Layer2BackgroundPosition%];"></div>
+                <div class="creative__layer creative__layer3"
+                    style="background-image: url('[%Slide2Layer3BackgroundImage%]');
+                        background-repeat: [%Slide2Layer3BackgroundRepeat%];
+                        background-position: [%Slide2Layer3BackgroundPosition%];"></div>
+            </div>
+        </div>
+    </div>
+    <div class="creative__container mobile-only show-more--[%ShowMoreType%]" style="background: url('[%MobileBackgroundImage%]') [%MobileBackgroundRepeat%] [%MobileBackgroundPosition%]">
+        <button class="toggle toggle--arrow js-toggle" aria-controls="video" aria-expanded="false">{{#svg}}arrow-down{{/svg}}</button>
+        <button class="toggle toggle--cross js-toggle" aria-controls="video" aria-expanded="false">{{#svg}}cross{{/svg}}</button>
+        <div class="blink creative__link js-toggle" aria-controls="video" aria-expanded="false">
+            <div class="creative__slide creative__slide1 u-root"
+                style="background: [%Slide1BackgroundColour%] url('[%Slide1MobileBackgroundImage%]') [%Slide1MobileBackgroundRepeat%] [%Slide1MobileBackgroundPosition%];">
+                <div class="creative__layer creative__layer1"
+                    style="background-image: url('[%Slide1Layer1MobileBackgroundImage%]');
+                        background-repeat: [%Slide1Layer1MobileBackgroundRepeat%];
+                        background-position: [%Slide1Layer1MobileBackgroundPosition%];"></div>
+                <div class="creative__layer creative__layer2"
+                    style="background-image: url('[%Slide1Layer2MobileBackgroundImage%]');
+                        background-repeat: [%Slide1Layer2MobileBackgroundRepeat%];
+                        background-position: [%Slide1Layer2MobileBackgroundPosition%];"></div>
+                <div class="creative__layer creative__layer3"
+                    style="background-image: url('[%Slide1Layer3MobileBackgroundImage%]');
+                        background-repeat: [%Slide1Layer3MobileBackgroundRepeat%];
+                        background-position: [%Slide1Layer3MobileBackgroundPosition%];"></div>
+            </div>
+            <div class="creative__slide creative__slide2 u-root"
+                style="background: [%Slide2BackgroundColour%] url('[%Slide2MobileBackgroundImage%]') [%Slide2MobileBackgroundPosition%] [%Slide2MobileBackgroundRepeat%];">
+                <div class="creative__layer creative__layer1"
+                    style="background-image: url('[%Slide2Layer1MobileBackgroundImage%]');
+                        background-repeat: [%Slide2Layer1MobileBackgroundRepeat%];
+                        background-position: [%Slide2Layer1MobileBackgroundPosition%];"></div>
+                <div class="creative__layer creative__layer2"
+                    style="background-image: url('[%Slide2Layer2MobileBackgroundImage%]');
+                        background-repeat: [%Slide2Layer2MobileBackgroundRepeat%];
+                        background-position: [%Slide2Layer2MobileBackgroundPosition%];"></div>
+                <div class="creative__layer creative__layer3"
+                    style="background-image: url('[%Slide2Layer3MobileBackgroundImage%]');
+                        background-repeat: [%Slide2Layer3MobileBackgroundRepeat%];
+                        background-position: [%Slide2Layer3MobileBackgroundPosition%];"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="video" class="creative__slide-video">
+        <div class="creative__slide-container">
+            <a href="%%CLICK_URL_UNESC%%%%DEST_URL%%" class="creative__video-cta js-toggle" aria-controls="video" aria-expanded="false"></a>
+            <div class="creative__video-container__inner">
+                <iframe id="YTPlayer" width="100%" height="500" src="[%YoutubeVimeoIframeEmbedURL%]?showinfo=0&amp;rel=0&amp;controls=0&amp;fs=0&amp;title=0&amp;byline=0&amp;portrait=0" frameborder="0"></iframe>
+            </div>
+            <a class="creative__cta creative__cta--position-[%MobileCTAPosition%] mobile-only js-toggle" href="%%CLICK_URL_UNESC%%%%DEST_URL%%" aria-controls="video" aria-expanded="false"><img src="[%MobileCTA%]" alt></a>
+            <a class="creative__cta creative__cta--position-[%DesktopCTAPosition%] hide-until-tablet js-toggle" href="%%CLICK_URL_UNESC%%%%DEST_URL%%" aria-controls="video" aria-expanded="false"><img src="[%DesktopCTA%]" alt></a>
+        </div>
+    </div>
+</div>
