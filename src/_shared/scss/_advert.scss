@@ -129,10 +129,6 @@
     margin-bottom: $gs-baseline / 2;
     width: 100%;
 
-    @include mq(tablet) {
-        max-height: 11 * $gs-baseline;
-    }
-
     .has-no-flex & {
         position: absolute;
         top: 0;
