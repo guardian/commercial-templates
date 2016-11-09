@@ -13,9 +13,11 @@ module.exports = React.createClass({
 
     render: function () {
         const listItems = this.props.templates.map(function (template) {
+            let templateName = template.split('/');
+            templateName = `${templateName[0]} (${templateName[1]})`;
             return (
                 <option value={template}>
-                    {template}
+                    {templateName}
                 </option>
             );
         });
@@ -24,7 +26,7 @@ module.exports = React.createClass({
             <div className='select-container'>
                 <select className='select-template' onChange={this.handleSelectChange}>
                     <option value=''>
-                        Please select...    
+                        Please select...
                     </option>
                     {listItems}
                 </select>

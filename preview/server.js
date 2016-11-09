@@ -26,8 +26,8 @@ app.get('/template', (req, res, next) => {
 	res.send('please select template to preview');
 });
 
-app.get('/template/:id', (req, res, next) => {
-	template(req.params.id)
+app.get('/template/:id/:type', (req, res, next) => {
+	template(req.params.id + '/' + req.params.type)
 	.then(html => {
 		res.send(html);
 	})

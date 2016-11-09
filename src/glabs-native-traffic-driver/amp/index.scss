@@ -1,0 +1,121 @@
+@import '_core';
+
+$brand-colour: #69d1ca;
+
+.creative--glabs-mpu {
+    background: $brand-colour;
+    color: #333;
+    margin: auto;
+    height: 250px;
+    max-width: 320px;
+    position: relative;
+
+    font-family: $f-sans-serif-text;
+    line-height: 20px;
+}
+
+.creative__image {
+    height: 250px;
+    width: 100%;
+    object-fit: cover;
+}
+
+.creative__title {
+    background: linear-gradient(to top, rgba(0, 0, 0, .5), rgba(0, 0, 0, 0));
+    color: #fff;
+    font: normal 24px/28px $f-sans-serif-headline;
+
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    margin: 0;
+    padding: 50px 110px 10px 10px;
+}
+
+.creative__brand {
+    background: $brand-colour;
+    color: #767676;
+    font-size: 13px;
+
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    margin: 0 10px 0 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+}
+
+.creative__brand-image {
+    background: white;
+    max-width: 90px;
+    vertical-align: middle;
+}
+
+.popup {
+    right: 0;
+    left: -150px;
+    top: 47px;
+
+    background: #333;
+    color: #fff;
+    font-size: 14px;
+    line-height: 16px;
+
+    a {
+        color: $brand-colour;
+        text-decoration: none;
+
+        &:hover,
+        &:focus {
+            text-decoration: underline;
+        }
+    }
+
+    &::after {
+        bottom: 100%;
+        right: 10px;
+        border: solid transparent;
+        content: " ";
+        height: 0;
+        width: 0;
+        position: absolute;
+        pointer-events: none;
+        border-bottom-color: #333;
+        border-width: 8px;
+        margin-left: -8px;
+    }
+}
+
+.creative__meta-about {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+
+.creative__meta-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 4px 10px;
+    width: 37px;
+    border-radius: 100%;
+
+    background: $brand-colour;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+}
+
+.icon--arrow-down {
+    width: 12px;
+}
+
+.icon--arrow-right {
+    width: 20px;
+    fill: currentColor;
+}
