@@ -13,8 +13,9 @@ let features = [
     'Object.assign',
     'Promise',
     'requestAnimationFrame'
-]
-const options = {
+];
+
+let options = {
     banner: `
         <base target="_blank" href="https://www.theguardian.com">
         <script src="https://polyfill.guim.co.uk/v2/polyfill.min.js?features=${features.join(',')}"></script>
