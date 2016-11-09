@@ -1,4 +1,3 @@
-import { getIframeId, onViewport, onScroll, sendMessage, resizeIframeHeight } from '../../_shared/js/messages.js';
 import { write } from '../../_shared/js/dom.js';
 
 let layer2 = document.getElementById('layer2');
