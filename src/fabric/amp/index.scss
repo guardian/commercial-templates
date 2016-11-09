@@ -25,39 +25,21 @@
     background-position: center;
 }
 
-#linkDesktop {
-    background: dfpVar(BackgroundColour) url('#{dfpVar(BackgroundImage)}') dfpVar(BackgroundImageRepeat) dfpVar(BackgroundImagePosition);
-}
-
-#linkDesktop .creative__layer1 {
-    background-image: url('#{dfpVar(Layer1BackgroundImage)}');
-    background-position: dfpVar(Layer1BackgroundPosition);
-}
-
-#linkDesktop .creative__layer2 {
-    background-image: url('#{dfpVar(Layer2BackgroundImage)}');
-}
-
-#linkDesktop .creative__layer3 {
-    background-image: url('#{dfpVar(Layer3BackgroundImage)}');
-    background-position: dfpVar(Layer3BackgroundPosition);
-}
-
-#linkMobile {
+.creative__link {
     background: dfpVar(BackgroundColour) url('#{dfpVar(MobileBackgroundImage)}') dfpVar(MobileBackgroundImageRepeat) dfpVar(MobileBackgroundImagePosition);
 }
 
-#linkMobile .creative__layer1 {
+.creative__layer1 {
     background-image: url('#{dfpVar(MobileLayer1BackgroundImage)}');
     background-position: dfpVar(MobileLayer1BackgroundPosition);
 }
 
-#linkMobile .creative__layer2 {
+.creative__layer2 {
     background-image: url('#{dfpVar(MobileLayer2BackgroundImage)}');
     background-position: dfpVar(MobileLayer2BackgroundPosition);
 }
 
-#linkMobile .creative__layer3 {
+.creative__layer3 {
     background-image: url('#{dfpVar(MobileLayer3BackgroundImage)}');
     background-position: dfpVar(MobileLayer3BackgroundPosition);
 }
