@@ -6,6 +6,8 @@ import { generatePicture } from './capi-images.js';
 import { setEditionLink } from './ads';
 import { URLSearchParams } from './utils';
 
+const clickMacro = '%%CLICK_URL_UNESC%%';
+
 const ENDPOINT = 'https://api.nextgen.guardianapps.co.uk/commercial/api/capi-multiple.json';
 
 const OVERRIDES = {
@@ -103,7 +105,7 @@ function buildCard (cardInfo, cardNum, isPaid) {
     let imgContainer = card.querySelector('.advert__image-container');
 
     buildTitle(card, cardInfo, cardNum);
-    card.href = cardInfo.articleUrl;
+    card.href = clickMacro + cardInfo.articleUrl;
 
     let image = generatePicture({
         url: OVERRIDES.images[cardNum] || cardInfo.articleImage.backupSrc,
