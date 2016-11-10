@@ -1,4 +1,4 @@
-import { getIframeId, getWebfonts, resizeIframeHeight, reportClicks } from
+import { getIframeId, getWebfonts, resizeIframeHeight, onViewport, reportClicks } from
     './messages.js';
 import { write } from './dom.js';
 import { enableToggles } from './ui.js';
@@ -170,21 +170,24 @@ function buildFromCapi (cardsInfo, isPaid) {
 export default function capiMultiple (adType) {
 
     const isPaid = (adType === 'paidfor');
+    let lastWidth;
+
     reportClicks();
+    enableToggles();
 
     getIframeId()
-    .then(retrieveCapiData)
-    .then(capiData => buildFromCapi(capiData, isPaid))
-    .then(write)
+    .then(() => Promise.all([
+        getWebfonts(),
+        retrieveCapiData()
+        .then(capiData => buildFromCapi(capiData, isPaid))
+        .then(write)
+    ]))
     .then(() => {
-        if (isPaid) {
-            enableToggles();
-        }
-    })
-    .then(getWebfonts)
-    .then(resizeIframeHeight)
-    .catch(err => {
-        console.log(err);
+        onViewport(({ width }) => {
+            if( width != lastWidth ) {
+                resizeIframeHeight();
+                lastWidth = width;
+            }
+        });
     });
-
 }
