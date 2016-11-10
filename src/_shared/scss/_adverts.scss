@@ -47,7 +47,14 @@
     @include mq(mobileLandscape, leftCol) {
         > .adverts__header {
             flex-direction: row;
-            justify-content: space-between;
+        }
+
+        .adverts__kicker {
+            margin-right: $gs-gutter;
+        }
+
+        .adverts__stamp {
+            margin-left: auto;
         }
     }
 
