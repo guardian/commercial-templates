@@ -47,7 +47,14 @@
     @include mq(mobileLandscape, leftCol) {
         > .adverts__header {
             flex-direction: row;
-            justify-content: space-between;
+        }
+
+        .adverts__kicker {
+            margin-right: $gs-gutter;
+        }
+
+        .adverts__stamp {
+            margin-left: auto;
         }
     }
 
@@ -106,13 +113,14 @@
     }
 
     > .adverts__body {
+        padding-bottom: $gs-baseline;
+
         @include mq(mobileLandscape) {
             box-sizing: border-box;
             max-width: gs-span(8) + ($gs-gutter * 2);
         }
         @include mq(tablet) {
             max-width: gs-span(9) + ($gs-gutter * 2);
-            padding-bottom: $gs-baseline;
         }
         @include mq(desktop) {
             max-width: gs-span(12) + ($gs-gutter * 2);

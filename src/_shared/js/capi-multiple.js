@@ -1,9 +1,9 @@
-import { getIframeId, getWebfonts, resizeIframeHeight, reportClicks } from
+import { getIframeId, getWebfonts, resizeIframeHeight, onViewport, reportClicks } from
     './messages.js';
 import { write } from './dom.js';
 import { enableToggles } from './ui.js';
 import { generatePicture } from './capi-images.js';
-import { setEditionLink } from './ads';
+import { clickMacro, setEditionLink } from './ads';
 import { URLSearchParams } from './utils';
 
 const ENDPOINT = 'https://api.nextgen.guardianapps.co.uk/commercial/api/capi-multiple.json';
@@ -103,7 +103,7 @@ function buildCard (cardInfo, cardNum, isPaid) {
     let imgContainer = card.querySelector('.advert__image-container');
 
     buildTitle(card, cardInfo, cardNum);
-    card.href = cardInfo.articleUrl;
+    card.href = clickMacro + cardInfo.articleUrl;
 
     let image = generatePicture({
         url: OVERRIDES.images[cardNum] || cardInfo.articleImage.backupSrc,
@@ -134,16 +134,16 @@ function addBranding (brandingCard) {
 }
 
 // Sets correct glabs link based on edition (AU/All others).
-function editionLink (edition, isPaid) {
+function editionLink (host, edition, isPaid) {
 
     if (isPaid) {
-        setEditionLink(edition, document.querySelector('.adverts__stamp a'));
+        setEditionLink(host, edition, document.querySelector('.adverts__stamp a'));
     }
 
 }
 
 // Uses cAPI data to build the ad content.
-function buildFromCapi (cardsInfo, isPaid) {
+function buildFromCapi (host, cardsInfo, isPaid) {
 
     let cardList = document.createDocumentFragment();
 
@@ -159,7 +159,7 @@ function buildFromCapi (cardsInfo, isPaid) {
         addBranding(cardsInfo.articles.slice(-1)[0]);
         let advertRow = document.querySelector('.adverts__row');
         advertRow.appendChild(cardList);
-        editionLink(cardsInfo.articles[0].edition, isPaid);
+        editionLink(host, cardsInfo.articles[0].edition, isPaid);
 
     };
 
@@ -168,21 +168,24 @@ function buildFromCapi (cardsInfo, isPaid) {
 export default function capiMultiple (adType) {
 
     const isPaid = (adType === 'paidfor');
+    let lastWidth;
+
     reportClicks();
+    enableToggles();
 
     getIframeId()
-    .then(retrieveCapiData)
-    .then(capiData => buildFromCapi(capiData, isPaid))
-    .then(write)
+    .then(({ host }) => Promise.all([
+        getWebfonts(),
+        retrieveCapiData()
+        .then(capiData => buildFromCapi(host, capiData, isPaid))
+        .then(write)
+    ]))
     .then(() => {
-        if (isPaid) {
-            enableToggles();
-        }
-    })
-    .then(getWebfonts)
-    .then(resizeIframeHeight)
-    .catch(err => {
-        console.log(err);
+        onViewport(({ width }) => {
+            if( width != lastWidth ) {
+                resizeIframeHeight();
+                lastWidth = width;
+            }
+        });
     });
-
 }
