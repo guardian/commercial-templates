@@ -40,7 +40,8 @@ function populateLogo(responseJson) {
 
 /* Outputs the HTML */
 function populateCard(responseJson) {
-    let icon = checkIcon(responseJson)
+    let icon = checkIcon(responseJson);
+    let imageUrl = '[%ArticleImage%]';
 
     return `<div class="adverts__row adverts__row--single">
       <a class="blink advert advert--large advert--capi advert--media advert--inverse advert--supported" href="%%CLICK_URL_UNESC%%${getValue('[%ArticleUrl%]', responseJson.articleUrl)}" data-link-name="Offer | ${getValue('[%ArticleHeadline%]', responseJson.articleHeadline)}">
@@ -54,7 +55,7 @@ function populateCard(responseJson) {
           </p>
         </div>
         <div class="advert__image-container">${generatePicture({
-            url: '[%ArticleImage%]' || responseJson.articleImage.backupSrc,
+            url: imageUrl || responseJson.articleImage.backupSrc,
             classes: ['advert__image'],
             sources: responseJson.articleImage.sources
         })}</div>
