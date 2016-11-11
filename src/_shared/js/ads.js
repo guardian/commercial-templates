@@ -26,7 +26,7 @@ function addTrackingPixel(rootNode) {
 
 // Sets the 'href' of the glabs edition link to the correct URL.
 function setEditionLink (host, edition, linkElement) {
-    linkElement.href = `${clickMacro}${host}${GLABS_EDITION[edition] || GLABS_EDITION.DEFAULT}`;
+    linkElement.href = `${clickMacro}${host}/${GLABS_EDITION[edition] || GLABS_EDITION.DEFAULT}`;
 }
 
 export {
