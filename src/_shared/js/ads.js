@@ -1,6 +1,8 @@
 import { write } from './dom';
 
-const trackingPixel = '[%Trackingpixel%]';
+let trackingPixel = '[%Trackingpixel%]';
+let clickMacro = '%%CLICK_URL_UNESC%%';
+let pixelTemplate;
 
 // Glabs edition links.
 const GLABS_EDITION = {
@@ -9,9 +11,7 @@ const GLABS_EDITION = {
     US: 'guardian-labs-us'
 };
 
-let pixelTemplate;
-
-export function addTrackingPixel(rootNode) {
+function addTrackingPixel(rootNode) {
     if( !trackingPixel ) return;
 
     if( !pixelTemplate ) {
@@ -25,6 +25,12 @@ export function addTrackingPixel(rootNode) {
 }
 
 // Sets the 'href' of the glabs edition link to the correct URL.
-export function setEditionLink (edition, linkElement) {
-    linkElement.href = '%%CLICK_URL_UNESC%%https://theguardian.com/' + (GLABS_EDITION[edition] || GLABS_EDITION.DEFAULT);
+function setEditionLink (host, edition, linkElement) {
+    linkElement.href = `${clickMacro}${host}${GLABS_EDITION[edition] || GLABS_EDITION.DEFAULT}`;
 }
+
+export {
+    clickMacro,
+    addTrackingPixel,
+    setEditionLink
+};
