@@ -1,5 +1,5 @@
 import { write } from '../../_shared/js/dom';
-import { getIframeId, getWebfonts, resizeIframeHeight, reportClicks } from '../../_shared/js/messages';
+import { getIframeId, getWebfonts, resizeIframeHeight, reportClicks, onViewport } from '../../_shared/js/messages';
 import { generatePicture, checkIcon } from '../../_shared/js/capi-images';
 import { URLSearchParams } from '../../_shared/js/utils';
 
@@ -21,7 +21,15 @@ getIframeId()
 .then(response => response.json())
 .then(capiData => [populateLogo(capiData), populateCard(capiData)])
 .then(([logo, body]) => Promise.all([getWebfonts(), write(() => header.innerHTML = logo, container.innerHTML = body)]))
-.then(() => resizeIframeHeight());
+.then(() => {
+    let lastWidth;
+    onViewport(({ width }) => {
+        if( width !== lastWidth ) {
+            resizeIframeHeight();
+            lastWidth = width;
+        }
+    });
+});
 
 function getValue(value, fallback) { return value || fallback; }
 

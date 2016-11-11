@@ -1,6 +1,6 @@
 import { enableToggles } from '../../_shared/js/ui';
 import { write } from '../../_shared/js/dom';
-import { getIframeId, getWebfonts, resizeIframeHeight, reportClicks } from '../../_shared/js/messages';
+import { getIframeId, getWebfonts, resizeIframeHeight, reportClicks, onViewport } from '../../_shared/js/messages';
 import { generatePicture, checkIcon } from '../../_shared/js/capi-images.js';
 import { setEditionLink } from '../../_shared/js/ads';
 import { URLSearchParams } from '../../_shared/js/utils';
@@ -29,12 +29,20 @@ getIframeId()
 .then(response => response.json())
 .then(populateCard)
 .then(html => Promise.all([getWebfonts(), write(() => container.innerHTML = html)]))
-.then(() => resizeIframeHeight());
+.then(() => {
+    let lastWidth;
+    onViewport(({ width }) => {
+        if( lastWidth !== width ) {
+            resizeIframeHeight();
+            lastWidth = width;
+        }
+    });
+});
 
 function getValue(value, fallback) { return value || fallback; }
 
 function glabsLink(responseJson) {
-  let logo = document.getElementsByClassName('creative__glabs-link')[0];
+    let logo = document.getElementsByClassName('creative__glabs-link')[0];
 
     logo.href = '%%CLICK_URL_UNESC%%https://theguardian.com/' +
         responseJson.edition === "AU" ?
