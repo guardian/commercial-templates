@@ -11,9 +11,9 @@ let keywords = '[%SeriesUrl%]';
 let customUrl = '[%CustomUrl%]';
 
 const GLABS_EDITION = {
-    default: 'https://theguardian.com/guardian-labs',
-    au: 'https://theguardian.com/guardian-labs-australia',
-    us: 'https://theguardian.com/guardian-labs-us'
+    default: 'guardian-labs',
+    au: 'guardian-labs-australia',
+    us: 'guardian-labs-us'
 };
 
 if (customUrl !== '') {
@@ -36,11 +36,12 @@ function getValue(value, fallback) { return value || fallback; }
 function glabsLink(responseJson) {
   let logo = document.getElementsByClassName('creative__glabs-link')[0];
 
-  responseJson.edition === "AU" ?
-      logo.href = GLABS_EDITION.au:
-  responseJson.edition === "US" ?
-      logo.href = GLABS_EDITION.us:
-      logo.href = GLABS_EDITION.default;
+    logo.href = '%%CLICK_URL_UNESC%%https://theguardian.com/' +
+        responseJson.edition === "AU" ?
+        GLABS_EDITION.au :
+        responseJson.edition === "US" ?
+        GLABS_EDITION.us :
+        GLABS_EDITION.default;
 }
 
 function populateCard(responseJson) {
@@ -72,7 +73,7 @@ function populateCard(responseJson) {
     </div>
     <div class="badge js-badge">
       Paid for by
-      <a class="badge__link" href="" data-link-name="badge">
+      <a class="badge__link" href="%%CLICK_URL_UNESC%%${responseJson.branding.sponsorLink}" data-link-name="badge">
         <img class="badge__logo" src="${getValue('[%BrandLogo%]', responseJson.branding.sponsorLogo.url)}" alt="">
       </a>
     </div>`;
