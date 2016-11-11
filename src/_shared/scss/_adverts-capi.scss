@@ -128,6 +128,10 @@
 
     &:not(.advert--landscape) {
         > .advert__image-container {
+            @include mq($until: tablet) {
+                flex-basis: auto;
+            }
+
             width: 100%;
         }
 
@@ -142,10 +146,6 @@
         .advert__standfirst {
             margin-bottom: $gs-baseline / 2;
         }
-    }
-
-    .advert__image-container {
-        height: auto;
     }
 
     .has-no-flex &:not(.advert--small):not(.advert--landscape) {
@@ -253,10 +253,12 @@
 }
 
 .icon--arrow-down {
+    height: 9px;
     width: 12px;
 }
 
 .icon--arrow-right {
     width: 20px;
+    height: 20px;
     fill: currentColor;
 }
