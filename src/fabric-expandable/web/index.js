@@ -3,6 +3,7 @@ import { enableToggles } from '../../_shared/js/ui';
 import { write, div } from '../../_shared/js/dom';
 
 let showLabel = '[%ShowLabel%]';
+let labelHeight = 22;
 
 getIframeId()
 .then(() => {
@@ -48,5 +49,5 @@ function handleToggle() {
 }
 
 function onToggle(isOpen) {
-    resizeIframeHeight(isOpen ? 500 : 250);
+    resizeIframeHeight((isOpen ? 500 : 250) + (showLabel === 'yep' ? labelHeight : 0));
 }
