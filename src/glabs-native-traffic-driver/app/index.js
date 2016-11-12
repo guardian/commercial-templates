@@ -42,14 +42,6 @@ function buildFromCapi ({ articleHeadline, articleUrl, articleImage, edition }) 
     });
 }
 
-function loadStylesheet(url) {
-    let style = document.createElement('link');
-    style.rel = 'stylesheet';
-    style.href = url;
-    document.head.appendChild(style);
-}
-
-// loadStylesheet('https://pasteup.guim.co.uk/0.0.5/css/fonts.pasteup.min.css');
 enableToggles();
 retrieveCapiData()
 .then(buildFromCapi)
