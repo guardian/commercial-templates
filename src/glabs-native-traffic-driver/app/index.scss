@@ -3,6 +3,9 @@
 $brand-colour: #69d1ca;
 
 .creative--glabs-mpu {
+    box-sizing: border-box;
+
+    border-top: 2px solid $brand-colour;
     background: $brand-colour;
     color: #333;
     margin: auto;
@@ -15,43 +18,53 @@ $brand-colour: #69d1ca;
 }
 
 .creative__image {
-    height: 250px;
-    width: 100%;
     object-fit: cover;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
 }
 
-.creative__title {
-    background: linear-gradient(to top, rgba(0, 0, 0, .5), rgba(0, 0, 0, 0));
-    color: #fff;
-    font: normal 24px/28px $f-sans-serif-headline;
-
+.creative__text {
     position: absolute;
     bottom: 0;
     left: 0;
-    margin: 0;
-    padding: 50px 110px 10px 10px;
+    right: 0;
+
+    background: linear-gradient(to top, rgba(0, 0, 0, .5), rgba(0, 0, 0, 0));
+    display: flex;
+    padding: 40px 10px 0;
+}
+
+.creative__title {
+    color: #fff;
+    font: normal 24px/28px $f-sans-serif-headline;
+
+    flex: 1;
+    margin: 0 0 10px;
 }
 
 .creative__brand {
-    background: $brand-colour;
-    color: #767676;
-    font-size: 13px;
+    background: white;
 
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    margin: 0 10px 0 0;
+    margin-left: 10px;
 
     display: flex;
     flex-direction: column;
-    align-items: stretch;
     text-align: center;
 }
 
+.creative__brand-label {
+    background: $brand-colour;
+    color: #767676;
+    font-size: 13px;
+}
+
 .creative__brand-image {
-    background: white;
+    display: block;
     max-width: 90px;
-    vertical-align: middle;
 }
 
 .popup {
