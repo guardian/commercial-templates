@@ -1,4 +1,4 @@
-import { getIframeId, sendMessage, resizeIframeHeight } from '../../_shared/js/messages';
+import { getIframeId, sendMessage, resizeIframeHeight, reportClicks } from '../../_shared/js/messages';
 import { enableToggles } from '../../_shared/js/ui';
 import { write, div } from '../../_shared/js/dom';
 
@@ -9,6 +9,7 @@ getIframeId()
 .then(() => {
     if( showLabel === 'yep' ) resizeIframeHeight();
 
+    reportClicks();
     handleBackground();
     handleToggle();
 });
