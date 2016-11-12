@@ -1,6 +1,5 @@
-import { getIframeId, getWebfonts, resizeIframeHeight, reportClicks } from '../../_shared/js/messages';
 import { enableToggles } from '../../_shared/js/ui';
-import { addTrackingPixel, setEditionLink } from '../../_shared/js/ads';
+import { addTrackingPixel } from '../../_shared/js/ads';
 import { write } from '../../_shared/js/dom';
 import { generatePicture } from '../../_shared/js/capi-images';
 import { URLSearchParams } from '../../_shared/js/utils';
@@ -24,11 +23,12 @@ function retrieveCapiData() {
 
 // Uses cAPI data to build the ad content.
 function buildFromCapi ({ articleHeadline, articleUrl, articleImage, edition }) {
-    document.getElementById('Ctu').href = articleUrl;
+    let imageContainer = document.getElementById('Ctu')
+
+    imageContainer.href = `%%CLICK_URL_UNESC%%${articleUrl}`;
 
     let title = document.getElementById('Title');
 
-    let imageContainer = document.getElementById('ImageContainer');
     let image = generatePicture({
         url: OVERRIDES.imageUrl || articleImage.backupSrc,
         classes: ['creative__image'],
@@ -44,15 +44,8 @@ function buildFromCapi ({ articleHeadline, articleUrl, articleImage, edition }) 
 
 reportClicks();
 enableToggles();
-getIframeId()
+retrieveCapiData()
+.then(buildFromCapi)
 .then(() => {
-    return Promise.all([
-        getWebfonts(),
-        retrieveCapiData()
-        .then(buildFromCapi)
-        .then(() => {
-            addTrackingPixel(document.getElementById('creative'));
-        })
-    ])
-})
-.then(() => resizeIframeHeight());
+    addTrackingPixel(document.getElementById('creative'));
+});
