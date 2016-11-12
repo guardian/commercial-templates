@@ -1,17 +1,19 @@
 <div id="creative" class="creative creative--glabs-mpu" data-link-name="creative | glabs traffic driver | [%TrackingId%]">
-    <a id="Ctu" class="creative__ctu" href="">
-        <div id="ImageContainer"></div>
-        <div id="Title" class="creative__title">[%ArticleHeaderText%]</div>
-        <div class="creative__brand">
-            Paid for by
-            <img class="creative__brand-image" src="[%BrandLogo%]" alt="[%Brand%]">
+    <a class="creative__ctu" href="%%CLICK_URL_UNESC%%%%DEST_URL%%">
+        <amp-img class="creative__image" src="[%ArticleImage%]" width="300" height="250" alt="[%ArticleImageAlternateText%]"></amp-img>
+        <div class="creative__text">
+            <div class="creative__title">[%ArticleHeaderText%]</div>
+            <div class="creative__brand">
+                <span class="creative__brand-label">Paid for by</span>
+                <amp-img class="creative__brand-image" src="[%BrandLogo%]" width="90" height="90" alt="[%Brand%]"></amp-img>
+            </div>
         </div>
     </a>
-    <div class="creative__meta-about has-popup">
-        <button class="u-button-reset creative__meta-button js-toggle" aria-controls="popup" aria-expanded="true">Ad {{#svg}}arrow-down{{/svg}}</button>
-        <div id="popup" class="popup">
+    <div class="creative__meta-about">
+        <button on="tap:popup.dismiss" class="u-button-reset creative__meta-button js-toggle">Ad {{#svg}}arrow-down{{/svg}}</button>
+        <amp-user-notification layout=nodisplay id="popup" class="popup">
             <p>Paid content is paid for and controlled by an advertiser and produced by the Guardian Labs team</p>
             <a href="/content-funding">Learn more about Guardian Labs content {{#svg}}arrow-right{{/svg}}</a>
-        </div>
+        </amp-user-notification>
     </div>
 </div>
