@@ -1,0 +1,165 @@
+$brand-colour: #fedd79;
+
+@import '_core';
+@import '_roundel';
+
+.creative {
+    box-sizing: border-box;
+    border-top: 1px solid $brand-colour;
+    height: 250px;
+    max-width: 320px;
+    margin: auto;
+}
+
+.creative__image {
+    object-fit: cover;
+    object-position: top left;
+    height: 100%;
+}
+
+.creative__text {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: $gs-baseline / 2 $gs-gutter / 2;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    color: DfpVar(ContentColour);
+    font-family: $f-sans-serif-headline;
+    font-size: DfpVar(TextFontSize)px;
+}
+
+.creative__text--left   {
+    align-self: flex-start;
+    text-align: left;
+}
+.creative__text--center {
+    align-self: center;
+    text-align: center;
+}
+.creative__text--right  {
+    align-self: flex-end;
+    text-align: right;
+}
+
+.creative__text--top    {
+    margin-bottom: auto;
+}
+.creative__text--middle {
+    margin-bottom: auto;
+    margin-top: auto;
+}
+.creative__text--bottom {
+    margin-top: auto;
+}
+
+.creative__title {
+    font-size: DfpVar(HeaderFontSize)px;
+    margin: 0;
+}
+
+.creative__brand {
+}
+
+.creative__brand--top    {
+    margin-top: $gs-baseline;
+}
+
+.creative__brand--bottom {
+    bottom: $gs-baseline / 2;
+    right: $gs-gutter / 2;
+}
+
+.creative__brand-logo {
+    display: block;
+}
+
+@include mq(gs-span(5) + $gs-gutter, tablet) {
+    .creative__text {
+        padding: $gs-baseline * 1.5 $gs-gutter;
+    }
+
+    .creative__brand--bottom {
+        bottom: $gs-baseline * 1.5;
+        right: $gs-gutter;
+    }
+}
+
+.creative__title {
+    font-weight: normal;
+    line-height: 1.2;
+}
+
+.creative__text .button {
+    color: #fff;
+}
+
+.has-no-flex {
+    .creative__brand,
+    .creative__text,
+    .creative__cta .button {
+        position: absolute;
+    }
+
+    .creative__brand--top {
+        top: $gs-baseline / 2;
+        left: $gs-gutter / 2;
+    }
+
+    .creative__brand--bottom {
+        bottom: $gs-baseline / 2;
+        right: $gs-gutter / 2;
+    }
+
+    .creative__cta .button {
+        bottom: $gs-baseline / 2;
+        left: $gs-gutter / 2;
+    }
+
+    .creative__text--top {
+        top: $gs-baseline * 5;
+    }
+
+    .creative__text--bottom {
+        bottom: $gs-baseline * 5;
+    }
+
+    .creative__text--middle {
+        top: 50%;
+        transform: translate(0, -50%);
+    }
+
+    .creative__text--left {
+        left: $gs-gutter / 2;
+    }
+
+    .creative__text--right {
+        right: $gs-gutter / 2;
+    }
+
+    .creative__text--center {
+        left: 50%;
+        transform: translate(-50%, 0);
+    }
+
+    .creative__text--middle.creative__text--center {
+        transform: translate(-50%, -50%);
+    }
+}
+
+.roundel .popup {
+    background: $brand-colour;
+
+    a {
+        color: inherit;
+    }
+
+    &::after {
+        border-bottom-color: $brand-colour;
+    }
+}
