@@ -1,0 +1,23 @@
+<div class="creative creative--frame">
+    <div class="roundel has-popup">
+        <button class="roundel__button u-button-reset js-toggle" aria-controls="popup" aria-expanded="true">Ad {{#svg}}arrow-down{{/svg}}</button>
+        <div id="popup" class="popup">
+            <p>Advertising on the Guardian is created and paid for by third parties.</p>
+            <a href="%%CLICK_URL_UNESC%%https://www.theguardian.com/advertising-on-the-guardian">How advertising supports the Guardian {{#svg}}arrow-right{{/svg}}</a>
+        </div>
+    </div>
+    <a class="creative__cta blink" href="%%CLICK_URL_UNESC%%%%DEST_URL%%">
+        <img class="creative__image" src="[%BackgroundImage%]">
+        <div style="color: [%ContentColour%]" class="creative__text creative__text--[%ContentVerticalPosition%] creative__text--[%ContentHorizontalPosition%]">
+            <h2 style="font-size: [%HeaderFontSize%]px" class="creative__title">[%Header%]</h2>
+            <p style="font-size: [%TextFontSize%]px">[%Text%]</p>
+            <span class="button button--bordered button--large">
+                <span>[%CallToAction%]</span>
+                {{#svg}}external-link{{/svg}}
+            </span>
+        </div>
+    </a>
+    <a class="creative__brand creative__brand--[%BrandLogoPosition%] blink" href="%%CLICK_URL_UNESC%%[%BrandUrl%]">
+        <img class="creative__brand-logo" src="[%BrandLogo%]">
+    </a>
+</div>
