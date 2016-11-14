@@ -1,38 +1,23 @@
-<aside class="frame ad-slot--frame" data-link-name="creative | frame | [%TrackingId%]">
-  <div class="gu-comlabel has-popup">
-    <button class="u-button-reset gu-comlabel__btn popup__toggle js-toggle" aria-controls="popup" aria-expanded="true" data-toggle="gu-compopup--dfp-ad--%%PATTERN:slot%%">
-      Ad
-      {{#svg}}arrow-down{{/svg}}
-    </button>
-    <div id="popup" class="popup popup--default gu-compopup gu-compopup--dfp-ad--%%PATTERN:slot%% gu-stylebox">
-      <h3 class="gu-compopup__title">Advertising on the Guardian</h3>
-      <p class="gu-compopup__text">is created and paid for by third parties.</p>
-      <a class="gu-compopup__link blink" href="https://www.theguardian.com/advertising-on-the-guardian">
-        <p class="blink__anchor">Learn more about how advertising supports the Guardian.</p>
-      </a>
+<div class="creative creative--frame" data-link-name="creative | frame | [%TrackingId%]">
+    <div class="roundel has-popup">
+        <button class="roundel__button u-button-reset js-toggle" aria-controls="popup" aria-expanded="true">Ad {{#svg}}arrow-down{{/svg}}</button>
+        <div id="popup" class="popup">
+            <p>Advertising on the Guardian is created and paid for by third parties.</p>
+            <a href="%%CLICK_URL_UNESC%%https://www.theguardian.com/advertising-on-the-guardian" data-link-name="about">How advertising supports the Guardian {{#svg}}arrow-right{{/svg}}</a>
+        </div>
     </div>
-  </div>
-  <div class="frame__background">
-    <img class="frame__background-image" src="[%BackgroundImage%]">
-  </div>
-  <div class="frame__foreground">
-    <a href="[%DestinationUrl%]" class="frame__link-background" data-link-name="image"></a>
-    <a class="frame__logo frame__logo--[%BrandLogoPosition%]" href="[%BrandUrl%]" data-link-name="logo">
-      <img class="frame__logo__image" src="[%BrandLogo%]">
+    <a class="creative__cta blink" href="%%CLICK_URL_UNESC%%%%DEST_URL%%" data-link-name="card">
+        <img class="creative__image" src="[%BackgroundImage%]">
+        <div style="color: [%ContentColour%]" class="creative__text creative__text--[%ContentVerticalPosition%] creative__text--[%ContentHorizontalPosition%]">
+            <h2 style="font-size: [%HeaderFontSize%]px" class="creative__title">[%Header%]</h2>
+            <p style="font-size: [%TextFontSize%]px">[%Text%]</p>
+            <span class="button button--bordered button--large">
+                <span>[%CallToAction%]</span>
+                {{#svg}}external-link{{/svg}}
+            </span>
+        </div>
     </a>
-    <a style="color: [%ContentColour%]" class="blink frame__content frame__content--[%ContentVerticalPosition%] frame__content--[%ContentHorizontalPosition%]" href="[%DestinationUrl%]">
-      <h2 style="font-size: [%HeaderFontSize%]px" class="blink__anchor frame__content-title">
-        [%Header%]
-      </h2>
-      <p style="font-size: [%TextFontSize%]px" class="frame__content-text">
-        [%Text%]
-      </p>
+    <a class="creative__brand creative__brand--[%BrandLogoPosition%] blink" href="%%CLICK_URL_UNESC%%[%BrandUrl%]" data-link-name="logo">
+        <img class="creative__brand-logo" src="[%BrandLogo%]">
     </a>
-    <a href="[%CallToActionUrl%]" class="frame__cta frame__link button button--tertiary button--medium" data-link-name="call to action">
-      [%CallToAction%]
-      <span class="gu-external-icon inline-external-link inline-icon">
-        {{#svg}}external-link{{/svg}}
-      </span>
-    </a>
-  </div>
-</aside>
+</div>
