@@ -1,8 +1,9 @@
 const React = require('react');
+const ReactDOM = require('react-dom');
 
 module.exports = React.createClass({
     componentDidMount: function() {
-        let iframe = this.refs.iframe.getDOMNode();
+        let iframe = ReactDOM.findDOMNode(this.refs.iframe);
         iframe.onload = () => iframe.contentWindow.postMessage(JSON.stringify({ id: 'test', host: 'http://localhost:7000', preview: 'true'}), 'http://localhost:7000');
     },
 
