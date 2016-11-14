@@ -2,6 +2,20 @@
 
 $brand-colour: #69d1ca;
 
+@font-face {
+    src: url('https://interactive.guim.co.uk/fonts/guss-webfonts/GuardianSansWeb/GuardianSansWeb-Regular.woff2') format('woff2'),
+        url('https://interactive.guim.co.uk/fonts/guss-webfonts/GuardianSansWeb/GuardianSansWeb-Regular.woff') format('woff');
+    font-family: 'Guardian Sans Web';
+    font-weight: normal;
+}
+
+@font-face {
+    src: url('https://interactive.guim.co.uk/fonts/guss-webfonts/GuardianTextSansWeb/GuardianTextSansWeb-Regular.woff2') format('woff2'),
+        url('https://interactive.guim.co.uk/fonts/guss-webfonts/GuardianTextSansWeb/GuardianTextSansWeb-Regular.woff') format('woff');
+    font-family: 'Guardian Text Sans Web';
+    font-weight: normal;
+}
+
 .creative--glabs-mpu {
     box-sizing: border-box;
 
