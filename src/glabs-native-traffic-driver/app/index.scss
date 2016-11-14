@@ -33,7 +33,7 @@ $brand-colour: #69d1ca;
     left: 0;
     right: 0;
 
-    background: linear-gradient(to top, rgba(0, 0, 0, .5), rgba(0, 0, 0, 0));
+    background: linear-gradient(to top, rgba(0,0,0,.5) 50%, transparent);
     display: flex;
     padding: 40px 10px 0;
 }
@@ -58,8 +58,9 @@ $brand-colour: #69d1ca;
 
 .creative__brand-label {
     background: $brand-colour;
-    color: #767676;
+    color: #333;
     font-size: 13px;
+    padding: 0 $gs-gutter / 2;
 }
 
 .creative__brand-image {
