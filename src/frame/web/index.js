@@ -5,5 +5,5 @@ enableToggles();
 getIframeId()
 .then(() => {
     reportClicks();
-    getWebfonts();
+    getWebfonts(['GuardianTextSansWeb', 'GuardianSansWeb']);
 });
