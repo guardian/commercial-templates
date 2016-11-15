@@ -29,9 +29,9 @@ $brand-colour: #fedd79;
     flex-direction: column;
     align-items: flex-start;
 
-    color: DfpVar(ContentColour);
+    color: dfpVar(ContentColour);
     font-family: $f-sans-serif-headline;
-    font-size: DfpVar(TextFontSize)px;
+    font-size: dfpVar(TextFontSize)px;
 }
 
 .creative__text--left   {
@@ -59,7 +59,7 @@ $brand-colour: #fedd79;
 }
 
 .creative__title {
-    font-size: DfpVar(HeaderFontSize)px;
+    font-size: dfpVar(HeaderFontSize)px;
     margin: 0;
 }
 
