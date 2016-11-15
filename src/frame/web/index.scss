@@ -62,12 +62,12 @@ $brand-colour: #fedd79;
 }
 
 .creative__brand--top    {
-    top: $gs-baseline;
+    top: $gs-gutter / 2;
     left: $gs-gutter / 2;
 }
 
 .creative__brand--bottom {
-    bottom: $gs-baseline / 2;
+    bottom: $gs-gutter / 2;
     right: $gs-gutter / 2;
 }
 
@@ -83,7 +83,7 @@ $brand-colour: #fedd79;
 .creative__text .button {
     color: #fff;
     position: absolute;
-    bottom: $gs-baseline / 2;
+    bottom: $gs-gutter / 2;
     left: $gs-gutter / 2;
 }
 
@@ -95,17 +95,17 @@ $brand-colour: #fedd79;
     }
 
     .creative__brand--top {
-        top: $gs-baseline / 2;
+        top: $gs-gutter / 2;
         left: $gs-gutter / 2;
     }
 
     .creative__brand--bottom {
-        bottom: $gs-baseline / 2;
+        bottom: $gs-gutter / 2;
         right: $gs-gutter / 2;
     }
 
     .creative__cta .button {
-        bottom: $gs-baseline / 2;
+        bottom: $gs-gutter / 2;
         left: $gs-gutter / 2;
     }
 
