@@ -17,8 +17,8 @@ let features = [
 
 let options = {
     banner: `
-        <base target="_blank" href="https://www.theguardian.com">
-        <script src="https://polyfill.guim.co.uk/v2/polyfill.min.js?features=${features.join(',')}"></script>
+        <base target="_blank">
+        <script src="https://polyfill.guim.co.uk/v2/polyfill.min.js?features=${encodeURIComponent(features.join(','))}"></script>
     `,
     src: 'src',
     dst: 'build',
