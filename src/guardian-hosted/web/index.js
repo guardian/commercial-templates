@@ -1,10 +1,10 @@
 import { getIframeId, getWebfonts, resizeIframeHeight, onViewport, reportClicks } from '../../_shared/js/messages';
+import { write } from '../../_shared/js/dom.js';
 
 reportClicks();
 getIframeId()
     .then(() => addColourContrastClass())
     .then(() => getWebfonts())
-    .then(resizeIframeHeight)
     .then(function(){
         onViewport(() => resizeIframeHeight());
     });
@@ -13,7 +13,9 @@ function addColourContrastClass () {
     var div = document.getElementsByClassName('creative--hosted')[0];
     var brandColour = div.getAttribute('data-brand-color');
     if(isDark(brandColour)){
-        div.className += " hosted-bright";
+        return write(() => {
+            div.classList.add('hosted-bright')
+        });
     }
 }
 

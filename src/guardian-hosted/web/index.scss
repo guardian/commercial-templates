@@ -126,7 +126,7 @@ $phablet: 660px;
         background-size: cover;
         background-position: center;
 
-        &:before {
+        &::before {
             content: '';
             padding-top: 100%;
             display: block;
@@ -211,41 +211,5 @@ $phablet: 660px;
 
     @include mq(leftCol){
         width: 140px;
-    }
-}
-
-@mixin side-margins-position($container-width) {
-    // stupid fix for sasslint AST error
-    $size: $container-width + 40px;
-
-    &:before,
-    &:after {
-        width: calc((100% - #{$size}) / 2);
-    }
-}
-
-.l-side-margins {
-    position: relative;
-    height: 100%;
-
-    @include mq(tablet) {
-        &:after,
-        &:before {
-            content: '';
-            width: 0;
-        }
-        @include side-margins-position(gs-span(9));
-    }
-
-    @include mq(desktop) {
-        @include side-margins-position(gs-span(12));
-    }
-
-    @include mq(leftCol) {
-        @include side-margins-position(gs-span(14));
-    }
-
-    @include mq(wide) {
-        @include side-margins-position(gs-span(16));
     }
 }
