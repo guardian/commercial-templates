@@ -152,31 +152,26 @@ function buildFromCapi (host, cardsInfo, isPaid) {
         cardList.appendChild(buildCard(info, idx, isPaid));
     });
 
-    // DOM mutation function.
-    return () => {
-
+    return write(() => {
         // Takes branding from last possible card, in case earlier ones overriden.
         addBranding(cardsInfo.articles.slice(-1)[0]);
         let advertRow = document.querySelector('.adverts__row');
         advertRow.appendChild(cardList);
         editionLink(host, cardsInfo.articles[0].edition, isPaid);
-
-    };
-
+    });
 }
 
 export default function capiMultiple (isPaid) {
     let lastWidth;
 
-    reportClicks();
     enableToggles();
 
     getIframeId()
     .then(({ host }) => Promise.all([
+        reportClicks(),
         getWebfonts(),
         retrieveCapiData()
         .then(capiData => buildFromCapi(host, capiData, isPaid))
-        .then(write)
     ]))
     .then(() => {
         onViewport(({ width }) => {
