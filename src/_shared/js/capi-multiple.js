@@ -165,9 +165,7 @@ function buildFromCapi (host, cardsInfo, isPaid) {
 
 }
 
-export default function capiMultiple (adType) {
-
-    const isPaid = (adType === 'paidfor');
+export default function capiMultiple (isPaid) {
     let lastWidth;
 
     reportClicks();
