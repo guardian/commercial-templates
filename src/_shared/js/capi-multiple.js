@@ -103,7 +103,7 @@ function buildCard (cardInfo, cardNum, isPaid) {
 
     // Only first two cards show on mobile portrait.
     if (cardNum >= 2) {
-        card.classList.add('hide-until-mobile-landscape');
+        card.classList.add('hide-until-tablet');
     }
 
     return cardFragment;
