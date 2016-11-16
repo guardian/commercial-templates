@@ -9,41 +9,29 @@ import { URLSearchParams } from './utils';
 const ENDPOINT = 'https://api.nextgen.guardianapps.co.uk/commercial/api/capi-multiple.json';
 
 const OVERRIDES = {
-    urls: ['[%Article1URL%]', '[%Article2URL%]', '[%Article3URL%]',
-        '[%Article4URL%]'],
-    headlines: ['[%Article1Headline%]', '[%Article2Headline%]',
-        '[%Article3Headline%]', '[%Article4Headline%]'],
-    images: ['[%Article1Image%]', '[%Article2Image%]', '[%Article3Image%]',
-        '[%Article4Image%]'],
+    urls: ['[%Article1URL%]', '[%Article2URL%]', '[%Article3URL%]', '[%Article4URL%]'],
+    headlines: ['[%Article1Headline%]', '[%Article2Headline%]', '[%Article3Headline%]', '[%Article4Headline%]'],
+    images: ['[%Article1Image%]', '[%Article2Image%]', '[%Article3Image%]', '[%Article4Image%]'],
     brandLogo: '[%BrandLogo%]'
 };
 
 // Loads the card data from CAPI in JSON format.
 function retrieveCapiData () {
-
     let params = new URLSearchParams();
     params.append('k', '[%SeriesURL%]');
-
     OVERRIDES.urls.forEach(url => {
-
         if (url !== '') {
             params.append('t', url);
         }
-
     })
-
-    let url = `${ENDPOINT}?${params}`;
-
-    return fetch(url).then(response => response.json());
-
+    return fetch(`${ENDPOINT}?${params}`)
+    .then(response => response.json());
 }
 
 // Sets up media icon information on a card (SVG and class).
 function setMediaIcon (card, title, mediaType) {
-
     title.insertAdjacentHTML('afterbegin', mediaIcons[mediaType]);
     card.classList.add('advert--media');
-
 }
 
 // Inserts capi headline or DFP override.
