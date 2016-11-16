@@ -46,6 +46,8 @@ function buildTitle (card, cardInfo, cardNumber) {
 
     let title = card.querySelector('.advert__title');
 
+    buildHeadline(card, title, cardInfo, cardNumber);
+
     if (cardInfo.videoTag) {
         setMediaIcon(card, title, 'video');
     } else if (cardInfo.galleryTag) {
@@ -55,9 +57,6 @@ function buildTitle (card, cardInfo, cardNumber) {
     } else {
         card.classList.add('advert--text');
     }
-
-    buildHeadline(card, title, cardInfo, cardNumber);
-
 }
 
 // Either from template, or workaround for IE (sigh).
