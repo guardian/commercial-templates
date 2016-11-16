@@ -41,7 +41,7 @@ function buildFromCapi (host, { articleHeadline, articleText, articleUrl, articl
 
     return write(() => {
         title.textContent = OVERRIDES.headline || articleHeadline;
-        text.textContent = OVERRIDES.text || articleText;
+        text.innerHTML = OVERRIDES.text || articleText;
         imageContainer.insertAdjacentHTML('afterbegin', image);
     });
 }
