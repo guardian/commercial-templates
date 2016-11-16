@@ -5,6 +5,10 @@
 }
 
 .adverts--paidfor {
+    .adverts__header {
+        position: relative;
+    }
+
     .adverts__stamp .icon {
       width: 100px;
     }

@@ -2,9 +2,9 @@
 @import '_adverts';
 @import '_advert';
 @import '_adverts-capi';
-@import '_popup-paidfor';
 @import '_paidfor-meta';
 @import '_palette';
+@import '_popup-paidfor';
 
 .adverts {
     color: $neutral-1;
@@ -14,37 +14,7 @@
     text-decoration: underline;
 }
 
-
-.popup {
-    background: #333;
-    box-sizing: border-box;
-    color: #fff;
-    font-size: 14px;
-    line-height: 16px;
-
-    a {
-        color: #69d1ca;
-        text-decoration: none;
-
-        &:hover,
-        &:focus {
-            text-decoration: underline;
-        }
-    }
-}
-
 .icon--glabs-logo {
     width: 75px;
     max-height: 31px;
-}
-
-.icon--arrow-down {
-    height: 9px;
-    width: 12px;
-}
-
-.icon--arrow-right {
-    width: 20px;
-    height: 20px;
-    fill: currentColor;
 }
