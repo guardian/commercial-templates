@@ -207,7 +207,7 @@ $phablet: 660px;
         line-height: 24px;
     }
 
-    @include mq(leftCol){
+    @include mq(leftCol, wide){
         width: 140px;
     }
 }
