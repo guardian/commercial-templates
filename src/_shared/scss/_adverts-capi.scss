@@ -75,6 +75,11 @@
         right: 0;
         transform: translate(-50%, 0);
         border-top: 1px solid $news-main-2;
+        width: calc(100% - #{$gs-gutter});
+
+        @include mq(mobileLandscape) {
+            width: calc(100% - #{$gs-gutter * 2});
+        }
 
         @include mq(tablet) {
             width: 740px;
