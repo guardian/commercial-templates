@@ -230,35 +230,3 @@
         display: none;
     }
 }
-
-.popup {
-    background: #333;
-    color: #fff;
-    font-size: 14px;
-    line-height: 16px;
-
-    a {
-        color: #69d1ca;
-        text-decoration: none;
-
-        &:hover,
-        &:focus {
-            text-decoration: underline;
-        }
-    }
-}
-
-.icon--glabs-logo {
-    width: 75px;
-}
-
-.icon--arrow-down {
-    height: 9px;
-    width: 12px;
-}
-
-.icon--arrow-right {
-    width: 20px;
-    height: 20px;
-    fill: currentColor;
-}
