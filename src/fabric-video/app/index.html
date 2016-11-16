@@ -1,19 +1,14 @@
-<div class="gs-container creative__label creative__label--[%ShowLabel%]">
-    <div class="creative__label-text">
-        Advertisement
-    </div>
-</div>
 <div class="creative creative--fabric-video">
     <div class="gs-container">
         <a class="creative__link blink" href="%%CLICK_URL_UNESC%%%%DEST_URL%%">
             <div class="creative__alt creative__alt--tablet hide-until-tablet"
                 style="background: [%BackgroundColour%] url('[%BackgroundImage%]') [%BackgroundPosition%] [%BackgroundRepeat%]">
                 <div class="creative__poster" style="background-image:url('[%VideoBackupImage%]')"></div>
-                <video muted playsinline class="creative__video creative__video--[%VideoAlignment%]">
+                <video muted playsinline autoplay class="creative__video creative__video--[%VideoAlignment%]">
                     <source src="[%VideoURL%]" type="video/mp4">
                 </video>
                 <div class="creative__layer creative__layer1" style="background-image: url([%Layer1BackgroundImage%]); background-position: [%Layer1BackgroundPosition%];"></div>
-                <div id="layer2" class="creative__layer creative__layer2">
+                <div id="layer2" class="creative__layer creative__layer2 is-animating">
                     <div style="background-image: url([%Layer2AnimatedImage1%])" class="creative__slide creative__slide1"></div>
                     <div style="background-image: url([%Layer2AnimatedImage2%])" class="creative__slide creative__slide2"></div>
                     <div style="background-image: url([%Layer2AnimatedImage3%])" class="creative__slide creative__slide3"></div>

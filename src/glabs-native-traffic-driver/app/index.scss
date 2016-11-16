@@ -1,6 +1,7 @@
-@import '_core';
-
 $brand-colour: #69d1ca;
+
+@import '_core';
+@import '_roundel';
 
 @font-face {
     src: url('https://interactive.guim.co.uk/fonts/guss-webfonts/GuardianSansWeb/GuardianSansWeb-Regular.woff2') format('woff2'),
@@ -81,68 +82,15 @@ $brand-colour: #69d1ca;
     max-width: 90px;
 }
 
-.popup {
-    right: 0;
-    left: -150px;
-    top: 47px;
-
+.roundel .popup {
     background: #333;
     color: #fff;
-    font-size: 14px;
-    line-height: 16px;
 
     a {
         color: $brand-colour;
-        text-decoration: none;
-
-        &:hover,
-        &:focus {
-            text-decoration: underline;
-        }
     }
 
     &::after {
-        bottom: 100%;
-        right: 10px;
-        border: solid transparent;
-        content: " ";
-        height: 0;
-        width: 0;
-        position: absolute;
-        pointer-events: none;
         border-bottom-color: #333;
-        border-width: 8px;
-        margin-left: -8px;
     }
-}
-
-.creative__meta-about {
-    position: absolute;
-    right: 10px;
-    top: 10px;
-}
-
-.creative__meta-button {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    padding: 4px 10px;
-    width: 37px;
-    border-radius: 100%;
-
-    background: $brand-colour;
-    font-size: 12px;
-    font-weight: bold;
-    letter-spacing: .1em;
-    text-transform: uppercase;
-}
-
-.icon--arrow-down {
-    width: 12px;
-}
-
-.icon--arrow-right {
-    width: 20px;
-    fill: currentColor;
 }

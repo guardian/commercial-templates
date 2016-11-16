@@ -1,13 +1,15 @@
-import { getIframeId, sendMessage, resizeIframeHeight } from '../../_shared/js/messages';
+import { getIframeId, sendMessage, resizeIframeHeight, reportClicks } from '../../_shared/js/messages';
 import { enableToggles } from '../../_shared/js/ui';
 import { write, div } from '../../_shared/js/dom';
 
 let showLabel = '[%ShowLabel%]';
+let labelHeight = 22;
 
 getIframeId()
 .then(() => {
     if( showLabel === 'yep' ) resizeIframeHeight();
 
+    reportClicks();
     handleBackground();
     handleToggle();
 });
@@ -48,5 +50,5 @@ function handleToggle() {
 }
 
 function onToggle(isOpen) {
-    resizeIframeHeight(isOpen ? 500 : 250);
+    resizeIframeHeight((isOpen ? 500 : 250) + (showLabel === 'yep' ? labelHeight : 0));
 }
