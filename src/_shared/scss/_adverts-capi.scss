@@ -16,6 +16,15 @@
     }
 }
 
+.adverts--supported {
+    .badge__help {
+        font-size: 11px;
+        font-weight: normal;
+        line-height: 1;
+        margin-top: $gs-baseline / 2;
+    }
+}
+
 .adverts--tone-paidfor {
     background-color: $neutral-6;
 
