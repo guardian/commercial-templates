@@ -9,12 +9,13 @@ $brand-colour: #69d1ca;
     color: $card-foreground;
     display: flex;
     flex-direction: column;
-    margin: auto;
-    max-width: 320px;
     position: relative;
 
-    font-family: $f-sans-serif-text;
-    line-height: 20px;
+    font: normal 14px/18px $f-sans-serif-text;
+
+    @include mq(mobileLandscape) {
+        max-width: 320px;
+    }
 }
 
 .creative__image-container {
@@ -38,7 +39,12 @@ $brand-colour: #69d1ca;
 }
 
 .creative__standfirst {
+    display: none;
     margin: 8px 10px 5px;
+}
+
+.creative__standfirst--yep {
+    display: block;
 }
 
 .creative__brand {
@@ -100,10 +106,12 @@ $brand-colour: #69d1ca;
 }
 
 .icon--arrow-down {
+    height: 9px;
     width: 12px;
 }
 
 .icon--arrow-right {
+    height: 20px;
     width: 20px;
     fill: currentColor;
 }
