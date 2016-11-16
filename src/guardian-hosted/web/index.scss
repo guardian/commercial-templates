@@ -3,7 +3,7 @@
 $phablet: 660px;
 
 .creative--hosted {
-    font-family: $f-sans-serif-headline;
+    font-family: $f-sans-serif-text;
     min-height: 100px;
     background: #e9e9e9;
 
@@ -63,15 +63,18 @@ $phablet: 660px;
 }
 
 .hostedbadge__info {
-    font-size: 13px;
-    line-height: 11px;
+    font-size: 12px;
+    line-height: 13px;
     height: auto;
-    padding: 3px 0 2px;
+    padding: 5px;
     color: #333333;
     margin: 0;
-    text-align: center;
     .hosted-bright & {
         color: #ffffff;
+    }
+    @include mq(leftCol) {
+        text-align: center;
+        padding: 6px 0 8px;
     }
 }
 
@@ -156,18 +159,13 @@ $phablet: 660px;
 
 .hosted-trafficdriver__title {
     padding: 6px 6px 18px;
-    font-size: 16px;
-    line-height: 22px;
+    font-size: 20px;
+    line-height: 24px;
     font-weight: 600;
     color: #333333;
     .hosted-bright & {
         color: #ffffff;
     }
-
-    @include mq($until: desktop) {
-        font-size: 20px;
-        line-height: 24px;
-    }    
 }
 
 .hosted-trafficdriver__content-type {
