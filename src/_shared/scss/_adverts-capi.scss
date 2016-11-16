@@ -9,10 +9,6 @@
         position: relative;
     }
 
-    .adverts__stamp .icon {
-      width: 100px;
-    }
-
     @include mq(mobileLandscape, leftCol) {
         .paidfor-meta__more {
             position: relative;
