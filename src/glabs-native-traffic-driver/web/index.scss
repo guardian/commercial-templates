@@ -19,6 +19,7 @@ $brand-colour: #69d1ca;
 }
 
 .creative__image-container {
+    overflow: hidden; /* IE1 messes up the height */
     order: -1;
     position: relative;
 }
@@ -63,6 +64,7 @@ $brand-colour: #69d1ca;
 .creative__meta {
     background: $brand-colour;
     font-size: 13px;
+    display: flex;
 }
 
 .creative__meta-type {
@@ -101,6 +103,7 @@ $brand-colour: #69d1ca;
 }
 
 .icon--glabs-logo {
+    height: 23px;
     width: 75px;
     fill: white;
 }
