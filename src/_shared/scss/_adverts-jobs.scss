@@ -8,21 +8,27 @@
     }
 
     .jobs-sectors {
-        display: flex;
-        flex-flow: row wrap;
-        justify-content: space-between;
         list-style: none;
         margin-bottom: $gs-baseline / 2;
         padding: 0;
 
         > li {
             border-top: 1px solid $neutral-4;
-            flex-basis: calc(50% - (#{$gs-gutter / 4}));
         }
 
         a {
             display: block;
             padding: $gs-baseline / 1.5 0;
+        }
+
+        @include mq(tablet) {
+            display: flex;
+            flex-flow: row wrap;
+            justify-content: space-between;
+
+            > li {
+                flex-basis: calc(50% - (#{$gs-gutter / 4}));
+            }
         }
     }
 
@@ -48,6 +54,10 @@
         .button {
             background: darken($news-main-1, 5%);
         }
+    }
+
+    @include mq($until: tablet) {
+        overflow: hidden;
     }
 }
 
