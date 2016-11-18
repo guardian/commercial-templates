@@ -1,5 +1,5 @@
 import { write } from '../../_shared/js/dom';
-import { getIframeId, getWebfonts, resizeIframeHeight, reportClicks } from '../../_shared/js/messages';
+import { getIframeId, getWebfonts, resizeIframeHeight, reportClicks, onViewport } from '../../_shared/js/messages';
 import { getApiBaseUrl } from '../../_shared/js/dev';
 import { URLSearchParams } from '../../_shared/js/utils';
 
@@ -17,8 +17,15 @@ getIframeId()
 .then(response => response.json())
 .then(jobs => jobs.map(createAdvert).join(''))
 .then(html => Promise.all([getWebfonts(), write(() => container.insertAdjacentHTML('beforeend', html))]))
-.then(() => resizeIframeHeight());
-
+.then(() => {
+    let lastWidth;
+    onViewport(({ width }) => {
+        if( width !== lastWidth ) {
+            lastWidth = width;
+            resizeIframeHeight();
+        }
+    });
+});
 
 /* Outputs the HTML for a job advert */
 function createAdvert(job, index) {

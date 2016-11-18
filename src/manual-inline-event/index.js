@@ -1,5 +1,5 @@
 import { write } from '../../_shared/js/dom';
-import { getIframeId, getWebfonts, resizeIframeHeight, reportClicks } from '../../_shared/js/messages';
+import { getIframeId, getWebfonts, resizeIframeHeight, reportClicks, onViewport } from '../../_shared/js/messages';
 import { getApiBaseUrl } from '../../_shared/js/dev';
 import { formatPrice, formatDuration, URLSearchParams } from '../../_shared/js/utils';
 import { generatePicture } from '../../_shared/js/capi-images';
@@ -15,7 +15,15 @@ getIframeId()
 .then(response => response.json())
 .then(createAdvert)
 .then(html => Promise.all([getWebfonts(), write(() => container.innerHTML = html)]))
-.then(() => resizeIframeHeight())
+.then(() => {
+    let lastWidth;
+    onViewport(({ width }) => {
+        if( width !== lastWidth ) {
+            lastWidth = width;
+            resizeIframeHeight();
+        }
+    });
+});
 
 function createAdvert(event) {
 
