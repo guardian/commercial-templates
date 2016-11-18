@@ -5,14 +5,23 @@
 }
 
 .adverts--paidfor {
-    .adverts__stamp .icon {
-      width: 100px;
+    .adverts__header {
+        position: relative;
     }
 
     @include mq(mobileLandscape, leftCol) {
         .paidfor-meta__more {
             position: relative;
         }
+    }
+}
+
+.adverts--supported {
+    .badge__help {
+        font-size: 11px;
+        font-weight: normal;
+        line-height: 1;
+        margin-top: $gs-baseline / 2;
     }
 }
 
@@ -66,6 +75,11 @@
         right: 0;
         transform: translate(-50%, 0);
         border-top: 1px solid $news-main-2;
+        width: calc(100% - #{$gs-gutter});
+
+        @include mq(mobileLandscape) {
+            width: calc(100% - #{$gs-gutter * 2});
+        }
 
         @include mq(tablet) {
             width: 740px;
@@ -229,36 +243,4 @@
     > .advert__standfirst {
         display: none;
     }
-}
-
-.popup {
-    background: #333;
-    color: #fff;
-    font-size: 14px;
-    line-height: 16px;
-
-    a {
-        color: #69d1ca;
-        text-decoration: none;
-
-        &:hover,
-        &:focus {
-            text-decoration: underline;
-        }
-    }
-}
-
-.icon--glabs-logo {
-    width: 75px;
-}
-
-.icon--arrow-down {
-    height: 9px;
-    width: 12px;
-}
-
-.icon--arrow-right {
-    width: 20px;
-    height: 20px;
-    fill: currentColor;
 }

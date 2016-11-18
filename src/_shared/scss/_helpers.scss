@@ -1,18 +1,18 @@
 .hide-until-tablet {
     @include mq($until: tablet) {
-        display: none;
+        display: none !important;
     }
 }
 
 .hide-until-mobile-landscape {
     @include mq($until: mobileLandscape) {
-        display: none;
+        display: none !important;
     }
 }
 
 .mobile-only {
     @include mq(tablet) {
-        display: none;
+        display: none !important;
     }
 }
 
