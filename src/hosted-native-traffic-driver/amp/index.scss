@@ -1,0 +1,75 @@
+@import '_core';
+
+$brand-colour: #663399;
+
+@font-face {
+    src: url('https://interactive.guim.co.uk/fonts/guss-webfonts/GuardianSansWeb/GuardianSansWeb-Regular.woff2') format('woff2'),
+        url('https://interactive.guim.co.uk/fonts/guss-webfonts/GuardianSansWeb/GuardianSansWeb-Regular.woff') format('woff');
+    font-family: 'Guardian Sans Web';
+    font-weight: normal;
+}
+
+@font-face {
+    src: url('https://interactive.guim.co.uk/fonts/guss-webfonts/GuardianTextSansWeb/GuardianTextSansWeb-Regular.woff2') format('woff2'),
+        url('https://interactive.guim.co.uk/fonts/guss-webfonts/GuardianTextSansWeb/GuardianTextSansWeb-Regular.woff') format('woff');
+    font-family: 'Guardian Text Sans Web';
+    font-weight: normal;
+}
+
+.creative--hosted-mpu {
+    background: #ffffff;
+    box-sizing: border-box;
+    color: #333;
+    margin: auto;
+    height: 250px;
+    max-width: 320px;
+    position: relative;
+    font-family: $f-sans-serif-text;
+    border-top:1px solid rgb(254, 221, 121);
+}
+
+.creative__image {
+    object-fit: cover;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.creative__content {
+    position: relative;
+}
+
+.creative__content-title--hosted {
+    font-size: 22px;
+    line-height:24px;
+    margin: 0;
+    padding: 10px 100px 10px 10px;
+}
+
+.hostedbadge {
+    position: absolute;
+    bottom: 100%;
+    right: 10px;
+    width: 80px;
+    background: $brand-colour;
+}
+
+.hostedbadge__info {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: .5px;
+    line-height: 14px;
+
+    height: auto;
+    padding: 6px 4px 8px;
+    margin: 0;
+    color: #ffffff;
+}
+
+.hostedbadge__logo {
+    position: absolute;
+    display: block;
+    width: 100%;
+    top: 100%;
+    background-color: #ffffff;
+}
