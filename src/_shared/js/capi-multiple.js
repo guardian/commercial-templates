@@ -9,41 +9,29 @@ import { URLSearchParams } from './utils';
 const ENDPOINT = 'https://api.nextgen.guardianapps.co.uk/commercial/api/capi-multiple.json';
 
 const OVERRIDES = {
-    urls: ['[%Article1URL%]', '[%Article2URL%]', '[%Article3URL%]',
-        '[%Article4URL%]'],
-    headlines: ['[%Article1Headline%]', '[%Article2Headline%]',
-        '[%Article3Headline%]', '[%Article4Headline%]'],
-    images: ['[%Article1Image%]', '[%Article2Image%]', '[%Article3Image%]',
-        '[%Article4Image%]'],
+    urls: ['[%Article1URL%]', '[%Article2URL%]', '[%Article3URL%]', '[%Article4URL%]'],
+    headlines: ['[%Article1Headline%]', '[%Article2Headline%]', '[%Article3Headline%]', '[%Article4Headline%]'],
+    images: ['[%Article1Image%]', '[%Article2Image%]', '[%Article3Image%]', '[%Article4Image%]'],
     brandLogo: '[%BrandLogo%]'
 };
 
 // Loads the card data from CAPI in JSON format.
 function retrieveCapiData () {
-
     let params = new URLSearchParams();
     params.append('k', '[%SeriesURL%]');
-
     OVERRIDES.urls.forEach(url => {
-
         if (url !== '') {
             params.append('t', url);
         }
-
     })
-
-    let url = `${ENDPOINT}?${params}`;
-
-    return fetch(url).then(response => response.json());
-
+    return fetch(`${ENDPOINT}?${params}`)
+    .then(response => response.json());
 }
 
 // Sets up media icon information on a card (SVG and class).
 function setMediaIcon (card, title, mediaType) {
-
     title.insertAdjacentHTML('afterbegin', mediaIcons[mediaType]);
     card.classList.add('advert--media');
-
 }
 
 // Inserts capi headline or DFP override.
@@ -58,6 +46,8 @@ function buildTitle (card, cardInfo, cardNumber) {
 
     let title = card.querySelector('.advert__title');
 
+    buildHeadline(card, title, cardInfo, cardNumber);
+
     if (cardInfo.videoTag) {
         setMediaIcon(card, title, 'video');
     } else if (cardInfo.galleryTag) {
@@ -67,9 +57,6 @@ function buildTitle (card, cardInfo, cardNumber) {
     } else {
         card.classList.add('advert--text');
     }
-
-    buildHeadline(card, title, cardInfo, cardNumber);
-
 }
 
 // Either from template, or workaround for IE (sigh).
@@ -115,7 +102,7 @@ function buildCard (cardInfo, cardNum, isPaid) {
 
     // Only first two cards show on mobile portrait.
     if (cardNum >= 2) {
-        card.classList.add('hide-until-mobile-landscape');
+        card.classList.add('hide-until-tablet');
     }
 
     return cardFragment;
@@ -152,33 +139,26 @@ function buildFromCapi (host, cardsInfo, isPaid) {
         cardList.appendChild(buildCard(info, idx, isPaid));
     });
 
-    // DOM mutation function.
-    return () => {
-
+    return write(() => {
         // Takes branding from last possible card, in case earlier ones overriden.
         addBranding(cardsInfo.articles.slice(-1)[0]);
         let advertRow = document.querySelector('.adverts__row');
         advertRow.appendChild(cardList);
         editionLink(host, cardsInfo.articles[0].edition, isPaid);
-
-    };
-
+    });
 }
 
-export default function capiMultiple (adType) {
-
-    const isPaid = (adType === 'paidfor');
+export default function capiMultiple (isPaid) {
     let lastWidth;
 
-    reportClicks();
     enableToggles();
 
     getIframeId()
     .then(({ host }) => Promise.all([
+        reportClicks(),
         getWebfonts(),
         retrieveCapiData()
         .then(capiData => buildFromCapi(host, capiData, isPaid))
-        .then(write)
     ]))
     .then(() => {
         onViewport(({ width }) => {

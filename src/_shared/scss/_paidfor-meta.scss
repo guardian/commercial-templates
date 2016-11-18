@@ -4,7 +4,6 @@
     font-size: get-font-size(textSans, 2);
 }
 
-
 .paidfor-meta__label,
 .paidfor-meta__more {
     display: inline-block;
@@ -25,7 +24,6 @@
 
 .paidfor-meta__more {
     padding-left: $gs-gutter / 4;
-    position: absolute;
 }
 
 .paidfor-meta__label {
