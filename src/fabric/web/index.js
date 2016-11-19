@@ -10,7 +10,7 @@ if( layer2.classList.contains('creative__layer2--animation-disabled') ) {
 
 getIframeId()
 .then(() => {
-    if( showLabel === 'yep' ) resizeIframeHeight();
+    if( showLabel === 'yes' ) resizeIframeHeight();
 
     reportClicks();
 
@@ -28,7 +28,7 @@ getIframeId()
 });
 
 function handleBackground(isMobile, isTablet) {
-    let scrollType = '[%ScrollType%]';
+    let scrollType = '[%BackgroundScrollType%]';
     let backgroundColour = '[%BackgroundColour%]';
     let [ backgroundImage, backgroundPosition, backgroundRepeat, creativeLink ] = isMobile ?
         ['[%MobileBackgroundImage%]', '[%MobileBackgroundImagePosition%]', '[%MobileBackgroundImageRepeat%]', document.getElementById('linkMobile')] :
