@@ -24,7 +24,7 @@ function handleToggle() {
 }
 
 function onToggle(isOpen, toggle, target) {
-    resizeIframeHeight((isOpen ? 500 : 250) + (showLabel === 'yep' ? labelHeight : 0));
+    resizeIframeHeight((isOpen ? 500 : 250) + (showLabel === 'yes' ? labelHeight : 0));
     setTimeout((() => {
         if (video.src.indexOf('autoplay') === -1) {
             video.src += '&amp;autoplay=1';
