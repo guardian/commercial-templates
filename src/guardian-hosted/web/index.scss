@@ -1,0 +1,215 @@
+@import '_core';
+
+$phablet: 660px;
+
+.creative--hosted {
+    font-family: $f-sans-serif-headline;
+    min-height: 100px;
+    background: #e9e9e9;
+
+    @include mq(tablet) {
+        background: none;
+    }
+}
+
+.fc-container__inner {
+    position: relative;
+    padding: 6px 0 24px;
+    border-top: 1px solid;
+    margin: 0 auto;
+    background: #e9e9e9;
+
+    @include mq($until: mobileLandscape) {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+    @include mq(mobileLandscape, $phablet) {
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+    @include mq($phablet) {
+        width: 620px;
+    }
+    @include mq(tablet) {
+        width: map-get($mq-breakpoints, tablet);
+        padding-left: 20px;
+        padding-right: 20px;
+        box-sizing: border-box;
+    }
+    @include mq(desktop) {
+        width: map-get($mq-breakpoints, desktop);
+    }
+    @include mq(leftCol) {
+        width: map-get($mq-breakpoints, leftCol);
+    }
+    @include mq(wide) {
+        width: map-get($mq-breakpoints, wide);
+    }
+}
+
+.hostedbadge {
+    bottom: 24px;
+    width: 80px;
+    position: relative;
+    margin-left: calc(100% - 100px);
+    margin-top: 18px;
+    background-color: #ffffff;
+
+    @include mq(leftCol) {
+        position: absolute;
+        width: 112px;
+        margin-left: 0;
+    }
+}
+
+.hostedbadge__info {
+    font-size: 13px;
+    line-height: 11px;
+    height: auto;
+    padding: 3px 0 2px;
+    color: #333333;
+    margin: 0;
+    text-align: center;
+    .hosted-bright & {
+        color: #ffffff;
+    }
+}
+
+.hostedbadge__logo {
+    width: 100%;
+    display: block;
+}
+
+.hosted-trafficdriver__tile {
+    text-decoration: none;
+    display: inline-block;
+    position: relative;
+    flex: 1;
+
+    @include mq($until: mobileLandscape) {
+        margin-left: 0;
+
+        &:not(:first-child) {
+            margin-top: 10px;
+            .hosted-trafficdriver__image {
+                display: none;
+            }
+        }
+    }
+
+    @include mq(mobileLandscape, tablet) {
+        margin-left: 0;
+
+        &:first-child {
+            margin-right: 20px;
+        }
+
+        &:nth-child(n+3) {
+            margin-top: 10px;
+            flex-basis: 100%;
+            flex-grow: 0;
+            flex-shrink: 0;
+
+            .hosted-trafficdriver__image{
+                display: none;
+            }
+        }
+    }
+
+    @include mq(tablet) {
+        &:not(:first-child) {
+            margin-left: 20px;
+        }
+    }
+
+    .hosted-trafficdriver__image{
+        background-size: cover;
+        background-position: center;
+
+        &::before {
+            content: '';
+            padding-top: 100%;
+            display: block;
+        }
+    }
+
+    .with-2-elements &:nth-child(3),
+    .with-2-elements &:nth-child(4),
+    .with-3-elements &:nth-child(4) {
+        display: none;
+    }
+}
+
+@include mq(desktop) {
+    .with-2-elements {
+        .hosted-trafficdriver__image {
+            width: 50%;
+        }
+        .hosted-trafficdriver__title {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            font-size: 18px;
+        }
+    }
+}
+
+.hosted-trafficdriver__title {
+    padding: 6px 6px 18px;
+    font-size: 16px;
+    line-height: 22px;
+    font-weight: 600;
+    color: #333333;
+    .hosted-bright & {
+        color: #ffffff;
+    }
+
+    @include mq($until: desktop) {
+        font-size: 20px;
+        line-height: 24px;
+    }    
+}
+
+.hosted-trafficdriver__content-type {
+    opacity: 0.5;
+}
+
+.hosted-trafficdriver__body {
+    position: relative;
+    display: flex;
+
+    @include mq($until: mobileLandscape) {
+        flex-direction: column;
+    }
+
+    @include mq(mobileLandscape) {
+        flex-flow: row wrap;
+    }
+
+    @include mq(leftCol) {
+        margin-left: 160px;
+    }
+
+    @include mq(wide) {
+        margin-left: 240px;
+        width: 940px;
+    }
+}
+
+.fc-container__header__title {
+    float: left;
+    font-size: 22px;
+    font-weight: 600;
+    color: #333333;
+    line-height: 22px;
+    margin: 0;
+    
+    @include mq($until: leftCol){
+        font-size: 20px;
+        line-height: 24px;
+    }
+
+    @include mq(leftCol){
+        width: 140px;
+    }
+}

@@ -2,9 +2,9 @@
 @import '_adverts';
 @import '_advert';
 @import '_adverts-capi';
-@import '_popup-paidfor';
 @import '_paidfor-meta';
 @import '_palette';
+@import '_popup-paidfor';
 
 .adverts {
     color: $neutral-1;
@@ -14,10 +14,7 @@
     text-decoration: underline;
 }
 
-.popup {
-    box-sizing: border-box;
-}
-
 .icon--glabs-logo {
+    width: 75px;
     max-height: 31px;
 }
