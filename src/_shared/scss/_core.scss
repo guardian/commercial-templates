@@ -186,6 +186,20 @@ $creative-max-width: 1920px;
     }
 }
 
+.popup-toggle {
+    position: absolute;
+    visibility: hidden;
+    pointer-events: none;
+
+    &:checked ~ .popup {
+        display: block;
+    }
+
+    &:not(:checked) ~ .popup {
+        display: none;
+    }
+}
+
 .icon {
     display: inline-block;
     vertical-align: middle;
