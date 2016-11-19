@@ -19,6 +19,12 @@
     }
 }
 
+.advert--inline {
+    > * {
+        max-width: 100%;
+    }
+}
+
 .advert--prominent-true, .advert--landscape {
     .has-no-flex & {
         overflow: hidden;
@@ -158,6 +164,7 @@
 
 .advert__more {
     margin-top: $gs-baseline / 2;
+    white-space: nowrap;
 }
 
 .advert--small > .advert__title {
