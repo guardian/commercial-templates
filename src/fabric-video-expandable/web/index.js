@@ -11,6 +11,8 @@ let isWide = window.matchMedia('(min-width: 1300px)').matches;
 
 getIframeId()
 .then(() => {
+    if( showLabel === 'yes' ) resizeIframeHeight();
+
     getWebfonts(['GuardianTextSansWeb']);
     handleToggle();
 });
