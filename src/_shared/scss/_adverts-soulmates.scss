@@ -188,7 +188,11 @@
 .advert--soulmate {
     &:not(.advert--manual) {
         .advert__image-container {
-            height: 7 * $gs-baseline;
+            height: 10 * $gs-baseline;
+        }
+
+        .advert__image {
+            max-height: 100%;
         }
     }
 
