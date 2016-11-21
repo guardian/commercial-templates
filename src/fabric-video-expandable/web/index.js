@@ -9,10 +9,6 @@ let videoContainer = document.getElementById('video');
 let videoOptions = '[%VideoOptions%]';
 let isWide = window.matchMedia('(min-width: 1300px)').matches;
 
-if(isWide && videoOptions === 'right-aligned') {
-    write(() => videoContainer.classList.add('gs-container'));
-}
-
 getIframeId()
 .then(() => {
     getWebfonts(['GuardianTextSansWeb']);
