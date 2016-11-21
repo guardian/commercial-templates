@@ -169,12 +169,17 @@
 .creative--fabric-video-right-aligned {
     .creative__slide-video {
         box-sizing: border-box;
+        max-width: 1300px;
+
+        @include mq(wide) {
+            left: calc(50% - 650px);
+        }
     }
 
     .creative__video-container__inner {
         flex: 1;
 
-        @include mq(1024px) {
+        @include mq(1010px) {
             flex: initial;
             width: 768px;
         }
@@ -183,7 +188,7 @@
     .creative__video-cta {
         display: none;
 
-        @include mq(1024px) {
+        @include mq(1010px) {
             display: block;
             flex: 1;
         };
@@ -191,7 +196,7 @@
 
     .has-no-flex & {
         .creative__video-cta {
-            @include mq(1024px) {
+            @include mq(1010px) {
                 display: block;
                 position: absolute;
                 width: calc(100% - 768px);
