@@ -1,4 +1,10 @@
 .adverts--jobs {
+    .adverts__row > :nth-child(2) + * {
+        @include mq($until: tablet) {
+            display: block;
+        }
+    }
+
     .advert__image-container {
         height: $gs-baseline * 10;
     }
@@ -8,12 +14,16 @@
     }
 
     .jobs-sectors {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-between;
         list-style: none;
         margin-bottom: $gs-baseline / 2;
         padding: 0;
 
         > li {
             border-top: 1px solid $neutral-4;
+            flex-basis: calc(50% - (#{$gs-gutter / 4}));
         }
 
         a {
@@ -21,14 +31,8 @@
             padding: $gs-baseline / 1.5 0;
         }
 
-        @include mq(tablet) {
-            display: flex;
-            flex-flow: row wrap;
-            justify-content: space-between;
-
-            > li {
-                flex-basis: calc(50% - (#{$gs-gutter / 4}));
-            }
+        @include mq($until: tablet) {
+            display: none;
         }
     }
 
