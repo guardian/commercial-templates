@@ -146,8 +146,16 @@
         visibility: hidden;
         transition: all 1s, visibility 0s;
 
+        iframe {
+            display: none;
+        }
+
         &[aria-expanded="true"] {
             visibility: visible;
+
+            iframe {
+                display: block;
+            }
         }
     }
 }
