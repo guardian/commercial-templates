@@ -34,9 +34,11 @@
         position: absolute;
         z-index: 100;
 
-        background: rgba(0, 0, 0, .75);
-        fill: rgba(255, 255, 255, .75);
-        border-color: rgba(255, 255, 255, .75);
+        background: #000;
+        fill: #fff;
+        border-color: #fff;
+        border-style: solid;
+        box-shadow: 0 0 1px 0 #fff;
 
         &:focus {
             outline: none;
@@ -47,12 +49,13 @@
         bottom: 0;
         left: 50%;
         width: 60px;
-        height: 40px;
+        height: 30px;
         margin-left: -30px;
 
-        border-style: solid;
+        background-color: #333;
         border-radius: 20px 20px 0 0;
         border-width: 1px 1px 0;
+        opacity: .75;
     }
 
     .icon--arrow-down {
