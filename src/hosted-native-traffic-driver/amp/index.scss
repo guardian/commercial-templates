@@ -85,39 +85,45 @@ $badgeWidth: 80px;
     opacity: 0.5;
 }
 
-.popup {
+.hosted-popup {
     display: none;
     position: absolute;
-    width: 80%;
-    top: 44px;
+    width: 228px;
+    top: 45px;
     left: auto;
     right: $gs-baseline / 2;
     z-index: $zindex-modal;
     text-align: left;
-    max-width: 16em;
     background-color: #fedd79;
     font-size: 13px;
-
+    padding: 6px;
 }
 
-.popup__title {
+.hosted-popup__title {
+    font-size: 13px;
+    line-height: 18px;
     margin: 0;
     font-family: inherit;
     font-weight: bold;
 }
 
-.popup__link {
+.hosted-popup__text {
+    line-height: 15px;
+}
+
+.hosted-popup__link {
+    line-height: 15px;
     font-weight: bold;
     color: $neutral-1;
     float: left;
     text-decoration: none;
 }
 
-.popup-toggle {
+.hosted-popup__toggle {
     display: none;
 }
 
-.popup-toggle-label {
+.hosted-popup__toggle-label {
     font-size: 14px;
     line-height: 10px;
     position: absolute;
@@ -150,14 +156,14 @@ $badgeWidth: 80px;
     }
 }
 
-.popup-toggle-label svg {
+.hosted-popup__toggle-label svg {
     width: 13px;
     height: 13px;
     fill: $neutral-1;
     vertical-align: middle;
 }
 
-.popup-toggle:checked ~ .popup-toggle-label::before,
-.popup-toggle:checked ~ .popup {
+.hosted-popup__toggle:checked ~ .hosted-popup__toggle-label::before,
+.hosted-popup__toggle:checked ~ .hosted-popup {
     display: block;
 }
