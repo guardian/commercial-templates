@@ -549,33 +549,6 @@
     }
 }
 
-.badge--alt {
-    border-top: 1px dotted $neutral-5;
-    margin-top: $gs-baseline / 3;
-    padding-top: $gs-baseline / 6;
-    text-align: left;
-
-    > .badge__link,
-    .badge__logo {
-        display: block;
-    }
-
-    .badge__logo {
-        max-height: 6 * $gs-baseline;
-        margin: 0;
-    }
-
-    > .badge__link {
-        border-bottom: 1px dotted $neutral-5;
-        margin: 3 / 4 * $gs-baseline 0 $gs-baseline / 3;
-    }
-
-    > .badge__help {
-        font-size: 11px;
-        line-height: 1;
-    }
-}
-
 .badge__logo {
     max-height: $gs-baseline * 5;
     margin-left: $gs-gutter / 2;

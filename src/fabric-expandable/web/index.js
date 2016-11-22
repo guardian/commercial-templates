@@ -7,7 +7,7 @@ let labelHeight = 22;
 
 getIframeId()
 .then(() => {
-    if( showLabel === 'yep' ) resizeIframeHeight();
+    if( showLabel === 'yes' ) resizeIframeHeight();
 
     reportClicks();
     handleBackground();
@@ -50,5 +50,5 @@ function handleToggle() {
 }
 
 function onToggle(isOpen) {
-    resizeIframeHeight((isOpen ? 500 : 250) + (showLabel === 'yep' ? labelHeight : 0));
+    resizeIframeHeight((isOpen ? 500 : 250) + (showLabel === 'yes' ? labelHeight : 0));
 }
