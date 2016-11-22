@@ -9,12 +9,10 @@ let videoContainer = document.getElementById('video');
 let videoOptions = '[%VideoOptions%]';
 let isWide = window.matchMedia('(min-width: 1300px)').matches;
 
-if(isWide && videoOptions === 'right-aligned') {
-    write(() => videoContainer.classList.add('gs-container'));
-}
-
 getIframeId()
 .then(() => {
+    if( showLabel === 'yes' ) resizeIframeHeight();
+
     getWebfonts(['GuardianTextSansWeb']);
     handleToggle();
 });
@@ -24,7 +22,7 @@ function handleToggle() {
 }
 
 function onToggle(isOpen, toggle, target) {
-    resizeIframeHeight((isOpen ? 500 : 250) + (showLabel === 'yep' ? labelHeight : 0));
+    resizeIframeHeight((isOpen ? 500 : 250) + (showLabel === 'yes' ? labelHeight : 0));
     setTimeout((() => {
         if (video.src.indexOf('autoplay') === -1) {
             video.src += '&amp;autoplay=1';

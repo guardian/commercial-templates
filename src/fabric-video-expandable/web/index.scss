@@ -34,9 +34,11 @@
         position: absolute;
         z-index: 100;
 
-        background: rgba(0, 0, 0, .75);
-        fill: rgba(255, 255, 255, .75);
-        border-color: rgba(255, 255, 255, .75);
+        background: #000;
+        fill: #fff;
+        border-color: #fff;
+        border-style: solid;
+        box-shadow: 0 0 1px 0 #fff;
 
         &:focus {
             outline: none;
@@ -47,12 +49,13 @@
         bottom: 0;
         left: 50%;
         width: 60px;
-        height: 40px;
+        height: 30px;
         margin-left: -30px;
 
-        border-style: solid;
+        background-color: #333;
         border-radius: 20px 20px 0 0;
         border-width: 1px 1px 0;
+        opacity: .75;
     }
 
     .icon--arrow-down {
@@ -143,8 +146,16 @@
         visibility: hidden;
         transition: all 1s, visibility 0s;
 
+        iframe {
+            display: none;
+        }
+
         &[aria-expanded="true"] {
             visibility: visible;
+
+            iframe {
+                display: block;
+            }
         }
     }
 }
@@ -158,12 +169,17 @@
 .creative--fabric-video-right-aligned {
     .creative__slide-video {
         box-sizing: border-box;
+        max-width: 1300px;
+
+        @include mq(wide) {
+            left: calc(50% - 650px);
+        }
     }
 
     .creative__video-container__inner {
         flex: 1;
 
-        @include mq(1024px) {
+        @include mq(1010px) {
             flex: initial;
             width: 768px;
         }
@@ -172,7 +188,7 @@
     .creative__video-cta {
         display: none;
 
-        @include mq(1024px) {
+        @include mq(1010px) {
             display: block;
             flex: 1;
         };
@@ -180,7 +196,7 @@
 
     .has-no-flex & {
         .creative__video-cta {
-            @include mq(1024px) {
+            @include mq(1010px) {
                 display: block;
                 position: absolute;
                 width: calc(100% - 768px);
