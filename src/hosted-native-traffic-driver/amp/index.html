@@ -6,11 +6,27 @@
     <a href="%%CLICK_URL_UNESC%%%%DEST_URL%%" class="creative__ctu">
         <amp-img layout="fixed-height" class="creative__image" src="[%MainImage%]" height="160"></amp-img>
         <div class="creative__content">
-            <h2 class="creative__content-title--hosted">[%Title%]</h2>
+            <h2 class="creative__content-title--hosted">
+                <span class="kicker">[%Kicker%]</span>
+                [%Title%]
+            </h2>
             <div class="hostedbadge">
                 <p class="hostedbadge__info">Advertiser content</p>
-                <amp-img layout="fixed-height" height="90" class="hostedbadge__logo" src="[%LogoImage%]" alt="hello"></amp-img>
+                <div class="logo-container">
+                    <amp-img layout="fill" class="hostedbadge__logo" src="[%LogoImage%]" alt="hello"></amp-img>
+                </div>
             </div>
         </div>
     </a>
+    <div class="ad-popup">
+        <input type="checkbox" value="" id="popup-toggle" class="popup-toggle">
+        <label for="popup-toggle" class="popup-toggle-label">Ad
+            {{#svg}}arrow-down{{/svg}}
+        </label>
+        <div class="popup" data-link-name="hosted ad popup" role="dialog" aria-label="about hosted content">
+            <h3 class="popup__title">Advertising on the Guardian</h3>
+            <p class="popup__text">is created and paid for by third parties.</p>
+            <a class="popup__link" href="https://www.theguardian.com/advertising-on-the-guardian" target="_blank">Learn more about how advertising supports the Guardian.</a>
+        </div>
+    </div>
 </div>

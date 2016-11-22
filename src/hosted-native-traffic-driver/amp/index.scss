@@ -1,6 +1,9 @@
 @import '_core';
 
-$brand-colour: #663399;
+$brand-colour: dfpVar(BrandColour);
+$logoHeight: dfpVar(LogoHeight);
+$logoWidth: dfpVar(LogoWidth);
+$badgeWidth: 80px;
 
 @font-face {
     src: url('https://interactive.guim.co.uk/fonts/guss-webfonts/GuardianSansWeb/GuardianSansWeb-Regular.woff2') format('woff2'),
@@ -41,16 +44,19 @@ $brand-colour: #663399;
 
 .creative__content-title--hosted {
     font-size: 22px;
-    line-height:24px;
+    line-height: 24px;
     margin: 0;
-    padding: 10px 100px 10px 10px;
+    padding: 10px 100px 0 10px;
+    max-height: 72px;
+    overflow: hidden;
+    display: block;
 }
 
 .hostedbadge {
     position: absolute;
     bottom: 100%;
     right: 10px;
-    width: 80px;
+    width: $badgeWidth;
     background: $brand-colour;
 }
 
@@ -66,10 +72,92 @@ $brand-colour: #663399;
     color: #ffffff;
 }
 
-.hostedbadge__logo {
+.logo-container {
     position: absolute;
     display: block;
-    width: 100%;
     top: 100%;
+    width: 100%;
+    height: calc(#{$badgeWidth} * #{$logoHeight} / #{$logoWidth});
     background-color: #ffffff;
+}
+
+.kicker {
+    opacity: 0.5;
+}
+
+.popup {
+    display: none;
+    position: absolute;
+    width: 80%;
+    top: 44px;
+    left: auto;
+    right: $gs-baseline / 2;
+    z-index: $zindex-modal;
+    text-align: left;
+    max-width: 16em;
+    background-color: #fedd79;
+    font-size: 13px;
+
+}
+
+.popup__title {
+    margin: 0;
+    font-family: inherit;
+    font-weight: bold;
+}
+
+.popup__link {
+    font-weight: bold;
+    color: $neutral-1;
+    float: left;
+    text-decoration: none;
+}
+
+.popup-toggle {
+    display: none;
+}
+
+.popup-toggle-label {
+    font-size: 14px;
+    line-height: 10px;
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    width: 33px;
+    padding: 9px 7px 1px;
+    border-radius: 100%;
+    z-index: 1;
+    background-color: #fedd79;
+    border: 0;
+    font-weight: bold;
+    text-transform: uppercase;
+    box-sizing: border-box;
+    text-align: center;
+
+    &::before {
+        content: '';
+        display: none;
+        width: 0;
+        height: 0;
+        border-top: 0;
+        position: absolute;
+        left: 50%;
+        border-left: 6px solid transparent;
+        border-right: 6px solid transparent;
+        border-bottom: 6px solid #fedd79;
+        bottom: -6px;
+        margin-left: -6px;
+    }
+}
+
+.popup-toggle-label svg {
+    width: 13px;
+    height: 13px;
+    fill: $neutral-1;
+    vertical-align: middle;
+}
+
+.popup-toggle:checked ~ .popup-toggle-label::before,
+.popup-toggle:checked ~ .popup {
+    display: block;
 }
