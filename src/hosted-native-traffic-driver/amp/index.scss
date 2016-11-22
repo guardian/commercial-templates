@@ -32,10 +32,12 @@ $badgeWidth: 80px;
 }
 
 .creative__image {
-    object-fit: cover;
     top: 0;
     left: 0;
     width: 100%;
+    img {
+        object-fit: cover;
+    }
 }
 
 .creative__content {
@@ -139,6 +141,7 @@ $badgeWidth: 80px;
     text-transform: uppercase;
     box-sizing: border-box;
     text-align: center;
+    cursor: pointer;
 
     &::before {
         content: '';
