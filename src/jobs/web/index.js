@@ -29,7 +29,7 @@ getIframeId()
 
 /* Outputs the HTML for a job advert */
 function createAdvert(job, index) {
-    return `<a class="blink advert advert--job ${ index > 0 ? 'hide-until-mobile-landscape' : '' }" href="%%CLICK_URL_UNESC%%${job.listingUrl}" data-link-name="Offer ${index+1} | ${job.id}">
+    return `<a class="blink advert advert--job" href="%%CLICK_URL_UNESC%%${job.listingUrl}" data-link-name="Offer ${index+1} | ${job.id}">
         <h2 class="blink__anchor advert__title" itemprop="name">${job.title}</h2>
         <div class="advert__image-container">
             <img class="advert__image" src="${job.recruiterLogoUrl}">

@@ -1,7 +1,7 @@
 .adverts--jobs {
-    .adverts__row > :nth-child(2) + * {
-        @include mq($until: tablet) {
-            display: block;
+    @include mq($until: tablet) {
+        .adverts__row > :nth-child(2) ~ * {
+            margin-top: 0;
         }
     }
 
@@ -29,10 +29,6 @@
         a {
             display: block;
             padding: $gs-baseline / 1.5 0;
-        }
-
-        @include mq($until: tablet) {
-            display: none;
         }
     }
 
