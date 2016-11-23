@@ -1,5 +1,5 @@
 import { write } from '../../_shared/js/dom';
-import { getIframeId, getWebfonts, resizeIframeHeight, reportClicks } from '../../_shared/js/messages';
+import { getIframeId, getWebfonts, resizeIframeHeight, reportClicks, onViewport } from '../../_shared/js/messages';
 import { getApiBaseUrl } from '../../_shared/js/dev';
 import { formatPrice, formatDuration, URLSearchParams } from '../../_shared/js/utils';
 import { generatePicture } from '../../_shared/js/capi-images';
@@ -15,7 +15,15 @@ getIframeId()
 .then(response => response.json())
 .then(createAdvert)
 .then(html => Promise.all([getWebfonts(), write(() => container.innerHTML = html)]))
-.then(() => resizeIframeHeight())
+.then(() => {
+    let lastWidth;
+    onViewport(({ width }) => {
+        if( width !== lastWidth ) {
+            lastWidth = width;
+            resizeIframeHeight();
+        }
+    });
+});
 
 function createAdvert(event) {
 
@@ -23,7 +31,11 @@ function createAdvert(event) {
 
   return `<a class="blink advert advert--inline advert--brand" href="%%CLICK_URL_ESC%%${event.eventUrl}" data-link-name="${event.eventId}-${event.name}">
         <div class="advert__image-container">
-            ${generatePicture(event.image, ["advert__image"])}
+            ${generatePicture({
+                url: event.image.backupSrc,
+                classes: ["advert__image"],
+                sources: event.image.sources
+            })}
         </div>
         <h2 class="advert__title blink__anchor">${event.name}</h2>
         <div class="advert__meta">

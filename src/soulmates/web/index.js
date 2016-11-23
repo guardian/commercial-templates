@@ -1,4 +1,4 @@
-import { getIframeId, getWebfonts, resizeIframeHeight, reportClicks } from '../../_shared/js/messages';
+import { getIframeId, getWebfonts, resizeIframeHeight, reportClicks, onViewport } from '../../_shared/js/messages';
 import { write } from '../../_shared/js/dom';
 import { getApiBaseUrl } from '../../_shared/js/dev';
 import { URLSearchParams } from '../../_shared/js/utils';
@@ -10,12 +10,19 @@ const cardContainer = document.getElementsByClassName("adverts__row")[0];
 
 reportClicks();
 getIframeId()
-  .then(({ host, preview }) => fetch(`${getApiBaseUrl(host, preview)}/commercial/api/soulmates.json?${params}`))
-  .then(response => response.json())
-  .then(soulmates => soulmates.map(createSoulmateCard))
-  .then(cards => Promise.all([addSoulmatesCards(cards), getWebfonts()]))
-  .then(() => resizeIframeHeight());
-
+.then(({ host, preview }) => fetch(`${getApiBaseUrl(host, preview)}/commercial/api/soulmates.json?${params}`))
+.then(response => response.json())
+.then(soulmates => soulmates.map(createSoulmateCard))
+.then(cards => Promise.all([addSoulmatesCards(cards), getWebfonts()]))
+.then(() => {
+  let lastWidth;
+  onViewport(({ width }) => {
+      if( width !== lastWidth ) {
+          lastWidth = width;
+          resizeIframeHeight();
+      }
+  });
+});
 
 function createSoulmateCard(soulmate, index) {
 

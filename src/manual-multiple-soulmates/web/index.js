@@ -1,4 +1,4 @@
-import { getIframeId, getWebfonts, resizeIframeHeight, reportClicks } from '../../_shared/js/messages.js';
+import { getIframeId, getWebfonts, resizeIframeHeight, reportClicks, onViewport } from '../../_shared/js/messages.js';
 import { cleanupButtons } from '../../_shared/js/creatives.js';
 
 cleanupButtons();
@@ -6,4 +6,12 @@ cleanupButtons();
 reportClicks();
 getIframeId()
 .then(() => getWebfonts())
-.then(resizeIframeHeight);
+.then(() => {
+    let lastWidth;
+    onViewport(({ width }) => {
+        if( width !== lastWidth ) {
+            lastWidth = width;
+            resizeIframeHeight();
+        }
+    });
+});

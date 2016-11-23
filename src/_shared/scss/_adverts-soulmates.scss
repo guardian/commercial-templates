@@ -1,4 +1,10 @@
 .adverts--soulmates {
+    @include mq(mobileLandscape, leftCol) {
+        .adverts__ctas {
+            margin-top: 0;
+        }
+    }
+
     @include mq($until: tablet) {
         // In the soulmates component, we want to show rows of 3 profiles
         // on mobile. Except if this is a manual component.
@@ -87,13 +93,12 @@
     .search__submit {
         float: right;
         border-radius: 62.5rem;
-        border-width: 0.0625rem;
         border-style: solid;
         box-sizing: border-box;
         vertical-align: top;
         width: auto;
         background-color: #262626;
-        color: #bdbdbd;
+        color: #fff;
     }
 
     .icon--soulmates-join {
@@ -183,7 +188,11 @@
 .advert--soulmate {
     &:not(.advert--manual) {
         .advert__image-container {
-            height: 7 * $gs-baseline;
+            height: 10 * $gs-baseline;
+        }
+
+        .advert__image {
+            max-height: 100%;
         }
     }
 
