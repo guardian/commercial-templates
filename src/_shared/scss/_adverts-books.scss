@@ -73,20 +73,6 @@
         }
     }
 
-    &.advert--prominent-true > .advert__image-container {
-        flex-basis: calc(66.67% - #{$gs-gutter / 2});
-    }
-
-    &.has-no-flex {
-        .advert--prominent-true > .advert__image-container {
-            width:  calc(66.67% - #{$gs-gutter / 2});
-        }
-
-        .advert--prominent-true > .advert__text {
-            width:  calc(33.33% - #{$gs-gutter / 2});
-        }
-    }
-
     &.advert--prominent-false {
       .advert__image-container {
         align-self: center;
@@ -100,6 +86,7 @@
 
     .adverts__row--prominent-true &.advert--prominent-false {
       .advert__image {
+        width: auto;
         max-height: 300px;
       }
     }
