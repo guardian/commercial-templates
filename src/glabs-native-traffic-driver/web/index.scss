@@ -9,15 +9,17 @@ $brand-colour: #69d1ca;
     color: $card-foreground;
     display: flex;
     flex-direction: column;
-    margin: auto;
-    max-width: 320px;
     position: relative;
 
-    font-family: $f-sans-serif-text;
-    line-height: 20px;
+    font: normal 14px/18px $f-sans-serif-text;
+
+    @include mq(mobileLandscape) {
+        max-width: 320px;
+    }
 }
 
 .creative__image-container {
+    overflow: hidden; /* IE1 messes up the height */
     order: -1;
     position: relative;
 }
@@ -38,7 +40,12 @@ $brand-colour: #69d1ca;
 }
 
 .creative__standfirst {
+    display: none;
     margin: 8px 10px 5px;
+}
+
+.creative__standfirst--yes {
+    display: block;
 }
 
 .creative__brand {
@@ -57,6 +64,7 @@ $brand-colour: #69d1ca;
 .creative__meta {
     background: $brand-colour;
     font-size: 13px;
+    display: flex;
 }
 
 .creative__meta-type {
@@ -95,15 +103,18 @@ $brand-colour: #69d1ca;
 }
 
 .icon--glabs-logo {
+    height: 23px;
     width: 75px;
     fill: white;
 }
 
 .icon--arrow-down {
+    height: 9px;
     width: 12px;
 }
 
 .icon--arrow-right {
+    height: 20px;
     width: 20px;
     fill: currentColor;
 }

@@ -23,7 +23,7 @@ function retrieveCapiData() {
 }
 
 // Uses cAPI data to build the ad content.
-function buildFromCapi ({ articleHeadline, articleText, articleUrl, articleImage, edition }) {
+function buildFromCapi (host, { articleHeadline, articleText, articleUrl, articleImage, edition }) {
     Array.from(document.getElementsByClassName('creative__ctu')).forEach(ctu => ctu.href = articleUrl);
 
     let title = document.getElementById('Title');
@@ -37,7 +37,7 @@ function buildFromCapi ({ articleHeadline, articleText, articleUrl, articleImage
         alt: OVERRIDES.imageAlt
     });
 
-    setEditionLink(edition, document.getElementById('GlabsLink'));
+    setEditionLink(host, edition, document.getElementById('GlabsLink'));
 
     return write(() => {
         title.textContent = OVERRIDES.headline || articleHeadline;
@@ -49,11 +49,11 @@ function buildFromCapi ({ articleHeadline, articleText, articleUrl, articleImage
 reportClicks();
 enableToggles();
 getIframeId()
-.then(() => {
+.then(({ host }) => {
     return Promise.all([
-        getWebfonts(),
+        getWebfonts(['GuardianTextSansWeb', 'GuardianSansWeb']),
         retrieveCapiData()
-        .then(buildFromCapi)
+        .then(data => buildFromCapi(host, data))
         .then(() => {
             addTrackingPixel(document.getElementById('creative'));
         })
