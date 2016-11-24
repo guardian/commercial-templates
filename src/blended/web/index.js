@@ -10,9 +10,9 @@ let params = new URLSearchParams();
 ['[%Offer1Id%]','[%Offer2Id%]','[%Offer3Id%]','[%Offer4Id%]'].forEach(offerId => params.append('offerIds', offerId));
 
 let createAdvert = {
-    Book: createBlendedCard.bind(null, 'books', 'http://www.guardianbookshop.co.uk/', logoBookshop, 'visit-shop', createBook),
-    Job:  createBlendedCard.bind(null, 'jobs', 'http://jobs.theguardian.com/', logoJobs, 'visit-site', createJob),
-    Masterclass: createBlendedCard.bind(null, 'masterclass', 'http://theguardian.com/guardian-masterclasses/', logoMasterclasses, 'visit-site', createMasterclass),
+    Book: createBlendedCard.bind(null, 'books', 'https://bookshop.theguardian.com/', logoBookshop, 'visit-shop', createBook),
+    Job:  createBlendedCard.bind(null, 'jobs', 'https://jobs.theguardian.com/', logoJobs, 'visit-site', createJob),
+    Masterclass: createBlendedCard.bind(null, 'masterclass', 'https://theguardian.com/guardian-masterclasses/', logoMasterclasses, 'visit-site', createMasterclass),
     Soulmates: createBlendedCard.bind(null, 'soulmates', 'https://soulmates.theguardian.com/', logoSoulmates,'visit-all', createSoulmates),
     Travel: createBlendedCard.bind(null, 'travels', 'https://holidays.theguardian.com/', logoHolidays, 'visit-all', createTravel)
 };
