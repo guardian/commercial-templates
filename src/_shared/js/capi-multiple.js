@@ -100,9 +100,8 @@ function buildCard (cardInfo, cardNum, isPaid) {
 
     imgContainer.insertAdjacentHTML('afterbegin', image);
 
-    // Only first two cards show on mobile portrait.
-    if (cardNum >= 2) {
-        card.classList.add('hide-until-tablet');
+    if (cardNum > 0) {
+        imgContainer.classList.add('hide-until-tablet');
     }
 
     return cardFragment;
