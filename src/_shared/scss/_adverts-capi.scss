@@ -2,6 +2,29 @@
     .adverts__title {
         font-size: get-font-size(headline, 3);
     }
+
+    .adverts__row {
+        @include mq($until: tablet) {
+            flex-direction: column;
+
+            & > * {
+                flex-basis: auto;
+            }
+
+            & > * + * {
+                margin-top: $gs-baseline;
+            }
+
+            & > * + .advert {
+                padding-top: $gs-baseline / 2;
+            }
+
+            & > * + :nth-child(even)::before {
+                content: none;
+            }
+        }
+    }
+
 }
 
 .adverts--paidfor {
