@@ -18,3 +18,12 @@
     width: 75px;
     max-height: 31px;
 }
+
+.adverts__stamp {
+    @include mq($until: tablet) {
+        position: absolute;
+        right: $gs-gutter / 2;
+        top: $gs-baseline / 2;
+    }
+
+}
