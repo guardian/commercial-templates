@@ -24,3 +24,12 @@ button {
 template {
     display: none;
 }
+
+button,
+input[type="button"],
+input[type="submit"] {
+    &::-moz-focus-inner {
+        padding: 0 !important;
+        border: 0 none !important;
+    }
+}
