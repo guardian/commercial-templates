@@ -1,7 +1,7 @@
-$f-serif-text: 'Guardian Text Egyptian Web', Georgia, serif !default;
 $f-serif-headline: 'Guardian Egyptian Web', Georgia, serif !default;
-$f-sans-serif-text: 'Guardian Text Sans Web', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif !default;
 $f-sans-serif-headline: 'Guardian Sans Web', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif !default;
+$f-serif-text: 'Guardian Text Egyptian Web', Georgia, serif !default;
+$f-sans-serif-text: 'Guardian Text Sans Web', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif !default;
 
 // grid settings
 $gs-gutter: 20px;
@@ -67,14 +67,14 @@ $creative-max-width: 1920px;
 }
 
 .u-h {
-    border: 0 !important;
-    clip: rect(0 0 0 0) !important;
-    height: 1px !important;
-    margin: -1px !important;
-    overflow: hidden !important;
-    padding: 0 !important;
-    position: absolute !important;
-    width: 1px !important;
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
 }
 
 .u-fauxlink {
@@ -87,6 +87,7 @@ $creative-max-width: 1920px;
 }
 
 .button {
+    border: 0;
     border-radius: 1000px;
     font: bold 13px/20px $f-sans-serif-text;
     text-decoration: none;
@@ -127,16 +128,18 @@ $creative-max-width: 1920px;
 
 .creative {
     display: block;
+    position: relative;
 }
 
 .creative__label {
     background-color: $neutral-8;
+    border-top: 1px solid $neutral-5;
     color: #6e6e6e;
-    font: normal .75rem/1.25 $f-sans-serif-text;
-    height: 1.25em;
+    font: normal .75rem/1.75 $f-sans-serif-text;
+    height: 1.75em;
 }
 
-.creative__label--nope {
+.creative__label--no {
     display: none;
 }
 
@@ -154,6 +157,7 @@ $creative-max-width: 1920px;
     right: 0;
     width: 1px;
     height: 1px;
+    opacity: 0;
 }
 
 .creative__image {
@@ -180,6 +184,20 @@ $creative-max-width: 1920px;
     > :last-child { margin-bottom: 0; }
 
     &[aria-expanded="false"] {
+        display: none;
+    }
+}
+
+.popup-toggle {
+    position: absolute;
+    visibility: hidden;
+    pointer-events: none;
+
+    &:checked ~ .popup {
+        display: block;
+    }
+
+    &:not(:checked) ~ .popup {
         display: none;
     }
 }
@@ -228,14 +246,14 @@ $creative-max-width: 1920px;
 
 // Hide content visually, still readable by screen readers
 @mixin u-h {
-    border: 0 !important;
-    clip: rect(0 0 0 0) !important;
-    height: 1px !important;
-    margin: -1px !important;
-    overflow: hidden !important;
-    padding: 0 !important;
-    position: absolute !important;
-    width: 1px !important;
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
 }
 
 @mixin f-textSans {

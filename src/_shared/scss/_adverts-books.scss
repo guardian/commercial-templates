@@ -73,6 +73,31 @@
         }
     }
 
+    &.advert--prominent-false {
+      .advert__image-container {
+        align-self: center;
+        width: auto;
+      }
+      .advert__image {
+        width: auto;
+        max-height: 150px;
+      }
+    }
+
+    .adverts__row--prominent-true &.advert--prominent-false {
+      .advert__image {
+        width: auto;
+        max-height: 300px;
+      }
+    }
+
+    &.advert--prominent-true {
+      & .advert__image {
+        max-height: 450px;
+        width: auto;
+      }
+    }
+
     &.adverts--legacy-inline {
         @include mq(mobileLandscape) {
             width: gs-span(2);

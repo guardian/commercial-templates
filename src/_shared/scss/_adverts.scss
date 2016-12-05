@@ -46,8 +46,17 @@
 
     @include mq(mobileLandscape, leftCol) {
         > .adverts__header {
-            flex-direction: row;
             justify-content: space-between;
+            align-items: center;
+            flex-direction: row;
+        }
+
+        .adverts__kicker {
+            margin-right: $gs-gutter;
+        }
+
+        .adverts__stamp {
+            margin-left: auto;
         }
     }
 
@@ -106,13 +115,14 @@
     }
 
     > .adverts__body {
+        padding-bottom: $gs-baseline;
+
         @include mq(mobileLandscape) {
             box-sizing: border-box;
             max-width: gs-span(8) + ($gs-gutter * 2);
         }
         @include mq(tablet) {
             max-width: gs-span(9) + ($gs-gutter * 2);
-            padding-bottom: $gs-baseline;
         }
         @include mq(desktop) {
             max-width: gs-span(12) + ($gs-gutter * 2);
@@ -538,33 +548,6 @@
 
     .has-no-flex & {
         clear: both;
-    }
-}
-
-.badge--alt {
-    border-top: 1px dotted $neutral-5;
-    margin-top: $gs-baseline / 3;
-    padding-top: $gs-baseline / 6;
-    text-align: left;
-
-    > .badge__link,
-    .badge__logo {
-        display: block;
-    }
-
-    .badge__logo {
-        max-height: 6 * $gs-baseline;
-        margin: 0;
-    }
-
-    > .badge__link {
-        border-bottom: 1px dotted $neutral-5;
-        margin: 3 / 4 * $gs-baseline 0 $gs-baseline / 3;
-    }
-
-    > .badge__help {
-        font-size: 11px;
-        line-height: 1;
     }
 }
 

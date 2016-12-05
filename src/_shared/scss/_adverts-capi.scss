@@ -2,21 +2,54 @@
     .adverts__title {
         font-size: get-font-size(headline, 3);
     }
+
+    .adverts__row {
+        @include mq($until: tablet) {
+            flex-direction: column;
+
+            & > * {
+                flex-basis: auto;
+            }
+
+            & > * + * {
+                margin-top: $gs-baseline;
+            }
+
+            & > * + .advert {
+                padding-top: $gs-baseline / 2;
+            }
+
+            & > * + :nth-child(even)::before {
+                content: none;
+            }
+        }
+    }
+
 }
 
 .adverts--paidfor {
-    .adverts__stamp .icon {
-      width: 100px;
+    .adverts__header {
+        position: relative;
     }
 
-    @include mq(mobileLandscape, desktop) {
-        > .adverts__header {
-            flex-wrap: wrap;
+    @include mq(mobileLandscape, leftCol) {
+        .paidfor-meta__more {
+            position: relative;
         }
+    }
+}
 
-        .adverts__kicker {
-            flex-basis: 100%;
-        }
+.adverts--supported {
+    .adverts__title {
+        font-size: 22px;
+        line-height: 24px;
+    }
+
+    .badge__help {
+        font-size: 11px;
+        font-weight: normal;
+        line-height: 1;
+        margin-top: $gs-baseline / 2;
     }
 }
 
@@ -70,6 +103,11 @@
         right: 0;
         transform: translate(-50%, 0);
         border-top: 1px solid $news-main-2;
+        width: calc(100% - #{$gs-gutter});
+
+        @include mq(mobileLandscape) {
+            width: calc(100% - #{$gs-gutter * 2});
+        }
 
         @include mq(tablet) {
             width: 740px;
@@ -132,6 +170,10 @@
 
     &:not(.advert--landscape) {
         > .advert__image-container {
+            @include mq($until: tablet) {
+                flex-basis: auto;
+            }
+
             width: 100%;
         }
 
@@ -146,10 +188,6 @@
         .advert__standfirst {
             margin-bottom: $gs-baseline / 2;
         }
-    }
-
-    .advert__image-container {
-        height: auto;
     }
 
     .has-no-flex &:not(.advert--small):not(.advert--landscape) {
@@ -233,34 +271,4 @@
     > .advert__standfirst {
         display: none;
     }
-}
-
-.popup {
-    background: #333;
-    color: #fff;
-    font-size: 14px;
-    line-height: 16px;
-
-    a {
-        color: #69d1ca;
-        text-decoration: none;
-
-        &:hover,
-        &:focus {
-            text-decoration: underline;
-        }
-    }
-}
-
-.icon--glabs-logo {
-    width: 75px;
-}
-
-.icon--arrow-down {
-    width: 12px;
-}
-
-.icon--arrow-right {
-    width: 20px;
-    fill: currentColor;
 }

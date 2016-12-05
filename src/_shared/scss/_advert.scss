@@ -19,6 +19,12 @@
     }
 }
 
+.advert--inline {
+    > * {
+        max-width: 100%;
+    }
+}
+
 .advert--prominent-true, .advert--landscape {
     .has-no-flex & {
         overflow: hidden;
@@ -102,6 +108,10 @@
     }
 }
 
+.advert__text {
+    max-width: 100%;
+}
+
 .advert__title {
     font-size: 1rem;
     line-height: 1.25;
@@ -121,13 +131,9 @@
 /* [1] Prevents IE11 bug where the image container's height would go ballooney */
 .advert__image-container {
     order: -1;
-    overflow: auto; /* [1] */
+    overflow: hidden; /* [1] */
     margin-bottom: $gs-baseline / 2;
     width: 100%;
-
-    @include mq(tablet) {
-        height: 11 * $gs-baseline;
-    }
 
     .has-no-flex & {
         position: absolute;
@@ -138,15 +144,13 @@
     }
 
     .advert-blended__body & {
-        height: auto;
+        max-height: none;
     }
 }
 
 .advert__image {
     display: block;
     max-width: 100%;
-    max-height: 100%;
-    height: auto;
 }
 
 .advert__meta {
@@ -160,6 +164,7 @@
 
 .advert__more {
     margin-top: $gs-baseline / 2;
+    white-space: nowrap;
 }
 
 .advert--small > .advert__title {
@@ -188,7 +193,7 @@
         > .advert__image-container {
             flex-basis: calc(50% - #{$gs-gutter / 2});
             flex-shrink: 0;
-            height: auto;
+            max-height: none;
             order: 0;
             margin-bottom: 0;
             margin-right: $gs-gutter / 2;

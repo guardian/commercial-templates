@@ -1,0 +1,15 @@
+@import '_core';
+@import '_adverts';
+@import '_advert';
+@import '_adverts-capi';
+@import '_paidfor-meta';
+@import '_popup-paidfor';
+
+.paidfor-meta__more .paidfor-meta__label {
+    font-weight: normal;
+}
+
+.icon--glabs-logo {
+    width: 75px;
+    max-height: 31px;
+}

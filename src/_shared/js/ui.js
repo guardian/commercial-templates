@@ -21,7 +21,10 @@ function enableToggle(toggle, closeOnInit = true, callback = null) {
         };
     }
 
-    toggle.addEventListener('click', () => {
+    toggle.addEventListener('click', evt => {
+        // We prevent this event from triggering a click report, just in case
+        evt.stopPropagation();
+
         if( toggles[targetId].isOpen ) {
             close().then(updateIsOpen);
         } else {

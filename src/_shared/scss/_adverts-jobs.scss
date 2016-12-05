@@ -1,4 +1,10 @@
 .adverts--jobs {
+    @include mq($until: tablet) {
+        .adverts__row > :nth-child(2) ~ * {
+            margin-top: 0;
+        }
+    }
+
     .advert__image-container {
         height: $gs-baseline * 10;
     }
@@ -48,6 +54,10 @@
         .button {
             background: darken($news-main-1, 5%);
         }
+    }
+
+    @include mq($until: tablet) {
+        overflow: hidden;
     }
 }
 
