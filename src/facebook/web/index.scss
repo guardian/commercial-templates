@@ -1,20 +1,26 @@
+$brand-colour: #fedd79;
+
+@import '_core';
+@import '_roundel';
+
 .creative--facebook {
     display: none;
+
     font-size: .75rem;
     line-height: 1rem;
     min-height: 250px;
     position: relative;
     text-align: left;
-}
 
-.advert--facebook {
+    border-top: 1px solid $brand-colour;
+    box-sizing: border-box;
+    background: lighten($brand-colour, 20%);
     font-family: $f-sans-serif-headline;
-    background: $neutral-6;
+    min-height: 250px;
     padding-bottom: $gs-baseline;
 }
 
 .advert__image-container {
-    height: 157px;
 }
 
 .advert__title {
@@ -53,4 +59,29 @@
     right: $gs-gutter / 2;
     width: $gs-baseline * 4;
     height: $gs-baseline * 4;
+}
+
+.roundel .popup {
+    background: $brand-colour;
+
+    a {
+        color: inherit;
+        font-weight: bold;
+    }
+
+    &::after {
+        border-bottom-color: $brand-colour;
+    }
+}
+
+.button .icon--external-link {
+    margin-left: $gs-gutter / 2;
+    width: 14px;
+    height: 10px;
+}
+
+.button {
+    border: 1px solid;
+    padding: 8px 10px;
+    line-height: 1;
 }
