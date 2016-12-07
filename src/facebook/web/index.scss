@@ -10,6 +10,7 @@ $brand-colour: #fedd79;
     line-height: 1rem;
     min-height: 250px;
     position: relative;
+    margin: 0 $gs-gutter / 2;
     text-align: left;
 
     border-top: 1px solid $brand-colour;
@@ -21,22 +22,42 @@ $brand-colour: #fedd79;
 }
 
 .advert__image-container {
+    height: 170px;
+
+    > img {
+        object-fit: cover;
+    }
+}
+
+.advert__title,
+.advert__meta,
+.advert__more {
+    color: $neutral-1;
+    margin-left: $gs-gutter / 2;
 }
 
 .advert__title {
-    font-size: 1.5rem;
+    font-size: 18px;
     font-weight: normal;
-    margin-bottom: .25em;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-right: 80px;
 }
 
 .advert__meta {
-    font-size: 1rem;
-    margin-bottom: 1em;
+    font-size: 16px;
 }
 
 .advert__meta,
 .advert__title {
     line-height: 1.2;
+    margin-right: 100px;
+}
+
+.advert__more {
+    position: absolute;
+    bottom: $gs-baseline / 2;
+    right: $gs-gutter / 2;
 }
 
 .icon--external-link {
@@ -45,18 +66,14 @@ $brand-colour: #fedd79;
     fill: $neutral-1;
 }
 
-.advert__title,
-.advert__meta,
-.advert__more {
-    color: $neutral-1;
-    margin-left: $gs-gutter / 2;
-    margin-right: $gs-gutter / 2;
+.advert__brand {
+    background: white;
+    position: absolute;
+    bottom: 53px;
+    right: $gs-gutter / 2;
 }
 
-.advert__brand {
-    position: absolute;
-    bottom: $gs-baseline;
-    right: $gs-gutter / 2;
+.advert__logo {
     width: $gs-baseline * 4;
     height: $gs-baseline * 4;
 }
@@ -84,4 +101,8 @@ $brand-colour: #fedd79;
     border: 1px solid;
     padding: 8px 10px;
     line-height: 1;
+}
+
+img {
+    display: block;
 }
