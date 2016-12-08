@@ -1,0 +1,16 @@
+@import '_core';
+@import '_hosted';
+
+.advert__image-container {
+  position: relative;
+  img {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+}
+.advert__title svg {
+  display: none;
+}
