@@ -30,8 +30,7 @@ $brand-colour: #fedd79;
 }
 
 .advert__title,
-.advert__meta,
-.advert__more {
+.advert__meta {
     color: $neutral-1;
     margin-left: $gs-gutter / 2;
 }
@@ -58,6 +57,8 @@ $brand-colour: #fedd79;
     position: absolute;
     bottom: $gs-baseline / 2;
     right: $gs-gutter / 2;
+    color: $neutral-2;
+    border-color: $neutral-3;
 }
 
 .icon--external-link {
