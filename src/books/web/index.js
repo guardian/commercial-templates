@@ -29,7 +29,7 @@ getIframeId()
 
 /* Outputs the HTML for a book advert */
 function createAdvert(book, index) {
-    return `<a class="blink advert advert--book advert--prominent-${ index === 0 ? '[%IsProminent%]' : 'false'} ${ index > 1 ? 'hide-until-tablet' : '' }" href="%%CLICK_URL_UNESC%%${book.buyUrl}" data-link-name="Offer ${index+1} | ${book.isbn}-${book.author}-${book.title}">
+    return `<a class="blink advert advert--book advert--prominent-${ index === 0 ? '[%IsProminent%]' : 'false'} ${ index > 1 ? 'hide-until-tablet' : '' }" href="%%CLICK_URL_UNESC%%${book.buyUrl}" data-link-name="Offer ${index+1} | ${book.isbn}-${book.author}-${book.title}" target="_top">
         <div class="advert__image-container">
             <img class="advert__image" src="${book.jacketUrl}">
         </div>

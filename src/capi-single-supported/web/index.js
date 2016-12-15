@@ -49,7 +49,7 @@ function populateCard(host, responseJson) {
     let imageUrl = '[%ArticleImage%]';
 
     return `<div class="adverts__row adverts__row--single">
-      <a class="blink advert advert--large advert--capi advert--media advert--inverse advert--supported" href="${clickMacro}${getValue('[%ArticleUrl%]', responseJson.articleUrl)}" data-link-name="Offer | ${getValue('[%ArticleHeadline%]', responseJson.articleHeadline)}">
+      <a class="blink advert advert--large advert--capi advert--media advert--inverse advert--supported" href="${clickMacro}${getValue('[%ArticleUrl%]', responseJson.articleUrl)}" data-link-name="Offer | ${getValue('[%ArticleHeadline%]', responseJson.articleHeadline)}" target="_top">
         <div class="advert__text">
           <h2 class="blink__anchor advert__title">
             ${icon}
@@ -65,7 +65,7 @@ function populateCard(host, responseJson) {
             sources: responseJson.articleImage.sources
         })}</div>
       </a>
-      <a class="hide-until-mobile-landscape button button--primary button--large button--legacy-single" href="${clickMacro}${host}/[%SeriesUrl%]"  data-link-name="merchandising-single-more">
+      <a class="hide-until-mobile-landscape button button--primary button--large button--legacy-single" href="${clickMacro}${host}/[%SeriesUrl%]"  data-link-name="merchandising-single-more" target="_top">
         See more
         ${arrowRight}
       </a>
