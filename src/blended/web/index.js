@@ -33,7 +33,7 @@ function createBlendedCard(type, titleUrl, titleLogo, titleDln, contentFn, conte
     return `<div class="advert-blended advert-blended--${ type }" data-link-name="Offer ${index + 1} | ${type}">
         <div class="advert-blended__title">
             <a href="%%CLICK_URL_UNESC%%${ titleUrl }"
-                data-link-name="${titleDln}">
+                data-link-name="${titleDln}" target="_top">
                 ${ titleLogo }
             </a>
         </div>
@@ -45,7 +45,7 @@ function createBlendedCard(type, titleUrl, titleLogo, titleDln, contentFn, conte
 }
 
 function createBook(book) {
-    return `<a class="blink advert advert--book advert--large advert--landscape" href="%%CLICK_URL_UNESC%%${ book.buyUrl }" data-link-name="${book.isbn}-${book.author}-${book.title}">
+    return `<a class="blink advert advert--book advert--large advert--landscape" href="%%CLICK_URL_UNESC%%${ book.buyUrl }" data-link-name="${book.isbn}-${book.author}-${book.title}" target="_top">
         <div class="advert__text">
             <h2 class="blink__anchor advert__title">${book.title}</h2>
             <div class="advert__meta">By ${book.author}</div>
@@ -65,7 +65,7 @@ function createBook(book) {
 }
 
 function createJob(job) {
-    return `<a class="blink advert advert--job" href="%%CLICK_URL_UNESC%%${job.listingUrl}" data-link-name="${job.id}">
+    return `<a class="blink advert advert--job" href="%%CLICK_URL_UNESC%%${job.listingUrl}" data-link-name="${job.id}" target="_top">
         <h2 class="blink__anchor advert__title" itemprop="name">${job.title}</h2>
         <div class="advert__image-container">
             <img class="advert__image" src="${job.recruiterLogoUrl}">
@@ -84,7 +84,7 @@ function createJob(job) {
 }
 
 function createMasterclass(event) {
-    return `<a class="blink advert advert--masterclass" href="%%CLICK_URL_UNESC%%${event.url}" data-link-name="${event.name}">
+    return `<a class="blink advert advert--masterclass" href="%%CLICK_URL_UNESC%%${event.url}" data-link-name="${event.name}" target="_top">
         <div class="advert__image-container">
             <img class="advert__image" src="${location.protocol}${event.pictureUrl}" alt>
         </div>
@@ -108,14 +108,14 @@ function createSoulmates(soulmates) {
 }
 
 function createSoulmatesFooter() {
-    return `<a class="button button--small" href="%%CLICK_URL_UNESC%%https://soulmates.theguardian.com" data-link-name="find-soulmate-link">
+    return `<a class="button button--small" href="%%CLICK_URL_UNESC%%https://soulmates.theguardian.com" data-link-name="find-soulmate-link" target="_top">
         <span>Find a Soulmate</span>
         ${arrowRight}
     </a>`;
 }
 
 function createMember(soulmate) {
-    return `<a class="advert advert--soulmate blink" href="%%CLICK_URL_ESC%%${soulmate.profile_url}" data-link-name="profile-${soulmate.gender}">
+    return `<a class="advert advert--soulmate blink" href="%%CLICK_URL_ESC%%${soulmate.profile_url}" data-link-name="profile-${soulmate.gender}" target="_top">
         <h2 class="advert__title u-text-hyphenate blink__anchor" itemprop="name">${soulmate.username}</h2>
         <div class="advert__image-container">
           <img class="advert__image" src="${soulmate.profile_photo}" />
@@ -125,7 +125,7 @@ function createMember(soulmate) {
 }
 
 function createTravel(offer) {
-    return `<a class="blink advert advert--travel" href="%%CLICK_URL_UNESC%%${offer.offerUrl}" data-link-name="${offer.title}">
+    return `<a class="blink advert advert--travel" href="%%CLICK_URL_UNESC%%${offer.offerUrl}" data-link-name="${offer.title}" target="_top">
         <div class="advert__image-container">
             <img class="advert__image" src="${offer.imageUrl}">
         </div>

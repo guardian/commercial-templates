@@ -29,7 +29,7 @@ function createAdvert(event) {
 
   let lastFew = event.ratioTicketsLeft <= 0.1 ? '<div class="advert__meta advert__meta--scarcity">Last few tickets remaining</div>' : '';
 
-  return `<a class="blink advert advert--inline advert--brand" href="%%CLICK_URL_ESC%%${event.eventUrl}" data-link-name="${event.eventId}-${event.name}">
+  return `<a class="blink advert advert--inline advert--brand" href="%%CLICK_URL_ESC%%${event.eventUrl}" data-link-name="${event.eventId}-${event.name}" target="_top">
         <div class="advert__image-container">
             ${generatePicture({
                 url: event.image.backupSrc,
