@@ -11,6 +11,14 @@
     object-fit: cover;
   }
 }
-.advert__title svg {
-  display: none;
+
+.advert__kicker > .icon {
+  width: 1.1em;
+  height: .75em;
+  margin-right: .3em;
+  fill: #333333;
+
+  .hosted-bright & {
+    fill: #ffffff;
+  }
 }

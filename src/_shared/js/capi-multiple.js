@@ -46,15 +46,16 @@ function buildHeadline (card, title, cardInfo, cardNumber) {
 function buildTitle (card, cardInfo, cardNumber) {
 
     let title = card.querySelector('.advert__title');
+    let kicker = card.querySelector('.advert__kicker');
 
     buildHeadline(card, title, cardInfo, cardNumber);
 
     if (cardInfo.videoTag) {
-        setMediaIcon(card, title, 'video');
+        setMediaIcon(card, kicker || title, 'video');
     } else if (cardInfo.galleryTag) {
-        setMediaIcon(card, title, 'camera');
+        setMediaIcon(card, kicker || title, 'camera');
     } else if (cardInfo.audioTag) {
-        setMediaIcon(card, title, 'volume');
+        setMediaIcon(card, kicker || title, 'volume');
     } else {
         card.classList.add('advert--text');
     }
@@ -67,7 +68,7 @@ function buildKicker (card, cardNumber) {
     let kickerText = OVERRIDES.kickers[cardNumber];
 
     if(kicker && kickerText){
-        kicker.insertAdjacentHTML('afterbegin', kickerText + " / " );
+        kicker.textContent = kickerText + " / ";
     }
 }
 
@@ -100,8 +101,8 @@ function buildCard (cardInfo, cardNum, adType) {
     let card = cardFragment.querySelector(`.advert--${adType}`);
     let imgContainer = card.querySelector('.advert__image-container');
 
-    buildTitle(card, cardInfo, cardNum);
     buildKicker(card, cardNum);
+    buildTitle(card, cardInfo, cardNum);
     card.href = clickMacro + cardInfo.articleUrl;
 
     let image = generatePicture({
