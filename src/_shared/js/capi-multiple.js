@@ -10,6 +10,7 @@ const ENDPOINT = 'https://api.nextgen.guardianapps.co.uk/commercial/api/capi-mul
 
 const OVERRIDES = {
     urls: ['[%Article1URL%]', '[%Article2URL%]', '[%Article3URL%]', '[%Article4URL%]'],
+    kickers: ['[%Article1Kicker%]', '[%Article2Kicker%]', '[%Article3Kicker%]', '[%Article4Kicker%]'],
     headlines: ['[%Article1Headline%]', '[%Article2Headline%]', '[%Article3Headline%]', '[%Article4Headline%]'],
     images: ['[%Article1Image%]', '[%Article2Image%]', '[%Article3Image%]', '[%Article4Image%]'],
     brandLogo: '[%BrandLogo%]'
@@ -59,6 +60,17 @@ function buildTitle (card, cardInfo, cardNumber) {
     }
 }
 
+// Constructs the kicker text
+function buildKicker (card, cardNumber) {
+
+    let kicker = card.querySelector('.advert__kicker');
+    let kickerText = OVERRIDES.kickers[cardNumber];
+
+    if(kicker && kickerText){
+        kicker.insertAdjacentHTML('afterbegin', kickerText + " / " );
+    }
+}
+
 // Either from template, or workaround for IE (sigh).
 function importCard (adType) {
 
@@ -89,6 +101,7 @@ function buildCard (cardInfo, cardNum, adType) {
     let imgContainer = card.querySelector('.advert__image-container');
 
     buildTitle(card, cardInfo, cardNum);
+    buildKicker(card, cardNum);
     card.href = clickMacro + cardInfo.articleUrl;
 
     let image = generatePicture({
