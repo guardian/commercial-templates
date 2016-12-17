@@ -5,7 +5,7 @@ let showLabel = '[%ShowLabel%]';
 
 getIframeId()
 .then(() => {
-    if( showLabel === 'yep' ) resizeIframeHeight();
+    if( showLabel === 'yes' ) resizeIframeHeight();
 
     reportClicks();
 
