@@ -1,186 +1,21 @@
 @import '_core';
+@import '_hosted-native-card';
 
-$brand-colour: dfpVar(BrandColour);
+$badgeWidth: 80px;
 $logoHeight: dfpVar(LogoHeight);
 $logoWidth: dfpVar(LogoWidth);
-$badgeWidth: 80px;
+$hosted-brand-colour: dfpVar(BrandColour);
 
-@font-face {
-    src: url('https://interactive.guim.co.uk/fonts/guss-webfonts/GuardianSansWeb/GuardianSansWeb-Regular.woff2') format('woff2'),
-        url('https://interactive.guim.co.uk/fonts/guss-webfonts/GuardianSansWeb/GuardianSansWeb-Regular.woff') format('woff');
-    font-family: 'Guardian Sans Web';
-    font-weight: normal;
+.logo-container {
+    height: calc(#{$badgeWidth} * #{$logoHeight} / #{$logoWidth});
 }
 
-@font-face {
-    src: url('https://interactive.guim.co.uk/fonts/guss-webfonts/GuardianTextSansWeb/GuardianTextSansWeb-Regular.woff2') format('woff2'),
-        url('https://interactive.guim.co.uk/fonts/guss-webfonts/GuardianTextSansWeb/GuardianTextSansWeb-Regular.woff') format('woff');
-    font-family: 'Guardian Text Sans Web';
-    font-weight: normal;
+.hostedbadge,
+.creative--hosted-mpu {
+  background-color: $hosted-brand-colour;
 }
 
 .creative--hosted-mpu {
-    box-sizing: border-box;
-    color: #333;
-    margin: auto;
-    height: 250px;
-    max-width: 320px;
-    position: relative;
-    font-family: $f-sans-serif-text;
-    border-top:1px solid rgb(254, 221, 121);
-    background-color: $brand-colour;
-}
-
-.hosted-card-wrapper{
-    background: rgba(255, 255, 255, 0.95);
-    position: absolute;
-    top: 0;
-    bottom: 0;
-}
-
-.creative__image {
-    top: 0;
-    left: 0;
-    width: 100%;
-    img {
-        object-fit: cover;
-    }
-}
-
-.creative__content {
-    position: relative;
-}
-
-.creative__content-title--hosted {
-    font-size: 22px;
-    line-height: 24px;
-    margin: 0;
-    padding: 10px 100px 0 10px;
-    max-height: 72px;
-    overflow: hidden;
-    display: block;
-}
-
-.hostedbadge {
-    position: absolute;
-    bottom: 100%;
-    right: 10px;
-    width: $badgeWidth;
-    background: $brand-colour;
-}
-
-.hostedbadge__info {
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: .5px;
-    line-height: 14px;
-
-    height: auto;
-    padding: 6px 4px 8px;
-    margin: 0;
-    color: #ffffff;
-}
-
-.logo-container {
-    position: absolute;
-    display: block;
-    top: 100%;
-    width: 100%;
-    height: calc(#{$badgeWidth} * #{$logoHeight} / #{$logoWidth});
-    background-color: #ffffff;
-}
-
-.kicker {
-    opacity: 0.5;
-}
-
-.creative--hosted-mpu .popup {
-    display: none;
-    position: absolute;
-    width: 228px;
-    top: 45px;
-    left: auto;
-    right: $gs-baseline / 2;
-    z-index: $zindex-modal;
-    text-align: left;
-    background-color: #fedd79;
-    font-size: 13px;
-    padding: 6px;
-    border-radius: 0;
-}
-
-.hosted-popup__title {
-    font-size: 13px;
-    line-height: 18px;
-    margin: 0;
-    font-family: inherit;
-    font-weight: bold;
-}
-
-.hosted-popup__text {
-    line-height: 15px;
-}
-
-.hosted-popup__link {
-    line-height: 15px;
-    font-weight: bold;
-    color: $neutral-1;
-    float: left;
-    text-decoration: none;
-}
-
-.hosted-popup__toggle {
-    display: none;
-}
-
-.hosted-popup__toggle-label {
-    font-size: 14px;
-    line-height: 10px;
-    position: absolute;
-    top: 6px;
-    right: 6px;
-    width: 33px;
-    padding: 9px 7px 1px;
-    border-radius: 100%;
-    z-index: 1;
-    background-color: #fedd79;
-    border: 0;
-    font-weight: bold;
-    text-transform: uppercase;
-    box-sizing: border-box;
-    text-align: center;
-    cursor: pointer;
-
-    &::before {
-        content: '';
-        display: none;
-        width: 0;
-        height: 0;
-        border-top: 0;
-        position: absolute;
-        left: 50%;
-        border-left: 6px solid transparent;
-        border-right: 6px solid transparent;
-        border-bottom: 6px solid #fedd79;
-        bottom: -6px;
-        margin-left: -6px;
-    }
-
-    .popup-toggle:checked ~ & {
-
-        > .icon {
-            transform: rotate(180deg);
-        }
-
-        &::before {
-            display: block;
-        }
-    }
-}
-
-.hosted-popup__toggle-label svg {
-    width: 13px;
-    height: 13px;
-    fill: $neutral-1;
-    vertical-align: middle;
+  height: 250px;
+  max-width: 320px;
 }

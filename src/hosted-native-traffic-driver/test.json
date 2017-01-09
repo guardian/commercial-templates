@@ -1,10 +1,16 @@
 {
-	"Brand": "OMGB Visit Britain",
-	"BrandColour": "#e41f13",
-	"LogoImage": "https://static.theguardian.com/commercial/hosted/gallery-prototype/omgb.png",
-	"MainImage": "http://static.theguardian.com/commercial/hosted/gallery-prototype/omgb4.jpg",
-	"Title": "Don't be a sloth this Summer",
-	"Kicker": "Gallery /",
-	"LogoHeight": 80,
-	"LogoWidth": 80
+
+  "Brand": "OMGB Visit Britain",
+  "BrandColour": "#e41f13",
+  "LogoImage": "https://static.theguardian.com/commercial/hosted/gallery-prototype/omgb.png",
+  "MainImage": "http://static.theguardian.com/commercial/hosted/gallery-prototype/omgb4.jpg",
+  "Title": "Don't be a sloth this Summer",
+  "Kicker": "Gallery /",
+  "LogoHeight": 80,
+  "LogoWidth": 80,
+
+  "ArticleShortURL": "p/5g7mm",
+  "ArticleHeadline": "Bermuda or Britain?",
+  "ArticleImage": "http://static.theguardian.com/commercial/hosted/gallery-prototype/omgb4.jpg",
+  "ArticleImageAlternateText": ""
 }
