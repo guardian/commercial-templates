@@ -29,16 +29,16 @@ function buildFromCapi ({ articleHeadline, articleUrl, articleImage }) {
     let title = document.getElementById('Title');
 
     let imageContainer = document.getElementById('ImageContainer');
-    let image = !OVERRIDES.imageUrl && generatePicture({
+    let image = generatePicture({
         url: articleImage.backupSrc,
         classes: ['creative__image'],
-        sources: articleImage.sources,
+        sources: !OVERRIDES.imageUrl && articleImage.sources,
         alt: OVERRIDES.imageAlt
     });
 
     return write(() => {
         if(!OVERRIDES.headline) title.textContent = articleHeadline;
-        if(image) imageContainer.insertAdjacentHTML('afterbegin', image);
+        imageContainer.insertAdjacentHTML('afterbegin', image);
     });
 }
 
