@@ -74,7 +74,11 @@ $badgeWidth: 80px;
     height: auto;
     padding: 6px 4px 8px;
     margin: 0;
-    color: #ffffff;
+    color: $neutral-1;
+
+    .hosted-bright & {
+        color: #ffffff;
+    }
 }
 
 .logo-container {

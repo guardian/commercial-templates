@@ -2,6 +2,7 @@ import { getIframeId, getWebfonts, resizeIframeHeight, reportClicks } from '../.
 import { enableToggles } from '../../_shared/js/ui';
 import { addTrackingPixel } from '../../_shared/js/ads';
 import { write } from '../../_shared/js/dom';
+import addColourContrastClass from '../../_shared/js/hosted-colours.js';
 import { generatePicture } from '../../_shared/js/capi-images';
 import { URLSearchParams } from '../../_shared/js/utils';
 
@@ -47,6 +48,7 @@ enableToggles();
 getIframeId()
 .then(() => {
     return Promise.all([
+        addColourContrastClass(),
         getWebfonts(['GuardianTextSansWeb', 'GuardianSansWeb']),
         retrieveCapiData()
         .then(data => buildFromCapi(data || {}))
