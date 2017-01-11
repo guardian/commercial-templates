@@ -24,15 +24,6 @@ $badgeWidth: 80px;
     border-top:1px solid rgb(254, 221, 121);
 }
 
-.hosted-card-wrapper{
-    background: rgba(255, 255, 255, .95);
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-}
-
 .creative__image {
     top: 0;
     left: 0;
@@ -44,6 +35,15 @@ $badgeWidth: 80px;
 
 .creative__content {
     position: relative;
+    &::before {
+        background: rgba(255, 255, 255, .95);
+        content: '';
+        position:absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+        bottom: 0;
+    }
 }
 
 .creative__content-title--hosted {
@@ -52,10 +52,10 @@ $badgeWidth: 80px;
     line-height: $line-height;
     margin: 0;
     padding: 10px 100px 0 10px;
-    min-height: 2 * $line-height;
-    max-height: 3 * $line-height;
+    height: 3 * $line-height;
     overflow: hidden;
     display: block;
+    opacity: 0.99; //otherwise the text is hidden under .creative__content::before!!
 }
 
 .hostedbadge {
