@@ -62,6 +62,10 @@
         height: auto;
     }
 
+    .advert__image {
+        max-height: none;
+    }
+
     .button--large {
         align-self: flex-start;
     }
