@@ -10,6 +10,7 @@ const ENDPOINT = 'https://api.nextgen.guardianapps.co.uk/commercial/api/capi-mul
 
 const OVERRIDES = {
     urls: ['[%Article1URL%]', '[%Article2URL%]', '[%Article3URL%]', '[%Article4URL%]'],
+    kickers: ['[%Article1Kicker%]', '[%Article2Kicker%]', '[%Article3Kicker%]', '[%Article4Kicker%]'],
     headlines: ['[%Article1Headline%]', '[%Article2Headline%]', '[%Article3Headline%]', '[%Article4Headline%]'],
     images: ['[%Article1Image%]', '[%Article2Image%]', '[%Article3Image%]', '[%Article4Image%]'],
     brandLogo: '[%BrandLogo%]'
@@ -23,7 +24,7 @@ function retrieveCapiData () {
         if (url !== '') {
             params.append('t', url);
         }
-    })
+    });
     return fetch(`${ENDPOINT}?${params}`)
     .then(response => response.json());
 }
@@ -45,17 +46,29 @@ function buildHeadline (card, title, cardInfo, cardNumber) {
 function buildTitle (card, cardInfo, cardNumber) {
 
     let title = card.querySelector('.advert__title');
+    let kicker = card.querySelector('.advert__kicker');
 
     buildHeadline(card, title, cardInfo, cardNumber);
 
     if (cardInfo.videoTag) {
-        setMediaIcon(card, title, 'video');
+        setMediaIcon(card, kicker || title, 'video');
     } else if (cardInfo.galleryTag) {
-        setMediaIcon(card, title, 'camera');
+        setMediaIcon(card, kicker || title, 'camera');
     } else if (cardInfo.audioTag) {
-        setMediaIcon(card, title, 'volume');
+        setMediaIcon(card, kicker || title, 'volume');
     } else {
         card.classList.add('advert--text');
+    }
+}
+
+// Constructs the kicker text
+function buildKicker (card, cardNumber) {
+
+    let kicker = card.querySelector('.advert__kicker');
+    let kickerText = OVERRIDES.kickers[cardNumber];
+
+    if(kicker && kickerText){
+        kicker.textContent = kickerText + " / ";
     }
 }
 
@@ -82,25 +95,25 @@ function importCard (adType) {
 }
 
 // Constructs an individual card.
-function buildCard (cardInfo, cardNum, isPaid) {
+function buildCard (cardInfo, cardNum, adType) {
 
-    let adType = isPaid ? 'paidfor' : 'supported';
     let cardFragment = importCard(adType);
     let card = cardFragment.querySelector(`.advert--${adType}`);
     let imgContainer = card.querySelector('.advert__image-container');
 
+    buildKicker(card, cardNum);
     buildTitle(card, cardInfo, cardNum);
     card.href = clickMacro + cardInfo.articleUrl;
 
     let image = generatePicture({
         url: OVERRIDES.images[cardNum] || cardInfo.articleImage.backupSrc,
         classes: ['advert__image'],
-        sources: cardInfo.articleImage.sources
+        sources: !OVERRIDES.images[cardNum] && cardInfo.articleImage.sources
     });
 
     imgContainer.insertAdjacentHTML('afterbegin', image);
 
-    if (cardNum > 0) {
+    if (cardNum > 0 && adType !== "hosted") {
         imgContainer.classList.add('hide-until-tablet');
     }
 
@@ -120,22 +133,22 @@ function addBranding (brandingCard) {
 }
 
 // Sets correct glabs link based on edition (AU/All others).
-function editionLink (host, edition, isPaid) {
+function editionLink (host, edition, adType) {
 
-    if (isPaid) {
+    if (adType === "paidfor") {
         setEditionLink(host, edition, document.querySelector('.adverts__stamp a'));
     }
 
 }
 
 // Uses cAPI data to build the ad content.
-function buildFromCapi (host, cardsInfo, isPaid) {
+function buildFromCapi (host, cardsInfo, adType) {
 
     let cardList = document.createDocumentFragment();
 
     // Constructs an array of cards from an array of data.
     cardsInfo.articles.forEach((info, idx) => {
-        cardList.appendChild(buildCard(info, idx, isPaid));
+        cardList.appendChild(buildCard(info, idx, adType));
     });
 
     return write(() => {
@@ -143,21 +156,21 @@ function buildFromCapi (host, cardsInfo, isPaid) {
         addBranding(cardsInfo.articles.slice(-1)[0]);
         let advertRow = document.querySelector('.adverts__row');
         advertRow.appendChild(cardList);
-        editionLink(host, cardsInfo.articles[0].edition, isPaid);
+        editionLink(host, cardsInfo.articles[0].edition, adType);
     });
 }
 
-export default function capiMultiple (isPaid) {
+export default function capiMultiple (adType) {
     let lastWidth;
 
     enableToggles();
 
-    getIframeId()
+    return getIframeId()
     .then(({ host }) => Promise.all([
         reportClicks(),
         getWebfonts(),
         retrieveCapiData()
-        .then(capiData => buildFromCapi(host, capiData, isPaid))
+        .then(capiData => buildFromCapi(host, capiData, adType))
     ]))
     .then(() => {
         onViewport(({ width }) => {

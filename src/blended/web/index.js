@@ -86,7 +86,7 @@ function createJob(job) {
 function createMasterclass(event) {
     return `<a class="blink advert advert--masterclass" href="%%CLICK_URL_UNESC%%${event.url}" data-link-name="${event.name}" target="_top">
         <div class="advert__image-container">
-            <img class="advert__image" src="${location.protocol}${event.pictureUrl}" alt>
+            <img class="advert__image" src="${event.pictureUrl}" alt>
         </div>
         <div class="advert__text">
             <h2 class="blink__anchor advert__title">${event.name}</h2>
