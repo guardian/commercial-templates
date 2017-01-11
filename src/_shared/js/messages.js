@@ -139,7 +139,7 @@ function sendMessage(type, value) {
             }
         });
         post(id, iframeId, type, value);
-    }), 300);
+    }), 1000);
 }
 
 let onScroll = listen.bind(null, 'scroll');
