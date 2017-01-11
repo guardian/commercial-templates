@@ -10,8 +10,7 @@ const ENDPOINT = 'https://api.nextgen.guardianapps.co.uk/commercial/api/traffic-
 const OVERRIDES = {
     headline: '[%ArticleHeaderText%]',
     text: '[%ArticleText%]',
-    imageUrl: '[%ArticleImage%]',
-    imageAlt: '[%ArticleImageAlternateText%]'
+    imageUrl: '[%ArticleImage%]'
 };
 
 // Loads the article data from CAPI in JSON format.
@@ -33,8 +32,7 @@ function buildFromCapi (host, { articleHeadline, articleText, articleUrl, articl
     let image = generatePicture({
         url: OVERRIDES.imageUrl || articleImage.backupSrc,
         classes: ['creative__image'],
-        sources: articleImage.sources,
-        alt: OVERRIDES.imageAlt
+        sources: articleImage.sources
     });
 
     setEditionLink(host, edition, document.getElementById('GlabsLink'));
