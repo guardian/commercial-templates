@@ -32,7 +32,7 @@ function buildFromCapi (host, { articleHeadline, articleText, articleUrl, articl
     let image = generatePicture({
         url: OVERRIDES.imageUrl || articleImage.backupSrc,
         classes: ['creative__image'],
-        sources: articleImage.sources
+        sources: !OVERRIDES.imageUrl && articleImage.sources
     });
 
     setEditionLink(host, edition, document.getElementById('GlabsLink'));
