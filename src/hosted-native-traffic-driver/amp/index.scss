@@ -87,7 +87,7 @@ $badgeWidth: 80px;
     opacity: 0.5;
 }
 
-.hosted-popup {
+.creative--hosted-mpu .popup {
     display: none;
     position: absolute;
     width: 228px;
@@ -99,6 +99,7 @@ $badgeWidth: 80px;
     background-color: #fedd79;
     font-size: 13px;
     padding: 6px;
+    border-radius: 0;
 }
 
 .hosted-popup__title {
@@ -157,6 +158,17 @@ $badgeWidth: 80px;
         bottom: -6px;
         margin-left: -6px;
     }
+
+    .popup-toggle:checked ~ & {
+
+        > .icon {
+            transform: rotate(180deg);
+        }
+
+        &::before {
+            display: block;
+        }
+    }
 }
 
 .hosted-popup__toggle-label svg {
@@ -164,9 +176,4 @@ $badgeWidth: 80px;
     height: 13px;
     fill: $neutral-1;
     vertical-align: middle;
-}
-
-.hosted-popup__toggle:checked ~ .hosted-popup__toggle-label::before,
-.hosted-popup__toggle:checked ~ .hosted-popup {
-    display: block;
 }
