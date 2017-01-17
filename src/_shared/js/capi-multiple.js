@@ -10,7 +10,6 @@ const ENDPOINT = 'https://api.nextgen.guardianapps.co.uk/commercial/api/capi-mul
 
 const OVERRIDES = {
     urls: ['[%Article1URL%]', '[%Article2URL%]', '[%Article3URL%]', '[%Article4URL%]'],
-    kickers: ['[%Article1Kicker%]', '[%Article2Kicker%]', '[%Article3Kicker%]', '[%Article4Kicker%]'],
     headlines: ['[%Article1Headline%]', '[%Article2Headline%]', '[%Article3Headline%]', '[%Article4Headline%]'],
     images: ['[%Article1Image%]', '[%Article2Image%]', '[%Article3Image%]', '[%Article4Image%]'],
     brandLogo: '[%BrandLogo%]'
@@ -61,17 +60,6 @@ function buildTitle (card, cardInfo, cardNumber) {
     }
 }
 
-// Constructs the kicker text
-function buildKicker (card, cardNumber) {
-
-    let kicker = card.querySelector('.advert__kicker');
-    let kickerText = OVERRIDES.kickers[cardNumber];
-
-    if(kicker && kickerText){
-        kicker.textContent = kickerText + " / ";
-    }
-}
-
 // Either from template, or workaround for IE (sigh).
 function importCard (adType) {
 
@@ -95,13 +83,13 @@ function importCard (adType) {
 }
 
 // Constructs an individual card.
-function buildCard (cardInfo, cardNum, adType) {
+function buildCard (cardInfo, cardNum, adType, modifyCardFn) {
 
     let cardFragment = importCard(adType);
     let card = cardFragment.querySelector(`.advert--${adType}`);
     let imgContainer = card.querySelector('.advert__image-container');
 
-    buildKicker(card, cardNum);
+    modifyCardFn && modifyCardFn(card, cardNum);
     buildTitle(card, cardInfo, cardNum);
     card.href = clickMacro + cardInfo.articleUrl;
 
@@ -142,13 +130,13 @@ function editionLink (host, edition, adType) {
 }
 
 // Uses cAPI data to build the ad content.
-function buildFromCapi (host, cardsInfo, adType) {
+function buildFromCapi (host, cardsInfo, adType, modifyCardFn) {
 
     let cardList = document.createDocumentFragment();
 
     // Constructs an array of cards from an array of data.
     cardsInfo.articles.forEach((info, idx) => {
-        cardList.appendChild(buildCard(info, idx, adType));
+        cardList.appendChild(buildCard(info, idx, adType, modifyCardFn));
     });
 
     return write(() => {
@@ -160,7 +148,7 @@ function buildFromCapi (host, cardsInfo, adType) {
     });
 }
 
-export default function capiMultiple (adType) {
+export default function capiMultiple (adType, modifyCardFn) {
     let lastWidth;
 
     enableToggles();
@@ -170,7 +158,7 @@ export default function capiMultiple (adType) {
         reportClicks(),
         getWebfonts(),
         retrieveCapiData()
-        .then(capiData => buildFromCapi(host, capiData, adType))
+        .then(capiData => buildFromCapi(host, capiData, adType, modifyCardFn))
     ]))
     .then(() => {
         onViewport(({ width }) => {
