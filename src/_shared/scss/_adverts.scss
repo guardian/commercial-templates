@@ -551,6 +551,12 @@
     }
 }
 
+.badge--branded {
+    margin-top: auto;
+    margin-left: auto;
+    padding-right: $gs-gutter / 4;
+}
+
 .badge__logo {
     max-height: $gs-baseline * 5;
     margin-left: $gs-gutter / 2;

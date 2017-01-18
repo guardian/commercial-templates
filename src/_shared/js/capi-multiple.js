@@ -89,7 +89,7 @@ function buildCard (cardInfo, cardNum, adType, modifyCardFn) {
     let card = cardFragment.querySelector(`.advert--${adType}`);
     let imgContainer = card.querySelector('.advert__image-container');
 
-    modifyCardFn && modifyCardFn(card, cardNum);
+    modifyCardFn && modifyCardFn(card, cardNum, cardInfo);
     buildTitle(card, cardInfo, cardNum);
     card.href = clickMacro + cardInfo.articleUrl;
 
