@@ -83,13 +83,13 @@ function importCard (adType) {
 }
 
 // Constructs an individual card.
-function buildCard (cardInfo, cardNum, adType, modifyCardFn) {
+function buildCard (cardInfo, cardNum, adType, cardsInfo, modifyCardFn) {
 
     let cardFragment = importCard(adType);
     let card = cardFragment.querySelector(`.advert--${adType}`);
     let imgContainer = card.querySelector('.advert__image-container');
 
-    modifyCardFn && modifyCardFn(card, cardNum, cardInfo);
+    modifyCardFn && modifyCardFn(card, cardNum, cardsInfo);
     buildTitle(card, cardInfo, cardNum);
     card.href = clickMacro + cardInfo.articleUrl;
 
@@ -134,9 +134,13 @@ function buildFromCapi (host, cardsInfo, adType, modifyCardFn) {
 
     let cardList = document.createDocumentFragment();
 
+    cardsInfo.isSingle = cardsInfo.articles
+    .map(cardInfo => cardInfo.branding.sponsorLogo.url)
+    .reduce(((isSingle, url, index, urls) => isSingle && (index === 0 || url === urls[index - 1])), true);
+
     // Constructs an array of cards from an array of data.
     cardsInfo.articles.forEach((info, idx) => {
-        cardList.appendChild(buildCard(info, idx, adType, modifyCardFn));
+        cardList.appendChild(buildCard(info, idx, adType, cardsInfo, modifyCardFn));
     });
 
     return write(() => {

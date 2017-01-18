@@ -6,13 +6,12 @@ const OVERRIDES = {
     links: ['[%Article1LogoUrl%]', '[%Article2LogoUrl%]', '[%Article3LogoUrl%]', '[%Article4LogoUrl%]']
 };
 
-function buildLogo(card, cardNumber, cardInfo) {
-    let logoUrl = cardInfo.logoUrl || OVERRIDES.logos[cardNumber];
-    let brandUrl = cardInfo.brandUrl || OVERRIDES.links[cardNumber];
+function buildLogo(card, cardNumber, cardsInfo) {
+    if( cardsInfo.isSingle ) return;
 
-    if( !logoUrl || !brandUrl ) return;
+    let cardInfo = cardsInfo.articles[cardNumber];
 
-    card.insertAdjacentHTML('beforeend', generateLogo(logoUrl, brandUrl));
+    card.insertAdjacentHTML('beforeend', generateLogo(cardInfo.branding.sponsorLogo.url, cardInfo.branding.sponsorLink));
 }
 
 function generateLogo(logoUrl, brandUrl) {
