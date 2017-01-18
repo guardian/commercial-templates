@@ -83,13 +83,13 @@ function importCard (adType) {
 }
 
 // Constructs an individual card.
-function buildCard (cardInfo, cardNum, adType, modifyCardFn) {
+function buildCard (cardInfo, cardNum, adType, cardsInfo, modifyCardFn) {
 
     let cardFragment = importCard(adType);
     let card = cardFragment.querySelector(`.advert--${adType}`);
     let imgContainer = card.querySelector('.advert__image-container');
 
-    modifyCardFn && modifyCardFn(card, cardNum);
+    modifyCardFn && modifyCardFn(card, cardNum, cardsInfo);
     buildTitle(card, cardInfo, cardNum);
     card.href = clickMacro + cardInfo.articleUrl;
 
@@ -112,12 +112,19 @@ function buildCard (cardInfo, cardNum, adType, modifyCardFn) {
 // Adds branding information from cAPI or DFP override.
 function addBranding (brandingCard) {
 
-    let brandImage = document.querySelector('.badge__logo');
+    let body = document.querySelector('.adverts__body');
+    let logoUrl = OVERRIDES.brandLogo || brandingCard.branding.sponsorLogo.url;
 
-    if (OVERRIDES.brandLogo === '') {
-        brandImage.src = brandingCard.branding.sponsorLogo.url;
-    }
+    body.insertAdjacentHTML('beforeend', generateLogo(logoUrl));
+}
 
+function generateLogo(logoUrl) {
+    return `<div class="badge">
+        Paid for by
+        <a class="badge__link" href="%%CLICK_URL_UNESC%%https://theguardian.com/[%SeriesURL%]" data-link-name="badge" target="_top">
+            <img class="badge__logo" src="${logoUrl}" alt="">
+        </a>
+    </div>`
 }
 
 // Sets correct glabs link based on edition (AU/All others).
@@ -134,14 +141,18 @@ function buildFromCapi (host, cardsInfo, adType, modifyCardFn) {
 
     let cardList = document.createDocumentFragment();
 
+    cardsInfo.isSingle = cardsInfo.articles
+    .map(cardInfo => cardInfo.branding.sponsorLogo.url)
+    .reduce(((isSingle, url, index, urls) => isSingle && (index === 0 || url === urls[index - 1])), true);
+
     // Constructs an array of cards from an array of data.
     cardsInfo.articles.forEach((info, idx) => {
-        cardList.appendChild(buildCard(info, idx, adType, modifyCardFn));
+        cardList.appendChild(buildCard(info, idx, adType, cardsInfo, modifyCardFn));
     });
 
     return write(() => {
         // Takes branding from last possible card, in case earlier ones overriden.
-        addBranding(cardsInfo.articles.slice(-1)[0]);
+        if( cardsInfo.isSingle ) addBranding(cardsInfo.articles.slice(-1)[0]);
         let advertRow = document.querySelector('.adverts__row');
         advertRow.appendChild(cardList);
         editionLink(host, cardsInfo.articles[0].edition, adType);
