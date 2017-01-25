@@ -1,7 +1,6 @@
 import { write } from './dom.js';
 
-export function cleanupButtons() {
-    const moreTexts = ['[%Offer1LinkText%]', '[%Offer2LinkText%]', '[%Offer3LinkText%]', '[%Offer4LinkText%]'];
+export function cleanupButtons(moreTexts) {
     const mores = Array.from(document.getElementsByClassName('advert__more'))
     .filter((more, index) => !moreTexts[index]);
 
