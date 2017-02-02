@@ -11,7 +11,7 @@ function buildLogo(card, cardNumber, cardsInfo) {
 
     let cardInfo = cardsInfo.articles[cardNumber];
 
-    card.insertAdjacentHTML('beforeend', generateLogo(cardInfo.branding.sponsorLogo.url, cardInfo.branding.sponsorLink));
+    card.insertAdjacentHTML('beforeend', generateLogo(cardInfo.branding.logo.src, cardInfo.branding.sponsorLink));
 }
 
 function generateLogo(logoUrl, brandUrl) {

@@ -113,7 +113,7 @@ function buildCard (cardInfo, cardNum, adType, cardsInfo, modifyCardFn) {
 function addBranding (brandingCard) {
 
     let body = document.querySelector('.adverts__body');
-    let logoUrl = OVERRIDES.brandLogo || brandingCard.branding.sponsorLogo.url;
+    let logoUrl = OVERRIDES.brandLogo || brandingCard.branding.logo.src;
 
     body.insertAdjacentHTML('beforeend', generateLogo(logoUrl));
 }
@@ -142,7 +142,7 @@ function buildFromCapi (host, cardsInfo, adType, modifyCardFn) {
     let cardList = document.createDocumentFragment();
 
     cardsInfo.isSingle = cardsInfo.articles
-    .map(cardInfo => cardInfo.branding.sponsorLogo.url)
+    .map(cardInfo => cardInfo.branding.logo.src)
     .reduce(((isSingle, url, index, urls) => isSingle && (index === 0 || url === urls[index - 1])), true);
 
     // Constructs an array of cards from an array of data.
