@@ -10,9 +10,9 @@ const ENDPOINT = 'https://api.nextgen.guardianapps.co.uk/commercial/api/capi-mul
 
 const OVERRIDES = {
     urls: ['[%Article1URL%]', '[%Article2URL%]', '[%Article3URL%]', '[%Article4URL%]'],
+    kickers: ['[%Article1Kicker%]', '[%Article2Kicker%]', '[%Article3Kicker%]', '[%Article4Kicker%]'],
     headlines: ['[%Article1Headline%]', '[%Article2Headline%]', '[%Article3Headline%]', '[%Article4Headline%]'],
-    images: ['[%Article1Image%]', '[%Article2Image%]', '[%Article3Image%]', '[%Article4Image%]'],
-    brandLogo: '[%BrandLogo%]'
+    images: ['[%Article1Image%]', '[%Article2Image%]', '[%Article3Image%]', '[%Article4Image%]']
 };
 
 // Loads the card data from CAPI in JSON format.
@@ -28,36 +28,31 @@ function retrieveCapiData () {
     .then(response => response.json());
 }
 
-// Sets up media icon information on a card (SVG and class).
-function setMediaIcon (card, title, mediaType) {
-    title.insertAdjacentHTML('afterbegin', mediaIcons[mediaType]);
-    card.classList.add('advert--media');
-}
-
-// Inserts capi headline or DFP override.
-function buildHeadline (card, title, cardInfo, cardNumber) {
-    let headline = OVERRIDES.headlines[cardNumber] || cardInfo.articleHeadline;
-    title.textContent = headline;
-    card.setAttribute('data-link-name', headline);
-}
-
 // Constructs the title part of the card: headline and media icon.
 function buildTitle (card, cardInfo, cardNumber) {
-
     let title = card.querySelector('.advert__title');
-    let kicker = card.querySelector('.advert__kicker');
+    let kickerText = OVERRIDES.kickers[cardNumber];
 
-    buildHeadline(card, title, cardInfo, cardNumber);
+    let kicker = kickerText ? `<span class="advert__kicker">${kickerText}</span>` : '';
+    let icon = '';
+    let headline = OVERRIDES.headlines[cardNumber] || cardInfo.articleHeadline;
 
     if (cardInfo.videoTag) {
-        setMediaIcon(card, kicker || title, 'video');
+        card.classList.add('advert--media');
+        icon = mediaIcons['video'];
     } else if (cardInfo.galleryTag) {
-        setMediaIcon(card, kicker || title, 'camera');
+        card.classList.add('advert--media');
+        icon = mediaIcons['camera'];
     } else if (cardInfo.audioTag) {
-        setMediaIcon(card, kicker || title, 'volume');
+        card.classList.add('advert--media');
+        icon = mediaIcons['volume'];
     } else {
         card.classList.add('advert--text');
     }
+
+    card.setAttribute('data-link-name', headline);
+
+    title.insertAdjacentHTML('beforeend', [kicker, icon, headline].join(' '));
 }
 
 // Either from template, or workaround for IE (sigh).
@@ -82,15 +77,25 @@ function importCard (adType) {
 
 }
 
+function buildLogo(card, cardNumber, cardsInfo, generateLogo) {
+    if (cardsInfo.isSingle) return;
+
+    let cardInfo = cardsInfo.articles[cardNumber];
+    if(cardInfo.branding){
+        let logo = generateLogo(cardInfo.branding.logo.src, cardInfo.branding.sponsorLink, 'badge--branded');
+        card.insertAdjacentHTML('beforeend', logo);
+    }
+}
+
 // Constructs an individual card.
-function buildCard (cardInfo, cardNum, adType, cardsInfo, modifyCardFn) {
+function buildCard (cardInfo, cardNum, adType, cardsInfo, generateLogo) {
 
     let cardFragment = importCard(adType);
     let card = cardFragment.querySelector(`.advert--${adType}`);
     let imgContainer = card.querySelector('.advert__image-container');
 
-    modifyCardFn && modifyCardFn(card, cardNum, cardsInfo);
     buildTitle(card, cardInfo, cardNum);
+    buildLogo(card, cardNum, cardsInfo, generateLogo);
     card.href = clickMacro + cardInfo.articleUrl;
 
     let image = generatePicture({
@@ -109,22 +114,14 @@ function buildCard (cardInfo, cardNum, adType, cardsInfo, modifyCardFn) {
 
 }
 
-// Adds branding information from cAPI or DFP override.
-function addBranding (brandingCard) {
+// Adds branding information from cAPI.
+function addBranding (brandingCard, generateLogo) {
 
-    let body = document.querySelector('.adverts__body');
-    let logoUrl = OVERRIDES.brandLogo || brandingCard.branding.logo.src;
+    let body = document.querySelector('.js-logo-container');
+    let logoUrl = brandingCard.branding && brandingCard.branding.logo.src;
+    let sponsorLink = brandingCard.branding && brandingCard.branding.sponsorLink;
 
-    body.insertAdjacentHTML('beforeend', generateLogo(logoUrl));
-}
-
-function generateLogo(logoUrl) {
-    return `<div class="badge">
-        Paid for by
-        <a class="badge__link" href="%%CLICK_URL_UNESC%%https://theguardian.com/[%SeriesURL%]" data-link-name="badge" target="_top">
-            <img class="badge__logo" src="${logoUrl}" alt="">
-        </a>
-    </div>`
+    body.insertAdjacentHTML('beforeend', generateLogo(logoUrl, sponsorLink));
 }
 
 // Sets correct glabs link based on edition (AU/All others).
@@ -137,29 +134,32 @@ function editionLink (host, edition, adType) {
 }
 
 // Uses cAPI data to build the ad content.
-function buildFromCapi (host, cardsInfo, adType, modifyCardFn) {
+function buildFromCapi (host, cardsInfo, adType, generateLogo) {
 
     let cardList = document.createDocumentFragment();
 
     cardsInfo.isSingle = cardsInfo.articles
-    .map(cardInfo => cardInfo.branding.logo.src)
-    .reduce(((isSingle, url, index, urls) => isSingle && (index === 0 || url === urls[index - 1])), true);
+        .map(cardInfo => cardInfo.branding && cardInfo.branding.logo.src)
+        .reduce(((isSingle, url, index, urls) => isSingle && (index === 0 || url === urls[index - 1])), true);
 
     // Constructs an array of cards from an array of data.
     cardsInfo.articles.forEach((info, idx) => {
-        cardList.appendChild(buildCard(info, idx, adType, cardsInfo, modifyCardFn));
+        cardList.appendChild(buildCard(info, idx, adType, cardsInfo, generateLogo));
     });
 
     return write(() => {
-        // Takes branding from last possible card, in case earlier ones overriden.
-        if( cardsInfo.isSingle ) addBranding(cardsInfo.articles.slice(-1)[0]);
+        // Takes branding from last possible card, in case earlier ones overridden.
+        var brandingCard = cardsInfo.articles.slice(-1)[0];
+        if( cardsInfo.isSingle ) {
+            addBranding(brandingCard, generateLogo);
+        }
         let advertRow = document.querySelector('.adverts__row');
         advertRow.appendChild(cardList);
         editionLink(host, cardsInfo.articles[0].edition, adType);
     });
 }
 
-export default function capiMultiple (adType, modifyCardFn) {
+export default function capiMultiple (adType, generateLogo) {
     let lastWidth;
 
     enableToggles();
@@ -169,7 +169,7 @@ export default function capiMultiple (adType, modifyCardFn) {
         reportClicks(),
         getWebfonts(),
         retrieveCapiData()
-        .then(capiData => buildFromCapi(host, capiData, adType, modifyCardFn))
+        .then(capiData => buildFromCapi(host, capiData, adType, generateLogo))
     ]))
     .then(() => {
         onViewport(({ width }) => {
