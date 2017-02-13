@@ -9,7 +9,7 @@ let params = new URLSearchParams();
 params.append('t', '[%ISBN%]');
 
 reportClicks();
-getIframeId()
+getIframeId('inline-book')
 .then(({ host, preview }) => fetch(`${getApiBaseUrl(host, preview)}/commercial/books/api/book.json?${params}`))
 .then(response => response.json())
 .then(createAdvert)
