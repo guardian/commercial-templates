@@ -99,10 +99,6 @@
     }
 
     &.adverts--legacy-inline {
-        @include mq(mobileLandscape) {
-            width: gs-span(2);
-        }
-
         .advert > :not(.advert__image-container) {
             margin-left: 0;
             margin-right: 0;

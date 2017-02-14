@@ -10,7 +10,7 @@ let iframeId;
 // frame will send a message with the ID of the corresponding iframe. This is
 // because of some f**d-up handling of the name attribute that is supposed to
 // do the work.
-function getIframeId() {
+function getIframeId(type) {
     return new Promise(resolve => {
         self.addEventListener('message', function onMessage(evt) {
             let json;
@@ -23,6 +23,10 @@ function getIframeId() {
 
             self.removeEventListener('message', onMessage);
             ({ id: iframeId, host: parentOrigin } = json);
+
+            if( type ) {
+                sendMessage('type', type);
+            }
             resolve(json);
         });
     });
