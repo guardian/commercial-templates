@@ -6,3 +6,7 @@
 .adverts--manual.adverts--soulmates .search {
   margin: 0 $gs-gutter/2;
 }
+
+.adverts__row--3cards-and-form > :nth-child(4) {
+  display: none;
+}

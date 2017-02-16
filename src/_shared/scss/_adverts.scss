@@ -44,7 +44,7 @@
         padding: 0;
     }
 
-    @include mq(mobileLandscape, leftCol) {
+    @include mq(tablet, leftCol) {
         > .adverts__header {
             justify-content: space-between;
             align-items: center;
