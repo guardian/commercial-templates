@@ -4,9 +4,11 @@ import { getApiBaseUrl } from '../../_shared/js/dev';
 import { URLSearchParams } from '../../_shared/js/utils';
 
 let container = document.getElementsByClassName('adverts__body')[0];
+let isbn = '[%ISBN%]';
+let isbnBackup = '%%PATTERN:isbn%%';
 
 let params = new URLSearchParams();
-params.append('t', '[%ISBN%]');
+params.append('t', isbn || isbnBackup);
 
 reportClicks();
 getIframeId('inline-book')
