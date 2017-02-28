@@ -1,4 +1,5 @@
 @import '_core';
+@import '_adverts-capi';
 @import '_hosted';
 
 .advert__image-container {
@@ -12,11 +13,16 @@
   }
 }
 
-.advert__kicker > .icon {
+.advert__kicker {
+  color: inherit;
+  opacity: 0.5;
+}
+
+.advert__title > .icon {
   width: 1.1em;
   height: .75em;
-  margin-right: .3em;
   fill: #333333;
+  opacity: 0.5;
 
   .hosted-bright & {
     fill: #ffffff;

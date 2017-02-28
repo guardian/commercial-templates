@@ -1,22 +1,25 @@
 {
     "ComponentTitle": "Brother Partner Zone",
-    "SeriesURL": "brother-partner-zone/brother-partner-zone",
+    "SeriesURL": "marriott-travels/marriott-travels",
     "Brand": "Unilever",
-    "BrandLogo": "http://pagead2.googlesyndication.com/pagead/imgad?id=CICAgKDjnfPJbBABGAEyCHbj_OBIEKp8",
     "TrackingID": "1234",
-    "Article1Headline": "It's time for the NHS to realise the benefits of digital",
+    "Article1Headline": "Its time for the NHS to realise the benefits of digital",
+    "Article1Kicker": "Brother",
     "Article1URL": "p/52efd",
     "Article1Image": "https://tpc.googlesyndication.com/pagead/imgad?id=CICAgKDL8_aZahABGAEyCM7vHR3kurK0",
 
     "Article2Headline": "",
-    "Article2URL": "p/4xzbq",
+    "Article2Kicker": "Colour",
+    "Article2URL": "p/5akvh",
     "Article2Image": "https://tpc.googlesyndication.com/pagead/imgad?id=CICAgKDL8460ZxABGAEyCLHavz0J_xxG",
 
-    "Article3Headline": "Can IT help the NHS deliver seven-day services?",
-    "Article3URL": "https://www.theguardian.com/healthcare-network-brother-partner-zone/2015/oct/09/it-nhs-seven-day-services",
-    "Article3Image": "https://tpc.googlesyndication.com/pagead/imgad?id=CICAgKDL846G-AEQARgBMgiltRKnG_iTTA",
+    "Article3Headline": "",
+    "Article3Kicker": "Trees",
+    "Article3URL": "p/59jqg",
+    "Article3Image": "",
 
-    "Article4Headline": "'Their body, their data': how portals can put patients in charge",
-    "Article4URL": "https://www.theguardian.com/brother-partner-zone/2016/oct/27/their-body-their-data-how-portals-can-put-patients-in-charge",
-    "Article4Image": "https://tpc.googlesyndication.com/pagead/imgad?id=CICAgKDL846O_AEQARgBMghQVTAWK--psQ"
+    "Article4Headline": "Their body, their data: how portals can put patients in charge",
+    "Article4Kicker": "Marriott",
+    "Article4URL": "",
+    "Article4Image": ""
 }

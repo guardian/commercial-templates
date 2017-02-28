@@ -40,7 +40,7 @@ function getValue(value, fallback) {
 }
 
 function populateLogo(responseJson) {
-  return `<img class="badge__logo" src="${getValue('[%BrandLogo%]', responseJson.branding.sponsorLogo.url)}" alt="">`;
+  return `<img class="badge__logo" src="${getValue('[%BrandLogo%]', responseJson.branding.logo.src)}" alt="">`;
 }
 
 /* Outputs the HTML */
