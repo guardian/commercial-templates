@@ -10,6 +10,43 @@
     color: $neutral-1;
 }
 
+.advert__title {
+  @include mq($until: tablet) {
+    width: 70%;
+    min-height: $gs-baseline * 5;
+  }
+}
+
+.badge {
+  @include mq($until: tablet) {
+    text-align: center;
+    margin: 0;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+  }
+}
+
+.badge__label {
+  display: inline;
+  @include mq(tablet) {
+    padding-right: $gs-gutter;
+  }
+}
+
+.badge__link {
+  display: inline;
+  @include mq($until: tablet) {
+    display: block;
+  }
+}
+
+.badge__logo {
+  @include mq($until: tablet) {
+    margin-left: 0;
+  }
+}
+
 .adverts__logo:hover {
     text-decoration: underline;
 }
