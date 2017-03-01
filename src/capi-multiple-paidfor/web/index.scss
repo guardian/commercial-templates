@@ -18,6 +18,7 @@
 }
 
 .badge {
+  display: inline-block;
   @include mq($until: tablet) {
     text-align: center;
     margin: 0;
@@ -28,23 +29,19 @@
 }
 
 .badge__label {
-  display: inline;
-  @include mq(tablet) {
-    padding-right: $gs-gutter;
-  }
+  display: inline-block;
+  padding: 0 10px;
 }
 
 .badge__link {
-  display: inline;
+  display: inline-block;
   @include mq($until: tablet) {
     display: block;
   }
 }
 
 .badge__logo {
-  @include mq($until: tablet) {
-    margin-left: 0;
-  }
+  margin-left: 0;
 }
 
 .adverts__logo:hover {
