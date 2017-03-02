@@ -12,7 +12,7 @@
 
 .advert__title {
   @include mq($until: tablet) {
-    width: 70%;
+    margin-right: $gs-gutter * 5;
     min-height: $gs-baseline * 5;
   }
 }
@@ -42,6 +42,7 @@
 
 .badge__logo {
   margin-left: 0;
+  max-width: $gs-gutter * 5;
 }
 
 .adverts__logo:hover {
