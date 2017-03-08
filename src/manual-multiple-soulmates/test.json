@@ -1,5 +1,7 @@
 {
   "ViewAll": "View all",
+  "NumberofCards": "3cards-and-form",
+  "IsProminent": "false",
   "Offer1LinkText": "members",
   "Offer1Image": "http://static.theguardian.com/commercial/hosted/gallery-prototype/omgb2.jpg",
   "Offer1AuthorImage": "",
@@ -15,5 +17,10 @@
   "Offer3Image": "http://static.theguardian.com/commercial/hosted/gallery-prototype/omgb4.jpg",
   "Offer3URL": "https://www.theguardian.com",
   "Offer3Title": "Met someone wonderful. Thank you!",
-  "Offer3Meta": "Kim12 quit in January. Find your soulmate"
+  "Offer3Meta": "Kim12 quit in January. Find your soulmate",
+  "Offer4LinkText": "jobs",
+  "Offer4Image": "http://static.theguardian.com/commercial/hosted/gallery-prototype/omgb5.jpg",
+  "Offer4URL": "https://www.theguardian.com",
+  "Offer4Title": "Has your job changed from what you signed up to do?",
+  "Offer4Meta": "How to negotiate a pay rise"
 }

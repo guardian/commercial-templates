@@ -16,7 +16,7 @@
         </div>
     </header>
     <div class="adverts__body">
-        <div class="adverts__row adverts__row--prominent-[%IsProminent%] adverts__row--[%NumberofCards%]cards">
+        <div class="adverts__row adverts__row--prominent-[%IsProminent%] adverts__row--[%NumberofCards%]">
             <a class="blink advert advert--manual advert--prominent-[%IsProminent%] advert--soulmate" href="%%CLICK_URL_UNESC%%[%Offer1URL%]" data-link-name="Offer 1 | [%Offer1Title%]" target="_top">
                 <div class="advert__image-container">
                     <img class="advert__image" src="[%Offer1Image%]" alt>
@@ -56,46 +56,56 @@
                     </span>
                 </div>
             </a>
+            <a class="blink advert advert--manual advert--soulmate hide-until-tablet" href="%%CLICK_URL_UNESC%%[%Offer4URL%]" data-link-name="Offer 4 | [%Offer4Title%]" target="_top">
+                <div class="advert__image-container">
+                    <img class="advert__image" src="[%Offer4Image%]" alt>
+                </div>
+                <div class="advert__text">
+                    <h2 class="blink__anchor advert__title">[%Offer4Title%]</h2>
+                    <div class="advert__meta">[%Offer4Meta%]</div>
+                    <span class="advert__more button button--small">
+                        [%Offer4LinkText%]
+                        {{#svg}}arrow-right{{/svg}}
+                    </span>
+                </div>
+            </a>
 
-            <div class="adverts__row hide-until-tablet">
-                <form class="search" action="https://soulmates.theguardian.com/find" method="get" target="_top">
-                    <div class="search__field">
-                        <label for="my_gender" class="search__label">I am a</label>
-                        <select id="my_gender" name="my_gender" class="search__dropdown">
-                            <option value="Woman">woman</option>
-                            <option value="Man" selected="selected" }>man</option>
-                        </select>
-                    </div>
-                    <div class="search__field">
-                        <label for="match_gender" class="search__label">Seeking</label>
-                        <select id="match_gender" name="match_gender" class="search__dropdown">
-                            <option value="Woman">woman</option>
-                            <option value="Man">man</option>
-                            <option value="../../../public">men &amp; women</option>
-                        </select>
-                    </div>
-                    <div class="search__field">
-                        <label for="age_min" class="search__label">Aged from</label>
-                        <select id="age_min" name="age_min" class="search__dropdown">
-                            {{#ages.min_ages}}
-                            <option {{#selected_default}} selected="selected" {{/selected_default}}>{{age}}</option>
-                            {{/ages.min_ages}}
-                        </select>
-                    </div>
-                    <div class="search__field">
-                        <label for="age_max" class="search__label">To</label>
-                        <select id="age_max" name="age_max" class="search__dropdown">
-                            {{#ages.max_ages}}
-                            <option {{#selected_default}} selected="selected" {{/selected_default}}>{{age}}</option>
-                            {{/ages.max_ages}}
-                        </select>
-                    </div>
-                    <button type="submit" class="search__submit button button--small" data-link-name="merchandising-soulmates-v2_2_2014-03-28-find-a-soulmate">
-                        Find a soulmate
-                    </button>
-                </form>
-            </div>
-
+            <form class="search hide-until-tablet" action="https://soulmates.theguardian.com/find" method="get" target="_top">
+                <div class="search__field">
+                    <label for="my_gender" class="search__label">I am a</label>
+                    <select id="my_gender" name="my_gender" class="search__dropdown">
+                        <option value="Woman">woman</option>
+                        <option value="Man" selected="selected">man</option>
+                    </select>
+                </div>
+                <div class="search__field">
+                    <label for="match_gender" class="search__label">Seeking</label>
+                    <select id="match_gender" name="match_gender" class="search__dropdown">
+                        <option value="Woman">woman</option>
+                        <option value="Man">man</option>
+                        <option value="../../../public">men &amp; women</option>
+                    </select>
+                </div>
+                <div class="search__field">
+                    <label for="age_min" class="search__label">Aged from</label>
+                    <select id="age_min" name="age_min" class="search__dropdown">
+                        {{#ages.min_ages}}
+                        <option {{#selected_default}} selected="selected" {{/selected_default}}>{{age}}</option>
+                        {{/ages.min_ages}}
+                    </select>
+                </div>
+                <div class="search__field">
+                    <label for="age_max" class="search__label">To</label>
+                    <select id="age_max" name="age_max" class="search__dropdown">
+                        {{#ages.max_ages}}
+                        <option {{#selected_default}} selected="selected" {{/selected_default}}>{{age}}</option>
+                        {{/ages.max_ages}}
+                    </select>
+                </div>
+                <button type="submit" class="search__submit button button--small" data-link-name="merchandising-soulmates-v2_2_2014-03-28-find-a-soulmate">
+                    Find a soulmate
+                </button>
+            </form>
 
         </div>
     </div>

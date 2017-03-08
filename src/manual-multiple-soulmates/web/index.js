@@ -1,7 +1,7 @@
 import { getIframeId, getWebfonts, resizeIframeHeight, reportClicks, onViewport } from '../../_shared/js/messages.js';
 import { cleanupButtons } from '../../_shared/js/creatives.js';
 
-cleanupButtons(['[%Offer1LinkText%]', '[%Offer2LinkText%]', '[%Offer3LinkText%]']);
+cleanupButtons();
 
 reportClicks();
 getIframeId()
