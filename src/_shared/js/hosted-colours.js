@@ -9,7 +9,7 @@ function isDark(hex) {
     let min = Math.min(R, G, B);
     let max = Math.max(R, G, B);
     let lightness = (min + max) / 510;
-    return lightness < 0.5;
+    return lightness <= 0.5;
 }
 
 export default function addColourContrastClass () {
