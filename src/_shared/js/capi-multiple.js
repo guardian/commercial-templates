@@ -138,7 +138,7 @@ function buildFromCapi (host, cardsInfo, adType, generateLogo) {
 
     let cardList = document.createDocumentFragment();
 
-    cardsInfo.isSingle = cardsInfo.articles
+    cardsInfo.isSingle = adType === 'hosted' || cardsInfo.articles
         .map(cardInfo => cardInfo.branding && cardInfo.branding.logo.src)
         .reduce(((isSingle, url, index, urls) => isSingle && (index === 0 || url === urls[index - 1])), true);
 
