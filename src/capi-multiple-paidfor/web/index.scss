@@ -12,19 +12,12 @@
 
 .advert__title {
   @include mq($until: tablet) {
-    margin-right: $gs-gutter * 5;
-    min-height: $gs-baseline * 5;
+    flex: 1 0 50%;
   }
 }
 
 .badge {
   display: inline-block;
-  @include mq($until: tablet) {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    margin: 0;
-  }
 }
 
 .badge__label {

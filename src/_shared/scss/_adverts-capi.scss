@@ -214,6 +214,10 @@
         background: darken($paid-article-subheader, 7%);
     }
 
+    @include mq($until: tablet) {
+      flex-flow: row wrap;
+    }
+
     .advert__title {
         font-family: $f-sans-serif-headline;
         font-weight: 400;
