@@ -82,7 +82,7 @@ function buildLogo(card, cardNumber, cardsInfo, generateLogo) {
 
     let cardInfo = cardsInfo.articles[cardNumber];
     if(cardInfo.branding){
-        let logo = generateLogo(cardInfo.branding.logo.src, cardInfo.branding.sponsorLink, 'badge--branded');
+        let logo = generateLogo(cardInfo.branding.logo.src, cardInfo.branding.logo.link, 'badge--branded');
         card.insertAdjacentHTML('beforeend', logo);
     }
 }
@@ -119,7 +119,7 @@ function addBranding (brandingCard, generateLogo) {
 
     let body = document.querySelector('.js-logo-container');
     let logoUrl = brandingCard.branding && brandingCard.branding.logo.src;
-    let sponsorLink = brandingCard.branding && brandingCard.branding.sponsorLink;
+    let sponsorLink = brandingCard.branding && brandingCard.branding.logo.link;
 
     body.insertAdjacentHTML('beforeend', generateLogo(logoUrl, sponsorLink));
 }
