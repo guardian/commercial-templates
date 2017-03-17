@@ -75,7 +75,7 @@ function populateCard(host, responseJson) {
     </div>
     <div class="badge js-badge">
       Paid for by
-      <a class="badge__link" href="${clickMacro}${responseJson.branding.sponsorLink}" data-link-name="badge">
+      <a class="badge__link" href="${clickMacro}${responseJson.branding.logo.link}" data-link-name="badge">
         <img class="badge__logo" src="${getValue('[%BrandLogo%]', responseJson.branding.logo.src)}" alt="">
       </a>
     </div>`;
