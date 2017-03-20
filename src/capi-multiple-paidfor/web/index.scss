@@ -10,6 +10,26 @@
     color: $neutral-1;
 }
 
+.advert__title {
+  @include mq($until: tablet) {
+    flex: 1 0 50%;
+  }
+}
+
+.badge {
+  display: inline-block;
+}
+
+.badge__label {
+  width: 100%;
+  text-align: center;
+}
+
+.badge__logo {
+  margin-left: 0;
+  max-width: $gs-gutter * 5;
+}
+
 .adverts__logo:hover {
     text-decoration: underline;
 }
