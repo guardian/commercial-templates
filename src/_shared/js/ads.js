@@ -11,8 +11,10 @@ const GLABS_EDITION = {
     US: 'guardian-labs-us'
 };
 
-function addTrackingPixel(rootNode) {
+function addTrackingPixel() {
     if( !trackingPixel ) return;
+    loadImage(trackingPixel);
+}
 
 function addPixel(url) {
     loadImage(url);

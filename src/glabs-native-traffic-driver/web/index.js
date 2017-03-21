@@ -46,15 +46,13 @@ function buildFromCapi (host, { articleHeadline, articleText, articleUrl, articl
 
 reportClicks();
 enableToggles();
+addTrackingPixel();
 getIframeId()
 .then(({ host }) => {
     return Promise.all([
         getWebfonts(['GuardianTextSansWeb', 'GuardianSansWeb']),
         retrieveCapiData()
         .then(data => buildFromCapi(host, data))
-        .then(() => {
-            addTrackingPixel(document.getElementById('creative'));
-        })
     ])
 })
 .then(() => resizeIframeHeight());

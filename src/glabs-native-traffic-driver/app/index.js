@@ -41,8 +41,6 @@ function buildFromCapi ({ articleHeadline, articleUrl, articleImage, edition }) 
 }
 
 enableToggles();
+addTrackingPixel();
 retrieveCapiData()
-.then(buildFromCapi)
-.then(() => {
-    addTrackingPixel(document.getElementById('creative'));
-});
+.then(buildFromCapi);
