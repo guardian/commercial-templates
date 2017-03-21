@@ -14,14 +14,12 @@ const GLABS_EDITION = {
 function addTrackingPixel(rootNode) {
     if( !trackingPixel ) return;
 
-    if( !pixelTemplate ) {
-        pixelTemplate = document.createElement('img');
-        pixelTemplate.className = 'creative__pixel';
-    }
+function addPixel(url) {
+    loadImage(url);
+}
 
-    const pixel = pixelTemplate.cloneNode();
-    pixel.src = '[%Trackingpixel%]%%CACHEBUSTER%%';
-    return write(() => rootNode.appendChild(pixel));
+function loadImage(url) {
+    new Image().src = url;
 }
 
 // Sets the 'href' of the glabs edition link to the correct URL.
@@ -32,5 +30,6 @@ function setEditionLink (host, edition, linkElement) {
 export {
     clickMacro,
     addTrackingPixel,
+    addPixel,
     setEditionLink
 };
