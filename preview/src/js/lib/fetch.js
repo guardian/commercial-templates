@@ -1,3 +1,5 @@
+const Promise = require('bluebird');
+
 function fetch(opts) {
     return new Promise(function(resolve, reject) {
         var xhr = new XMLHttpRequest();
