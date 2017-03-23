@@ -14,6 +14,7 @@ let isWide = window.matchMedia('(min-width: 1300px)').matches;
 
 if( researchPixel ) addPixel(researchPixel);
 if( trackingPixel ) addPixel(trackingPixel);
+addViewabilityTracker('fabric-video-expandable-' + (Math.random() * 10000 | 0).toString(16));
 
 getIframeId()
 .then(() => {

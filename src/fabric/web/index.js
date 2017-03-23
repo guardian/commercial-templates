@@ -13,6 +13,7 @@ if( layer2.classList.contains('creative__layer2--animation-disabled') ) {
 
 if( researchPixel ) addPixel(researchPixel);
 if( trackingPixel ) addPixel(trackingPixel);
+addViewabilityTracker('fabric-' + (Math.random() * 10000 | 0).toString(16));
 
 getIframeId()
 .then(() => {

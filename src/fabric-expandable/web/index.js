@@ -10,6 +10,7 @@ let labelHeight = 22;
 
 if( researchPixel ) addPixel(researchPixel);
 if( trackingPixel ) addPixel(trackingPixel);
+addViewabilityTracker('fabric-expandable-' + (Math.random() * 10000 | 0).toString(16));
 
 getIframeId()
 .then(() => {

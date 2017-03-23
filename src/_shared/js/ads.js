@@ -20,6 +20,14 @@ function addPixel(url) {
     loadImage(url);
 }
 
+function addViewabilityTracker(creativeId) {
+    var tracker = document.getElementById('viewabilityTracker');
+    if( !tracker ) return;
+    tracker = tracker.firstChild.nodeValue.trim();
+    if( !tracker ) return;
+    write(() => document.body.insertAdjacentHTML('beforeend', tracker.replace('INSERT_UNIQUE_ID', creativeId)));
+}
+
 function loadImage(url) {
     new Image().src = url;
 }

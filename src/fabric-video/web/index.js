@@ -8,6 +8,7 @@ let showLabel = '[%ShowLabel%]';
 
 if( researchPixel ) addPixel(researchPixel);
 if( trackingPixel ) addPixel(trackingPixel);
+addViewabilityTracker('fabric-video-' + (Math.random() * 10000 | 0).toString(16));
 
 getIframeId()
 .then(() => {
