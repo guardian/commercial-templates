@@ -1,6 +1,6 @@
 import { getIframeId, getWebfonts, resizeIframeHeight, reportClicks } from '../../_shared/js/messages';
 import { enableToggles } from '../../_shared/js/ui';
-import { addTrackingPixel } from '../../_shared/js/ads';
+import { clickMacro, addTrackingPixel } from '../../_shared/js/ads';
 import { write } from '../../_shared/js/dom';
 import addColourContrastClass from '../../_shared/js/hosted-colours.js';
 import { generatePicture } from '../../_shared/js/capi-images';
@@ -25,7 +25,7 @@ function retrieveCapiData() {
 
 // Uses cAPI data to build the ad content.
 function buildFromCapi ({ articleHeadline, articleUrl, articleImage }) {
-    Array.from(document.getElementsByClassName('creative__ctu')).forEach(ctu => ctu.href = articleUrl);
+    Array.from(document.getElementsByClassName('creative__ctu')).forEach(ctu => ctu.href = clickMacro + articleUrl);
 
     let title = document.getElementById('Title');
 

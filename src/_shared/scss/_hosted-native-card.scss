@@ -51,8 +51,8 @@ $badgeWidth: 80px;
     font-size: 22px;
     line-height: $line-height;
     margin: 0;
-    padding: 10px 100px 0 10px;
-    height: 3 * $line-height;
+    padding: $gs-baseline 100px $gs-baseline/2 $gs-gutter/2;
+    min-height: 3 * $line-height;
     overflow: hidden;
     display: block;
     opacity: 0.99; //otherwise the text is hidden under .creative__content::before!!

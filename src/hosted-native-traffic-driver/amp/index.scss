@@ -19,3 +19,9 @@ $hosted-brand-colour: dfpVar(BrandColour);
   height: 250px;
   max-width: 320px;
 }
+
+.creative__content-title--hosted {
+  $line-height: 24px;
+  padding: 10px 100px 0 10px;
+  height: 3 * $line-height;
+}
