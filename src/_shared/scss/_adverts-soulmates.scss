@@ -61,8 +61,6 @@
 
         svg {
             display: inline-block;
-            width: initial;
-            height: initial;
             margin-right: $gs-gutter / 2;
             vertical-align: middle;
         }
@@ -103,6 +101,8 @@
 
     .icon--soulmates-join {
         fill: initial;
+        width: initial;
+        height: initial;
     }
 }
 
