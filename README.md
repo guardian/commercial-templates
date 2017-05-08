@@ -3,7 +3,9 @@
 - Templates live in `src`, and current versions can be viewed at commercial/test-page (either on CODE, or when running frontend locally)
 - Create a `src/template-name` for the template you're migrating
 - Generate `index.html`, `index.scss` and `index.js` following current standards and the specification doc
-- Generate build files to test your template by running **`npm run build`**
+- Ensure that you are running at least `node` version 6. (You might want to run `nvm use 6`.) 
+- At the root of the repository run `npm install` and `npm run build`.
+- You should now be able to test your templates.
 
 ## Testing Locally (Previewing)
 
