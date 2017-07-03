@@ -4,7 +4,8 @@
 - Create a `src/template-name` for the template you're migrating
 - Generate `index.html`, `index.scss` and `index.js` following current standards and the specification doc
 - Ensure that you are running at least `node` version 6. (You might want to run `nvm use 6`.) 
-- At the root of the repository run `npm install` and `npm run build`.
+- At the root of the repository run `npm install` and `npm run build`.  
+  This will generate HTML and CSS artefacts under `/build/<template-name>`, which can be copied into native styles in DFP.
 - You should now be able to test your templates.
 
 ## Testing Locally (Previewing)
