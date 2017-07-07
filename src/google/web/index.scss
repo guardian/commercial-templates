@@ -92,10 +92,10 @@ img {
 .logo {
     position: absolute;
     right: 6px;
-    top: 165px;
+    bottom: 43px;
     width: 70px;
     @media ( max-height: 285px ){
-        top: 163px;
+        bottom: 41px;
         width: 48px;
     }
 }
