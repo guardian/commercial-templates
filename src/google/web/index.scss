@@ -1,30 +1,43 @@
-$brand-colour: #fedd79;
+/*
+
+Beware lots of CSS properties are disallowed here,
+
+meaning we have to use absolute positioning for the logo.
+
+Change the 'width' value in the DFP preview to 300px for best results.
+
+*/
+
+$brand-colour: #ffce4b;
 
 body {
-    border-top: 15px solid #cdcccc;
-    background: lighten($brand-colour, 20%);
-    font-family: sans-serif;
+    background: #fff7de;
+    font-family: Helvetica, arial, sans serif;
+    color: #333333;
 }
 
 .attribution {
     background: $brand-colour;
+    border-radius: 100%;
     position: absolute;
-    bottom: 6px;
-    left: 10px;
-    padding: 2px;
+    padding: 8px 7px;
     font-weight: bold;
-    font-size: 10px;
+    font-size: 14px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, .5);
+    margin: 4px;
 }
 
-.image-link,
+.ads .image-link,
 img {
     display: block;
     width: 100%;
 }
 
 .title {
-    font-weight: bold;
-    margin: 6px 100px 40px 10px;
+    font-size: 15px;
+    line-height: 17px;
+    font-weight: 900;
+    margin: 6px 100px 10px 10px;
 }
 
 .title-link {
@@ -32,34 +45,57 @@ img {
     text-decoration: none;
 }
 
-.body,
+.body {
+    font-size: 12px;
+    line-height: 14px;
+    font-family: Georgia, serif;
+    margin: 6px 100px 10px 10px;
+}
+
 .advertiser {
-    display: none;
+    font-size: 12px;
+    line-height: 14px;
+    margin: 6px 100px 10px 10px;
+
+}
+
+.advertiser-link {
+    color: #333;
+    &:hover {
+        color: #ffbb00;
+    }
 }
 
 .call-to-action {
     display: flex;
     position: absolute;
-    bottom: 6px;
-    right: 10px;
+    bottom: 10px;
+    right: 6px;
 }
 
 .call-to-action-link {
-    border: 1px solid #bdbdbd;
+    border: 1px solid rgba(0,0,0,.5);
     border-radius: 16px;
-    color: #767676;
+    color: #333;
     font-size: 12px;
-    padding: 8px 16px;
-    text-decoration: none;
+    padding: 5px 10px;
+    text-decoration:  none;
+    font-weight: 900;
 
     &:hover {
-        background: rgba(0,0,0,.1);
+        background: #333;
+        color: #fff;
+        border-color: transparent;
     }
 }
 
 .logo {
     position: absolute;
-    right: 10px;
-    top: 180px;
-    width: 48px;
+    right: 6px;
+    bottom: 43px;
+    width: 70px;
+    @media ( max-height: 285px ){
+        bottom: 41px;
+        width: 48px;
+    }
 }
