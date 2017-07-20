@@ -22,20 +22,17 @@ h1, p {
 }
 
 .carrot__thumbnail-container {
-  flex-align: left;
-  flex: 0 1 auto;
+
 }
 
 .carrot__body-container {
-  flex-align: left;
-  flex: 0 1 auto;
+  flex: 1;
   display: flex;
   flex-direction: column;
 }
 
 .carrot__thumbnail {
-  height: 100%;
-  width: auto;
+  max-height: 90px;
 }
 
 .carrot__title {
