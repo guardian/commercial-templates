@@ -1,8 +1,6 @@
 /*
 
-Beware lots of CSS properties are disallowed here,
-
-meaning we have to use absolute positioning for the logo.
+Beware lots of CSS properties are disallowed here
 
 Change the 'width' value in the DFP preview to 300px for best results.
 
@@ -90,8 +88,10 @@ img {
 }
 
 .logo {
-    position: absolute;
-    right: 6px;
+    position: block;
+    float: right;
+    margin-right: 6px;
+    margin-top: 6px;
     bottom: 43px;
     width: 70px;
     @media ( max-height: 285px ){
