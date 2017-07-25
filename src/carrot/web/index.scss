@@ -1,3 +1,5 @@
+@import '_core';
+
 a {
   text-decoration: none;
 }
@@ -13,44 +15,54 @@ h1, p {
 
   display: flex;
   flex-direction: row;
-  height: 75px;
-  width: 620px;
+  width: 100%;
+  max-width: gs-span(8);
 }
 
-.carrot__item {
+.carrot__margin {
   margin: 4px;
 }
 
-.carrot__thumbnail-container {
+.carrot-body {
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: 0;
 
-}
-
-.carrot__body-container {
-  flex: 1;
   display: flex;
   flex-direction: column;
 }
 
-.carrot__thumbnail {
-  max-width: 100%;
-  max-height: 69px;
+.carrot-logo__img {
+  max-width: 90px;
+  max-height: 70px;
+
+  @include mq(tablet) {
+    max-width: 120px;
+  }
 }
 
-.carrot__title {
-  font-size: 14px;
+.carrot-body__title {
+  font-size: 12px;
   font-weight: bold;
   color: #005689;
+
+  @include mq(tablet) {
+    font-size: 14px;
+  }
 }
 
-.carrot__standfirst {
-  font-size: 14px;
+.carrot-body__standfirst {
+  font-size: 12px;
   color: #333;
   margin-top: 2px;
+
+  @include mq(tablet) {
+    font-size: 14px;
+  }
 }
 
-.carrot__byline {
-  font-size: 12px;
+.carrot-body__tagline {
+  font-size: 10px;
   color: #767676;
-  margin-bottom: 0;
-  margin-top: auto;
+  margin-top: 4px;
 }
