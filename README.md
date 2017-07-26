@@ -27,9 +27,7 @@ and so on...
 Then, to run the server:
 
 ```
-npm run build
-npm run build-preview
-npm run serve-preview
+npm run preview
 ```
 
 and visit `localhost:7000`, where you can view each ad using the dropdown.
