@@ -34,16 +34,16 @@ h1, p {
 }
 
 .carrot-logo__img {
-  max-width: 90px;
-  max-height: 70px;
+  max-width: 110px;
+  max-height: 80px;
 
   @include mq(tablet) {
-    max-width: 120px;
+    max-width: 140px;
   }
 }
 
 .carrot-body__title {
-  font-size: 12px;
+  font-size: 11px;
   font-weight: bold;
   color: #005689;
 
@@ -53,11 +53,14 @@ h1, p {
 }
 
 .carrot-body__standfirst {
-  font-size: 12px;
+  display: none;
+
+  font-size: 11px;
   color: #333;
   margin-top: 2px;
 
   @include mq(tablet) {
+    display: block;
     font-size: 14px;
   }
 }
