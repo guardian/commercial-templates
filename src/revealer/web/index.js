@@ -3,12 +3,18 @@ import { getIframeId, sendMessage } from '../../_shared/js/messages.js';
 getIframeId()
 .then(() => {
 
-    const [ scrollType, backgroundColour, backgroundImage, backgroundRepeat, backgroundPosition ] = [
+    const [ scrollType,
+            backgroundColour,
+            backgroundImage,
+            backgroundRepeat,
+            backgroundPosition,
+            backgroundSize ] = [
         'fixed',
         '#f6f6f6',
         `url('[%BackgroundImage%]')`,
         'no-repeat',
-        'center center'
+        'center center',
+        'cover'
     ];
 
     sendMessage('background', {
@@ -16,6 +22,7 @@ getIframeId()
         backgroundColour,
         backgroundImage,
         backgroundRepeat,
-        backgroundPosition
+        backgroundPosition,
+        backgroundSize
     });
 });
