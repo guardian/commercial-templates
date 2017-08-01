@@ -17,6 +17,8 @@ getIframeId()
             'cover'
         ];
 
+        // for the height, we need to account for the height of the location bar, which
+        // may or may not be there. 70px padding is not too much.
         sendMessage('background', {
             scrollType,
             backgroundColour,
@@ -24,7 +26,7 @@ getIframeId()
             backgroundRepeat,
             backgroundPosition,
             backgroundSize,
-            height: `${height}px`
+            height: `${height + 70}px`
         });
     });
 });
