@@ -61,11 +61,14 @@ h1, p {
 
 .body__standfirst {
 
+  display: none;
+
   color: $neutral-1;
   font-size: 10px;
 
   @include mq(tablet) {
     font-size: 12px;
+    display: block;
   }
 
   margin-bottom: 5px;
@@ -79,7 +82,7 @@ h1, p {
   @include mq(tablet) {
     font-size: 10px;
   }
-  
+
   margin-top: 4px;
   margin-left: auto;
 }
