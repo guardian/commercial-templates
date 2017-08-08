@@ -9,18 +9,18 @@ h1, p {
 }
 
 .carrot__container {
-  font-family: "Guardian Text Egyptian Web",Georgia,serif;
-  font-kerning: normal;
-  background-color: #f6f6f6;
+  font-family: "Guardian Text Sans Web","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
+  background-color: $neutral-8;
+  border-top: 2px solid $paid-article-brand;
 
   display: flex;
   flex-direction: row;
-  width: 100%;
   max-width: gs-span(8);
+  height: 110px
 }
 
 .carrot__margin {
-  margin: 4px;
+  margin: 5px;
 }
 
 .carrot-body {
@@ -33,40 +33,49 @@ h1, p {
   justify-content: space-around;
 }
 
-.carrot-logo__img {
-  max-width: 110px;
-  max-height: 80px;
+.carrot-thumbnail {
+  max-width: 35%;
+  max-height: 110px;
+  overflow:hidden;
+}
 
-  @include mq(tablet) {
-    max-width: 140px;
-  }
+.carrot-thumbnail__img {
+  height: 100%;
 }
 
 .carrot-body__title {
-  font-size: 11px;
+  font-size: 10px;
   font-weight: bold;
-  color: #005689;
+  color: $neutral-1;
+
+  margin-bottom: auto;
 
   @include mq(tablet) {
-    font-size: 14px;
+    font-size: 12px;
   }
 }
 
 .carrot-body__standfirst {
   display: none;
 
-  font-size: 11px;
+  font-size: 10px;
   color: #333;
   margin-top: 2px;
 
   @include mq(tablet) {
     display: block;
-    font-size: 14px;
+    font-size: 12px;
   }
 }
 
 .carrot-body__tagline {
   font-size: 10px;
-  color: #767676;
+  color: $neutral-2;
   margin-top: 4px;
+  margin-left: auto;
+}
+
+.carrot-logo__img {
+  max-width: 40px;
+  max-height: 25px;
 }
