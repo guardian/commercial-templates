@@ -59,7 +59,7 @@ h1, p {
   display: none;
 
   font-size: 10px;
-  color: #333;
+  color: $neutral-1;
   margin-top: 2px;
 
   @include mq(tablet) {
@@ -76,6 +76,7 @@ h1, p {
 }
 
 .logo__img {
+  margin-left: 2px;
   max-width: 40px;
   max-height: 25px;
 }
