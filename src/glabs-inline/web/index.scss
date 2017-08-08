@@ -8,7 +8,7 @@ h1, p {
   margin: 0;
 }
 
-.carrot__container {
+.container {
   font-family: "Guardian Text Sans Web","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
   background-color: $neutral-8;
   border-top: 2px solid $paid-article-brand;
@@ -19,11 +19,11 @@ h1, p {
   height: 110px
 }
 
-.carrot__margin {
+.margin {
   margin: 5px;
 }
 
-.carrot-body {
+.body {
   flex-grow: 1;
   flex-shrink: 1;
   flex-basis: 0;
@@ -33,17 +33,17 @@ h1, p {
   justify-content: space-around;
 }
 
-.carrot-thumbnail {
+.thumbnail {
   max-width: 35%;
   max-height: 110px;
   overflow:hidden;
 }
 
-.carrot-thumbnail__img {
+.thumbnail__img {
   height: 100%;
 }
 
-.carrot-body__title {
+.body__title {
   font-size: 10px;
   font-weight: bold;
   color: $neutral-1;
@@ -55,7 +55,7 @@ h1, p {
   }
 }
 
-.carrot-body__standfirst {
+.body__standfirst {
   display: none;
 
   font-size: 10px;
@@ -68,14 +68,14 @@ h1, p {
   }
 }
 
-.carrot-body__tagline {
+.body__tagline {
   font-size: 10px;
   color: $neutral-2;
   margin-top: 4px;
   margin-left: auto;
 }
 
-.carrot-logo__img {
+.logo__img {
   max-width: 40px;
   max-height: 25px;
 }
