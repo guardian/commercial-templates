@@ -9,13 +9,16 @@ h1, p {
 }
 
 .container {
-  font-family: "Guardian Text Sans Web","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
+  font-family: 'Guardian Text Sans Web', 'Helvetica Neue', Helvetica,Arial, 'Lucida Grande', sans-serif;
   background-color: $neutral-8;
   border-top: 2px solid $paid-article-brand;
   display: flex;
-  flex-direction: row;
-  max-width: gs-span(8);
-  height: 110px
+  flex-direction: column;
+  width: $gs-gutter * 6.5;
+
+  @include mq(tablet) {
+    width: $gs-gutter * 11;
+  }
 }
 
 .margin {
@@ -25,28 +28,26 @@ h1, p {
 .body {
   flex-grow: 1;
   flex-shrink: 1;
-  flex-basis: 0;
+  flex-basis: auto;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
 }
 
 .thumbnail {
-  width: 35%;
-  max-width: 184px;
-  max-height: 110px;
-  overflow:hidden;
+  max-height: 40%;
+  overflow: hidden;
 }
 
 .thumbnail__img {
-  height: 100%;
+  width: 100%;
 }
 
 .body__title {
   font-size: 10px;
   font-weight: bold;
   color: $neutral-1;
-  margin-bottom: auto;
+  margin-bottom: 5px;
 
   @include mq(tablet) {
     font-size: 12px;
@@ -55,22 +56,26 @@ h1, p {
 
 .body__standfirst {
   display: none;
-  font-size: 10px;
   color: $neutral-1;
-  margin-top: 2px;
+  font-size: 10px;
+  margin-bottom: 5px;
 
   @include mq(tablet) {
-    display: block;
     font-size: 12px;
+    display: block;
   }
 }
 
 .body__tagline {
-  font-size: 10px;
   color: $neutral-2;
+  font-size: 9px;
   margin-top: 4px;
   margin-left: auto;
   text-align: right;
+
+  @include mq(tablet) {
+    font-size: 10px;
+  }
 }
 
 .logo__img {
