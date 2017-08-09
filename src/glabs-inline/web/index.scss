@@ -15,7 +15,11 @@ h1, p {
   display: flex;
   flex-direction: row;
   max-width: gs-span(8);
-  height: 110px
+  height: 80px;
+
+  @include mq(tablet) {
+    height: 110px;
+  }
 }
 
 .margin {
@@ -32,14 +36,17 @@ h1, p {
 }
 
 .thumbnail {
-  width: 35%;
-  max-width: 184px;
-  max-height: 110px;
-  overflow:hidden;
+  width: 134px;
+  object-fit: cover;
+  height: 100%;
+
+  @include mq(tablet) {
+    width: 186px;
+  }
 }
 
 .thumbnail__img {
-  height: 100%;
+  max-height: 100%;
 }
 
 .body__title {
