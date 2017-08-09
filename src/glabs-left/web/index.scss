@@ -9,14 +9,11 @@ h1, p {
 }
 
 .container {
-  font-family: "Guardian Text Sans Web","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
+  font-family: 'Guardian Text Sans Web', 'Helvetica Neue', Helvetica,Arial, 'Lucida Grande', sans-serif;
   background-color: $neutral-8;
   border-top: 2px solid $paid-article-brand;
-
   display: flex;
   flex-direction: column;
-
-
   width: $gs-gutter * 6.5;
 
   @include mq(tablet) {
@@ -32,7 +29,6 @@ h1, p {
   flex-grow: 1;
   flex-shrink: 1;
   flex-basis: auto;
-
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -40,7 +36,7 @@ h1, p {
 
 .thumbnail {
   max-height: 40%;
-  overflow:hidden;
+  overflow: hidden;
 }
 
 .thumbnail__img {
@@ -51,41 +47,35 @@ h1, p {
   font-size: 10px;
   font-weight: bold;
   color: $neutral-1;
+  margin-bottom: 5px;
 
   @include mq(tablet) {
     font-size: 12px;
   }
-
-  margin-bottom: 5px;
 }
 
 .body__standfirst {
-
   display: none;
-
   color: $neutral-1;
   font-size: 10px;
+  margin-bottom: 5px;
 
   @include mq(tablet) {
     font-size: 12px;
     display: block;
   }
-
-  margin-bottom: 5px;
 }
 
 .body__tagline {
-
   color: $neutral-2;
   font-size: 9px;
+  margin-top: 4px;
+  margin-left: auto;
+  text-align: right;
 
   @include mq(tablet) {
     font-size: 10px;
   }
-
-  margin-top: 4px;
-  margin-left: auto;
-  text-align: right;
 }
 
 .logo__img {
