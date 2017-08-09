@@ -17,9 +17,11 @@
     "csso": "^2.2.1",
     "express": "^4.13.3",
     "hogan.js": "^3.0.2",
+    "lint-staged": "^4.0.3",
     "node-sass": "^3.8.0",
     "nodemon": "^1.11.0",
     "postcss": "^5.2.5",
+    "pre-commit": "^1.2.2",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
     "rimraf": "^2.5.4",
@@ -30,6 +32,7 @@
     "rollup-plugin-node-resolve": "^2.0.0",
     "rollup-plugin-replace": "^1.1.1",
     "rollup-plugin-uglify": "^1.0.1",
+    "sass-lint": "~1.10.2",
     "uglify-js": "^2.7.0",
     "yargs": "^6.3.0"
   },
@@ -39,8 +42,17 @@
     "build-dev": "npm run clean && node build.js",
     "build-preview": "npm run build-dev && node preview/build.js",
     "preview": "npm run build-preview && npm run serve-preview",
-    "serve-preview": "nodemon preview/server.js"
+    "pre-commit": "lint-staged",
+    "serve-preview": "nodemon preview/server.js",
+    "sass-lint": "sass-lint -c .sass-lint.yml '**/*.scss' -v -q",
+    "validate:sass": "sass-lint --no-exit --verbose --max-warnings 0"
   },
+  "lint-staged": {
+    "*.scss": [
+      "validate:sass"
+    ]
+  },
+  "pre-commit": "pre-commit",
   "author": "",
   "license": "ISC"
 }

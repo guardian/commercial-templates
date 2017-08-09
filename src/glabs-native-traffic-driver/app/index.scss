@@ -22,7 +22,7 @@ $brand-colour: #69d1ca;
 
     border-top: 2px solid $brand-colour;
     background: $brand-colour;
-    color: #333;
+    color: $neutral-1;
     margin: auto;
     height: 250px;
     position: relative;
@@ -47,13 +47,13 @@ $brand-colour: #69d1ca;
     left: 0;
     right: 0;
 
-    background: linear-gradient(to top, rgba(0,0,0,.5) 50%, transparent);
+    background: linear-gradient(to top, rgba(0, 0, 0, .5) 50%, transparent);
     display: flex;
     padding: 40px 10px 0;
 }
 
 .creative__title {
-    color: #fff;
+    color: #ffffff;
     font: normal 24px/28px $f-sans-serif-headline;
 
     flex: 1;
@@ -61,8 +61,7 @@ $brand-colour: #69d1ca;
 }
 
 .creative__brand {
-    background: white;
-
+    background: #ffffff;
     margin-left: 10px;
 
     display: flex;
@@ -72,7 +71,7 @@ $brand-colour: #69d1ca;
 
 .creative__brand-label {
     background: $brand-colour;
-    color: #333;
+    color: $neutral-1;
     font-size: 13px;
     padding: 0 $gs-gutter / 2;
 }
@@ -83,14 +82,14 @@ $brand-colour: #69d1ca;
 }
 
 .roundel .popup {
-    background: #333;
-    color: #fff;
+    background: $neutral-1;
+    color: #ffffff;
 
     a {
         color: $brand-colour;
     }
 
     &::after {
-        border-bottom-color: #333;
+        border-bottom-color: $neutral-1;
     }
 }

@@ -1,12 +1,10 @@
-@import '_core';
-
-$card-foreground: #333;
-$card-background: #ccc;
 $brand-colour: #69d1ca;
 
+@import '_core';
+
 .creative--glabs-mpu {
-    background: $card-background;
-    color: $card-foreground;
+    background: $paid-article-mpu;
+    color: $neutral-1;
     display: flex;
     flex-direction: column;
     position: relative;
@@ -76,7 +74,7 @@ $brand-colour: #69d1ca;
 .creative__meta-about {
     border-width: 0 1px;
     border-style: solid;
-    border-color: rgba($card-foreground, 0.2);
+    border-color: rgba($neutral-1, .2);
     display: inline-block;
 }
 
@@ -86,8 +84,8 @@ $brand-colour: #69d1ca;
 }
 
 .popup {
-    background: $card-foreground;
-    color: #fff;
+    background: $neutral-1;
+    color: #ffffff;
     font-size: 14px;
     line-height: 16px;
 
@@ -105,7 +103,7 @@ $brand-colour: #69d1ca;
 .icon--glabs-logo {
     height: 23px;
     width: 75px;
-    fill: white;
+    fill: #ffffff;
 }
 
 .icon--arrow-down {
