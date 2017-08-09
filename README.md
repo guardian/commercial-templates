@@ -3,7 +3,7 @@
 - Templates live in `src`, and current versions can be viewed at commercial/test-page (either on CODE, or when running frontend locally)
 - Create a `src/template-name` for the template you're migrating
 - Generate `index.html`, `index.scss` and `index.js` following current standards and the specification doc
-- Ensure that you are running at least `node` version 6. (You might want to run `nvm use 6`.) 
+- Ensure that you are running at least `node` version 6. (You might want to run `nvm use 6`.)
 - At the root of the repository run `npm install` and `npm run build`.  
   This will generate HTML and CSS artefacts under `/build/<template-name>`, which can be copied into native styles in DFP.
 - You should now be able to test your templates.
@@ -56,6 +56,29 @@ There will shortly be an easier way to preview, but for now:
 - Key-value pairs for *Slot* (e.g. `merchandising-high`) and *Ad test* cookie (e.g. `native-template-name`)
 - Fill in the template variables in your form
 - Approve & activate
+
+## Code conventions and pre-commit hooks
+
+This project uses [sass-lint](https://github.com/sasstools/sass-lint). Atom has a helpful package for sass-lint: https://atom.io/packages/linter-sass-lint
+
+To make sass-lint list **ALL** errors and warnings, use:
+
+```
+npm run sass-lint
+
+```
+
+This will report a large amount of warnings until some of the pre-existing sass files are updated.
+
+There is a **pre-commit hook** to enforce fixes to sass-lint warnings. When
+attempting to commit, pre-commit will run the linter against all staged files. If sass-lint reports any warnings or errors, the commit will be prevented from completing and some helpful information will be displayed in the terminal.
+
+To try the validator against your staged files use:
+
+```
+npm run pre-commit
+
+```
 
 ## Useful Info
 

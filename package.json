@@ -44,7 +44,7 @@
     "preview": "npm run build-preview && npm run serve-preview",
     "pre-commit": "lint-staged",
     "serve-preview": "nodemon preview/server.js",
-    "lint-sass": "sass-lint -c .sass-lint.yml '**/*.scss' -v -q",
+    "sass-lint": "sass-lint -c .sass-lint.yml '**/*.scss' -v -q",
     "validate:sass": "sass-lint --no-exit --verbose --max-warnings 0"
   },
   "lint-staged": {
