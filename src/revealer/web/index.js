@@ -1,4 +1,4 @@
-import { getIframeId, sendMessage, onViewport } from '../../_shared/js/messages.js';
+import { getIframeId, sendMessage, onViewport, resizeIframeHeight } from '../../_shared/js/messages.js';
 import { once } from '../../_shared/js/utils';
 
 const updateBackground = ({ height }) => {
@@ -33,6 +33,7 @@ const updateBackground = ({ height }) => {
 };
 
 getIframeId()
+.then(resizeIframeHeight)
 .then(() => {
     onViewport(once(updateBackground));
 });
