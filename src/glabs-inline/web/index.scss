@@ -17,7 +17,7 @@ h1, p {
   max-width: gs-span(8);
   height: 80px;
 
-  @include mq(tablet) {
+  @include mq(articleTablet) {
     height: 110px;
   }
 }
@@ -40,7 +40,7 @@ h1, p {
   object-fit: cover;
   height: 100%;
 
-  @include mq(tablet) {
+  @include mq(articleTablet) {
     width: 186px;
   }
 }
@@ -55,7 +55,7 @@ h1, p {
   color: $neutral-1;
   margin-bottom: auto;
 
-  @include mq(tablet) {
+  @include mq(articleTablet) {
     font-size: 12px;
   }
 }
@@ -66,7 +66,7 @@ h1, p {
   color: $neutral-1;
   margin-top: 2px;
 
-  @include mq(tablet) {
+  @include mq(articleTablet) {
     display: block;
     font-size: 12px;
   }

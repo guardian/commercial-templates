@@ -16,7 +16,7 @@ h1, p {
   flex-direction: column;
   width: $gs-gutter * 6.5;
 
-  @include mq(tablet) {
+  @include mq(articleTablet) {
     width: $gs-gutter * 11;
   }
 }
@@ -49,7 +49,7 @@ h1, p {
   color: $neutral-1;
   margin-bottom: 5px;
 
-  @include mq(tablet) {
+  @include mq(articleTablet) {
     font-size: 12px;
   }
 }
@@ -60,7 +60,7 @@ h1, p {
   font-size: 10px;
   margin-bottom: 5px;
 
-  @include mq(tablet) {
+  @include mq(articleTablet) {
     font-size: 12px;
     display: block;
   }
@@ -73,7 +73,7 @@ h1, p {
   margin-left: auto;
   text-align: right;
 
-  @include mq(tablet) {
+  @include mq(articleTablet) {
     font-size: 10px;
   }
 }
