@@ -12,7 +12,7 @@ h1, p {
 .container {
   font-family: 'Guardian Text Sans Web', 'Helvetica Neue', Helvetica,Arial, 'Lucida Grande', sans-serif;
   background-color: $neutral-8;
-  border-top: 2px solid $paid-article-brand;
+  border-top: 1px solid $paid-article-brand;
   display: flex;
   flex-direction: column;
   width: $gs-gutter * 6.5;
