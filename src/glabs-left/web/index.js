@@ -9,4 +9,5 @@ import { write } from '../../_shared/js/dom.js';
 reportClicks();
 
 getIframeId()
-.then(() => getWebfonts());
+.then(() => getWebfonts())
+.then(() => resizeIframeHeight());

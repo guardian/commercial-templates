@@ -90,6 +90,25 @@ $creative-max-width: 1920px;
     }
 }
 
+a.u-faux-block-link__overlay {
+  position: absolute;
+  z-index: 0;
+  opacity: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+  text-indent: 200%;
+  white-space: nowrap;
+  background: rgba(0, 0, 0, 0);
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+  }
+}
+
 .button {
     border: 0;
     border-radius: 1000px;

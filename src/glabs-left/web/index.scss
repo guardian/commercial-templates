@@ -3,6 +3,7 @@
 
 a {
   text-decoration: none;
+  cursor: pointer;
 }
 
 h1, p {
@@ -16,6 +17,10 @@ h1, p {
   display: flex;
   flex-direction: column;
   width: $gs-gutter * 6.5;
+
+  &:hover {
+    background: darken($neutral-8, 7%);
+  }
 
   @include mq(articleIframe) {
     width: $gs-gutter * 11;
@@ -45,13 +50,13 @@ h1, p {
 }
 
 .body__title {
-  font-size: 10px;
+  font-size: 14px;
   font-weight: bold;
   color: $neutral-1;
   margin-bottom: 5px;
 
   @include mq(articleIframe) {
-    font-size: 12px;
+    font-size: 16px;
   }
 }
 
@@ -60,6 +65,7 @@ h1, p {
   color: $neutral-1;
   font-size: 10px;
   margin-bottom: 5px;
+  line-height: 1.2;
 
   @include mq(articleIframe) {
     font-size: 12px;
