@@ -251,7 +251,7 @@ $gimbap-width-quarter: calc(25% - 20px);
 }
 
 // Each branded component has different styling. Let's loop through them and create unique styles.
-$gimbap-tones: ('members', 'masterclasses', 'jobs', 'soulmates', 'bookshop','money','holidays');
+$gimbap-tones: ('members', 'masterclasses', 'jobs', 'soulmates', 'bookshop', 'money', 'holidays');
 $gimbap-colors: (
     'members': $gimbap-members,
     'masterclasses': $gimbap-masterclasses,
