@@ -2,9 +2,12 @@ $brand-colour: #fedd79;
 
 @import '_core';
 @import '_roundel';
+@import url('[%Font%]');
+
+/* FontURL: [%Font%] */
 
 .creative {
-    font-family: $f-sans-serif-headline;
+    font-family: '[%FontName%]', $f-sans-serif-headline;
     box-sizing: border-box;
     border-top: 1px solid $brand-colour;
     height: 250px;
