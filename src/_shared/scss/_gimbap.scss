@@ -1,11 +1,11 @@
 .gimbap {
     display: block;
+    display: flex;
     padding: $gs-gutter / 2;
     position: relative;
     overflow: hidden;
     box-sizing: border-box;
     color: #ffffff;
-    display: flex;
     flex-direction: column;
 
     &:hover {

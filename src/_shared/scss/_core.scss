@@ -206,7 +206,7 @@ a.u-faux-block-link__overlay {
     > :first-child { margin-top: 0; }
     > :last-child { margin-bottom: 0; }
 
-    &[aria-expanded="false"] {
+    &[aria-expanded='false'] {
         display: none;
     }
 }
@@ -234,7 +234,7 @@ a.u-faux-block-link__overlay {
     fill: inherit;
 }
 
-.js-toggle[aria-expanded="true"] > .icon--arrow-down {
+.js-toggle[aria-expanded='true'] > .icon--arrow-down {
     transform: rotate(180deg);
 }
 
