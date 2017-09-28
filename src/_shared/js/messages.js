@@ -108,6 +108,10 @@ function resizeIframeHeight(height = -1) {
         sendMessage('resize', { height });
 }
 
+function showAdvertLabel() {
+  return sendMessage('advert-label')
+}
+
 function isDocumentLoaded() {
     return document.readyState === 'complete' ?
         Promise.resolve() :
@@ -189,5 +193,6 @@ export {
     resizeIframeHeight,
     onScroll,
     onViewport,
-    reportClicks
+    reportClicks,
+    showAdvertLabel,
 };
