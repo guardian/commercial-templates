@@ -1,7 +1,6 @@
 const fs = Promise.promisifyAll(require('fs'));
 
 const buildPath = './build/';
-const srcPath = './src/';
 
 let filePaths;
 let builtHTML;
@@ -42,7 +41,7 @@ function getHTML(id) {
 			path: buildPath + id + '/index.css'
 		},
 		JSON: {
-			path: srcPath + id + '/../test.json'
+			path: buildPath + id + '/../test.json'
 		}
 	};
 
