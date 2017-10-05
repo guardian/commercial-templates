@@ -1,6 +1,5 @@
 const rimraf = require('rimraf');
-const Promise = require('bluebird');
-const fs = Promise.promisifyAll(require('fs'));
+const fs = require('fs');
 
 const targetToClean = './build';
 

@@ -1,4 +1,3 @@
-const Promise = require('bluebird');
 const fs = Promise.promisifyAll(require('fs'));
 
 const buildPath = './build/';
@@ -12,7 +11,7 @@ function buildHTML() {
 }
 
 function getFileContents(filePath) {
-	return fs.readFileAsync(filePaths[filePath].path, 'utf8').then(contents => {
+	return fs.readFile(filePaths[filePath].path, 'utf8').then(contents => {
 		filePaths[filePath].contents = contents;
 	});
 }
