@@ -59,9 +59,7 @@ object StyleSync extends App with Logging {
 
       val format: Option[CreativeTemplate] = nativeFormats find { _.getName == formatName }
       val style: Option[NativeStyle] = nativeStyles find { _.getName == styleName}
-      val testFile: Option[File] = formatDirectory.getParentFile .listFiles().find(_.getName == "test.json")
-
-      formatDirectory.listFiles().foreach (x => println(formatDirectory, x.getName))
+      val testFile: Option[File] = formatDirectory.listFiles.find(_.getName == "test.json")
 
       GuStyle(
               formatName = formatName,
