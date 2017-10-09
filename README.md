@@ -80,6 +80,22 @@ npm run pre-commit
 
 ```
 
+## Style Sync
+
+The style-sync app is a work-in-progress, bare-bones scala app that compares the formats and styles in DFP to the formats and styles in this repository.
+
+#### Requirements:
+
+To run the app, you will need
+- an `ads.properties` file in your home directory that will be used to authenticate calls made with the DFP API(this uses the same credentials required for `frontend` to run); and
+- to have run `npm run build` so that the latest source code is being used in comparisons to the state of styles in DFP.
+
+Once the above requirements are met, simply run SBT and execute the `run` task.
+
+#### Development for the future
+
+Ultimately, the aim is to have a self-maintaining process whereby, on each merge to master, each style will compiled and pushed up to DFP (if a change is detected), thus maintaining fidelity between the two sources at all times.
+
 ## Useful Info
 
 - DFP variables can be used in JS strings, because the `index.js` file gets minified and attached to the bottom of the page during the build process.
