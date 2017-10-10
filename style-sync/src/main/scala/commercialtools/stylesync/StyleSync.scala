@@ -4,13 +4,8 @@ import java.io.File
 import java.nio.file.Paths
 
 import com.google.api.ads.dfp.axis.v201708.{CreativeTemplate, CreativeTemplateType, NativeStyle}
-import org.slf4j.{Logger, LoggerFactory}
 
 import scala.io.Source
-
-trait Logging {
-  val logger: Logger = LoggerFactory.getLogger(getClass)
-}
 
 case class GuStyle(formatName: String,
                    dfpFormat: Option[CreativeTemplate],
@@ -23,15 +18,15 @@ case class GuStyle(formatName: String,
   val localCssLines: List[String] = Source.fromFile(Paths.get(localPath, "index.css").toFile).getLines.toList
 }
 
-object StyleSync extends App with Logging {
+object StyleSync extends App {
 
   /*
      Builds up a list of GuStyle objects, which link locally built templates to their
      respective formats (CreativeTemplates) and styles (NativeStyles) in DFP.
   */
   def findStyles(buildRootDirectory: File,
-                 nativeFormats: => List[CreativeTemplate],
-                 nativeStyles: => List[NativeStyle]): List[GuStyle] = {
+                 nativeFormats: List[CreativeTemplate],
+                 nativeStyles: List[NativeStyle]): List[GuStyle] = {
 
     def titleCase(str: String, delim: String = " "): String =
       str.split(delim).map(word =>
@@ -74,9 +69,10 @@ object StyleSync extends App with Logging {
   case class DiffLine(line: String, number: Int)
   case class DiffResult(diffLines: List[DiffLine], sourceALines: List[String], sourceBLines: List[String])
 
-  def summarise(formats: List[CreativeTemplate], styles: List[NativeStyle], guStyles: List[GuStyle]) = {
+  val buildRootDirectory = new File("/Users/jon_norman/dev/commercial-templates/build")
+  val divider: String = "------------------------------------------------------------------"
 
-    val divider: String = "------------------------------------------------------------------"
+  def summarise(formats: List[CreativeTemplate], styles: List[NativeStyle], guStyles: List[GuStyle]): Unit = {
 
     def printSummary(message: String, elements: List[String]): Unit = {
       println(divider)
@@ -130,17 +126,9 @@ object StyleSync extends App with Logging {
     }
   }
 
-  lazy val nativeFormats: List[CreativeTemplate] = DFP.fetchCreativeTemplates() filter { _.getType == CreativeTemplateType.USER_DEFINED }
-  lazy val nativeStyles: List[NativeStyle] = DFP.fetchNativeStyles()
-
-  val buildRootDirectory = new File("/Users/jon_norman/dev/commercial-templates/build")
+  val nativeFormats: List[CreativeTemplate] = DFP.fetchCreativeTemplates() filter { _.getType == CreativeTemplateType.USER_DEFINED }
+  val nativeStyles: List[NativeStyle] = DFP.fetchNativeStyles()
   val guStyles: List[GuStyle] = findStyles(buildRootDirectory, nativeFormats, nativeStyles)
-
-  /* As a first pass let's:
-    - show each style paired with its format;
-    - verify that the contents of the built assets matches the HTML and CSS of the style; and
-    - verify that the test.json exists AND contains the same variable names as the format;
-  */
 
   summarise(nativeFormats, nativeStyles, guStyles)
 }

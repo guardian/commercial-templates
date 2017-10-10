@@ -13,13 +13,13 @@ import scala.util.{Failure, Success, Try}
 
 // this is largely based off the documentation here: https://developers.google.com/doubleclick-publishers/docs/native
 object DFP extends Logging {
-  lazy val creds: Credential = new OfflineCredentials.Builder()
+  val creds: Credential = new OfflineCredentials.Builder()
     .forApi(Api.DFP)
     .fromFile()
     .build()
     .generateCredential()
 
-  lazy val session: DfpSession = new DfpSession.Builder()
+  val session: DfpSession = new DfpSession.Builder()
     .fromFile()
     .withOAuth2Credential(creds)
     .build()
@@ -38,24 +38,27 @@ object DFP extends Logging {
                              elementsSoFar: List[A]): List[A] = {
 
     service(statement) match {
-      case Failure(err) =>
-        logger.error(s"Page fetching failed", err); elementsSoFar
-      case Success(PageResultAndTotalSize(latestElements, totalResultSize)) =>
-        latestElements match {
-          case _ if latestElements.isEmpty =>
-            logger.info(s"No results found from latest fetch. Retrieved ${elementsSoFar.size} of $totalResultSize."); elementsSoFar
-          case _ =>
-            val elements: List[A] = elementsSoFar ++ latestElements
+      case Failure(err) => {
+        logger.error(s"Page fetching failed", err)
+        elementsSoFar
+      }
+      case Success(PageResultAndTotalSize(latestElements, totalResultSize)) => {
+        if (latestElements.isEmpty) {
+            logger.info(s"No results found from latest fetch. Retrieved ${elementsSoFar.size} of $totalResultSize.");
+            elementsSoFar
+        } else {
+          val elements: List[A] = elementsSoFar ++ latestElements
 
-            logger.info(s"Received ${elements.size} of $totalResultSize.")
+          logger.info(s"Received ${elements.size} of $totalResultSize.")
 
-            statement.increaseOffsetBy(StatementBuilder.SUGGESTED_PAGE_LIMIT)
-            if (statement.getOffset < totalResultSize) {
-              processPage(service, statement, elements)
-            } else {
-              elements
-            }
+          statement.increaseOffsetBy(StatementBuilder.SUGGESTED_PAGE_LIMIT)
+          if (statement.getOffset < totalResultSize) {
+            processPage(service, statement, elements)
+          } else {
+            elements
+          }
         }
+      }
     }
   }
 
