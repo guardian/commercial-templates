@@ -1,4 +1,4 @@
-const fs = Promise.promisifyAll(require('fs'));
+const fs = require('fs');
 
 const buildPath = './build/';
 
