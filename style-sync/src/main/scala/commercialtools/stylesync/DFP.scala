@@ -7,9 +7,14 @@ import com.google.api.ads.dfp.axis.utils.v201708.StatementBuilder
 import com.google.api.ads.dfp.axis.v201708.{CreativeTemplate, CreativeTemplateServiceInterface, NativeStyle, NativeStyleServiceInterface, NativeStyleStatus}
 import com.google.api.ads.dfp.lib.client.DfpSession
 import com.google.api.client.auth.oauth2.Credential
+import org.slf4j.{Logger, LoggerFactory}
 
 import scala.annotation.tailrec
 import scala.util.{Failure, Success, Try}
+
+trait Logging {
+  val logger: Logger = LoggerFactory.getLogger(getClass)
+}
 
 // this is largely based off the documentation here: https://developers.google.com/doubleclick-publishers/docs/native
 object DFP extends Logging {
