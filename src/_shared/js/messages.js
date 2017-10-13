@@ -60,6 +60,10 @@ function reportClick(node) {
     }
 }
 
+function hideIframe() {
+    sendMessage('hide', '');
+}
+
 function getWebfonts(fontFamilies) {
     const families = [
         'GuardianTextEgyptianWeb',
@@ -106,10 +110,6 @@ function resizeIframeHeight(height = -1) {
             return sendMessage('resize', { height });
         }) :
         sendMessage('resize', { height });
-}
-
-function showAdvertLabel() {
-  return sendMessage('advert-label')
 }
 
 function isDocumentLoaded() {
@@ -189,6 +189,7 @@ function post(id, iframeId, type, value) {
 export {
     sendMessage,
     getIframeId,
+    hideIframe,
     getWebfonts,
     resizeIframeHeight,
     onScroll,

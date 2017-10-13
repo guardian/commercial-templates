@@ -1,7 +1,7 @@
 import { getIframeId, getWebfonts, resizeIframeHeight, reportClicks, onViewport } from '../../_shared/js/messages';
 import { write } from '../../_shared/js/dom';
 import { getApiBaseUrl } from '../../_shared/js/dev';
-import { URLSearchParams } from '../../_shared/js/utils';
+import { hideOnError, URLSearchParams } from '../../_shared/js/utils';
 
 const params = new URLSearchParams();
 params.append('t', '[%SubFeed%]');
@@ -22,7 +22,8 @@ getIframeId()
           resizeIframeHeight();
       }
   });
-});
+})
+.catch( error => hideOnError(error, 'soulmates'));
 
 function createSoulmateCard(soulmate, index) {
 

@@ -1,7 +1,7 @@
 import { write } from '../../_shared/js/dom';
 import { getIframeId, getWebfonts, resizeIframeHeight, reportClicks } from '../../_shared/js/messages';
 import { getApiBaseUrl } from '../../_shared/js/dev';
-import { formatPrice, formatDuration, URLSearchParams } from '../../_shared/js/utils';
+import { formatPrice, formatDuration, hideOnError, URLSearchParams } from '../../_shared/js/utils';
 
 let container = document.getElementsByClassName('adverts__row')[0];
 
@@ -27,7 +27,8 @@ getIframeId()
 .then(response => response.json())
 .then(offers => offers.map((offer, index) => createAdvert[offer.type](offer.value, index, advertFooter[offer.type] || null)).join(''))
 .then(html => Promise.all([getWebfonts(), write(() => container.innerHTML = html)]))
-.then(() => resizeIframeHeight());
+.then(() => resizeIframeHeight())
+.catch( error => hideOnError(error, 'blended'));
 
 function createBlendedCard(type, titleUrl, titleLogo, titleDln, contentFn, content, index, footerFn = null) {
     return `<div class="advert-blended advert-blended--${ type }" data-link-name="Offer ${index + 1} | ${type}">

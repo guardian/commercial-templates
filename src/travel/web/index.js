@@ -1,7 +1,7 @@
 import { write } from '../../_shared/js/dom';
 import { getIframeId, getWebfonts, resizeIframeHeight, reportClicks, onViewport } from '../../_shared/js/messages';
 import { getApiBaseUrl } from '../../_shared/js/dev';
-import { formatPrice, formatDuration, URLSearchParams } from '../../_shared/js/utils';
+import { formatPrice, formatDuration, hideOnError, URLSearchParams } from '../../_shared/js/utils';
 
 let container = document.getElementsByClassName('adverts__row')[0];
 
@@ -25,7 +25,8 @@ getIframeId()
             resizeIframeHeight();
         }
     });
-});
+})
+.catch( error => hideOnError(error, 'travel'));
 
 /* Outputs the HTML for a travel advert */
 function createAdvert(offer, index) {

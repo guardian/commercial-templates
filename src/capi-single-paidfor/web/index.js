@@ -3,7 +3,7 @@ import { write } from '../../_shared/js/dom';
 import { getIframeId, getWebfonts, resizeIframeHeight, reportClicks, onViewport } from '../../_shared/js/messages';
 import { generatePicture, checkIcon } from '../../_shared/js/capi-images.js';
 import { clickMacro, setEditionLink } from '../../_shared/js/ads';
-import { URLSearchParams } from '../../_shared/js/utils';
+import { hideOnError, URLSearchParams } from '../../_shared/js/utils';
 
 let container = document.getElementsByClassName('adverts__body')[0];
 let params = new URLSearchParams();
@@ -40,7 +40,8 @@ getIframeId()
             lastWidth = width;
         }
     });
-});
+})
+.catch( error => hideOnError(error, 'capi-single-paidfor'));
 
 function getValue(value, fallback) {
     return value || fallback;
