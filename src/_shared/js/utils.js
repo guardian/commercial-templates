@@ -1,3 +1,4 @@
+import { hideIframe } from '../../_shared/js/messages';
 
 function formatPrice(price) {
     return `<span>£${price.toFixed(2)}</span>`;
@@ -5,6 +6,12 @@ function formatPrice(price) {
 
 function formatDuration(duration) {
     return `${duration} night${duration > 1 ? 's' : ''}`;
+}
+
+function hideOnError(error, type) {
+    console.error(`Error in rendering ${type} native style. Hiding component.`);
+    hideIframe();
+    throw error;
 }
 
 let URLSearchParams = 'URLSearchParams' in window ? window.URLSearchParams : function() {
@@ -21,10 +28,10 @@ let URLSearchParams = 'URLSearchParams' in window ? window.URLSearchParams : fun
     return Object.freeze({ append, toString });
 };
 
-function once(fn, context) { 
+function once(fn, context) {
     var result;
 
-    return function() { 
+    return function() {
         if(fn) {
             result = fn.apply(context || this, arguments);
             fn = null;
@@ -37,6 +44,7 @@ function once(fn, context) {
 export {
     formatPrice,
     formatDuration,
+    hideOnError,
     URLSearchParams,
     once
 };

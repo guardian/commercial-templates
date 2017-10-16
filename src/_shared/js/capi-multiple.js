@@ -4,7 +4,7 @@ import { write } from './dom.js';
 import { enableToggles } from './ui.js';
 import { generatePicture } from './capi-images.js';
 import { clickMacro, setEditionLink } from './ads';
-import { URLSearchParams } from './utils';
+import { hideOnError, URLSearchParams } from './utils';
 
 const ENDPOINT = 'https://api.nextgen.guardianapps.co.uk/commercial/api/capi-multiple.json';
 
@@ -178,5 +178,6 @@ export default function capiMultiple (adType, generateLogo) {
                 lastWidth = width;
             }
         });
-    });
+    })
+    .catch( error => hideOnError(error, `capi-multiple-${adType}`));
 }

@@ -1,7 +1,7 @@
 import { write } from '../../_shared/js/dom';
 import { getIframeId, getWebfonts, resizeIframeHeight, reportClicks, onViewport } from '../../_shared/js/messages';
 import { generatePicture, checkIcon } from '../../_shared/js/capi-images';
-import { URLSearchParams } from '../../_shared/js/utils';
+import { hideOnError, URLSearchParams } from '../../_shared/js/utils';
 import { clickMacro } from '../../_shared/js/ads';
 
 let container = document.getElementsByClassName('adverts__body')[0];
@@ -33,7 +33,8 @@ getIframeId()
             lastWidth = width;
         }
     });
-});
+})
+.catch( error => hideOnError(error, 'capi-single-supported'));
 
 function getValue(value, fallback) {
     return value || fallback;
