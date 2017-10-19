@@ -3,7 +3,7 @@ import { timeout } from './impl/promises';
 
 const rootElement = document.documentElement;
 
-let parentOrigin = 'http://localhost:9000';
+let parentOrigin = 'http://localhost:3000';
 let iframeId;
 
 // First thing that happens when a native ad is delivered is that the parent
