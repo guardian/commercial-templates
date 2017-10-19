@@ -1,0 +1,38 @@
+import { getIframeId, sendMessage, onViewport } from '../../_shared/js/messages.js';
+import { once } from '../../_shared/js/utils';
+
+const updateBackground = ({ height }) => {
+    const [ scrollType,
+        backgroundColour,
+        backgroundImage,
+        backgroundRepeatY,
+        backgroundPosition,
+        backgroundSize,
+        transform ] = [
+        'fixed',
+        '#f6f6f6',
+        `url('[%BackgroundImage%]')`,
+        'repeat',
+        'center center',
+        'cover',
+        'translate3d(0,0,0)'
+    ];
+
+    // for the height, we need to account for the height of the location bar, which
+    // may or may not be there. 70px padding is not too much.
+    sendMessage('background', {
+        scrollType,
+        backgroundColour,
+        backgroundImage,
+        backgroundRepeatY,
+        backgroundPosition,
+        backgroundSize,
+        height: `${height + 70}px`,
+        transform
+    });
+};
+
+getIframeId()
+.then(() => {
+    onViewport(once(updateBackground));
+});
