@@ -113,7 +113,7 @@ $phablet: 660px;
             flex-grow: 0;
             flex-shrink: 0;
 
-            .hosted-trafficdriver__image{
+            .hosted-trafficdriver__image {
                 display: none;
             }
         }
@@ -125,7 +125,7 @@ $phablet: 660px;
         }
     }
 
-    .hosted-trafficdriver__image{
+    .hosted-trafficdriver__image {
         background-size: cover;
         background-position: center;
 
@@ -171,7 +171,7 @@ $phablet: 660px;
 }
 
 .hosted-trafficdriver__content-type {
-    opacity: 0.5;
+    opacity: .5;
 }
 
 .hosted-trafficdriver__body {
@@ -203,13 +203,13 @@ $phablet: 660px;
     color: #333333;
     line-height: 22px;
     margin: 0;
-    
-    @include mq($until: leftCol){
+
+    @include mq($until: leftCol) {
         font-size: 20px;
         line-height: 24px;
     }
 
-    @include mq(leftCol, wide){
+    @include mq(leftCol, wide) {
         width: 140px;
     }
 }

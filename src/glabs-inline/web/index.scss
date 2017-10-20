@@ -2,6 +2,7 @@
 
 a {
   text-decoration: none;
+  cursor: pointer;
 }
 
 h1, p {
@@ -9,13 +10,21 @@ h1, p {
 }
 
 .container {
-  font-family: "Guardian Text Sans Web","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
+  font-family: 'Guardian Text Sans Web', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
   background-color: $neutral-8;
-  border-top: 2px solid $paid-article-brand;
+  border-top: 1px solid $paid-article-brand;
   display: flex;
   flex-direction: row;
   max-width: gs-span(8);
-  height: 110px
+  height: 80px;
+
+  &:hover {
+    background: darken($neutral-8, 7%);
+  }
+
+  @include mq(articleTablet) {
+    height: 110px;
+  }
 }
 
 .margin {
@@ -28,28 +37,29 @@ h1, p {
   flex-basis: 0;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
 }
 
 .thumbnail {
-  width: 35%;
-  max-width: 184px;
-  max-height: 110px;
-  overflow:hidden;
+  width: 134px;
+  object-fit: cover;
+  height: 100%;
+
+  @include mq(articleTablet) {
+    width: 186px;
+  }
 }
 
 .thumbnail__img {
-  height: 100%;
+  max-height: 100%;
 }
 
 .body__title {
-  font-size: 10px;
+  font-size: 14px;
   font-weight: bold;
   color: $neutral-1;
-  margin-bottom: auto;
 
-  @include mq(tablet) {
-    font-size: 12px;
+  @include mq(articleTablet) {
+    font-size: 16px;
   }
 }
 
@@ -57,9 +67,10 @@ h1, p {
   display: none;
   font-size: 10px;
   color: $neutral-1;
-  margin-top: 2px;
+  margin-top: 5px;
+  line-height: 1.2;
 
-  @include mq(tablet) {
+  @include mq(articleTablet) {
     display: block;
     font-size: 12px;
   }
@@ -68,7 +79,7 @@ h1, p {
 .body__tagline {
   font-size: 10px;
   color: $neutral-2;
-  margin-top: 4px;
+  margin-top: auto;
   margin-left: auto;
   text-align: right;
 }

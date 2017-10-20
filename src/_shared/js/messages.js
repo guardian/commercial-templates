@@ -3,13 +3,14 @@ import { timeout } from './impl/promises';
 
 const rootElement = document.documentElement;
 
-let parentOrigin = 'http://localhost:9000';
+// These are both provided in the response to getIframeId.
+let parentOrigin;
 let iframeId;
 
 // First thing that happens when a native ad is delivered is that the parent
 // frame will send a message with the ID of the corresponding iframe. This is
 // because of some f**d-up handling of the name attribute that is supposed to
-// do the work.
+// do the work. On frontend this message is sent by on-slot-load.js.
 function getIframeId(type) {
     return new Promise(resolve => {
         self.addEventListener('message', function onMessage(evt) {
@@ -58,6 +59,10 @@ function reportClick(node) {
     if( dataLinkName.length ) {
         sendMessage('click', dataLinkName.join(' | '));
     }
+}
+
+function hideIframe() {
+    sendMessage('hide', '');
 }
 
 function getWebfonts(fontFamilies) {
@@ -185,9 +190,11 @@ function post(id, iframeId, type, value) {
 export {
     sendMessage,
     getIframeId,
+    hideIframe,
     getWebfonts,
     resizeIframeHeight,
     onScroll,
     onViewport,
-    reportClicks
+    reportClicks,
+    showAdvertLabel,
 };

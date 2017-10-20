@@ -17,11 +17,11 @@ $badgeWidth: 80px;
 
 .creative--hosted-mpu {
     box-sizing: border-box;
-    color: #333;
+    color: #333333;
     margin: auto;
     position: relative;
     font-family: $f-sans-serif-text;
-    border-top:1px solid rgb(254, 221, 121);
+    border-top: 1px solid rgb(254, 221, 121);
 }
 
 .creative__image {
@@ -38,7 +38,7 @@ $badgeWidth: 80px;
     &::before {
         background: rgba(255, 255, 255, .95);
         content: '';
-        position:absolute;
+        position: absolute;
         top: 0;
         right: 0;
         left: 0;
@@ -55,7 +55,7 @@ $badgeWidth: 80px;
     min-height: 3 * $line-height;
     overflow: hidden;
     display: block;
-    opacity: 0.99; //otherwise the text is hidden under .creative__content::before!!
+    opacity: .99; //otherwise the text is hidden under .creative__content::before!!
 }
 
 .hostedbadge {
@@ -90,7 +90,7 @@ $badgeWidth: 80px;
 }
 
 .kicker {
-    opacity: 0.5;
+    opacity: .5;
 }
 
 .creative--hosted-mpu .popup {

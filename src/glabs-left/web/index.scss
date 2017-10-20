@@ -1,7 +1,9 @@
 @import '_core';
+@include mq-add-breakpoint(articleIframe, $gs-gutter * 11);
 
 a {
   text-decoration: none;
+  cursor: pointer;
 }
 
 h1, p {
@@ -9,14 +11,18 @@ h1, p {
 }
 
 .container {
-  font-family: 'Guardian Text Sans Web', 'Helvetica Neue', Helvetica,Arial, 'Lucida Grande', sans-serif;
+  font-family: 'Guardian Text Sans Web', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
   background-color: $neutral-8;
-  border-top: 2px solid $paid-article-brand;
+  border-top: 1px solid $paid-article-brand;
   display: flex;
   flex-direction: column;
   width: $gs-gutter * 6.5;
 
-  @include mq(tablet) {
+  &:hover {
+    background: darken($neutral-8, 7%);
+  }
+
+  @include mq(articleIframe) {
     width: $gs-gutter * 11;
   }
 }
@@ -44,13 +50,13 @@ h1, p {
 }
 
 .body__title {
-  font-size: 10px;
+  font-size: 14px;
   font-weight: bold;
   color: $neutral-1;
   margin-bottom: 5px;
 
-  @include mq(tablet) {
-    font-size: 12px;
+  @include mq(articleIframe) {
+    font-size: 16px;
   }
 }
 
@@ -59,8 +65,9 @@ h1, p {
   color: $neutral-1;
   font-size: 10px;
   margin-bottom: 5px;
+  line-height: 1.2;
 
-  @include mq(tablet) {
+  @include mq(articleIframe) {
     font-size: 12px;
     display: block;
   }
@@ -73,7 +80,7 @@ h1, p {
   margin-left: auto;
   text-align: right;
 
-  @include mq(tablet) {
+  @include mq(articleIframe) {
     font-size: 10px;
   }
 }

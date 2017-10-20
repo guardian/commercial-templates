@@ -96,7 +96,7 @@
         vertical-align: top;
         width: auto;
         background-color: #262626;
-        color: #fff;
+        color: #ffffff;
     }
 
     .icon--soulmates-join {
@@ -147,7 +147,7 @@
     .icon--soulmates-logo {
         height: 22px;
         width: 116px;
-        fill: #fff;
+        fill: #ffffff;
     }
 
     .advert-blended__title {
@@ -170,11 +170,11 @@
 
     .button--small {
         color: #bdbdbd;
-        background-color: #333;
+        background-color: #333333;
 
         &:hover,
         &:focus {
-            background-color: darken(#333, 5%);
+            background-color: darken(#333333, 5%);
         }
     }
 }
@@ -198,7 +198,7 @@
 
     .button {
         background: $soulmates-accent-colour;
-        color: #fff;
+        color: #ffffff;
     }
 
     &:hover,

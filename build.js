@@ -22,7 +22,7 @@ let options = {
     `,
     src: 'src',
     dst: 'build',
-    minify: args.minify
+    minify: args.minify ? true : false
 };
 
 console.log('\x1b[32m%s\x1b[0m', `\n==> Building ${options.minify ? "with" : "without"} minification... Let's do this!`);
