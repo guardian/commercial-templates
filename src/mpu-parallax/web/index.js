@@ -5,16 +5,16 @@ const updateBackground = ({ height }) => {
     const [ scrollType,
         backgroundColour,
         backgroundImage,
-        backgroundRepeatY,
+        backgroundRepeat,
         backgroundPosition,
         backgroundSize,
         transform ] = [
         'fixed',
         '#f6f6f6',
         `url('[%BackgroundImage%]')`,
-        'repeat',
+        'repeat-y',
         'center center',
-        'cover',
+        'contain',
         'translate3d(0,0,0)'
     ];
 
@@ -24,10 +24,10 @@ const updateBackground = ({ height }) => {
         scrollType,
         backgroundColour,
         backgroundImage,
-        backgroundRepeatY,
+        backgroundRepeat,
         backgroundPosition,
         backgroundSize,
-        height: `${height + 70}px`,
+        height,
         transform
     });
 };
