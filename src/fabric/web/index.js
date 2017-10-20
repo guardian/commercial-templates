@@ -1,12 +1,19 @@
 import { getIframeId, onViewport, onScroll, sendMessage, resizeIframeHeight, reportClicks } from '../../_shared/js/messages.js';
+import { addPixel } from '../../_shared/js/ads';
 import { write } from '../../_shared/js/dom.js';
 
+let researchPixel = '[%Researchpixel%]';
+let trackingPixel = '[%Trackingpixel%]';
 let showLabel = '[%ShowLabel%]';
 let layer2 = document.getElementById('layer2');
 
 if( layer2.classList.contains('creative__layer2--animation-disabled') ) {
     write(() => layer2.style.backgroundPosition = '[%Layer2BackgroundPosition%]');
 }
+
+if( researchPixel ) addPixel(researchPixel);
+if( trackingPixel ) addPixel(trackingPixel);
+addViewabilityTracker('fabric-' + (Math.random() * 10000 | 0).toString(16));
 
 getIframeId()
 .then(() => {

@@ -11,17 +11,25 @@ const GLABS_EDITION = {
     US: 'guardian-labs-us'
 };
 
-function addTrackingPixel(rootNode) {
+function addTrackingPixel() {
     if( !trackingPixel ) return;
+    loadImage(trackingPixel);
+}
 
-    if( !pixelTemplate ) {
-        pixelTemplate = document.createElement('img');
-        pixelTemplate.className = 'creative__pixel';
-    }
+function addPixel(url) {
+    loadImage(url);
+}
 
-    const pixel = pixelTemplate.cloneNode();
-    pixel.src = '[%Trackingpixel%]%%CACHEBUSTER%%';
-    return write(() => rootNode.appendChild(pixel));
+function addViewabilityTracker(creativeId) {
+    var tracker = document.getElementById('viewabilityTracker');
+    if( !tracker ) return;
+    tracker = tracker.firstChild.nodeValue.trim();
+    if( !tracker ) return;
+    write(() => document.body.insertAdjacentHTML('beforeend', tracker.replace('INSERT_UNIQUE_ID', creativeId)));
+}
+
+function loadImage(url) {
+    new Image().src = url;
 }
 
 // Sets the 'href' of the glabs edition link to the correct URL.
@@ -32,5 +40,6 @@ function setEditionLink (host, edition, linkElement) {
 export {
     clickMacro,
     addTrackingPixel,
+    addPixel,
     setEditionLink
 };

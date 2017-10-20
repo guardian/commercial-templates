@@ -1,7 +1,14 @@
 import { getIframeId, onScroll, onViewport, resizeIframeHeight, reportClicks } from '../../_shared/js/messages';
+import { addPixel } from '../../_shared/js/ads';
 import { write } from '../../_shared/js/dom';
 
+let researchPixel = '[%Researchpixel%]';
+let trackingPixel = '[%Trackingpixel%]';
 let showLabel = '[%ShowLabel%]';
+
+if( researchPixel ) addPixel(researchPixel);
+if( trackingPixel ) addPixel(trackingPixel);
+addViewabilityTracker('fabric-video-' + (Math.random() * 10000 | 0).toString(16));
 
 getIframeId()
 .then(() => {

@@ -1,9 +1,16 @@
 import { getIframeId, sendMessage, resizeIframeHeight, reportClicks } from '../../_shared/js/messages';
+import { addPixel } from '../../_shared/js/ads';
 import { enableToggles } from '../../_shared/js/ui';
 import { write, div } from '../../_shared/js/dom';
 
+let researchPixel = '[%Researchpixel%]';
+let trackingPixel = '[%Trackingpixel%]';
 let showLabel = '[%ShowLabel%]';
 let labelHeight = 22;
+
+if( researchPixel ) addPixel(researchPixel);
+if( trackingPixel ) addPixel(trackingPixel);
+addViewabilityTracker('fabric-expandable-' + (Math.random() * 10000 | 0).toString(16));
 
 getIframeId()
 .then(() => {

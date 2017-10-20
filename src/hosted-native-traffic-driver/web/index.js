@@ -44,6 +44,7 @@ function buildFromCapi ({ articleHeadline, articleUrl, articleImage }) {
 
 reportClicks();
 enableToggles();
+addTrackingPixel();
 getIframeId()
 .then(() => {
     return Promise.all([
@@ -51,9 +52,6 @@ getIframeId()
         getWebfonts(['GuardianTextSansWeb', 'GuardianSansWeb']),
         retrieveCapiData()
         .then(data => buildFromCapi(data || {}))
-        .then(() => {
-            addTrackingPixel(document.getElementById('creative'));
-        })
     ])
 })
 .then(() => resizeIframeHeight());

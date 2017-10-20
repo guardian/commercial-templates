@@ -1,13 +1,20 @@
 import { getIframeId, getWebfonts, resizeIframeHeight } from '../../_shared/js/messages';
 import { enableToggles } from '../../_shared/js/ui';
+import { addPixel } from '../../_shared/js/ads';
 import { write } from '../../_shared/js/dom';
 
+let researchPixel = '[%Researchpixel%]';
+let trackingPixel = '[%Trackingpixel%]';
 let showLabel = '[%ShowLabel%]';
 let labelHeight = 22;
 let video = document.getElementById('YTPlayer');
 let videoContainer = document.getElementById('video');
 let videoOptions = '[%VideoOptions%]';
 let isWide = window.matchMedia('(min-width: 1300px)').matches;
+
+if( researchPixel ) addPixel(researchPixel);
+if( trackingPixel ) addPixel(trackingPixel);
+addViewabilityTracker('fabric-video-expandable-' + (Math.random() * 10000 | 0).toString(16));
 
 getIframeId()
 .then(() => {
