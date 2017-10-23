@@ -1,5 +1,8 @@
 {
   "ShowLabel": "true",
   "DapAssetsFolder": "test-creative",
-  "ThirdPartyTag": "https://tpc.googlesyndication.com/pagead/imgad?id=CICAgKCrtKGjoAEQARgBMgjYagW3ARF6Fw"
+  "ThirdPartyTag": "https://tpc.googlesyndication.com/pagead/imgad?id=CICAgKCrtKGjoAEQARgBMgjYagW3ARF6Fw",
+  "TrackingPixel": "https://gu.com/tracking-pixel.gif",
+  "ResearchPixel": "https://gu.com/research-pixel.gif",
+  "ViewabilityTracker": "<img src='https://gu.com/viewability-tracker.gif'>"
 }
