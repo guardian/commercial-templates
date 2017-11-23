@@ -276,6 +276,7 @@ $gimbap-colors: (
 
         .gimbap-wrap__message {
             color: map-get($gimbap-colors, $tone);
+            text-decoration: none;
         }
 
         .gimbap-wrap__mainlogo {
