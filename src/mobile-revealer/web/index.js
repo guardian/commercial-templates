@@ -1,5 +1,4 @@
 import { getIframeId, sendMessage, onViewport, resizeIframeHeight } from '../../_shared/js/messages.js';
-import { once } from '../../_shared/js/utils';
 
 const updateBackground = ({ height }) => {
     const [ scrollType,
@@ -33,7 +32,7 @@ const updateBackground = ({ height }) => {
 };
 
 getIframeId()
-.then(resizeIframeHeight)
+.then(() => resizeIframeHeight())
 .then(() => {
-    onViewport(once(updateBackground));
+    onViewport(updateBackground);
 });
