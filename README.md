@@ -87,7 +87,7 @@ The style-sync app is a work-in-progress, bare-bones scala app that compares the
 #### Requirements:
 
 To run the app, you will need
-- an `ads.properties` file in your home directory that will be used to authenticate calls made with the DFP API(this uses the same credentials required for `frontend` to run); and
+- an `ads.properties` file in your home directory that will be used to authenticate calls made with the DFP API (this uses the same credentials required for `frontend` to run); and
 - to have run `npm run build` so that the latest source code is being used in comparisons to the state of styles in DFP.
 
 Once the above requirements are met, simply run SBT and execute the `run` task.
