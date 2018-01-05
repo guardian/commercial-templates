@@ -23,11 +23,14 @@ function handleBackground() {
         ['[%MobileBackgroundImage%]', '[%MobileBackgroundImagePosition%]', '[%MobileBackgroundImageRepeat%]', document.getElementById('linkMobile')] :
         ['[%BackgroundImage%]', '[%BackgroundImagePosition%]', '[%BackgroundImageRepeat%]', document.getElementById('linkDesktop')];
 
+    if (backgroundColour) {
+        document.documentElement.style.backgroundColor = backgroundColour;
+    }
+
     if( !backgroundImage ) return;
 
     if( scrollType === 'none' ) {
         write(() => {
-            document.documentElement.style.backgroundColor = backgroundColour;
             Object.assign(creativeLink.style, {
                 backgroundImage: `url('${backgroundImage}')`,
                 backgroundPosition,
