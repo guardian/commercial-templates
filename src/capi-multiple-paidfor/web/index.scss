@@ -17,16 +17,16 @@
 }
 
 .badge {
-  display: inline-block;
+  display: block;
 }
 
 .badge__label {
   width: 100%;
-  text-align: center;
+  text-align: right;
 }
 
 .badge__logo {
-  margin-left: 0;
+  margin-left: 10px;
   max-width: $gs-gutter * 5;
 }
 

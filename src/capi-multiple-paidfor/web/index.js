@@ -3,7 +3,7 @@ import { clickMacro } from '../../_shared/js/ads';
 
 function generateLogo(logoUrl, brandUrl, customCSS) {
     return `<div class="badge ${customCSS || ''}">
-        <div class="badge__label">Paid for by</div>
+        Paid for by
         <a class="badge__link" href="${clickMacro + brandUrl}">
             <img class="badge__logo" src="${logoUrl}" alt>
         </a>
