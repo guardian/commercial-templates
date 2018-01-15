@@ -1,7 +1,12 @@
+.adverts--tone-travels .button--large {
+    background: #ffffff;
+    color: #000000;
+}
+
 .adverts--travels {
     > .adverts__header {
         .button {
-            color: #ffffff;
+            color: #000000;
             border-color: rgba(#ffffff, .3);
             margin-right: 0;
 
@@ -17,13 +22,13 @@
 
 .adverts--tone-travels {
     > .adverts__header {
-        background: $maps-support-3;
+        background: $guardian-travel-rebrand;
     }
 }
 
 .adverts--tone-travels .button--legacy-single,
 .advert--travel .button {
-    background: $maps-support-4;
+    background: $guardian-travel-rebrand;
     color: #ffffff;
 }
 
@@ -32,7 +37,7 @@
     &:focus,
     &:active {
         .button {
-            background: darken($maps-support-4, 5%);
+            background: darken($guardian-travel-rebrand, 5%);
         }
     }
 }
@@ -41,7 +46,7 @@
     &:hover,
     &:focus,
     &:active {
-        background: darken($maps-support-4, 5%);
+        background: darken($guardian-travel-rebrand, 5%);
     }
 }
 
@@ -52,6 +57,6 @@
     }
 
     .icon--logo-holidays {
-        fill: #5ebfba;
+        fill: $guardian-travel-rebrand;
     }
 }

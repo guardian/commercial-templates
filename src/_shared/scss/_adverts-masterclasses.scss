@@ -1,34 +1,40 @@
+
+.adverts--tone-masterclasss .button--large {
+    background: #ffffff;
+    color: #000000;
+}
+
 .adverts--masterclasss {
 }
 
 .adverts--tone-masterclasss {
     > .adverts__header {
-        background: $multimedia-main-1;
+        background: $guardian-masterclasses-rebrand;
         .button {
-            color: $multimedia-main-2;
-            border-color: fade-out($multimedia-main-2, .7);
+            color: #000000;
+            border-color: fade-out($guardian-masterclasses-rebrand, .7);
 
             &:hover,
             &:focus,
             &:active {
-                border-color: $multimedia-main-2;
+                border-color: $guardian-masterclasses-rebrand;
             }
         }
     }
 
     .adverts__logo {
-        color: $multimedia-main-2;
+        color: $guardian-masterclasses-rebrand;
     }
 
     .inline-commercial-brand svg {
-        fill: $multimedia-main-2;
+        fill: $guardian-masterclasses-rebrand;
     }
 }
 
 .adverts--tone-masterclasss .button--legacy-single,
 .advert--masterclass .button {
-    background: $multimedia-main-2;
-    color: $neutral-1;
+    background: $guardian-masterclasses-rebrand;
+    color: #000000;
 }
 
 .advert--masterclass {
@@ -36,7 +42,7 @@
     &:focus,
     &:active {
         .button {
-            background: darken($multimedia-main-2, 5%);
+            background: darken($guardian-masterclasses-rebrand, 5%);
         }
     }
 }
@@ -45,7 +51,7 @@
     &:hover,
     &:focus,
     &:active {
-        background: darken($multimedia-main-2, 5%);
+        background: darken($guardian-masterclasses-rebrand, 5%);
     }
 }
 
@@ -71,6 +77,6 @@
     }
 
     .icon--logo-masterclasses {
-        fill: $multimedia-main-1;
+        fill: $guardian-masterclasses-rebrand;
     }
 }

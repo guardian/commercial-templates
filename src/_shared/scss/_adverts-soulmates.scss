@@ -1,3 +1,8 @@
+.adverts--tone-soulmates .button--large {
+    background: #ffffff;
+    color: #000000;
+}
+
 .adverts--soulmates {
     @include mq(mobileLandscape, leftCol) {
         .adverts__ctas {
@@ -15,10 +20,6 @@
                 flex-basis: calc(33.33% - #{$gs-gutter});
                 &:nth-child(even)::before {
                     content: none;
-                }
-                &:nth-child(3n+2)::before,
-                &:nth-child(3n+3)::before {
-                    @include separator($neutral-4, $gs-gutter / -2);
                 }
             }
 
@@ -116,20 +117,10 @@
     .adverts__blurb {
         font: bold 16px/20px $f-serif-headline;
         font-weight: bold;
-
-        &::before {
-            content: '';
-            display: block;
-            margin: $gs-baseline * 2 0 $gs-baseline;
-            width: 20px;
-            height: 1px;
-            background: #666666;
-        }
     }
 
     .adverts__ctas {
         .button {
-            background: none;
             border: 0;
         }
     }
@@ -205,7 +196,7 @@
     &:focus,
     &:active {
         .button {
-            background: $neutral-2;
+            background: $soulmates-accent-colour;
         }
     }
 }
