@@ -569,12 +569,16 @@
     background: #eaeaea;
 
     > .adverts__header .button {
-        color: #ffffff;
+        color: #000000;
     }
 
     .adverts__blurb {
         font: normal 14px/18px $f-serif-headline;
-        color: #ffffff;
+        margin-top: 20px;
+        color: #000000;
+        background: #ffffff;
+        -webkit-box-decoration-break: clone;
+        padding: 2 5 2 2px;
 
         @include mq($until: leftCol) {
             display: none;
