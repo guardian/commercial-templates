@@ -1,12 +1,8 @@
 import { getIframeId, onScroll, onViewport, resizeIframeHeight, reportClicks } from '../../_shared/js/messages';
 import { write } from '../../_shared/js/dom';
 
-let showLabel = '[%ShowLabel%]';
-
 getIframeId()
 .then(() => {
-    if( showLabel === 'yes' ) resizeIframeHeight();
-
     reportClicks();
 
     let isUpdating = false;

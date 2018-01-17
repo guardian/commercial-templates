@@ -195,6 +195,4 @@ export {
     resizeIframeHeight,
     onScroll,
     onViewport,
-    reportClicks,
-    showAdvertLabel,
-};
+    reportClicks};
