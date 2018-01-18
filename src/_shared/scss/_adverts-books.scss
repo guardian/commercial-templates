@@ -1,3 +1,8 @@
+.adverts--tone-books .button--large {
+    background: #ffffff;
+    color: #000000;
+}
+
 .adverts--books {
     > .adverts__header {
         .search {
@@ -26,7 +31,7 @@
         }
 
         .button {
-            color: #ffffff;
+            color: #000000;
             border-color: rgba(#ffffff, .3);
             margin-right: 0;
 
@@ -42,7 +47,7 @@
 
 .adverts--tone-books {
     > .adverts__header {
-        background: $features-main-1;
+        background: $guardian-books-rebrand;
     }
 
     &.adverts--legacy-inline {
@@ -61,7 +66,7 @@
 .adverts--tone-books .button--legacy-single,
 .advert--book .button {
     color: #ffffff;
-    background: $features-main-2;
+    background: $guardian-books-rebrand;
 }
 
 .advert--book {
@@ -69,7 +74,7 @@
     &:focus,
     &:active {
         .button {
-            background: darken($features-main-2, 5%);
+            background: darken($guardian-books-rebrand, 5%);
         }
     }
 
@@ -119,7 +124,7 @@
     &:hover,
     &:focus,
     &:active {
-        background: darken($features-main-2, 5%);
+        background: darken($guardian-books-rebrand, 5%);
     }
 }
 
@@ -129,9 +134,9 @@
 }
 
 .advert-blended--books .icon--logo-bookshop {
-    fill: $features-main-1;
+    fill: $guardian-books-rebrand;
 }
 
 .tone-book-highlight {
-    color: $features-main-2;
+    color: $guardian-books-rebrand;
 }

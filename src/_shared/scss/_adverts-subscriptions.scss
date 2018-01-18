@@ -1,15 +1,20 @@
+.adverts--tone-subscriptions .button--large {
+    background: #ffffff;
+    color: #000000;
+}
+
 .adverts--subscriptions {
 }
 
 .adverts--tone-subscriptions {
     > .adverts__header {
-        background: $news-support-2;
+        background: $guardian-subscriptions-rebrand;
     }
 }
 
 .adverts--tone-subscriptions .button--legacy-single,
 .advert--subscription .button {
-    background: $news-main-2;
+    background: $guardian-subscriptions-rebrand;
     color: #ffffff;
 }
 
@@ -18,7 +23,7 @@
     &:focus,
     &:active {
         .button {
-            background: darken($news-main-2, 5%);
+            background: darken($guardian-subscriptions-rebrand, 5%);
         }
     }
 }
@@ -27,6 +32,6 @@
     &:hover,
     &:focus,
     &:active {
-        background: darken($news-main-2, 5%);
+        background: darken($guardian-subscriptions-rebrand, 5%);
     }
 }
