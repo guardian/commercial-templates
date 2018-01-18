@@ -1,7 +1,6 @@
 import { getIframeId, onViewport, onScroll, sendMessage, resizeIframeHeight, reportClicks } from '../../_shared/js/messages.js';
 import { write } from '../../_shared/js/dom.js';
 
-let showLabel = '[%ShowLabel%]';
 let layer2 = document.getElementById('layer2');
 
 if( layer2.classList.contains('creative__layer2--animation-disabled') ) {
@@ -10,8 +9,6 @@ if( layer2.classList.contains('creative__layer2--animation-disabled') ) {
 
 getIframeId()
 .then(() => {
-    if( showLabel === 'yes' ) resizeIframeHeight();
-
     reportClicks();
 
     let isMobile = window.matchMedia('(max-width: 739px)').matches;

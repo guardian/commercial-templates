@@ -2,13 +2,8 @@ import { getIframeId, sendMessage, resizeIframeHeight, reportClicks } from '../.
 import { enableToggles } from '../../_shared/js/ui';
 import { write, div } from '../../_shared/js/dom';
 
-let showLabel = '[%ShowLabel%]';
-let labelHeight = 22;
-
 getIframeId()
 .then(() => {
-    if( showLabel === 'yes' ) resizeIframeHeight();
-
     reportClicks();
     handleBackground();
     handleToggle();
@@ -53,5 +48,5 @@ function handleToggle() {
 }
 
 function onToggle(isOpen) {
-    resizeIframeHeight((isOpen ? 500 : 250) + (showLabel === 'yes' ? labelHeight : 0));
+    resizeIframeHeight(isOpen ? 500 : 250);
 }
