@@ -1,8 +1,3 @@
-.adverts--tone-soulmates .button--large {
-    background: #ffffff;
-    color: #000000;
-}
-
 .adverts--soulmates {
     @include mq(mobileLandscape, leftCol) {
         .adverts__ctas {
@@ -52,6 +47,7 @@
 
     .adverts__blurb {
         margin-bottom: $gs-baseline;
+        margin-top: 20px;
     }
 
     .adverts__ctas {

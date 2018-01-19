@@ -1,8 +1,3 @@
-.adverts--tone-jobs .button--large {
-    background: #ffffff;
-    color: #000000;
-}
-
 .adverts--jobs {
     @include mq($until: tablet) {
         .adverts__row > :nth-child(2) ~ * {

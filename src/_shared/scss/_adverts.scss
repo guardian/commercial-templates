@@ -574,7 +574,6 @@
 
     .adverts__blurb {
         font: normal 14px/18px $f-serif-headline;
-        margin-top: 20px;
         color: #000000;
         background: #ffffff;
         box-decoration-break: clone;
@@ -588,8 +587,16 @@
             font: normal 16px/20px $f-serif-headline;
         }
     }
-
+    div.adverts_blurb {
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
     .button {
         margin-right: 0;
+    }
+    
+    .button--large {
+        background: #ffffff;
+        color: #000000;
     }
 }
