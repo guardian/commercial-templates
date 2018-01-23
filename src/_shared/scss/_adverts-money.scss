@@ -3,13 +3,13 @@
 
 .adverts--tone-moneys {
     > .adverts__header {
-        background: $news-main-2;
+        background: $guardian-money-rebrand;
     }
 }
 
 .adverts--tone-moneys .button--legacy-single,
 .advert--money .button {
-    background: $news-support-2;
+    background: $guardian-money-rebrand;
     color: #ffffff;
 }
 
@@ -18,7 +18,7 @@
     &:focus,
     &:active {
         .button {
-            background: darken($news-support-2, 5%);
+            background: darken($guardian-money-rebrand, 5%);
         }
     }
 }
@@ -27,6 +27,6 @@
     &:hover,
     &:focus,
     &:active {
-        background: darken($news-support-2, 5%);
+        background: darken($guardian-money-rebrand, 5%);
     }
 }

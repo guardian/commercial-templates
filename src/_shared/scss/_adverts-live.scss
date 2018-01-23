@@ -3,13 +3,13 @@
 
 .adverts--tone-lives {
     > .adverts__header {
-        background: $live-main-1;
+        background: $guardian-live-rebrand;
     }
 }
 
 .adverts--tone-lives .button--legacy-single,
 .advert--live .button {
-    background: $live-main-2;
+    background: $guardian-live-rebrand;
     color: #ffffff;
 }
 
@@ -18,7 +18,7 @@
     &:focus,
     &:active {
         .button {
-            background: darken($live-main-2, 5%);
+            background: darken($guardian-live-rebrand, 5%);
         }
     }
 }
@@ -27,13 +27,8 @@
     &:hover,
     &:focus,
     &:active {
-        background: darken($live-main-2, 5%);
+        background: darken($guardian-live-rebrand, 5%);
     }
-}
-
-.adverts--tone-lives .button--large {
-    background: $live-main-2;
-    color: #ffffff;
 }
 
 .adverts--tone-lives .blink__anchor {

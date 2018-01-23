@@ -112,7 +112,7 @@ a.u-faux-block-link__overlay {
 .button {
     border: 0;
     border-radius: 1000px;
-    font: bold 13px/20px $f-sans-serif-text;
+    font: bold 13px/0px $f-sans-serif-text;
     text-decoration: none;
     display: inline-flex;
     justify-content: space-between;
@@ -126,6 +126,8 @@ a.u-faux-block-link__overlay {
 
 .button--large {
     padding-left: $gs-gutter / 5 * 3;
+    border: 2px solid currentColor;
+    color: #000000;
 }
 
 .button > .icon {

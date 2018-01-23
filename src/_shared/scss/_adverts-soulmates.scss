@@ -16,10 +16,6 @@
                 &:nth-child(even)::before {
                     content: none;
                 }
-                &:nth-child(3n+2)::before,
-                &:nth-child(3n+3)::before {
-                    @include separator($neutral-4, $gs-gutter / -2);
-                }
             }
 
             > :nth-child(3) {
@@ -51,6 +47,7 @@
 
     .adverts__blurb {
         margin-bottom: $gs-baseline;
+        margin-top: 20px;
     }
 
     .adverts__ctas {
@@ -114,22 +111,11 @@
     }
 
     .adverts__blurb {
-        font: bold 16px/20px $f-serif-headline;
-        font-weight: bold;
-
-        &::before {
-            content: '';
-            display: block;
-            margin: $gs-baseline * 2 0 $gs-baseline;
-            width: 20px;
-            height: 1px;
-            background: #666666;
-        }
+        font: normal 16px/20px $f-serif-headline;
     }
 
     .adverts__ctas {
         .button {
-            background: none;
             border: 0;
         }
     }
@@ -205,7 +191,7 @@
     &:focus,
     &:active {
         .button {
-            background: $neutral-2;
+            background: $soulmates-accent-colour;
         }
     }
 }

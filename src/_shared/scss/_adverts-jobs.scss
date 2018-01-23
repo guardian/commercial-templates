@@ -22,7 +22,7 @@
         padding: 0;
 
         > li {
-            border-top: 1px solid $neutral-4;
+            border-top: 1px solid $guardian-jobs-rebrand;
             flex-basis: calc(50% - (#{$gs-gutter / 4}));
         }
 
@@ -43,7 +43,7 @@
 
 .adverts--tone-jobs .button--legacy-single,
 .advert--job .button {
-    background: $news-main-1;
+    background: $guardian-jobs-rebrand;
     color: #ffffff;
 }
 
@@ -52,7 +52,7 @@
     &:focus,
     &:active {
         .button {
-            background: darken($news-main-1, 5%);
+            background: darken($guardian-jobs-rebrand, 5%);
         }
     }
 
@@ -65,7 +65,7 @@
     &:hover,
     &:focus,
     &:active {
-        background: darken($news-main-1, 5%);
+        background: darken($guardian-jobs-rebrand, 5%);
     }
 }
 
@@ -75,11 +75,11 @@
 }
 
 .advert-blended--jobs .icon--logo-jobs {
-    fill: $news-support-2;
+    fill: $guardian-jobs-rebrand;
 }
 
 .adverts--tone-jobs {
     > .adverts__header {
-        background: $news-support-2;
+        background: $guardian-jobs-rebrand;
     }
 }
