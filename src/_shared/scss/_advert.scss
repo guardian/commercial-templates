@@ -1,3 +1,10 @@
+@include mq($until: tablet) {
+     .adverts__header {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}
+
 .advert {
     box-sizing: border-box;
     display: block;
@@ -120,6 +127,7 @@
     font-size: 1rem;
     line-height: 1.25;
     margin: 0;
+    font-weight: normal;
 
     &.u-text-hyphenate {
         max-width: 100%;
