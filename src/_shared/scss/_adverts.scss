@@ -359,7 +359,7 @@
     }
 
     .adverts__title {
-        font: 900 16px/20px $f-serif-headline;
+        font: 900 16px/22px $f-serif-headline;
     }
 
     .advert > :not(.advert__image-container) {
@@ -584,7 +584,7 @@
         }
 
         @include mq(leftCol) {
-            font: normal 16px/20px $f-serif-headline;
+            font: normal 16px/22px $f-serif-headline;
         }
     }
     div.adverts_blurb {
