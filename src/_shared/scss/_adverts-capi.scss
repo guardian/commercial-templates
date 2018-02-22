@@ -30,6 +30,9 @@
 .adverts--paidfor {
     .adverts__header {
         position: relative;
+        -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+            flex-direction: column;
     }
 
     @include mq(mobileLandscape, leftCol) {
