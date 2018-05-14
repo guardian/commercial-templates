@@ -1,0 +1,11 @@
+{
+    "Source": "GUARDIAN_WEB",
+    "ComponentId": "preview_component_id",
+    "ComponentType": "ACQUISITIONS_EPIC",
+    "CampaignCode": "preview_campaign_code",
+    "ABTestName": "preview_ab_test_name",
+    "ABTestVariant": "preview_ab_test_variant",
+    "PaypalAndCreditCard": "https://tpc.googlesyndication.com/pagead/imgad?id=CICAgKCb1LS4GhABGAEyCLs5u7YA0mOt",
+    "PATTERN:pv": "preview_page_view_id",
+    "PATTERN:url": "http://localhost:3000/books/2017/dec/15/good-night-stories-for-rebel-girls-jk-rowling#ab-AcquisitionsEpicNativeVsDfp=dfp"
+}
