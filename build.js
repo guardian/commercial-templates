@@ -12,7 +12,8 @@ let features = [
     'matchMedia',
     'Object.assign',
     'Promise',
-    'requestAnimationFrame'
+    'requestAnimationFrame',
+    'URL',
 ];
 
 let options = {
