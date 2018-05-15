@@ -16,7 +16,7 @@ import { getIframeId, getWebfonts, onViewport, resizeIframeHeight } from '../../
 //
 // Why include the unescaped referrer url as a data attribute and not in the acquisition data?
 // -------------------------------------------------------------------------------------------
-// If it is included initially unescaped in the acquisition data, then if this function call fails,
+// If it is included as an unescaped field in the acquisition data and this function call fails,
 // then potentially support frontend would not be able to deserialise the acquisition data
 // (see previous question for more details).
 function addEncodedReferrerUrlToClickThroughLink() {
