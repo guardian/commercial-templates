@@ -67,7 +67,6 @@ addEncodedReferrerUrlToClickThroughLink()
 
 getIframeId()
     .then(() => getWebfonts())
-    .then(() => resizeIframeHeight())
     .then(() => {
         let lastWidth;
         onViewport(({ width }) => {

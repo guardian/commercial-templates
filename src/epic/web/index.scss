@@ -3,7 +3,6 @@
 
 .contributions__epic-container--frontend {
     display: block;
-    -webkit-margin-before: 1em;
     -webkit-margin-after: 1em;
     -webkit-margin-start: 0px;
     -webkit-margin-end: 0px;
@@ -19,7 +18,6 @@
 .contributions__epic {
     border-top: 1px solid $news-garnett-highlight;
     background-color: $neutral-8;
-    margin-top: $gs-baseline * 2;
     padding: ($gs-baseline / 3) ($gs-gutter / 4) $gs-baseline;
 }
 
