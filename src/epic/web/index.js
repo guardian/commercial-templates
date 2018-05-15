@@ -21,7 +21,7 @@ import { getIframeId, getWebfonts, onViewport, resizeIframeHeight } from '../../
 // (see previous question for more details).
 function addEncodedReferrerUrlToClickThroughLink() {
 
-    const buttons = document.getElementsByClassName('js-epic-single-button')
+    const buttons = document.getElementsByClassName('js-epic-single-button');
     if (buttons.length === 0) {
         return;
     }
@@ -44,7 +44,7 @@ function addEncodedReferrerUrlToClickThroughLink() {
         return;
     }
 
-    let rawAcquisitionData = url.searchParams.get('acquisitionData')
+    let rawAcquisitionData = url.searchParams.get('acquisitionData');
     if (!rawAcquisitionData) {
         return;
     }
@@ -56,10 +56,11 @@ function addEncodedReferrerUrlToClickThroughLink() {
         return;
     }
 
-    acquisitionData['referrerUrl'] = encodeURI(referrerUrl);
-    url.searchParams.set('acquisitionData', JSON.stringify(acquisitionData));
+    acquisitionData['referrerUrl'] = referrerUrl;
 
-    button.href = url.toString()
+    // Acquisition data percent encoded by set() method
+    url.searchParams.set('acquisitionData', JSON.stringify(acquisitionData));
+    button.href = url.toString();
 }
 
 addEncodedReferrerUrlToClickThroughLink()
