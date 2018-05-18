@@ -7,5 +7,6 @@
     "ABTestVariant": "preview_ab_test_variant",
     "PaypalAndCreditCard": "https://tpc.googlesyndication.com/pagead/imgad?id=CICAgKCb1LS4GhABGAEyCLs5u7YA0mOt",
     "PATTERN:pv": "preview_page_view_id",
-    "PATTERN:url": "http://localhost:3000/books/2017/dec/15/good-night-stories-for-rebel-girls-jk-rowling#ab-AcquisitionsEpicNativeVsDfp=dfp"
+    "PATTERN:url": "http://localhost:3000/books/2017/dec/15/good-night-stories-for-rebel-girls-jk-rowling#ab-AcquisitionsEpicNativeVsDfp=dfp",
+    "PATTERN:cc": "NZ"
 }
