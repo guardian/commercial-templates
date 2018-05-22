@@ -32,11 +32,10 @@ function getDataAttribute(name) {
 // (see previous question for more details).
 function addEncodedReferrerUrlToClickThroughLink() {
 
-    const buttons = document.getElementsByClassName('js-epic-single-button');
-    if (buttons.length === 0) {
+    const button = document.querySelector('.js-epic-single-button');
+    if (!button) {
         return;
     }
-    const button = buttons[0];
 
     const href = button.href;
     if (!href) {
@@ -131,13 +130,8 @@ function getCurrencySymbolForCountryCode(countryCode) {
         },
     };
 
-    let countryGroup;
     const availableCountryGroups = Object.keys(countryGroups);
-    availableCountryGroups.forEach(cg => {
-        if (countryGroups[cg].countries.includes(countryCode)) {
-            countryGroup = cg;
-        }
-    });
+    const countryGroup = availableCountryGroups.find(cg => countryGroups[cg].countries.includes(countryCode));
     if (!countryGroup) {
         return;
     }
@@ -156,6 +150,11 @@ function getCurrencySymbolForCountryCode(countryCode) {
 }
 
 function changeCurrencySymbolBasedOnLocation() {
+    const currencySymbol = document.querySelector('.js-currency-symbol');
+    if (!currencySymbol) {
+      return;
+    }
+
     const countryCode = getDataAttribute('country-code');
     if (!countryCode) {
         return;
@@ -166,15 +165,7 @@ function changeCurrencySymbolBasedOnLocation() {
         return;
     }
 
-    const elements = document.getElementsByClassName('js-currency-symbol');
-    for (var i = 0; i < elements.length; i++) {
-        const element = elements[i];
-        // https://stackoverflow.com/questions/4784568/set-content-of-html-span-with-javascript
-        while (element.firstChild) {
-            element.removeChild(element.firstChild);
-        }
-        element.appendChild(document.createTextNode(currency));
-    }
+    currencySymbol.innerHTML = currency;
 }
 
 addEncodedReferrerUrlToClickThroughLink()
