@@ -2,8 +2,6 @@
 import { getIframeId, resizeIframeHeight, getWebfonts } from '../../_shared/js/messages';
 import { write } from '../../_shared/js/dom';
 
-const ThirdPartyTag = '[%ThirdPartyTag%]';
-
 const ifThenPromise = (parameter, action) => {
   if (parameter === 'true') {
     return action();
@@ -14,11 +12,11 @@ const ifThenPromise = (parameter, action) => {
 
 const fetchTag = (tagUrl: string) => {
   return fetch(tagUrl)
-    .then(response => response.text())
+    .then(response => response.text());
 }
 
 const generateTag = () => {
-  return fetchTag(`[%ThirdPartyTag%]`)
+  return fetchTag(`[%ThirdPartyTag%]`);
 }
 
 const insertTag = (tag) => {
