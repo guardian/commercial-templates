@@ -16,8 +16,7 @@ function getFileContents(filePath) {
 }
 
 function replacePlaceholders() {
-	const placeholders = builtHTML.match(/\[%(.*?)\%]/g);
-
+	const placeholders = builtHTML.match(/\[%(.*?)\%]|\%%(.*?)\%%/g);
 	placeholders.map(replacePlaceholder);
 }
 
