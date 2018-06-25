@@ -101,7 +101,7 @@
     margin-top: $gs-baseline * 2;
 
     // Horizontal alignment
-    align-items: left;
+    align-items: flex-start;
 
     @include mq($from: mobileLandscape) {
         flex-direction: row;
