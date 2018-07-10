@@ -17,7 +17,7 @@ const OVERRIDES = {
 
 // Loads the card data from CAPI in JSON format.
 function retrieveCapiData () {
-    let params = new URLSearchParams();
+    const params = new URLSearchParams();
     params.append('k', '[%SeriesURL%]');
     OVERRIDES.urls.forEach(url => {
         if (url !== '') {
@@ -58,7 +58,7 @@ function buildTitle (card, cardInfo, cardNumber) {
 // Either from template, or workaround for IE (sigh).
 function importCard (adType) {
 
-    let cardTemplate = document.getElementById(`${adType}-card`);
+    const cardTemplate = document.getElementById(`${adType}-card`);
 
     // Modern browsers.
     if (cardTemplate.content) {
@@ -66,22 +66,20 @@ function importCard (adType) {
     } else {
 
         // Internet Explorer doesn't support templates.
-        let cardFragment = document.createDocumentFragment();
-        let tempDiv = document.createElement('div');
+        const cardFragment = document.createDocumentFragment();
+        const tempDiv = document.createElement('div');
 
         tempDiv.innerHTML = cardTemplate.innerHTML;
         while (tempDiv.firstChild) cardFragment.appendChild(tempDiv.firstChild);
         return cardFragment;
-
     }
-
 }
 
 function buildLogo(card, cardNumber, cardsInfo, generateLogo) {
     if (cardsInfo.isSingle) return;
 
-    let cardInfo = cardsInfo.articles[cardNumber];
-    if(cardInfo.branding){
+    const cardInfo = cardsInfo.articles[cardNumber];
+    if (cardInfo.branding) {
         let logo = generateLogo(cardInfo.branding.logo.src, cardInfo.branding.logo.link, 'badge--branded');
         card.insertAdjacentHTML('beforeend', logo);
     }
@@ -90,15 +88,15 @@ function buildLogo(card, cardNumber, cardsInfo, generateLogo) {
 // Constructs an individual card.
 function buildCard (cardInfo, cardNum, adType, cardsInfo, generateLogo) {
 
-    let cardFragment = importCard(adType);
-    let card = cardFragment.querySelector(`.advert--${adType}`);
-    let imgContainer = card.querySelector('.advert__image-container');
+    const cardFragment = importCard(adType);
+    const card = cardFragment.querySelector(`.advert--${adType}`);
+    const imgContainer = card.querySelector('.advert__image-container');
 
     buildTitle(card, cardInfo, cardNum);
     buildLogo(card, cardNum, cardsInfo, generateLogo);
     card.href = clickMacro + cardInfo.articleUrl;
 
-    let image = generatePicture({
+    const image = generatePicture({
         url: OVERRIDES.images[cardNum] || cardInfo.articleImage.backupSrc,
         classes: ['advert__image'],
         sources: !OVERRIDES.images[cardNum] && cardInfo.articleImage.sources
@@ -116,12 +114,16 @@ function buildCard (cardInfo, cardNum, adType, cardsInfo, generateLogo) {
 
 // Adds branding information from cAPI.
 function addBranding (brandingCard, generateLogo) {
+    const logoContainer = document.querySelector('.js-logo-container');
+    const logoUrl = brandingCard.branding && brandingCard.branding.logo.src;
+    const sponsorLink = brandingCard.branding && brandingCard.branding.logo.link;
 
-    let body = document.querySelector('.js-logo-container');
-    let logoUrl = brandingCard.branding && brandingCard.branding.logo.src;
-    let sponsorLink = brandingCard.branding && brandingCard.branding.logo.link;
-
-    body.insertAdjacentHTML('beforeend', generateLogo(logoUrl, sponsorLink));
+    // TODO: check that there is branding information before trying to add it...
+    if (logoContainer && logoUrl) {
+      logoContainer.insertAdjacentHTML('beforeend', generateLogo(logoUrl, sponsorLink));
+    } else {
+      // TODO: fail gracefully and maybe give a nice debug message
+    }
 }
 
 // Sets correct glabs link based on edition (AU/All others).
@@ -135,8 +137,7 @@ function editionLink (host, edition, adType) {
 
 // Uses cAPI data to build the ad content.
 function buildFromCapi (host, cardsInfo, adType, generateLogo) {
-
-    let cardList = document.createDocumentFragment();
+    const cardList = document.createDocumentFragment();
 
     cardsInfo.isSingle = adType === 'hosted' || cardsInfo.articles
         .map(cardInfo => cardInfo.branding && cardInfo.branding.logo.src)
