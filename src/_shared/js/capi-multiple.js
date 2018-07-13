@@ -118,7 +118,6 @@ function addBranding (brandingCard, generateLogo) {
     const logoUrl = brandingCard.branding && brandingCard.branding.logo.src;
     const sponsorLink = brandingCard.branding && brandingCard.branding.logo.link;
 
-    // TODO: check that there is branding information before trying to add it...
     if (logoContainer && logoUrl) {
       logoContainer.insertAdjacentHTML('beforeend', generateLogo(logoUrl, sponsorLink));
     } else {
