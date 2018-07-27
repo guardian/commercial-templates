@@ -16,14 +16,9 @@ h1, p {
   border-top: 1px solid $paid-article-brand;
   display: flex;
   flex-direction: column;
-  width: $gs-gutter * 6.5;
 
   &:hover {
     background: darken($neutral-8, 7%);
-  }
-
-  @include mq(articleIframe) {
-    width: $gs-gutter * 11;
   }
 }
 
