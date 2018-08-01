@@ -14,6 +14,7 @@ let iframeId;
 function getIframeId(type) {
     return new Promise(resolve => {
         self.addEventListener('message', function onMessage(evt) {
+            console.log('event received: ' + evt);
             let json;
             try {
                 json = JSON.parse(evt.data);
