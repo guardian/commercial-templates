@@ -1,6 +1,12 @@
 @import '_core';
 @import '_palette';
 
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
 .contributions__epic-container--frontend {
     display: block;
     -webkit-margin-after: 1em;
@@ -144,7 +150,7 @@ a[href].contributions__contribute.contributions__contribute--epic {
     color: $guardian-brand-dark;
 
     svg path {
-        fill: $guardian-brand-dark; 
+        fill: $guardian-brand-dark;
     }
 
     &:hover {

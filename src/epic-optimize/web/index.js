@@ -1,4 +1,4 @@
-import { getIframeId, getWebfonts, onViewport, resizeIframeHeight } from '../../_shared/js/messages';
+import {getIframeId, getWebfonts, onViewport, resizeIframeHeight, sendMessage} from '../../_shared/js/messages';
 
 // Expects all data required by the javascript in this file
 // to be included as data attributes on an element with class name js-dfp-data.
@@ -172,13 +172,15 @@ function changeCurrencySymbolBasedOnLocation() {
 // changeCurrencySymbolBasedOnLocation()
 
 console.log('getting iframe id')
+
+
 getIframeId()
     .then(() => {
         console.log('getting web fonts')
         getWebfonts()
     })
     .then(() => {
-        console.log('adding view port listener')
+        console.log('adding view port listener - joe!')
         let lastWidth;
         onViewport(({ width }) => {
             if (width !== lastWidth) {

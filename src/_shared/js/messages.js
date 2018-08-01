@@ -14,7 +14,7 @@ let iframeId;
 function getIframeId(type) {
     return new Promise(resolve => {
         self.addEventListener('message', function onMessage(evt) {
-            console.log('event received: ' + evt);
+            console.log('event received', evt);
             let json;
             try {
                 json = JSON.parse(evt.data);
@@ -31,6 +31,7 @@ function getIframeId(type) {
             }
             resolve(json);
         });
+        window.top.postMessage('EPIC_READY', '*');
     });
 }
 
@@ -173,6 +174,7 @@ function listen(type, callback) {
         } catch( ex ) { /* noop */ }
     });
 
+    console.log('posting viewport ready');
     post(id, iframeId, type, true);
 }
 
@@ -185,6 +187,8 @@ function generateId() {
 }
 
 function post(id, iframeId, type, value) {
+    console.log('post', JSON.stringify({ id, iframeId, type, value }));
+    console.log('parentOrigin', parentOrigin);
     window.top.postMessage(JSON.stringify({ id, iframeId, type, value }), parentOrigin);
 }
 
