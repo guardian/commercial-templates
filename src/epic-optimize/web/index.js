@@ -206,6 +206,7 @@ function init() {
             return;
         }
         if (data.channel === OPTIMIZE_EPIC_CHANNEL && data.messageType === RESIZE_TRIGGERED) {
+            console.log('got RESIZE_TRIGGERED message inside epic');
             postIframeHeightMessage();
         }
     });
