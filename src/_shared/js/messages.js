@@ -128,6 +128,12 @@ function areImagesLoaded() {
     );
 }
 
+function getIframeHeight() {
+    // TODO: think about failure case
+    return timeout(Promise.all(areImagesLoaded().concat(isDocumentLoaded())), 3000)
+        .then(() => read(() => document.body.getBoundingClientRect().height))
+}
+
 function sendMessage(type, value) {
     const id = generateId();
 
@@ -200,4 +206,5 @@ export {
     resizeIframeHeight,
     onScroll,
     onViewport,
-    reportClicks};
+    reportClicks,
+    getIframeHeight};

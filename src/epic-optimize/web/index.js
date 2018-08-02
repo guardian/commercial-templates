@@ -1,4 +1,4 @@
-import {getIframeId, getWebfonts, onViewport, resizeIframeHeight, sendMessage} from '../../_shared/js/messages';
+import { getIframeHeight } from '../../_shared/js/messages';
 
 // Expects all data required by the javascript in this file
 // to be included as data attributes on an element with class name js-dfp-data.
@@ -171,25 +171,45 @@ function changeCurrencySymbolBasedOnLocation() {
 // addEncodedReferrerUrlToClickThroughLink()
 // changeCurrencySymbolBasedOnLocation()
 
-console.log('getting iframe id')
+// channel for messages between Optimize Epic and Guardian frontend
+const OPTIMIZE_EPIC_CHANNEL = 'OPTIMIZE_EPIC';
 
+// messages in this channel (incoming / outgoing) should have the following schema:
+// { channel: 'OPTIMIZE_EPIC', messageType: string, data: ?any }
 
-getIframeId()
-    .then(() => {
-        console.log('getting web fonts')
-        getWebfonts()
-    })
-    .then(() => {
-        console.log('adding view port listener - joe!')
-        let lastWidth;
-        onViewport(({ width }) => {
-            if (width !== lastWidth) {
-                lastWidth = width;
-                resizeIframeHeight();
-            }
-        })
-    })
-    .catch(err => {
-        console.log('unable to initialize optimize epic iframe javascript: ' + err);
-        throw err;
-    })
+// outgoing event types
+const EPIC_INITIALIZED = 'EPIC_INITIALIZED';
+const EPIC_HEIGHT = 'EPIC_HEIGHT';
+
+// incoming event types
+const RESIZE_TRIGGERED = 'RESIZE_TRIGGERED';
+
+function postMessage(messageType, data) {
+    // TODO: target origin
+    window.top.postMessage(JSON.stringify({ channel: OPTIMIZE_EPIC_CHANNEL, messageType, data }), '*');
+}
+
+function postIframeHeightMessage() {
+    getIframeHeight().then(height => postMessage(EPIC_HEIGHT, { height }));
+}
+
+function postEpicInitializedMessage() {
+    postMessage(EPIC_INITIALIZED);
+}
+
+function init() {
+    self.addEventListener('message', function(event) {
+        let data;
+        try {
+            data = JSON.parse(event.data);
+        } catch (_) {
+            return;
+        }
+        if (data.channel === OPTIMIZE_EPIC_CHANNEL && data.messageType === RESIZE_TRIGGERED) {
+            postIframeHeightMessage();
+        }
+    });
+    postMessage(EPIC_INITIALIZED);
+}
+
+init();
