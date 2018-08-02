@@ -1,4 +1,6 @@
-import { getIframeHeight } from '../../_shared/js/messages';
+import { areImagesLoaded, isDocumentLoaded } from '../../_shared/js/messages';
+import {timeout} from "../../_shared/js/impl/promises";
+import {read} from "../../_shared/js/dom";
 
 // Expects all data required by the javascript in this file
 // to be included as data attributes on an element with class name js-dfp-data.
@@ -189,6 +191,12 @@ function postMessage(messageType, data) {
     window.top.postMessage(JSON.stringify({ channel: OPTIMIZE_EPIC_CHANNEL, messageType, data }), '*');
 }
 
+function getIframeHeight() {
+    // TODO: think about failure case
+    return timeout(Promise.all(areImagesLoaded().concat(isDocumentLoaded())), 3000)
+        .then(() => read(() => document.querySelector('.js-root-element').getBoundingClientRect().height))
+}
+
 function postIframeHeightMessage() {
     getIframeHeight().then(height => postMessage(EPIC_HEIGHT, { height }));
 }
@@ -210,6 +218,7 @@ function init() {
             postIframeHeightMessage();
         }
     });
+
     postMessage(EPIC_INITIALIZED);
 }
 
