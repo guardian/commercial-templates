@@ -1,6 +1,6 @@
-import { areImagesLoaded, isDocumentLoaded } from '../../_shared/js/messages';
+import {areImagesLoaded, getWebfonts, isDocumentLoaded} from '../../_shared/js/messages';
 import {timeout} from "../../_shared/js/impl/promises";
-import {read} from "../../_shared/js/dom";
+import {read, write} from "../../_shared/js/dom";
 
 function getAbTestData() {
     try {
@@ -88,7 +88,7 @@ const EPIC_INITIALIZED = 'EPIC_INITIALIZED';
 const EPIC_HEIGHT = 'EPIC_HEIGHT';
 
 // incoming event types
-const RESIZE_TRIGGERED = 'RESIZE_TRIGGERED';
+const FONTS = 'FONTS';
 
 function postMessage(messageType, data) {
     // TODO: target origin
@@ -115,6 +115,17 @@ function postEpicInitializedMessage(acquisitionData) {
     });
 }
 
+function addFonts(fonts) {
+    const frag = document.createDocumentFragment();
+    fonts.map(font => {
+        const style = document.createElement('style');
+        style.textContent = font;
+        return style;
+    }).forEach(frag.appendChild, frag);
+
+    document.head.appendChild(frag);
+}
+
 function startCommunication(acquisitionData) {
     self.addEventListener('message', event => {
         // TODO: do we even need this?
@@ -122,10 +133,12 @@ function startCommunication(acquisitionData) {
         try {
             data = JSON.parse(event.data);
         } catch (_) {
+            console.log('could not parse JSON');
             return;
         }
-        if (data.channel === OPTIMIZE_EPIC_CHANNEL) {
-            console.log('Got message from parent', data);
+        if (data.channel === OPTIMIZE_EPIC_CHANNEL && data.messageType === FONTS) {
+            console.log('got fonts data', data.fonts);
+            addFonts(data.fonts);
         }
     });
 
