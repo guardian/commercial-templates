@@ -59,7 +59,7 @@ function enrichClickThroughURL(acquisitionData) {
     // Acquisition data percent encoded by set() method
     clickThroughUrl.searchParams.set('acquisitionData', JSON.stringify(acquisitionData));
     button.href = clickThroughUrl.toString();
-    return 
+    return
 }
 
 function useLocalCurrencySymbol() {
@@ -67,7 +67,7 @@ function useLocalCurrencySymbol() {
     if (!currencySymbol) {
       return;
     }
-    
+
     try {
         const optimizeEpicUrl = new URL(window.location.href);
         const localCurrencySymbol = optimizeEpicUrl.searchParams.get('lcs');
@@ -106,23 +106,31 @@ function postIframeHeightMessage() {
 }
 
 function postEpicInitializedMessage(acquisitionData) {
-    postMessage(EPIC_INITIALIZED, { 
-        abTest: acquisitionData.abTest, 
-        componentId: acquisitionData.componentId,
+    getIframeHeight().then(height => {
+        postMessage(EPIC_INITIALIZED, {
+            abTest: acquisitionData.abTest,
+            componentId: acquisitionData.componentId,
+            height
+        });
     });
 }
 
 function startCommunication(acquisitionData) {
-    self.addEventListener('message', function(event) {
+    self.addEventListener('message', event => {
+        // TODO: do we even need this?
         let data;
         try {
             data = JSON.parse(event.data);
         } catch (_) {
             return;
         }
-        if (data.channel === OPTIMIZE_EPIC_CHANNEL && data.messageType === RESIZE_TRIGGERED) {
-            postIframeHeightMessage();
+        if (data.channel === OPTIMIZE_EPIC_CHANNEL) {
+            console.log('Got message from parent', data);
         }
+    });
+
+    self.addEventListener('resize', () => {
+        postIframeHeightMessage();
     });
 
     postEpicInitializedMessage(acquisitionData);
