@@ -2,7 +2,47 @@ import { areImagesLoaded, isDocumentLoaded } from '../../_shared/js/messages';
 import {timeout} from "../../_shared/js/impl/promises";
 import {read} from "../../_shared/js/dom";
 
-function enrichClickThroughURL() {
+function getAbTestData() {
+    try {
+        const propertyId = 'UA-51507017-5';
+        // FIXME: await for gaData to be defined
+        const testName = Object.keys(gaData[propertyId].experiments)[0];
+        const variantName = gaData[propertyId].experiments[testName];
+        return {
+            name: testName,
+            variant: variantName,
+        }
+    } catch(err) {
+        console.log(err)
+        return;
+    }
+}
+
+function getAcquisitionData() {
+
+    // data passed by parent as GET parameters
+    let referrerPageViewId;
+    let referrerUrl;
+    try {
+        const optimizeEpicUrl = new URL(window.location.href);
+        referrerPageViewId = optimizeEpicUrl.searchParams.get('pvid');
+        referrerUrl = optimizeEpicUrl.searchParams.get('url');
+    } catch(_) {};
+
+    const abTestData = getAbTestData();
+    const componentId = abTestData ? (data.name + '_' + data.variant) : 'optimize_epic';
+
+    return {
+        componentType: 'ACQUISITIONS_EPIC',
+        source: 'GUARDIAN_WEB',
+        componentId: componentId,
+        abTest: abTestData,
+        referrerPageViewId: referrerPageViewId,
+        referrerUrl: referrerUrl,
+    };
+}
+
+function enrichClickThroughURL(acquisitionData) {
 
     const button = document.querySelector('.js-epic-single-button');
     if (!button) {
@@ -16,35 +56,10 @@ function enrichClickThroughURL() {
         return;
     }
 
-    let referrerPageViewId;
-    let referrerUrl;
-    try {
-        const optimizeEpicUrl = new URL(window.location.href);
-        referrerPageViewId = optimizeEpicUrl.searchParams.get('pvid');
-        referrerUrl = optimizeEpicUrl.searchParams.get('url')
-    } catch(_) {}
-    
-    let acquisitionData;
-    try {
-        acquisitionData = JSON.parse(clickThroughUrl.searchParams.get('acquisitionData'));
-    } catch (_) {
-        acquisitionData = {};
-    }
-
-    const inferredAcquisitionData = {
-        componentType: 'ACQUISITIONS_EPIC',
-        componentId: 'optimize_epic',
-        referrerPageViewId: referrerPageViewId,
-        referrerUrl: referrerUrl,
-        source: 'GUARDIAN_WEB',
-    };
-
-    // Argument ordering ensures pre-existing acquisition data takes precedence over inferred data.
-    const updatedAcquisitionData = Object.assign({}, inferredAcquisitionData, acquisitionData);
-
     // Acquisition data percent encoded by set() method
-    clickThroughUrl.searchParams.set('acquisitionData', JSON.stringify(updatedAcquisitionData));
+    clickThroughUrl.searchParams.set('acquisitionData', JSON.stringify(acquisitionData));
     button.href = clickThroughUrl.toString();
+    return 
 }
 
 function useLocalCurrencySymbol() {
@@ -90,11 +105,14 @@ function postIframeHeightMessage() {
     getIframeHeight().then(height => postMessage(EPIC_HEIGHT, { height }));
 }
 
-function postEpicInitializedMessage() {
-    postMessage(EPIC_INITIALIZED);
+function postEpicInitializedMessage(acquisitionData) {
+    postMessage(EPIC_INITIALIZED, { 
+        abTest: acquisitionData.abTest, 
+        componentId: acquisitionData.componentId,
+    });
 }
 
-function startCommunication() {
+function startCommunication(acquisitionData) {
     self.addEventListener('message', function(event) {
         let data;
         try {
@@ -107,13 +125,14 @@ function startCommunication() {
         }
     });
 
-    postMessage(EPIC_INITIALIZED);
+    postEpicInitializedMessage(acquisitionData);
 }
 
 function init() {
-    enrichClickThroughURL();
+    const acquisitionData = getAcquisitionData();
+    enrichClickThroughURL(acquisitionData);
     useLocalCurrencySymbol();
-    startCommunication();
+    startCommunication(acquisitionData);
 }
 
 init();
