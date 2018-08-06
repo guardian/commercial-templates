@@ -8,7 +8,6 @@ function getAbTestData() {
         ga(() => {
             try {
                 const propertyId = 'UA-51507017-5';
-                // FIXME: await for gaData to be defined
                 const testName = Object.keys(gaData[propertyId].experiments)[0];
                 const variantName = gaData[propertyId].experiments[testName];
                 resolve({
