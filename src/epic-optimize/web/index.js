@@ -3,43 +3,58 @@ import {timeout} from "../../_shared/js/impl/promises";
 import {read, write} from "../../_shared/js/dom";
 
 function getAbTestData() {
-    try {
-        const propertyId = 'UA-51507017-5';
-        // FIXME: await for gaData to be defined
-        const testName = Object.keys(gaData[propertyId].experiments)[0];
-        const variantName = gaData[propertyId].experiments[testName];
-        return {
-            name: testName,
-            variant: variantName,
-        }
-    } catch(err) {
-        console.log(err)
-        return;
-    }
+
+    const abTestData = new Promise((resolve, reject) => {
+        ga(() => {
+            try {
+                const propertyId = 'UA-51507017-5';
+                const testName = Object.keys(gaData[propertyId].experiments)[0];
+                const variantName = gaData[propertyId].experiments[testName];
+                resolve({
+                    name: testName,
+                    variant: variantName,
+                });
+            } catch(err) {
+                reject(new Error('error getting AB test data from gaData variable: ' + err))
+            }
+        });
+    });
+
+    const emptyAbTestData = new Promise((_, reject) => {
+        window.setTimeout(() => {
+            reject(new Error('unable to load Google Analytics within 2 seconds which means no AB test data is available'));
+        }, 2000);
+    });
+
+    return Promise.race([abTestData, emptyAbTestData]).catch(err => {
+        console.log(err);
+        return null;
+    });
 }
 
 function getAcquisitionData() {
+    return getAbTestData()
+        .then(abTestData => {
+            const componentId = abTestData ? (abTestData.name + '_' + abTestData.variant) : 'optimize_epic';
 
-    // data passed by parent as GET parameters
-    let referrerPageViewId;
-    let referrerUrl;
-    try {
-        const optimizeEpicUrl = new URL(window.location.href);
-        referrerPageViewId = optimizeEpicUrl.searchParams.get('pvid');
-        referrerUrl = optimizeEpicUrl.searchParams.get('url');
-    } catch(_) {};
+            // data passed by parent as GET parameters
+            let referrerPageViewId;
+            let referrerUrl;
+            try {
+                const optimizeEpicUrl = new URL(window.location.href);
+                referrerPageViewId = optimizeEpicUrl.searchParams.get('pvid');
+                referrerUrl = optimizeEpicUrl.searchParams.get('url');
+            } catch(_) {};
 
-    const abTestData = getAbTestData();
-    const componentId = abTestData ? (data.name + '_' + data.variant) : 'optimize_epic';
-
-    return {
-        componentType: 'ACQUISITIONS_EPIC',
-        source: 'GUARDIAN_WEB',
-        componentId: componentId,
-        abTest: abTestData,
-        referrerPageViewId: referrerPageViewId,
-        referrerUrl: referrerUrl,
-    };
+            return {
+                componentType: 'ACQUISITIONS_EPIC',
+                source: 'GUARDIAN_WEB',
+                componentId: componentId,
+                abTest: abTestData,
+                referrerPageViewId: referrerPageViewId,
+                referrerUrl: referrerUrl,
+            };
+        });
 }
 
 function enrichClickThroughURL(acquisitionData) {
@@ -150,10 +165,15 @@ function startCommunication(acquisitionData) {
 }
 
 function init() {
-    const acquisitionData = getAcquisitionData();
-    enrichClickThroughURL(acquisitionData);
+
     useLocalCurrencySymbol();
-    startCommunication(acquisitionData);
+
+    getAcquisitionData()
+        .then(acquisitionData => {
+            enrichClickThroughURL(acquisitionData);
+            startCommunication(acquisitionData);
+        })
+        .catch(err => console.log(err));
 }
 
 init();
