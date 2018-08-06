@@ -138,7 +138,7 @@ function addFonts(fonts) {
         return style;
     }).forEach(frag.appendChild, frag);
 
-    document.head.appendChild(frag);
+    return write(() => document.head.appendChild(frag));
 }
 
 function startCommunication(acquisitionData) {
