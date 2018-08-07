@@ -12,7 +12,7 @@ upload_build_file () {
         --region eu-west-1 \
         --acl public-read "./build/epic-optimize/web/${FILE}" "s3://reader-revenue-components/epic/control/${FILE}" \
         --cache-control 60 \
-        --metadata '{"x-amz-meta-surrogate-control":"3600"}'
+        --metadata '{"surrogate-control":"3600"}'
 }
 
 upload_image () {
@@ -22,7 +22,7 @@ upload_image () {
         --region eu-west-1 \
         --acl public-read "./src/epic-optimize/images/${FILE}" "s3://reader-revenue-components/epic/control/${FILE}" \
         --cache-control 60 \
-        --metadata '{"x-amz-meta-surrogate-control":"3600"}'
+        --metadata '{"surrogate-control":"3600"}'
 }
 
 upload_build_file "index.html"
