@@ -5,6 +5,12 @@ cd "${DIR}/../.."
 
 npm run build
 
+purge_cache () {
+    PATH="$1"
+    curl -X PURGE "https://support.code.dev-theguardian.com${PATH}"
+    curl -X PURGE "https://support.theguardian.com${PATH}"
+}
+
 upload_build_file () {
     FILE="$1"
     aws s3 cp \
@@ -12,7 +18,8 @@ upload_build_file () {
         --region eu-west-1 \
         --acl public-read "./build/epic-optimize/web/${FILE}" "s3://reader-revenue-components/epic/control/${FILE}" \
         --cache-control 60 \
-        --metadata '{"surrogate-control":"3600"}'
+        --metadata '{"surrogate-control":"86400"}'
+    purge_cache "/epic/control/${FILE}"
 }
 
 upload_image () {
@@ -22,7 +29,8 @@ upload_image () {
         --region eu-west-1 \
         --acl public-read "./src/epic-optimize/images/${FILE}" "s3://reader-revenue-components/epic/control/${FILE}" \
         --cache-control 60 \
-        --metadata '{"surrogate-control":"3600"}'
+        --metadata '{"surrogate-control":"86400"}'
+    purge_cache "/epic/control/${FILE}"
 }
 
 upload_build_file "index.html"
