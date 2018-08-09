@@ -5,34 +5,24 @@ cd "${DIR}/../.."
 
 npm run build
 
-purge_cache () {
+upload_file () {
+    # TODO: arguments could be more intuitive
+    # e.g. "./build/epic-no-optimize/web/index.html" "/epic/iframe-or-not/index.html"
     FILE="$1"
-    curl -X PURGE "https://support.code.dev-theguardian.com/epic/control/${FILE}"
-    curl -X PURGE "https://support.theguardian.com/epic/control/${FILE}"
-}
-
-upload_build_file () {
-    FILE="$1"
+    FILE_DIR="$2"
+    UPLOAD_PATH="$3"
+    
     aws s3 cp \
         --profile membership \
         --region eu-west-1 \
-        --acl public-read "./build/epic-no-optimize/web/${FILE}" "s3://reader-revenue-components/epic/control/${FILE}" \
+        --acl public-read "${FILE_DIR}/${FILE}" "s3://reader-revenue-components/${UPLOAD_PATH}/${FILE}" \
         --cache-control 60 \
         --metadata '{"surrogate-control":"86400"}'
-    purge_cache ${FILE}
+    
+    curl -X PURGE "https://support.code.dev-theguardian.com/${UPLOAD_PATH}/${FILE}"
+    curl -X PURGE "https://support.theguardian.com/${UPLOAD_PATH}/${FILE}"
 }
 
-upload_image () {
-    FILE="paypal-and-credit-card.png"
-    aws s3 cp \
-        --profile membership \
-        --region eu-west-1 \
-        --acl public-read "./src/epic-no-optimize/images/${FILE}" "s3://reader-revenue-components/epic/control/${FILE}" \
-        --cache-control 60 \
-        --metadata '{"surrogate-control":"86400"}'
-    purge_cache ${FILE}
-}
-
-upload_build_file "index.html"
-upload_build_file "index.css"
-upload_image
+upload_file "index.html"                 "./build/epic-no-optimize/web"  "epic/iframe-or-not"
+upload_file "index.css"                  "./build/epic-no-optimize/web"  "epic/iframe-or-not"
+upload_file "paypal-and-credit-card.png" "./src/epic-no-optimize/images" "epic/iframe-or-not"

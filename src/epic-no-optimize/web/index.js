@@ -109,4 +109,4 @@ function init() {
     startCommunication();
 }
 
-// init();
+init();
