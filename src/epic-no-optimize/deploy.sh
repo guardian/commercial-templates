@@ -23,6 +23,6 @@ upload_file () {
     curl -X PURGE "https://support.theguardian.com/${UPLOAD_PATH}/${FILE}"
 }
 
-upload_file "index.html"                 "./build/epic-no-optimize/web"  "epic/iframe-or-not"
-upload_file "index.css"                  "./build/epic-no-optimize/web"  "epic/iframe-or-not"
-upload_file "paypal-and-credit-card.png" "./src/epic-no-optimize/images" "epic/iframe-or-not"
+upload_file "index.html"                 "./build/epic-no-optimize/web"  "epic/iframe-or-not-test"
+upload_file "index.css"                  "./build/epic-no-optimize/web"  "epic/iframe-or-not-test"
+upload_file "paypal-and-credit-card.png" "./src/epic-no-optimize/images" "epic/iframe-or-not-test"
