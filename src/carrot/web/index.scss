@@ -45,14 +45,10 @@ h1, p {
 }
 
 .body__title {
-  font-size: 14px;
+  font-size: 1.25rem;
   font-weight: bold;
   color: $neutral-1;
   margin-bottom: 5px;
-
-  @include mq(articleIframe) {
-    font-size: 16px;
-  }
 }
 
 .body__standfirst {
