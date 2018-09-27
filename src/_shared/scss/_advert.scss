@@ -1,3 +1,9 @@
+@include mq($until: tablet) {
+     .adverts__header {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}
 .advert {
     box-sizing: border-box;
     display: block;
