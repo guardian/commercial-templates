@@ -1,11 +1,9 @@
-{{#labelRequired}}false{{/labelRequired}}
+
 <aside class="adverts adverts--manual adverts--legacy-inline adverts--[%Tone%]s adverts--tone-[%Tone%]s" data-link-name="creative | manual inline | [%TrackingId%]">
     <header class="adverts__header">
-        <h1 class="adverts__title">
-            <a class="adverts__logo blink" href="%%CLICK_URL_UNESC%%[%BaseUrl%]" data-link-name="title" target="_top">
-                {{#svg}}marque{{/svg}} <span class="blink__anchor">[%ComponentTitle%]</span>
-            </a>
-        </h1>
+      <h1 class="adverts__title">
+          <a class="adverts__logo brand_logo" href="%%CLICK_URL_UNESC%%[%BaseUrl%]" data-link-name="title" target="_top"></a>
+      </h1>
     </header>
     <div class="adverts__body">
         <a class="advert advert--inline advert--brand blink" href="%%CLICK_URL_UNESC%%[%OfferUrl%]" data-link-name="Offer 1 | [%OfferTitle%]" target="_top">
@@ -18,3 +16,16 @@
         </a>
     </div>
 </aside>
+<script>
+    var logoSvgs = {
+        'job': '{{#svg}}guardian-jobs-logo{{/svg}}',
+        'live': '{{#svg}}guardian-live-logo{{/svg}}',
+        'soulmate': '{{#svg}}guardian-soulmates-logo{{/svg}}',
+        'travel': '{{#svg}}guardian-holidays-logo{{/svg}}',
+        'money': '{{#svg}}guardian-moneydeals-logo{{/svg}}',
+        'book': '{{#svg}}guardian-bookshop-logo{{/svg}}',
+        'masterclass': '{{#svg}}guardian-masterclasses-logo{{/svg}}',
+        'subscription': '{{#svg}}guardian-subscriptions-logo{{/svg}}',
+        'brand': '{{#svg}}guardian-generic-logo{{/svg}}',
+    };
+</script>

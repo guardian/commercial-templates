@@ -1,13 +1,13 @@
 @import '_core';
 
-.creative--mpu-parallax {
+.creative--parallax-mpu {
     margin: 0 auto;
     width: 300px;
     height: 250px;
     overflow: hidden;
     position: relative;
 
-    .creative--mpu-parallax-image-overlay {
+    .creative--parallax-mpu-image-overlay {
       z-index: 1;
       display: block;
       position: absolute;

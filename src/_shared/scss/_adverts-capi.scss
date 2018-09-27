@@ -30,8 +30,13 @@
 .adverts--paidfor {
     .adverts__header {
         position: relative;
+        flex-direction: column;
     }
-
+    @include mq(tablet, desktop) {
+      .adverts__header {
+        flex-direction: row;
+      }
+    }
     @include mq(mobileLandscape, leftCol) {
         .paidfor-meta__more {
             position: relative;
@@ -41,7 +46,7 @@
 
 .adverts--supported {
     .adverts__title {
-        font-size: 22px;
+        font-size: 20px;
         line-height: 24px;
     }
 
@@ -282,6 +287,7 @@
         @include mq(desktop) {
             font-size: 20px;
             line-height: 24px;
+            font-weight: normal;
         }
     }
 

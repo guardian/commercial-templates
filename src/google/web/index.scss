@@ -21,21 +21,26 @@ body {
     padding: 8px 7px;
     font-weight: bold;
     font-size: 14px;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, .5);
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, .5);
     margin: 4px;
 }
 
-.ads .image-link,
-img {
+.ads .image-link {
     display: block;
-    width: 100%;
+}
+
+.image-link, .logo-link {
+    img {
+        display: block;
+        width: 100%;
+    }
 }
 
 .title {
     font-size: 15px;
     line-height: 17px;
     font-weight: 900;
-    margin: 6px 100px 10px 10px;
+    margin: 6px 90px 6px 10px;
 }
 
 .title-link {
@@ -47,13 +52,13 @@ img {
     font-size: 12px;
     line-height: 14px;
     font-family: Georgia, serif;
-    margin: 6px 100px 10px 10px;
+    margin: 6px 90px 6px 10px;
 }
 
 .advertiser {
     font-size: 12px;
     line-height: 14px;
-    margin: 6px 100px 10px 10px;
+    margin: 6px 90px 6px 10px;
 
 }
 
@@ -65,25 +70,17 @@ img {
 }
 
 .call-to-action {
-    display: flex;
     position: absolute;
-    bottom: 10px;
+    bottom: 6px;
     right: 6px;
+    font-size: 12px;
+    line-height: 14px;
 }
 
 .call-to-action-link {
-    border: 1px solid rgba(0, 0, 0, .5);
-    border-radius: 16px;
     color: #333333;
-    font-size: 12px;
-    padding: 5px 10px;
-    text-decoration:  none;
-    font-weight: 900;
-
     &:hover {
-        background: #333333;
-        color: #ffffff;
-        border-color: transparent;
+        color: #ffbb00;
     }
 }
 
@@ -92,10 +89,8 @@ img {
     float: right;
     margin-right: 6px;
     margin-top: 6px;
-    bottom: 43px;
     width: 70px;
-    @media ( max-height: 285px ){
-        bottom: 41px;
-        width: 48px;
+    @media ( max-height: 260px ){
+        width: 55px;
     }
 }
