@@ -2,10 +2,10 @@ package commercialtools.stylesync
 
 import com.google.api.ads.common.lib.auth.OfflineCredentials
 import com.google.api.ads.common.lib.auth.OfflineCredentials.Api
-import com.google.api.ads.dfp.axis.factory.DfpServices
-import com.google.api.ads.dfp.axis.utils.v201708.StatementBuilder
-import com.google.api.ads.dfp.axis.v201708.{CreativeTemplate, CreativeTemplateServiceInterface, NativeStyle, NativeStyleServiceInterface, NativeStyleStatus}
-import com.google.api.ads.dfp.lib.client.DfpSession
+import com.google.api.ads.admanager.axis.factory.AdManagerServices
+import com.google.api.ads.admanager.axis.utils.v201808.StatementBuilder
+import com.google.api.ads.admanager.axis.v201808.{CreativeTemplate, CreativeTemplateServiceInterface, NativeStyle, NativeStyleServiceInterface, NativeStyleStatus}
+import com.google.api.ads.admanager.lib.client.AdManagerSession
 import com.google.api.client.auth.oauth2.Credential
 import org.slf4j.{Logger, LoggerFactory}
 
@@ -19,17 +19,17 @@ trait Logging {
 // this is largely based off the documentation here: https://developers.google.com/doubleclick-publishers/docs/native
 object DFP extends Logging {
   val creds: Credential = new OfflineCredentials.Builder()
-    .forApi(Api.DFP)
+    .forApi(Api.AD_MANAGER)
     .fromFile()
     .build()
     .generateCredential()
 
-  val session: DfpSession = new DfpSession.Builder()
+  val session: AdManagerSession = new AdManagerSession.Builder()
     .fromFile()
     .withOAuth2Credential(creds)
     .build()
 
-  lazy val services: DfpServices = new DfpServices()
+  lazy val services: AdManagerServices = new AdManagerServices()
 
   lazy val nativeStyleService: NativeStyleServiceInterface = services.get(session, classOf[NativeStyleServiceInterface])
 
