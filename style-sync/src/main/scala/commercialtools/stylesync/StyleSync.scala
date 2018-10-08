@@ -3,7 +3,7 @@ package commercialtools.stylesync
 import java.io.File
 import java.nio.file.Paths
 
-import com.google.api.ads.dfp.axis.v201708.{CreativeTemplate, CreativeTemplateType, NativeStyle}
+import com.google.api.ads.admanager.axis.v201808.{CreativeTemplate, CreativeTemplateType, NativeStyle}
 
 import scala.io.Source
 
@@ -69,7 +69,7 @@ object StyleSync extends App {
   case class DiffLine(line: String, number: Int)
   case class DiffResult(diffLines: List[DiffLine], sourceALines: List[String], sourceBLines: List[String])
 
-  val buildRootDirectory = new File("/Users/jon_norman/dev/commercial-templates/build")
+  val buildRootDirectory = new File("/Users/kate_whalen/Projects/commercial-templates/build")
   val divider: String = "------------------------------------------------------------------"
 
   def summarise(formats: List[CreativeTemplate], styles: List[NativeStyle], guStyles: List[GuStyle]): Unit = {
