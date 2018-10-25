@@ -67,7 +67,7 @@ $phablet: 660px;
     line-height: 13px;
     height: auto;
     padding: 5px;
-    color: #333333;
+    color: #121212;
     margin: 0;
     .hosted-bright & {
         color: #ffffff;
@@ -152,7 +152,7 @@ $phablet: 660px;
             position: absolute;
             top: 0;
             left: 50%;
-            font-size: 24px;
+            font-size: 1.25rem;
             line-height: 26px;
             padding: 8px;
         }
@@ -161,10 +161,10 @@ $phablet: 660px;
 
 .hosted-trafficdriver__title {
     padding: 6px 6px 18px;
-    font-size: 20px;
+    font-size: 1.25rem;
     line-height: 24px;
-    font-weight: 600;
-    color: #333333;
+    font-weight: 500;
+    color: #121212;
     .hosted-bright & {
         color: #ffffff;
     }
@@ -198,9 +198,9 @@ $phablet: 660px;
 
 .fc-container__header__title {
     float: left;
-    font-size: 22px;
+    font-size: 1.25rem;
     font-weight: 600;
-    color: #333333;
+    color: #121212;
     line-height: 22px;
     margin: 0;
 
