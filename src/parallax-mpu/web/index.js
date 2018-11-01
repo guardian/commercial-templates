@@ -8,16 +8,16 @@ const updateBackground = ({ height }) => {
         backgroundRepeat,
         backgroundPosition,
         backgroundSize,
-        transform ] = [
-        'fixed',
+        transform] = [
+        'parallax',
         '#f6f6f6',
         `url('[%BackgroundImage%]')`,
         'repeat-y',
         'center center',
-        'contain',
+        'cover',
         'translate3d(0,0,0)'
     ];
-    
+
     sendMessage('background', {
         scrollType,
         backgroundColour,
