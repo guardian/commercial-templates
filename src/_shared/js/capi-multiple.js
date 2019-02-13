@@ -12,7 +12,8 @@ const OVERRIDES = {
     urls: ['[%Article1URL%]', '[%Article2URL%]', '[%Article3URL%]', '[%Article4URL%]'],
     kickers: ['[%Article1Kicker%]', '[%Article2Kicker%]', '[%Article3Kicker%]', '[%Article4Kicker%]'],
     headlines: ['[%Article1Headline%]', '[%Article2Headline%]', '[%Article3Headline%]', '[%Article4Headline%]'],
-    images: ['[%Article1Image%]', '[%Article2Image%]', '[%Article3Image%]', '[%Article4Image%]']
+    images: ['[%Article1Image%]', '[%Article2Image%]', '[%Article3Image%]', '[%Article4Image%]'],
+    articleUrl: ['[%Article1URLOverride%]', '[%Article2URLOverride%]', '[%Article3URLOverride%]', '[%Article4URLOverride%]']
 };
 
 // Loads the card data from CAPI in JSON format.
@@ -94,7 +95,7 @@ function buildCard (cardInfo, cardNum, adType, cardsInfo, generateLogo) {
 
     buildTitle(card, cardInfo, cardNum);
     buildLogo(card, cardNum, cardsInfo, generateLogo);
-    card.href = clickMacro + cardInfo.articleUrl;
+    card.href = `${clickMacro}${OVERRIDES.articleUrl[cardNum] || cardInfo.articleUrl}`;
 
     const image = generatePicture({
         url: OVERRIDES.images[cardNum] || cardInfo.articleImage.backupSrc,
