@@ -1,25 +1,30 @@
 {
     "ComponentTitle": "Sweet Veganuary",
     "SeriesURL": "sweet-veganuary",
-    "Brand": "Barclays",
+    "Brand": "Ben and Jerrys",
     "TrackingID": "",
     "Article1Headline": "",
     "Article1Kicker": "Vegans",
     "Article1URL": "",
     "Article1Image": "",
+    "Article1URLOverride": "https://www.theguardian.com/",
 
     "Article2Headline": "",
     "Article2Kicker": "",
     "Article2URL": "",
     "Article2Image": "",
+    "Article2URLOverride": "",
 
     "Article3Headline": "",
     "Article3Kicker": "",
     "Article3URL": "",
     "Article3Image": "",
+    "Article3URLOverride": "",
 
     "Article4Headline": "",
     "Article4Kicker": "",
     "Article4URL": "",
-    "Article4Image": ""
+    "Article4Image": "",
+    "Article4URLOverride": "",
+    "Trackingpixel": "",
 }
