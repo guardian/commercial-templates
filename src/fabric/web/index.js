@@ -2,6 +2,7 @@ import { getIframeId, onViewport, onScroll, sendMessage, resizeIframeHeight, rep
 import { write } from '../../_shared/js/dom.js';
 
 let layer2 = document.getElementById('layer2');
+let linkDesktop = document.getElementById('linkDesktop');
 
 if( layer2.classList.contains('creative__layer2--animation-disabled') ) {
     write(() => layer2.style.backgroundPosition = '[%Layer2BackgroundPosition%]');
@@ -14,6 +15,7 @@ getIframeId()
     let isMobile = window.matchMedia('(max-width: 739px)').matches;
     let isTablet = window.matchMedia('(min-width: 740px) and (max-width: 979px)').matches;
     handleBackground(isMobile, isTablet);
+   
 
     if( !isMobile && layer2.classList.contains('creative__layer2--animation-enabled') ) {
         onViewport(({ height }) => {
@@ -29,6 +31,8 @@ function handleBackground(isMobile, isTablet) {
     let [ backgroundImage, backgroundPosition, backgroundRepeat, creativeLink ] = isMobile ?
         ['[%MobileBackgroundImage%]', '[%MobileBackgroundImagePosition%]', '[%MobileBackgroundImageRepeat%]', document.getElementById('linkMobile')] :
         ['[%BackgroundImage%]', '[%BackgroundImagePosition%]', '[%BackgroundImageRepeat%]', document.getElementById('linkDesktop')];
+    
+        handlePadding(scrollType);
 
     if (backgroundColour) {
       document.documentElement.style.backgroundColor = backgroundColour;
@@ -51,6 +55,12 @@ function handleBackground(isMobile, isTablet) {
             backgroundRepeat,
             backgroundPosition
         });
+    }
+}
+
+function handlePadding(scrollType) {
+    if (scrollType === 'parallax') {
+        linkDesktop !== undefined ? linkDesktop.classList.add('is-parallax') : ''; 
     }
 }
 
