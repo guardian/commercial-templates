@@ -19,7 +19,7 @@ let features = [
 let options = {
     banner: `
 <base target="_blank">
-<script src="https://polyfill.guim.co.uk/v2/polyfill.min.js?features=${encodeURIComponent(features.join(','))}"></script>
+<script src="https://assets.guim.co.uk/polyfill.io/v3/polyfill.min.js?rum=0&features=${encodeURIComponent(features.join(','))}&clearCache=2"></script>
     `,
     src: 'src',
     dst: 'build',
