@@ -37,6 +37,16 @@
         background-repeat: no-repeat;
     }
 
+    .creative__video--mobile {
+        display: none;
+    }
+
+    .hasMobileVideo {
+        z-index: 10;
+        display: block
+    }
+
+
     .creative__layer  { background-repeat: no-repeat; }
     .creative__layer1 { z-index: 1; }
     .creative__layer2 { z-index: 2; }
@@ -93,6 +103,17 @@
     @keyframes fade-in {
         0%    { opacity: 0; }
         100%  { opacity: 1; }
+    }
+
+}
+
+@include mq($until: tablet){
+    .creative__video--mobile {
+        display: block;
+    }
+
+    .creative__video--desktop {
+        display: none;
     }
 }
 

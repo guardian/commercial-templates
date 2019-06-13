@@ -6,6 +6,9 @@ getIframeId()
     reportClicks();
 
     let isUpdating = false;
+    let VideoOnMobile = '[%VideoOnMobile%]';
+
+    setMobileVideo();
 
     // We want to know when the slot is in view so we can control the video
     // and animation
@@ -24,6 +27,7 @@ getIframeId()
     // process to happen only once. When the video ends, we let everyone
     // know about it.
     let video = document.getElementsByTagName('video')[0];
+    console.log(video);
     let played = false;
     video.onended = () => played = true;
 
@@ -50,6 +54,13 @@ getIframeId()
             });
         }
     });
+
+    // showing video for mobile and tablets
+    function setMobileVideo() {
+        if (VideoOnMobile == 'yes') {
+            document.querySelector('.creative__video--mobile').classList.add("hasMobileVideo");
+        } 
+    }
 
     function updateView() {
         isUpdating = false;
