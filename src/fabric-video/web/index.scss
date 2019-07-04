@@ -42,7 +42,7 @@
     }
 
     .hasMobileVideo {
-        z-index: 10;
+        z-index: 2;
         display: block
     }
 
@@ -107,7 +107,7 @@
 
 }
 
-@include mq($until: tablet){
+@include mq($until: tablet) {
     .creative__video--mobile {
         display: block;
     }

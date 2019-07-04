@@ -8,8 +8,6 @@ getIframeId()
     let isUpdating = false;
     let VideoOnMobile = '[%VideoOnMobile%]';
 
-    setMobileVideo();
-
     // We want to know when the slot is in view so we can control the video
     // and animation
     let inView = false;
@@ -27,9 +25,10 @@ getIframeId()
     // process to happen only once. When the video ends, we let everyone
     // know about it.
     let video = document.getElementsByTagName('video')[0];
-    console.log(video);
     let played = false;
     video.onended = () => played = true;
+
+    setMobileVideo();
 
     onViewport(({ height }) => {
         // That's it, the video has only played once so we don't need

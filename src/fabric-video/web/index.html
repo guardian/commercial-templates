@@ -22,11 +22,12 @@
             </div>
 
             <div class="creative__alt creative__alt--mobile mobile-only"
-                style="background: [%BackgroundColour%] url('[%MobileBackgroundImage%]') [%MobileBackgroundPosition%] [%MobileBackgroundRepeat%];">
+                style="background: [%BackgroundColour%] url('[%MobileBackgroundImage%]') [%MobileBackgroundPosition%] [%MobileBackgroundRepeat%]">
+                <div class="creative__poster" style="background-image:url('[%MobileVideoBackupImage%]')"></div>
                 <video muted playsinline class="creative__video creative__video--mobile creative__video--[%VideoAlignment%]">
                     <source src="[%VideoURLMobile%]" type="video/mp4">
                 </video>
-                <div class="creative__poster" style="background-image:url('[%VideoBackupImage%]')"></div>
+                
                 <div class="creative__layer creative__layer1" style="background-image:url([%MobileLayer1BackgroundImage%]);background-position:[%MobileLayer1BackgroundPosition%];"></div>
                 <div class="creative__layer creative__layer2" style="background-image:url([%MobileLayer2BackgroundImage%]);background-position:[%MobileLayer2BackgroundPosition%];"></div>
                 <div class="creative__layer creative__layer3" style="background-image:url([%MobileLayer3BackgroundImage%]);background-position:[%MobileLayer3BackgroundPosition%];"></div>
