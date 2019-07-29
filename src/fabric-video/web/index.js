@@ -24,10 +24,20 @@ getIframeId()
     // We'll start the video when the slot is in view, but we want this
     // process to happen only once. When the video ends, we let everyone
     // know about it.
-    let video = document.getElementsByTagName('video')[0];
-    let played = false;
-    video.onended = () => played = true;
+    let video = document.getElementsByTagName('video');
+    let played = false; 
+    
+    if ( (window.innerWidth <= 740) && (video.length > 0) ) {
+        video = video[1];
+        video.onended = () => played = true;
+    } else {
+        video = video[0];
+        video.onended = () => played = true;
+    }
 
+    
+    //if options have been set to show mobile video 
+    //add class to mobile video contianer
     setMobileVideo();
 
     onViewport(({ height }) => {
