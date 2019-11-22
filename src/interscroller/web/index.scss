@@ -1,0 +1,25 @@
+@import '_core';
+
+.creative--parallax {
+    height: 100vh;
+    position: relative;
+    margin: 40px 0;
+
+    .creative--interscroller__cta {
+      z-index: 1;
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      box-sizing: border-box;
+    }
+
+    .creative--interscroller-image-overlay {
+      z-index: 1;
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      box-sizing: border-box;
+    }
+}
