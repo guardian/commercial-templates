@@ -12,7 +12,7 @@ const updateBackground = () => {
         `url('[%BackgroundImage%]')`,
         'no-repeat',
         'center center',
-        'cover',
+        '100% 100%',
     ];
 
     sendMessage('background', {
