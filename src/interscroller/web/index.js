@@ -14,7 +14,7 @@ const updateBackground = () => {
         'no-repeat',
         'center center',
         '100% 100%',
-        `[%CLICK_URL_UNESC%]`
+        `[%ClickthroughUrl%]`
     ];
 
     sendMessage('background', {
