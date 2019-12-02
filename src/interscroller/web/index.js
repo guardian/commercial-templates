@@ -7,12 +7,14 @@ const updateBackground = () => {
         backgroundImage,
         backgroundRepeat,
         backgroundPosition,
-        backgroundSize] = [
+        backgroundSize,
+        ctaUrl ] = [
         'interscroller',
         `url('[%BackgroundImage%]')`,
         'no-repeat',
         'center center',
         '100% 100%',
+        `[%CLICK_URL_UNESC%]`
     ];
 
     sendMessage('background', {
@@ -20,7 +22,8 @@ const updateBackground = () => {
         backgroundImage,
         backgroundRepeat,
         backgroundPosition,
-        backgroundSize
+        backgroundSize,
+        ctaUrl
     });
 };
 
