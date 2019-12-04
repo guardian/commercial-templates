@@ -8,12 +8,16 @@ const updateBackground = () => {
         backgroundRepeat,
         backgroundPosition,
         backgroundSize,
+        maxWidth,
+        maxHeight,
         ctaUrl ] = [
         'interscroller',
         `url('[%BackgroundImage%]')`,
         'no-repeat',
         'center center',
-        '100% 100%',
+        'cover',
+        '500px',
+        '800px',
         `[%ClickthroughUrl%]`
     ];
 
@@ -23,6 +27,8 @@ const updateBackground = () => {
         backgroundRepeat,
         backgroundPosition,
         backgroundSize,
+        maxWidth,
+        maxHeight,
         ctaUrl
     });
 };
