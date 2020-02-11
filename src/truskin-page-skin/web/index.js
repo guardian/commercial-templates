@@ -1,7 +1,7 @@
 (function () {
     let parentBody = window.parent.document.body;
     parentBody.style.backgroundImage='url(%%VIEW_URL_UNESC%%[%PageSkinFileName%])';
-    parentBody.classList.add('full-width-page-skin');
+    parentBody.classList.add('truskin-page-skin');
     parentBody.style.backgroundAttachment='fixed';
     parentBody.style.backgroundPosition='50% 0';
     parentBody.style.backgroundRepeat='no-repeat no-repeat';
