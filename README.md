@@ -70,6 +70,12 @@ npm run stylelint
 
 This will report a large amount of warnings until some of the pre-existing sass files are updated.
 
+To let stylelint make a number of autofixes, use:
+```
+npm run stylelint:fix
+```
+This won't fix all of the issues, so stylelint will output any remaining linter errors for you to fix manually.
+
 There is a **pre-commit hook** to enforce fixes to stylelint warnings. When
 attempting to commit, pre-commit will run the linter against all staged files. If stylelint reports any warnings or errors, the commit will be prevented from completing and some helpful information will be displayed in the terminal.
 
