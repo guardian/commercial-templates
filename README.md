@@ -59,19 +59,19 @@ There will shortly be an easier way to preview, but for now:
 
 ## Code conventions and pre-commit hooks
 
-This project uses [sass-lint](https://github.com/sasstools/sass-lint). Atom has a helpful package for sass-lint: https://atom.io/packages/linter-sass-lint
+This project uses [stylelint](https://github.com/stylelint/). 
 
-To make sass-lint list **ALL** errors and warnings, use:
+To make stylelint list **ALL** errors and warnings, use:
 
 ```
-npm run sass-lint
+npm run stylelint
 
 ```
 
 This will report a large amount of warnings until some of the pre-existing sass files are updated.
 
-There is a **pre-commit hook** to enforce fixes to sass-lint warnings. When
-attempting to commit, pre-commit will run the linter against all staged files. If sass-lint reports any warnings or errors, the commit will be prevented from completing and some helpful information will be displayed in the terminal.
+There is a **pre-commit hook** to enforce fixes to stylelint warnings. When
+attempting to commit, pre-commit will run the linter against all staged files. If stylelint reports any warnings or errors, the commit will be prevented from completing and some helpful information will be displayed in the terminal.
 
 To try the validator against your staged files use:
 

@@ -1,0 +1,11 @@
+{
+    "ignoreFiles": ["node_modules/**/*.s+(a|c)ss"],
+    "extends": [
+        "stylelint-config-recommended-scss"
+    ],
+    "defaultSeverity": "warning",
+    "rules": {
+      "no-duplicate-selectors": null,
+      "no-descending-specificity": null
+    }
+  }
