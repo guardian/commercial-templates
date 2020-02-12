@@ -46,8 +46,9 @@
     "preview": "npm run build-preview && npm run serve-preview",
     "pre-commit": "lint-staged",
     "serve-preview": "nodemon preview/server.js",
-    "stylelint": "stylelint --config .stylelintrc.json '**/*.scss' -v -q",
-    "validate:sass": "stylelint --no-exit --verbose --max-warnings 0"
+    "stylelint": "stylelint '**/*.scss' --config .stylelintrc.json",
+    "stylelint:fix": "stylelint '**/*.scss' --config .stylelintrc.json --fix",
+    "validate:sass": "stylelint '**/*.scss' --max-warnings 0"
   },
   "lint-staged": {
     "*.scss": [
