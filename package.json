@@ -32,7 +32,9 @@
     "rollup-plugin-node-resolve": "^2.0.0",
     "rollup-plugin-replace": "^1.1.1",
     "rollup-plugin-uglify": "^1.0.1",
-    "sass-lint": "~1.10.2",
+    "stylelint": "^13.1.0",
+    "stylelint-config-recommended-scss": "^4.2.0",
+    "stylelint-scss": "^3.14.2",
     "uglify-js": "^2.7.0",
     "yargs": "^6.3.0"
   },
@@ -44,8 +46,9 @@
     "preview": "npm run build-preview && npm run serve-preview",
     "pre-commit": "lint-staged",
     "serve-preview": "nodemon preview/server.js",
-    "sass-lint": "sass-lint -c .sass-lint.yml '**/*.scss' -v -q",
-    "validate:sass": "sass-lint --no-exit --verbose --max-warnings 0"
+    "stylelint": "stylelint '**/*.scss' --config .stylelintrc.json",
+    "stylelint:fix": "stylelint '**/*.scss' --config .stylelintrc.json --fix",
+    "validate:sass": "stylelint '**/*.scss' --max-warnings 0"
   },
   "lint-staged": {
     "*.scss": [
