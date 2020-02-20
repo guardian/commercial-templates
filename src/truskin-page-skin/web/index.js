@@ -1,4 +1,4 @@
-let parentBody = window.parent.document.body;
+let parentBody = window.top.document.body;
 parentBody.style.backgroundImage='url(%%VIEW_URL_UNESC%%[%PageSkinFileName%])';
 parentBody.style.backgroundAttachment='fixed';
 parentBody.style.backgroundPosition='50% 0';
