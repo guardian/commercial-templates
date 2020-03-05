@@ -106,8 +106,12 @@ function getWebfonts(fontFamilies) {
 function resizeIframeHeight(height = -1) {
     return height === -1 ?
         timeout(Promise.all(areImagesLoaded().concat(isDocumentLoaded())), 3000)
-        .then(() => read(() => document.body.getBoundingClientRect().height))
+        .then(() => {
+            console.log("*** Images loaded in under 3 seconds")
+            read(() => document.body.getBoundingClientRect().height)
+        })
         .then(function(height) {
+            console.log("*** Boundling client was obtained in time")
             return sendMessage('resize', { height });
         }) :
         sendMessage('resize', { height });
