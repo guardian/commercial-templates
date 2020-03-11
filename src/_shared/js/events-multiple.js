@@ -1,178 +1,156 @@
-import { getIframeId, getWebfonts, resizeIframeHeight, onViewport, reportClicks } from
-    './messages.js';
-import { write } from './dom.js';
-import { enableToggles } from './ui.js';
-import { generatePicture } from './capi-images.js';
-import { clickMacro, setEditionLink } from './ads';
-import { hideOnError, URLSearchParams } from './utils';
+import {
+  getIframeId,
+  getWebfonts,
+  resizeIframeHeight,
+  onViewport,
+  reportClicks
+} from "./messages.js";
+import { write } from "./dom.js";
+import { enableToggles } from "./ui.js";
+import { generatePicture } from "./capi-images.js";
+import { clickMacro, setEditionLink } from "./ads";
+import { hideOnError, URLSearchParams } from "./utils";
 
-const ENDPOINT = 'https://membership.theguardian.com/events.json';
+const ENDPOINT = "https://membership.theguardian.com/events.json";
 
 const OVERRIDES = {
-    urls: ['[%Article1URL%]', '[%Article2URL%]', '[%Article3URL%]', '[%Article4URL%]'],
-    kickers: ['[%Article1Kicker%]', '[%Article2Kicker%]', '[%Article3Kicker%]', '[%Article4Kicker%]'],
-    headlines: ['[%Article1Headline%]', '[%Article2Headline%]', '[%Article3Headline%]', '[%Article4Headline%]'],
-    images: ['[%Article1Image%]', '[%Article2Image%]', '[%Article3Image%]', '[%Article4Image%]']
+  urls: ["[%Offer1URL%]", "[%Offer2URL%]", "[%Offer3URL%]", "[%Offer4URL%]"],
+  metas: [
+    "[%Offer1Meta%]",
+    "[%Offer2Meta%]",
+    "[%Offer3Meta%]",
+    "[%Offer4Meta%]"
+  ],
+  headlines: [
+    "[%Offer1Title%]",
+    "[%Offer2Title%]",
+    "[%Offer3Title%]",
+    "[%Offer4Title%]"
+  ],
+  images: [
+    "[%Offer1Image%]",
+    "[%Offer2Image%]",
+    "[%Offer3Image%]",
+    "[%Offer4Image%]"
+  ]
 };
 
-
 const getEventsData = () => {
-    return fetch(`${ENDPOINT}`)
-    .then(response => response.json())
-    .then(json => json.events.filter(f => urls.includes(f)))
-}
-
-
-// Constructs the title part of the card: headline and media icon.
-function buildTitle (card, cardInfo, cardNumber) {
-    let title = card.querySelector('.advert__title');
-    let kickerText = OVERRIDES.kickers[cardNumber];
-
-    let kicker = kickerText ? `<span class="advert__kicker">${kickerText}</span>` : '';
-    let icon = '';
-    let headline = OVERRIDES.headlines[cardNumber] || cardInfo.articleHeadline;
-
-    if (cardInfo.videoTag) {
-        card.classList.add('advert--media');
-        icon = mediaIcons['video'];
-    } else if (cardInfo.galleryTag) {
-        card.classList.add('advert--media');
-        icon = mediaIcons['camera'];
-    } else if (cardInfo.audioTag) {
-        card.classList.add('advert--media');
-        icon = mediaIcons['volume'];
-    } else {
-        card.classList.add('advert--text');
-    }
-
-    card.setAttribute('data-link-name', headline);
-
-    title.insertAdjacentHTML('beforeend', [kicker, icon, headline].join(' '));
-}
+  return fetch(`${ENDPOINT}`)
+    .then(response =>  response.json())
+    .then(json => json.events.filter(f => OVERRIDES.urls.includes(f.url)));
+};
 
 // Either from template, or workaround for IE (sigh).
-function importCard (adType) {
+function importCard(adType) {
+  const cardTemplate = document.getElementById(`${adType}-card`);
 
-    const cardTemplate = document.getElementById(`${adType}-card`);
+  // Modern browsers.
+  if (cardTemplate.content) {
+    return document.importNode(cardTemplate.content, true);
+  } else {
+    // Internet Explorer doesn't support templates.
+    const cardFragment = document.createDocumentFragment();
+    const tempDiv = document.createElement("div");
 
-    // Modern browsers.
-    if (cardTemplate.content) {
-        return document.importNode(cardTemplate.content, true);
-    } else {
-
-        // Internet Explorer doesn't support templates.
-        const cardFragment = document.createDocumentFragment();
-        const tempDiv = document.createElement('div');
-
-        tempDiv.innerHTML = cardTemplate.innerHTML;
-        while (tempDiv.firstChild) cardFragment.appendChild(tempDiv.firstChild);
-        return cardFragment;
-    }
+    tempDiv.innerHTML = cardTemplate.innerHTML;
+    while (tempDiv.firstChild) cardFragment.appendChild(tempDiv.firstChild);
+    return cardFragment;
+  }
 }
 
-// function buildLogo(card, cardNumber, cardsInfo, generateLogo) {
-//     if (cardsInfo.isSingle) return;
+const boldTitle = (title) => {
+    return title.split(":")[1] ? `<b>${title.split(":")[0]}:</b>${title.split(":")[1]}` : `<b>${title}</b>`
+}
 
-//     const cardInfo = cardsInfo.articles[cardNumber];
-//     if (cardInfo.branding) {
-//         let logo = generateLogo(cardInfo.branding.logo.src, cardInfo.branding.logo.link, 'badge--branded');
-//         card.insertAdjacentHTML('beforeend', logo);
-//     }
-// }
+// Constructs the title part of the card: headline and media icon.
+function buildTitle(card, cardInfo, cardNumber) {
+  let title = card.querySelector(".advert__title");
+  let metaText = OVERRIDES.metas[cardNumber];
+
+  let meta = metaText
+    ? `<div class="advert__meta">${metaText}</div>`
+    : "";
+  let headline = OVERRIDES.headlines[cardNumber] || boldTitle(cardInfo.title);
+  card.classList.add("advert--text");
+
+  card.setAttribute("data-link-name", headline);
+
+  title.insertAdjacentHTML("beforeend", [headline, meta].join(" "));
+}
+
+function injectBranchLogo() {
+    let componentTone   = '[%Tone%]';
+  
+    Array.from(document.getElementsByClassName('brand_logo')).forEach(insertHeaderSvg);
+  
+    function insertHeaderSvg(div) {
+      write( () => div.insertAdjacentHTML('afterbegin', logoSvgs[componentTone]) );
+    }
+  };
 
 // Constructs an individual card.
-function buildCard (cardInfo, cardNum, adType, cardsInfo, generateLogo) {
+function buildCard(cardInfo, cardNum, adType, cardsInfo) {
+  const cardFragment = importCard(adType);
+  const card = cardFragment.querySelector(`.advert--${adType}`);
+  const imgContainer = card.querySelector(".advert__image-container");
 
-    const cardFragment = importCard(adType);
-    const card = cardFragment.querySelector(`.advert--${adType}`);
-    const imgContainer = card.querySelector('.advert__image-container');
+  buildTitle(card, cardInfo, cardNum);
+  card.href = clickMacro + cardInfo.articleUrl;
 
-    buildTitle(card, cardInfo, cardNum);
-    buildLogo(card, cardNum, cardsInfo, generateLogo);
-    card.href = clickMacro + cardInfo.articleUrl;
+  const image = generatePicture({
+    url: OVERRIDES.images[cardNum] || cardInfo.mainImageUrl,
+    classes: ["advert__image"]
+  });
 
-    const image = generatePicture({
-        url: OVERRIDES.images[cardNum] || cardInfo.articleImage.backupSrc,
-        classes: ['advert__image'],
-        sources: !OVERRIDES.images[cardNum] && cardInfo.articleImage.sources
-    });
+  imgContainer.insertAdjacentHTML("afterbegin", image);
 
-    imgContainer.insertAdjacentHTML('afterbegin', image);
+  if (cardNum > 1) {
+    card.classList.add("hide-until-tablet");
+  }
 
-    if (cardNum > 0 && adType !== "hosted") {
-        imgContainer.classList.add('hide-until-tablet');
-    }
-
-    return cardFragment;
-
-}
-
-// Do we still need to add branding programatically?
-function addBranding (brandingCard, generateLogo) {
-    const logoContainer = document.querySelector('.js-logo-container');
-    const logoUrl = brandingCard.branding && brandingCard.branding.logo.src;
-    const sponsorLink = brandingCard.branding && brandingCard.branding.logo.link;
-
-    if (logoContainer && logoUrl) {
-      logoContainer.insertAdjacentHTML('beforeend', generateLogo(logoUrl, sponsorLink));
-    } else {
-      // TODO: fail gracefully and maybe give a nice debug message
-    }
-}
-
-// Sets correct glabs link based on edition (AU/All others).
-function editionLink (host, edition, adType) {
-
-    if (adType === "paidfor") {
-        setEditionLink(host, edition, document.querySelector('.adverts__stamp a'));
-    }
-
+  return cardFragment;
 }
 
 // Uses API data to build the ad content.
-function buildFromApi (host, cardsInfo, adType, generateLogo) {
-    const cardList = document.createDocumentFragment();
+function buildFromApi(host, cardsInfo, adType) {
+  const cardList = document.createDocumentFragment();
 
-    cardsInfo.isSingle = adType === 'hosted' || cardsInfo.articles
-        .map(cardInfo => cardInfo.branding && cardInfo.branding.logo.src)
-        .reduce(((isSingle, url, index, urls) => isSingle && (index === 0 || url === urls[index - 1])), true);
+  // Constructs an array of cards from an array of data.
+  cardsInfo.forEach((info, idx) => {
+    cardList.appendChild(buildCard(info, idx, adType, cardsInfo));
+  });
 
-    // Constructs an array of cards from an array of data.
-    cardsInfo.articles.forEach((info, idx) => {
-        cardList.appendChild(buildCard(info, idx, adType, cardsInfo, generateLogo));
-    });
-
-    return write(() => {
-        // Takes branding from last possible card, in case earlier ones overridden.
-        var brandingCard = cardsInfo.articles.slice(-1)[0];
-        if( cardsInfo.isSingle ) {
-            addBranding(brandingCard, generateLogo);
-        }
-        let advertRow = document.querySelector('.adverts__row');
-        advertRow.appendChild(cardList);
-        editionLink(host, cardsInfo.articles[0].edition, adType);
-    });
+  return write(() => {
+    // Takes branding from last possible card, in case earlier ones overridden.
+    injectBranchLogo()
+    let advertRow = document.querySelector(".adverts__row");
+    advertRow.appendChild(cardList);
+  });
 }
 
-export default function apiMultiple (adType, generateLogo) {
-    let lastWidth;
+export default function apiMultiple(adType) {
+  let lastWidth;
 
-    enableToggles();
+  enableToggles();
 
-    return getIframeId()
-    .then(({ host }) => Promise.all([
+  return getIframeId()
+    .then(({ host }) =>
+      Promise.all([
         reportClicks(),
         getWebfonts(),
-        ()
-        .then(apiData => buildFromApi(host, apiData, adType, generateLogo))
-    ]))
+        getEventsData().then(apiData =>
+          buildFromApi(host, apiData, adType)
+        )
+      ])
+    )
     .then(() => {
-        onViewport(({ width }) => {
-            if( width != lastWidth ) {
-                resizeIframeHeight();
-                lastWidth = width;
-            }
-        });
+      onViewport(({ width }) => {
+        if (width != lastWidth) {
+          resizeIframeHeight();
+          lastWidth = width;
+        }
+      });
     })
-    .catch( error => hideOnError(error, `events-multiple-${adType}`));
+    .catch(error => hideOnError(error, `events-multiple-${adType}`));
 }
