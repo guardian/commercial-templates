@@ -11,7 +11,10 @@ import { generatePicture } from "./capi-images.js";
 import { clickMacro, setEditionLink } from "./ads";
 import { hideOnError, URLSearchParams } from "./utils";
 
-const ENDPOINT = "https://membership.theguardian.com/events.json";
+const ENDPOINTS = {
+  live: "https://membership.theguardian.com/events.json",
+  masterclass: "https://membership.theguardian.com/masterclasses.json"
+};
 
 const OVERRIDES = {
   urls: ["[%Offer1URL%]", "[%Offer2URL%]", "[%Offer3URL%]", "[%Offer4URL%]"],
@@ -35,9 +38,9 @@ const OVERRIDES = {
   ]
 };
 
-const getEventsData = () => {
+const getEventsData = (ENDPOINT) => {
   return fetch(`${ENDPOINT}`)
-    .then(response =>  response.json())
+    .then(response => response.json())
     .then(json => json.events.filter(f => OVERRIDES.urls.includes(f.url)));
 };
 
@@ -59,18 +62,18 @@ function importCard(adType) {
   }
 }
 
-const boldTitle = (title) => {
-    return title.split(":")[1] ? `<b>${title.split(":")[0]}:</b>${title.split(":")[1]}` : `<b>${title}</b>`
-}
+const boldTitle = title => {
+  return title.split(":")[1]
+    ? `<b>${title.split(":")[0]}:</b>${title.split(":")[1]}`
+    : `<b>${title}</b>`;
+};
 
 // Constructs the title part of the card: headline and media icon.
 function buildTitle(card, cardInfo, cardNumber) {
   let title = card.querySelector(".advert__title");
   let metaText = OVERRIDES.metas[cardNumber];
 
-  let meta = metaText
-    ? `<div class="advert__meta">${metaText}</div>`
-    : "";
+  let meta = metaText ? `<div class="advert__meta">${metaText}</div>` : "";
   let headline = OVERRIDES.headlines[cardNumber] || boldTitle(cardInfo.title);
   card.classList.add("advert--text");
 
@@ -80,14 +83,16 @@ function buildTitle(card, cardInfo, cardNumber) {
 }
 
 function injectBranchLogo() {
-    let componentTone   = '[%Tone%]';
-  
-    Array.from(document.getElementsByClassName('brand_logo')).forEach(insertHeaderSvg);
-  
-    function insertHeaderSvg(div) {
-      write( () => div.insertAdjacentHTML('afterbegin', logoSvgs[componentTone]) );
-    }
-  };
+  let componentTone = "[%Tone%]";
+
+  Array.from(document.getElementsByClassName("brand_logo")).forEach(
+    insertHeaderSvg
+  );
+
+  function insertHeaderSvg(div) {
+    write(() => div.insertAdjacentHTML("afterbegin", logoSvgs[componentTone]));
+  }
+}
 
 // Constructs an individual card.
 function buildCard(cardInfo, cardNum, adType, cardsInfo) {
@@ -99,7 +104,7 @@ function buildCard(cardInfo, cardNum, adType, cardsInfo) {
   card.href = clickMacro + cardInfo.articleUrl;
 
   const image = generatePicture({
-    url: OVERRIDES.images[cardNum] || cardInfo.mainImageUrl,
+    url: OVERRIDES.images[cardNum] || cardInfo.socialImageUrl,
     classes: ["advert__image"]
   });
 
@@ -123,7 +128,7 @@ function buildFromApi(host, cardsInfo, adType) {
 
   return write(() => {
     // Takes branding from last possible card, in case earlier ones overridden.
-    injectBranchLogo()
+    injectBranchLogo();
     let advertRow = document.querySelector(".adverts__row");
     advertRow.appendChild(cardList);
   });
@@ -131,6 +136,7 @@ function buildFromApi(host, cardsInfo, adType) {
 
 export default function apiMultiple(adType) {
   let lastWidth;
+  const ENDPOINT = ENDPOINTS[adType];
 
   enableToggles();
 
@@ -139,9 +145,7 @@ export default function apiMultiple(adType) {
       Promise.all([
         reportClicks(),
         getWebfonts(),
-        getEventsData().then(apiData =>
-          buildFromApi(host, apiData, adType)
-        )
+        getEventsData(ENDPOINT).then(apiData => buildFromApi(host, apiData, adType))
       ])
     )
     .then(() => {
