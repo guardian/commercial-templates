@@ -45,7 +45,7 @@ This will require you to use:
 
 ### Automated ads
 
-A number of ads (`events-multiple` and `masterclass-multiple`) use areader revenue endpoint. In their associated `test.json` files you will see that the URL's refer to `mem.thegulocal.com` as the domain. This requires the [`membership-frontend`](https://github.com/guardian/membership-frontend) to be running and using the `nginx` server. Make sure to set this up before testing these ads.
+A number of ads (`events-multiple` and `masterclass-multiple`) use a reader revenue endpoint. In their associated `test.json` files you will see that the URL's refer to `mem.thegulocal.com` as the domain. The `_src/js/events-multiple.js` needs to be updated to reflect this domain also. This requires the [`membership-frontend`](https://github.com/guardian/membership-frontend) to be running and using the `nginx` server. Make sure to set this up before testing these ads.
 
 ## Testing on Frontend (Prod)
 
