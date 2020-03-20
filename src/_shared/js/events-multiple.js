@@ -38,7 +38,7 @@ const OVERRIDES = {
   ]
 };
 
-const getEventsData = (ENDPOINT) => {
+const getEventsData = ENDPOINT => {
   return fetch(`${ENDPOINT}`)
     .then(response => response.json())
     .then(json => json.events.filter(f => OVERRIDES.urls.includes(f.url)));
@@ -94,15 +94,22 @@ function injectBranchLogo() {
   }
 }
 
+function buildClickthroughUrl(originalUrl) {
+  const parsedUrl = new URL(originalUrl);
+  parsedUrl.searchParams.set("INTCMP", "[%TrackingId%]");
+  const clickthroughUrl = `${clickMacro}${parsedUrl.toString()}`;
+  return clickthroughUrl;
+}
+
 // Constructs an individual card.
 function buildCard(cardInfo, cardNum, adType, cardsInfo) {
   const cardFragment = importCard(adType);
   const card = cardFragment.querySelector(`.advert--${adType}`);
   const imgContainer = card.querySelector(".advert__image-container");
+  const clickthroughUrl = buildClickthroughUrl(`${OVERRIDES.urls[cardNum]}`);
+  card.href = clickthroughUrl;
 
   buildTitle(card, cardInfo, cardNum);
-  card.href = clickMacro + cardInfo.articleUrl;
-
   const image = generatePicture({
     url: OVERRIDES.images[cardNum] || cardInfo.socialImageUrl,
     classes: ["advert__image"]
@@ -120,11 +127,13 @@ function buildCard(cardInfo, cardNum, adType, cardsInfo) {
 // Uses API data to build the ad content.
 function buildFromApi(host, cardsInfo, adType) {
   const cardList = document.createDocumentFragment();
-
   // Constructs an array of cards from an array of data.
   cardsInfo.forEach((info, idx) => {
     cardList.appendChild(buildCard(info, idx, adType, cardsInfo));
   });
+
+  const adClickthrough = document.querySelector(".adverts__ctas a");
+  adClickthrough.href = buildClickthroughUrl("[%TitleURL%]");
 
   return write(() => {
     // Takes branding from last possible card, in case earlier ones overridden.
@@ -145,7 +154,9 @@ export default function apiMultiple(adType) {
       Promise.all([
         reportClicks(),
         getWebfonts(),
-        getEventsData(ENDPOINT).then(apiData => buildFromApi(host, apiData, adType))
+        getEventsData(ENDPOINT).then(apiData =>
+          buildFromApi(host, apiData, adType)
+        )
       ])
     )
     .then(() => {
