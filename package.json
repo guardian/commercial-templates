@@ -19,7 +19,7 @@
     "hogan.js": "^3.0.2",
     "lint-staged": "^4.0.3",
     "node-sass": "^4.13.1",
-    "nodemon": "^1.11.0",
+    "nodemon": "^2.0.2",
     "postcss": "^5.2.5",
     "pre-commit": "^1.2.2",
     "react": "^15.3.2",
