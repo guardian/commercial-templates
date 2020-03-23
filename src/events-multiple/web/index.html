@@ -8,7 +8,7 @@
           <span class="adverts__blurb">[%Explainer%]</span>
         </div>
         <div class="adverts__ctas">
-            <a class="button button--large button--bordered" href="%%CLICK_URL_UNESC%%[%TitleURL%]" data-link-name="view-all" target="_top">
+            <a class="button button--large button--bordered" href="" data-link-name="view-all" target="_top">
                 [%ViewAll%]
                 {{#svg}}arrow-right{{/svg}}
             </a>
@@ -20,11 +20,11 @@
 </aside>
 
 <template id="[%Tone%]-card">
-    <a class="blink advert advert--masterclass advert--prominent-[%IsProminent%] advert--[%Tone%]" href="" data-link-name="" target="_top">
+    <a class="blink advert advert--prominent-[%IsProminent%] advert--[%Tone%]" href="" data-link-name="" target="_top">
         <div class="advert__image-container"></div>
         <h2 class="blink__anchor advert__title"></h2>
         <span class="advert__more button button--small">
-            Book Tickets
+            [%CardClickthrough%]
             {{#svg}}arrow-right{{/svg}}
         </span>
     </a>
