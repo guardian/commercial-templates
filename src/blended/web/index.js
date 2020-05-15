@@ -13,24 +13,19 @@ let createAdvert = {
     Book: createBlendedCard.bind(null, 'books', 'https://bookshop.theguardian.com/', logoBookshop, 'visit-shop', createBook),
     Job:  createBlendedCard.bind(null, 'jobs', 'https://jobs.theguardian.com/', logoJobs, 'visit-site', createJob),
     Masterclass: createBlendedCard.bind(null, 'masterclass', 'https://theguardian.com/guardian-masterclasses/', logoMasterclasses, 'visit-site', createMasterclass),
-    Soulmates: createBlendedCard.bind(null, 'soulmates', 'https://soulmates.theguardian.com/', logoSoulmates,'visit-all', createSoulmates),
     Travel: createBlendedCard.bind(null, 'travels', 'https://holidays.theguardian.com/', logoHolidays, 'visit-all', createTravel)
-};
-
-let advertFooter = {
-    Soulmates: createSoulmatesFooter
 };
 
 reportClicks();
 getIframeId()
 .then(({ host, preview }) => fetch(`${getApiBaseUrl(host, preview)}/commercial/api/multi.json?${params}`))
 .then(response => response.json())
-.then(offers => offers.map((offer, index) => createAdvert[offer.type](offer.value, index, advertFooter[offer.type] || null)).join(''))
+.then(offers => offers.map((offer, index) => createAdvert[offer.type](offer.value, index)).join(''))
 .then(html => Promise.all([getWebfonts(), write(() => container.innerHTML = html)]))
 .then(() => resizeIframeHeight())
 .catch( error => hideOnError(error, 'blended'));
 
-function createBlendedCard(type, titleUrl, titleLogo, titleDln, contentFn, content, index, footerFn = null) {
+function createBlendedCard(type, titleUrl, titleLogo, titleDln, contentFn, content, index) {
     return `<div class="advert-blended advert-blended--${ type }" data-link-name="Offer ${index + 1} | ${type}">
         <div class="advert-blended__title">
             <a href="%%CLICK_URL_UNESC%%${ titleUrl }"
@@ -41,7 +36,6 @@ function createBlendedCard(type, titleUrl, titleLogo, titleDln, contentFn, conte
         <div class="advert-blended__body">
             ${ contentFn(content) }
         </div>
-        ${ footerFn ? '<div class="advert-blended__footer">' + footerFn() + '</div>' : '' }
     </div>`;
 }
 
@@ -101,17 +95,6 @@ function createMasterclass(event) {
                 ${arrowRight}
             </span>
         </div>
-    </a>`;
-}
-
-function createSoulmates(soulmates) {
-    return createMember(soulmates.member1) + createMember(soulmates.member2);
-}
-
-function createSoulmatesFooter() {
-    return `<a class="button button--small" href="%%CLICK_URL_UNESC%%https://soulmates.theguardian.com" data-link-name="find-soulmate-link" target="_top">
-        <span>Find a Soulmate</span>
-        ${arrowRight}
     </a>`;
 }
 
