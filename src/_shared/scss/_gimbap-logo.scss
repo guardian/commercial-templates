@@ -66,20 +66,6 @@
     }
 }
 
-.gimbap-logo--tone-soulmates {
-    svg {
-        width: 85px; /* "Make your own magic" */
-        height: 18px;
-        fill: $gimbap-soulmates-text;
-    }
-
-    &.gimbap-logo--reversed {
-        svg {
-            fill: #ffffff;
-        } 
-    }
-}
-
 .gimbap-logo--tone-bookshop {
     .logo--part1 {
         fill: #6d7173;
