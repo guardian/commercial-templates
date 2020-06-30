@@ -130,9 +130,11 @@ function areImagesLoaded() {
 
 function sendMessage(type, value) {
     const id = generateId();
+    console.log("About to send message...", value)
 
     return timeout(new Promise((resolve, reject) => {
         self.addEventListener('message', function onMessage({ data }) {
+            console.log("Received message", data)
             let msgId, error, result;
             try {
                 ({ id: msgId, error, result } = JSON.parse(data));
@@ -149,6 +151,7 @@ function sendMessage(type, value) {
                 reject(error);
             }
         });
+        console.log("About to send message:", id, iframeId, type, value)
         post(id, iframeId, type, value);
     }), 300);
 }
