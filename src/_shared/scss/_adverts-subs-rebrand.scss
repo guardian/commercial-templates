@@ -1,6 +1,29 @@
 .adverts--subs-rebrands {
-    > .adverts__header {
+    .adverts__header {
         background: $guardian-subscriptions-rebrand-blue;
+    }
+
+    .button--large {
+        background:#ffe500;
+        color: black;
+    }
+
+    .button--small {
+        color: white;
+        background: $guardian-subscriptions-rebrand-blue;
+    }
+
+    .adverts__blurb {
+        color: white;
+        background: $guardian-subscriptions-rebrand-blue;
+    }
+
+    .button--legacy-single {
+        &:hover,
+        &:focus,
+        &:active {
+            background: darken($guardian-subscriptions-rebrand-blue, 5%);
+        }
     }
 }
 
@@ -18,27 +41,4 @@
             background: darken($guardian-subscriptions-rebrand-blue, 5%);
         }
     }
-}
-
-.adverts--subs-rebrands .button--legacy-single {
-    &:hover,
-    &:focus,
-    &:active {
-        background: darken($guardian-subscriptions-rebrand-blue, 5%);
-    }
-}
-
-.adverts--subs-rebrands .adverts__blurb {
-    color: white;
-    background: $guardian-subscriptions-rebrand-blue;
-}
-
-.adverts--subs-rebrands .button--large {
-    background:#ffe500;
-    color: black;
-}
-
-.adverts--subs-rebrands .button--small {
-    color: white;
-    background: $guardian-subscriptions-rebrand-blue;
 }
