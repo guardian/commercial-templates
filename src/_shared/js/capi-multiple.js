@@ -176,23 +176,22 @@ export default function capiMultiple (adType, generateLogo) {
 
     enableToggles();
 
-    return Promise.all([
+    return new Promise(resolve=>{
+        resolve({id: "test", host: "https://theguardian.com", preview: "false"});
+    }).then(({ host }) => Promise.all([
         reportClicks(),
         getWebfonts(),
         retrieveCapiData()
-        .then(capiData => buildFromCapi(host, capiData, adType, generateLogo))
-    ])
-    .then(() => {
-        const debugElem = document.createElement("div");
-        debugElem.id = 'all-promises-success';
-        document.body.appendChild(debugElem);
-
+            .then(capiData => buildFromCapi(host, capiData, adType, generateLogo))
+    ])).then(() => {
         onViewport(({ width }) => {
             if( width != lastWidth ) {
                 resizeIframeHeight();
                 lastWidth = width;
             }
         });
-    })
-    .catch( error => hideOnError(error, `capi-multiple-${adType}`));
+    }).catch( error => {
+        console.log('catch', error);
+        hideOnError(error, `capi-multiple-${adType}`)
+    });
 }
