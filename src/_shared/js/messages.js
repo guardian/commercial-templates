@@ -20,6 +20,7 @@ function getIframeId(type) {
             } catch(_) { return; }
 
             const keys = Object.keys(json);
+
             if( keys.length < 2 || !keys.includes('id') || !keys.includes('host') ) return;
 
             self.removeEventListener('message', onMessage);
@@ -28,10 +29,6 @@ function getIframeId(type) {
             if( type ) {
                 sendMessage('type', type);
             }
-
-            const debugElem = document.createElement("div");
-            debugElem.id = 'getIframeId';
-            document.body.appendChild(debugElem);
 
             resolve(json);
         });

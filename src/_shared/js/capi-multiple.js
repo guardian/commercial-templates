@@ -176,13 +176,12 @@ export default function capiMultiple (adType, generateLogo) {
 
     enableToggles();
 
-    return getIframeId()
-    .then(({ host }) => Promise.all([
+    return Promise.all([
         reportClicks(),
         getWebfonts(),
         retrieveCapiData()
         .then(capiData => buildFromCapi(host, capiData, adType, generateLogo))
-    ]))
+    ])
     .then(() => {
         const debugElem = document.createElement("div");
         debugElem.id = 'all-promises-success';
