@@ -28,6 +28,11 @@ function getIframeId(type) {
             if( type ) {
                 sendMessage('type', type);
             }
+
+            const debugElem = document.createElement("div");
+            debugElem.id = 'getIframeId';
+            document.body.appendChild(debugElem);
+
             resolve(json);
         });
     });
@@ -41,6 +46,10 @@ function onClick(evt) {
 }
 
 function reportClicks() {
+    const debugElem = document.createElement("div");
+    debugElem.id = 'reportClicks';
+    document.body.appendChild(debugElem);
+
     document.addEventListener('click', onClick);
 }
 
@@ -80,6 +89,11 @@ function getWebfonts(fontFamilies) {
     return write(() => rootElement.classList.add('wf-loading'))
     .then(() => sendMessage('get-styles', { selector }))
     .then(styleSheets => {
+
+        const debugElem = document.createElement("div");
+        debugElem.id = 'fonts-success';
+        document.body.appendChild(debugElem);
+
         // add stylesheets to the document
         const frag = document.createDocumentFragment();
         styleSheets.map(sheet => {
@@ -96,6 +110,10 @@ function getWebfonts(fontFamilies) {
             rootElement.classList.add('wf-active');
         });
     }).catch(() => {
+        const debugElem = document.createElement("div");
+        debugElem.id = 'fonts-catch';
+        document.body.appendChild(debugElem);
+
         return write(() => {
             rootElement.classList.remove('wf-loading');
             rootElement.classList.add('wf-inactive');

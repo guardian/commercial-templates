@@ -24,6 +24,12 @@ function retrieveCapiData () {
             params.append('t', url);
         }
     });
+
+    const debugElem = document.createElement("div");
+    debugElem.id = 'endpoint-URL';
+    debugElem.innerText = params;
+    document.body.appendChild(debugElem);
+
     return fetch(`${ENDPOINT}?${params}`)
     .then(response => response.json());
 }
@@ -136,6 +142,12 @@ function editionLink (host, edition, adType) {
 
 // Uses cAPI data to build the ad content.
 function buildFromCapi (host, cardsInfo, adType, generateLogo) {
+    const debugElem = document.createElement("div");
+    debugElem.id = 'build-from-capi';
+    debugElem.innerText = cardsInfo;
+    document.body.appendChild(debugElem);
+
+
     const cardList = document.createDocumentFragment();
 
     cardsInfo.isSingle = adType === 'hosted' || cardsInfo.articles
@@ -172,6 +184,10 @@ export default function capiMultiple (adType, generateLogo) {
         .then(capiData => buildFromCapi(host, capiData, adType, generateLogo))
     ]))
     .then(() => {
+        const debugElem = document.createElement("div");
+        debugElem.id = 'all-promises-success';
+        document.body.appendChild(debugElem);
+
         onViewport(({ width }) => {
             if( width != lastWidth ) {
                 resizeIframeHeight();
