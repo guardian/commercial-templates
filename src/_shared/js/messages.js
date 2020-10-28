@@ -103,13 +103,25 @@ function getWebfonts(fontFamilies) {
     });
 }
 
+
+
 function resizeIframeHeight(height = -1) {
+    const debugElem = document.createElement("div");
+    debugElem.id = 'resize-height-before';
+    debugElem.innerText = height + "";
+    document.body.appendChild(debugElem);
+
     return height === -1 ?
         timeout(Promise.all(areImagesLoaded().concat(isDocumentLoaded())), 3000)
         .then(() => {
             return read(() => document.body.getBoundingClientRect().height)
         })
         .then(function(height) {
+            const debugElem1 = document.createElement("div");
+            debugElem1.id = 'resize-message-1';
+            debugElem1.innerText = height;
+            document.body.appendChild(debugElem1);
+
             return sendMessage('resize', { height });
         }) :
         sendMessage('resize', { height });
@@ -149,6 +161,11 @@ function sendMessage(type, value) {
                 reject(error);
             }
         });
+        const debugElem1 = document.createElement("div");
+        debugElem1.id = 'resize-postmessage';
+        debugElem1.innerText = id + " - " +  iframeId  + " - " +  type  + " - " +  value;
+        document.body.appendChild(debugElem1);
+
         post(id, iframeId, type, value);
     }), 300);
 }

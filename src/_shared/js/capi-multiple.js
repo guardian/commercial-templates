@@ -172,7 +172,16 @@ export default function capiMultiple (adType, generateLogo) {
         .then(capiData => buildFromCapi(host, capiData, adType, generateLogo))
     ]))
     .then(() => {
+        const debugElem = document.createElement("div");
+        debugElem.id = 'before-viewport';
+        document.body.appendChild(debugElem);
+
         onViewport(({ width }) => {
+            const debugElem = document.createElement("div");
+            debugElem.id = 'on-viewport';
+            debugElem.innerText = "width: " +  width + " lastwidth: " + lastWidth;
+            document.body.appendChild(debugElem);
+
             if( width != lastWidth ) {
                 resizeIframeHeight();
                 lastWidth = width;
