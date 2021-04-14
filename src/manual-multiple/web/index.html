@@ -71,10 +71,7 @@
         </div>
     </div>
 </aside>
-<script>
-    const genericLogoTones = ['brand', 'lifestyle', 'climate', 'climate2', 'support']
-    const subscriptionsLogoTones = ['subscription', 'subs-rebrand']
-    
+<script>    
     const genericLogoString = '{{#svg}}guardian-generic-logo{{/svg}}'
     const subscriptionsLogoString = '{{#svg}}guardian-subscriptions-logo{{/svg}}'
 
@@ -88,7 +85,12 @@
         'weekly': '{{#svg}}guardian-weekly-logo{{/svg}}',
         'members': '{{#svg}}guardian-members-logo{{/svg}}',
         'patron': '{{#svg}}guardian-patron-logo{{/svg}}',
-        ...Object.fromEntries(genericLogoTones.map(tone => [tone, genericLogoString])),
-        ...Object.fromEntries(subscriptionsLogoTones.map(tone => [tone, subscriptionsLogoString]))
+        'brand': genericLogoString,
+        'lifestyle': genericLogoString,
+        'climate': genericLogoString,
+        'climate2': genericLogoString,
+        'support': genericLogoString,
+        'subscription': subscriptionsLogoString,
+        'subs-rebrand': subscriptionsLogoString
     };
 </script>
