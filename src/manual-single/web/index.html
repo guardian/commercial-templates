@@ -38,7 +38,6 @@
   </aside>
   
   <script>
-      const genericLogoTones = ['brand', 'brand-new', 'lifestyle', 'climate', 'support']
       const genericLogoString = '{{#svg}}guardian-generic-logo{{/svg}}'
       
       var logoSvgs = {
@@ -52,6 +51,10 @@
           'weekly': '{{#svg}}guardian-weekly-logo{{/svg}}',
           'members': '{{#svg}}guardian-members-logo{{/svg}}',
           'patron': '{{#svg}}guardian-patron-logo{{/svg}}',
-          ...Object.fromEntries(genericLogoTones.map(tone => [tone, genericLogoString]))
-      };
+          'brand': genericLogoString,
+          'brand-new': genericLogoString,
+          'lifestyle': genericLogoString,
+          'climate': genericLogoString,
+          'support': genericLogoString
+      }
   </script>
