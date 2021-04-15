@@ -5,12 +5,12 @@
 - Generate `index.html`, `index.scss` and `index.js` following current standards and the specification doc
 - Ensure that you are running at least `node` version 6. (You might want to run `nvm use 6`.)
 - At the root of the repository run `npm install` and `npm run build`.  
-  This will generate HTML and CSS artefacts under `/build/<template-name>`, which can be copied into native styles in DFP.
+  This will generate HTML and CSS artefacts under `/build/<template-name>`, which can be copied into native styles in GAM.
 - You should now be able to test your templates.
 
 ## Testing Locally (Previewing)
 
-There is a local test server included in the `preview` directory. To use it simply mock up DFP variables in a test JSON file.
+There is a local test server included in the `preview` directory. To use it simply mock up GAM variables in a test JSON file.
 
 For example, if you're working on `manual-multiple`, create `test.json` in the `manual-multiple` directory and populate it as follows:
 
@@ -51,7 +51,7 @@ A number of ads (`events-multiple` and `masterclass-multiple`) use a reader reve
 
 There will shortly be an easier way to preview, but for now:
 
-- Create a new Native Style in DFP
+- Create a new Native Style in GAM
 - Remember to set the targeting in the Native Style
 - Paste in the .html build file and minified CSS
 - Create a new order (one order per dev for testing, multiple line items can be associated with 1 order item) with testing advertiser
@@ -92,8 +92,8 @@ npm run pre-commit
 
 #### Development for the future
 
-Ultimately, the aim is to have a self-maintaining process whereby, on each merge to master, each style will compiled and pushed up to DFP (if a change is detected), thus maintaining fidelity between the two sources at all times.
+Ultimately, the aim is to have a self-maintaining process whereby, on each merge to master, each style will compiled and pushed up to GAM (if a change is detected), thus maintaining fidelity between the two sources at all times.
 
 ## Useful Info
 
-- DFP variables can be used in JS strings, because the `index.js` file gets minified and attached to the bottom of the page during the build process.
+- GAM variables can be used in JS strings, because the `index.js` file gets minified and attached to the bottom of the page during the build process.
