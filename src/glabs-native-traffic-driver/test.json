@@ -3,10 +3,10 @@
 	"Trackingpixel": "",
 	"ArticleImage": "",
 	"ArticleImageAlternateText": "Some Text",
-	"ArticleHeaderText": "",
-	"ArticleText": "",
+	"ArticleHeaderText": "Test",
+	"ArticleText": "Test 2",
 	"ShowText": "no",
-	"Brand": "",
+	"Brand": "Test",
 	"BrandLogo": "http://pagead2.googlesyndication.com/pagead/imgad?id=CICAgKDjnfPJbBABGAEyCHbj_OBIEKp8",
 	"OmnitureId": ""
 }

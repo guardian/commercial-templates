@@ -1,0 +1,12 @@
+{
+  "DapAssetsFolder": "test-creative",
+  "ThirdPartyTag": "https://tpc.googlesyndication.com/pagead/imgad?id=CICAgKCrtKGjoAEQARgBMgjYagW3ARF6Fw",
+  "TrackingPixel": "https://gu.com/tracking-pixel.gif",
+  "ResearchPixel": "https://gu.com/research-pixel.gif",
+  "ViewabilityTracker": "<img src='https://gu.com/viewability-tracker.gif'>",
+  "BackgroundImage":"https://tpc.googlesyndication.com/pimgad/18334029801012570808?",
+  "Brand": "CPAG",
+  "BrandURL": "https://cpag.org.uk/",
+  "CharityPercentage": "5",
+  "BrandLogo": "https://cpag.org.uk/sites/all/themes/cpag/logo.png"
+}
