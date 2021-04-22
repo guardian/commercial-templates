@@ -3,7 +3,7 @@ $brand-colour: #D16970;
 
 .creative--programmatic-mpu {
     margin: 0 auto;
-    width: 300px;
+    width: 970px;
     height: 250px;
     top: 0;
     left: 0;
@@ -11,13 +11,13 @@ $brand-colour: #D16970;
 }
 
 .creative__image {
-  width: 300px;
+  width: 970px;
   height: 250px;
 }
 
 .creative__link {
   margin: 0;
-  width: 300px;
+  width: 970px;
   height: 250px;
   top: 0;
   left: 0;
@@ -52,7 +52,7 @@ $brand-colour: #D16970;
   flex-direction: column;
   text-align: center;
   position: absolute;
-  bottom: 0;
+  bottom: 0px;
   left: 0;
 }
 
@@ -67,8 +67,8 @@ $brand-colour: #D16970;
 
 .creative__brand-image {
   display: block;
-  max-width: 89px;
-  padding: 0 5px;
+  max-width: 117px;
+  padding: 0 17px;
 }
 
 /* Tooltip css */
@@ -123,8 +123,7 @@ $brand-colour: #D16970;
 
 .creative__brand-wrapper .creative__brand {
   max-width: 0;
-  -webkit-transition: max-width 1s;
-  transition: max-width 1s;
+  transition: all 0.5s linear;
   /*display: inline-block;*/
   vertical-align: top;
   white-space: nowrap;
@@ -147,4 +146,9 @@ $brand-colour: #D16970;
 .right {
   transform: rotate(-45deg);
   -webkit-transform: rotate(-45deg);
+}
+
+.left {
+  transform: rotate(135deg);
+  -webkit-transform: rotate(135deg);
 }
