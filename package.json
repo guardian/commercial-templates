@@ -18,7 +18,7 @@
     "fs-extra": "^4.0.2",
     "hogan.js": "^3.0.2",
     "lint-staged": "^4.0.3",
-    "node-sass": "^4.14.1",
+    "sass": "^1.32.12",
     "nodemon": "^2.0.4",
     "postcss": "^5.2.5",
     "pre-commit": "^1.2.2",
