@@ -1,12 +1,13 @@
 @mixin separator($colour, $left, $margin-left: 0) {
     content: '';
     position: absolute;
-    left: $left;
+    left: 0;
     top: 0;
     bottom: 0;
     margin-left: $margin-left;
     width: 1px;
     background: $colour;
+    box-sizing: border-box;
 }
 
 .adverts {
@@ -117,17 +118,20 @@
     }
 
     > .adverts__body {
+        max-width: 100%;
+        box-sizing: border-box;
         padding-bottom: $gs-baseline;
 
         @include mq(mobileLandscape) {
             box-sizing: border-box;
-            max-width: gs-span(8) + ($gs-gutter * 2);
         }
-        @include mq(tablet) {
-            max-width: gs-span(9) + ($gs-gutter * 2);
+
+        @include mq(leftCol) {
+            margin-right: $gs-gutter/2 + 1px;
         }
-        @include mq(desktop) {
-            max-width: gs-span(12) + ($gs-gutter * 2);
+
+        @include mq(wide) {
+            margin-right: $gs-gutter + 70px + 1px;
         }
     }
 
@@ -187,6 +191,10 @@
 
     .advert {
         position: relative;
+    }
+
+    .advert__content {
+        padding: 10px;
     }
 
     /* [1] Forces text wrap in IE11 */
