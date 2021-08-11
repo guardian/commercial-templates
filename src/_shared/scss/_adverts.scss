@@ -66,7 +66,8 @@
         > .adverts__header {
             box-sizing: border-box;
             padding: $gs-baseline $gs-gutter / 5 * 2;
-            width: 160px;
+            // Extra 1px to line up with borders on sections above / below
+            width: 160px + $gs-gutter/2 + 1px;
         }
 
         > .adverts__body {
@@ -89,7 +90,8 @@
     @include mq(wide) {
         > .adverts__header {
             padding: $gs-baseline $gs-gutter;
-            width: 240px;
+            // Extra 1px to line up with borders on sections above / below
+            width: 240px + $gs-gutter/2 + 1px;
         }
 
         .adverts__ctas {
