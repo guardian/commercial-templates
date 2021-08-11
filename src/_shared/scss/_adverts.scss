@@ -205,12 +205,10 @@
     }
 
     .adverts__row {
-        padding: $gs-baseline / 2 0;
+        padding: $gs-baseline $gs-gutter/2;
         display: flex;
 
         > * {
-            margin: 0 $gs-gutter / 2;
-
             /* In Firefox, flex items have a min-width: auto, which prevents
                them from shrinking when they have an image larger than the
                size the item would normally fill. The only workaround to
@@ -243,8 +241,6 @@
         }
 
         @include mq(tablet) {
-            padding: $gs-baseline $gs-gutter / 2;
-
             > * + * {
                 position: relative;
 
@@ -275,6 +271,10 @@
                     width: calc(50% - #{$gs-gutter});
                 }
             }
+        }
+        
+        @include mq(leftCol) {
+            padding: $gs-baseline 0;
         }
     }
 
