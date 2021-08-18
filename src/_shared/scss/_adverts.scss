@@ -1,7 +1,7 @@
 @mixin separator($colour, $left, $margin-left: 0) {
     content: '';
     position: absolute;
-    left: 0;
+    left: $left;
     top: 0;
     bottom: 0;
     margin-left: $margin-left;
@@ -191,10 +191,7 @@
 
     .advert {
         position: relative;
-    }
-
-    .advert__content {
-        padding: 10px;
+        padding: 0px $gs-gutter/2;
     }
 
     /* [1] Forces text wrap in IE11 */
@@ -235,7 +232,7 @@
                 position: relative;
 
                 &:nth-child(even)::before {
-                    @include separator($neutral-4, $gs-gutter / -2);
+                    @include separator($neutral-4, 0px);
                 }
             }
         }
@@ -245,7 +242,7 @@
                 position: relative;
 
                 &::before {
-                    @include separator($neutral-4, $gs-gutter / -2);
+                    @include separator($neutral-4, 0px);
                 }
             }
         }
