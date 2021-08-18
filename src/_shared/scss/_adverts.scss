@@ -442,13 +442,6 @@
 }
 
 .adverts__row {
-    @include mq($until: tablet) {
-        /* http://alistapart.com/article/axiomatic-css-and-lobotomized-owls */
-        > * + * {
-            margin-top: $gs-baseline;
-        }
-    }
-
     @include mq(tablet) {
         display: flex;
         padding: $gs-baseline $gs-gutter / 2 0;
