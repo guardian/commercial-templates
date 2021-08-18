@@ -303,9 +303,13 @@
         flex-basis: calc(100% - #{$gs-gutter});
     }
 
+    .button--legacy-single {
+        margin-left: $gs-gutter;
+    }
+
     @include mq(mobileLandscape) {
         .advert {
-            flex-basis: calc(75% - #{$gs-gutter});
+            flex-basis: calc(75% - #{$gs-gutter/2});
             flex-grow: 0;
         }
 
@@ -330,7 +334,7 @@
 
     .has-no-flex & {
         .advert {
-            width: calc(75% - #{$gs-gutter});
+            width: calc(75% - #{$gs-gutter/2});
         }
 
         .advert--landscape > .advert__image-container {
