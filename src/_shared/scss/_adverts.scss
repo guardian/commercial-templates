@@ -7,7 +7,6 @@
     margin-left: $margin-left;
     width: 1px;
     background: $colour;
-    box-sizing: border-box;
 }
 
 .adverts {
@@ -191,7 +190,6 @@
 
     .advert {
         position: relative;
-        padding: 0px $gs-gutter/2;
     }
 
     /* [1] Forces text wrap in IE11 */
@@ -206,6 +204,8 @@
         display: flex;
 
         > * {
+            margin: 0 $gs-gutter / 2;
+
             /* In Firefox, flex items have a min-width: auto, which prevents
                them from shrinking when they have an image larger than the
                size the item would normally fill. The only workaround to
@@ -232,7 +232,7 @@
                 position: relative;
 
                 &:nth-child(even)::before {
-                    @include separator($neutral-4, 0px);
+                    @include separator($neutral-4, $gs-gutter / -2);
                 }
             }
         }
@@ -242,7 +242,7 @@
                 position: relative;
 
                 &::before {
-                    @include separator($neutral-4, 0px);
+                    @include separator($neutral-4, $gs-gutter / -2);
                 }
             }
         }
@@ -269,7 +269,8 @@
                 }
             }
         }
-        
+
+                
         @include mq(leftCol) {
             padding: $gs-baseline 0;
         }
@@ -303,13 +304,9 @@
         flex-basis: calc(100% - #{$gs-gutter});
     }
 
-    .button--legacy-single {
-        margin-left: $gs-gutter;
-    }
-
     @include mq(mobileLandscape) {
         .advert {
-            flex-basis: calc(75% - #{$gs-gutter/2});
+            flex-basis: calc(75% - #{$gs-gutter});
             flex-grow: 0;
         }
 
@@ -334,7 +331,7 @@
 
     .has-no-flex & {
         .advert {
-            width: calc(75% - #{$gs-gutter/2});
+            width: calc(75% - #{$gs-gutter});
         }
 
         .advert--landscape > .advert__image-container {
@@ -446,6 +443,13 @@
 }
 
 .adverts__row {
+    @include mq($until: tablet) {
+        /* http://alistapart.com/article/axiomatic-css-and-lobotomized-owls */
+        > * + * {
+            margin-top: $gs-baseline;
+        }
+    }
+
     @include mq(tablet) {
         display: flex;
         padding: $gs-baseline $gs-gutter / 2 0;
