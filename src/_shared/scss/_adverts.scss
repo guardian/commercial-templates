@@ -67,7 +67,7 @@
             box-sizing: border-box;
             padding: $gs-baseline $gs-gutter / 5 * 2;
             // Extra 1px to line up with borders on sections above / below
-            width: 160px + $gs-gutter/2 + 1px;
+            width: 160px + $gs-gutter / 2 + 1px;
         }
 
         > .adverts__body {
@@ -91,7 +91,7 @@
         > .adverts__header {
             padding: $gs-baseline $gs-gutter;
             // Extra 1px to line up with borders on sections above / below
-            width: 240px + $gs-gutter/2 + 1px;
+            width: 240px + $gs-gutter / 2 + 1px;
         }
 
         .adverts__ctas {
@@ -126,7 +126,7 @@
         }
 
         @include mq(leftCol) {
-            margin-right: $gs-gutter/2 + 1px;
+            margin-right: $gs-gutter / 2 + 1px;
         }
 
         @include mq(wide) {
@@ -200,7 +200,7 @@
     }
 
     .adverts__row {
-        padding: $gs-baseline $gs-gutter/2;
+        padding: $gs-baseline $gs-gutter / 2;
         display: flex;
 
         > * {
