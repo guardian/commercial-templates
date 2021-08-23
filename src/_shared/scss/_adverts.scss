@@ -66,7 +66,8 @@
         > .adverts__header {
             box-sizing: border-box;
             padding: $gs-baseline $gs-gutter / 5 * 2;
-            width: 160px;
+            // Extra 1px to line up with borders on sections above / below
+            width: 160px + $gs-gutter / 2 + 1px;
         }
 
         > .adverts__body {
@@ -89,7 +90,8 @@
     @include mq(wide) {
         > .adverts__header {
             padding: $gs-baseline $gs-gutter;
-            width: 240px;
+            // Extra 1px to line up with borders on sections above / below
+            width: 240px + $gs-gutter / 2 + 1px;
         }
 
         .adverts__ctas {
@@ -115,17 +117,20 @@
     }
 
     > .adverts__body {
+        max-width: 100%;
+        box-sizing: border-box;
         padding-bottom: $gs-baseline;
 
         @include mq(mobileLandscape) {
             box-sizing: border-box;
-            max-width: gs-span(8) + ($gs-gutter * 2);
         }
-        @include mq(tablet) {
-            max-width: gs-span(9) + ($gs-gutter * 2);
+
+        @include mq(leftCol) {
+            margin-right: $gs-gutter / 2 + 1px;
         }
-        @include mq(desktop) {
-            max-width: gs-span(12) + ($gs-gutter * 2);
+
+        @include mq(wide) {
+            margin-right: $gs-gutter + 70px + 1px;
         }
     }
 
@@ -195,7 +200,7 @@
     }
 
     .adverts__row {
-        padding: $gs-baseline / 2 0;
+        padding: $gs-baseline $gs-gutter / 2;
         display: flex;
 
         > * {
@@ -233,8 +238,6 @@
         }
 
         @include mq(tablet) {
-            padding: $gs-baseline $gs-gutter / 2;
-
             > * + * {
                 position: relative;
 
@@ -265,6 +268,11 @@
                     width: calc(50% - #{$gs-gutter});
                 }
             }
+        }
+
+                
+        @include mq(leftCol) {
+            padding: $gs-baseline 0;
         }
     }
 
