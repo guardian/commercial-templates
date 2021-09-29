@@ -71,15 +71,16 @@ const boldTitle = title => {
 // Constructs the title part of the card: headline and media icon.
 function buildTitle(card, cardInfo, cardNumber) {
   let title = card.querySelector(".advert__title");
+  let meta = card.querySelector(".advert__meta");
   let metaText = OVERRIDES.metas[cardNumber];
 
-  let meta = metaText ? `<div class="advert__meta">${metaText}</div>` : "";
   let headline = OVERRIDES.headlines[cardNumber] || boldTitle(cardInfo.title);
   card.classList.add("advert--text");
 
   card.setAttribute("data-link-name", headline);
 
-  title.insertAdjacentHTML("beforeend", [headline, meta].join(" "));
+  title.insertAdjacentHTML("beforeend", headline);
+  meta.insertAdjacentHTML("beforeend", metaText || "");
 }
 
 function injectBranchLogo() {
