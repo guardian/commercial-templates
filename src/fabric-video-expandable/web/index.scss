@@ -191,7 +191,7 @@
         @include mq(1010px) {
             display: block;
             flex: 1;
-        };
+        }
     }
 
     .has-no-flex & {

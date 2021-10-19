@@ -46,8 +46,7 @@ function buildFromCapi (host, { articleHeadline, articleText, articleUrl, articl
 
 reportClicks();
 enableToggles();
-getIframeId()
-.then(({ host }) => {
+getIframeId().then(({ host }) => {
     return Promise.all([
         getWebfonts(['GuardianTextSansWeb', 'GuardianSansWeb']),
         retrieveCapiData()
@@ -56,5 +55,4 @@ getIframeId()
             addTrackingPixel(document.getElementById('creative'));
         })
     ])
-})
-.then(() => resizeIframeHeight());
+}).then(() => resizeIframeHeight());

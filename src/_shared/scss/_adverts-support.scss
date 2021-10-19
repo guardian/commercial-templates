@@ -1,0 +1,100 @@
+.adverts--tone-supports {
+    > .adverts__header {
+        background: $guardian-support;
+        .button {
+            border-color: fade-out($guardian-support, .7);
+
+            &:hover,
+            &:focus,
+            &:active {
+                border-color: $guardian-support;
+            }
+        }
+    }
+
+    .adverts__logo {
+        color: $guardian-support;
+    }
+
+   .adverts__logo .icon {
+        fill: $guardian-brand-dark;
+    }
+
+    .inline-commercial-brand svg {
+        fill: $guardian-support;
+    }
+
+    .button--large {
+        border: none;
+    }
+
+    .adverts__ctas .button--large {
+        background: $guardian-brand-dark;
+        color: white;
+    }
+
+    .adverts__blurb {
+      color: $guardian-support;
+      background: $guardian-brand-dark;
+    }
+}
+
+.adverts--tone-supports {
+  .adverts__blurb {
+    color:  $guardian-brand-dark;
+    background: white;
+  }
+}
+
+.adverts--tone-supports .button--legacy-single,
+.advert--support .button {
+    background: $guardian-support;
+}
+
+.advert--support {
+    &:hover,
+    &:focus,
+    &:active {
+        .button {
+            background: $guardian-highlight-hover;
+        }
+    }
+}
+
+.adverts--tone-supports .button--legacy-single {
+     &:hover,
+     &:focus,
+     &:active {
+         background: $guardian-highlight-hover;
+     }
+ }
+
+.adverts--tone-supports .adverts__ctas .button--large {
+    &:hover,
+    &:focus,
+    &:active {
+         background: $neutral-1;
+    }
+}
+
+.advert-blended--support {
+    .advert-blended__title {
+        padding-top: 5px;
+        padding-bottom: 9px;
+
+        > svg {
+            height: 22px;
+            width: 144px;
+        }
+    }
+
+    .advert {
+        display: block;
+    }
+
+    .advert__image-container {
+        float: right;
+        margin: 0 0 0 $gs-gutter / 2;
+        width: 50%;
+    }
+}

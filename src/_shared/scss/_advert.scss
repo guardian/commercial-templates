@@ -100,7 +100,7 @@
 
     .advert__standfirst {
         margin-top: $gs-baseline / 2;
-        opacity: .7;
+        color: $guardian-brand-dark;
     }
 
     .advert__image {
@@ -167,7 +167,7 @@
 
 .advert__meta {
     font-family: $f-sans-serif-text;
-    color: $neutral-2;
+    color: $guardian-brand-dark;
 }
 
 .advert__meta--scarcity {

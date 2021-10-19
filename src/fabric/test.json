@@ -3,7 +3,12 @@
   "Trackingpixel": "",
   "Researchpixel": "",
   "Viewabilitypixel": "",
+<<<<<<< HEAD
   "BackgroundScrollType": "parallax",
+=======
+  "thirdPartyJSTracking": "<SCRIPT TYPE='application/javascript' SRC='https://pixel.adsafeprotected.com/rjss/st/726370/54949606/skeleton.js'></SCRIPT> <NOSCRIPT><IMG SRC='https://pixel.adsafeprotected.com/rfw/st/726370/54949605/skeleton.gif?gdpr=${GDPR}&gdpr_consent=${GDPR_CONSENT_278}&gdpr_pd=${GDPR_PD}' BORDER=0 WIDTH=1 HEIGHT=1 ALT=''></NOSCRIPT>",
+  "BackgroundScrollType": "fixed",
+>>>>>>> fc9e1c71c10f3ab5d849a638f7fa3d10c4e07eba
   "BackgroundColour": "transparent",
   "BackgroundImage": "",
   "BackgroundImagePosition": "right top",
