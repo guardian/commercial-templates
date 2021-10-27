@@ -12,10 +12,6 @@ getIframeId()
     // and animation
     let inView = false;
 
-    // This layer has a CSS animation which we want to pause in case the slot
-    // goes out of view
-    let layer2 = document.getElementById('layer2');
-
     // We'll need an onScroll listener that will be add inside onViewport,
     // but since onViewport can fire multiple times, we want to make sure
     // the onScroll listener is added only once.
@@ -78,7 +74,6 @@ getIframeId()
 
     function updateView() {
         isUpdating = false;
-        updateAnimation();
     }
 
     // If the slot goes out of view, we pause the video
@@ -89,22 +84,4 @@ getIframeId()
             video.pause();
         }
     }
-
-    // If the slot goes out of view, we pause the animation
-    function updateAnimation() {
-        if (inView) {
-            playAnimation();
-        } else {
-            pauseAnimation();
-        }
-    }
-
-    function playAnimation() {
-        layer2.classList.add('is-animating');
-    }
-
-    function pauseAnimation() {
-        layer2.classList.remove('is-animating');
-    }
-
 });
