@@ -26,19 +26,31 @@ getIframeId()
     // know about it.
     let video = document.getElementsByTagName('video');
     let played = false; 
-    
-    if ( (window.innerWidth <= 740) && (video.length > 0) ) {
-        video = video[1];
-        video.onended = () => played = true;
-    } else {
-        video = video[0];
-        video.onended = () => played = true;
-    }
+    video.onended = () => played = true;
 
-    
-    //if options have been set to show mobile video 
-    //add class to mobile video contianer
-    setMobileVideo();
+    setupVideoEl();
+
+    // Add video source
+    // Add video poster image
+    //Add class name for mobile video
+    function setupVideoEl() {
+        if ( video.length > 0 ) { 
+            let videoSrc;
+            let posterImage;
+            
+            isMobile ? videoSrc =  '[%VideoURLMobile%]' : videoSrc =  '[%VideoURL%]';
+            isMobile ? posterImage = '[%MobileVideoBackupImage%]' : posterImage = '[%VideoBackupImage%]';
+            isMobile ? video[0].classList.add('creative__video--740') : null;
+
+            video[0].poster = posterImage;
+            video[0].src = videoSrc;
+
+            video[0].load();
+            video[0].play();
+        } else {
+            return;
+        }
+    }
 
     onViewport(({ height }) => {
         // That's it, the video has only played once so we don't need
