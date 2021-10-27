@@ -1,12 +1,12 @@
-import { getIframeId, onScroll, onViewport, resizeIframeHeight, reportClicks } from '../../_shared/js/messages';
+import { getIframeId, onScroll, onViewport, reportClicks } from '../../_shared/js/messages';
 import { write } from '../../_shared/js/dom';
 
 getIframeId()
 .then(() => {
     reportClicks();
-
+  
     let isUpdating = false;
-    let VideoOnMobile = '[%VideoOnMobile%]';
+    const isMobile = window.innerWidth < 740;
 
     // We want to know when the slot is in view so we can control the video
     // and animation
@@ -63,13 +63,6 @@ getIframeId()
             });
         }
     });
-
-    // showing video for mobile and tablets
-    function setMobileVideo() {
-        if (VideoOnMobile == 'yes') {
-            document.querySelector('.creative__video--mobile').classList.add("hasMobileVideo");
-        } 
-    }
 
     function updateView() {
         isUpdating = false;
