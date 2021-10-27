@@ -68,50 +68,8 @@
     .creative__layer2 { z-index: 2; }
     .creative__layer3 { z-index: 3; }
 
-    // .mobile-only {
-    //     .creative__layer {
-    //         width: 740px;
-    //         height: 250px
-    //     }
-    // }
-
     .creative__video--740 {
         width: 740px;
-    }
-
-    .creative__slide {
-        opacity: 0;
-        animation-name: fade-in-out;
-        animation-duration: 4.5s;
-        animation-timing-function: ease;
-        animation-fill-mode: forwards;
-        animation-play-state: paused;
-        background-color: transparent;
-        background-position: center;
-        background-repeat: no-repeat;
-    }
-
-    .is-animating .creative__slide {
-        animation-play-state: running;
-    }
-
-    .creative__slide1 {
-        animation-delay: 1s;
-        animation-duration: 5.25s;
-    }
-
-    .creative__slide2 {
-        animation-delay: 4.75s;
-    }
-
-    .creative__slide3 {
-        animation-delay: 7.75s;
-    }
-
-    .creative__slide4 {
-        animation-name: fade-in;
-        animation-delay: 10.75s;
-        animation-duration: 5.25s;
     }
 
     .click_button {
@@ -120,18 +78,6 @@
         left: 50%;
         margin-left: -85px;
     }
-
-    @keyframes fade-in-out {
-        0%    { opacity: 0; }
-        50%   { opacity: 1; }
-        100%  { opacity: 0; }
-    }
-
-    @keyframes fade-in {
-        0%    { opacity: 0; }
-        100%  { opacity: 1; }
-    }
-
 }
 
 @include mq($until: tablet) {
