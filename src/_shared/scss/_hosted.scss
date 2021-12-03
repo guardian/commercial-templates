@@ -136,9 +136,9 @@ $phablet: 660px;
         }
     }
 
-    .with-2-elements &:nth-child(3),
-    .with-2-elements &:nth-child(4),
-    .with-3-elements &:nth-child(4) {
+    .with-1-elements &:nth-child(n + 2),
+    .with-2-elements &:nth-child(n + 3),
+    .with-3-elements &:nth-child(n + 4) {
         display: none;
     }
 }
