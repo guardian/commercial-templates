@@ -143,7 +143,10 @@ $phablet: 660px;
     }
 }
 
+
 @include mq(desktop) {
+
+    .with-1-elements,
     .with-2-elements {
         .hosted-trafficdriver__image {
             width: 50%;
