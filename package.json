@@ -17,12 +17,12 @@
     "express": "^4.13.3",
     "fs-extra": "^4.0.2",
     "hogan.js": "^3.0.2",
-    "lint-staged": "^4.0.3",
+    "lint-staged": "^5",
     "nodemon": "^2.0.7",
     "postcss": "^5.2.5",
     "pre-commit": "^1.2.2",
-    "react": "^15.7.0",
-    "react-dom": "^15.7.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
     "rimraf": "^2.5.4",
     "rollup": "^0.36.3",
     "rollup-plugin-babel": "^2.6.1",
@@ -36,7 +36,7 @@
     "stylelint-config-recommended-scss": "^4.2.0",
     "stylelint-scss": "^3.19.0",
     "uglify-js": "^2.7.0",
-    "yargs": "^6.3.0"
+    "yargs": "^17.3.0"
   },
   "scripts": {
     "clean": "node clean.js",
