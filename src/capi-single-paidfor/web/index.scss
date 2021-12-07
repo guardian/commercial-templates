@@ -1,15 +1,31 @@
-@import '_core';
-@import '_adverts';
-@import '_advert';
-@import '_adverts-capi';
-@import '_paidfor-meta';
-@import '_popup-paidfor';
+@import "_core";
+@import "_adverts";
+@import "_advert";
+@import "_adverts-capi";
+@import "_paidfor-meta";
+@import "_popup-paidfor";
 
 .paidfor-meta__more .paidfor-meta__label {
-    font-weight: normal;
+  font-weight: normal;
+}
+
+.adverts--legacy-single.adverts--capi.adverts--paidfor {
+  .adverts__row,
+  .adverts__body {
+    padding: 0;
+  }
+
+  .advert__image-container {
+    flex-basis: calc(50% - 10px);
+    height: 100%;
+  }
+
+  .badge::before {
+    display: none;
+  }
 }
 
 .icon--glabs-logo {
-    width: 75px;
-    max-height: 31px;
+  width: 75px;
+  max-height: 31px;
 }
