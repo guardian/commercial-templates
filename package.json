@@ -17,7 +17,7 @@
     "express": "^4.13.3",
     "fs-extra": "^4.0.2",
     "hogan.js": "^3.0.2",
-    "lint-staged": "^6.1.1",
+    "lint-staged": "^12.1.2",
     "nodemon": "^2.0.7",
     "postcss": "^5.2.5",
     "pre-commit": "^1.2.2",
