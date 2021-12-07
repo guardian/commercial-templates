@@ -1,42 +1,44 @@
-.adverts--tone-climates, .adverts--tone-climate2s {
-    > .adverts__header {
-        background: $news-garnett-highlight;
-        .button {
-            border-color: fade-out($news-garnett-highlight, .7);
+.adverts--tone-climates,
+.adverts--tone-climate2s {
+  > .adverts__header {
+    background: $news-garnett-highlight;
 
-            &:hover,
-            &:focus,
-            &:active {
-                border-color: $news-garnett-highlight;
-            }
-        }
-    }
+    .button {
+      border-color: fade-out($news-garnett-highlight, 0.7);
 
-    .adverts__logo {
-        color: $news-garnett-highlight;
+      &:hover,
+      &:focus,
+      &:active {
+        border-color: $news-garnett-highlight;
+      }
     }
+  }
 
-   .adverts__logo .icon {
-        fill: $guardian-brand-dark;
-    }
+  .adverts__logo {
+    color: $news-garnett-highlight;
+  }
 
-    .inline-commercial-brand svg {
-        fill: $news-garnett-highlight;
-    }
+  .adverts__logo .icon {
+    fill: $guardian-brand-dark;
+  }
 
-    .button--large {
-        border: none;
-    }
+  .inline-commercial-brand svg {
+    fill: $news-garnett-highlight;
+  }
 
-    .adverts__ctas .button--large {
-        background: $guardian-brand-dark;
-        color: white;
-    }
+  .button--large {
+    border: none;
+  }
 
-    .adverts__blurb {
-      color: $news-garnett-highlight;
-      background: $guardian-brand-dark;
-    }
+  .adverts__ctas .button--large {
+    background: $guardian-brand-dark;
+    color: white;
+  }
+
+  .adverts__blurb {
+    color: $news-garnett-highlight;
+    background: $guardian-brand-dark;
+  }
 }
 
 .adverts--tone-climate2s {
@@ -48,61 +50,66 @@
 
 .adverts--tone-climates {
   .adverts__blurb {
-    color:  $guardian-brand-dark;
+    color: $guardian-brand-dark;
     background: white;
   }
 }
 
 .adverts--tone-climates .button--legacy-single,
-.advert--climate .button, .adverts--tone-climate2s .button--legacy-single,
+.advert--climate .button,
+.adverts--tone-climate2s .button--legacy-single,
 .advert--climate2 .button {
-    background: $news-garnett-highlight;
+  background: $news-garnett-highlight;
 }
 
-.advert--climate, .advert--climate2 {
-    &:hover,
-    &:focus,
-    &:active {
-        .button {
-            background: $guardian-highlight-hover;
-        }
+.advert--climate,
+.advert--climate2 {
+  &:hover,
+  &:focus,
+  &:active {
+    .button {
+      background: $guardian-highlight-hover;
     }
+  }
 }
 
-.adverts--tone-climates .button--legacy-single, .adverts--tone-climate2s .button--legacy-single {
-     &:hover,
-     &:focus,
-     &:active {
-         background: $guardian-highlight-hover;
-     }
- }
-
-.adverts--tone-climates .adverts__ctas .button--large, .adverts--tone-climate2s .adverts__ctas .button--large {
-    &:hover,
-    &:focus,
-    &:active {
-         background: $neutral-1;
-    }
+.adverts--tone-climates .button--legacy-single,
+.adverts--tone-climate2s .button--legacy-single {
+  &:hover,
+  &:focus,
+  &:active {
+    background: $guardian-highlight-hover;
+  }
 }
 
-.advert-blended--climate, .advert-blended--climate2 {
-    .advert-blended__title {
-        padding-top: 5px;
-        padding-bottom: 9px;
+.adverts--tone-climates .adverts__ctas .button--large,
+.adverts--tone-climate2s .adverts__ctas .button--large {
+  &:hover,
+  &:focus,
+  &:active {
+    background: $neutral-1;
+  }
+}
 
-        > svg {
-            height: 22px;
-            width: 144px;
-        }
-    }
+.advert-blended--climate,
+.advert-blended--climate2 {
+  .advert-blended__title {
+    padding-top: 5px;
+    padding-bottom: 9px;
 
-    .advert {
-        display: block;
+    > svg {
+      height: 22px;
+      width: 144px;
     }
+  }
 
-    .advert__image-container {
-        float: right;
-        margin: 0 0 0 $gs-gutter / 2;
-        width: 50%;
-    }
+  .advert {
+    display: block;
+  }
+
+  .advert__image-container {
+    float: right;
+    margin: 0 0 0 $gs-gutter / 2;
+    width: 50%;
+  }
 }

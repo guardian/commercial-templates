@@ -1,15 +1,15 @@
 %gimbap-text-styling {
   position: relative;
   z-index: 1;
-  text-shadow: 0 0 5px rgba(0, 0, 0, .3);
+  text-shadow: 0 0 5px rgb(0 0 0 / 30%);
 }
 
 .gimbap-richmedia__title {
   @extend %gimbap-text-styling;
 
-  font: bold 1.25rem/.8 $f-serif-text;
-  margin: 0px;
-  color: #ffffff;
+  font: bold 1.25rem/0.8 $f-serif-text;
+  margin: 0;
+  color: #fff;
   align-self: flex-start;
 
   @include mq($until: desktop) {
@@ -20,14 +20,13 @@
 .gimbap-richmedia__headline {
   @extend %gimbap-text-styling;
 
-  font: normal 1rem/.25 $f-serif-headline;
-
+  font: normal 1rem/0.25 $f-serif-headline;
   width: 65%;
   margin: 0;
   padding-bottom: 4px; /* To me, the ultimate act of magic is to create something from nothing. */
   font-weight: bold;
   line-height: 1;
-  color: #ffffff;
+  color: #fff;
 
   @include mq($until: desktop) {
     width: 80%;
@@ -37,9 +36,8 @@
 .gimbap-richmedia__meta {
   @extend %gimbap-text-styling;
 
-  font: normal .75rem/1rem $f-sans-serif-text;
-
-  color: #ffffff;
+  font: normal 0.75rem/1rem $f-sans-serif-text;
+  color: #fff;
 }
 
 .gimbap-richmedia__meta--place {
@@ -62,14 +60,12 @@
 
 // TONES
 .gimbap-wrap--tone-masterclasses {
-
   .gimbap-richmedia__highlight {
     color: $gimbap-masterclasses-text;
   }
 }
 
 .gimbap-wrap--tone-holidays {
-
   .gimbap-richmedia__highlight {
     color: $gimbap-holidays;
   }

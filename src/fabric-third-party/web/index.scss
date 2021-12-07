@@ -1,12 +1,12 @@
-@import '_core';
+@use "core";
 
 .creative--third-party-video {
-    margin: auto;
-    max-width: $creative-max-width;
-    padding: inherit;
-    object-fit: cover;
+  margin: auto;
+  max-width: $creative-max-width;
+  padding: inherit;
+  object-fit: cover;
 
-    .creative__link {
-        height: 250px;
-    }
+  .creative__link {
+    height: 250px;
   }
+}

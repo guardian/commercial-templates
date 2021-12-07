@@ -1,44 +1,44 @@
 .adverts--subs-rebrands {
-    .adverts__header {
-        background: $guardian-subscriptions-rebrand-blue;
-    }
+  .adverts__header {
+    background: $guardian-subscriptions-rebrand-blue;
+  }
 
-    .button--large {
-        background:#ffe500;
-        color: black;
-    }
+  .button--large {
+    background: #ffe500;
+    color: black;
+  }
 
-    .button--small {
-        color: white;
-        background: $guardian-subscriptions-rebrand-blue;
-    }
+  .button--small {
+    color: white;
+    background: $guardian-subscriptions-rebrand-blue;
+  }
 
-    .adverts__blurb {
-        color: white;
-        background: $guardian-subscriptions-rebrand-blue;
-    }
+  .adverts__blurb {
+    color: white;
+    background: $guardian-subscriptions-rebrand-blue;
+  }
 
-    .button--legacy-single {
-        &:hover,
-        &:focus,
-        &:active {
-            background: darken($guardian-subscriptions-rebrand-blue, 5%);
-        }
+  .button--legacy-single {
+    &:hover,
+    &:focus,
+    &:active {
+      background: color.darken($guardian-subscriptions-rebrand-blue, 5%);
     }
+  }
 }
 
 .adverts--subs-rebrands .button--legacy-single,
 .advert--subscription .button {
-    background: $guardian-subscriptions-rebrand-blue;
-    color: #fff;
+  background: $guardian-subscriptions-rebrand-blue;
+  color: #fff;
 }
 
 .advert--subscription {
-    &:hover,
-    &:focus,
-    &:active {
-        .button {
-            background: darken($guardian-subscriptions-rebrand-blue, 5%);
-        }
+  &:hover,
+  &:focus,
+  &:active {
+    .button {
+      background: color.darken($guardian-subscriptions-rebrand-blue, 5%);
     }
+  }
 }

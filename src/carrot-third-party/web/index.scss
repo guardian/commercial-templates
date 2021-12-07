@@ -1,4 +1,5 @@
-@import '_core';
+@use "core";
+@use "sass:color";
 @include mq-add-breakpoint(articleIframe, $gs-gutter * 11);
 
 a {
@@ -6,19 +7,20 @@ a {
   cursor: pointer;
 }
 
-h1, p {
+h1,
+p {
   margin: 0;
 }
 
 .container {
-  font-family: 'Guardian Text Sans Web', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
+  font-family: "Guardian Text Sans Web", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
   background-color: $neutral-8;
   border-top: 1px solid $paid-article-brand;
   display: flex;
   flex-direction: column;
 
   &:hover {
-    background: darken($neutral-8, 7%);
+    background: color.darken($neutral-8, 7%);
   }
 }
 
@@ -27,9 +29,7 @@ h1, p {
 }
 
 .body {
-  flex-grow: 1;
-  flex-shrink: 1;
-  flex-basis: auto;
+  flex: auto;
   display: flex;
   flex-direction: column;
   justify-content: space-around;

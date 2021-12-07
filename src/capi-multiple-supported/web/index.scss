@@ -1,15 +1,15 @@
-@import '_core';
-@import '_adverts';
-@import '_adverts-capi';
-@import '_advert';
-@import '_brandbadge';
-@import '_palette';
+@use "core";
+@use "adverts";
+@use "adverts-capi";
+@use "advert";
+@use "brandbadge";
+@use "palette";
 
 .adverts {
-    color: $neutral-1;
+  color: $neutral-1;
 }
 
 .badge__help:hover,
 .adverts__logo:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }

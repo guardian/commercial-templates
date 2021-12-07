@@ -9,88 +9,91 @@ Change the 'width' value in the DFP preview to 300px for best results.
 $brand-colour: #ffce4b;
 
 body {
-    background: #fff7de;
-    font-family: Helvetica, arial, sans-serif;
-    color: #333333;
+  background: #fff7de;
+  font-family: Helvetica, arial, sans-serif;
+  color: #333;
 }
 
 .attribution {
-    background: $brand-colour;
-    border-radius: 100%;
-    position: absolute;
-    padding: 8px 7px;
-    font-weight: bold;
-    font-size: 14px;
-    box-shadow: 0px 1px 2px rgba(0, 0, 0, .5);
-    margin: 4px;
+  background: $brand-colour;
+  border-radius: 100%;
+  position: absolute;
+  padding: 8px 7px;
+  font-weight: bold;
+  font-size: 14px;
+  box-shadow: 0 1px 2px rgb(0 0 0 / 50%);
+  margin: 4px;
 }
 
 .ads .image-link {
-    display: block;
+  display: block;
 }
 
-.image-link, .logo-link {
-    img {
-        display: block;
-        width: 100%;
-    }
+.image-link,
+.logo-link {
+  img {
+    display: block;
+    width: 100%;
+  }
 }
 
 .title {
-    font-size: 15px;
-    line-height: 17px;
-    font-weight: 900;
-    margin: 6px 90px 6px 10px;
+  font-size: 15px;
+  line-height: 17px;
+  font-weight: 900;
+  margin: 6px 90px 6px 10px;
 }
 
 .title-link {
-    color: inherit;
-    text-decoration: none;
+  color: inherit;
+  text-decoration: none;
 }
 
 .body {
-    font-size: 12px;
-    line-height: 14px;
-    font-family: Georgia, serif;
-    margin: 6px 90px 6px 10px;
+  font-size: 12px;
+  line-height: 14px;
+  font-family: Georgia, serif;
+  margin: 6px 90px 6px 10px;
 }
 
 .advertiser {
-    font-size: 12px;
-    line-height: 14px;
-    margin: 6px 90px 6px 10px;
-
+  font-size: 12px;
+  line-height: 14px;
+  margin: 6px 90px 6px 10px;
 }
 
 .advertiser-link {
-    color: #333333;
-    &:hover {
-        color: #ffbb00;
-    }
+  color: #333;
+
+  &:hover {
+    color: #fb0;
+  }
 }
 
 .call-to-action {
-    position: absolute;
-    bottom: 6px;
-    right: 6px;
-    font-size: 12px;
-    line-height: 14px;
+  position: absolute;
+  bottom: 6px;
+  right: 6px;
+  font-size: 12px;
+  line-height: 14px;
 }
 
 .call-to-action-link {
-    color: #333333;
-    &:hover {
-        color: #ffbb00;
-    }
+  color: #333;
+
+  &:hover {
+    color: #fb0;
+  }
 }
 
 .logo {
-    position: block;
-    float: right;
-    margin-right: 6px;
-    margin-top: 6px;
-    width: 70px;
-    @media ( max-height: 260px ){
-        width: 55px;
-    }
+  position: block;
+  float: right;
+  margin-right: 6px;
+  margin-top: 6px;
+  width: 70px;
+
+  @media (max-height: 260px) {
+    width: 55px;
+  }
 }

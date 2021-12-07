@@ -1,85 +1,85 @@
 .adverts--jobs {
-    @include mq($until: tablet) {
-        .adverts__row > :nth-child(2) ~ * {
-            margin-top: 0;
-        }
+  @include mq($until: tablet) {
+    .adverts__row > :nth-child(2) ~ * {
+      margin-top: 0;
+    }
+  }
+
+  .advert__image-container {
+    height: $gs-baseline * 10;
+  }
+
+  .advert__image {
+    max-height: 100%;
+  }
+
+  .jobs-sectors {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    list-style: none;
+    margin-bottom: $gs-baseline / 2;
+    padding: 0;
+
+    > li {
+      border-top: 1px solid $guardian-jobs-rebrand;
+      flex-basis: calc(50% - (#{$gs-gutter / 4}));
     }
 
-    .advert__image-container {
-        height: $gs-baseline * 10;
+    a {
+      display: block;
+      padding: $gs-baseline / 1.5 0;
     }
+  }
 
-    .advert__image {
-        max-height: 100%;
+  .job-sector__all {
+    font-weight: bold;
+
+    &::after {
+      content: " »";
     }
-
-    .jobs-sectors {
-        display: flex;
-        flex-flow: row wrap;
-        justify-content: space-between;
-        list-style: none;
-        margin-bottom: $gs-baseline / 2;
-        padding: 0;
-
-        > li {
-            border-top: 1px solid $guardian-jobs-rebrand;
-            flex-basis: calc(50% - (#{$gs-gutter / 4}));
-        }
-
-        a {
-            display: block;
-            padding: $gs-baseline / 1.5 0;
-        }
-    }
-
-    .job-sector__all {
-        font-weight: bold;
-
-        &::after {
-            content: ' »';
-        }
-    }
+  }
 }
 
 .adverts--tone-jobs .button--legacy-single,
 .advert--job .button {
-    background: $guardian-jobs-rebrand;
-    color: #ffffff;
+  background: $guardian-jobs-rebrand;
+  color: #fff;
 }
 
 .advert--job {
-    &:hover,
-    &:focus,
-    &:active {
-        .button {
-            background: darken($guardian-jobs-rebrand, 5%);
-        }
+  &:hover,
+  &:focus,
+  &:active {
+    .button {
+      background: color.darken($guardian-jobs-rebrand, 5%);
     }
+  }
 
-    @include mq($until: tablet) {
-        overflow: hidden;
-    }
+  @include mq($until: tablet) {
+    overflow: hidden;
+  }
 }
 
 .adverts--tone-jobs .button--legacy-single {
-    &:hover,
-    &:focus,
-    &:active {
-        background: darken($guardian-jobs-rebrand, 5%);
-    }
+  &:hover,
+  &:focus,
+  &:active {
+    background: color.darken($guardian-jobs-rebrand, 5%);
+  }
 }
 
 .advert-blended--jobs .advert-blended__title {
-    padding-top: 5px;
-    padding-bottom: 4px;
+  padding-top: 5px;
+  padding-bottom: 4px;
 }
 
 .advert-blended--jobs .icon--logo-jobs {
-    fill: $guardian-jobs-rebrand;
+  fill: $guardian-jobs-rebrand;
 }
 
 .adverts--tone-jobs {
-    > .adverts__header {
-        background: $guardian-jobs-rebrand;
-    }
+  > .adverts__header {
+    background: $guardian-jobs-rebrand;
+  }
 }

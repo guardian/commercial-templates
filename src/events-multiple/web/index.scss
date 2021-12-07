@@ -1,6 +1,5 @@
-@import '_core';
-@import '_adverts';
-@import '_adverts-masterclasses';
-@import '_adverts-live';
-@import '_advert';
-
+@use "core";
+@use "adverts";
+@use "adverts-masterclasses";
+@use "adverts-live";
+@use "advert";

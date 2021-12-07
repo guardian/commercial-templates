@@ -2,31 +2,31 @@
 }
 
 .adverts--tone-networks {
-    > .adverts__header {
-        background: $news-support-4;
-    }
+  > .adverts__header {
+    background: $news-support-4;
+  }
 }
 
 .adverts--tone-networks .button--legacy-single,
 .advert--network .button {
-    background: $news-main-1;
-    color: #ffffff;
+  background: $news-main-1;
+  color: #fff;
 }
 
 .advert--network {
-    &:hover,
-    &:focus,
-    &:active {
-        .button {
-            background: darken($news-main-1, 5%);
-        }
+  &:hover,
+  &:focus,
+  &:active {
+    .button {
+      background: color.darken($news-main-1, 5%);
     }
+  }
 }
 
 .adverts--tone-networks .button--legacy-single {
-    &:hover,
-    &:focus,
-    &:active {
-        background: darken($news-main-1, 5%);
-    }
+  &:hover,
+  &:focus,
+  &:active {
+    background: color.darken($news-main-1, 5%);
+  }
 }

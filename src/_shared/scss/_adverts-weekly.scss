@@ -1,57 +1,56 @@
 .adverts--weeklys {
-    > .adverts__header {
-        .button {
-            color: #000000;
-            border-color: rgba(#ffffff, .3);
-            margin-right: 0;
+  > .adverts__header {
+    .button {
+      color: #000;
+      border-color: rgba(#fff, 0.3);
+      margin-right: 0;
 
-            &:hover,
-            &:focus,
-            &:active {
-                border-color: #ffffff;
-            }
-        }
+      &:hover,
+      &:focus,
+      &:active {
+        border-color: #fff;
+      }
     }
-
+  }
 }
 
 .adverts--tone-weeklys {
-    > .adverts__header {
-        background: $guardian-weekly-rebrand;
-    }
+  > .adverts__header {
+    background: $guardian-weekly-rebrand;
+  }
 }
 
 .adverts--tone-weeklys .button--legacy-single,
 .advert--weekly .button {
-    background: $guardian-weekly-rebrand;
-    color: #ffffff;
+  background: $guardian-weekly-rebrand;
+  color: #fff;
 }
 
 .advert--weekly {
-    &:hover,
-    &:focus,
-    &:active {
-        .button {
-            background: darken($guardian-weekly-rebrand, 5%);
-        }
+  &:hover,
+  &:focus,
+  &:active {
+    .button {
+      background: color.darken($guardian-weekly-rebrand, 5%);
     }
+  }
 }
 
 .adverts--tone-weeklys .button--legacy-single {
-    &:hover,
-    &:focus,
-    &:active {
-        background: darken($guardian-weekly-rebrand, 5%);
-    }
+  &:hover,
+  &:focus,
+  &:active {
+    background: color.darken($guardian-weekly-rebrand, 5%);
+  }
 }
 
 .advert-blended--weeklys {
-    .advert-blended__title {
-        padding-top: 5px;
-        padding-bottom: 4px;
-    }
+  .advert-blended__title {
+    padding-top: 5px;
+    padding-bottom: 4px;
+  }
 
-    .icon--logo-holidays {
-        fill: $guardian-weekly-rebrand;
-    }
+  .icon--logo-holidays {
+    fill: $guardian-weekly-rebrand;
+  }
 }

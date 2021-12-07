@@ -1,8 +1,8 @@
-@import '_core';
-@import '_gimbap-branding';
-@import '_gimbap-logo';
-@import '_gimbap-wrap';
-@import '_gimbap';
+@use "core";
+@use "gimbap-branding";
+@use "gimbap-logo";
+@use "gimbap-wrap";
+@use "gimbap";
 
 .gimbap__arrow svg {
   vertical-align: initial;

@@ -1,31 +1,31 @@
 .popup {
-    background: #333333;
-    box-sizing: border-box;
-    color: #ffffff;
-    font-size: 14px;
-    font-weight: normal;
-    line-height: 16px;
-    right: auto;
-    width: 260px;
+  background: #333;
+  box-sizing: border-box;
+  color: #fff;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 16px;
+  right: auto;
+  width: 260px;
 
-    a {
-        color: #69d1ca;
-        text-decoration: none;
+  a {
+    color: #69d1ca;
+    text-decoration: none;
 
-        &:hover,
-        &:focus {
-            text-decoration: underline;
-        }
+    &:hover,
+    &:focus {
+      text-decoration: underline;
     }
+  }
 }
 
 .icon--arrow-down {
-    height: 9px;
-    width: 12px;
+  height: 9px;
+  width: 12px;
 }
 
 .icon--arrow-right {
-    width: 20px;
-    height: 20px;
-    fill: currentColor;
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
 }

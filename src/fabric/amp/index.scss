@@ -1,9 +1,9 @@
-@import '_core';
+@use "core";
 
 .creative--fabric,
 .creative__link {
-    height: 250px;
-    overflow: hidden;
+  height: 250px;
+  overflow: hidden;
 }
 
 .creative__layer1 { z-index: 1; }
@@ -13,33 +13,33 @@
 .creative__background,
 .creative__alt,
 .creative__layer {
-    width: 100%;
-    height: 250px;
-    position: absolute;
-    top: 0;
-    left: 0;
-    background-repeat: no-repeat;
+  width: 100%;
+  height: 250px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-repeat: no-repeat;
 }
 
 .creative__background {
-    background-position: center;
+  background-position: center;
 }
 
 .creative__link {
-    background: dfpVar(BackgroundColour) url('#{dfpVar(MobileBackgroundImage)}') dfpVar(MobileBackgroundImageRepeat) dfpVar(MobileBackgroundImagePosition);
+  background: dfpvar(BackgroundColour) url("#{dfpVar(MobileBackgroundImage)}") dfpvar(MobileBackgroundImageRepeat) dfpvar(MobileBackgroundImagePosition);
 }
 
 .creative__layer1 {
-    background-image: url('#{dfpVar(MobileLayer1BackgroundImage)}');
-    background-position: dfpVar(MobileLayer1BackgroundPosition);
+  background-image: url("#{dfpVar(MobileLayer1BackgroundImage)}");
+  background-position: dfpvar(mobilelayer1backgroundposition);
 }
 
 .creative__layer2 {
-    background-image: url('#{dfpVar(MobileLayer2BackgroundImage)}');
-    background-position: dfpVar(MobileLayer2BackgroundPosition);
+  background-image: url("#{dfpVar(MobileLayer2BackgroundImage)}");
+  background-position: dfpvar(mobilelayer2backgroundposition);
 }
 
 .creative__layer3 {
-    background-image: url('#{dfpVar(MobileLayer3BackgroundImage)}');
-    background-position: dfpVar(MobileLayer3BackgroundPosition);
+  background-image: url("#{dfpVar(MobileLayer3BackgroundImage)}");
+  background-position: dfpvar(mobilelayer3backgroundposition);
 }

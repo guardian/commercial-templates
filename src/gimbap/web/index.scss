@@ -1,31 +1,31 @@
-@import '_core';
-@import '_gimbap-branding';
-@import '_gimbap-logo';
-@import '_gimbap-wrap';
-@import '_gimbap';
+@use "core";
+@use "gimbap-branding";
+@use "gimbap-logo";
+@use "gimbap-wrap";
+@use "gimbap";
 
 .gimbap-wrap__body--2x1x1 > :nth-child(4) {
-	display: none;
+  display: none;
 }
 
 .gimbap__arrow {
-	display: none;
+  display: none;
 }
 
 .gimbap__arrow--show {
-	display: inline-block;
+  display: inline-block;
 }
 
 .gimbap {
-	text-decoration: none;
+  text-decoration: none;
 }
 
 .gimbap__title {
-	margin-top: 0;
+  margin-top: 0;
 }
 
 .gimbap__cta {
-	margin-top: 0;
-	margin-bottom: .5rem;
-	-webkit-filter: brightness(.5);
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  filter: brightness(0.5);
 }

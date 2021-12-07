@@ -1,6 +1,7 @@
-@import '_core';
+@use "core";
 
-.creative__link, .creative--programmatic-dmpu,
+.creative__link,
+.creative--programmatic-dmpu,
 .creative__image {
   margin: 0 auto;
   width: 300px;

@@ -1,9 +1,9 @@
-@import '_core';
+@use "core";
 
 .creative--interscroller {
-    margin-top: 24px;
+  margin-top: 24px;
 }
 
 .creative__pixel--displayNone {
-    display: none;
+  display: none;
 }

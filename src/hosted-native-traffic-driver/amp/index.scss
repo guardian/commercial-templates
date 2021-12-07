@@ -1,13 +1,13 @@
-@import '_core';
-@import '_hosted-native-card';
+@use "core";
+@use "hosted-native-card";
 
-$badgeWidth: 80px;
-$logoHeight: dfpVar(LogoHeight);
-$logoWidth: dfpVar(LogoWidth);
-$hosted-brand-colour: dfpVar(BrandColour);
+$badge-width: 80px;
+$logo-height: dfpvar(logoheight);
+$logo-width: dfpvar(logowidth);
+$hosted-brand-colour: dfpvar(brandcolour);
 
 .logo-container {
-    height: calc(#{$badgeWidth} * #{$logoHeight} / #{$logoWidth});
+  height: calc(#{$badge-width} * #{$logo-height} / #{$logo-width});
 }
 
 .hostedbadge,
@@ -22,6 +22,7 @@ $hosted-brand-colour: dfpVar(BrandColour);
 
 .creative__content-title--hosted {
   $line-height: 24px;
+
   padding: 10px 100px 0 10px;
   height: 3 * $line-height;
 }

@@ -1,29 +1,29 @@
 .adverts--tone-patrons {
-    > .adverts__header {
-        background: $guardian-patron;
-    }
+  > .adverts__header {
+    background: $guardian-patron;
+  }
 }
 
 .adverts--tone-patrons .button--legacy-single,
 .advert--patron .button {
-    background: $guardian-patron;
-    color: #ffffff;
+  background: $guardian-patron;
+  color: #fff;
 }
 
 .advert--patron {
-    &:hover,
-    &:focus,
-    &:active {
-        .button {
-            background: darken($guardian-patron, 5%);
-        }
+  &:hover,
+  &:focus,
+  &:active {
+    .button {
+      background: color.darken($guardian-patron, 5%);
     }
+  }
 }
 
 .adverts--tone-patrons .button--legacy-single {
-    &:hover,
-    &:focus,
-    &:active {
-        background: darken($guardian-patron, 5%);
-    }
+  &:hover,
+  &:focus,
+  &:active {
+    background: color.darken($guardian-patron, 5%);
+  }
 }

@@ -1,95 +1,91 @@
 $brand-colour: #69d1ca;
 
-@import '_core';
-@import '_roundel';
+@use "core";
+@use "roundel";
 
 @font-face {
-    src: url('https://interactive.guim.co.uk/fonts/guss-webfonts/GuardianSansWeb/GuardianSansWeb-Regular.woff2') format('woff2'),
-        url('https://interactive.guim.co.uk/fonts/guss-webfonts/GuardianSansWeb/GuardianSansWeb-Regular.woff') format('woff');
-    font-family: 'Guardian Sans Web';
-    font-weight: normal;
+  src:
+    url("https://interactive.guim.co.uk/fonts/guss-webfonts/GuardianSansWeb/GuardianSansWeb-Regular.woff2") format("woff2"),
+    url("https://interactive.guim.co.uk/fonts/guss-webfonts/GuardianSansWeb/GuardianSansWeb-Regular.woff") format("woff");
+  font-family: "Guardian Sans Web";
+  font-weight: normal;
 }
 
 @font-face {
-    src: url('https://interactive.guim.co.uk/fonts/guss-webfonts/GuardianTextSansWeb/GuardianTextSansWeb-Regular.woff2') format('woff2'),
-        url('https://interactive.guim.co.uk/fonts/guss-webfonts/GuardianTextSansWeb/GuardianTextSansWeb-Regular.woff') format('woff');
-    font-family: 'Guardian Text Sans Web';
-    font-weight: normal;
+  src:
+    url("https://interactive.guim.co.uk/fonts/guss-webfonts/GuardianTextSansWeb/GuardianTextSansWeb-Regular.woff2") format("woff2"),
+    url("https://interactive.guim.co.uk/fonts/guss-webfonts/GuardianTextSansWeb/GuardianTextSansWeb-Regular.woff") format("woff");
+  font-family: "Guardian Text Sans Web";
+  font-weight: normal;
 }
 
 .creative--glabs-mpu {
-    box-sizing: border-box;
-
-    border-top: 2px solid $brand-colour;
-    background: $brand-colour;
-    color: $neutral-1;
-    margin: auto;
-    height: 250px;
-    position: relative;
-
-    font-family: $f-sans-serif-text;
-    line-height: 20px;
+  box-sizing: border-box;
+  border-top: 2px solid $brand-colour;
+  background: $brand-colour;
+  color: $neutral-1;
+  margin: auto;
+  height: 250px;
+  position: relative;
+  font-family: $f-sans-serif-text;
+  line-height: 20px;
 }
 
 .creative__image {
-    object-fit: cover;
-
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
 }
 
 .creative__text {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-
-    background: linear-gradient(to top, rgba(0, 0, 0, .5) 50%, transparent);
-    display: flex;
-    padding: 40px 10px 0;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgb(0 0 0 / 50%) 50%, transparent);
+  display: flex;
+  padding: 40px 10px 0;
 }
 
 .creative__title {
-    color: #ffffff;
-    font: normal 24px/28px $f-sans-serif-headline;
-
-    flex: 1;
-    margin: 0 0 10px;
+  color: #fff;
+  font: normal 24px/28px $f-sans-serif-headline;
+  flex: 1;
+  margin: 0 0 10px;
 }
 
 .creative__brand {
-    background: #ffffff;
-    margin-left: 10px;
-
-    display: flex;
-    flex-direction: column;
-    text-align: center;
+  background: #fff;
+  margin-left: 10px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
 }
 
 .creative__brand-label {
-    background: $brand-colour;
-    color: $neutral-1;
-    font-size: 13px;
-    padding: 0 $gs-gutter / 2;
+  background: $brand-colour;
+  color: $neutral-1;
+  font-size: 13px;
+  padding: 0 $gs-gutter / 2;
 }
 
 .creative__brand-image {
-    display: block;
-    max-width: 90px;
+  display: block;
+  max-width: 90px;
 }
 
 .roundel .popup {
-    background: $neutral-1;
-    color: #ffffff;
+  background: $neutral-1;
+  color: #fff;
 
-    a {
-        color: $brand-colour;
-    }
+  a {
+    color: $brand-colour;
+  }
 
-    &::after {
-        border-bottom-color: $neutral-1;
-    }
+  &::after {
+    border-bottom-color: $neutral-1;
+  }
 }

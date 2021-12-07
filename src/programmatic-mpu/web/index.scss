@@ -1,12 +1,12 @@
-@import '_core';
+@use "core";
 
 .creative--programmatic-mpu {
-    margin: 0 auto;
-    width: 300px;
-    height: 250px;
-    top: 0;
-    left: 0;
-    position: absolute;
+  margin: 0 auto;
+  width: 300px;
+  height: 250px;
+  top: 0;
+  left: 0;
+  position: absolute;
 }
 
 .creative__image {

@@ -1,4 +1,4 @@
-@import '_core';
-@import '_adverts';
-@import '_advert';
-@import '_adverts-jobs';
+@use "core";
+@use "adverts";
+@use "advert";
+@use "adverts-jobs";

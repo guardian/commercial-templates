@@ -2,35 +2,35 @@
 }
 
 .adverts--tone-lives {
-    > .adverts__header {
-        background: $guardian-live-rebrand;
-    }
+  > .adverts__header {
+    background: $guardian-live-rebrand;
+  }
 }
 
 .adverts--tone-lives .button--legacy-single,
 .advert--live .button {
-    background: $guardian-live-rebrand;
-    color: #ffffff;
+  background: $guardian-live-rebrand;
+  color: #fff;
 }
 
 .advert--live {
-    &:hover,
-    &:focus,
-    &:active {
-        .button {
-            background: darken($guardian-live-rebrand, 5%);
-        }
+  &:hover,
+  &:focus,
+  &:active {
+    .button {
+      background: color.darken($guardian-live-rebrand, 5%);
     }
+  }
 }
 
 .adverts--tone-lives .button--legacy-single {
-    &:hover,
-    &:focus,
-    &:active {
-        background: darken($guardian-live-rebrand, 5%);
-    }
+  &:hover,
+  &:focus,
+  &:active {
+    background: color.darken($guardian-live-rebrand, 5%);
+  }
 }
 
 .adverts--tone-lives .blink__anchor {
-    color: #000000;
+  color: #000;
 }

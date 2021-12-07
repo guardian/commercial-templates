@@ -1,12 +1,14 @@
 {
   "ignoreFiles": ["node_modules/**/*.s+(a|c)ss"],
   "extends": [
-    "stylelint-config-recommended-scss"
+    "stylelint-config-standard-scss"
   ],
   "defaultSeverity": "warning",
   "rules": {
+    "selector-class-pattern": null,
     "no-duplicate-selectors": null,
     "no-descending-specificity": null,
+    "declaration-block-single-line-max-declarations": null,
     "block-no-empty": null,
     "no-empty-source": [true,
       {

@@ -1,13 +1,13 @@
-@import '_core';
-@import '_adverts';
-@import '_advert';
-@import '_adverts-capi';
-@import '_paidfor-meta';
-@import '_palette';
-@import '_popup-paidfor';
+@use "core";
+@use "adverts";
+@use "advert";
+@use "adverts-capi";
+@use "paidfor-meta";
+@use "palette";
+@use "popup-paidfor";
 
 .adverts {
-    color: $neutral-1;
+  color: $neutral-1;
 }
 
 .advert__title {
@@ -31,19 +31,18 @@
 }
 
 .adverts__logo:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
 .icon--glabs-logo {
-    width: 75px;
-    max-height: 31px;
+  width: 75px;
+  max-height: 31px;
 }
 
 .adverts__stamp {
-    @include mq($until: tablet) {
-        position: absolute;
-        right: $gs-gutter / 2;
-        top: $gs-baseline / 2;
-    }
-
+  @include mq($until: tablet) {
+    position: absolute;
+    right: $gs-gutter / 2;
+    top: $gs-baseline / 2;
+  }
 }

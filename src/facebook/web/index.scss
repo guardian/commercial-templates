@@ -1,107 +1,107 @@
 $brand-colour: #fedd79;
 
-@import '_core';
-@import '_roundel';
+@use "core";
+@use "roundel";
+@use "sass:color";
 
 .creative--facebook {
-    display: none;
-
-    font-size: .75rem;
-    line-height: 1rem;
-    min-height: 250px;
-    position: relative;
-    margin: 0 $gs-gutter / 2;
-    text-align: left;
-    border-top: 2px solid $brand-colour;
-    box-sizing: border-box;
-    background: lighten($brand-colour, 20%);
-    font-family: $f-sans-serif-headline;
-    padding-bottom: $gs-baseline;
+  display: none;
+  font-size: 0.75rem;
+  line-height: 1rem;
+  min-height: 250px;
+  position: relative;
+  margin: 0 $gs-gutter / 2;
+  text-align: left;
+  border-top: 2px solid $brand-colour;
+  box-sizing: border-box;
+  background: color.lighten($brand-colour, 20%);
+  font-family: $f-sans-serif-headline;
+  padding-bottom: $gs-baseline;
 }
 
 .advert__image-container {
-    height: 170px;
+  height: 170px;
 
-    > img {
-        object-fit: cover;
-    }
+  > img {
+    object-fit: cover;
+  }
 }
 
 .advert__title,
 .advert__meta {
-    color: $neutral-1;
-    margin-left: $gs-gutter / 2;
+  color: $neutral-1;
+  margin-left: $gs-gutter / 2;
 }
 
 .advert__title {
-    font-size: 18px;
-    font-weight: normal;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    margin-right: 80px;
+  font-size: 18px;
+  font-weight: normal;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-right: 80px;
 }
 
 .advert__meta {
-    font-size: 16px;
+  font-size: 16px;
 }
 
 .advert__meta,
 .advert__title {
-    line-height: 1.2;
-    margin-right: 100px;
+  line-height: 1.2;
+  margin-right: 100px;
 }
 
 .advert__more {
-    position: absolute;
-    bottom: $gs-baseline / 2;
-    right: $gs-gutter / 2;
-    color: $neutral-2;
-    border-color: $neutral-3;
+  position: absolute;
+  bottom: $gs-baseline / 2;
+  right: $gs-gutter / 2;
+  color: $neutral-2;
+  border-color: $neutral-3;
 }
 
 .icon--external-link {
-    width: 14px;
-    height: 10px;
-    fill: $neutral-1;
+  width: 14px;
+  height: 10px;
+  fill: $neutral-1;
 }
 
 .advert__brand {
-    background: #ffffff;
-    position: absolute;
-    top: 154px;
-    right: $gs-gutter / 2;
+  background: #fff;
+  position: absolute;
+  top: 154px;
+  right: $gs-gutter / 2;
 }
 
 .advert__logo {
-    width: $gs-baseline * 4;
-    height: $gs-baseline * 4;
+  width: $gs-baseline * 4;
+  height: $gs-baseline * 4;
 }
 
 .roundel .popup {
-    background: $brand-colour;
+  background: $brand-colour;
 
-    a {
-        color: inherit;
-        font-weight: bold;
-    }
+  a {
+    color: inherit;
+    font-weight: bold;
+  }
 
-    &::after {
-        border-bottom-color: $brand-colour;
-    }
+  &::after {
+    border-bottom-color: $brand-colour;
+  }
 }
 
 .button .icon--external-link {
-    margin-left: $gs-gutter / 2;
-    width: 14px;
-    height: 10px;
+  margin-left: $gs-gutter / 2;
+  width: 14px;
+  height: 10px;
 }
 
 .button {
-    border: 1px solid;
-    padding: 8px 10px;
-    line-height: 1;
+  border: 1px solid;
+  padding: 8px 10px;
+  line-height: 1;
 }
 
 img {
-    display: block;
+  display: block;
 }
