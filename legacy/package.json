@@ -1,0 +1,61 @@
+{
+  "name": "commercial-templates",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "sass-mq": "^3.2.9"
+  },
+  "devDependencies": {
+    "autoprefixer": "^6.5.1",
+    "babel-core": "^6.13.2",
+    "babel-plugin-external-helpers": "^6.8.0",
+    "babel-preset-es2015": "^6.13.2",
+    "babel-preset-react": "^6.11.1",
+    "body-parser": "^1.14.1",
+    "csso": "^2.2.1",
+    "express": "^4.13.3",
+    "fs-extra": "^4.0.2",
+    "hogan.js": "^3.0.2",
+    "lint-staged": "^4.0.3",
+    "nodemon": "^2.0.7",
+    "postcss": "^5.2.5",
+    "pre-commit": "^1.2.2",
+    "react": "^15.7.0",
+    "react-dom": "^15.7.0",
+    "rimraf": "^2.5.4",
+    "rollup": "^0.36.3",
+    "rollup-plugin-babel": "^2.6.1",
+    "rollup-plugin-commonjs": "^5.0.5",
+    "rollup-plugin-jsx": "^1.0.3",
+    "rollup-plugin-node-resolve": "^2.0.0",
+    "rollup-plugin-replace": "^1.1.1",
+    "rollup-plugin-uglify": "^1.0.1",
+    "sass": "^1.32.12",
+    "stylelint": "^13.13.1",
+    "stylelint-config-recommended-scss": "^4.2.0",
+    "stylelint-scss": "^3.19.0",
+    "uglify-js": "^2.7.0",
+    "yargs": "^6.3.0"
+  },
+  "scripts": {
+    "clean": "node clean.js",
+    "build": "npm run clean && node build.js --minify",
+    "build-dev": "npm run clean && node build.js",
+    "build-preview": "npm run build-dev && node preview/build.js",
+    "preview": "npm run build-preview && npm run serve-preview",
+    "pre-commit": "lint-staged",
+    "serve-preview": "nodemon preview/server.js",
+    "stylelint": "stylelint '**/*.scss' --config .stylelintrc.json",
+    "stylelint:fix": "stylelint '**/*.scss' --config .stylelintrc.json --fix",
+    "validate:sass": "stylelint '**/*.scss' --max-warnings 0"
+  },
+  "lint-staged": {
+    "*.scss": [
+      "validate:sass"
+    ]
+  },
+  "pre-commit": "pre-commit",
+  "author": "",
+  "license": "ISC"
+}

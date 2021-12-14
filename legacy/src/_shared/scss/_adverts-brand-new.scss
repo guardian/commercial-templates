@@ -1,0 +1,33 @@
+.adverts--tone-brand-news.adverts--legacy-single {
+    > .adverts__header {
+        background: $news-main-1;
+    }
+    .adverts__ctas, .advert__more.button.button--small, .advert__image-container {
+        display:none;
+    }
+
+}
+
+
+.adverts--tone-brand-news .button--legacy-single,
+.advert--brand .button {
+    background: $guardian-generic-rebrand;
+    color: #ffffff;
+}
+
+.adverts--tone-brand-news.adverts--legacy-single .button--legacy-single,
+.adverts--legacy-single .advert--brand .button {
+    background: $news-garnett-highlight;
+    color: $guardian-brand-dark;
+}
+
+
+.adverts--tone-brand-news.adverts--legacy-single .button--legacy-single {
+    border: none;
+    &:hover,
+    &:focus,
+    &:active {
+        border-color: $news-garnett-highlight;
+    }
+}
+

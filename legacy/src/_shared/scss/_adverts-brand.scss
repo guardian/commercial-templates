@@ -1,0 +1,29 @@
+.adverts--tone-brands {
+    > .adverts__header {
+        background: $guardian-generic-rebrand;
+    }
+}
+
+.adverts--tone-brands .button--legacy-single,
+.advert--brand .button {
+    background: $guardian-generic-rebrand;
+    color: #ffffff;
+}
+
+.advert--brand {
+    &:hover,
+    &:focus,
+    &:active {
+        .button {
+            background: darken($guardian-generic-rebrand, 5%);
+        }
+    }
+}
+
+.adverts--tone-brands .button--legacy-single {
+    &:hover,
+    &:focus,
+    &:active {
+        background: darken($guardian-generic-rebrand, 5%);
+    }
+}

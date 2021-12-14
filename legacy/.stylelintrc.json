@@ -1,0 +1,17 @@
+{
+  "ignoreFiles": ["node_modules/**/*.s+(a|c)ss"],
+  "extends": [
+    "stylelint-config-recommended-scss"
+  ],
+  "defaultSeverity": "warning",
+  "rules": {
+    "no-duplicate-selectors": null,
+    "no-descending-specificity": null,
+    "block-no-empty": null,
+    "no-empty-source": [true,
+      {
+        "message": "Empty source. Please add a comment to the source file."
+      }
+    ]
+  }
+}

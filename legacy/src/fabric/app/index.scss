@@ -1,0 +1,62 @@
+@import '_core';
+
+.creative--fabric {
+    &,
+    .creative__link {
+        height: 250px;
+        overflow: hidden;
+    }
+
+    .creative__layer1 { z-index: 1; }
+    .creative__layer2 { z-index: 2; }
+    .creative__layer3 { z-index: 3; }
+
+    .creative__background,
+    .creative__alt,
+    .creative__layer {
+        width: 100%;
+        height: 250px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-repeat: no-repeat;
+    }
+
+    .creative__background {
+        background-position: center;
+    }
+
+    .creative__layer2--animation-enabled {
+        animation-duration: 1.4s;
+        animation-delay: .4s;
+        animation-timing-function: ease;
+        animation-fill-mode: forwards;
+        animation-play-state: paused;
+
+        &.creative__layer2--animation-pos-left   { animation-name: textanimation-left; background-position: left -250px; }
+        &.creative__layer2--animation-pos-centre { animation-name: textanimation-centre; background-position: center -250px; }
+        &.creative__layer2--animation-pos-right  { animation-name: textanimation-right; background-position: right -250px; }
+
+        &.is-animating {
+            animation-play-state: running;
+        }
+    }
+}
+
+@keyframes textanimation-left {
+    0%   { background-position: 0 -250px; }
+    75%  { background-position: 0 0; }
+    100% { background-position: 0 0; }
+}
+
+@keyframes textanimation-right {
+    0%   { background-position: right -250px; }
+    75%  { background-position: right 0; }
+    100% { background-position: right 0; }
+}
+
+@keyframes textanimation-centre {
+    0%   { background-position: center -250px; }
+    75%  { background-position: center 0; }
+    100% { background-position: center 0; }
+}

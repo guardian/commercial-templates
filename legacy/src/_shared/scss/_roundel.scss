@@ -1,0 +1,63 @@
+.roundel {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    z-index: 1000;
+}
+
+.roundel__button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 4px 10px;
+    width: 37px;
+    border-radius: 100%;
+
+    background: $brand-colour;
+    font: bold 12px/20px $f-sans-serif-text;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+}
+
+.roundel .icon--arrow-down {
+    width: 12px;
+    height: 9px;
+}
+
+.roundel .icon--arrow-right {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+}
+
+.roundel .popup {
+    right: 0;
+    left: -150px;
+    top: 47px;
+
+    font-size: 14px;
+    line-height: 16px;
+
+    a {
+        text-decoration: none;
+
+        &:hover,
+        &:focus {
+            text-decoration: underline;
+        }
+    }
+
+    &::after {
+        bottom: 100%;
+        right: 10px;
+        border: solid transparent;
+        content: '';
+        height: 0;
+        width: 0;
+        position: absolute;
+        pointer-events: none;
+        border-width: 8px;
+        margin-left: -8px;
+    }
+}

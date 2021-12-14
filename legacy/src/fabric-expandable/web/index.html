@@ -1,0 +1,77 @@
+{{#advertisementLabel}}{{/advertisementLabel}}
+<div id="creative" class="creative creative--fabric-expandable">
+    <div class="js-container gs-container hide-until-tablet show-more--[%ShowMoreType%]">
+        <button class="toggle toggle--arrow js-toggle" aria-controls="linkDesktop" aria-expanded="false">{{#svg}}arrow-down{{/svg}}</button>
+        <button class="toggle toggle--cross js-toggle" aria-controls="linkDesktop" aria-expanded="false">{{#svg}}cross{{/svg}}</button>
+        <a id="linkDesktop" class="blink creative__link" href="%%CLICK_URL_UNESC%%%%DEST_URL%%">
+            <div class="creative__slide creative__slide1 u-root"
+                style="background: [%Slide1BackgroundColour%] url('[%Slide1BackgroundImage%]') [%Slide1BackgroundRepeat%] [%Slide1BackgroundPosition%]">
+                <div class="creative__layer creative__layer1"
+                    style="background-image: url('[%Slide1Layer1BackgroundImage%]');
+                        background-repeat: [%Slide1Layer1BackgroundRepeat%];
+                        background-position: [%Slide1Layer1BackgroundPosition%]"></div>
+                <div class="creative__layer creative__layer2"
+                    style="background-image: url('[%Slide1Layer2BackgroundImage%]');
+                        background-repeat: [%Slide1Layer2BackgroundRepeat%];
+                        background-position: [%Slide1Layer2BackgroundPosition%];"></div>
+                <div class="creative__layer creative__layer3"
+                    style="background-image: url('[%Slide1Layer3BackgroundImage%]');
+                        background-repeat: [%Slide1Layer3BackgroundRepeat%];
+                        background-position: [%Slide1Layer3BackgroundPosition%];"></div>
+            </div>
+            <div class="creative__slide creative__slide2 u-root"
+                style="background: [%Slide2BackgroundColour%] url('[%Slide2BackgroundImage%]') [%Slide2BackgroundPosition%] [%Slide2BackgroundRepeat%];">
+                <div class="creative__layer creative__layer1"
+                    style="background-image: url('[%Slide2Layer1BackgroundImage%]');
+                        background-repeat: [%Slide2Layer1BackgroundRepeat%];
+                        background-position: [%Slide2Layer1BackgroundPosition%];"></div>
+                <div class="creative__layer creative__layer2"
+                    style="background-image: url('[%Slide2Layer2BackgroundImage%]');
+                        background-repeat: [%Slide2Layer2BackgroundRepeat%];
+                        background-position: [%Slide2Layer2BackgroundPosition%];"></div>
+                <div class="creative__layer creative__layer3"
+                    style="background-image: url('[%Slide2Layer3BackgroundImage%]');
+                        background-repeat: [%Slide2Layer3BackgroundRepeat%];
+                        background-position: [%Slide2Layer3BackgroundPosition%];"></div>
+            </div>
+        </a>
+    </div>
+    <div class="js-container gs-container mobile-only show-more--[%ShowMoreType%]">
+        <button class="toggle toggle--arrow js-toggle" aria-controls="linkMobile" aria-expanded="false">{{#svg}}arrow-down{{/svg}}</button>
+        <button class="toggle toggle--cross js-toggle" aria-controls="linkMobile" aria-expanded="false">{{#svg}}cross{{/svg}}</button>
+        <a id="linkMobile" class="blink creative__link" href="%%CLICK_URL_UNESC%%%%DEST_URL%%">
+            <div class="creative__slide creative__slide1 u-root"
+                style="background: [%Slide1BackgroundColour%] url('[%Slide1MobileBackgroundImage%]') [%Slide1MobileBackgroundRepeat%] [%Slide1MobileBackgroundPosition%];">
+                <div class="creative__layer creative__layer1"
+                    style="background-image: url('[%Slide1Layer1MobileBackgroundImage%]');
+                        background-repeat: [%Slide1Layer1MobileBackgroundRepeat%];
+                        background-position: [%Slide1Layer1MobileBackgroundPosition%];"></div>
+                <div class="creative__layer creative__layer2"
+                    style="background-image: url('[%Slide1Layer2MobileBackgroundImage%]');
+                        background-repeat: [%Slide1Layer2MobileBackgroundRepeat%];
+                        background-position: [%Slide1Layer2MobileBackgroundPosition%];"></div>
+                <div class="creative__layer creative__layer3"
+                    style="background-image: url('[%Slide1Layer3MobileBackgroundImage%]');
+                        background-repeat: [%Slide1Layer3MobileBackgroundRepeat%];
+                        background-position: [%Slide1Layer3MobileBackgroundPosition%];"></div>
+            </div>
+            <div class="creative__slide creative__slide2 u-root"
+                style="background: [%Slide2BackgroundColour%] url('[%Slide2MobileBackgroundImage%]') [%Slide2MobileBackgroundPosition%] [%Slide2MobileBackgroundRepeat%];">
+                <div class="creative__layer creative__layer1"
+                    style="background-image: url('[%Slide2Layer1MobileBackgroundImage%]');
+                        background-repeat: [%Slide2Layer1MobileBackgroundRepeat%];
+                        background-position: [%Slide2Layer1MobileBackgroundPosition%];"></div>
+                <div class="creative__layer creative__layer2"
+                    style="background-image: url('[%Slide2Layer2MobileBackgroundImage%]');
+                        background-repeat: [%Slide2Layer2MobileBackgroundRepeat%];
+                        background-position: [%Slide2Layer2MobileBackgroundPosition%];"></div>
+                <div class="creative__layer creative__layer3"
+                    style="background-image: url('[%Slide2Layer3MobileBackgroundImage%]');
+                        background-repeat: [%Slide2Layer3MobileBackgroundRepeat%];
+                        background-position: [%Slide2Layer3MobileBackgroundPosition%];"></div>
+            </div>
+        </a>
+    </div>
+
+    <img src="[%Trackingpixel%]" class="creative__pixel">
+</div>

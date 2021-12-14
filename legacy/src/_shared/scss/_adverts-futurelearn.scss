@@ -1,0 +1,76 @@
+.adverts--futurelearns {
+}
+
+.adverts--tone-futurelearns {
+    > .adverts__header {
+        background: $futurelearn-main-1;
+        .button {
+            color: $futurelearn-main-2;
+            border-color: fade-out($futurelearn-main-2, .7);
+
+            &:hover,
+            &:focus,
+            &:active {
+                border-color: $futurelearn-main-2;
+            }
+        }
+    }
+
+    .adverts__logo {
+        color: $futurelearn-main-2;
+    }
+
+    .inline-commercial-brand svg {
+        fill: $futurelearn-main-2;
+    }
+}
+
+.adverts--tone-futurelearns .button--legacy-single,
+.advert--futurelearn .button {
+    background: $futurelearn-main-2;
+    color: $neutral-1;
+}
+
+.advert--futurelearn {
+    &:hover,
+    &:focus,
+    &:active {
+        .button {
+            background: darken($futurelearn-main-2, 5%);
+        }
+    }
+}
+
+.adverts--tone-futurelearns .button--legacy-single {
+    &:hover,
+    &:focus,
+    &:active {
+        background: darken($futurelearn-main-2, 5%);
+    }
+}
+
+.advert-blended--futurelearn {
+    .advert-blended__title {
+        padding-top: 5px;
+        padding-bottom: 9px;
+
+        > svg {
+            height: 22px;
+            width: 144px;
+        }
+    }
+
+    .advert {
+        display: block;
+    }
+
+    .advert__image-container {
+        float: right;
+        margin: 0 0 0 $gs-gutter / 2;
+        width: 50%;
+    }
+
+    .icon--logo-futurelearnes {
+        fill: $futurelearn-main-1;
+    }
+}

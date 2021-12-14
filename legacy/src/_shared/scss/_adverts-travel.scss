@@ -1,0 +1,57 @@
+.adverts--travels {
+    > .adverts__header {
+        .button {
+            color: #000000;
+            border-color: rgba(#ffffff, .3);
+            margin-right: 0;
+
+            &:hover,
+            &:focus,
+            &:active {
+                border-color: #ffffff;
+            }
+        }
+    }
+
+}
+
+.adverts--tone-travels {
+    > .adverts__header {
+        background: $guardian-travel-rebrand;
+    }
+}
+
+.adverts--tone-travels .button--legacy-single,
+.advert--travel .button {
+    background: $guardian-travel-rebrand;
+    color: #ffffff;
+}
+
+.advert--travel {
+    &:hover,
+    &:focus,
+    &:active {
+        .button {
+            background: darken($guardian-travel-rebrand, 5%);
+        }
+    }
+}
+
+.adverts--tone-travels .button--legacy-single {
+    &:hover,
+    &:focus,
+    &:active {
+        background: darken($guardian-travel-rebrand, 5%);
+    }
+}
+
+.advert-blended--travels {
+    .advert-blended__title {
+        padding-top: 5px;
+        padding-bottom: 4px;
+    }
+
+    .icon--logo-holidays {
+        fill: $guardian-travel-rebrand;
+    }
+}

@@ -1,0 +1,27 @@
+@import '_core';
+@import '_hosted-native-card';
+
+$badgeWidth: 80px;
+$logoHeight: dfpVar(LogoHeight);
+$logoWidth: dfpVar(LogoWidth);
+$hosted-brand-colour: dfpVar(BrandColour);
+
+.logo-container {
+    height: calc(#{$badgeWidth} * #{$logoHeight} / #{$logoWidth});
+}
+
+.hostedbadge,
+.creative--hosted-mpu {
+  background-color: $hosted-brand-colour;
+}
+
+.creative--hosted-mpu {
+  height: 250px;
+  max-width: 320px;
+}
+
+.creative__content-title--hosted {
+  $line-height: 24px;
+  padding: 10px 100px 0 10px;
+  height: 3 * $line-height;
+}

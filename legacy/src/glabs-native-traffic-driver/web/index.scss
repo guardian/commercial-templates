@@ -1,0 +1,118 @@
+$brand-colour: #69d1ca;
+
+@import '_core';
+
+.creative--glabs-mpu {
+    background: $paid-article-mpu;
+    color: $neutral-1;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+
+    font: normal 14px/18px $f-sans-serif-text;
+
+    @include mq(mobileLandscape) {
+        max-width: 320px;
+    }
+}
+
+.creative__image-container {
+    overflow: hidden; /* IE1 messes up the height */
+    order: -1;
+    position: relative;
+}
+
+.creative__image {
+    width: 100%;
+}
+
+.creative__glabs-link {
+    position: absolute;
+    top: 4px;
+    right: 10px;
+}
+
+.creative__title {
+    font: normal 20px/24px $f-sans-serif-headline;
+    margin: 8px 10px 5px;
+}
+
+.creative__standfirst {
+    display: none;
+    margin: 8px 10px 5px;
+}
+
+.creative__standfirst--yes {
+    display: block;
+}
+
+.creative__brand {
+    color: #767676;
+    font-size: 13px;
+    margin: 0 10px 4px;
+    text-align: right;
+}
+
+.creative__brand-image {
+    margin-left: 10px;
+    max-height: 60px;
+    vertical-align: middle;
+}
+
+.creative__meta {
+    background: $brand-colour;
+    font-size: 13px;
+    display: flex;
+}
+
+.creative__meta-type {
+    display: inline-block;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.creative__meta-about {
+    border-width: 0 1px;
+    border-style: solid;
+    border-color: rgba($neutral-1, .2);
+    display: inline-block;
+}
+
+.creative__meta-type,
+.creative__meta-about > button {
+    padding: 6px 10px 4px;
+}
+
+.popup {
+    background: $neutral-1;
+    color: #ffffff;
+    font-size: 14px;
+    line-height: 16px;
+
+    a {
+        color: $brand-colour;
+        text-decoration: none;
+
+        &:hover,
+        &:focus {
+            text-decoration: underline;
+        }
+    }
+}
+
+.icon--glabs-logo {
+    height: 23px;
+    width: 75px;
+    fill: #ffffff;
+}
+
+.icon--arrow-down {
+    height: 9px;
+    width: 12px;
+}
+
+.icon--arrow-right {
+    height: 20px;
+    width: 20px;
+    fill: currentColor;
+}

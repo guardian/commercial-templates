@@ -1,0 +1,29 @@
+.adverts--tone-lifestyles {
+    > .adverts__header {
+        background: $lifestyle-main;
+    }
+}
+
+.adverts--tone-lifestyles .button--legacy-single,
+.advert--lifestyle .button {
+    background: $lifestyle-main;
+    color: #ffffff;
+}
+
+.advert--lifestyle {
+    &:hover,
+    &:focus,
+    &:active {
+        .button {
+            background: darken($lifestyle-main, 5%);
+        }
+    }
+}
+
+.adverts--tone-lifestyles .button--legacy-single {
+    &:hover,
+    &:focus,
+    &:active {
+        background: darken($lifestyle-main, 5%);
+    }
+}

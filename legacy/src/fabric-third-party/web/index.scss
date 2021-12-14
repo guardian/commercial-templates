@@ -1,0 +1,12 @@
+@import '_core';
+
+.creative--third-party-video {
+    margin: auto;
+    max-width: $creative-max-width;
+    padding: inherit;
+    object-fit: cover;
+
+    .creative__link {
+        height: 250px;
+    }
+  }

@@ -1,0 +1,60 @@
+
+<aside class="adverts advert--manual adverts--legacy adverts--legacy-single adverts--[%Tone%]s adverts--tone-[%Tone%]s" data-link-name="creative | ad single manual | [%OmnitureId%]">
+    <header class="adverts__header">
+        <h1 class="adverts__title">
+            <a class="adverts__logo brand_logo" href="%%CLICK_URL_UNESC%%[%TitleURL%]" data-link-name="title" target="_top"></a>
+        </h1>
+        <div class="adverts_blurb">
+          <span class="adverts__blurb">[%Explainer%]</span>
+        </div>
+        <div class="adverts__ctas">
+            <a class="button button--large button--bordered" href="%%CLICK_URL_UNESC%%[%TitleURL%]" data-link-name="view-all" target="_top">
+                [%ViewAll%]
+                {{#svg}}arrow-right{{/svg}}
+            </a>
+        </div>
+    </header>
+      <div class="adverts__body">
+          <div class="adverts__row">
+              <a class="blink advert advert--single advert--landscape advert--large advert--inverse advert--[%Tone%]" href="%%CLICK_URL_UNESC%%[%OfferURL%]" data-link-name="[%OfferTitle%]" target="_top">
+                  <div class="advert__text">
+                    <h2 class="blink__anchor advert__title">[%OfferTitle%]</h2>
+                    <p class="advert__standfirst">[%OfferText%]</p>
+                    <span class="advert__more button button--small">
+                        [%OfferLinkText%]
+                        {{#svg}}arrow-right{{/svg}}
+                    </span>
+                  </div>
+                  <div class="advert__image-container">
+                        <img class="advert__image" src="[%OfferImage%]" alt>
+                  </div>
+              </a>
+              <a class="hide-until-mobile-landscape button button--primary button--large button--legacy-single" href="%%CLICK_URL_ESC%%[%TitleURL%]"  data-link-name="viewall" target="_top">
+                  [%ViewAll%]
+                  {{#svg}}arrow-right{{/svg}}
+              </a>
+          </div>
+      </div>
+  </aside>
+  
+  <script>
+      const genericLogoString = '{{#svg}}guardian-generic-logo{{/svg}}'
+      
+      var logoSvgs = {
+          'job': '{{#svg}}guardian-jobs-logo{{/svg}}',
+          'live': '{{#svg}}guardian-live-logo{{/svg}}',
+          'travel': '{{#svg}}guardian-holidays-logo{{/svg}}',
+          'money': '{{#svg}}guardian-moneydeals-logo{{/svg}}',
+          'book': '{{#svg}}guardian-bookshop-logo{{/svg}}',
+          'masterclass': '{{#svg}}guardian-masterclasses-logo{{/svg}}',
+          'subscription': '{{#svg}}guardian-subscriptions-logo{{/svg}}',
+          'weekly': '{{#svg}}guardian-weekly-logo{{/svg}}',
+          'members': '{{#svg}}guardian-members-logo{{/svg}}',
+          'patron': '{{#svg}}guardian-patron-logo{{/svg}}',
+          'brand': genericLogoString,
+          'brand-new': genericLogoString,
+          'lifestyle': genericLogoString,
+          'climate': genericLogoString,
+          'support': genericLogoString
+      }
+  </script>

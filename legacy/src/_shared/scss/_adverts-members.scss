@@ -1,0 +1,57 @@
+.adverts--memberss {
+    > .adverts__header {
+        .button {
+            color: #000000;
+            border-color: rgba(#ffffff, .3);
+            margin-right: 0;
+
+            &:hover,
+            &:focus,
+            &:active {
+                border-color: #ffffff;
+            }
+        }
+    }
+
+}
+
+.adverts--tone-memberss {
+    > .adverts__header {
+        background: $guardian-members-rebrand;
+    }
+}
+
+.adverts--tone-memberss .button--legacy-single,
+.advert--members .button {
+    background: $guardian-members-rebrand;
+    color: #ffffff;
+}
+
+.advert--members {
+    &:hover,
+    &:focus,
+    &:active {
+        .button {
+            background: darken($guardian-members-rebrand, 5%);
+        }
+    }
+}
+
+.adverts--tone-memberss .button--legacy-single {
+    &:hover,
+    &:focus,
+    &:active {
+        background: darken($guardian-members-rebrand, 5%);
+    }
+}
+
+.advert-blended--memberss {
+    .advert-blended__title {
+        padding-top: 5px;
+        padding-bottom: 4px;
+    }
+
+    .icon--logo-holidays {
+        fill: $guardian-members-rebrand;
+    }
+}

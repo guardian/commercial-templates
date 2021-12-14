@@ -1,0 +1,8 @@
+{
+  "DapAssetsFolder": "test-creative",
+  "ThirdPartyTag": "https://tpc.googlesyndication.com/pagead/imgad?id=CICAgKCrtKGjoAEQARgBMgjYagW3ARF6Fw",
+  "TrackingPixel": "https://gu.com/tracking-pixel.gif",
+  "ResearchPixel": "https://gu.com/research-pixel.gif",
+  "ViewabilityTracker": "<img src='https://gu.com/viewability-tracker.gif'>",
+  "thirdPartyJSTracking": "<SCRIPT TYPE='application/javascript' SRC='https://pixel.adsafeprotected.com/rjss/st/726370/54949606/skeleton.js'></SCRIPT> <NOSCRIPT><IMG SRC='https://pixel.adsafeprotected.com/rfw/st/726370/54949605/skeleton.gif?gdpr=${GDPR}&gdpr_consent=${GDPR_CONSENT_278}&gdpr_pd=${GDPR_PD}' BORDER=0 WIDTH=1 HEIGHT=1 ALT=''></NOSCRIPT>"
+}

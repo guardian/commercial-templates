@@ -1,0 +1,18 @@
+@import '_core';
+
+.creative--parallax-mpu {
+    margin: 0 auto;
+    width: 300px;
+    height: 250px;
+    overflow: hidden;
+    position: relative;
+
+    .creative--parallax-mpu-image-overlay {
+      z-index: 1;
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      box-sizing: border-box;
+    }
+}
