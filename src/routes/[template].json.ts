@@ -38,23 +38,25 @@ const build = async (template: string): Promise<string> => {
 		]
 	});
 
-	const output = await bundle.generate({}).then((output) => output.output[0].code);
+	const output = await bundle.generate({}).then((output) => output.output);
 
 	// Cache build for subsequent calls!
 	caches[template] = bundle.cache;
 
-	return output;
+	return output[0].code;
 };
 
 export const get: RequestHandler = async ({ params }) => {
 	const { template } = params;
 
 	const js = await build(template);
+	const props = js.match(/props:({.+?})/)[1];
 
 	return {
 		body: {
 			html: `<base><div id="svelte"></div><script>${js}</script></base>`,
-			css: 'TODO: currently injected via JS'
+			css: 'TODO: currently injected via JS',
+			variables: props
 		}
 	};
 };
