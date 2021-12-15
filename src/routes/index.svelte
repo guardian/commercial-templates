@@ -2,7 +2,7 @@
     export const templates = ['test']
 </script>
 
-<h1>This will handle templates</h1>
+<h1>Commercial Templates</h1>
 
 <ol>
     {#each templates as template}

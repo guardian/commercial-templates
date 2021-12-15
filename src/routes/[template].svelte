@@ -26,8 +26,10 @@
 	export let html: string;
 </script>
 
+<aside id="warning">⚠️ WARNING: it is recommended you view this development page with a viewport of at least 1300px</aside>
+
 <h1>
-	This is a template called {template}
+	Template: {template}
 </h1>
 
 <section id="example">
@@ -75,7 +77,8 @@
 	}
 
 	iframe {
-		outline: 0.25rem solid aquamarine;
+		outline: 10px solid darkblue;
+		background-color: white;
 	}
 
 	#code {
@@ -87,5 +90,21 @@
 	pre {
 		white-space: pre-wrap;
 		word-break: break-all;
+	}
+
+	#warning {
+			display: block;
+			position: sticky;
+			top: 0;
+			left: 0;
+			padding: 0.5rem;
+			background-color: darkred;
+			color: rgb(255, 196, 0);
+			text-align: center;
+		}
+	@media screen and (min-width: 1300px) {
+		#warning {
+			display: none;
+		}
 	}
 </style>
