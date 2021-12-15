@@ -4,8 +4,8 @@
 	import List from '$lib/List.svelte'
 </script>
 
-<script>
-	export let info = "** MISSING INFO **";
+<script lang="ts">
+	export let info: string;
 </script>
 
 <h2>My props</h2>

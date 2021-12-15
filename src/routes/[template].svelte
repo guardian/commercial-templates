@@ -23,16 +23,17 @@
 
 <script lang="ts">
 	import { invalidate } from '$app/navigation';
+	import { replaceGAMVariables } from '$lib/replace';
 
 	if (import.meta.hot) {
 		import.meta.hot.on('template-update', (data) => {
-			console.log(data)
 			invalidate(`/${data.id}.json`);
 		});
 	}
 
 	export let template: string;
 	export let html: string;
+	export let transformed = replaceGAMVariables(html, { info: 'My Data' });
 </script>
 
 <aside id="warning">
@@ -49,12 +50,11 @@
 			<h4>
 				{widths[width]} size ({width})
 			</h4>
-			<!-- src={`/preview/${template}`} -->
 			<iframe
 				title={`Template example for ${template}`}
 				frameborder="0"
 				{width}
-				srcdoc={html}
+				srcdoc={transformed}
 				height="250"
 			/>
 		</div>
