@@ -26,7 +26,9 @@
 	export let html: string;
 </script>
 
-<aside id="warning">⚠️ WARNING: it is recommended you view this development page with a viewport of at least 1300px</aside>
+<aside id="warning">
+	⚠️ WARNING: it is recommended you view this development page with a viewport of at least 1300px
+</aside>
 
 <h1>
 	Template: {template}
@@ -93,15 +95,15 @@
 	}
 
 	#warning {
-			display: block;
-			position: sticky;
-			top: 0;
-			left: 0;
-			padding: 0.5rem;
-			background-color: darkred;
-			color: rgb(255, 196, 0);
-			text-align: center;
-		}
+		display: block;
+		position: sticky;
+		top: 0;
+		left: 0;
+		padding: 0.5rem;
+		background-color: darkred;
+		color: rgb(255, 196, 0);
+		text-align: center;
+	}
 	@media screen and (min-width: 1300px) {
 		#warning {
 			display: none;
