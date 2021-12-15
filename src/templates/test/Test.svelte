@@ -19,6 +19,6 @@
 	img {
 		display: block;
 		padding: 1rem;
-		background-color: orangered;
+		background-color: aquamarine;
 	}
 </style>

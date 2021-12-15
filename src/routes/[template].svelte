@@ -22,6 +22,15 @@
 </script>
 
 <script lang="ts">
+	import { invalidate } from '$app/navigation';
+
+	if (import.meta.hot) {
+		import.meta.hot.on('template-update', (data) => {
+			console.log(data)
+			invalidate(`/${data.id}.json`);
+		});
+	}
+
 	export let template: string;
 	export let html: string;
 </script>
