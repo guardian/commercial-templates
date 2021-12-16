@@ -9,15 +9,15 @@
 		return {
 			props: {
 				template,
-				html
-			}
+				html,
+			},
 		};
 	};
 
 	export const widths = {
 		1300: 'desktop',
 		740: 'tablet',
-		375: 'mobile'
+		375: 'mobile',
 	};
 </script>
 
@@ -37,7 +37,8 @@
 </script>
 
 <aside id="warning">
-	⚠️ WARNING: it is recommended you view this development page with a viewport of at least 1300px
+	⚠️ WARNING: it is recommended you view this development page with a viewport
+	of at least 1300px
 </aside>
 
 <h1>

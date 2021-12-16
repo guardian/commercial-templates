@@ -3,12 +3,15 @@
 
 node_modules
 
-# Svelte 
+# Svelte
 /build
 /.svelte-kit
 /package
 
-# Environment Vars 
+# Environment Vars
 .env
 .env.*
 !.env.example
+
+# Ignore legacy code (it’s already checked in)
+legacy

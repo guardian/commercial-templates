@@ -16,6 +16,6 @@
 	}
 
 	nav a {
-		color: inherit
+		color: inherit;
 	}
 </style>

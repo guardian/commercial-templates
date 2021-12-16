@@ -31,16 +31,16 @@ const config = {
 							type: 'custom',
 							event: 'template-update',
 							data: {
-								id: matches[1]
-							}
+								id: matches[1],
+							},
 						});
 
 						return [];
-					}
-				}
-			]
-		})
-	}
+					},
+				},
+			],
+		}),
+	},
 };
 
 export default config;
