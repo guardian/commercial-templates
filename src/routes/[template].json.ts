@@ -2,6 +2,7 @@ import fs from 'fs';
 import alias from '@rollup/plugin-alias';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
 import type { RequestHandler } from '@sveltejs/kit/types';
+import type { ReadCommitResult } from 'isomorphic-git';
 import { log } from 'isomorphic-git';
 import type { RollupCache } from 'rollup';
 import { rollup } from 'rollup';
@@ -13,17 +14,21 @@ const caches: Partial<Record<string, RollupCache>> = {};
 
 type Output = {
 	code: string;
-	sha: string;
+	commit: ReadCommitResult;
 };
+
+const github = 'https://github.com/guardian/commercial-templates/blob';
+
+const filepath = (template: string): `src/templates/${string}/index.ts` =>
+	`src/templates/${template}/index.ts`;
 
 const build = async (template: string): Promise<Output> => {
 	caches[template]
 		? console.info(`Building “${template}” from rollup cache`)
 		: console.warn(`Building “${template}” from fresh`);
 
-	const input = `src/templates/${template}/index.ts`;
 	const bundle = await rollup({
-		input,
+		input: filepath(template),
 		cache: caches[template],
 		plugins: [
 			svelte({
@@ -55,13 +60,13 @@ const build = async (template: string): Promise<Output> => {
 		fs,
 		dir,
 		ref: 'HEAD',
-		filepath: `src/templates/${template}/index.ts`,
+		filepath: filepath(template),
 		force: true,
 	});
 
 	return {
 		code: output[0].code,
-		sha: commit.oid,
+		commit: commit,
 	};
 };
 
@@ -71,9 +76,21 @@ export const get: RequestHandler = async ({ params }) => {
 	const js = await build(template);
 	const props = /props:({.+?})/.exec(js.code)?.[1] ?? '';
 
+	const sha = js.commit.oid.slice(0, 9);
+	const link = `${github}/${sha}/${filepath(template)}`;
+	const date = new Date(js.commit.commit.author.timestamp * 1_000)
+		.toISOString()
+		.slice(0, 10);
+
+	const html = [
+		`<!-- "${template}" updated on ${date} via ${link} -->`,
+		`<div id="svelte" data-template-id="${template}"></div>`,
+		`<script>${js.code}</script>`,
+	].join('\n');
+
 	return {
 		body: {
-			html: `<!-- https://github.com/guardian/commercial-templates/blob/${js.sha}/src/templates/${template}/index.ts --><div id="svelte" data-template="${template}"></div><script>${js.code}</script>`,
+			html,
 			css: 'TODO: currently injected via JS',
 			variables: props,
 		},
