@@ -7,11 +7,18 @@ module.exports = {
 	overrides: [{ files: ['*.svelte'], processor: 'svelte3/svelte3' }],
 	settings: {
 		'svelte3/typescript': () => require('typescript'),
+		'import/resolver': {
+			typescript: {},
+			node: {
+				extensions: ['.js', '.jsx', '.ts', '.tsx'],
+			},
+		},
 	},
 	parserOptions: {
 		sourceType: 'module',
 		ecmaVersion: 2020,
 	},
+	plugins: ['@typescript-eslint', 'import'],
 	env: {
 		browser: true,
 		es2017: true,
