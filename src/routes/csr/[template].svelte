@@ -4,9 +4,8 @@
 	export const load: Load = async ({ page, fetch }) => {
 		const { template } = page.params;
 
-		const endpoint = page.query.get('ssr')
-			? `/ssr/${template}.json`
-			: `/${template}.json`;
+		const endpoint = `/csr/${template}.json`;
+
 		const { html, props } = await fetch(endpoint).then((r) => r.json());
 
 		return {
@@ -32,15 +31,15 @@
 	if (import.meta.hot) {
 		import.meta.hot.on('template-update', (data) => {
 			console.log(`Received invalidation for ${data.id}`);
-			if (data.id === 'lib') invalidate(`/${template}.json`);
-			invalidate(`/${data.id}.json`);
+			if (data.id === 'lib') invalidate(`/csr/${template}.json`);
+			invalidate(`/csr/${data.id}.json`);
 		});
 	}
 
 	export let template: string;
 	export let html: string;
-	export let props: Record<string, string>;
-	$: transformed = replaceGAMVariables(html, props);
+	export let props: Record<string, string> | undefined;
+	$: transformed = replaceGAMVariables(html, props ?? {});
 </script>
 
 <aside id="warning">
@@ -73,11 +72,13 @@
 	<h3>Inputs</h3>
 
 	<ul>
-		{#each Object.keys(props) as prop}
-			<li>
-				{prop}: <input type="text" bind:value={props[prop]} />
-			</li>
-		{/each}
+		{#if props}
+			{#each Object.keys(props) as prop}
+				<li>
+					{prop}: <input type="text" bind:value={props[prop]} />
+				</li>
+			{/each}
+		{/if}
 	</ul>
 </section>
 
