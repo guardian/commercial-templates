@@ -7,9 +7,9 @@
 <ol>
 	{#each templates as template}
 		<li>
-			<a href={`/${template}`}
-				>{template.slice(0, 1).toUpperCase() + template.slice(1)}</a
-			>
+			{template.slice(0, 1).toUpperCase() + template.slice(1)}
+			<a href={`/csr/${template}`}>CSR</a> -
+			<a href={`/ssr/${template}`}>SSR</a>
 		</li>
 	{/each}
 </ol>
