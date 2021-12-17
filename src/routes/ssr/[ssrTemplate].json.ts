@@ -4,7 +4,6 @@ import { nodeResolve } from '@rollup/plugin-node-resolve';
 import type { RequestHandler } from '@sveltejs/kit/types';
 import { rollup } from 'rollup';
 import svelte from 'rollup-plugin-svelte';
-import { terser } from 'rollup-plugin-terser';
 import preprocess from 'svelte-preprocess';
 import { getCommit, virtual } from '../[template].json';
 
@@ -21,19 +20,17 @@ const filepath = (template: string): `src/templates/${string}/index.ts` =>
 
 const build = async (template: string, ssr: boolean): Promise<Output> => {
 	const bundle = await rollup({
-		input: ssr ? 'ssr' : 'dom',
+		input: 'ssr',
 		cache: false,
 		plugins: [
-			virtual(template),
+			virtual(template, {}),
 			svelte({
 				preprocess: preprocess(),
 				emitCss: false, // TODO, add css plugin for rollup
 				compilerOptions: {
-					generate: ssr ? 'ssr' : 'dom',
+					generate: 'ssr',
 					immutable: true,
-					hydratable: false,
-
-					// hydratable: true,
+					hydratable: true,
 				},
 			}),
 			alias({
@@ -46,7 +43,6 @@ const build = async (template: string, ssr: boolean): Promise<Output> => {
 			}),
 			nodeResolve(),
 			// minify the code
-			!ssr && terser(),
 		],
 	});
 
@@ -82,10 +78,7 @@ const build = async (template: string, ssr: boolean): Promise<Output> => {
 };
 
 export const get: RequestHandler = async ({ params }) => {
-	const { template } = params;
-
-	const client = await build(template, false);
-	const props = /props:({.+?})/.exec(client.js ?? '')?.[1] ?? '';
+	const template = params.ssrTemplate;
 
 	const server = await build(template, true);
 
@@ -102,14 +95,12 @@ export const get: RequestHandler = async ({ params }) => {
 		server.html,
 		`</div>`,
 		`<style>${String(server.css)}</style>`,
-		`<script>${String(client.js)}</script>`,
 	].join('\n');
 
 	return {
 		body: {
 			html,
 			css: 'TODO: currently injected via JS',
-			variables: props,
 		},
 	};
 };
