@@ -7,19 +7,22 @@
 
 <script lang="ts">
 	export let info: string;
+	export let brand: string;
 </script>
 
 <h2>My props</h2>
 <pre>info: {info}</pre>
+<pre>brand: {brand}</pre>
 
 <img src={cdn + path} alt="an advertisment" />
 
-<List />
+<List sizes={[300,600,900,1200]}/>
 
 <style>
 	img {
 		display: block;
 		padding: 1rem;
-		background-color: aquamarine;
+
+		background-color: rebeccapurple;
 	}
 </style>
