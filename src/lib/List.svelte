@@ -1,9 +1,9 @@
 <script lang="ts">
-	export const sizes = [300, 600, 900, 1200, 1800, 2400];
+	export let sizes;
 </script>
 
-<ul>
+<ol>
 	{#each sizes as size}
 		<li>{size}</li>
 	{/each}
-</ul>
+</ol>
