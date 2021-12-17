@@ -1,19 +1,21 @@
 import fs from 'fs';
-import vm from 'vm';
 import alias from '@rollup/plugin-alias';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
 import type { RequestHandler } from '@sveltejs/kit/types';
-import { log, ReadCommitResult } from 'isomorphic-git';
+import type { ReadCommitResult } from 'isomorphic-git';
+import { log } from 'isomorphic-git';
 import type { Plugin, RollupCache } from 'rollup';
 import { rollup } from 'rollup';
 import svelte from 'rollup-plugin-svelte';
 import { terser } from 'rollup-plugin-terser';
 import preprocess from 'svelte-preprocess';
+import compiler from 'svelte/compiler';
 
 const caches: Partial<Record<string, RollupCache>> = {};
 type Output = {
 	js: string;
 	css: string;
+	props: Record<string, `[%${string}%]`>;
 };
 
 const github = 'https://github.com/guardian/commercial-templates/blob';
@@ -21,7 +23,7 @@ const github = 'https://github.com/guardian/commercial-templates/blob';
 const filepath = (template: string): `src/templates/${string}/index.svelte` =>
 	`src/templates/${template}/index.svelte`;
 
-const virtual = (template: string): Plugin => ({
+const virtual = (template: string, props: Output['props']): Plugin => ({
 	name: 'virtual-template',
 	resolveId: (source: string) => {
 		if (source === 'ssr' || source === 'dom') return source;
@@ -38,10 +40,7 @@ const virtual = (template: string): Plugin => ({
 			return `import Template from "./${filepath(template)}";
 new Template({
 	target: document.querySelector('#svelte'),
-	props: {
-		info: '[%info%]',
-		brand: '[%brand%]',
-	},
+	props: ${JSON.stringify(props)},
 });`;
 		}
 		return null;
@@ -62,16 +61,30 @@ const getCommit = async (filepath: string): Promise<ReadCommitResult> => {
 	return commit;
 };
 
-const build = async (template: string, ssr: boolean): Promise<Output> => {
+const build = async (template: string): Promise<Output> => {
 	caches[template]
 		? console.info(`Building “${template}” from rollup cache`)
 		: console.warn(`Building “${template}” from fresh`);
+
+	const { vars } = compiler.compile(
+		// TODO: handle Typescript, too
+		fs.readFileSync(filepath(template), 'utf8'),
+		{},
+	);
+
+	const props: Output['props'] = vars
+		.filter((v) => v.writable)
+		.map((v) => v.name)
+		.reduce((o, key) => {
+			o[key] = `[%${key}%]`;
+			return o;
+		}, {});
 
 	const bundle = await rollup({
 		input: 'dom',
 		cache: caches[template],
 		plugins: [
-			virtual(template),
+			virtual(template, props),
 			svelte({
 				preprocess: preprocess(),
 				emitCss: false, // TODO, add css plugin for rollup
@@ -103,14 +116,14 @@ const build = async (template: string, ssr: boolean): Promise<Output> => {
 	return {
 		js: output[0].code,
 		css: 'TBC',
+		props,
 	};
 };
 
 export const get: RequestHandler = async ({ params }) => {
 	const { template } = params;
 
-	const client = await build(template, false);
-	const props = /props:({.+?})/.exec(client.js)?.[1] ?? '';
+	const client = await build(template);
 
 	const commit = await getCommit(filepath(template));
 	const sha = commit.oid.slice(0, 9);
@@ -130,7 +143,7 @@ export const get: RequestHandler = async ({ params }) => {
 		body: {
 			html,
 			css: 'TODO: currently injected via JS',
-			variables: props,
+			props: client.props,
 		},
 	};
 };

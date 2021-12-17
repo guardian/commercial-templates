@@ -6,19 +6,25 @@
 </script>
 
 <script lang="ts">
-	export let info: string;
-	export let brand: string;
+	export let info;
+	export let brand;
 </script>
 
-<h2>My props</h2>
-<pre>info: {info}</pre>
-<pre>brand: {brand}</pre>
+<div class="wrapper" style={`--brand:${brand}`}>
+	<h2>My props</h2>
+	<pre>info: {info}</pre>
+	<pre>brand: {brand}</pre>
 
-<img src={cdn + path} alt="an advertisment" />
+	<img src={cdn + path} alt="an advertisment" />
+</div>
 
 <List sizes={[300,600,900,1200]}/>
 
 <style>
+
+	.wrapper {
+		background-color: var(--brand);
+	}
 	img {
 		display: block;
 		padding: 1rem;
