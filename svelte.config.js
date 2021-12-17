@@ -22,11 +22,15 @@ const config = {
 						server.watcher.add('/src/templates');
 					},
 					handleHotUpdate(ctx) {
-						const TEMPLATE = /([\w-]+?)\/[\w-]+?\.(ts|svelte)$/i;
+						const TEMPLATE = /([\w-]+?)\/[\w-]+?\.svelte$/i;
 						const matches = TEMPLATE.exec(ctx.file);
 
 						if (!matches) return ctx.modules;
 
+						console.warn(
+							`Template ${matches[1]} changed`,
+							'sending template-update event',
+						);
 						ctx.server.ws.send({
 							type: 'custom',
 							event: 'template-update',
