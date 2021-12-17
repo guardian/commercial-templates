@@ -27,6 +27,8 @@
 
 	if (import.meta.hot) {
 		import.meta.hot.on('template-update', (data) => {
+			console.log(`Received invalidation for ${data.id}`)
+			if(data.id === "lib") invalidate(`/${template}.json`);
 			invalidate(`/${data.id}.json`);
 		});
 	}
