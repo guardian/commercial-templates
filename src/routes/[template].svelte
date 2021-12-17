@@ -33,7 +33,7 @@
 
 	export let template: string;
 	export let html: string;
-	export let transformed = replaceGAMVariables(html, { info: 'My Data' });
+	$: transformed = replaceGAMVariables(html, { info: 'My Data' });
 </script>
 
 <aside id="warning">
