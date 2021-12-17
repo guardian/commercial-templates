@@ -4,7 +4,8 @@
 	export const load: Load = async ({ page, fetch }) => {
 		const { template } = page.params;
 
-		const { html } = await fetch(`/${template}.json`).then((r) => r.json());
+		const endpoint = page.query.get("ssr") ? `/ssr/${template}.json` : `/${template}.json`
+		const { html } = await fetch(endpoint).then((r) => r.json());
 
 		return {
 			props: {
