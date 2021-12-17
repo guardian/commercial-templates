@@ -1,0 +1,15 @@
+---
+import SvelteCounter from '../components/SvelteCounter.svelte';
+---
+
+<main>
+    <h2>Some information %%CLICK_URL%%</h2>
+
+    <SvelteCounter client:visible />
+</main>
+
+<style>
+    h2 {
+        color: brown;
+    }
+</style>
