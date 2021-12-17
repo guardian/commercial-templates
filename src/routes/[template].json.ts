@@ -38,10 +38,15 @@ const virtual = (template: string, props: Output['props']): Plugin => ({
 		}
 		if (id === 'dom') {
 			return `import Template from "./${filepath(template)}";
+window.performance.mark('svelteStart');
 new Template({
 	target: document.querySelector('#svelte'),
 	props: ${JSON.stringify(props)},
-});`;
+});
+window.performance.mark('svelteEnd');
+const measure = window.performance.measure('svelte', 'svelteStart','svelteEnd');
+document.querySelector("#metrics").innerText = \`\${measure.duration}ms\`;
+`;
 		}
 		return null;
 	},
@@ -134,8 +139,8 @@ export const get: RequestHandler = async ({ params }) => {
 
 	const html = [
 		`<!-- "${template}" updated on ${date} via ${link} -->`,
-		`<div id="svelte" data-template-id="${template}">`,
-		`</div>`,
+		`<div id="svelte" data-template-id="${template}"></div>`,
+		`<div id="metrics"></div>`,
 		`<script>${String(client.js)}</script>`,
 	].join('\n');
 
