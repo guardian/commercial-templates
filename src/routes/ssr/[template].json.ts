@@ -40,6 +40,7 @@ export const get: RequestHandler = async ({ params }) => {
 
 	const output = await build(template, 'ssr');
 
+	// TODO: Pass props to render an initial value
 	const ssr = prerender(output[0].code);
 
 	const commit = await getCommit(path);
@@ -53,13 +54,13 @@ export const get: RequestHandler = async ({ params }) => {
 		`<div id="svelte" data-template-id="${template}">`,
 		ssr.html,
 		`</div>`,
-		`<style>${String(ssr.css)}</style>`,
+		// TODO: add JS from index.ts
 	].join('\n');
 
 	return {
 		body: {
 			html,
-			css: 'TODO: currently injected via JS',
+			css: String(ssr.css),
 		},
 	};
 };

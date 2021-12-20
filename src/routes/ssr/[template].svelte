@@ -6,12 +6,13 @@
 
 		const endpoint = `/ssr/${template}.json`;
 
-		const { html, props } = await fetch(endpoint).then((r) => r.json());
+		const { html, css, props } = await fetch(endpoint).then((r) => r.json());
 
 		return {
 			props: {
 				template,
 				html,
+				css,
 				props,
 			},
 		};
@@ -38,6 +39,7 @@
 
 	export let template: string;
 	export let html: string;
+	export let css: string;
 	export let props: Record<string, string> | undefined;
 	$: transformed = replaceGAMVariables(html, props ?? {});
 </script>
@@ -90,7 +92,7 @@
 	</div>
 	<div>
 		<h2>CSS</h2>
-		<pre>/* TBC */</pre>
+		<pre>{css}</pre>
 	</div>
 </section>
 
