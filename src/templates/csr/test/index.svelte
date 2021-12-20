@@ -33,6 +33,6 @@
 		max-width: 50%;
 		max-height: 100%;
 
-		background-color: orange;
+		background-color: orangered;
 	}
 </style>

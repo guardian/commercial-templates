@@ -29,6 +29,6 @@
 		display: block;
 		padding: 1rem;
 
-		background-color: rebeccapurple;
+		background-color: orangered;
 	}
 </style>

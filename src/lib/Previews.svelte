@@ -1,0 +1,68 @@
+<script lang="ts">
+	import { replaceGAMVariables } from '$lib/replace';
+	$: transformed = `<body marginwidth="0" marginheigth="0">${replaceGAMVariables(
+		html,
+		props,
+	)}</body>`;
+
+	export let template: string;
+	export let html: string;
+	export let props: Record<string, string> = {};
+
+	export const widths = {
+		1300: 'desktop',
+		740: 'tablet',
+		360: 'mobile',
+	};
+</script>
+
+<section id="example">
+	{#each Object.keys(widths) as width}
+		<div class="size">
+			<h4>
+				{widths[width]} size ({width})
+			</h4>
+			<iframe
+				title={`Template example for ${template}`}
+				frameborder="0"
+				{width}
+				srcdoc={transformed}
+				height="250"
+			/>
+		</div>
+	{/each}
+</section>
+
+<section>
+	<h3>Inputs</h3>
+
+	<ul>
+		{#each Object.keys(props) as prop}
+			<li>
+				{prop}: <input type="text" bind:value={props[prop]} />
+			</li>
+		{/each}
+	</ul>
+</section>
+
+<style>
+	#example {
+		box-sizing: border-box;
+		width: 100%;
+		display: flex;
+		flex-wrap: wrap;
+	}
+
+	.size {
+		padding: 0;
+		margin-right: calc(var(--grid-size) * 4);
+		display: flex;
+		flex-direction: column;
+		width: max-content;
+	}
+
+	iframe {
+		outline: var(--grid-size) solid var(--grid-color);
+		background-color: white;
+	}
+</style>
