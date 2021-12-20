@@ -22,7 +22,8 @@ const config = {
 						server.watcher.add('/src/templates');
 					},
 					handleHotUpdate(ctx) {
-						const TEMPLATE = /([\w-]+?)\/[\w-]+?\.svelte$/i;
+						const TEMPLATE =
+							/\/templates\/([\w-\/]+?)\/[\w-]+?\.svelte$/i;
 						const matches = TEMPLATE.exec(ctx.file);
 
 						if (!matches) return ctx.modules;

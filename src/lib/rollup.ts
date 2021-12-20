@@ -73,6 +73,10 @@ const build = async (
 						find: '$lib',
 						replacement: 'src/lib',
 					},
+					{
+						find: '$templates',
+						replacement: 'src/templates',
+					},
 				],
 			}),
 			nodeResolve(),
