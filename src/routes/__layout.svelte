@@ -6,7 +6,9 @@
 	<a href="/">Home</a>
 </nav>
 
-<slot />
+<main>
+	<slot />
+</main>
 
 <style>
 	nav {
@@ -17,5 +19,9 @@
 
 	nav a {
 		color: inherit;
+	}
+
+	main {
+		padding: calc(var(--grid-size) * 2);
 	}
 </style>
