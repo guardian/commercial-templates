@@ -1,14 +1,14 @@
-import fs from 'fs';
-import compiler from 'svelte/compiler';
+import { readFileSync } from 'fs';
+import { compile } from 'svelte/compiler';
 
 type Props = Record<string, `[%${string}%]`>;
 
 const getProps = (path: string): Props => {
 	console.log(process.cwd(), path);
 
-	const { vars } = compiler.compile(
+	const { vars } = compile(
 		// TODO: handle Typescript, too
-		fs.readFileSync(path, 'utf8'),
+		readFileSync(path, 'utf8'),
 		{},
 	);
 
