@@ -1,13 +1,14 @@
 <script lang="ts">
-	import { replaceGAMVariables } from '$lib/replace';
-	$: transformed = `<body marginwidth="0" marginheigth="0">${replaceGAMVariables(
-		html,
-		props,
-	)}</body>`;
+	import { replaceGAMVariables } from '$lib/gam';
 
 	export let template: string;
 	export let html: string;
 	export let props: Record<string, string> = {};
+
+	$: transformed = `<body marginwidth="0" marginheigth="0">${replaceGAMVariables(
+		html,
+		props,
+	)}</body>`;
 
 	export const widths = {
 		1300: 'desktop',

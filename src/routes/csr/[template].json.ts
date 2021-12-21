@@ -10,15 +10,20 @@ export const get: RequestHandler = async ({ params }) => {
 
 	const path = filepath(template, 'csr');
 
-	const props = getProps(path);
+	const propsFallback = getProps(path);
 
-	const output = await build(template, 'dom', props);
+	const output = await build(template, 'dom', propsFallback);
 
 	const commit = await getCommit(path);
 	const sha = commit?.oid.slice(0, 9);
 	const link = `${github}/${sha}/${path}`;
 	const timestamp = commit?.commit.author.timestamp ?? 0;
 	const date = new Date(timestamp * 1_000).toISOString().slice(0, 10);
+
+	const props = {
+		...propsFallback,
+		...(await import(`../../templates/csr/${template}/test.json`)).default,
+	};
 
 	const html = [
 		`<!-- "${template}" updated on ${date} via ${link} -->`,

@@ -3,6 +3,7 @@ import type { RequestHandler } from '@sveltejs/kit/types';
 import { getCommit } from '$lib/git';
 import { build, filepath } from '$lib/rollup';
 import { getProps } from '$lib/svelte';
+import { formatProps } from '$lib/gam';
 
 type Output = {
 	html?: string;
@@ -51,9 +52,10 @@ export const get: RequestHandler = async ({ params }) => {
 	const timestamp = commit?.commit.author.timestamp ?? 0;
 	const date = new Date(timestamp * 1_000).toISOString().slice(0, 10);
 
-	const props =
-		(await import(`../../templates/ssr/${template}/test.json`)).default ??
-		propsFallback;
+	const props = {
+		...propsFallback,
+		...(await import(`../../templates/ssr/${template}/test.json`)).default,
+	};
 
 	const html = [
 		`<!-- "${template}" updated on ${date} via ${link} -->`,
@@ -70,4 +72,4 @@ export const get: RequestHandler = async ({ params }) => {
 			props,
 		},
 	};
-};
+};;

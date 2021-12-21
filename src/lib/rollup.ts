@@ -8,10 +8,10 @@ import preprocess from 'svelte-preprocess';
 
 type Props = unknown;
 
-const filepath = (
-	template: string,
-	mode: 'csr' | 'ssr',
-): `src/templates/${typeof mode}/${string}/index.svelte` =>
+const filepath = <Mode extends 'csr' | 'ssr', Template extends string>(
+	template: Template,
+	mode: Mode,
+): `src/templates/${Mode}/${Template}/index.svelte` =>
 	`src/templates/${mode}/${template}/index.svelte`;
 
 const virtual = (template: string, props: Props): Plugin => ({

@@ -7,14 +7,14 @@
 </script>
 
 <script>
-	export let info;
-	export let brand;
+	export let Info;
+	export let Brand;
 </script>
 
-<div class="wrapper" style={`--brand:${brand}`}>
+<div class="wrapper" style={`--brand:${Brand}`}>
 	<h2>My props</h2>
-	<pre>info: {info}</pre>
-	<pre>brand: {brand}</pre>
+	<pre>info: {Info}</pre>
+	<pre>brand: {Brand}</pre>
 
 	<img src={cdn + path} alt="an advertisment" />
 </div>
