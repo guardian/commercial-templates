@@ -7,3 +7,10 @@
 		<li>{size}</li>
 	{/each}
 </ol>
+
+<style>
+	ol {
+		font-family: sans-serif;
+		color: mediumorchid;
+	}
+</style>
