@@ -2,6 +2,7 @@ import vm from 'vm';
 import type { RequestHandler } from '@sveltejs/kit/types';
 import { getCommit } from '$lib/git';
 import { build, filepath } from '$lib/rollup';
+import { getProps } from '$lib/svelte';
 
 type Output = {
 	html?: string;
@@ -38,7 +39,9 @@ export const get: RequestHandler = async ({ params }) => {
 
 	const path = filepath(template, 'ssr');
 
-	const output = await build(template, 'ssr');
+	const propsFallback = getProps(path);
+
+	const output = await build(template, 'ssr', propsFallback);
 
 	// TODO: Pass props to render an initial value
 	const ssr = prerender(output[0].code);
@@ -48,6 +51,10 @@ export const get: RequestHandler = async ({ params }) => {
 	const link = `${github}/${sha}/${path}`;
 	const timestamp = commit?.commit.author.timestamp ?? 0;
 	const date = new Date(timestamp * 1_000).toISOString().slice(0, 10);
+
+	const props =
+		(await import(`../../templates/ssr/${template}/test.json`)).default ??
+		propsFallback;
 
 	const html = [
 		`<!-- "${template}" updated on ${date} via ${link} -->`,
@@ -61,6 +68,7 @@ export const get: RequestHandler = async ({ params }) => {
 		body: {
 			html,
 			css: String(ssr.css),
+			props,
 		},
 	};
 };
