@@ -1,6 +1,6 @@
 import vm from 'vm';
 import type { RequestHandler } from '@sveltejs/kit/types';
-import { getCommit } from '../csr/[template].json';
+import { getCommit } from '$lib/git';
 import { build, filepath } from '$lib/rollup';
 
 type Output = {

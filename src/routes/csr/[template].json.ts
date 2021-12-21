@@ -35,5 +35,3 @@ export const get: RequestHandler = async ({ params }) => {
 		},
 	};
 };
-
-export { getCommit };
