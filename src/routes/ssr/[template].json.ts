@@ -43,7 +43,6 @@ export const get: RequestHandler = async ({ params }) => {
 
 	const output = await build(template, 'ssr', propsFallback);
 
-	// TODO: Pass props to render an initial value
 	const ssr = prerender(output[0].code);
 
 	const commit = await getCommit(path);

@@ -10,7 +10,7 @@ export const get: RequestHandler = async ({ params }) => {
 
 	const path = filepath(template, 'csr');
 
-	const props = await getProps(path);
+	const props = getProps(path);
 
 	const output = await build(template, 'dom', props);
 
