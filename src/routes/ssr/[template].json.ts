@@ -3,7 +3,6 @@ import type { RequestHandler } from '@sveltejs/kit/types';
 import { getCommit } from '$lib/git';
 import { build, filepath } from '$lib/rollup';
 import { getProps } from '$lib/svelte';
-import { formatProps } from '$lib/gam';
 
 type Output = {
 	html?: string;
