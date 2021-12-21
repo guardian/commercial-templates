@@ -1,11 +1,16 @@
 import { gamVar } from '$lib/props';
 import { readFileSync } from 'fs';
-import { compile } from 'svelte/compiler';
+import { sveltePreprocess } from 'svelte-preprocess/dist/autoProcess';
+import { compile, preprocess } from 'svelte/compiler';
 
 type Props = Record<string, `[%${string}%]`>;
 
 const getProps = (path: string): Props => {
 	console.log(process.cwd(), path);
+
+	// const { code } = await preprocess(readFileSync(path, 'utf8'), [
+	// 	sveltePreprocess(),
+	// ]);
 
 	const { vars } = compile(
 		// TODO: handle Typescript, too

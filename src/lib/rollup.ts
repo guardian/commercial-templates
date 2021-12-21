@@ -63,7 +63,7 @@ const build = async (
 				emitCss: false, // TODO, add css plugin for rollup
 				compilerOptions: {
 					generate: mode,
-					// immutable: true,
+					immutable: mode === 'ssr',
 					// hydratable: false,
 				},
 			}),
