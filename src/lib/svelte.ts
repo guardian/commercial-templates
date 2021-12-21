@@ -1,3 +1,4 @@
+import { gamVar } from '$lib/props';
 import { readFileSync } from 'fs';
 import { compile } from 'svelte/compiler';
 
@@ -16,7 +17,7 @@ const getProps = (path: string): Props => {
 		.filter((v) => v.writable)
 		.map((v) => v.name)
 		.reduce((o, key) => {
-			o[key] = `[%${key}%]`;
+			o[key] = gamVar(key);
 			return o;
 		}, {});
 
