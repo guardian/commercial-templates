@@ -2,6 +2,7 @@ import type { RequestHandler } from '@sveltejs/kit/types';
 import { getCommit } from '$lib/git';
 import { build, filepath } from '$lib/rollup';
 import { getProps } from '$lib/svelte';
+import { existsSync } from 'fs';
 
 const github = 'https://github.com/guardian/commercial-templates/blob';
 
@@ -9,6 +10,15 @@ export const get: RequestHandler = async ({ params }) => {
 	const { template } = params;
 
 	const path = filepath(template, 'csr');
+
+	if (!existsSync(path))
+		return {
+			body: {
+				html: false,
+				css: '',
+				props: {},
+			},
+		};
 
 	const propsFallback = getProps(path);
 

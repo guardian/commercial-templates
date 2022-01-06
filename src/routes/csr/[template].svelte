@@ -38,8 +38,13 @@
 <h1>
 	Template: {template}
 </h1>
-<Switcher mode="csr" {template} />
 
-<Previews {html} {template} {props} />
+{#if html}
+	<Switcher mode="csr" {template} />
 
-<Code {html} css="/* TODO */" />
+	<Previews {html} {template} {props} />
+
+	<Code {html} css="/* TODO */" />
+{:else}
+	<div>“{template}” does not exist</div>
+{/if}
