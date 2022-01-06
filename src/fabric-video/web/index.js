@@ -1,6 +1,13 @@
 import { getIframeId, onScroll, onViewport, reportClicks } from '../../_shared/js/messages';
 import { write } from '../../_shared/js/dom';
 
+const VIDEO_MARCOS = {
+    'videoUrl': '[%VideoURL%]',
+    'videoPosterImage': '[%VideoBackupImage%]',
+    'mobileVideoUrl': '[%VideoURLMobile%]',
+    'mobilePosterImage': '[%MobileVideoBackupImage%]',
+}
+
 getIframeId()
 .then(() => {
     reportClicks();
