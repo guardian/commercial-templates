@@ -46,25 +46,37 @@ function populateCard(host, responseJson) {
     setEditionLink(host, responseJson.edition, document.querySelector('.creative__glabs-link'));
     let imageUrl = '[%ArticleImage%]';
 
-    return `<div class="adverts__row adverts__row--single">
-      <a class="blink advert advert--large advert--capi advert--media advert--inverse advert--paidfor" href="${clickMacro}${getValue('[%ArticleUrl%]', responseJson.articleUrl)}" data-link-name="Offer | ${getValue('[%ArticleHeadline%]', responseJson.articleHeadline)}" target="_top">
-      <div class="advert__text">
-        <h2 class="blink__anchor advert__title">
-          ${icon}
-          ${getValue('[%ArticleHeadline%]', responseJson.articleHeadline)}
-        </h2>
-      </div>
-      <div class="advert__image-container">${generatePicture({
-          url: imageUrl || responseJson.articleImage.backupSrc,
-          classes: ['advert__image'],
-          sources: responseJson.articleImage.sources
-      })}</div>
-    </a>
-    <div class="badge js-badge">
-      Paid for by
-      <a class="badge__link" href="${clickMacro}${responseJson.branding.logo.link}" data-link-name="badge">
-        <img class="badge__logo" src="${getValue('[%BrandLogo%]', responseJson.branding.logo.src)}" alt="">
-      </a>
+    return `
+<div class="adverts__row adverts__row--single">
+  <a class="blink advert advert--large advert--capi advert--media advert--inverse advert--paidfor" href="${clickMacro}${getValue(
+      "[%ArticleUrl%]",
+      responseJson.articleUrl
+    )}" data-link-name="Offer | ${getValue(
+      "[%ArticleHeadline%]",
+      responseJson.articleHeadline
+    )}" target="_top">
+    <div class="advert__text">
+      <h2 class="blink__anchor advert__title">
+        ${icon}
+        ${getValue("[%ArticleHeadline%]", responseJson.articleHeadline)}
+      </h2>
     </div>
-    </div>`;
+    <div class="advert__image-container">${generatePicture({
+      url: imageUrl || responseJson.articleImage.backupSrc,
+      classes: ["advert__image"],
+      sources: responseJson.articleImage.sources,
+    })}</div>
+  </a>
+  <div class="badge js-badge">
+    Paid for by
+    <a class="badge__link" href="${clickMacro}${
+      responseJson.branding.logo.link
+    }" data-link-name="badge">
+      <img class="badge__logo" src="${getValue(
+        "[%BrandLogo%]",
+        responseJson.branding.logo.src
+      )}" alt="">
+    </a>
+  </div>
+</div>`;
 }
