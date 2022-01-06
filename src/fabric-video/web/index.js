@@ -28,32 +28,28 @@ getIframeId()
     // process to happen only once. When the video ends, we let everyone
     // know about it.
     let video = document.getElementsByTagName('video');
+
+
+    if ( (VIDEO_MARCOS['videoUrl'] && VIDEO_MARCOS['mobileVideoUrl']) == '' ) return;
+
     let played = false; 
     video.onended = () => played = true;
-
-    setupVideoEl();
 
     // Add video source
     // Add video poster image
     //Add class name for mobile video
-    function setupVideoEl() {
-        if ( video.length > 0 ) { 
-            let videoSrc;
-            let posterImage;
-            
-            isMobile ? videoSrc =  '[%VideoURLMobile%]' : videoSrc =  '[%VideoURL%]';
-            isMobile ? posterImage = '[%MobileVideoBackupImage%]' : posterImage = '[%VideoBackupImage%]';
-            isMobile ? video[0].classList.add('creative__video--740') : null;
+    let videoSrc;
+    let posterImage;
+    isMobile ? videoSrc =  VIDEO_MARCOS['mobileVideoUrl'] : videoSrc =  VIDEO_MARCOS['videoUrl'];
+    isMobile ? posterImage = VIDEO_MARCOS['mobilePosterImage'] : posterImage = VIDEO_MARCOS['videoPosterImage'];
+    isMobile ? video[0].classList.add('creative__video--740') : null;
 
-            video[0].poster = posterImage;
-            video[0].src = videoSrc;
+    video[0].poster = posterImage;
+    video[0].src = videoSrc;
 
-            video[0].load();
-            video[0].play();
-        } else {
-            return;
-        }
-    }
+    video[0].load();
+    video[0].play();
+
 
     onViewport(({ height }) => {
         // That's it, the video has only played once so we don't need
