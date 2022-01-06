@@ -24,8 +24,14 @@
     }
   }
 
-  .badge::before {
-    display: none;
+  .badge {
+    &::before {
+      display: none;
+    }
+
+    .badge__logo {
+      width: 100%;
+    }
   }
 }
 
