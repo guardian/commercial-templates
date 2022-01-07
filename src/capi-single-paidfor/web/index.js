@@ -60,23 +60,23 @@ function populateCard(host, responseJson) {
         ${icon}
         ${getValue("[%ArticleHeadline%]", responseJson.articleHeadline)}
       </h2>
+
+      <div class="badge js-badge">
+        Paid for by
+        
+        <img class="badge__logo" src="${getValue(
+          "[%BrandLogo%]",
+          responseJson.branding.logo.src
+        )}" alt="">
+      </div>
     </div>
     <div class="advert__image-container">${generatePicture({
       url: imageUrl || responseJson.articleImage.backupSrc,
       classes: ["advert__image"],
-      sources: responseJson.articleImage.sources,
+      sources: responseJson.articleImage.sources.filter(
+        (source) => source.minWidth === "0"
+      ),
     })}</div>
   </a>
-  <div class="badge js-badge">
-    Paid for by
-    <a class="badge__link" href="${clickMacro}${
-      responseJson.branding.logo.link
-    }" data-link-name="badge">
-      <img class="badge__logo" src="${getValue(
-        "[%BrandLogo%]",
-        responseJson.branding.logo.src
-      )}" alt="">
-    </a>
-  </div>
 </div>`;
 }
