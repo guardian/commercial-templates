@@ -42,7 +42,10 @@ getIframeId()
     let posterImage;
     isMobile ? videoSrc =  VIDEO_MARCOS['mobileVideoUrl'] : videoSrc =  VIDEO_MARCOS['videoUrl'];
     isMobile ? posterImage = VIDEO_MARCOS['mobilePosterImage'] : posterImage = VIDEO_MARCOS['videoPosterImage'];
-    isMobile ? video[0].classList.add('creative__video--740') : null;
+    
+    if ( isMobile ) {
+        video[0].classList.add('creative__video--740') 
+    }
 
     video[0].poster = posterImage;
     video[0].src = videoSrc;
