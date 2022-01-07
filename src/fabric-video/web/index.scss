@@ -11,8 +11,7 @@
     .creative__video,
     .creative__poster,
     .creative__alt,
-    .creative__layer,
-    .creative__slide {
+    .creative__layer {
         position: absolute;
         top: 0;
         left: 0;
@@ -53,16 +52,6 @@
         background-repeat: no-repeat;
     }
 
-    .creative__video--mobile {
-        display: none;
-    }
-
-    .hasMobileVideo {
-        z-index: 2;
-        display: block
-    }
-
-
     .creative__layer  { background-repeat: no-repeat; }
     .creative__layer1 { z-index: 1; }
     .creative__layer2 { z-index: 2; }
@@ -71,24 +60,17 @@
     .creative__video--740 {
         width: 740px;
     }
-
-    .click_button {
-        position: absolute;
-        top: 62%;
-        left: 50%;
-        margin-left: -85px;
-    }
 }
 
-@include mq($until: tablet) {
-    .creative__video--mobile {
-        display: block;
-    }
+// @include mq($until: tablet) {
+//     .creative__video--mobile {
+//         display: block;
+//     }
 
-    .creative__video--desktop {
-        display: none;
-    }
-}
+//     .creative__video--desktop {
+//         display: none;
+//     }
+// }
 
 .has-no-object-fit .creative__video {
     top: 50%;
