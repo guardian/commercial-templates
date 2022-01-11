@@ -27,7 +27,7 @@ getIframeId()
     // We'll start the video when the slot is in view, but we want this
     // process to happen only once. When the video ends, we let everyone
     // know about it.
-    let video = document.getElementsByTagName('video');
+    let video = document.getElementsByTagName('video')[0];
 
 
     if ( (VIDEO_MARCOS['videoUrl'] && VIDEO_MARCOS['mobileVideoUrl']) == '' ) return;
@@ -43,14 +43,14 @@ getIframeId()
     const  posterImage = isMobile ? VIDEO_MARCOS['mobilePosterImage'] : VIDEO_MARCOS['videoPosterImage'];
     
     if ( isMobile ) {
-        video[0].classList.add('creative__video--740') 
+        video.classList.add('creative__video--740') 
     }
 
-    video[0].poster = posterImage;
-    video[0].src = videoSrc;
+    video.poster = posterImage;
+    video.src = videoSrc;
 
-    video[0].load();
-    video[0].play();
+    video.load();
+    video.play();
 
 
     onViewport(({ height }) => {
