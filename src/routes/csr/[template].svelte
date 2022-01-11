@@ -1,8 +1,8 @@
 <script context="module" lang="ts">
 	import type { Load } from '@sveltejs/kit';
 
-	export const load: Load = async ({ page, fetch }) => {
-		const { template } = page.params;
+	export const load: Load = async ({ fetch, params }) => {
+		const { template } = params;
 
 		const endpoint = `/csr/${template}.json`;
 
@@ -24,7 +24,6 @@
 	import Code from '$lib/Code.svelte';
 	import Warning from '$lib/Warning.svelte';
 	import Previews from '$lib/Previews.svelte';
-
 
 	export let template: string;
 	export let html: string;
