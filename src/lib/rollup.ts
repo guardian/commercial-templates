@@ -36,7 +36,7 @@ new Template({
 });
 window.performance.mark('svelteEnd');
 const measure = window.performance.measure('svelte', 'svelteStart','svelteEnd');
-document.querySelector("#metrics").innerText = \`\${measure.duration}ms\`;
+document.querySelector("#metrics").innerText = \`\${measure.duration.toFixed(2)}ms\`;
 `;
 		}
 		return null;
