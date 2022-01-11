@@ -1,5 +1,5 @@
 <script lang="ts">
-	export const templates = ['test'] as const;
+	export const templates = ['test', 'capi-single-paidfor'] as const;
 </script>
 
 <h1>Commercial Templates</h1>
