@@ -6,7 +6,10 @@ const reloadTemplate = (template: string) => {
 			console.log(`Received invalidation for ${data.id}`);
 			invalidate(`/${data.id}.json`);
 
-			if (data.id === 'components') invalidate(`/ssr/${template}.json`);
+			if (data.id === 'components') {
+				invalidate(`/csr/${template}.json`);
+				invalidate(`/ssr/${template}.json`);
+			}
 		});
 	}
 };
