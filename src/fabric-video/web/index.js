@@ -38,10 +38,9 @@ getIframeId()
     // Add video source
     // Add video poster image
     //Add class name for mobile video
-    let videoSrc;
-    let posterImage;
-    isMobile ? videoSrc =  VIDEO_MARCOS['mobileVideoUrl'] : videoSrc =  VIDEO_MARCOS['videoUrl'];
-    isMobile ? posterImage = VIDEO_MARCOS['mobilePosterImage'] : posterImage = VIDEO_MARCOS['videoPosterImage'];
+
+    const videoSrc = isMobile ? VIDEO_MARCOS['mobileVideoUrl'] : VIDEO_MARCOS['videoUrl'];
+    const  posterImage = isMobile ? VIDEO_MARCOS['mobilePosterImage'] : VIDEO_MARCOS['videoPosterImage'];
     
     if ( isMobile ) {
         video[0].classList.add('creative__video--740') 
