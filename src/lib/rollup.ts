@@ -5,6 +5,7 @@ import { rollup } from 'rollup';
 import svelte from 'rollup-plugin-svelte';
 import { terser } from 'rollup-plugin-terser';
 import preprocess from 'svelte-preprocess';
+import typescript from '@rollup/plugin-typescript';
 
 type Props = unknown;
 
@@ -64,9 +65,9 @@ const build = async (
 				compilerOptions: {
 					generate: mode,
 					immutable: mode === 'ssr',
-					// hydratable: false,
 				},
 			}),
+			typescript({ sourceMap: false }),
 			alias({
 				entries: [
 					{

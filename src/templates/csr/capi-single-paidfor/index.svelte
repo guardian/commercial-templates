@@ -4,25 +4,34 @@
 		'https://api.nextgen.guardianapps.co.uk/commercial/api/capi-single.json';
 </script>
 
-<script>
+<script lang="ts">
+	import type { Single } from '$lib/types/capi';
+	import type { Prop } from '$lib/svelte';
+
 	import Card from '$templates/components/Card.svelte';
 	import PaidForHeader from '$templates/components/PaidForHeader.svelte';
 
-	export let Brand;
-	export let SeriesUrl;
-	export let ComponentTitle;
+	export let SeriesUrl: Prop;
+	export let ComponentTitle: Prop;
 
-	export const promise = fetch(`${api}?k=${encodeURI(SeriesUrl)}`)
+	export const promise: Promise<Single> = fetch(
+		`${api}?k=${encodeURI(SeriesUrl)}`,
+	)
 		.then((r) => r.json())
 		.then((d) => (console.log(d), d));
 </script>
 
-<aside style={`--brand:${Brand}`}>
+<aside>
 	<PaidForHeader {ComponentTitle} {SeriesUrl} />
 	{#await promise}
 		Loading…
-	{:then { articleHeadline, articleText, articleUrl }}
-		<Card title={articleHeadline} text={articleText} url={articleUrl} />
+	{:then { articleHeadline, articleText, articleUrl, articleImage }}
+		<Card
+			title={articleHeadline}
+			text={articleText}
+			url={articleUrl}
+			image={articleImage}
+		/>
 	{:catch}
 		<h3>⚠️ could not fetch series “{SeriesUrl}”</h3>
 	{/await}
@@ -30,13 +39,16 @@
 
 <style>
 	aside {
-		background-color: var(--brand);
+		background: #f6f6f6;
+		display: flex;
+		flex-direction: column;
 
 		font-family: 'Guardian Text Sans Web', 'Helvetica Neue', Helvetica,
 			Arial, 'Lucida Grande', sans-serif;
-
-		display: flex;
-		flex-direction: column;
+		font-kerning: normal;
+		text-rendering: optimizelegibility;
+		font-variant-ligatures: common-ligatures;
+		-webkit-font-smoothing: antialiased;
 	}
 
 	@media (min-width: 1140px) {

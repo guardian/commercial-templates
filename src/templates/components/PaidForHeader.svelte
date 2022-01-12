@@ -1,12 +1,14 @@
-<script context="module">
+<script context="module" lang="ts">
 	const ESC = '%%CLICK_URL_UNESC%%';
 </script>
 
-<script>
+<script lang="ts">
+	import type { Prop } from '$lib/svelte';
+
 	import GuardianLabs from './icons/GuardianLabs.svelte';
 
-	export let SeriesUrl;
-	export let ComponentTitle;
+	export let SeriesUrl: Prop;
+	export let ComponentTitle: Prop;
 
 	export let popup = false;
 </script>
@@ -48,7 +50,8 @@
 
 <style lang="scss">
 	header {
-		background-color: #69d1ca;
+		--green: #69d1ca
+		background-color: var(--green);
 		color: black;
 		padding: 6px 20px;
 		display: flex;
@@ -82,7 +85,7 @@
 		position: absolute;
 		color: white;
 		width: 260px;
-		background: #333333;
+		background: #333;
 		font-size: 14px;
 		line-height: 16px;
 		padding: 10px;
@@ -97,7 +100,7 @@
 	}
 
 	.popup-link {
-		color: #69d1ca;
+		color: var(--green);
 		text-decoration: none;
 
 		&:hover,

@@ -19,6 +19,7 @@
 </script>
 
 <script lang="ts">
+	import type { Props } from '$lib/svelte';
 	import { reloadTemplate } from '$lib/reload';
 	import Switcher from '$lib/Switcher.svelte';
 	import Code from '$lib/Code.svelte';
@@ -27,7 +28,7 @@
 
 	export let template: string;
 	export let html: string;
-	export let props: Record<string, string> | undefined;
+	export let props: Props | undefined;
 
 	reloadTemplate(template);
 </script>
