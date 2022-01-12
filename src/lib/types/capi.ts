@@ -11,6 +11,7 @@ export type Single = {
 	articleUrl: string;
 	articleImage: {
 		sources: Array<Source>;
+		backupSrc: string;
 	};
 	audioTag: boolean;
 	galleryTag: boolean;
