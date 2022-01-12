@@ -28,7 +28,7 @@
 				frameborder="0"
 				{width}
 				srcdoc={transformed}
-				height="250"
+				height="360"
 			/>
 		</div>
 	{/each}
