@@ -46,11 +46,11 @@
 	</div>
 </header>
 
-<style>
+<style lang="scss">
 	header {
 		background-color: #69d1ca;
 		color: black;
-		padding: 20px;
+		padding: 6px 20px;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
@@ -60,8 +60,13 @@
 		position: relative;
 	}
 
+	.paid button {
+		display: inline-block;
+	}
+
 	h1 {
 		color: white;
+		margin: 0;
 	}
 
 	.logo {
@@ -85,25 +90,25 @@
 		box-sizing: border-box;
 		font-weight: normal;
 		right: auto;
-	}
 
-	#popup p {
-		margin-top: 0;
+		p {
+			margin-top: 0;
+		}
 	}
 
 	.popup-link {
 		color: #69d1ca;
 		text-decoration: none;
-	}
 
-	.popup-link:hover,
-	.popup-link:focus {
-		text-decoration: underline;
+		&:hover,
+		&:focus {
+			text-decoration: underline;
+		}
 	}
 
 	@media (min-width: 1140px) {
 		header {
-			flex-direction: column;
+			padding: 20px;
 			width: 171px;
 		}
 	}

@@ -20,6 +20,7 @@
     "@sveltejs/adapter-auto": "next",
     "@sveltejs/adapter-static": "^1.0.0-next.22",
     "@sveltejs/kit": "^1.0.0-next.223",
+    "@tsconfig/svelte": "^3.0.0",
     "@typescript-eslint/eslint-plugin": "^4.31.1",
     "@typescript-eslint/parser": "^4.31.1",
     "eslint": "^7.32.0",
@@ -33,11 +34,12 @@
     "rollup": "^2.61.1",
     "rollup-plugin-svelte": "^7.1.0",
     "rollup-plugin-terser": "^7.0.2",
+    "sass": "^1.47.0",
     "svelte": "^3.44.0",
-    "svelte-check": "^2.2.6",
-    "svelte-preprocess": "^4.9.4",
+    "svelte-check": "^2.2.12",
+    "svelte-preprocess": "^4.10.1",
     "tslib": "^2.3.1",
-    "typescript": "^4.4.3",
+    "typescript": "^4.5.4",
     "vite": "^2.7.2"
   },
   "type": "module"
