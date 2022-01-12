@@ -50,13 +50,14 @@
 
 <style lang="scss">
 	header {
-		--green: #69d1ca
+		--green: #69d1ca;
 		background-color: var(--green);
 		color: black;
 		padding: 6px 20px;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
+		justify-content: space-between;
 	}
 
 	.paid {
