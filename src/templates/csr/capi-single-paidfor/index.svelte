@@ -14,9 +14,7 @@
 	export let SeriesUrl: Prop;
 	export let ComponentTitle: Prop;
 
-	export const promise: Promise<Single> = fetch(
-		`${api}?k=${encodeURI(SeriesUrl)}`,
-	)
+	const promise: Promise<Single> = fetch(`${api}?k=${encodeURI(SeriesUrl)}`)
 		.then((r) => r.json())
 		.then((d) => (console.log(d), d));
 </script>
@@ -24,16 +22,11 @@
 <aside>
 	<PaidForHeader {ComponentTitle} {SeriesUrl} />
 	{#await promise}
-		Loading…
-	{:then { articleHeadline, articleText, articleUrl, articleImage }}
-		<Card
-			title={articleHeadline}
-			text={articleText}
-			url={articleUrl}
-			image={articleImage}
-		/>
+		<h3>Loading Content for “{SeriesUrl}”</h3>
+	{:then single}
+		<Card {single} />
 	{:catch}
-		<h3>⚠️ could not fetch series “{SeriesUrl}”</h3>
+		<h3>Could not fetch series “{SeriesUrl}”</h3>
 	{/await}
 </aside>
 
