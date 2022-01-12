@@ -1,8 +1,11 @@
 import { gamVar } from '$lib/gam';
 import { readFileSync } from 'fs';
 
-type Props = Record<string, `[%${string}%]`>;
-type Prop = string;
+/**
+ * Used for automatic prop extraction in templates
+ */
+type Prop = `[%${string}%]`;
+type Props = Record<string, Prop>;
 
 const REGEX = {
 	script: /<script[\s\S]*?>[\s\S]+?<\/script>/g,
