@@ -17,7 +17,7 @@
 		.then((d) => (console.log(d), d));
 </script>
 
-<aside class="wrapper" style={`--brand:${Brand}`}>
+<aside style={`--brand:${Brand}`}>
 	<PaidForHeader {ComponentTitle} {SeriesUrl} />
 	{#await promise}
 		Loading…
@@ -29,7 +29,19 @@
 </aside>
 
 <style>
-	.wrapper {
+	aside {
 		background-color: var(--brand);
+
+		font-family: 'Guardian Text Sans Web', 'Helvetica Neue', Helvetica,
+			Arial, 'Lucida Grande', sans-serif;
+
+		display: flex;
+		flex-direction: column;
+	}
+
+	@media (min-width: 1140px) {
+		aside {
+			flex-direction: row;
+		}
 	}
 </style>
