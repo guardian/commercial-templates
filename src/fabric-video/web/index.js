@@ -11,6 +11,8 @@ const VIDEO_MARCOS = {
 getIframeId()
 .then(() => {
     reportClicks();
+
+   
   
     let isUpdating = false;
     const isMobile = window.innerWidth < 740;
@@ -27,10 +29,9 @@ getIframeId()
     // We'll start the video when the slot is in view, but we want this
     // process to happen only once. When the video ends, we let everyone
     // know about it.
-    let video = document.getElementsByTagName('video')[0];
+    const video = document.querySelector('video');
 
-
-    if ( (VIDEO_MARCOS['videoUrl'] && VIDEO_MARCOS['mobileVideoUrl']) == '' ) return;
+    if ( ( !VIDEO_MARCOS['videoUrl'] || !VIDEO_MARCOS['mobileVideoUrl']) ) return;
 
     let played = false; 
     video.onended = () => played = true;
