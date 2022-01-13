@@ -1,5 +1,5 @@
 <script context="module" lang="ts">
-	const ESC = '%%CLICK_URL_UNESC%%';
+	import { CLICK_MACRO } from '$lib/gam';
 </script>
 
 <script lang="ts">
@@ -29,7 +29,7 @@
 				</p>
 				<a
 					class="popup-link"
-					href={`${ESC}https://theguardian.com/content-funding`}
+					href={`${CLICK_MACRO}https://theguardian.com/content-funding`}
 					target="_top"
 					>Learn more about Guardian Labs content &rarr;</a
 				>
@@ -38,7 +38,10 @@
 	</div>
 
 	<h1 class="adverts__title">
-		<a href={`${ESC}https://theguardian.com/${SeriesUrl}`} target="_top">
+		<a
+			href={`${CLICK_MACRO}https://theguardian.com/${SeriesUrl}`}
+			target="_top"
+		>
 			{ComponentTitle}
 		</a>
 	</h1>
@@ -54,6 +57,8 @@
 		background-color: var(--green);
 		color: black;
 		padding: 6px 20px;
+		flex-shrink: 0;
+
 		display: flex;
 		flex-direction: column;
 		align-items: center;
@@ -112,7 +117,7 @@
 
 	@media (min-width: 1140px) {
 		header {
-			padding: 20px;
+			padding: 12px 20px;
 			width: 171px;
 		}
 	}

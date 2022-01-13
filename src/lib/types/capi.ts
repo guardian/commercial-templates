@@ -5,6 +5,22 @@ export type Source = {
 	lodpiSrcset: string;
 };
 
+export type Branding = {
+	brandingType: {
+		name: string;
+	};
+	sponsorName: string;
+	logo: {
+		src: string;
+		dimensions: {
+			width: number;
+			height: number;
+		};
+		link: string;
+		label: string;
+	};
+};
+
 export type Single = {
 	articleHeadline: string;
 	articleText: string;
@@ -16,19 +32,5 @@ export type Single = {
 	audioTag: boolean;
 	galleryTag: boolean;
 	videoTag: boolean;
-	branding: {
-		brandingType: {
-			name: string;
-		};
-		sponsorName: string;
-		logo: {
-			src: string;
-			dimensions: {
-				width: number;
-				height: number;
-			};
-			link: string;
-			label: string;
-		};
-	};
+	branding: Branding;
 };

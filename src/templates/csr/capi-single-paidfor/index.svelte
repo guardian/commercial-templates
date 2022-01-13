@@ -33,6 +33,7 @@
 <style>
 	aside {
 		background: #f6f6f6;
+		position: relative;
 		display: flex;
 		flex-direction: column;
 
