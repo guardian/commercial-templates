@@ -34,4 +34,6 @@ const replaceGAMVariables = (
 	return output;
 };
 
+export const CLICK_MACRO = '%%CLICK_URL_UNESC%%';
+
 export { replaceGAMVariables, formatProps };
