@@ -1,19 +1,25 @@
-import { getIframeId, onScroll, onViewport, resizeIframeHeight, reportClicks } from '../../_shared/js/messages';
+import { getIframeId, onScroll, onViewport, reportClicks } from '../../_shared/js/messages';
 import { write } from '../../_shared/js/dom';
+
+const VIDEO_MARCOS = {
+    'videoUrl': '[%VideoURL%]',
+    'videoPosterImage': '[%VideoBackupImage%]',
+    'mobileVideoUrl': '[%VideoURLMobile%]',
+    'mobilePosterImage': '[%MobileVideoBackupImage%]',
+}
 
 getIframeId()
 .then(() => {
     reportClicks();
 
+   
+  
     let isUpdating = false;
+    const isMobile = window.innerWidth < 740;
 
     // We want to know when the slot is in view so we can control the video
     // and animation
     let inView = false;
-
-    // This layer has a CSS animation which we want to pause in case the slot
-    // goes out of view
-    let layer2 = document.getElementById('layer2');
 
     // We'll need an onScroll listener that will be add inside onViewport,
     // but since onViewport can fire multiple times, we want to make sure
@@ -23,9 +29,30 @@ getIframeId()
     // We'll start the video when the slot is in view, but we want this
     // process to happen only once. When the video ends, we let everyone
     // know about it.
-    let video = document.getElementsByTagName('video')[0];
-    let played = false;
+    const video = document.querySelector('video');
+
+    if ( ( !VIDEO_MARCOS['videoUrl'] || !VIDEO_MARCOS['mobileVideoUrl']) ) return;
+
+    let played = false; 
     video.onended = () => played = true;
+
+    // Add video source
+    // Add video poster image
+    //Add class name for mobile video
+
+    const videoSrc = isMobile ? VIDEO_MARCOS['mobileVideoUrl'] : VIDEO_MARCOS['videoUrl'];
+    const  posterImage = isMobile ? VIDEO_MARCOS['mobilePosterImage'] : VIDEO_MARCOS['videoPosterImage'];
+    
+    if ( isMobile ) {
+        video.classList.add('creative__video--740') 
+    }
+
+    video.poster = posterImage;
+    video.src = videoSrc;
+
+    video.load();
+    video.play();
+
 
     onViewport(({ height }) => {
         // That's it, the video has only played once so we don't need
@@ -53,7 +80,6 @@ getIframeId()
 
     function updateView() {
         isUpdating = false;
-        updateAnimation();
     }
 
     // If the slot goes out of view, we pause the video
@@ -64,22 +90,4 @@ getIframeId()
             video.pause();
         }
     }
-
-    // If the slot goes out of view, we pause the animation
-    function updateAnimation() {
-        if (inView) {
-            playAnimation();
-        } else {
-            pauseAnimation();
-        }
-    }
-
-    function playAnimation() {
-        layer2.classList.add('is-animating');
-    }
-
-    function pauseAnimation() {
-        layer2.classList.remove('is-animating');
-    }
-
 });
