@@ -19,6 +19,7 @@ export type Branding = {
 		link: string;
 		label: string;
 	};
+	edition: 'UK' | 'AU' | 'US';
 };
 
 export type Single = {
