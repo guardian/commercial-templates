@@ -5,13 +5,15 @@
 		const { template } = params;
 
 		const endpoint = `/csr/${template}.json`;
+		const data = fetch(endpoint).then((r) => r.json());
 
-		const { html, props } = await fetch(endpoint).then((r) => r.json());
+		const { html, props, css } = await data;
 
 		return {
 			props: {
 				template,
 				html,
+				css,
 				props,
 			},
 		};
@@ -28,6 +30,7 @@
 
 	export let template: string;
 	export let html: string;
+	export let css: string;
 	export let props: Props | undefined;
 
 	reloadTemplate(template);
@@ -44,7 +47,7 @@
 
 	<Previews {html} {template} {props} />
 
-	<Code {html} css="/* TODO */" />
+	<Code {html} {css} />
 {:else}
 	<div>“{template}” does not exist</div>
 {/if}
