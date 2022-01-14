@@ -67,7 +67,7 @@ const build = async (
 			virtual(template, props),
 			svelte({
 				preprocess: preprocess(),
-				emitCss: true,
+				emitCss: mode === 'dom',
 				compilerOptions: {
 					generate: mode,
 					immutable: mode === 'ssr',

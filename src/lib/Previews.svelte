@@ -3,12 +3,20 @@
 
 	export let template: string;
 	export let html: string;
+	export let css: string;
 	export let props: Record<string, string> = {};
 
-	$: transformed = `<body marginwidth="0" marginheight="0">${replaceGAMVariables(
-		html,
-		props,
-	)}</body>`;
+	$: transformed = [
+		'<',
+		'style>',
+		css,
+		'</',
+		'style>',
+
+		'<body marginwidth="0" marginheight="0">',
+		replaceGAMVariables(html, props),
+		'</body>',
+	].join('');
 
 	export const widths = {
 		1300: 'desktop',

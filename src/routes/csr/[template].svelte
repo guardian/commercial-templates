@@ -45,7 +45,7 @@
 {#if html}
 	<Switcher mode="csr" {template} />
 
-	<Previews {html} {template} {props} />
+	<Previews {html} {css} {template} {props} />
 
 	<Code {html} {css} />
 {:else}

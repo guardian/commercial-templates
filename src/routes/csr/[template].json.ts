@@ -22,9 +22,7 @@ export const get: RequestHandler = async ({ params }) => {
 
 	const propsFallback = getProps(path);
 
-	const output = await build(template, 'dom', propsFallback);
-
-	const { styles, chunks } = output;
+	const { styles, chunks } = await build(template, 'dom', propsFallback);
 
 	const commit = await getCommit(path);
 	const sha = commit?.oid.slice(0, 9);

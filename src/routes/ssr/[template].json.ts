@@ -41,9 +41,9 @@ export const get: RequestHandler = async ({ params }) => {
 
 	const propsFallback = getProps(path);
 
-	const output = await build(template, 'ssr', propsFallback);
+	const { chunks } = await build(template, 'ssr', propsFallback);
 
-	const ssr = prerender(output[0].code);
+	const ssr = prerender(chunks[0].code);
 
 	const commit = await getCommit(path);
 	const sha = commit?.oid.slice(0, 9) ?? '01010';
@@ -56,18 +56,22 @@ export const get: RequestHandler = async ({ params }) => {
 		...(await import(`../../templates/ssr/${template}/test.json`)).default,
 	};
 
+	const stamp = `<!-- "${template}" updated on ${date} via ${link} -->`;
+
 	const html = [
-		`<!-- "${template}" updated on ${date} via ${link} -->`,
+		stamp,
 		`<div id="svelte" data-template-id="${template}">`,
 		ssr.html,
 		`</div>`,
 		// TODO: add JS from index.ts
 	].join('\n');
 
+	const css = [stamp, String(ssr.css)].join('\n');
+
 	return {
 		body: {
 			html,
-			css: String(ssr.css),
+			css,
 			props,
 		},
 	};
