@@ -24,6 +24,8 @@ export const get: RequestHandler = async ({ params }) => {
 
 	const output = await build(template, 'dom', propsFallback);
 
+	const { css, chunks } = output;
+
 	const commit = await getCommit(path);
 	const sha = commit?.oid.slice(0, 9);
 	const link = `${github}/${sha}/${path}`;
@@ -39,13 +41,13 @@ export const get: RequestHandler = async ({ params }) => {
 		`<!-- "${template}" updated on ${date} via ${link} -->`,
 		`<div id="svelte" data-template-id="${template}"></div>`,
 		`<div id="metrics"></div><style>#metrics{position: fixed; top: 0; left:0; background: #0004; color: white;}</style>`,
-		`<script>${String(output[0].code)}</script>`,
+		`<script>${String(chunks[0].code)}</script>`,
 	].join('\n');
 
 	return {
 		body: {
 			html,
-			css: 'TODO: currently injected via JS',
+			css,
 			props,
 		},
 	};

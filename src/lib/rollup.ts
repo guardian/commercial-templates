@@ -1,11 +1,12 @@
 import alias from '@rollup/plugin-alias';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
-import type { OutputAsset, OutputChunk, Plugin, RollupCache } from 'rollup';
+import type { Plugin, RollupCache, RollupOutput } from 'rollup';
 import { rollup } from 'rollup';
 import svelte from 'rollup-plugin-svelte';
 import { terser } from 'rollup-plugin-terser';
 import preprocess from 'svelte-preprocess';
 import typescript from '@rollup/plugin-typescript';
+import cssOnly from 'rollup-plugin-css-only';
 
 type Props = unknown;
 
@@ -49,10 +50,15 @@ const build = async (
 	template: string,
 	mode: 'ssr' | 'dom',
 	props?: Props,
-): Promise<[OutputChunk, ...Array<OutputChunk | OutputAsset>]> => {
+): Promise<{
+	css: string;
+	chunks: RollupOutput['output'];
+}> => {
 	console.info(`Building “${template}” with rollup for ${mode}`);
 	const key = template + '--' + mode;
 	if (caches[key]) console.info(`caches present for ${key}`);
+
+	let css: string = '';
 
 	const build = await rollup({
 		input: mode,
@@ -61,7 +67,7 @@ const build = async (
 			virtual(template, props),
 			svelte({
 				preprocess: preprocess(),
-				emitCss: false, // TODO, add css plugin for rollup
+				emitCss: true,
 				compilerOptions: {
 					generate: mode,
 					immutable: mode === 'ssr',
@@ -83,15 +89,21 @@ const build = async (
 			nodeResolve(),
 			// minify the code
 			mode === 'dom' && terser(),
+			cssOnly({
+				output: (styles: string) => {
+					css = styles.replaceAll(/\s+/g, ' ').replaceAll('\t', ' ');
+					return false;
+				},
+			}),
 		],
 	});
 
 	// Cache build for subsequent calls!
-	caches[key] = build.cache;
+	// caches[key] = build.cache;
 
 	const output = await build.generate({}).then((output) => output.output);
 
-	return output;
+	return { css, chunks: output };
 };
 
 export { build, filepath };
