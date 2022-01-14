@@ -40,8 +40,6 @@
 	export let props: Record<string, string> | undefined;
 
 	reloadTemplate(template);
-
-	$: combined = [html, '<sty', 'le>', css, '</sty', 'le>'].join('');
 </script>
 
 <Warning />
@@ -52,6 +50,6 @@
 
 <Switcher {template} mode="ssr" />
 
-<Previews {template} html={combined} {props} />
+<Previews {template} {html} {css} {props} />
 
 <Code {html} {css} />
