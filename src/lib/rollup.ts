@@ -51,14 +51,14 @@ const build = async (
 	mode: 'ssr' | 'dom',
 	props?: Props,
 ): Promise<{
-	css: string;
+	styles: string;
 	chunks: RollupOutput['output'];
 }> => {
 	console.info(`Building “${template}” with rollup for ${mode}`);
 	const key = template + '--' + mode;
 	if (caches[key]) console.info(`caches present for ${key}`);
 
-	let css: string = '';
+	let styles: string = '';
 
 	const build = await rollup({
 		input: mode,
@@ -90,8 +90,10 @@ const build = async (
 			// minify the code
 			mode === 'dom' && terser(),
 			cssOnly({
-				output: (styles: string) => {
-					css = styles.replaceAll(/\s+/g, ' ').replaceAll('\t', ' ');
+				output: (processedStyles: string) => {
+					styles = processedStyles
+						.replaceAll(/\s+/g, ' ')
+						.replaceAll('\t', ' ');
 					return false;
 				},
 			}),
@@ -103,7 +105,7 @@ const build = async (
 
 	const output = await build.generate({}).then((output) => output.output);
 
-	return { css, chunks: output };
+	return { styles, chunks: output };
 };
 
 export { build, filepath };
