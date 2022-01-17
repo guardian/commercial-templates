@@ -14,9 +14,9 @@
 	export let SeriesUrl: Prop;
 	export let ComponentTitle: Prop;
 
-	const promise: Promise<Single> = fetch(`${api}?k=${encodeURI(SeriesUrl)}`)
-		.then((r) => r.json())
-		.then((d) => (console.log(d), d));
+	const promise: Promise<Single> = fetch(
+		`${api}?k=${encodeURI(SeriesUrl)}`,
+	).then((r) => r.json());
 </script>
 
 <aside>

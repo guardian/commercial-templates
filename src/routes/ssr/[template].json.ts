@@ -56,17 +56,17 @@ export const get: RequestHandler = async ({ params }) => {
 		...(await import(`../../templates/ssr/${template}/test.json`)).default,
 	};
 
-	const stamp = `<!-- "${template}" updated on ${date} via ${link} -->`;
+	const stamp = `"${template}" updated on ${date} via ${link}`;
 
 	const html = [
-		stamp,
+		`<!-- ${stamp} -->`,
 		`<div id="svelte" data-template-id="${template}">`,
 		ssr.html,
 		`</div>`,
 		// TODO: add JS from index.ts
 	].join('\n');
 
-	const css = [stamp, String(ssr.css)].join('\n');
+	const css = [`/* ${stamp} */`, String(ssr.css)].join('\n');
 
 	return {
 		body: {

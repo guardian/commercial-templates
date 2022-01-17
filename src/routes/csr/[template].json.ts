@@ -35,16 +35,16 @@ export const get: RequestHandler = async ({ params }) => {
 		...(await import(`../../templates/csr/${template}/test.json`)).default,
 	};
 
-	const stamp = `<!-- "${template}" updated on ${date} via ${link} -->`;
+	const stamp = `"${template}" updated on ${date} via ${link}`;
 
 	const html = [
-		stamp,
+		`<!-- ${stamp} -->`,
 		`<div id="svelte" data-template-id="${template}"></div>`,
 		`<div id="metrics"></div><style>#metrics{position: fixed; top: 0; left:0; background: #0004; color: white;}</style>`,
 		`<script>${String(chunks[0].code)}</script>`,
 	].join('\n');
 
-	const css = [stamp, styles].join('\n');
+	const css = [`/* ${stamp} */`, styles].join('\n');
 
 	return {
 		body: {
