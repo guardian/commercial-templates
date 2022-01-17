@@ -11,6 +11,7 @@
 	import Card from '$templates/components/Card.svelte';
 	import PaidForHeader from '$templates/components/PaidForHeader.svelte';
 	import { addTrackingPixel, isValidReplacedVariable } from '$lib/gam';
+	import Resizer from '$templates/components/Resizer.svelte';
 
 	export let SeriesUrl: Prop;
 	export let ComponentTitle: Prop;
@@ -21,17 +22,20 @@
 	const promise: Promise<Single> = fetch(
 		`${api}?k=${encodeURI(SeriesUrl)}`,
 	).then((r) => r.json());
+
+	let height: number = -1;
 </script>
 
-<aside>
+<aside bind:clientHeight={height}>
 	<PaidForHeader {ComponentTitle} {SeriesUrl} />
 	{#await promise}
-		<h3>Loading Content for “{SeriesUrl}”</h3>
+	<h3>Loading Content for “{SeriesUrl}”</h3>
 	{:then single}
-		<Card {single} />
+	<Card {single} />
 	{:catch}
-		<h3>Could not fetch series “{SeriesUrl}”</h3>
+	<h3>Could not fetch series “{SeriesUrl}”</h3>
 	{/await}
+	<Resizer {height} />
 </aside>
 
 <style>

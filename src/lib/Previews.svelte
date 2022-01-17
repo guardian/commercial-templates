@@ -7,6 +7,8 @@
 
 <script lang="ts">
 	import { replaceGAMVariables } from '$lib/gam';
+	import { onMount } from 'svelte';
+	import type { Message } from './messenger';
 
 	export let template: string;
 	export let html: string;
@@ -30,6 +32,27 @@
 		740: 'tablet',
 		360: 'mobile',
 	};
+
+	onMount(() => {
+		window.addEventListener('message', (ev: MessageEvent<Message>) => {
+			if (!ev.isTrusted) return;
+
+			const { source, data } = ev;
+
+			if (!source) return;
+			if (!('frameElement' in source)) return;
+
+			switch (data.type) {
+				case 'resize':
+					const iframe = source.frameElement as HTMLIFrameElement;
+					iframe.height = String(data.value);
+					break;
+
+				default:
+					break;
+			}
+		});
+	});
 </script>
 
 <section id="example">
@@ -44,6 +67,7 @@
 				{width}
 				srcdoc={transformed}
 				height="360"
+				name={`width-${width}`}
 			/>
 		</div>
 	{/each}
