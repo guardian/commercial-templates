@@ -1,3 +1,10 @@
+<script context="module" lang="ts">
+	const defaultReplacements: Record<string, string> = {
+		CACHEBUSTER: '?cachebust',
+		CLICK_URL_UNESC: '',
+	};
+</script>
+
 <script lang="ts">
 	import { replaceGAMVariables } from '$lib/gam';
 
@@ -14,7 +21,7 @@
 		'style>',
 
 		'<body marginwidth="0" marginheight="0">',
-		replaceGAMVariables(html, props),
+		replaceGAMVariables(html, { ...defaultReplacements, ...props }),
 		'</body>',
 	].join('');
 

@@ -10,9 +10,13 @@
 
 	import Card from '$templates/components/Card.svelte';
 	import PaidForHeader from '$templates/components/PaidForHeader.svelte';
+	import { addTrackingPixel, isValidReplacedVariable } from '$lib/gam';
 
 	export let SeriesUrl: Prop;
 	export let ComponentTitle: Prop;
+	export let Trackingpixel: Prop;
+
+	if (isValidReplacedVariable(Trackingpixel)) addTrackingPixel(Trackingpixel);
 
 	const promise: Promise<Single> = fetch(
 		`${api}?k=${encodeURI(SeriesUrl)}`,

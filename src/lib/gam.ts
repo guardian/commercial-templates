@@ -1,5 +1,8 @@
 export type GAMVar<T extends string> = `[%${Capitalize<T>}%]`;
 
+export const CLICK_MACRO = '%%CLICK_URL_UNESC%%';
+export const CACHE_BUST = '%%CACHEBUSTER%%';
+
 const capitalise = <T extends string>(s: T): Capitalize<T> =>
 	`${s.charAt(0).toUpperCase()}${s.slice(1)}` as Capitalize<T>;
 
@@ -34,6 +37,17 @@ const replaceGAMVariables = (
 	return output;
 };
 
-export const CLICK_MACRO = '%%CLICK_URL_UNESC%%';
+const addTrackingPixel = (url: string) => {
+	const pixel = new Image();
+	pixel.src = url + CACHE_BUST;
+};
 
-export { replaceGAMVariables, formatProps };
+const isValidReplacedVariable = (s: GAMVar<string>): boolean =>
+	s.length > 0 && !s.startsWith('[%') && !s.endsWith('%]');
+
+export {
+	replaceGAMVariables,
+	formatProps,
+	addTrackingPixel,
+	isValidReplacedVariable,
+};
