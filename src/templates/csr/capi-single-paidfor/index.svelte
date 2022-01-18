@@ -2,6 +2,7 @@
 	export const cdn = 'https://i.guim.co.uk/img/media/';
 	export const api =
 		'https://api.nextgen.guardianapps.co.uk/commercial/api/capi-single.json';
+	import '$templates/components/fonts/Sans.css';
 </script>
 
 <script lang="ts">
@@ -29,11 +30,11 @@
 <aside bind:clientHeight={height}>
 	<PaidForHeader {ComponentTitle} {SeriesUrl} />
 	{#await promise}
-	<h3>Loading Content for “{SeriesUrl}”</h3>
+		<h3>Loading Content for “{SeriesUrl}”</h3>
 	{:then single}
-	<Card {single} />
+		<Card {single} />
 	{:catch}
-	<h3>Could not fetch series “{SeriesUrl}”</h3>
+		<h3>Could not fetch series “{SeriesUrl}”</h3>
 	{/await}
 	<Resizer {height} />
 </aside>
@@ -45,8 +46,8 @@
 		display: flex;
 		flex-direction: column;
 
-		font-family: 'Guardian Text Sans Web', 'Helvetica Neue', Helvetica,
-			Arial, 'Lucida Grande', sans-serif;
+		font-family: 'GuardianTextSans', 'Helvetica Neue', Helvetica, Arial,
+			'Lucida Grande', sans-serif;
 		font-kerning: normal;
 		text-rendering: optimizelegibility;
 		font-variant-ligatures: common-ligatures;
