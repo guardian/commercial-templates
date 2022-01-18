@@ -27,17 +27,17 @@
 	let height: number = -1;
 </script>
 
-<aside bind:clientHeight={height}>
-	<PaidForHeader {ComponentTitle} {SeriesUrl} />
-	{#await promise}
-		<h3>Loading Content for “{SeriesUrl}”</h3>
-	{:then single}
+{#await promise}
+	<h3>Loading Content for “{SeriesUrl}”</h3>
+{:then single}
+	<aside bind:clientHeight={height}>
+		<PaidForHeader edition={single.branding.edition} {ComponentTitle} {SeriesUrl} />
 		<Card {single} />
-	{:catch}
-		<h3>Could not fetch series “{SeriesUrl}”</h3>
-	{/await}
+	</aside>
 	<Resizer {height} />
-</aside>
+{:catch}
+	<h3>Could not fetch series “{SeriesUrl}”</h3>
+{/await}
 
 <style>
 	aside {
@@ -52,6 +52,11 @@
 		text-rendering: optimizelegibility;
 		font-variant-ligatures: common-ligatures;
 		-webkit-font-smoothing: antialiased;
+	}
+
+	h3 {
+		background-color: #69d1ca;
+		color: white;
 	}
 
 	@media (min-width: 1140px) {

@@ -4,7 +4,6 @@
 
 <script lang="ts">
 	import { CLICK_MACRO } from '$lib/gam';
-
 	import type { Single } from '$lib/types/capi';
 
 	export let fill = 'black';

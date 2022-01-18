@@ -4,11 +4,13 @@
 
 <script lang="ts">
 	import type { Prop } from '$lib/svelte';
+	import type { Single } from '$lib/types/capi';
 
 	import GuardianLabs from './icons/GuardianLabs.svelte';
 
 	export let SeriesUrl: Prop;
 	export let ComponentTitle: Prop;
+	export let edition: Single['branding']['edition'];
 
 	export let popup = false;
 </script>
@@ -47,7 +49,7 @@
 	</h1>
 
 	<div class="logo">
-		<GuardianLabs />
+		<GuardianLabs {edition} />
 	</div>
 </header>
 
