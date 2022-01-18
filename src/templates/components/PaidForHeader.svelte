@@ -5,6 +5,9 @@
 <script lang="ts">
 	import type { Prop } from '$lib/svelte';
 	import type { Single } from '$lib/types/capi';
+	import Button from './Button.svelte';
+	import ArrowDown from './icons/ArrowDown.svelte';
+	import '$templates/components/fonts/SansBold.css';
 
 	import GuardianLabs from './icons/GuardianLabs.svelte';
 
@@ -17,11 +20,12 @@
 
 <header>
 	<div class="paid">
-		Paid content
-		<button
+		<strong>Paid content</strong>
+		<Button
 			aria-controls="popup"
 			aria-expanded="true"
-			on:click={() => (popup = !popup)}>About &darr;</button
+			on:click={() => (popup = !popup)}
+			>About <ArrowDown width={12} flip={popup}/></Button
 		>
 		{#if popup}
 			<div id="popup">
@@ -69,10 +73,11 @@
 
 	.paid {
 		position: relative;
-	}
+		font-size: 13px;
 
-	.paid button {
-		display: inline-block;
+		strong {
+			padding-right: 0.5em;
+		}
 	}
 
 	h1 {
