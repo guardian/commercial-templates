@@ -32,12 +32,16 @@ const config = {
 							`Template ${matches[1]} changed`,
 							'sending template-update event',
 						);
+
+						/** @type {import('./src/lib/reload').Data} */
+						const data = {
+							id: matches[1],
+						};
+
 						ctx.server.ws.send({
 							type: 'custom',
 							event: 'template-update',
-							data: {
-								id: matches[1],
-							},
+							data,
 						});
 
 						return [];
