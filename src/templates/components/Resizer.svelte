@@ -3,15 +3,5 @@
 
 	export let height: number;
 
-	$: post({ type: 'resize', value: height });
+	$: post({ type: 'set-ad-height', value: { height, width: -1 } });
 </script>
-
-<div>{height}px</div>
-
-<style>
-	div {
-		position: absolute;
-		top: 20px;
-		left: 0;
-	}
-</style>
