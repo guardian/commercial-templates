@@ -20,7 +20,7 @@
 	#code {
 		display: grid;
 		grid-template-columns: repeat(2, 40%);
-		gap: cacl(var(--grid-size) * 3);
+		gap: calc(var(--grid-size) * 3);
 	}
 
 	pre {

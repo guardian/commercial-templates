@@ -23,7 +23,6 @@
 <script lang="ts">
 	import type { Props } from '$lib/svelte';
 	import { reloadTemplate } from '$lib/reload';
-	import Switcher from '$lib/Switcher.svelte';
 	import Code from '$lib/Code.svelte';
 	import Warning from '$lib/Warning.svelte';
 	import Previews from '$lib/Previews.svelte';
@@ -39,12 +38,10 @@
 <Warning />
 
 <h1>
-	Template: {template}
+	CSR Dynamic Template: {template}
 </h1>
 
 {#if html}
-	<Switcher mode="csr" {template} />
-
 	<Previews {html} {css} {template} {props} />
 
 	<Code {html} {css} />

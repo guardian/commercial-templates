@@ -70,7 +70,7 @@ const build = async (
 				emitCss: mode === 'dom',
 				compilerOptions: {
 					generate: mode,
-					immutable: mode === 'ssr',
+					immutable: true,
 				},
 			}),
 			typescript({ sourceMap: false }),

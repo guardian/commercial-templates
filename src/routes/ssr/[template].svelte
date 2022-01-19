@@ -29,7 +29,6 @@
 
 <script lang="ts">
 	import { reloadTemplate } from '$lib/reload';
-	import Switcher from '$lib/Switcher.svelte';
 	import Code from '$lib/Code.svelte';
 	import Warning from '$lib/Warning.svelte';
 	import Previews from '$lib/Previews.svelte';
@@ -45,10 +44,8 @@
 <Warning />
 
 <h1>
-	Template: {template}
+	SSR Static Template: {template}
 </h1>
-
-<Switcher {template} mode="ssr" />
 
 <Previews {template} {html} {css} {props} />
 

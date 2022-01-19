@@ -1,15 +1,46 @@
+<script context="module" lang="ts">
+	import type { Load } from '@sveltejs/kit';
+	import type { Templates } from './templates.json';
+
+	export const load: Load = async ({ fetch }) => {
+		const templates: Templates = await fetch('/templates.json').then((r) =>
+			r.json(),
+		);
+
+		return {
+			props: {
+				templates,
+			},
+		};
+	};
+
+	const explanations: Record<keyof Templates, string> = {
+		csr: 'Dynamic',
+		ssr: 'Static',
+	};
+</script>
+
 <script lang="ts">
-	export const templates = ['test', 'capi-single-paidfor'] as const;
+	export let templates: Templates;
 </script>
 
 <h1>Commercial Templates</h1>
 
-<ol>
-	{#each templates as template}
-		<li>
-			{template.slice(0, 1).toUpperCase() + template.slice(1)}
-			<a href={`/csr/${template}`}>CSR</a> -
-			<a href={`/ssr/${template}`}>SSR</a>
-		</li>
-	{/each}
-</ol>
+{#each Object.keys(templates) as mode}
+	<h2>{mode.toUpperCase()}: {explanations[mode]}</h2>
+	<ol>
+		{#each templates[mode] as template}
+			<li>
+				<a href={`/${mode}/${template}`}
+					>{template
+						.split('-')
+						.map(
+							(word) =>
+								word.slice(0, 1).toUpperCase() + word.slice(1),
+						)
+						.join(' ')}</a
+				>
+			</li>
+		{/each}
+	</ol>
+{/each}
