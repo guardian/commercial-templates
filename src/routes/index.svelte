@@ -22,11 +22,13 @@
 
 <script lang="ts">
 	export let templates: Templates;
+
+	const modes: Array<keyof Templates> = ['csr', 'ssr'];
 </script>
 
 <h1>Commercial Templates</h1>
 
-{#each Object.keys(templates) as mode}
+{#each modes as mode}
 	<h2>{mode.toUpperCase()}: {explanations[mode]}</h2>
 	<ol>
 		{#each templates[mode] as template}

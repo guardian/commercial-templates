@@ -24,7 +24,7 @@ const getProps = (path: string): Props => {
 	const props = [...script.matchAll(REGEX.props)]
 		.map((matches) => matches[1])
 		.reduce<Props>((props, prop) => {
-			props[prop] = gamVar(prop);
+			if (prop) props[prop] = gamVar(prop);
 			return props;
 		}, {});
 

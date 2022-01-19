@@ -1,5 +1,5 @@
 <script lang="ts">
-	export let sizes;
+	export let sizes: number[];
 </script>
 
 <ol>

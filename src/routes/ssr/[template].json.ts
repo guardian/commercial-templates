@@ -35,7 +35,7 @@ const prerender = (code: string): Output => {
 };
 
 export const get: RequestHandler = async ({ params }) => {
-	const { template } = params;
+	const template = params.template ?? 'unknown';
 
 	const path = filepath(template, 'ssr');
 
@@ -75,4 +75,4 @@ export const get: RequestHandler = async ({ params }) => {
 			props,
 		},
 	};
-};;
+};

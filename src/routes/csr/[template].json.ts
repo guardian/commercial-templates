@@ -7,7 +7,7 @@ import { existsSync } from 'fs';
 const github = 'https://github.com/guardian/commercial-templates/blob';
 
 export const get: RequestHandler = async ({ params }) => {
-	const { template } = params;
+	const template = params.template ?? 'unknown';
 
 	const path = filepath(template, 'csr');
 
