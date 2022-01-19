@@ -19,12 +19,6 @@
 			},
 		};
 	};
-
-	export const widths = {
-		1300: 'desktop',
-		740: 'tablet',
-		375: 'mobile',
-	};
 </script>
 
 <script lang="ts">
