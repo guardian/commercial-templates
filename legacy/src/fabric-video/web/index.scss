@@ -11,8 +11,7 @@
     .creative__video,
     .creative__poster,
     .creative__alt,
-    .creative__layer,
-    .creative__slide {
+    .creative__layer {
         position: absolute;
         top: 0;
         left: 0;
@@ -21,11 +20,27 @@
     }
 
     .creative__video {
-        object-fit: cover;
+        width: 1920px;
+        height: 250px;
     }
 
     .creative__video--left {
-        object-position: left;
+        top: 50%;
+        left: 0%;
+        transform: translate(0%, -50%);
+    }
+
+    .creative__video--right {
+        top: 50%;
+        right: 0%;
+        left: unset;
+        transform: translate(0%, -50%);
+    }
+
+    .creative__video--center {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
     }
 
     .creative__poster {
@@ -42,59 +57,20 @@
     .creative__layer2 { z-index: 2; }
     .creative__layer3 { z-index: 3; }
 
-    .creative__slide {
-        opacity: 0;
-        animation-name: fade-in-out;
-        animation-duration: 4.5s;
-        animation-timing-function: ease;
-        animation-fill-mode: forwards;
-        animation-play-state: paused;
-        background-color: transparent;
-        background-position: center;
-        background-repeat: no-repeat;
-    }
-
-    .is-animating .creative__slide {
-        animation-play-state: running;
-    }
-
-    .creative__slide1 {
-        animation-delay: 1s;
-        animation-duration: 5.25s;
-    }
-
-    .creative__slide2 {
-        animation-delay: 4.75s;
-    }
-
-    .creative__slide3 {
-        animation-delay: 7.75s;
-    }
-
-    .creative__slide4 {
-        animation-name: fade-in;
-        animation-delay: 10.75s;
-        animation-duration: 5.25s;
-    }
-
-    .click_button {
-        position: absolute;
-        top: 62%;
-        left: 50%;
-        margin-left: -85px;
-    }
-
-    @keyframes fade-in-out {
-        0%    { opacity: 0; }
-        50%   { opacity: 1; }
-        100%  { opacity: 0; }
-    }
-
-    @keyframes fade-in {
-        0%    { opacity: 0; }
-        100%  { opacity: 1; }
+    .creative__video--740 {
+        width: 740px;
     }
 }
+
+// @include mq($until: tablet) {
+//     .creative__video--mobile {
+//         display: block;
+//     }
+
+//     .creative__video--desktop {
+//         display: none;
+//     }
+// }
 
 .has-no-object-fit .creative__video {
     top: 50%;

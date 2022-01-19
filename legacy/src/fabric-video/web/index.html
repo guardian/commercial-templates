@@ -2,31 +2,19 @@
 <div class="creative creative--fabric-video">
     <div class="gs-container">
         <a class="creative__link blink" href="%%CLICK_URL_UNESC%%%%DEST_URL%%">
-            <div class="creative__alt creative__alt--tablet hide-until-tablet"
-                style="background: [%BackgroundColour%] url('[%BackgroundImage%]') [%BackgroundPosition%] [%BackgroundRepeat%]">
-                <div class="creative__poster" style="background-image:url('[%VideoBackupImage%]')"></div>
-                <video muted playsinline class="creative__video creative__video--[%VideoAlignment%]">
-                    <source src="[%VideoURL%]" type="video/mp4">
-                </video>
+            <div class="creative__alt creative__alt--tablet hide-until-tablet">
                 <div class="creative__layer creative__layer1" style="background-image: url([%Layer1BackgroundImage%]); background-position: [%Layer1BackgroundPosition%];"></div>
-                <div id="layer2" class="creative__layer creative__layer2">
-                    <div style="background-image: url([%Layer2AnimatedImage1%])" class="creative__slide creative__slide1"></div>
-                    <div style="background-image: url([%Layer2AnimatedImage2%])" class="creative__slide creative__slide2"></div>
-                    <div style="background-image: url([%Layer2AnimatedImage3%])" class="creative__slide creative__slide3"></div>
-                    <div style="background-image: url([%Layer2AnimatedImage4%])" class="creative__slide creative__slide4">
-                        <img src="[%Layer2ClickButton%]">
-                    </div>
-                </div>
+                <div class="creative__layer creative__layer2" style="background-image:url([%Layer2BackgroundImage%]); background-position: [%Layer2BackgroundPosition%];"></div>
                 <div class="creative__layer creative__layer3" style="background-image:url([%Layer3BackgroundImage%]); background-position: [%Layer3BackgroundPosition%];"></div>
             </div>
 
-            <div class="creative__alt creative__alt--mobile mobile-only"
-                style="background: [%BackgroundColour%] url('[%MobileBackgroundImage%]') [%MobileBackgroundPosition%] [%MobileBackgroundRepeat%];">
-                <div class="creative__poster" style="background-image:url('[%VideoBackupImage%]')"></div>
+            <div class="creative__alt creative__alt--mobile mobile-only">
                 <div class="creative__layer creative__layer1" style="background-image:url([%MobileLayer1BackgroundImage%]);background-position:[%MobileLayer1BackgroundPosition%];"></div>
                 <div class="creative__layer creative__layer2" style="background-image:url([%MobileLayer2BackgroundImage%]);background-position:[%MobileLayer2BackgroundPosition%];"></div>
                 <div class="creative__layer creative__layer3" style="background-image:url([%MobileLayer3BackgroundImage%]);background-position:[%MobileLayer3BackgroundPosition%];"></div>
             </div>
+
+            <video muted autoplay playsinline type="video/mp4" class="creative__video creative__video--[%VideoAlignment%]"></video>
         </a>
     </div>
 
