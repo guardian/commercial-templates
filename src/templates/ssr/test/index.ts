@@ -1,6 +1,9 @@
-const text = document.createElement('p');
-text.innerText = 'this is the client-side';
+import { post } from '$lib/messenger';
 
-document.querySelector('#svelte')?.appendChild(text);
-
-export {};
+post({
+	type: 'set-ad-height',
+	value: {
+		width: -1,
+		height: 100,
+	},
+});
