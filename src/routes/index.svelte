@@ -4,7 +4,7 @@
 	import { base } from '$app/paths';
 
 	export const load: Load = async ({ fetch }) => {
-		const templates: Templates = await fetch(`/templates.json`).then((r) =>
+		const templates: Templates = await fetch(`${base}/templates.json`).then((r) =>
 			r.json(),
 		);
 

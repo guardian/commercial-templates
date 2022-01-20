@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "svelte-kit dev --port 7777",
-    "build": "svelte-kit build && touch build/.nojekyll",
+    "build": "svelte-kit build && touch build/.nojekyll && rsync -avz build/commercial-templates/ build --remove-source-files",
     "publish": "npx gh-pages --dist build --dotfiles",
     "deploy": "npm run build && npm run publish",
     "package": "svelte-kit package",
@@ -21,7 +21,7 @@
     "@rollup/plugin-typescript": "^8.3.0",
     "@sveltejs/adapter-auto": "next",
     "@sveltejs/adapter-static": "^1.0.0-next.26",
-    "@sveltejs/kit": "^1.0.0-next.223",
+    "@sveltejs/kit": "1.0.0-next.230",
     "@tsconfig/svelte": "^3.0.0",
     "@typescript-eslint/eslint-plugin": "^4.31.1",
     "@typescript-eslint/parser": "^4.31.1",

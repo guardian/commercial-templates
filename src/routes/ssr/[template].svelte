@@ -1,10 +1,11 @@
 <script context="module" lang="ts">
 	import type { Load } from '@sveltejs/kit';
+	import { base } from '$app/paths';
 
 	export const load: Load = async ({ params, fetch }) => {
 		const { template } = params;
 
-		const endpoint = `/ssr/${template}.json`;
+		const endpoint = `${base}/ssr/${template}.json`;
 
 		const { html, css, props } = await fetch(endpoint).then((r) =>
 			r.json(),
