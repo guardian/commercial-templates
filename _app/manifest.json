@@ -1,0 +1,82 @@
+{
+  ".svelte-kit/build/runtime/internal/start.js": {
+    "file": "start-1812abf2.js",
+    "src": ".svelte-kit/build/runtime/internal/start.js",
+    "isEntry": true,
+    "imports": [
+      "_vendor-5e41f024.js"
+    ],
+    "dynamicImports": [
+      "src/routes/__layout.svelte",
+      ".svelte-kit/build/components/error.svelte",
+      "src/routes/index.svelte",
+      "src/routes/csr/[template].svelte",
+      "src/routes/ssr/[template].svelte"
+    ],
+    "css": [
+      "assets/start-61d1577b.css"
+    ]
+  },
+  "src/routes/__layout.svelte": {
+    "file": "pages/__layout.svelte-b1fb8ebf.js",
+    "src": "src/routes/__layout.svelte",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_vendor-5e41f024.js"
+    ],
+    "css": [
+      "assets/pages/__layout.svelte-36f2d9ab.css"
+    ]
+  },
+  ".svelte-kit/build/components/error.svelte": {
+    "file": "error.svelte-39d44336.js",
+    "src": ".svelte-kit/build/components/error.svelte",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_vendor-5e41f024.js"
+    ]
+  },
+  "src/routes/index.svelte": {
+    "file": "pages/index.svelte-f3d48817.js",
+    "src": "src/routes/index.svelte",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_vendor-5e41f024.js"
+    ]
+  },
+  "src/routes/csr/[template].svelte": {
+    "file": "pages/csr/_template_.svelte-bf3c1ae5.js",
+    "src": "src/routes/csr/[template].svelte",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_vendor-5e41f024.js",
+      "_Previews-e1128dfe.js"
+    ]
+  },
+  "src/routes/ssr/[template].svelte": {
+    "file": "pages/ssr/_template_.svelte-f5a54d16.js",
+    "src": "src/routes/ssr/[template].svelte",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_vendor-5e41f024.js",
+      "_Previews-e1128dfe.js"
+    ]
+  },
+  "_vendor-5e41f024.js": {
+    "file": "chunks/vendor-5e41f024.js"
+  },
+  "_Previews-e1128dfe.js": {
+    "file": "chunks/Previews-e1128dfe.js",
+    "imports": [
+      "_vendor-5e41f024.js"
+    ],
+    "css": [
+      "assets/Previews-47dbf328.css"
+    ]
+  }
+}

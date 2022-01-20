@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="description" content="" />
+		<link rel="icon" href="/favicon.png" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		
+
+		
+
+		<link rel="stylesheet" href="/_app/assets/start-61d1577b.css">
+		<link rel="stylesheet" href="/_app/assets/pages/__layout.svelte-36f2d9ab.css">
+		<link rel="modulepreload" href="/_app/start-1812abf2.js">
+		<link rel="modulepreload" href="/_app/chunks/vendor-5e41f024.js">
+		<link rel="modulepreload" href="/_app/pages/__layout.svelte-b1fb8ebf.js">
+		<link rel="modulepreload" href="/_app/pages/index.svelte-f3d48817.js">
+
+		<script type="module">
+			import { start } from "/_app/start-1812abf2.js";
+			start({
+				target: document.querySelector("#svelte"),
+				paths: {"base":"","assets":""},
+				session: {},
+				route: true,
+				spa: false,
+				trailing_slash: "never",
+				hydrate: {
+					status: 200,
+					error: null,
+					nodes: [
+						import("/_app/pages/__layout.svelte-b1fb8ebf.js"),
+						import("/_app/pages/index.svelte-f3d48817.js")
+					],
+					url: new URL("http://prerender/"),
+					params: {}
+				}
+			});
+		</script>
+	</head>
+	<body>
+		<div id="svelte">
+
+
+<nav class="svelte-10vyqng"><a href="/" class="svelte-10vyqng">Home</a></nav>
+
+<main class="svelte-10vyqng"><h1>Commercial Templates</h1>
+
+<h2>CSR: Dynamic</h2>
+	<ol><li><a href="/csr/capi-single-paidfor">Capi Single Paidfor</a>
+			</li><li><a href="/csr/test">Test</a>
+			</li>
+	</ol><h2>SSR: Static</h2>
+	<ol><li><a href="/ssr/test">Test</a>
+			</li>
+	</ol>
+</main>
+
+<script type="application/json" data-type="svelte-data" data-url="/templates.json">{"status":200,"statusText":"","headers":{"content-type":"application/json; charset=utf-8"},"body":"{\"csr\":[\"capi-single-paidfor\",\"test\"],\"ssr\":[\"test\"]}"}</script></div>
+	</body>
+</html>
