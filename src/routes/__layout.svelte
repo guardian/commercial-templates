@@ -10,7 +10,11 @@
 </svelte:head>
 
 <nav>
-	<a href={`${base}/`}>Home</a>
+	<a href={`${base}/`}>All templates</a>
+
+	<a href="https://github.com/guardian/commercial-templates"
+		>Edit on Github</a
+	>
 </nav>
 
 <main>
@@ -22,6 +26,9 @@
 		background-color: darkblue;
 		padding: 1rem;
 		color: aliceblue;
+
+		display: flex;
+		gap: 1rem;
 	}
 
 	nav a {

@@ -4,8 +4,8 @@
 	import { base } from '$app/paths';
 
 	export const load: Load = async ({ fetch }) => {
-		const templates: Templates = await fetch(`${base}/templates.json`).then((r) =>
-			r.json(),
+		const templates: Templates = await fetch(`${base}/templates.json`).then(
+			(r) => r.json(),
 		);
 
 		return {
@@ -18,6 +18,7 @@
 	const explanations: Record<keyof Templates, string> = {
 		csr: 'Dynamic',
 		ssr: 'Static',
+		legacy: 'Deprecated',
 	};
 </script>
 
@@ -48,8 +49,34 @@
 	</ol>
 {/each}
 
-<p>
-	This project is hosted on <a
-		href="https://github.com/guardian/commercial-templates">on Github</a
-	>.
-</p>
+<hr />
+
+<h2>Legacy: not yet converted</h2>
+<ul>
+	{#each templates['legacy'] as template}
+		<li>
+			{template
+				.split('-')
+				.map((word) => word.slice(0, 1).toUpperCase() + word.slice(1))
+				.join(' ')}
+		</li>
+	{/each}
+</ul>
+
+<style>
+	ol,
+	ul {
+		margin: var(--grid-size) 0;
+	}
+
+	ul {
+		column-count: 3;
+	}
+
+	hr {
+		margin: calc(3 * var(--grid-size)) 0;
+		border: none;
+		height: var(--grid-size);
+		background-color: var(--grid-color);
+	}
+</style>
