@@ -4,6 +4,11 @@
 	import '../styles.css';
 </script>
 
+<svelte:head>
+	<link rel="icon" href={`${base}/favicon.png`} />
+	<link rel="icon" href={`${base}/favicon.svg`} />
+</svelte:head>
+
 <nav>
 	<a href={`${base}/`}>Home</a>
 </nav>
