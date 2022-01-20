@@ -55,14 +55,11 @@ const build = async (
 	chunks: RollupOutput['output'];
 }> => {
 	console.info(`Building “${template}” with rollup for ${mode}`);
-	const key = template + '--' + mode;
-	if (caches[key]) console.info(`caches present for ${key}`);
 
 	let styles: string = '';
 
 	const build = await rollup({
 		input: mode,
-		cache: caches[key],
 		plugins: [
 			virtual(template, props),
 			svelte({
@@ -99,9 +96,6 @@ const build = async (
 			}),
 		],
 	});
-
-	// Cache build for subsequent calls!
-	// caches[key] = build.cache;
 
 	const output = await build.generate({}).then((output) => output.output);
 
