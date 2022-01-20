@@ -13,19 +13,25 @@
 	export let Brand: Prop;
 </script>
 
-<div class="wrapper" style={`--brand:${Brand}`}>
+<div style={`--brand:${Brand}`}>
 	<h2>My props</h2>
 	<pre>info: {Info}</pre>
 	<pre>brand: {Brand}</pre>
 
 	<img width="600" height="400" src={cdn + path} alt="an advertisment" />
+
+	<List sizes={[300, 600, 900, 1200]} />
 </div>
 
-<List sizes={[300, 600, 900, 1200]} />
 
 <style>
-	.wrapper {
+	div {
 		background-color: var(--brand);
+	}
+
+	h2 {
+		margin: 0;
+		padding: 1em 0;
 	}
 	img {
 		display: block;

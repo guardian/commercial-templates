@@ -11,6 +11,7 @@
 <style>
 	ol {
 		font-family: sans-serif;
-		color: mediumorchid;
+		color: blanchedalmond;
+		margin: 0;
 	}
 </style>

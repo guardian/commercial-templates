@@ -54,7 +54,11 @@
 <h2>Legacy: not yet converted</h2>
 <ul>
 	{#each templates['legacy'] as template}
-		<li>
+		<li
+			class={[...templates.csr, ...templates.ssr].includes(template)
+				? 'del'
+				: ''}
+		>
 			{template
 				.split('-')
 				.map((word) => word.slice(0, 1).toUpperCase() + word.slice(1))
@@ -71,6 +75,11 @@
 
 	ul {
 		column-count: 3;
+	}
+
+	.del {
+		opacity: 0.42;
+		text-decoration: line-through;
 	}
 
 	hr {
