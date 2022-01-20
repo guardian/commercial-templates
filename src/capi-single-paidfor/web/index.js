@@ -5,16 +5,10 @@ import { generatePicture, checkIcon } from '../../_shared/js/capi-images.js';
 import { clickMacro, setEditionLink } from '../../_shared/js/ads';
 import { hideOnError, URLSearchParams } from '../../_shared/js/utils';
 
-let container = document.getElementsByClassName('adverts__body')[0];
+let container = document.querySelector('.adverts__body');
 let params = new URLSearchParams();
 let keywords = '[%SeriesUrl%]';
 let customUrl = '[%CustomUrl%]';
-
-const GLABS_EDITION = {
-    default: 'guardian-labs',
-    au: 'guardian-labs-australia',
-    us: 'guardian-labs-us'
-};
 
 if (customUrl !== '') {
   params.append('t', customUrl);
@@ -52,32 +46,37 @@ function populateCard(host, responseJson) {
     setEditionLink(host, responseJson.edition, document.querySelector('.creative__glabs-link'));
     let imageUrl = '[%ArticleImage%]';
 
-    return `<div class="adverts__row adverts__row--single">
-      <a class="blink advert advert--large advert--capi advert--media advert--inverse advert--paidfor" href="${clickMacro}${getValue('[%ArticleUrl%]', responseJson.articleUrl)}" data-link-name="Offer | ${getValue('[%ArticleHeadline%]', responseJson.articleHeadline)}" target="_top">
-      <div class="advert__text">
-        <h2 class="blink__anchor advert__title">
-          ${icon}
-          ${getValue('[%ArticleHeadline%]', responseJson.articleHeadline)}
-        </h2>
-        <div class="advert__standfirst">
-            ${getValue('[%ArticleText%]', responseJson.articleText)}
-        </div>
+    return `
+<div class="adverts__row adverts__row--single">
+  <a class="blink advert advert--large advert--capi advert--media advert--inverse advert--paidfor" href="${clickMacro}${getValue(
+      "[%ArticleUrl%]",
+      responseJson.articleUrl
+    )}" data-link-name="Offer | ${getValue(
+      "[%ArticleHeadline%]",
+      responseJson.articleHeadline
+    )}" target="_top">
+    <div class="advert__text">
+      <h2 class="blink__anchor advert__title">
+        ${icon}
+        ${getValue("[%ArticleHeadline%]", responseJson.articleHeadline)}
+      </h2>
+
+      <div class="badge js-badge">
+        Paid for by
+        
+        <img class="badge__logo" src="${getValue(
+          "[%BrandLogo%]",
+          responseJson.branding.logo.src
+        )}" alt="">
       </div>
-      <div class="advert__image-container">${generatePicture({
-          url: imageUrl || responseJson.articleImage.backupSrc,
-          classes: ['advert__image'],
-          sources: responseJson.articleImage.sources
-      })}</div>
-    </a>
-    <a class="hide-until-mobile-landscape button button--large button--legacy-single" href="${clickMacro}${host}/[%SeriesUrl%]"  data-link-name="more" target="_top">
-      See more
-      ${arrowRight}
-    </a>
     </div>
-    <div class="badge js-badge">
-      Paid for by
-      <a class="badge__link" href="${clickMacro}${responseJson.branding.logo.link}" data-link-name="badge">
-        <img class="badge__logo" src="${getValue('[%BrandLogo%]', responseJson.branding.logo.src)}" alt="">
-      </a>
-    </div>`;
+    <div class="advert__image-container">${generatePicture({
+      url: imageUrl || responseJson.articleImage.backupSrc,
+      classes: ["advert__image"],
+      sources: responseJson.articleImage.sources.filter(
+        (source) => source.minWidth === "0"
+      ),
+    })}</div>
+  </a>
+</div>`;
 }
