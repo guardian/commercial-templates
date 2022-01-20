@@ -1,6 +1,6 @@
 import alias from '@rollup/plugin-alias';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
-import type { Plugin, RollupCache, RollupOutput } from 'rollup';
+import type { Plugin, RollupOutput } from 'rollup';
 import { rollup } from 'rollup';
 import svelte from 'rollup-plugin-svelte';
 import { terser } from 'rollup-plugin-terser';
@@ -36,6 +36,7 @@ new Template({
 	target: document.querySelector('#svelte'),
 	props: ${JSON.stringify(props)},
 });
+
 window.performance.mark('svelteEnd');
 const measure = window.performance.measure('svelte', 'svelteStart','svelteEnd');
 document.querySelector("#metrics").innerText = \`\${measure.duration.toFixed(2)}ms\`;
@@ -45,7 +46,6 @@ document.querySelector("#metrics").innerText = \`\${measure.duration.toFixed(2)}
 	},
 });
 
-const caches: Partial<Record<string, RollupCache>> = {};
 const build = async (
 	template: string,
 	mode: 'ssr' | 'dom',
@@ -54,7 +54,11 @@ const build = async (
 	styles: string;
 	chunks: RollupOutput['output'];
 }> => {
-	console.info(`Building “${template}” with rollup for ${mode}`);
+	console.info(
+		`Building ${
+			mode === 'dom' ? 'Dynamic' : 'Static'
+		} template “${template}”`,
+	);
 
 	let styles: string = '';
 
