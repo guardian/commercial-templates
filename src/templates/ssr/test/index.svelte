@@ -18,7 +18,7 @@
 	<pre>info: {Info}</pre>
 	<pre>brand: {Brand}</pre>
 
-	<img src={cdn + path} alt="an advertisment" />
+	<img width="600" height="400" src={cdn + path} alt="an advertisment" />
 </div>
 
 <List sizes={[300, 600, 900, 1200]} />
@@ -30,6 +30,7 @@
 	img {
 		display: block;
 		padding: 1rem;
+		object-fit: cover;
 
 		background-color: orangered;
 	}

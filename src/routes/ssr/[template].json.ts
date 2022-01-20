@@ -1,8 +1,9 @@
 import vm from 'vm';
 import type { RequestHandler } from '@sveltejs/kit/types';
 import { getCommit } from '$lib/git';
-import { build, filepath } from '$lib/rollup';
+import { build } from '$lib/rollup';
 import { getProps } from '$lib/svelte';
+import type { OutputAsset, OutputChunk } from 'rollup';
 
 type Output = {
 	html?: string;
@@ -34,16 +35,21 @@ const prerender = (code: string): Output => {
 	};
 };
 
+const isChunk = (output: OutputChunk | OutputAsset): output is OutputChunk =>
+	output.type === 'chunk';
+
 export const get: RequestHandler = async ({ params }) => {
 	const template = params.template ?? 'unknown';
 
-	const path = filepath(template, 'ssr');
+	const path = `src/templates/ssr/${template}/index.svelte`;
 
 	const propsFallback = getProps(path);
 
 	const { chunks } = await build(template, 'ssr', propsFallback);
 
 	const ssr = prerender(chunks[0].code);
+
+	const js = chunks.filter(isChunk)[1];
 
 	const commit = await getCommit(path);
 	const sha = commit?.oid.slice(0, 9) ?? '01010';
@@ -63,7 +69,9 @@ export const get: RequestHandler = async ({ params }) => {
 		`<div id="svelte" data-template-id="${template}">`,
 		ssr.html,
 		`</div>`,
-		// TODO: add JS from index.ts
+		js
+			? `<script>${js.code}</script>`
+			: `<!-- no src/templates/ssr/${template}/index.ts file -->`,
 	].join('\n');
 
 	const css = [`/* ${stamp} */`, String(ssr.css)].join('\n');

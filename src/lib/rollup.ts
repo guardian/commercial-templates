@@ -10,12 +10,6 @@ import cssOnly from 'rollup-plugin-css-only';
 
 type Props = unknown;
 
-const filepath = <Mode extends 'csr' | 'ssr', Template extends string>(
-	template: Template,
-	mode: Mode,
-): `src/templates/${Mode}/${Template}/index.svelte` =>
-	`src/templates/${mode}/${template}/index.svelte`;
-
 const virtual = (template: string, props: Props): Plugin => ({
 	name: 'virtual-template',
 	resolveId: (source: string) => {
@@ -25,12 +19,12 @@ const virtual = (template: string, props: Props): Plugin => ({
 	load: (id: string) => {
 		if (id === 'ssr') {
 			return [
-				`import Template from "./${filepath(template, 'ssr')}"`,
+				`import Template from "./src/templates/ssr/${template}/index.svelte"`,
 				`setShare(Template.render(${JSON.stringify(props)}))`,
 			].join('\n');
 		}
 		if (id === 'dom') {
-			return `import Template from "./${filepath(template, 'csr')}";
+			return `import Template from "./src/templates/csr/${template}/index.svelte";
 window.performance.mark('svelteStart');
 new Template({
 	target: document.querySelector('#svelte'),
@@ -62,8 +56,13 @@ const build = async (
 
 	let styles: string = '';
 
+	const input: ['dom'] | ['ssr', `${string}/index.ts`] =
+		mode === 'dom'
+			? ['dom']
+			: ['ssr', `src/templates/ssr/${template}/index.ts`];
+
 	const build = await rollup({
-		input: mode,
+		input,
 		plugins: [
 			virtual(template, props),
 			svelte({
@@ -88,8 +87,7 @@ const build = async (
 				],
 			}),
 			nodeResolve(),
-			// minify the code
-			mode === 'dom' && terser(),
+			terser(),
 			cssOnly({
 				output: (processedStyles: string) => {
 					styles = processedStyles
@@ -106,4 +104,4 @@ const build = async (
 	return { styles, chunks: output };
 };
 
-export { build, filepath };
+export { build };

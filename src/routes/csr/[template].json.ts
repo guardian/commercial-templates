@@ -1,6 +1,6 @@
 import type { RequestHandler } from '@sveltejs/kit/types';
 import { getCommit } from '$lib/git';
-import { build, filepath } from '$lib/rollup';
+import { build } from '$lib/rollup';
 import { getProps } from '$lib/svelte';
 import { existsSync } from 'fs';
 
@@ -9,7 +9,7 @@ const github = 'https://github.com/guardian/commercial-templates/blob';
 export const get: RequestHandler = async ({ params }) => {
 	const template = params.template ?? 'unknown';
 
-	const path = filepath(template, 'csr');
+	const path = `src/templates/csr/${template}/index.svelte`;
 
 	if (!existsSync(path))
 		return {
