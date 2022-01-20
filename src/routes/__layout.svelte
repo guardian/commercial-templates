@@ -1,9 +1,11 @@
-<script>
+<script lang="ts">
+	import { base } from '$app/paths';
+
 	import '../styles.css';
 </script>
 
 <nav>
-	<a href="/">Home</a>
+	<a href={`${base}/`}>Home</a>
 </nav>
 
 <main>

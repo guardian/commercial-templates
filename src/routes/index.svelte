@@ -1,9 +1,10 @@
 <script context="module" lang="ts">
 	import type { Load } from '@sveltejs/kit';
 	import type { Templates } from './templates.json';
+	import { base } from '$app/paths';
 
 	export const load: Load = async ({ fetch }) => {
-		const templates: Templates = await fetch('/templates.json').then((r) =>
+		const templates: Templates = await fetch(`/templates.json`).then((r) =>
 			r.json(),
 		);
 
@@ -33,7 +34,7 @@
 	<ol>
 		{#each templates[mode] as template}
 			<li>
-				<a href={`/${mode}/${template}`}
+				<a href={`${base}/${mode}/${template}`}
 					>{template
 						.split('-')
 						.map(
@@ -46,3 +47,9 @@
 		{/each}
 	</ol>
 {/each}
+
+<p>
+	This project is hosted on <a
+		href="https://github.com/guardian/commercial-templates">on Github</a
+	>.
+</p>
