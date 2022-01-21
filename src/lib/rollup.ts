@@ -7,8 +7,7 @@ import { terser } from 'rollup-plugin-terser';
 import preprocess from 'svelte-preprocess';
 import typescript from '@rollup/plugin-typescript';
 import cssOnly from 'rollup-plugin-css-only';
-
-type Props = unknown;
+import type { Props } from './svelte';
 
 const virtual = (template: string, props: Props): Plugin => ({
 	name: 'virtual-template',
@@ -40,10 +39,18 @@ document.querySelector("#metrics").innerText = \`\${measure.duration.toFixed(2)}
 	},
 });
 
+/**
+ * Builds and minifies the JS & CSS from the svelte templates using Rollup.
+ *
+ * @param template the `id` of the template, matching its directory name.
+ * @param mode `dom` for dynamic templates, `ssr` for static ones.
+ * @param props GAM variables used to build the template.
+ * @returns Rollup chunks of the compiled JS & CSS.
+ */
 const build = async (
 	template: string,
 	mode: 'ssr' | 'dom',
-	props?: Props,
+	props: Props = {},
 ): Promise<{
 	styles: string;
 	chunks: RollupOutput['output'];

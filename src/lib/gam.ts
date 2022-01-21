@@ -1,21 +1,9 @@
-export type GAMVar<T extends string> = `[%${Capitalize<T>}%]`;
+import type { Prop, Props } from './svelte';
 
 export const CLICK_MACRO = '%%CLICK_URL_UNESC%%';
 export const CACHE_BUST = '%%CACHEBUSTER%%';
 
-const capitalise = <T extends string>(s: T): Capitalize<T> =>
-	`${s.charAt(0).toUpperCase()}${s.slice(1)}` as Capitalize<T>;
-
-export const gamVar = <T extends string>(s: T): GAMVar<T> =>
-	`[%${capitalise(s)}%]`;
-
-const formatProps = <T extends string, P extends Record<T, string>>(
-	props: P,
-): Record<Capitalize<T>, string> =>
-	Object.entries(props).reduce((clean, [key, value]) => {
-		clean[capitalise(key)] = value;
-		return clean;
-	}, {} as Record<Capitalize<T>, string>);
+export const gamVar = <T extends string>(s: T): Prop<T> => `[%${s}%]`;
 
 const replaceGAMVariables = (
 	input: string,
@@ -42,12 +30,7 @@ const addTrackingPixel = (url: string) => {
 	pixel.src = url + CACHE_BUST;
 };
 
-const isValidReplacedVariable = (s: GAMVar<string>): boolean =>
+const isValidReplacedVariable = (s: Prop): boolean =>
 	s.length > 0 && !s.startsWith('[%') && !s.endsWith('%]');
 
-export {
-	replaceGAMVariables,
-	formatProps,
-	addTrackingPixel,
-	isValidReplacedVariable,
-};
+export { replaceGAMVariables, addTrackingPixel, isValidReplacedVariable };

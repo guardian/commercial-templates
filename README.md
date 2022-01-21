@@ -28,7 +28,9 @@ npm run dev -- --open
 ```
 
 When you change templates or shared components, the components will
-reload automatically.
+reload automatically. [Read more about Svelte templates in `src/templates/`][t]
+
+[t]: src/templates/README.md
 
 ## Deploying to Github Pages
 

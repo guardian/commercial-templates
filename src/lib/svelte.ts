@@ -4,7 +4,7 @@ import { readFileSync } from 'fs';
 /**
  * Used for automatic prop extraction in templates
  */
-type Prop = `[%${string}%]`;
+type Prop<T extends string = string> = `[%${T}%]`;
 type Props = Record<string, Prop>;
 
 const REGEX = {
