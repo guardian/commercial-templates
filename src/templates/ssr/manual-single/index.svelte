@@ -71,10 +71,15 @@
 		width: 100%;
 		max-width: 1300px;
 		display: flex;
+		flex-direction: column;
 
 		font-family: 'Guardian Text Egyptian', 'GuardianTextEgyptian', Georgia,
 			serif;
 		background-color: #f6f6f6;
+
+		@media (min-width: 1140px) {
+			flex-direction: row;
+		}
 	}
 
 	img {
@@ -88,7 +93,7 @@
 	header {
 		color: var(--fg, white);
 		background-color: var(--bg, black);
-		flex: 0 0 251px;
+		flex: 0 1 171px;
 		padding: 12px 20px;
 
 		a {
@@ -99,6 +104,13 @@
 			padding: 2px 5px;
 			background-color: white;
 			color: black;
+		}
+
+		@media (min-width: 1140px) {
+			flex-grow: 0;
+		}
+		@media (min-width: 1300px) {
+			flex-basis: 251px;
 		}
 	}
 
@@ -114,6 +126,12 @@
 		color: #111;
 		font-size: 12px;
 		line-height: 16px;
+
+		&:hover {
+			h2 {
+				text-decoration: underline;
+			}
+		}
 	}
 
 	a.button {
