@@ -13,6 +13,3 @@ wip
 .env
 .env.*
 !.env.example
-
-# Ignore legacy code (it’s already checked in)
-legacy
