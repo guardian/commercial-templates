@@ -32,7 +32,7 @@ const config = {
 					},
 					handleHotUpdate(ctx) {
 						const TEMPLATE =
-							/\/templates\/([\w-\/]+?)\/[\w-]+?\.(svelte|ts)$/i;
+							/\/templates\/([\w-\/]+?)\/[\w-]+?\.(svelte|js|ts|md|css|json)$/i;
 						const matches = TEMPLATE.exec(ctx.file);
 
 						if (!matches) return ctx.modules;
