@@ -45,7 +45,7 @@ export const get: RequestHandler = async ({ params }) => {
 
 	const propsFallback = getProps(path);
 
-	const { chunks } = await build(template, 'ssr', propsFallback);
+	const { chunks, styles } = await build(template, 'ssr', propsFallback);
 
 	const ssr = prerender(chunks[0].code);
 
@@ -74,7 +74,7 @@ export const get: RequestHandler = async ({ params }) => {
 			: `<!-- no src/templates/ssr/${template}/index.ts file -->`,
 	].join('\n');
 
-	const css = [`/* ${stamp} */`, String(ssr.css)].join('\n');
+	const css = [`/* ${stamp} */`, String(ssr.css), styles].join('\n');
 
 	return {
 		body: {
