@@ -1,5 +1,15 @@
 # Templates
 
+Learn how to create your first template. Shared components are in the
+[`components` directory](components/).
+Templates themselves are defined by a directory living inside the `csr` or `ssr`
+folders. The files making up a template are:
+
+- `index.svelte` (required)
+- `index.ts` (optional, only for static templates)
+- `test.json` (optional, only for development purposes)
+- `README.md` (optional description)
+
 ## Anatomy of a Svelte template
 
 In its basic form, a template consists of `html` sandwiched in `script` and `style` tags.

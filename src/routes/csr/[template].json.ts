@@ -2,14 +2,16 @@ import type { RequestHandler } from '@sveltejs/kit/types';
 import { getCommit } from '$lib/git';
 import { build } from '$lib/rollup';
 import { getProps } from '$lib/svelte';
-import { existsSync } from 'fs';
+import { existsSync, readFileSync } from 'fs';
+import { marked } from 'marked';
 
 const github = 'https://github.com/guardian/commercial-templates/blob';
 
 export const get: RequestHandler = async ({ params }) => {
 	const template = params.template ?? 'unknown';
 
-	const path = `src/templates/csr/${template}/index.svelte`;
+	const dir = `src/templates/csr/${template}`;
+	const path = `${dir}/index.svelte`;
 
 	if (!existsSync(path))
 		return {
@@ -17,12 +19,13 @@ export const get: RequestHandler = async ({ params }) => {
 				html: false,
 				css: '',
 				props: {},
+				description: 'Not found',
 			},
 		};
 
-	const propsFallback = getProps(path);
+	const gamProps = getProps(path);
 
-	const { styles, chunks } = await build(template, 'dom', propsFallback);
+	const { styles, chunks } = await build(template, 'dom', gamProps);
 
 	const commit = await getCommit(path);
 	const sha = commit?.oid.slice(0, 9);
@@ -30,9 +33,13 @@ export const get: RequestHandler = async ({ params }) => {
 	const timestamp = commit?.commit.author.timestamp ?? 0;
 	const date = new Date(timestamp * 1_000).toISOString().slice(0, 10);
 
+	const fallback = existsSync(`${dir}/test.json`)
+		? JSON.parse(readFileSync(`${dir}/test.json`, 'utf-8'))
+		: {};
+
 	const props = {
-		...propsFallback,
-		...(await import(`../../templates/csr/${template}/test.json`)).default,
+		...gamProps,
+		...fallback,
 	};
 
 	const stamp = `"${template}" updated on ${date} via ${link}`;
@@ -46,11 +53,16 @@ export const get: RequestHandler = async ({ params }) => {
 
 	const css = [`/* ${stamp} */`, styles].join('\n');
 
+	const description = existsSync(`${dir}/README.md`)
+		? marked.parse(readFileSync(`${dir}/README.md`, 'utf-8'))
+		: `<p><em>no description provided</em></p>`;
+
 	return {
 		body: {
 			html,
 			css,
 			props,
+			description,
 		},
 	};
 };

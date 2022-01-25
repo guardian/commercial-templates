@@ -1,9 +1,11 @@
 import vm from 'vm';
 import type { RequestHandler } from '@sveltejs/kit/types';
+import type { OutputAsset, OutputChunk } from 'rollup';
 import { getCommit } from '$lib/git';
 import { build } from '$lib/rollup';
 import { getProps } from '$lib/svelte';
-import type { OutputAsset, OutputChunk } from 'rollup';
+import { existsSync, readFileSync } from 'fs';
+import { marked } from 'marked';
 
 type Output = {
 	html?: string;
@@ -41,11 +43,22 @@ const isChunk = (output: OutputChunk | OutputAsset): output is OutputChunk =>
 export const get: RequestHandler = async ({ params }) => {
 	const template = params.template ?? 'unknown';
 
-	const path = `src/templates/ssr/${template}/index.svelte`;
+	const dir = `src/templates/ssr/${template}`;
+	const path = `${dir}/index.svelte`;
 
-	const propsFallback = getProps(path);
+	if (!existsSync(path))
+		return {
+			body: {
+				html: false,
+				css: '',
+				props: {},
+				description: 'Not found',
+			},
+		};
 
-	const { chunks, styles } = await build(template, 'ssr', propsFallback);
+	const gamProps = getProps(path);
+
+	const { chunks, styles } = await build(template, 'ssr', gamProps);
 
 	const ssr = prerender(chunks[0].code);
 
@@ -57,9 +70,13 @@ export const get: RequestHandler = async ({ params }) => {
 	const timestamp = commit?.commit.author.timestamp ?? 0;
 	const date = new Date(timestamp * 1_000).toISOString().slice(0, 10);
 
+	const fallback = existsSync(`${dir}/test.json`)
+		? JSON.parse(readFileSync(`${dir}/test.json`, 'utf-8'))
+		: {};
+
 	const props = {
-		...propsFallback,
-		...(await import(`../../templates/ssr/${template}/test.json`)).default,
+		...gamProps,
+		...fallback,
 	};
 
 	const stamp = `"${template}" updated on ${date} via ${link}`;
@@ -76,11 +93,16 @@ export const get: RequestHandler = async ({ params }) => {
 
 	const css = [`/* ${stamp} */`, String(ssr.css), styles].join('\n');
 
+	const description = existsSync(`${dir}/README.md`)
+		? marked.parse(readFileSync(`${dir}/README.md`, 'utf-8'))
+		: `<p><em>no description provided</em></p>`;
+
 	return {
 		body: {
 			html,
 			css,
 			props,
+			description,
 		},
 	};
 };

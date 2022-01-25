@@ -20,6 +20,11 @@
 		ssr: 'Static',
 		legacy: 'Deprecated',
 	};
+
+	/**
+	 * TODO: set to `main`
+	 */
+	const branch = 'svelte-kit';
 </script>
 
 <script lang="ts">
@@ -51,6 +56,13 @@
 
 <hr />
 
+Learn how to create your first template: <a
+	href={`https://github.com/guardian/commercial-templates/blob/${branch}/src/templates/README.md`}
+	>src/templates/README.md</a
+>
+
+<hr />
+
 <h2>Legacy: not yet converted</h2>
 <ul>
 	{#each templates['legacy'] as template}
@@ -59,10 +71,17 @@
 				? 'del'
 				: ''}
 		>
-			{template
-				.split('-')
-				.map((word) => word.slice(0, 1).toUpperCase() + word.slice(1))
-				.join(' ')}
+			<a
+				href={`https://github.com/guardian/commercial-templates/blob/${branch}/legacy/src/${template}`}
+			>
+				{template
+					.split('-')
+					.map(
+						(word) =>
+							word.slice(0, 1).toUpperCase() + word.slice(1),
+					)
+					.join(' ')}
+			</a>
 		</li>
 	{/each}
 </ul>

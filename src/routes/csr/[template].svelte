@@ -8,7 +8,7 @@
 		const endpoint = `${base}/csr/${template}.json`;
 		const data = fetch(endpoint).then((r) => r.json());
 
-		const { html, props, css } = await data;
+		const { html, props, css, description } = await data;
 
 		return {
 			props: {
@@ -16,6 +16,7 @@
 				html,
 				css,
 				props,
+				description,
 			},
 		};
 	};
@@ -32,6 +33,7 @@
 	export let html: string;
 	export let css: string;
 	export let props: Props | undefined;
+	export let description: string;
 
 	reloadTemplate(template);
 </script>
@@ -41,6 +43,8 @@
 <h1>
 	CSR Dynamic Template: {template}
 </h1>
+
+{@html description}
 
 {#if html}
 	<Previews {html} {css} {template} {props} />

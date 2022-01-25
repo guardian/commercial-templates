@@ -7,8 +7,8 @@
 
 		const endpoint = `${base}/ssr/${template}.json`;
 
-		const { html, css, props } = await fetch(endpoint).then((r) =>
-			r.json(),
+		const { html, css, props, description } = await fetch(endpoint).then(
+			(r) => r.json(),
 		);
 
 		return {
@@ -17,6 +17,7 @@
 				html,
 				css,
 				props,
+				description,
 			},
 		};
 	};
@@ -32,6 +33,7 @@
 	export let html: string;
 	export let css: string;
 	export let props: Record<string, string> | undefined;
+	export let description: string;
 
 	reloadTemplate(template);
 </script>
@@ -41,6 +43,8 @@
 <h1>
 	SSR Static Template: {template}
 </h1>
+
+{@html description}
 
 <Previews {template} {html} {css} {props} />
 
