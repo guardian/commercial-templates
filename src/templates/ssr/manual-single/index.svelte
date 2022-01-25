@@ -1,20 +1,20 @@
 <!-- https://polyfill.io/v3/polyfill.min.js?features=default -->
 <script lang="ts">
-	import type { Prop } from '$lib/svelte';
+	import type { GAMVariable } from '$lib/gam';
 	import { CLICK_MACRO } from '$lib/gam';
 	import '$templates/components/colours/tones.css';
 	import '$templates/components/fonts/Egyptian.css';
 	import ArrowRight from '$templates/components/icons/ArrowRight.svelte';
 	import BrandLogo from '$templates/components/icons/BrandLogo.svelte';
 
-	export let Tone: Prop;
-	export let TitleURL: Prop;
-	export let OfferURL: Prop;
-	export let Explainer: Prop;
-	export let ViewAll: Prop;
+	export let Tone: GAMVariable;
+	export let TitleURL: GAMVariable;
+	export let OfferURL: GAMVariable;
+	export let Explainer: GAMVariable;
+	export let ViewAll: GAMVariable;
 
 	// What’s this about?
-	export let OmnitureId: Prop;
+	export let OmnitureId: GAMVariable;
 </script>
 
 <aside

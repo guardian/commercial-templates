@@ -1,11 +1,10 @@
-import { gamVar } from '$lib/gam';
+import { gamVar, GAMVariable } from '$lib/gam';
 import { readFileSync } from 'fs';
 
 /**
  * Used for automatic prop extraction in templates
  */
-type Prop<T extends string = string> = `[%${T}%]`;
-type Props = Record<string, Prop>;
+type Props = Record<string, GAMVariable>;
 
 const REGEX = {
 	script: /<script[\s\S]*?>[\s\S]+?<\/script>/g,
@@ -32,4 +31,4 @@ const getProps = (path: string): Props => {
 };
 
 export { getProps };
-export type { Props, Prop };
+export type { Props };

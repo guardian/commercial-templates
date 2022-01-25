@@ -7,16 +7,16 @@
 
 <script lang="ts">
 	import type { Single } from '$lib/types/capi';
-	import type { Prop } from '$lib/svelte';
+	import type { GAMVariable } from '$lib/gam';
 
 	import Card from '$templates/components/Card.svelte';
 	import PaidForHeader from '$templates/components/PaidForHeader.svelte';
 	import { addTrackingPixel, isValidReplacedVariable } from '$lib/gam';
 	import Resizer from '$templates/components/Resizer.svelte';
 
-	export let SeriesUrl: Prop;
-	export let ComponentTitle: Prop;
-	export let Trackingpixel: Prop;
+	export let SeriesUrl: GAMVariable;
+	export let ComponentTitle: GAMVariable;
+	export let Trackingpixel: GAMVariable;
 
 	if (isValidReplacedVariable(Trackingpixel)) addTrackingPixel(Trackingpixel);
 

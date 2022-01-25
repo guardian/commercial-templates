@@ -3,7 +3,7 @@
 </script>
 
 <script lang="ts">
-	import type { Prop } from '$lib/svelte';
+	import type { GAMVariable } from '$lib/gam';
 	import type { Single } from '$lib/types/capi';
 	import Button from './Button.svelte';
 	import ArrowDown from './icons/ArrowDown.svelte';
@@ -11,8 +11,8 @@
 
 	import GuardianLabs from './icons/GuardianLabs.svelte';
 
-	export let SeriesUrl: Prop;
-	export let ComponentTitle: Prop;
+	export let SeriesUrl: GAMVariable;
+	export let ComponentTitle: GAMVariable;
 	export let edition: Single['branding']['edition'];
 
 	export let popup = false;

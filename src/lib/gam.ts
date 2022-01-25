@@ -1,9 +1,9 @@
-import type { Prop, Props } from './svelte';
+const CLICK_MACRO = '%%CLICK_URL_UNESC%%';
+const CACHE_BUST = '%%CACHEBUSTER%%';
 
-export const CLICK_MACRO = '%%CLICK_URL_UNESC%%';
-export const CACHE_BUST = '%%CACHEBUSTER%%';
+type GAMVariable<T extends string = string> = `[%${T}%]`;
 
-export const gamVar = <T extends string>(s: T): Prop<T> => `[%${s}%]`;
+const gamVar = <T extends string>(s: T): GAMVariable<T> => `[%${s}%]`;
 
 const replaceGAMVariables = (
 	input: string,
@@ -30,7 +30,15 @@ const addTrackingPixel = (url: string) => {
 	pixel.src = url + CACHE_BUST;
 };
 
-const isValidReplacedVariable = (s: Prop): boolean =>
+const isValidReplacedVariable = (s: GAMVariable): boolean =>
 	s.length > 0 && !s.startsWith('[%') && !s.endsWith('%]');
 
-export { replaceGAMVariables, addTrackingPixel, isValidReplacedVariable };
+export type { GAMVariable };
+export {
+	CACHE_BUST,
+	CLICK_MACRO,
+	addTrackingPixel,
+	gamVar,
+	isValidReplacedVariable,
+	replaceGAMVariables,
+};

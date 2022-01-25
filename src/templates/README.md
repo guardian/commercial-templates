@@ -8,9 +8,9 @@ replaces them with the correct string, e.g. `[%MyVar%]`.
 
 ```html
 <script lang="ts">
-    import type { Prop } from '$lib/svelte';
+    import type { GAMVariable } from '$lib/gam';
 
-    export let MyVar: Prop;
+    export let MyVar: GAMVariable;
 </script>
 
 <aside>My ad content with {MyVar}</aside>
