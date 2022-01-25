@@ -7,15 +7,15 @@
 
 	export let branding: Branding;
 
-	export let logo = branding.logo.src;
+	const { logo } = branding;
 
-	const { width, height } = branding.logo.dimensions;
+	const { width, height } = logo.dimensions;
 </script>
 
 <div>
 	<p>Paid for by</p>
 	<a href={`${CLICK_MACRO}${branding.logo.link}`}>
-		<img src={logo} alt="" style={`aspect-ratio: ${width} / ${height};`} />
+		<img src={logo.src} alt="" style={`aspect-ratio: ${width} / ${height};`} />
 	</a>
 </div>
 
