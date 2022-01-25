@@ -6,7 +6,7 @@ import svelte from 'rollup-plugin-svelte';
 import { terser } from 'rollup-plugin-terser';
 import preprocess from 'svelte-preprocess';
 import typescript from '@rollup/plugin-typescript';
-import cssOnly from 'rollup-plugin-css-only';
+import css from 'rollup-plugin-css-only';
 import type { Props } from './svelte';
 
 const performancescript = `window.performance.mark('svelteEnd');
@@ -96,7 +96,8 @@ const build = async (
 			}),
 			nodeResolve(),
 			terser(),
-			cssOnly({
+			// @ts-expect-error -- the community types are not so great
+			css({
 				output: (processedStyles: string) => {
 					styles = processedStyles
 						.replaceAll(/\s+/g, ' ')
