@@ -25,6 +25,13 @@ export type Branding = {
 	edition: 'UK' | 'AU' | 'US';
 };
 
+/**
+ * Best effort at interpreting Scala types.
+ *
+ * [Source in `frontend`](https://github.com/guardian/frontend/blob/9d2ee56372de4bb730146100527f83b2efd41c35/commercial/app/model/capi/CapiSingle.scala#L9-L19)
+ *
+ * [route conf](https://github.com/guardian/frontend/blob/9d2ee56372de4bb730146100527f83b2efd41c35/commercial/conf/routes#L30)
+ */
 export type Single = {
 	articleHeadline: string;
 	articleText: string;
