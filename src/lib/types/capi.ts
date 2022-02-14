@@ -5,6 +5,9 @@ export type Source = {
 	lodpiSrcset: string;
 };
 
+/**
+ * Best effort Scala conversion from [Branding.scala](https://github.com/guardian/commercial-shared/blob/a692e8b2eba6e79eeeb666e5594f2193663f6514/src/main/scala/com/gu/commercial/branding/Branding.scala#L7-L22)
+ */
 export type Branding = {
 	brandingType: {
 		name: string;
