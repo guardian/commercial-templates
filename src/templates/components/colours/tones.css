@@ -1,0 +1,43 @@
+[data-tone='brand'] {
+	--bg: #012937;
+}
+
+[data-tone='brand-new'] {
+	--bg: #005689;
+}
+
+[data-tone='membership'] {
+	--bg: #2d4391;
+}
+
+[data-tone='travel'] {
+	--bg: #007ba6;
+}
+
+[data-tone='subscription'] {
+	--bg: #d01317;
+}
+
+[data-tone='live'] {
+	--bg: #c83877;
+}
+
+[data-tone='network'] {
+	--bg: #66a998;
+}
+
+[data-tone='paid-for'] {
+	--bg: #69d1ca;
+}
+
+[data-tone='money'] {
+	--bg: #b39069;
+}
+
+[data-tone='masterclass'] {
+	--bg: #f4bc44;
+}
+
+[data-tone='book'] {
+	--bg: #8e246f;
+}

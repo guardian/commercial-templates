@@ -1,0 +1,12 @@
+@font-face {
+	font-family: 'GuardianTextSans';
+	src: url('https://assets.guim.co.uk/static/frontend/fonts/guardian-textsans/noalts-not-hinted/GuardianTextSans-Regular.woff2')
+			format('woff2'),
+		url('https://assets.guim.co.uk/static/frontend/fonts/guardian-textsans/noalts-not-hinted/GuardianTextSans-Regular.woff')
+			format('woff'),
+		url('https://assets.guim.co.uk/static/frontend/fonts/guardian-textsans/latin1-not-hinted/GuardianTextSans-Regular.ttf')
+			format('truetype');
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}

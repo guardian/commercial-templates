@@ -1,0 +1,15 @@
+# System
+.DS_Store
+
+node_modules
+wip
+
+# Svelte
+/build
+/.svelte-kit
+/package
+
+# Environment Vars
+.env
+.env.*
+!.env.example

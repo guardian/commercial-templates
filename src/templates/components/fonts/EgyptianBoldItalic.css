@@ -1,0 +1,12 @@
+@font-face {
+	font-family: 'GuardianTextEgyptian';
+	src: url('https://assets.guim.co.uk/static/frontend/fonts/guardian-textegyptian/noalts-not-hinted/GuardianTextEgyptian-BoldItalic.woff2')
+			format('woff2'),
+		url('https://assets.guim.co.uk/static/frontend/fonts/guardian-textegyptian/latin1-not-hinted/GuardianTextEgyptian-BoldItalic.woff')
+			format('woff'),
+		url('https://assets.guim.co.uk/static/frontend/fonts/guardian-textegyptian/latin1-not-hinted/GuardianTextEgyptian-BoldItalic.ttf')
+			format('truetype');
+	font-weight: 700;
+	font-style: italic;
+	font-display: swap;
+}
