@@ -21,10 +21,7 @@
 		legacy: 'Deprecated',
 	};
 
-	/**
-	 * TODO: set to `main`
-	 */
-	const branch = 'svelte-kit';
+	const branch = 'main';
 </script>
 
 <script lang="ts">
