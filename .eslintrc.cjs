@@ -2,8 +2,8 @@ module.exports = {
 	root: true,
 	parser: '@typescript-eslint/parser',
 	extends: ['@guardian/eslint-config-typescript'],
-	plugins: ['svelte3', '@typescript-eslint'],
-	ignorePatterns: ['*.cjs', 'svelte.config.js'],
+	plugins: ['svelte3', '@typescript-eslint', 'import'],
+	ignorePatterns: ['*.cjs', 'svelte.config.js', 'legacy/**'],
 	overrides: [{ files: ['*.svelte'], processor: 'svelte3/svelte3' }],
 	settings: {
 		'svelte3/typescript': () => require('typescript'),
@@ -18,7 +18,6 @@ module.exports = {
 		sourceType: 'module',
 		ecmaVersion: 2020,
 	},
-	plugins: ['@typescript-eslint', 'import'],
 	env: {
 		browser: true,
 		es2017: true,
