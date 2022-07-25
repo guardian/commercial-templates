@@ -29,13 +29,16 @@ export const get: RequestHandler = async ({ params }) => {
 	const { styles, chunks } = await build(template, 'dom', gamProps);
 
 	const commit = await getCommit(path);
-	const sha = commit?.oid.slice(0, 9);
+	const sha = commit?.oid.slice(0, 9) ?? '';
 	const link = `${github}/${sha}/${path}`;
 	const timestamp = commit?.commit.author.timestamp ?? 0;
 	const date = new Date(timestamp * 1_000).toISOString().slice(0, 10);
 
+	type FallbackProps = Record<string, string>;
 	const fallback = existsSync(`${dir}/test.json`)
-		? JSON.parse(readFileSync(`${dir}/test.json`, 'utf-8'))
+		? (JSON.parse(
+				readFileSync(`${dir}/test.json`, 'utf-8'),
+		  ) as FallbackProps)
 		: {};
 
 	const props = {

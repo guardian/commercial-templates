@@ -71,8 +71,11 @@ export const get: RequestHandler = async ({ params }) => {
 	const timestamp = commit?.commit.author.timestamp ?? 0;
 	const date = new Date(timestamp * 1_000).toISOString().slice(0, 10);
 
+	type FallbackProps = Record<string, string>;
 	const fallback = existsSync(`${dir}/test.json`)
-		? JSON.parse(readFileSync(`${dir}/test.json`, 'utf-8'))
+		? (JSON.parse(
+				readFileSync(`${dir}/test.json`, 'utf-8'),
+		  ) as FallbackProps)
 		: {};
 
 	const props = {

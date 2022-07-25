@@ -13,8 +13,6 @@ const performancescript = `window.performance.mark('svelteEnd');
 const measure = window.performance.measure('svelte', 'svelteStart','svelteEnd');
 document.querySelector("#metrics").innerText = \`\${measure.duration.toFixed(2)}ms\`;`;
 
-const measureSveltePerf = true;
-
 const virtual = (template: string, props: Props): Plugin => ({
 	name: 'virtual-template',
 	resolveId: (source: string) => {
@@ -34,7 +32,7 @@ window.performance.mark('svelteStart');
 new Template({
 	target: document.querySelector('#svelte'),
 	props: ${JSON.stringify(props)},
-});${measureSveltePerf && performancescript}`;
+});${performancescript}`;
 		}
 		return null;
 	},

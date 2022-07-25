@@ -28,7 +28,8 @@
 			"$lib": ["src/lib"],
 			"$lib/*": ["src/lib/*"],
 			"$templates": ["src/templates"],
-			"$templates/*": ["src/templates/*"]
+			"$templates/*": ["src/templates/*"],
+			"$app/*": ["node_modules/@sveltejs/kit/types"]
 		}
 	},
 	"include": [
