@@ -53,7 +53,7 @@
 
 <hr />
 
-Learn how to create your first template: <a
+Learn how to create your first template:<a
 	href={`https://github.com/guardian/commercial-templates/blob/${branch}/src/templates/README.md`}
 	>src/templates/README.md</a
 >

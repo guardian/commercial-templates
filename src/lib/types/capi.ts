@@ -37,7 +37,7 @@ export type Single = {
 	articleText: string;
 	articleUrl: string;
 	articleImage: {
-		sources: Array<Source>;
+		sources: Source[];
 		backupSrc: string;
 	};
 	audioTag: boolean;

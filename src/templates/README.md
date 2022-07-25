@@ -5,10 +5,10 @@ Learn how to create your first template. Shared components are in the
 Templates themselves are defined by a directory living inside the `csr` or `ssr`
 folders. The files making up a template are:
 
-- `index.svelte` (required)
-- `index.ts` (optional, only for static templates)
-- `test.json` (optional, only for development purposes)
-- `README.md` (optional description)
+-   `index.svelte` (required)
+-   `index.ts` (optional, only for static templates)
+-   `test.json` (optional, only for development purposes)
+-   `README.md` (optional description)
 
 ## Anatomy of a Svelte template
 
@@ -18,18 +18,18 @@ replaces them with the correct string, e.g. `[%MyVar%]`.
 
 ```html
 <script lang="ts">
-    import type { GAMVariable } from '$lib/gam';
+	import type { GAMVariable } from '$lib/gam';
 
-    export let MyVar: GAMVariable;
+	export let MyVar: GAMVariable;
 </script>
 
 <aside>My ad content with {MyVar}</aside>
 
 <style>
-    aside {
-        color: white;
-        background-color: black;
-    }
+	aside {
+		color: white;
+		background-color: black;
+	}
 </style>
 ```
 

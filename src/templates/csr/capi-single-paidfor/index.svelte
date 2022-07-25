@@ -31,7 +31,11 @@
 	<h3>Loading Content for “{SeriesUrl}”</h3>
 {:then single}
 	<aside bind:clientHeight={height}>
-		<PaidForHeader edition={single.branding.edition} {ComponentTitle} {SeriesUrl} />
+		<PaidForHeader
+			edition={single.branding.edition}
+			{ComponentTitle}
+			{SeriesUrl}
+		/>
 		<Card {single} />
 	</aside>
 	<Resizer {height} />

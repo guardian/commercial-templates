@@ -1,12 +1,12 @@
 import alias from '@rollup/plugin-alias';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
+import typescript from '@rollup/plugin-typescript';
 import type { Plugin, RollupOutput } from 'rollup';
 import { rollup } from 'rollup';
+import css from 'rollup-plugin-css-only';
 import svelte from 'rollup-plugin-svelte';
 import { terser } from 'rollup-plugin-terser';
 import preprocess from 'svelte-preprocess';
-import typescript from '@rollup/plugin-typescript';
-import css from 'rollup-plugin-css-only';
 import type { Props } from './svelte';
 
 const performancescript = `window.performance.mark('svelteEnd');
@@ -62,7 +62,7 @@ const build = async (
 		} template “${template}”`,
 	);
 
-	let styles: string = '';
+	let styles = '';
 
 	const input: ['dom'] | ['ssr', `${string}/index.ts`] =
 		mode === 'dom'

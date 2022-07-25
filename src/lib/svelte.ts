@@ -1,5 +1,6 @@
-import { gamVar, GAMVariable } from '$lib/gam';
 import { readFileSync } from 'fs';
+import type { GAMVariable } from '$lib/gam';
+import { gamVar } from '$lib/gam';
 
 /**
  * Used for automatic prop extraction in templates

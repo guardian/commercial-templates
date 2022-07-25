@@ -1,9 +1,9 @@
+import { existsSync, readFileSync } from 'fs';
 import type { RequestHandler } from '@sveltejs/kit/types';
+import { marked } from 'marked';
 import { getCommit } from '$lib/git';
 import { build } from '$lib/rollup';
 import { getProps } from '$lib/svelte';
-import { existsSync, readFileSync } from 'fs';
-import { marked } from 'marked';
 
 const github = 'https://github.com/guardian/commercial-templates/blob';
 
@@ -13,7 +13,7 @@ export const get: RequestHandler = async ({ params }) => {
 	const dir = `src/templates/csr/${template}`;
 	const path = `${dir}/index.svelte`;
 
-	if (!existsSync(path))
+	if (!existsSync(path)) {
 		return {
 			body: {
 				html: false,
@@ -22,6 +22,7 @@ export const get: RequestHandler = async ({ params }) => {
 				description: 'Not found',
 			},
 		};
+	}
 
 	const gamProps = getProps(path);
 
