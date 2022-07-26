@@ -1,19 +1,17 @@
 import alias from '@rollup/plugin-alias';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
+import typescript from '@rollup/plugin-typescript';
 import type { Plugin, RollupOutput } from 'rollup';
 import { rollup } from 'rollup';
+import css from 'rollup-plugin-css-only';
 import svelte from 'rollup-plugin-svelte';
 import { terser } from 'rollup-plugin-terser';
 import preprocess from 'svelte-preprocess';
-import typescript from '@rollup/plugin-typescript';
-import css from 'rollup-plugin-css-only';
 import type { Props } from './svelte';
 
 const performancescript = `window.performance.mark('svelteEnd');
 const measure = window.performance.measure('svelte', 'svelteStart','svelteEnd');
 document.querySelector("#metrics").innerText = \`\${measure.duration.toFixed(2)}ms\`;`;
-
-const measureSveltePerf = true;
 
 const virtual = (template: string, props: Props): Plugin => ({
 	name: 'virtual-template',
@@ -34,7 +32,7 @@ window.performance.mark('svelteStart');
 new Template({
 	target: document.querySelector('#svelte'),
 	props: ${JSON.stringify(props)},
-});${measureSveltePerf && performancescript}`;
+});${performancescript}`;
 		}
 		return null;
 	},
@@ -62,7 +60,7 @@ const build = async (
 		} template “${template}”`,
 	);
 
-	let styles: string = '';
+	let styles = '';
 
 	const input: ['dom'] | ['ssr', `${string}/index.ts`] =
 		mode === 'dom'

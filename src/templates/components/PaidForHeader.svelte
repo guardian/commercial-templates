@@ -25,7 +25,7 @@
 			aria-controls="popup"
 			aria-expanded="true"
 			on:click={() => (popup = !popup)}
-			>About <ArrowDown width={12} flip={popup}/></Button
+			>About <ArrowDown width={12} flip={popup} /></Button
 		>
 		{#if popup}
 			<div id="popup">

@@ -16,8 +16,7 @@
 <nav>
 	<a href={`${base}/`}>All templates</a>
 
-	<a href="https://github.com/guardian/commercial-templates"
-		>Edit on Github</a
+	<a href="https://github.com/guardian/commercial-templates">Edit on Github</a
 	>
 </nav>
 

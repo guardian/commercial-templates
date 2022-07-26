@@ -12,12 +12,12 @@ const reloadTemplate = (template: string) => {
 	if (import.meta.hot) {
 		import.meta.hot.on('template-update', (data: Data) => {
 			console.log(`Received invalidation for ${data.id}`);
-			invalidate(`/${data.id}.json`);
+			void invalidate(`/${data.id}.json`);
 
 			// if a shared component is updated, update all templates
 			if (data.id.startsWith('components')) {
-				invalidate(`/csr/${template}.json`);
-				invalidate(`/ssr/${template}.json`);
+				void invalidate(`/csr/${template}.json`);
+				void invalidate(`/ssr/${template}.json`);
 			}
 		});
 	}

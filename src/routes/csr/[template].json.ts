@@ -1,9 +1,9 @@
+import { existsSync, readFileSync } from 'fs';
 import type { RequestHandler } from '@sveltejs/kit/types';
+import { marked } from 'marked';
 import { getCommit } from '$lib/git';
 import { build } from '$lib/rollup';
 import { getProps } from '$lib/svelte';
-import { existsSync, readFileSync } from 'fs';
-import { marked } from 'marked';
 
 const github = 'https://github.com/guardian/commercial-templates/blob';
 
@@ -13,7 +13,7 @@ export const get: RequestHandler = async ({ params }) => {
 	const dir = `src/templates/csr/${template}`;
 	const path = `${dir}/index.svelte`;
 
-	if (!existsSync(path))
+	if (!existsSync(path)) {
 		return {
 			body: {
 				html: false,
@@ -22,19 +22,23 @@ export const get: RequestHandler = async ({ params }) => {
 				description: 'Not found',
 			},
 		};
+	}
 
 	const gamProps = getProps(path);
 
 	const { styles, chunks } = await build(template, 'dom', gamProps);
 
 	const commit = await getCommit(path);
-	const sha = commit?.oid.slice(0, 9);
+	const sha = commit?.oid.slice(0, 9) ?? '';
 	const link = `${github}/${sha}/${path}`;
 	const timestamp = commit?.commit.author.timestamp ?? 0;
 	const date = new Date(timestamp * 1_000).toISOString().slice(0, 10);
 
+	type FallbackProps = Record<string, string>;
 	const fallback = existsSync(`${dir}/test.json`)
-		? JSON.parse(readFileSync(`${dir}/test.json`, 'utf-8'))
+		? (JSON.parse(
+				readFileSync(`${dir}/test.json`, 'utf-8'),
+		  ) as FallbackProps)
 		: {};
 
 	const props = {

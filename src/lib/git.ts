@@ -11,7 +11,7 @@ import { log } from 'isomorphic-git';
  */
 const getCommit = async (
 	filepath: string,
-	ref: string = 'HEAD',
+	ref = 'HEAD',
 ): Promise<ReadCommitResult | undefined> => {
 	const dir = process.cwd();
 

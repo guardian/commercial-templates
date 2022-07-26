@@ -1,11 +1,11 @@
+import { existsSync, readFileSync } from 'fs';
 import vm from 'vm';
 import type { RequestHandler } from '@sveltejs/kit/types';
+import { marked } from 'marked';
 import type { OutputAsset, OutputChunk } from 'rollup';
 import { getCommit } from '$lib/git';
 import { build } from '$lib/rollup';
 import { getProps } from '$lib/svelte';
-import { existsSync, readFileSync } from 'fs';
-import { marked } from 'marked';
 
 type Output = {
 	html?: string;
@@ -46,7 +46,7 @@ export const get: RequestHandler = async ({ params }) => {
 	const dir = `src/templates/ssr/${template}`;
 	const path = `${dir}/index.svelte`;
 
-	if (!existsSync(path))
+	if (!existsSync(path)) {
 		return {
 			body: {
 				html: false,
@@ -55,6 +55,7 @@ export const get: RequestHandler = async ({ params }) => {
 				description: 'Not found',
 			},
 		};
+	}
 
 	const gamProps = getProps(path);
 
@@ -70,8 +71,11 @@ export const get: RequestHandler = async ({ params }) => {
 	const timestamp = commit?.commit.author.timestamp ?? 0;
 	const date = new Date(timestamp * 1_000).toISOString().slice(0, 10);
 
+	type FallbackProps = Record<string, string>;
 	const fallback = existsSync(`${dir}/test.json`)
-		? JSON.parse(readFileSync(`${dir}/test.json`, 'utf-8'))
+		? (JSON.parse(
+				readFileSync(`${dir}/test.json`, 'utf-8'),
+		  ) as FallbackProps)
 		: {};
 
 	const props = {

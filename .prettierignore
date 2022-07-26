@@ -1,0 +1,5 @@
+legacy
+
+# Svelte
+/build
+/.svelte-kit
