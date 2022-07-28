@@ -40,7 +40,7 @@ const prerender = (code: string): Output => {
 const isChunk = (output: OutputChunk | OutputAsset): output is OutputChunk =>
 	output.type === 'chunk';
 
-export const get: RequestHandler = async ({ params }) => {
+export const GET: RequestHandler = async ({ params }) => {
 	const template = params.template ?? 'unknown';
 
 	const dir = `src/templates/ssr/${template}`;

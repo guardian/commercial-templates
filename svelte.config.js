@@ -1,6 +1,5 @@
 import adapter from '@sveltejs/adapter-static';
 import preprocess from 'svelte-preprocess';
-import { defineConfig } from 'vite';
 
 const isDev = process.env.NODE_ENV === 'development';
 
@@ -13,8 +12,9 @@ const config = {
 	kit: {
 		adapter: adapter(),
 
-		// hydrate the <div id="svelte"> element in src/app.html
-		target: '#svelte',
+		prerender: {
+			default: true,
+		},
 
 		paths: {
 			base: isDev ? undefined : '/commercial-templates',
@@ -22,42 +22,6 @@ const config = {
 
 		// Github pages really likes its trailing slashes!
 		trailingSlash: isDev ? 'never' : 'always',
-
-		vite: defineConfig({
-			plugins: [
-				{
-					name: 'watch-templates',
-					configureServer(server) {
-						server.watcher.add('/src/templates');
-					},
-					handleHotUpdate(ctx) {
-						const TEMPLATE =
-							/\/templates\/([\w-\/]+?)\/[\w-]+?\.(svelte|js|ts|md|css|json)$/i;
-						const matches = TEMPLATE.exec(ctx.file);
-
-						if (!matches) return ctx.modules;
-
-						console.warn(
-							`Template ${matches[1]} changed`,
-							'sending template-update event',
-						);
-
-						/** @type {import('./src/lib/reload').Data} */
-						const data = {
-							id: matches[1],
-						};
-
-						ctx.server.ws.send({
-							type: 'custom',
-							event: 'template-update',
-							data,
-						});
-
-						return [];
-					},
-				},
-			],
-		}),
 	},
 };
 

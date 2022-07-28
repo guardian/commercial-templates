@@ -3,7 +3,7 @@ import type { RequestHandler } from '@sveltejs/kit/types';
 
 export type Templates = Record<'csr' | 'ssr' | 'legacy', string[]>;
 
-export const get: RequestHandler = async () => {
+export const GET: RequestHandler = async () => {
 	const csr = await readdir('src/templates/csr');
 	const ssr = await readdir('src/templates/ssr');
 	const legacy = (await readdir('legacy/src')).filter(

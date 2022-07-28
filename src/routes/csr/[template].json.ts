@@ -7,7 +7,7 @@ import { getProps } from '$lib/svelte';
 
 const github = 'https://github.com/guardian/commercial-templates/blob';
 
-export const get: RequestHandler = async ({ params }) => {
+export const GET: RequestHandler = async ({ params }) => {
 	const template = params.template ?? 'unknown';
 
 	const dir = `src/templates/csr/${template}`;
