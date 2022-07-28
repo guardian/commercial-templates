@@ -1,42 +1,22 @@
-import {
-	getIframeId,
-	sendMessage,
-	resizeIframeHeight,
-	onViewport,
-} from '$lib/messenger';
-import { once } from '../../_shared/js/utils';
+import { post } from '$lib/messenger';
 
-const updateBackground = () => {
-	const [
-		scrollType,
-		backgroundImage,
-		backgroundRepeat,
-		backgroundPosition,
-		backgroundSize,
-		ctaUrl,
-	] = [
-		'interscroller',
-		`url('[%BackgroundImage%]')`,
-		'no-repeat',
-		'center center',
-		'cover',
-		`%%CLICK_URL_UNESC%%%%DEST_URL%%`,
-	];
+post({
+	type: 'background',
+	value: {
+		scrollType: 'interscroller',
+		backgroundImage: `url('[%BackgroundImage%]')`,
+		backgroundRepeat: 'no-repeat',
+		backgroundPosition: 'center center',
+		backgroundSize: 'cover',
+		ctaUrl: `%%CLICK_URL_UNESC%%%%DEST_URL%%`,
+	},
+});
 
-	sendMessage('background', {
-		scrollType,
-		backgroundImage,
-		backgroundRepeat,
-		backgroundPosition,
-		backgroundSize,
-		ctaUrl,
-	});
-};
-
-getIframeId()
-	.then(() => {
-		onViewport(once(updateBackground));
-	})
-	.then(() => resizeIframeHeight('85vh'));
-
+post({
+	type: 'set-ad-height',
+	value: {
+		width: -1,
+		height: '85vh',
+	},
+});
 export {};

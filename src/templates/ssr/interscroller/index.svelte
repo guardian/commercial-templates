@@ -18,4 +18,11 @@
 </div>
 
 <style lang="scss">
+	.creative--interscroller {
+		margin-top: 24px;
+	}
+
+	.creative__pixel--displayNone {
+		display: none;
+	}
 </style>
