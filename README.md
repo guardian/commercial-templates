@@ -17,14 +17,14 @@ found in the [`/legacy` folder](/legacy)
 
 ## Developing Locally
 
-Once you've created a project and installed dependencies with `npm install`,
+Once you've created a project and installed dependencies with `yarn install`,
 start a development server:
 
 ```bash
-npm run dev
+yarn run dev
 
 # or start the server and open the app in a new browser tab
-npm run dev -- --open
+yarn run dev --open
 ```
 
 When you change templates or shared components, the components will
@@ -38,9 +38,9 @@ Deploying is done via building the project using the static adapter, and then
 pushing the `build` folder to the `gh-pages` branch.
 
 ```bash
-npm run deploy
+yarn run deploy
 ```
 
-> You can preview the built app with `npm run preview`, regardless of whether
+> You can preview the built app with `yarn run preview`, regardless of whether
 > you installed an adapter. This should _not_ be used to serve your app
 > in production.
