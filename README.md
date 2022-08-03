@@ -15,8 +15,8 @@ You can see the current templates on [guardian.github.io/commercial-templates](h
 This project is a rewrite and work-in-progress. Legacy templates can still be
 found in the [`/legacy` folder](/legacy)
 
-* [More information on creating Svelte templates](/docs/svelte-template-authoring.md)
-* [More information on migrating legacy templates](/docs/legacy-to-svelte-migration.md)
+-   [More information on creating Svelte templates](/docs/svelte-template-authoring.md)
+-   [More information on migrating legacy templates](/docs/legacy-to-svelte-migration.md)
 
 ## Developing Locally
 
