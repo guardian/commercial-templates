@@ -34,13 +34,22 @@ type BackgroundMessage = StandardMessage<
 
 type Message = ResizeMessage | StringMessage | BackgroundMessage;
 
+const generateId = () => {
+	const _4chars = () =>
+		Math.floor((1 + Math.random()) * 0x10000)
+			.toString(16)
+			.substring(1);
+	return `${_4chars()}${_4chars()}-${_4chars()}-${_4chars()}-${_4chars()}-${_4chars()}${_4chars()}${_4chars()}`;
+};
+
 /**
  * Post message to parent frame
  *
  * @param arg The message to send to the parent frame, see the StandardMessage type for more info
  */
 const post = (arg: Message): void => {
-	window.top?.postMessage({ id: self.name, ...arg }, '/');
+	//  frontend messenger.ts discards messages that are not strings and that do not provide an an id in the format of a UUID
+	window.top?.postMessage(JSON.stringify({ id: generateId(), ...arg }), '*');
 };
 
 export interface IframeIdResponse {

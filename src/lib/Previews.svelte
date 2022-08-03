@@ -37,7 +37,9 @@
 		window.addEventListener('message', (ev: MessageEvent<Message>) => {
 			if (!ev.isTrusted) return;
 
-			const { source, data } = ev;
+			const { source, data: json } = ev;
+
+			const data = JSON.parse(json);
 
 			if (!source) return;
 			if (!('frameElement' in source)) return;
