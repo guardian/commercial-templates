@@ -20,6 +20,11 @@ type StringMessage = StandardMessage<'message', string>;
 
 type Message = ResizeMessage | StringMessage;
 
+/**
+ * Post message to parent frame
+ *
+ * @param arg The message to send to the parent frame, see the StandardMessage type for more info
+ */
 const post = (arg: Message): void => {
 	window.top?.postMessage({ id: self.name, ...arg }, '/');
 };
