@@ -1,11 +1,12 @@
 {
 	"name": "@guardian/commercial-templates-builder",
 	"version": "0.0.1",
+	"license": "Apache-2.0",
 	"scripts": {
 		"dev": "NODE_ENV=development vite dev --port 7777",
 		"build": "vite build && touch build/.nojekyll",
-		"publish": "npx gh-pages --dist build --dotfiles",
-		"deploy": "npm run build && npm run publish",
+		"publish": "yarn gh-pages --dist build --dotfiles",
+		"deploy": "yarn build && yarn publish",
 		"package": "svelte-kit package",
 		"preview": "vite preview",
 		"check": "svelte-check --tsconfig ./tsconfig.json",
