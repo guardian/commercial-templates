@@ -5,7 +5,7 @@
 	"scripts": {
 		"dev": "NODE_ENV=development vite dev --port 7777",
 		"build": "vite build && touch build/.nojekyll",
-		"publish": "npx gh-pages --dist build --dotfiles",
+		"publish": "yarn gh-pages --dist build --dotfiles",
 		"deploy": "yarn build && yarn publish",
 		"package": "svelte-kit package",
 		"preview": "vite preview",
