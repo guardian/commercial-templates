@@ -27,6 +27,6 @@ const updateBackground = () => {
     });
 };
 
-getIframeId()
+getIframeId('interscroller')
 .then(() => {onViewport(once(updateBackground));})
 .then(() => resizeIframeHeight('85vh'));
