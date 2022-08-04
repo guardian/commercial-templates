@@ -1,8 +1,5 @@
-name: CI
+name: PR check
 on:
-  push:
-    branches:
-      - 'main'
   pull_request:
     branches-ignore:
       - 'gh-pages'
