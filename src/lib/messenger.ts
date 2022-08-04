@@ -1,5 +1,4 @@
 type StandardMessage<Type = string, Data = unknown> = {
-	// id?: string;
 	type: Type;
 	iframeId?: string;
 	slotId?: string;
@@ -12,12 +11,11 @@ type StandardMessage<Type = string, Data = unknown> = {
 	value: Data;
 };
 
-// type IframeIdMessageType = StandardMessage<string, string>;
-
 type ResizeMessage = StandardMessage<
 	'set-ad-height',
 	{ width?: number | string; height?: number | string }
 >;
+
 type StringMessage = StandardMessage<'message', string>;
 
 type BackgroundMessage = StandardMessage<
@@ -51,11 +49,6 @@ const post = (arg: Message): void => {
 	//  frontend messenger.ts discards messages that are not strings and that do not provide an an id in the format of a UUID
 	window.top?.postMessage(JSON.stringify({ id: generateId(), ...arg }), '*');
 };
-
-export interface IframeIdResponse {
-	id: string;
-	type: string;
-}
 
 export { post };
 export type { Message };
