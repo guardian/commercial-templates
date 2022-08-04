@@ -23,7 +23,7 @@ jobs:
       - name: Lint files
         run: yarn lint
 
-  lint:
+  types:
     name: Typescript
     runs-on: ubuntu-latest
     steps:
