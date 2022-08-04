@@ -90,11 +90,11 @@ index.scss
 
 ### Svelte
 
--   Combine js, html and css into a `.svelte` file
--   The `getIframeId` can be removed
--   `sendMessage` can be replaced with `post`
--   `resizeIframeHeight` can be replaced with post
--   `onViewport` this runs the callback whenever the parent viewport is resized, but the result isn't used so can be removed
+- Combine js, html and css into a `.svelte` file
+- The `getIframeId` can be removed
+- `sendMessage` can be replaced with `post`
+- `resizeIframeHeight` can be replaced with post
+- `onViewport` this runs the callback whenever the parent viewport is resized, but the result isn't used so can be removed
 
 So we're left with:
 

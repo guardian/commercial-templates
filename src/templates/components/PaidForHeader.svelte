@@ -30,14 +30,13 @@
 		{#if popup}
 			<div id="popup">
 				<p>
-					Paid content is paid for and controlled by an advertiser and
-					produced by the Guardian Labs team
+					Paid content is paid for and controlled by an advertiser and produced
+					by the Guardian Labs team
 				</p>
 				<a
 					class="popup-link"
 					href={`${CLICK_MACRO}https://theguardian.com/content-funding`}
-					target="_top"
-					>Learn more about Guardian Labs content &rarr;</a
+					target="_top">Learn more about Guardian Labs content &rarr;</a
 				>
 			</div>
 		{/if}

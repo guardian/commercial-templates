@@ -55,9 +55,7 @@ const build = async (
 	chunks: RollupOutput['output'];
 }> => {
 	console.info(
-		`Building ${
-			mode === 'dom' ? 'Dynamic' : 'Static'
-		} template “${template}”`,
+		`Building ${mode === 'dom' ? 'Dynamic' : 'Static'} template “${template}”`,
 	);
 
 	let styles = '';

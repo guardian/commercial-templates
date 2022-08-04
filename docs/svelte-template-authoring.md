@@ -20,9 +20,9 @@ They live in the [`/src/templates/csr`](/src/templates/csr) directory.
 Templates themselves are defined by a directory living inside the `csr` or `ssr`
 folders. The files making up a template are:
 
--   `index.svelte` (required)
--   `test.json` (optional, only for development purposes)
--   `README.md` (optional description)
+- `index.svelte` (required)
+- `test.json` (optional, only for development purposes)
+- `README.md` (optional description)
 
 So by creating a directory inside `ssr` or `csr` adding an index.svelte file and you have the basics of a template.
 
@@ -67,5 +67,5 @@ Copy and paste the code at the bottom of the page into the Native Template in Go
 
 ## Resources
 
--   [Svelte Docs](https://svelte.dev/docs)
--   [Sveltekit Docs](https://kit.svelte.dev/docs/introduction)
+- [Svelte Docs](https://svelte.dev/docs)
+- [Sveltekit Docs](https://kit.svelte.dev/docs/introduction)

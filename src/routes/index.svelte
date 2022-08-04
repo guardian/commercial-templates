@@ -40,10 +40,7 @@
 				<a href={`${base}/${mode}/${template}`}
 					>{template
 						.split('-')
-						.map(
-							(word) =>
-								word.slice(0, 1).toUpperCase() + word.slice(1),
-						)
+						.map((word) => word.slice(0, 1).toUpperCase() + word.slice(1))
 						.join(' ')}</a
 				>
 			</li>
@@ -73,10 +70,7 @@ Learn how to create your first template:<a
 			>
 				{template
 					.split('-')
-					.map(
-						(word) =>
-							word.slice(0, 1).toUpperCase() + word.slice(1),
-					)
+					.map((word) => word.slice(0, 1).toUpperCase() + word.slice(1))
 					.join(' ')}
 			</a>
 		</li>
