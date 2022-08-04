@@ -22,3 +22,20 @@ jobs:
 
       - name: Lint files
         run: yarn lint
+
+jobs:
+  lint:
+    name: Typescript
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Setup node
+        uses: guardian/actions-setup-node@main
+
+      - name: Install dependencies
+        uses: bahmutov/npm-install@v1
+
+      - name: Check typescript
+        run: yarn tsc
