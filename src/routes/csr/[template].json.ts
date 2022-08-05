@@ -36,9 +36,7 @@ export const GET: RequestHandler = async ({ params }) => {
 
 	type FallbackProps = Record<string, string>;
 	const fallback = existsSync(`${dir}/test.json`)
-		? (JSON.parse(
-				readFileSync(`${dir}/test.json`, 'utf-8'),
-		  ) as FallbackProps)
+		? (JSON.parse(readFileSync(`${dir}/test.json`, 'utf-8')) as FallbackProps)
 		: {};
 
 	const props = {

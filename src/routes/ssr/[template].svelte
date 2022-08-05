@@ -7,8 +7,8 @@
 
 		const endpoint = `${base}/ssr/${template}.json`;
 
-		const { html, css, props, description } = await fetch(endpoint).then(
-			(r) => r.json(),
+		const { html, css, props, description } = await fetch(endpoint).then((r) =>
+			r.json(),
 		);
 
 		return {

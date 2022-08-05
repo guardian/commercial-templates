@@ -15,11 +15,7 @@
 <div>
 	<p>Paid for by</p>
 	<a href={`${CLICK_MACRO}${branding.logo.link}`}>
-		<img
-			src={logo.src}
-			alt=""
-			style={`aspect-ratio: ${width} / ${height};`}
-		/>
+		<img src={logo.src} alt="" style={`aspect-ratio: ${width} / ${height};`} />
 	</a>
 </div>
 

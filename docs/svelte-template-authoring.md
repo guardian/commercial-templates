@@ -3,11 +3,13 @@
 There are two main types of templates, which live in different folders.
 
 ### Pre-rendered (SSR)
+
 These are HTML + CSS, where Ad Manager variables are replaced by
 the creative serving them. Many of the templates fit this category, such as `fabric`,
 `fabric-video`, `manual`, etc. They live in the [`/src/templates/ssr`](/src/templates/ssr) directory.
 
 ### Dynamic (CSR)
+
 Dynamic templates need to make a request to an api in order to generate their
 content, they are effectively tiny web apps. These are mainly the `capi-*` templates, e.g. `capi-single-paidfor`.
 These only generate JS + CSS, and the HTML is generated on the client by svelte.
@@ -18,9 +20,9 @@ They live in the [`/src/templates/csr`](/src/templates/csr) directory.
 Templates themselves are defined by a directory living inside the `csr` or `ssr`
 folders. The files making up a template are:
 
--   `index.svelte` (required)
--   `test.json` (optional, only for development purposes)
--   `README.md` (optional description)
+- `index.svelte` (required)
+- `test.json` (optional, only for development purposes)
+- `README.md` (optional description)
 
 So by creating a directory inside `ssr` or `csr` adding an index.svelte file and you have the basics of a template.
 
@@ -65,5 +67,5 @@ Copy and paste the code at the bottom of the page into the Native Template in Go
 
 ## Resources
 
-* [Svelte Docs](https://svelte.dev/docs)
-* [Sveltekit Docs](https://kit.svelte.dev/docs/introduction)
+- [Svelte Docs](https://svelte.dev/docs)
+- [Sveltekit Docs](https://kit.svelte.dev/docs/introduction)
