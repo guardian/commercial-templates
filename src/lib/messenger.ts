@@ -30,7 +30,9 @@ type BackgroundMessage = StandardMessage<
 	}
 >;
 
-type Message = ResizeMessage | StringMessage | BackgroundMessage;
+type TypeMessage = StandardMessage<'type', string>;
+
+type Message = ResizeMessage | StringMessage | BackgroundMessage | TypeMessage;
 
 const generateId = () => {
 	const _4chars = () =>

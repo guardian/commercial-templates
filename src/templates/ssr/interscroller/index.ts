@@ -1,5 +1,11 @@
 import { post } from '$lib/messenger';
 
+// this will tell frontend to add the 'ad-slot--interscroller' class to the ad slot
+post({
+	type: 'type',
+	value: 'interscroller',
+});
+
 post({
 	type: 'background',
 	value: {
