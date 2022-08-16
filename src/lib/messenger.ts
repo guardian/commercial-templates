@@ -12,7 +12,7 @@ type StandardMessage<Type = string, Data = unknown> = {
 };
 
 type ResizeMessage = StandardMessage<
-	'set-ad-height',
+	'set-ad-height' | 'resize',
 	{ width?: number | string; height?: number | string }
 >;
 

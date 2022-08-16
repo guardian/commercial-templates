@@ -19,9 +19,8 @@ post({
 });
 
 post({
-	type: 'set-ad-height',
+	type: 'resize',
 	value: {
-		width: -1,
 		height: '85vh',
 	},
 });
