@@ -15,8 +15,8 @@ You can see the current templates on [guardian.github.io/commercial-templates](h
 This project is a rewrite and work-in-progress. Legacy templates can still be
 found in the [`/legacy` folder](/legacy)
 
-- [More information on creating Svelte templates](/docs/svelte-template-authoring.md)
-- [More information on migrating legacy templates](/docs/legacy-to-svelte-migration.md)
+- [Creating Svelte templates](/docs/svelte-template-authoring.md)
+- [Migrating legacy templates to Svelte](/docs/legacy-to-svelte-migration.md)
 
 ## Developing Locally
 
@@ -31,9 +31,9 @@ yarn dev --open
 ```
 
 When you change templates or shared components, the components will
-reload automatically. [Read more about Svelte templates in `src/templates/`][t]
+reload automatically. [Read more about Svelte templates in `docs/`][t]
 
-[t]: src/templates/README.md
+[t]: docs/svelte-template-authoring.md
 
 ## Deploying to Github Pages
 

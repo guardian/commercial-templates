@@ -6,6 +6,28 @@ The legacy templates typically start with a call to `getIframeId` which is depre
 
 They'll then often use some shared legacy functionality like `resizeIframeHeight` and `sendMessage`, these wrap a post message to the parent frame in additional boilerplate that's probably no longer needed and in many cases can be replaced with a simple [`post`](/src/lib/messenger.ts).
 
+## Automation
+
+Svelte migration can be partially automated by running:
+
+```sh
+$ yarn migrate <template-name>
+```
+
+For example:
+
+```sh
+$ yarn migrate glabs-native-traffic-driver
+```
+
+This does the following:
+
+- Creates a Svelte template populated with the HTML and SCSS of the legacy template
+- Creates an index.ts, copied from the index.js of the legacy template
+- Creates a test.json, copied from the legacy template
+
+The index.ts will need to manually updated to account for deprecations to legacy patterns – see below.
+
 ## Example - Interscroller
 
 ### Legacy
@@ -93,7 +115,7 @@ index.scss
 - Combine js, html and css into a `.svelte` file
 - The `getIframeId` can be removed
 - `sendMessage` can be replaced with `post`
-- `resizeIframeHeight` can be replaced with post
+- `resizeIframeHeight` can be replaced with `post`
 - `onViewport` this runs the callback whenever the parent viewport is resized, but the result isn't used so can be removed
 
 So we're left with:

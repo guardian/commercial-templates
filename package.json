@@ -9,10 +9,12 @@
 		"deploy": "yarn build && yarn publish",
 		"package": "svelte-kit package",
 		"preview": "vite preview",
+		"tsc": "tsc --noEmit",
 		"check": "svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-check --tsconfig ./tsconfig.json --watch",
 		"lint": "prettier --check --plugin-search-dir=. . && eslint --ignore-path .gitignore .",
-		"lint:fix": "prettier --write --plugin-search-dir=. . && eslint --ignore-path .gitignore . --fix"
+		"lint:fix": "prettier --write --plugin-search-dir=. . && eslint --ignore-path .gitignore . --fix",
+		"migrate": "ts-node-esm ./scripts/migrate-templates"
 	},
 	"devDependencies": {
 		"@guardian/eslint-config-typescript": "^1.0.2",
@@ -25,6 +27,8 @@
 		"@sveltejs/kit": "1.0.0-next.394",
 		"@tsconfig/svelte": "^3.0.0",
 		"@types/marked": "^4.0.1",
+		"@types/minimist": "^1.2.2",
+		"@types/mkdirp": "^1.0.2",
 		"@types/rollup-plugin-css-only": "^3.1.0",
 		"@typescript-eslint/eslint-plugin": "^5.30.7",
 		"@typescript-eslint/parser": "^5.30.7",
@@ -36,6 +40,8 @@
 		"gh-pages": "^3.2.3",
 		"isomorphic-git": "^1.10.2",
 		"marked": "^4.0.10",
+		"minimist": "^1.2.6",
+		"mkdirp": "^1.0.4",
 		"prettier": "2.7.1",
 		"prettier-plugin-svelte": "^2.7.0",
 		"rollup": "^2.66.1",
@@ -46,6 +52,7 @@
 		"svelte": "^3.49.0",
 		"svelte-check": "^2.8.0",
 		"svelte-preprocess": "^4.10.7",
+		"ts-node": "^10.9.1",
 		"tslib": "^2.3.1",
 		"typescript": "^4.7.4",
 		"vite": "^3.0.3"
