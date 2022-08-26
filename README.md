@@ -31,9 +31,9 @@ yarn dev --open
 ```
 
 When you change templates or shared components, the components will
-reload automatically. [Read more about Svelte templates in `src/templates/`][t]
+reload automatically. [Read more about Svelte templates in `docs/`][t]
 
-[t]: src/templates/README.md
+[t]: docs/svelte-template-authoring.md
 
 ## Deploying to Github Pages
 

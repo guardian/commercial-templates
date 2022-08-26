@@ -12,7 +12,8 @@
 		"check": "svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-check --tsconfig ./tsconfig.json --watch",
 		"lint": "prettier --check --plugin-search-dir=. . && eslint --ignore-path .gitignore .",
-		"lint:fix": "prettier --write --plugin-search-dir=. . && eslint --ignore-path .gitignore . --fix"
+		"lint:fix": "prettier --write --plugin-search-dir=. . && eslint --ignore-path .gitignore . --fix",
+		"migrate": "node ./scripts/migrate-templates"
 	},
 	"devDependencies": {
 		"@guardian/eslint-config-typescript": "^1.0.2",
@@ -36,6 +37,8 @@
 		"gh-pages": "^3.2.3",
 		"isomorphic-git": "^1.10.2",
 		"marked": "^4.0.10",
+		"minimist": "^1.2.6",
+		"mkdirp": "^1.0.4",
 		"prettier": "2.7.1",
 		"prettier-plugin-svelte": "^2.7.0",
 		"rollup": "^2.66.1",
