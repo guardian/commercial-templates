@@ -1,18 +1,15 @@
-# This action runs snyk monitor on every push to main
-name: Snyk
+# This action is just a test
+name: Snyk (test)
 
-on:
-  push:
-    branches:
-      - main
-  workflow_dispatch:
+on: push
 
 jobs:
   security:
+    timeout-minutes: 30
     uses: guardian/.github/.github/workflows/sbt-node-snyk.yml@main
     with:
       DEBUG: true
-      ORG: guardian-commercial
+      ORG: guardian-test
       SKIP_NODE: false
     secrets:
-      SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+       SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
