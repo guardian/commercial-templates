@@ -1,3 +1,4 @@
+import { write } from '$lib/dom';
 import type { GAMVariable } from '$lib/gam';
 import { post } from '$lib/messenger';
 
@@ -32,7 +33,7 @@ function handleBackground(isMobile: boolean, isTablet: boolean) {
 
 	if (!backgroundImage) return;
 	if (scrollType.includes('none')) {
-		write(() => {
+		void write(() => {
 			Object.assign(creativeLink.style, {
 				backgroundImage: `url('${backgroundImage}')`,
 				backgroundPosition,
