@@ -65,7 +65,7 @@
 
 <style lang="scss">
 	// @import '_core';
-	@import './src/lib/scss/core';
+	@import './src/_shared/scss/core';
 
 	.creative--fabric {
 		&,

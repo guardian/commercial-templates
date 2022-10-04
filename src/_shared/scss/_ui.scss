@@ -1,0 +1,9 @@
+@mixin button-colour($fill-colour, $text-colour, $border-color: $fill-colour) {
+	color: $text-colour;
+	background-color: $fill-colour;
+	border-color: $border-color;
+}
+
+@function gs-span($n-columns) {
+	@return $n-columns * $gs-column-width + $gs-gutter * ($n-columns - 1);
+}

@@ -5,5 +5,5 @@
 </div>
 
 <style lang="scss">
-	@import './src/lib/scss/core';
+	@import './src/_shared/scss/core';
 </style>
