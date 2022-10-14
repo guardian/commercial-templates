@@ -2,6 +2,7 @@ import minimist from 'minimist';
 import { promises, existsSync } from 'fs';
 import mkdirp from 'mkdirp';
 import path from 'path';
+import { run as jscodeshift } from 'jscodeshift/src/Runner.js';
 
 const argv = minimist(process.argv.slice(2));
 const { writeFile, readFile, rm, copyFile } = promises;
@@ -37,7 +38,7 @@ void (async () => {
 
 	if (!templateName) {
 		console.log(`Please pass a template name to the migrate script
-usage: yarn migrate glabs-bative-traffic-driver`);
+usage: yarn migrate glabs-native-traffic-driver`);
 		process.exit(-1);
 	}
 	if (!existsSync(path.resolve('legacy', 'src', templateName))) {
@@ -63,8 +64,23 @@ usage: yarn migrate glabs-bative-traffic-driver`);
 		await rm(newDir, { recursive: true });
 	} catch (e) {}
 	await mkdirp(newDir);
+
+	// write test.json
 	await copyFile(legacyTestJsonFile, path.resolve(newDir, 'test.json'));
-	await writeFile(path.resolve(newDir, 'index.ts'), `${migrationTips}${js}`);
+
+	// write index.ts
+	const newJsFile = path.resolve(newDir, 'index.ts');
+	await writeFile(newJsFile, `${migrationTips}${js}`);
+	await jscodeshift(
+		path.resolve('scripts', 'migrate-templates', 'transforms/transform.cjs'),
+		[newJsFile],
+		{
+			print: true,
+			verbose: 1,
+		},
+	);
+
+	// write index.svelte
 	await writeFile(
 		path.resolve(newDir, 'index.svelte'),
 		populateSvelteTemplate({ html, scss }),
