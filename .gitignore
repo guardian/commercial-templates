@@ -9,8 +9,6 @@ wip
 /.svelte-kit
 /package
 
-/build-static
-
 # Environment Vars
 .env
 .env.*

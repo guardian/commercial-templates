@@ -1,10 +1,4 @@
-import {
-	copyFileSync,
-	existsSync,
-	mkdirSync,
-	readFileSync,
-	writeFileSync,
-} from 'fs';
+import { existsSync, readFileSync } from 'fs';
 import type { RequestHandler } from '@sveltejs/kit/types';
 import { marked } from 'marked';
 import { getCommit } from '$lib/git';
@@ -12,21 +6,6 @@ import { build } from '$lib/rollup';
 import { getProps } from '$lib/svelte';
 
 const github = 'https://github.com/guardian/commercial-templates/blob';
-
-const writeTemplate = (template: string, html: string, css: string) => {
-	const outDir = `build-static/${template}`;
-
-	mkdirSync(outDir, { recursive: true });
-
-	writeFileSync(`${outDir}/index.html`, html, 'utf-8');
-	writeFileSync(`${outDir}/style.css`, css, 'utf-8');
-
-	const adJSON = `src/templates/csr/${template}/ad.json`;
-
-	if (existsSync(adJSON)) {
-		copyFileSync(adJSON, `${outDir}/ad.json`);
-	}
-};
 
 export const GET: RequestHandler = async ({ params }) => {
 	const template = params.template ?? 'unknown';
@@ -79,8 +58,6 @@ export const GET: RequestHandler = async ({ params }) => {
 	const description = existsSync(`${dir}/README.md`)
 		? marked.parse(readFileSync(`${dir}/README.md`, 'utf-8'))
 		: `<p><em>no description provided</em></p>`;
-
-	writeTemplate(template, html, css);
 
 	return {
 		body: {
