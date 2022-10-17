@@ -270,7 +270,7 @@
             }
         }
 
-                
+
         @include mq(leftCol) {
             padding: $gs-baseline 0;
         }
@@ -574,7 +574,7 @@
 
 /* Theming */
 .adverts--legacy {
-    background: #eaeaea;
+    background: #ededed;
 
     > .adverts__header .button {
         color: #000000;
