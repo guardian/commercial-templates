@@ -2,18 +2,18 @@ import { write } from '$lib/dom';
 import type { GAMVariable } from '$lib/gam';
 import { post } from '$lib/messenger';
 
+type ParallaxBackgroundSize = '740px 500px' | '1300px 700px';
 const linkDesktop: HTMLElement | null = document.getElementById('linkDesktop');
-
 const isMobile: boolean = window.matchMedia('(max-width: 739px)').matches;
-const isTablet: boolean = window.matchMedia(
-	'(min-width: 740px) and (max-width: 979px)',
-).matches;
-handleBackground(isMobile, isTablet);
+
+const backgroundSize: ParallaxBackgroundSize = isMobile
+	? '740px 500px'
+	: '1300px 700px';
 
 //creative background div for parallax scrolling
-function handleBackground(isMobile: boolean, isTablet: boolean) {
+const handleBackground = (isMobile: boolean) => {
 	const scrollType: GAMVariable = '[%BackgroundScrollType%]';
-	const backgroundColour: GAMVariable | null = '[%BackgroundColour%]';
+	const backgroundColor: GAMVariable | null = '[%BackgroundColor%]';
 	const [backgroundImage, backgroundPosition, backgroundRepeat, creativeLink] =
 		isMobile
 			? [
@@ -29,10 +29,10 @@ function handleBackground(isMobile: boolean, isTablet: boolean) {
 					document.getElementById('linkDesktop'),
 			  ];
 
-	document.documentElement.style.backgroundColor = backgroundColour;
+	document.documentElement.style.backgroundColor = backgroundColor;
 
 	if (!backgroundImage) return;
-	if (scrollType.includes('none')) {
+	if (scrollType.includes('none') && creativeLink) {
 		void write(() => {
 			Object.assign(creativeLink.style, {
 				backgroundImage: `url('${backgroundImage}')`,
@@ -40,23 +40,29 @@ function handleBackground(isMobile: boolean, isTablet: boolean) {
 				backgroundRepeat,
 			});
 		});
-	} else {
+	}
+	//Wanted to just use background-size:cover here, but parallax effect does not
+	//work on mobile, setting px sizes was the soloution
+	if (scrollType.includes('parallax')) {
 		post({
 			type: 'background',
 			value: {
-				scrollType:
-					scrollType.includes('parallax') && (isMobile || isTablet)
-						? 'fixed'
-						: scrollType,
-				backgroundColour,
+				scrollType: scrollType,
+				backgroundColor,
 				backgroundImage: `url('${backgroundImage}')`,
 				backgroundRepeat,
 				backgroundPosition,
+				backgroundSize,
 			},
 		});
+
 		//css class added to fix padding issue
-		linkDesktop ? linkDesktop.classList.add('is-parallax') : '';
+		if (linkDesktop && scrollType.includes('parallax')) {
+			linkDesktop.classList.add('is-parallax');
+		}
 	}
-}
+};
+
+handleBackground(isMobile);
 
 export {};
