@@ -64,7 +64,6 @@
 [%thirdPartyJSTracking%]
 
 <style lang="scss">
-	// @import '_core';
 	@import './src/_shared/scss/core';
 
 	.creative--fabric {
@@ -78,15 +77,7 @@
 				padding: 0 calc(50% - 650px);
 			}
 		}
-
-		.creative__layer {
-			img {
-				max-width: 1300px;
-				max-height: 250px;
-				background-size: cover;
-			}
-		}
-
+		
 		.creative__layer1 {
 			z-index: 1;
 		}
