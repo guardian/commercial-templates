@@ -26,6 +26,7 @@ type BackgroundMessage = StandardMessage<
 		backgroundRepeat: string;
 		backgroundPosition: string;
 		backgroundSize: string;
+		backgroundColor: string;
 		ctaUrl: string;
 	}
 >;
