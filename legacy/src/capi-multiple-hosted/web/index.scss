@@ -1,6 +1,7 @@
 @import '_core';
 @import '_adverts-capi';
 @import '_hosted';
+@import '_adverts-merchandising';
 
 .advert__image-container {
   position: relative;
@@ -27,8 +28,4 @@
   .hosted-bright & {
     fill: #ffffff;
   }
-}
-
-body {
-	margin: 0;
 }
