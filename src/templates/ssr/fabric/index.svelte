@@ -1,6 +1,8 @@
 <!-- https://polyfill.io/v3/polyfill.min.js?features=default -->
 <script lang="ts">
 	import AdvertismentLabel from '$templates/components/AdvertismentLabel.svelte';
+	import { CLICK_MACRO, DEST_URL, gamVar } from '../../../lib/gam';
+	import Pixel from '../../components/Pixel.svelte';
 </script>
 
 <AdvertismentLabel />
@@ -57,9 +59,9 @@
 		</div>
 	</a>
 
-	<img src="[%Trackingpixel%]" class="creative__pixel" />
-	<img src="[%Researchpixel%]" class="creative__pixel" />
-	<img src="[%Viewabilitypixel%]" class="creative__pixel" />
+	<Pixel src={gamVar('Trackingpixel')} />
+	<Pixel src={gamVar('Researchpixel')} />
+	<Pixel src={gamVar('Viewabilitypixel')} />
 </div>
 [%thirdPartyJSTracking%]
 
