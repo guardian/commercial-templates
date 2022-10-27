@@ -1,5 +1,6 @@
 import { write } from '$lib/dom';
 import type { GAMVariable } from '$lib/gam';
+import { gamVar } from '$lib/gam';
 import { post } from '$lib/messenger';
 
 type ParallaxBackgroundSize = '740px 500px' | '1300px 700px';
@@ -12,7 +13,8 @@ const backgroundSize: ParallaxBackgroundSize = isMobile
 
 //creative background div for parallax scrolling
 const handleBackground = (isMobile: boolean) => {
-	const scrollType: GAMVariable = '[%BackgroundScrollType%]';
+	/** This can be either "vertical" or "horizontal" */
+	const backgroundScrollType = gamVar('BackgroundScrollType');
 	const backgroundColor: GAMVariable | null = '[%BackgroundColor%]';
 	const [backgroundImage, backgroundPosition, backgroundRepeat, creativeLink] =
 		isMobile
