@@ -30,6 +30,7 @@
 	export const widths = {
 		1300: 'desktop',
 		740: 'tablet',
+		480: 'mobileLandscape',
 		360: 'mobile',
 	};
 
