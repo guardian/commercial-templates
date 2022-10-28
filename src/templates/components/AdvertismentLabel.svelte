@@ -1,26 +1,31 @@
-<script lang="ts"></script>
+<script lang="ts">
+	import { neutral, textSans, from } from '@guardian/source-foundations';
 
-<div class="gs-container creative__label creative__label">
-	<div class="creative__label-text">Advertisement</div>
+	const style = `
+	background-color: ${neutral[97]};
+	border-color: ${neutral[93]};
+	font-family: ${textSans.small()}
+`;
+</script>
+
+<div class="gs-container creative__label creative__label" {style}>
+	<div
+		class="creative__label-text"
+		style={`padding: 0 10px;
+		${from.tablet} {
+			padding: 0 20px;
+		}`}
+	>
+		Advertisement
+	</div>
 </div>
 
 <style lang="scss">
-	@import './src/_shared/scss/_core';
-	
 	.creative__label {
-		background-color: $neutral-8;
-		border-top: 1px solid $neutral-5;
+		border-top: 1px solid;
 		color: #6e6e6e;
-		font: normal 0.75rem/1.9 $f-sans-serif-text;
+		font: normal 0.75rem/1.9;
 		height: 2em;
 		box-sizing: border-box;
-	}
-
-	.creative__label-text {
-		padding: 0 $gs-gutter / 2;
-
-		@include mq(tablet) {
-			padding: 0 $gs-gutter;
-		}
 	}
 </style>
