@@ -1,8 +1,15 @@
 <script lang="ts">
 	import AdvertismentLabel from '$templates/components/AdvertismentLabel.svelte';
-	import { CLICK_MACRO, DEST_URL, gamVar } from '../../../lib/gam';
+	import { CLICK_MACRO, DEST_URL, GAMVariable } from '../../../lib/gam';
 	import Pixel from '../../components/Pixel.svelte';
 	import ThirdPartyScript from '../../components/ThirdPartyScript.svelte';
+
+	export let Layer1BackgroundImage: GAMVariable;
+	export let Layer2BackgroundAnimationPosition: GAMVariable;
+	export let Layer2BackgroundImage: GAMVariable;
+	export let Trackingpixel: GAMVariable<'Trackingpixel'>;
+	export let Researchpixel: GAMVariable<'Researchpixel'>;
+	export let Viewabilitypixel: GAMVariable<'Viewabilitypixel'>;
 
 	let innerWidth: number;
 	$: backgroundPosition = innerWidth <= 480 ? '40% center' : 'center center';
@@ -19,25 +26,23 @@
 				class="creative__layer creative__layer1"
 				style={[
 					`--position: ${backgroundPosition}`,
-					`--image: url([%Layer1BackgroundImage%])`,
+					`--image: url(${Layer1BackgroundImage})`,
 				].join(';')}
 			/>
 			<div
 				id="layer2"
-				class={`creative__layer creative__layer2 creative__layer2--animation-[%Layer2BackgroundAnimation%] creative__layer2--animation-pos-${gamVar(
-					'Layer2BackgroundAnimationPosition',
-				)}`}
+				class={`creative__layer creative__layer2 creative__layer2--animation-pos-${Layer2BackgroundAnimationPosition}`}
 				style={[
 					`--position: ${backgroundPosition}`,
-					`--image: ${gamVar('Layer2BackgroundImage')}`,
+					`--image: ${Layer2BackgroundImage}`,
 				].join(';')}
 			/>
 		</div>
 	</a>
 
-	<Pixel src={gamVar('Trackingpixel')} />
-	<Pixel src={gamVar('Researchpixel')} />
-	<Pixel src={gamVar('Viewabilitypixel')} />
+	<Pixel src={Trackingpixel} />
+	<Pixel src={Researchpixel} />
+	<Pixel src={Viewabilitypixel} />
 </div>
 <ThirdPartyScript />
 
