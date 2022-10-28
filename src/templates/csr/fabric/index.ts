@@ -1,5 +1,4 @@
 import { write } from '$lib/dom';
-import type { GAMVariable } from '$lib/gam';
 import { gamVar } from '$lib/gam';
 import { post } from '$lib/messenger';
 
@@ -14,8 +13,8 @@ const backgroundSize: ParallaxBackgroundSize = isMobile
 //creative background div for parallax scrolling
 const handleBackground = (isMobile: boolean) => {
 	/** This can be either "vertical" or "horizontal" */
-	const backgroundScrollType = gamVar('BackgroundScrollType');
-	const backgroundColor: GAMVariable | null = '[%BackgroundColor%]';
+	const scrollType = gamVar('BackgroundScrollType');
+	const backgroundColor = gamVar('BackgroundColor');
 	const [backgroundImage, backgroundPosition, backgroundRepeat, creativeLink] =
 		isMobile
 			? [
@@ -30,8 +29,6 @@ const handleBackground = (isMobile: boolean) => {
 					'[%BackgroundImageRepeat%]',
 					document.getElementById('linkDesktop'),
 			  ];
-
-	document.documentElement.style.backgroundColor = backgroundColor;
 
 	if (!backgroundImage) return;
 	if (scrollType.includes('none') && creativeLink) {
@@ -49,7 +46,8 @@ const handleBackground = (isMobile: boolean) => {
 		post({
 			type: 'background',
 			value: {
-				scrollType: scrollType,
+				ctaUrl: '',
+				scrollType,
 				backgroundColor,
 				backgroundImage: `url('${backgroundImage}')`,
 				backgroundRepeat,
