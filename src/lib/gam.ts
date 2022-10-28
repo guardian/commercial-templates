@@ -1,5 +1,5 @@
 const CLICK_MACRO = '%%CLICK_URL_UNESC%%';
-const DEST_URL = '%%DEST_URL%%'
+const DEST_URL = '%%DEST_URL%%';
 const CACHE_BUST = '%%CACHEBUSTER%%';
 
 /** These are also known as Custom Macros */
