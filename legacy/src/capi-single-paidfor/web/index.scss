@@ -45,7 +45,8 @@
     }
 
     .badge__logo {
-      width: 200px;
+      display: block;
+      max-width: 200px;
       margin-left: 0;
     }
   }
