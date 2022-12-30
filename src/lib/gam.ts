@@ -1,8 +1,11 @@
 const CLICK_MACRO = '%%CLICK_URL_UNESC%%';
+const DEST_URL = '%%DEST_URL%%';
 const CACHE_BUST = '%%CACHEBUSTER%%';
 
+/** These are also known as Custom Macros */
 type GAMVariable<T extends string = string> = `[%${T}%]`;
 
+/** Helper to create a GAM Variable safely */
 const gamVar = <T extends string>(s: T): GAMVariable<T> => `[%${s}%]`;
 
 const replaceGAMVariables = (
@@ -34,6 +37,7 @@ export type { GAMVariable };
 export {
 	CACHE_BUST,
 	CLICK_MACRO,
+	DEST_URL,
 	addTrackingPixel,
 	gamVar,
 	isValidReplacedVariable,

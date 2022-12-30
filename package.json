@@ -50,5 +50,8 @@
 		"typescript": "^4.7.4",
 		"vite": "^3.0.3"
 	},
-	"type": "module"
+	"type": "module",
+	"dependencies": {
+		"@guardian/source-foundations": "^7.0.1"
+	}
 }

@@ -30,6 +30,7 @@
 	export const widths = {
 		1300: 'desktop',
 		740: 'tablet',
+		480: 'mobileLandscape',
 		360: 'mobile',
 	};
 
@@ -39,7 +40,7 @@
 
 			const { source, data: json } = ev;
 
-			const data = JSON.parse(json);
+			const data = JSON.parse(String(json));
 
 			if (!source) return;
 			if (!('frameElement' in source)) return;

@@ -3,7 +3,6 @@
 	"Trackingpixel": "",
 	"Researchpixel": "",
 	"Viewabilitypixel": "",
-	"thirdPartyJSTracking": "<SCRIPT TYPE='application/javascript' SRC='https://pixel.adsafeprotected.com/rjss/st/726370/54949606/skeleton.js'></SCRIPT> <NOSCRIPT><IMG SRC='https://pixel.adsafeprotected.com/rfw/st/726370/54949605/skeleton.gif?gdpr=${GDPR}&gdpr_consent=${GDPR_CONSENT_278}&gdpr_pd=${GDPR_PD}' BORDER=0 WIDTH=1 HEIGHT=1 ALT=''></NOSCRIPT>",
 	"BackgroundScrollType": "parallax",
 	"BackgroundColor": "blue",
 	"BackgroundImage": "https://adops-assets.s3.eu-west-1.amazonaws.com/dap-fabrics/DAP_LABS_Grey_goose_cobranded/images/BG-desktop.jpg",
