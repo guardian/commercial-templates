@@ -9,10 +9,9 @@ if( layer2.classList.contains('creative__layer2--animation-disabled') ) {
 }
 
 getIframeId()
-.then(() => resizeIframeHeight('500px'))
 .then(() => {
-    
     reportClicks();
+    handleResize();
 
     let isMobile = window.matchMedia('(max-width: 739px)').matches;
     let isTablet = window.matchMedia('(min-width: 740px) and (max-width: 979px)').matches;
@@ -74,3 +73,8 @@ function handleLayer2(height) {
         }
     });
 }
+
+function handleResize() {
+    resizeIframeHeight(500);
+}
+
