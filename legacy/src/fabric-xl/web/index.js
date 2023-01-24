@@ -4,26 +4,14 @@ import { write } from '../../_shared/js/dom.js';
 let layer2 = document.getElementById('layer2');
 let linkDesktop = document.getElementById('linkDesktop');
 
-if( layer2.classList.contains('creative__layer2--animation-disabled') ) {
-    write(() => layer2.style.backgroundPosition = '[%Layer2BackgroundPosition%]');
-}
 
 getIframeId()
 .then(() => {
     reportClicks();
-    handleResize();
 
     let isMobile = window.matchMedia('(max-width: 739px)').matches;
     let isTablet = window.matchMedia('(min-width: 740px) and (max-width: 979px)').matches;
     handleBackground(isMobile, isTablet);
-   
-
-    if( !isMobile && layer2.classList.contains('creative__layer2--animation-enabled') ) {
-        onViewport(({ height }) => {
-            handleLayer2(height);
-            return false;
-        });
-    }
 });
 
 function handleBackground(isMobile, isTablet) {
@@ -65,14 +53,6 @@ function handlePadding(scrollType) {
     }
 }
 
-function handleLayer2(height) {
-    onScroll(({ top, bottom }) => {
-        if( 0 <= top && bottom <= height ) {
-            layer2.classList.add('is-animating');
-            return false;
-        }
-    });
-}
 
 function handleResize() {
     resizeIframeHeight(500);
