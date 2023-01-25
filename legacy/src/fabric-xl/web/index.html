@@ -4,6 +4,16 @@
         href="%%CLICK_URL_UNESC%%%%DEST_URL%%">
         <div class="u-root">
             <div class="creative__alt creative__alt--tablet">
+
+                <div class="creative__layer creative__layer--video">
+                    <div class="creative__layer creative__layerVideo"
+                    style="background-image: url('[%LayerVideoBackgroundImage%]');
+                        background-position: [%LayerVideoBackgroundPosition%]"
+                    ></div>
+                    <video muted autoplay playsinline type="video/mp4" class="creative__video"></video>
+                </div>
+
+
                 <div class="creative__layer creative__layer1"
                     style="background-image: url('[%Layer1BackgroundImage%]');
                         background-position: [%Layer1BackgroundPosition%]"
@@ -17,11 +27,20 @@
                     ></div>
             </div>
         </div>
+       
     </a>
     <a id="linkMobile" class="blink gs-container creative__link mobile-only"
         href="%%CLICK_URL_UNESC%%%%DEST_URL%%">
         <div class="u-root">
             <div class="creative__alt creative__alt--mobile">
+
+                <div class="creative__layer creative__layer--video">
+                    <div class="creative__layer creative__layerVideo"
+                    style="background-image: url('[%LayerVideoBackgroundMobileImage%]');
+                        background-position: [%LayerVideoBackgroundMobilePosition%]"
+                    ></div>
+                    <video muted autoplay playsinline type="video/mp4" class="creative__video"></video>
+                </div>
                 <div class="creative__layer creative__layer1"
                     style="background-image: url('[%MobileLayer1BackgroundImage%]');
                         background-position: [%MobileLayer1BackgroundPosition%]"
@@ -37,6 +56,7 @@
             </div>
         </div>
     </a>
+
 
     <img src="[%Trackingpixel%]" class="creative__pixel">
     <img src="[%Researchpixel%]" class="creative__pixel">
