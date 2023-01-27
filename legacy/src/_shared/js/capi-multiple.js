@@ -33,7 +33,7 @@ function buildTitle (card, cardInfo, cardNumber) {
     let title = card.querySelector('.advert__title');
     let kickerText = OVERRIDES.kickers[cardNumber];
 
-    let kicker = kickerText ? `<span class="advert__kicker">${kickerText}</span>` : '';
+    let kicker = kickerText ? `<span class="advert__kicker">${kickerText}</span><br />` : '';
     let icon = '';
     let headline = OVERRIDES.headlines[cardNumber] || cardInfo.articleHeadline;
 
