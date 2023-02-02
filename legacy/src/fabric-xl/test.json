@@ -25,7 +25,5 @@
   "MobileLayer2BackgroundImage": "",
   "MobileLayer2BackgroundPosition": "left top",
   "MobileLayer3BackgroundImage": "",
-  "MobileLayer3BackgroundPosition": "left top",
-  "VideoURL": "https://player.vimeo.com/progressive_redirect/playback/600274763/rendition/1080p?loc=external&signature=50a0fd21d0f86f9681f687b278602d5a4af06e92b17da01186b3f74b004b386b",
-  "VideoURLMobile": "https://player.vimeo.com/external/541626059.sd.mp4?s=cd36645eeddda5668ddcd6bf524cef0c3ea756eb&profile_id=165"
+  "MobileLayer3BackgroundPosition": "left top"
 }
