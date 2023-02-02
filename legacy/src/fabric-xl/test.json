@@ -4,12 +4,12 @@
   "Researchpixel": "",
   "Viewabilitypixel": "",
   "thirdPartyJSTracking": "<SCRIPT TYPE='application/javascript' SRC='https://pixel.adsafeprotected.com/rjss/st/726370/54949606/skeleton.js'></SCRIPT> <NOSCRIPT><IMG SRC='https://pixel.adsafeprotected.com/rfw/st/726370/54949605/skeleton.gif?gdpr=${GDPR}&gdpr_consent=${GDPR_CONSENT_278}&gdpr_pd=${GDPR_PD}' BORDER=0 WIDTH=1 HEIGHT=1 ALT=''></NOSCRIPT>",
-  "BackgroundScrollType": "parallax",
+  "BackgroundScrollType": "none",
   "BackgroundColour": "transparent",
-  "BackgroundImage": "https://tpc.googlesyndication.com/simgad/6970789288532697512?",
+  "BackgroundImage": "",
   "BackgroundImagePosition": "right top",
   "BackgroundImageRepeat": "no-repeat",
-  "Layer1BackgroundImage": "",
+  "Layer1BackgroundImage": "https://tpc.googlesyndication.com/simgad/6970789288532697512?",
   "Layer1BackgroundPosition": "center center",
   "Layer2BackgroundImage": "https://tpc.googlesyndication.com/simgad/7088419982815615043?",
   "Layer2BackgroundPosition": "right top",
@@ -27,11 +27,5 @@
   "MobileLayer3BackgroundImage": "",
   "MobileLayer3BackgroundPosition": "left top",
   "VideoURL": "https://player.vimeo.com/progressive_redirect/playback/600274763/rendition/1080p?loc=external&signature=50a0fd21d0f86f9681f687b278602d5a4af06e92b17da01186b3f74b004b386b",
-  "VideoURLMobile": "https://player.vimeo.com/external/541626059.sd.mp4?s=cd36645eeddda5668ddcd6bf524cef0c3ea756eb&profile_id=165",
-  "LayerVideoBackgroundImage" : "https://tpc.googlesyndication.com/simgad/4267526405194255713?",
-  "LayerVideoBackgroundMobileImage": "https://tpc.googlesyndication.com/simgad/4267526405194255713?",
-  "LayerVideoBackgroundPosition" : "center top",
-  "LayerVideoBackgroundMobilePosition" : "center top",
-  "VideoBackupImage" : "",
-  "MobileVideoBackupImage": ""
+  "VideoURLMobile": "https://player.vimeo.com/external/541626059.sd.mp4?s=cd36645eeddda5668ddcd6bf524cef0c3ea756eb&profile_id=165"
 }
