@@ -62,16 +62,6 @@
     }
 }
 
-// @include mq($until: tablet) {
-//     .creative__video--mobile {
-//         display: block;
-//     }
-
-//     .creative__video--desktop {
-//         display: none;
-//     }
-// }
-
 .has-no-object-fit .creative__video {
     top: 50%;
     left: 50%;
