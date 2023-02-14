@@ -47,4 +47,4 @@ getIframeId()
 .then(() => getWebfonts())
 .then(() => generateTag())
 .then(tag => insertTag(tag))
-.then(() => resizeIframeHeight(500));
+.then(() => resizeIframeHeight(524));//to take into acoount the ad slot label

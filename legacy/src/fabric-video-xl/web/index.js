@@ -11,7 +11,7 @@ const VIDEO_MARCOS = {
 getIframeId()
 .then(() => {
     reportClicks();
-    resizeIframeHeight(500);
+    resizeIframeHeight(524);//to take into acoount the ad slot label
 
   
     let isUpdating = false;

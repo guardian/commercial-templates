@@ -7,7 +7,7 @@ let linkDesktop = document.getElementById('linkDesktop');
 getIframeId()
 .then(() => {
     reportClicks();
-    resizeIframeHeight(500);
+    resizeIframeHeight(524);//to take into acoount the ad slot label
 
     const isMobile = window.matchMedia('(max-width: 739px)').matches;
     const isTablet = window.matchMedia('(min-width: 740px) and (max-width: 979px)').matches;
