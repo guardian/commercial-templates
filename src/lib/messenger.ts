@@ -1,5 +1,6 @@
 type StandardMessage<Type = string, Data = unknown> = {
 	type: Type;
+	id?: string;
 	iframeId?: string;
 	slotId?: string;
 	/**
@@ -8,7 +9,7 @@ type StandardMessage<Type = string, Data = unknown> = {
 	 * We mostly treat this as unknown and leave it up to the message
 	 * listeners to convert to a type they can handle
 	 */
-	value: Data;
+	value?: Data;
 };
 
 type ResizeMessage = StandardMessage<
@@ -32,7 +33,25 @@ type BackgroundMessage = StandardMessage<
 
 type TypeMessage = StandardMessage<'type', string>;
 
-type Message = ResizeMessage | StringMessage | BackgroundMessage | TypeMessage;
+type GetPageURLMessage = StandardMessage<'get-page-url', string>;
+
+type Message =
+	| ResizeMessage
+	| StringMessage
+	| BackgroundMessage
+	| TypeMessage
+	| GetPageURLMessage;
+
+type ErrorResponse = {
+	id: string;
+	error: string;
+};
+type SuccessResponse = {
+	id: string;
+	result: string;
+};
+
+type ResponseMessage = SuccessResponse | ErrorResponse;
 
 const generateId = () => {
 	const _4chars = () =>
@@ -52,5 +71,57 @@ const post = (arg: Message): void => {
 	window.top?.postMessage(JSON.stringify({ id: generateId(), ...arg }), '*');
 };
 
-export { post };
+const replyIsError = (json: unknown): json is ErrorResponse => {
+	const reply = json as ErrorResponse;
+	return (
+		'error' in reply &&
+		typeof reply.error === 'string' &&
+		'id' in reply &&
+		typeof reply.id === 'string'
+	);
+};
+
+const replyIsSuccess = (json: unknown): json is SuccessResponse => {
+	const reply = json as SuccessResponse;
+	return (
+		'result' in reply &&
+		typeof reply.result === 'string' &&
+		'id' in reply &&
+		typeof reply.id === 'string'
+	);
+};
+
+const decodeReply = (e: MessageEvent<string>): SuccessResponse | void => {
+	try {
+		const json: unknown = JSON.parse(e.data);
+
+		if (replyIsSuccess(json)) {
+			return json;
+		}
+
+		return;
+	} catch (_) {
+		return;
+	}
+};
+
+const postAndListen = (arg: Message): Promise<string> => {
+	return new Promise((resolve) => {
+		const id = generateId();
+
+		const listener = (e: MessageEvent<string>) => {
+			const decoded = decodeReply(e);
+			if (decoded && decoded.id === id) {
+				resolve(decoded.result);
+				window.removeEventListener('message', listener);
+			}
+		};
+
+		window.addEventListener('message', listener);
+
+		post({ ...arg, id });
+	});
+};
+
+export { post, postAndListen };
 export type { Message };
