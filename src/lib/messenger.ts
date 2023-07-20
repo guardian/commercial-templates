@@ -8,8 +8,10 @@ type StandardMessage<Type = string, Data = unknown> = {
 	 *
 	 * We mostly treat this as unknown and leave it up to the message
 	 * listeners to convert to a type they can handle
+	 *
+	 * Although some messages don't have a value property, e.g. 'get-page-url', this property is still required due to validation in messenger.ts in the commercial repo
 	 */
-	value?: Data;
+	value: Data;
 };
 
 type ResizeMessage = StandardMessage<
