@@ -44,16 +44,10 @@ type Message =
 	| TypeMessage
 	| GetPageURLMessage;
 
-type ErrorResponse = {
-	id: string;
-	error: string;
-};
 type SuccessResponse = {
 	id: string;
 	result: string;
 };
-
-type ResponseMessage = SuccessResponse | ErrorResponse;
 
 const generateId = () => {
 	const _4chars = () =>
@@ -71,16 +65,6 @@ const generateId = () => {
 const post = (arg: Message): void => {
 	//  frontend messenger.ts discards messages that are not strings and that do not provide an an id in the format of a UUID
 	window.top?.postMessage(JSON.stringify({ id: generateId(), ...arg }), '*');
-};
-
-const replyIsError = (json: unknown): json is ErrorResponse => {
-	const reply = json as ErrorResponse;
-	return (
-		'error' in reply &&
-		typeof reply.error === 'string' &&
-		'id' in reply &&
-		typeof reply.id === 'string'
-	);
 };
 
 const replyIsSuccess = (json: unknown): json is SuccessResponse => {
@@ -125,5 +109,5 @@ const postAndListen = (arg: Message): Promise<string> => {
 	});
 };
 
-export { post, postAndListen };
+export { post, postAndListen, generateId };
 export type { Message };
