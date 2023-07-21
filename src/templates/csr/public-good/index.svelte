@@ -1,11 +1,26 @@
 <script lang="ts">
 	import { getPageURL } from '$lib/messenger/get-page-url';
 	import { type PgmApiOptions, create } from '$lib/public-good';
+	import { getUSPData } from '$lib/cmp';
+	import { post } from '$lib/messenger';
 
 	let container: HTMLElement;
 
 	const onload = async () => {
 		const url = await getPageURL();
+		const consentState = await getUSPData(1);
+
+		const isCcpaOptedOut = () => {
+			return consentState.uspString[2] === 'Y';
+		};
+
+		if (isCcpaOptedOut()) {
+			post({
+				type: 'refresh',
+				value: 'public-good',
+			});
+			return;
+		}
 
 		const options: PgmApiOptions = {
 			partnerId: 'gmg-guardian',

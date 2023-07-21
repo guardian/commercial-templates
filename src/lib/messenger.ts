@@ -37,12 +37,15 @@ type TypeMessage = StandardMessage<'type', string>;
 
 type GetPageURLMessage = StandardMessage<'get-page-url', string>;
 
+type RefreshMessage = StandardMessage<'refresh', string>;
+
 type Message =
 	| ResizeMessage
 	| StringMessage
 	| BackgroundMessage
 	| TypeMessage
-	| GetPageURLMessage;
+	| GetPageURLMessage
+	| RefreshMessage;
 
 type SuccessResponse = {
 	id: string;
