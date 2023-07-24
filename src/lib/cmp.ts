@@ -17,7 +17,7 @@ interface CmpReturn {
 
 const replyIsSuccess = (json: unknown): json is CmpReturn => {
 	const reply = json as CmpReturn;
-	return '__uspapiReturn' in reply && typeof reply.__cmpReturn === 'object';
+	return '__cmpReturn' in reply && typeof reply.__cmpReturn === 'object';
 };
 
 const decodeReply = (e: MessageEvent<string>): CmpReturn | void => {
@@ -28,6 +28,7 @@ const decodeReply = (e: MessageEvent<string>): CmpReturn | void => {
 			return json;
 		}
 
+		console.error('Failed to decode reply from getUSPData', json);
 		return;
 	} catch (_) {
 		return;
@@ -47,6 +48,7 @@ const getUSPData = async (version: number): Promise<ReturnVal> =>
 
 		const listener = (e: MessageEvent<string>) => {
 			const decoded = decodeReply(e);
+			console.info('decoded getUSPData', decoded);
 			if (decoded && decoded.__cmpReturn.callId === callId) {
 				resolve(decoded.__cmpReturn.returnValue);
 				window.removeEventListener('message', listener);
