@@ -6,8 +6,15 @@
 
 	let container: HTMLElement;
 
+	const refresh = () =>
+		post({
+			type: 'refresh',
+			value: 'public-good',
+		});
+
 	const onload = async () => {
 		const url = await getPageURL();
+
 		const consentState = await getUSPData(1);
 
 		const isCcpaOptedOut = () => {
@@ -15,10 +22,7 @@
 		};
 
 		if (isCcpaOptedOut()) {
-			post({
-				type: 'refresh',
-				value: 'public-good',
-			});
+			refresh();
 			return;
 		}
 
@@ -27,6 +31,7 @@
 			attributes: {
 				url,
 			},
+			onHide: refresh,
 		};
 		create(container, options);
 	};
