@@ -13,17 +13,27 @@
 		});
 
 	const onload = async () => {
-		const url = await getPageURL();
+		let url = await getPageURL();
 
-		const consentState = await getUSPData(1);
+		const consentState = await getUSPData();
 
 		const isCcpaOptedOut = () => {
 			return consentState.uspString[2] === 'Y';
 		};
 
 		if (isCcpaOptedOut()) {
+			console.log('ccpa opted out, refreshing');
 			refresh();
 			return;
+		}
+
+		const urlObj = new URL(url);
+
+		// In code swap the hostname to the live one
+		if (urlObj.hostname === 'm.code.dev-theguardian.com') {
+			urlObj.hostname = 'www.theguardian.com';
+
+			url = urlObj.toString();
 		}
 
 		const options: PgmApiOptions = {
@@ -31,8 +41,16 @@
 			attributes: {
 				url,
 			},
-			onHide: refresh,
+			onHide: () => {
+				console.log('no campaign, refreshing');
+				refresh();
+			},
+			onShow: () => {
+				console.log('campaign shown');
+			},
 		};
+
+		console.log('calling public good');
 		create(container, options);
 	};
 </script>
@@ -43,7 +61,6 @@
 		src="https://assets.publicgood.com/pgm/v1/pgm-api.js"
 		on:load={onload}></script>
 </svelte:head>
-
 <div id="public-good" bind:this={container} />
 
 <style lang="scss">

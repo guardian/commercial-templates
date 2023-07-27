@@ -47,7 +47,7 @@ type Message =
 	| GetPageURLMessage
 	| RefreshMessage;
 
-type SuccessResponse = {
+type MessengerResponse = {
 	id: string;
 	result: string;
 };
@@ -60,6 +60,12 @@ const generateId = () => {
 	return `${_4chars()}${_4chars()}-${_4chars()}-${_4chars()}-${_4chars()}-${_4chars()}${_4chars()}${_4chars()}`;
 };
 
+const timeout = async <T>(promise: Promise<T>, ms: number): Promise<T> =>
+	Promise.race([
+		promise,
+		new Promise<T>((resolve) => window.setTimeout(resolve, ms)),
+	]);
+
 /**
  * Post message to parent frame
  *
@@ -70,8 +76,8 @@ const post = (arg: Message): void => {
 	window.top?.postMessage(JSON.stringify({ id: generateId(), ...arg }), '*');
 };
 
-const replyIsSuccess = (json: unknown): json is SuccessResponse => {
-	const reply = json as SuccessResponse;
+const isReplyFromMessenger = (json: unknown): json is MessengerResponse => {
+	const reply = json as MessengerResponse;
 	return (
 		'result' in reply &&
 		typeof reply.result === 'string' &&
@@ -80,11 +86,11 @@ const replyIsSuccess = (json: unknown): json is SuccessResponse => {
 	);
 };
 
-const decodeReply = (e: MessageEvent<string>): SuccessResponse | void => {
+const decodeReply = (e: MessageEvent<string>): MessengerResponse | void => {
 	try {
 		const json: unknown = JSON.parse(e.data);
 
-		if (replyIsSuccess(json)) {
+		if (isReplyFromMessenger(json)) {
 			return json;
 		}
 
@@ -94,23 +100,25 @@ const decodeReply = (e: MessageEvent<string>): SuccessResponse | void => {
 	}
 };
 
-const postAndListen = (arg: Message): Promise<string> => {
-	return new Promise((resolve) => {
-		const id = generateId();
+const postAndListen = (arg: Message): Promise<string> =>
+	timeout(
+		new Promise((resolve) => {
+			const id = generateId();
 
-		const listener = (e: MessageEvent<string>) => {
-			const decoded = decodeReply(e);
-			if (decoded && decoded.id === id) {
-				resolve(decoded.result);
-				window.removeEventListener('message', listener);
-			}
-		};
+			const listener = (e: MessageEvent<string>) => {
+				const decoded = decodeReply(e);
+				if (decoded && decoded.id === id) {
+					resolve(decoded.result);
+					window.removeEventListener('message', listener);
+				}
+			};
 
-		window.addEventListener('message', listener);
+			window.addEventListener('message', listener);
 
-		post({ ...arg, id });
-	});
-};
+			post({ ...arg, id });
+		}),
+		3000,
+	);
 
-export { post, postAndListen, generateId };
+export { post, timeout, postAndListen, generateId };
 export type { Message };
