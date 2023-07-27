@@ -60,10 +60,10 @@ const generateId = () => {
 	return `${_4chars()}${_4chars()}-${_4chars()}-${_4chars()}-${_4chars()}-${_4chars()}${_4chars()}${_4chars()}`;
 };
 
-const timeout = async <T>(promise: Promise<T>, ms: number): Promise<T> =>
+const timeout = async <T>(promise: Promise<T>, ms: number): Promise<T | void> =>
 	Promise.race([
 		promise,
-		new Promise<T>((resolve) => window.setTimeout(resolve, ms)),
+		new Promise<void>((resolve) => window.setTimeout(resolve, ms)),
 	]);
 
 /**
@@ -100,7 +100,7 @@ const decodeReply = (e: MessageEvent<string>): MessengerResponse | void => {
 	}
 };
 
-const postAndListen = (arg: Message): Promise<string> =>
+const postAndListen = (arg: Message): Promise<string | void> =>
 	timeout(
 		new Promise((resolve) => {
 			const id = generateId();

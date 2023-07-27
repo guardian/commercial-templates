@@ -17,10 +17,16 @@
 
 		const consentState = await getUSPData();
 
-		if (isCcpaOptedOut(consentState)) {
+		if (!consentState || isCcpaOptedOut(consentState)) {
+			!consentState && console.error('No consent state found');
+
 			return refresh();
 		}
 
+		if (!url) {
+			console.error('No URL found');
+			return refresh();
+		}
 		const options: PgmApiOptions = {
 			partnerId: 'gmg-guardian',
 			attributes: {

@@ -38,7 +38,7 @@ const isCcpaOptedOut = (consentState: ConsentState) => {
 	return consentState.uspString[2] === 'Y';
 };
 
-const getUSPData = async (): Promise<ConsentState> =>
+const getUSPData = async (): Promise<ConsentState | void> =>
 	timeout(
 		new Promise((resolve) => {
 			const callId = generateId();
