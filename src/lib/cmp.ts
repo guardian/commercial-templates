@@ -48,7 +48,6 @@ const getUSPData = async (): Promise<ConsentState> =>
 
 			const listener = (e: MessageEvent<string>) => {
 				const decoded = decodeReply(e);
-				console.info('decoded getUSPData', decoded);
 				if (decoded && decoded.__cmpReturn.callId === callId) {
 					resolve(decoded.__cmpReturn.returnValue);
 					window.removeEventListener('message', listener);
@@ -56,8 +55,6 @@ const getUSPData = async (): Promise<ConsentState> =>
 			};
 
 			window.addEventListener('message', listener);
-
-			console.info('sending getUSPData');
 
 			window.top?.postMessage(JSON.stringify(message), '*');
 		}),

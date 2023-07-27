@@ -22,19 +22,11 @@
 		};
 
 		if (isCcpaOptedOut()) {
-			console.log('ccpa opted out, refreshing');
 			refresh();
 			return;
 		}
 
 		const urlObj = new URL(url);
-
-		// In code swap the hostname to the live one
-		if (urlObj.hostname === 'm.code.dev-theguardian.com') {
-			urlObj.hostname = 'www.theguardian.com';
-
-			url = urlObj.toString();
-		}
 
 		const options: PgmApiOptions = {
 			partnerId: 'gmg-guardian',
@@ -42,15 +34,10 @@
 				url,
 			},
 			onHide: () => {
-				console.log('no campaign, refreshing');
 				refresh();
-			},
-			onShow: () => {
-				console.log('campaign shown');
 			},
 		};
 
-		console.log('calling public good');
 		create(container, options);
 	};
 </script>
