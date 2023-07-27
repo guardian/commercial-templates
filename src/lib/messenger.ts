@@ -37,7 +37,7 @@ type TypeMessage = StandardMessage<'type', string>;
 
 type GetPageURLMessage = StandardMessage<'get-page-url', string>;
 
-type RefreshMessage = StandardMessage<'refresh', string>;
+type PassbackRefreshMessage = StandardMessage<'passback-refresh', string>;
 
 type Message =
 	| ResizeMessage
@@ -45,7 +45,7 @@ type Message =
 	| BackgroundMessage
 	| TypeMessage
 	| GetPageURLMessage
-	| RefreshMessage;
+	| PassbackRefreshMessage;
 
 type MessengerResponse = {
 	id: string;

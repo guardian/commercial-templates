@@ -1,14 +1,14 @@
 <script lang="ts">
 	import { getPageURL } from '$lib/messenger/get-page-url';
 	import { type PgmApiOptions, create } from '$lib/public-good';
-	import { getUSPData } from '$lib/cmp';
+	import { getUSPData, isCcpaOptedOut } from '$lib/cmp';
 	import { post } from '$lib/messenger';
 
 	let container: HTMLElement;
 
 	const refresh = () =>
 		post({
-			type: 'refresh',
+			type: 'passback-refresh',
 			value: 'public-good',
 		});
 
@@ -17,25 +17,16 @@
 
 		const consentState = await getUSPData();
 
-		const isCcpaOptedOut = () => {
-			return consentState.uspString[2] === 'Y';
-		};
-
-		if (isCcpaOptedOut()) {
-			refresh();
-			return;
+		if (isCcpaOptedOut(consentState)) {
+			return refresh();
 		}
-
-		const urlObj = new URL(url);
 
 		const options: PgmApiOptions = {
 			partnerId: 'gmg-guardian',
 			attributes: {
 				url,
 			},
-			onHide: () => {
-				refresh();
-			},
+			onHide: refresh,
 		};
 
 		create(container, options);

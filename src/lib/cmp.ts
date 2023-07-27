@@ -34,6 +34,10 @@ const decodeReply = (e: MessageEvent<string>): CmpReturn | void => {
 	}
 };
 
+const isCcpaOptedOut = (consentState: ConsentState) => {
+	return consentState.uspString[2] === 'Y';
+};
+
 const getUSPData = async (): Promise<ConsentState> =>
 	timeout(
 		new Promise((resolve) => {
@@ -61,4 +65,4 @@ const getUSPData = async (): Promise<ConsentState> =>
 		3000,
 	);
 
-export { getUSPData };
+export { getUSPData, isCcpaOptedOut };
