@@ -22,11 +22,12 @@ type BackgroundMessage = StandardMessage<
 	'background',
 	{
 		scrollType: string;
-		backgroundImage: string;
+		backgroundImage?: string;
 		backgroundRepeat: string;
 		backgroundPosition: string;
 		backgroundSize: string;
 		ctaUrl: string;
+		videoSource: string;
 	}
 >;
 
