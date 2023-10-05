@@ -15,6 +15,7 @@ post({
 		backgroundPosition: 'center center',
 		backgroundSize: 'cover',
 		ctaUrl: `%%CLICK_URL_UNESC%%%%DEST_URL%%`,
+		videoSource: `[%VideoSource%]`,
 	},
 });
 

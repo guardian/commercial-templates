@@ -27,6 +27,7 @@ type BackgroundMessage = StandardMessage<
 		backgroundPosition: string;
 		backgroundSize: string;
 		ctaUrl: string;
+		videoSource: string;
 	}
 >;
 
