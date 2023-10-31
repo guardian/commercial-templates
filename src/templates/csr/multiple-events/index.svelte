@@ -44,10 +44,10 @@
 		{HeaderButtonText}
 	/>
 	<div class="cards-container">
-		<EventsCard EventTitle={EventTitle1} EventDateTime={EventDateTime1} EventImage={EventImage1} EventUrl={EventUrl1} />
-		<EventsCard EventTitle={EventTitle2} EventDateTime={EventDateTime2} EventImage={EventImage2} EventUrl={EventUrl2} />
-		<EventsCard EventTitle={EventTitle3} EventDateTime={EventDateTime3} EventImage={EventImage3} EventUrl={EventUrl3} />
-		<EventsCard EventTitle={EventTitle4} EventDateTime={EventDateTime4} EventImage={EventImage4} EventUrl={EventUrl4} />
+		<EventsCard CardNumber=1 EventTitle={EventTitle1} EventDateTime={EventDateTime1} EventImage={EventImage1} EventUrl={EventUrl1} />
+		<EventsCard CardNumber=2 EventTitle={EventTitle2} EventDateTime={EventDateTime2} EventImage={EventImage2} EventUrl={EventUrl2} />
+		<EventsCard CardNumber=3 EventTitle={EventTitle3} EventDateTime={EventDateTime3} EventImage={EventImage3} EventUrl={EventUrl3} />
+		<EventsCard CardNumber=4 EventTitle={EventTitle4} EventDateTime={EventDateTime4} EventImage={EventImage4} EventUrl={EventUrl4} />
 	</div>
 </aside>
 <Resizer {height} />
@@ -70,13 +70,7 @@
 
 	.cards-container {
 		display: flex;
-		flex-direction: column;
-	}
-
-	@media (min-width: 740px) {
-		.cards-container {
-			flex-direction: row;
-		}
+		flex-direction: row;
 	}
 
 	@media (min-width: 1140px) {

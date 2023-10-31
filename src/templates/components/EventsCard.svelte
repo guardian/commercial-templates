@@ -9,6 +9,7 @@
 	import Button from './Button.svelte';
 	import ArrowRight from './icons/ArrowRight.svelte';
 
+	export let CardNumber: number;
 	export let EventTitle: GAMVariable;
 	export let EventDateTime: GAMVariable;
 	export let EventImage: GAMVariable;
@@ -23,7 +24,7 @@
 	}
 </script>
 
-<a class="card" href={EventUrl} style={`--direction: ${direction}`}>
+<a class="card-{CardNumber} card" href={EventUrl} style={`--direction: ${direction}`}>
 	<div class="media">
 		<picture>
 			<img src={EventImage} alt="" />
@@ -44,17 +45,37 @@
 </a>
 
 <style>
-	a.card {
+	a {
+		color: #000000;
 		text-decoration: none;
-		color: inherit;
-		display: grid;
-		gap: 20px;
-		padding: 10px;
-		font-family: 'GuardianTextEgyptian', 'Georgia', serif;
+	}
+
+	a.card-1,
+	a.card-2 {
+		padding: 12px 10px;
+		display: block;
+		margin: 0px;
+		width: 50%;
+	}
+
+	a.card-3,
+	a.card-4 {
+		display: none;
+	}
+
+	a.card:not(:first-of-type)::before {
+		content: "";
+		position: absolute;
+		top: 91px;
+		bottom: 12px;
+		margin-left: -10px;
+		width: 1px;
+		background: #dcdcdc;
 	}
 
 	.media {
-		margin: -10px;
+		background-colour: gray;
+		margin: 0 0 10px 0;
 	}
 
 	.text {
@@ -68,19 +89,38 @@
 	}
 
 	h2 {
-		margin: 0;
-		padding: 0 0 10px;
-		font-size: 1.25rem;
+		font-size: 1rem;
+		line-height: 1.25rem;
+		font-family: 'Guardian Egyptian Web', 'Georgia', serif;
+		font-weight: normal;
+		padding: 0px;
+		margin-bottom: 3px;
 	}
 
 	p {
-		display: none;
-		margin: 0;
-		padding: 0;
+		display: block;
+		font-size: 0.75rem;
+		line-height: 1rem;
+		font-family: 'GuardianTextSans', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
+		margin: 3px 0px;
 	}
 
 	a.button {
-		display: none;
+		font-size: 12px;
+		line-height: 0;
+		font-weight: 700;
+		font-family: 'GuardianTextSans', 'Helvetica Neue', Helvetica, Arial,
+			'Lucida Grande', sans-serif;
+		background: #c83877;
+		color: #ffffff;
+		text-decoration: none;
+		border-radius: 10rem;
+		display: inline-flex;
+		padding-left: 0.5rem;
+		margin-top: 3px;
+		align-self: flex-start;
+		-webkit-box-align: center;
+		align-items: center;
 	}
 
 	@media (min-width: 740px) {
@@ -91,53 +131,17 @@
 			width: 25%;
 		}
 
-		a.card:not(:first-of-type)::before {
-			content: "";
-			position: absolute;
-			top: 91px;
-			bottom: 12px;
-			margin-left: -10px;
-			width: 1px;
-			background: #dcdcdc;
-		}
-
-		.media {
-			background-colour: gray;
-			margin: 0 0 10px 0;
-		}
-
-		h2 {
-			font-size: 1rem;
-			line-height: 1.25rem;
-			font-family: 'Guardian Egyptian Web', 'Georgia', serif;
-			font-weight: normal;
-			padding: 0px;
-		}
-
-		p {
-			display: block;
-			font-size: 0.75rem;
-			line-height: 1rem;
-			font-family: 'GuardianTextSans', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
-		}
-
 		a.button {
 			margin-top: 6px;
 			margin-bottom: 10px;
-			font-size: 12px;
-			line-height: 0;
-			font-weight: 700;
-			font-family: 'GuardianTextSans', 'Helvetica Neue', Helvetica, Arial,
-				'Lucida Grande', sans-serif;
-			background: #c83877;
-			color: #ffffff;
-			text-decoration: none;
-			border-radius: 10rem;
-			display: inline-flex;
-			padding-left: 0.5rem;
-			align-self: flex-start;
-			-webkit-box-align: center;
-			align-items: center;
+		}
+
+		h2 {
+			margin-bottom: 10px;
+		}
+
+		p {
+			margin: 10px 0px;
 		}
 	}
 
