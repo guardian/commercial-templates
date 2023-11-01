@@ -14,6 +14,7 @@
 	export let BrowseAllUrl: GAMVariable;
 	export let BannerDescription: GAMVariable;
 	export let HeaderButtonText: GAMVariable;
+	export let NumberOfCards: GAMVariable;
 	export let Trackingpixel: GAMVariable;
 	export let EventTitle1: GAMVariable;
 	export let EventTitle2: GAMVariable;
@@ -32,6 +33,31 @@
 	export let EventUrl3: GAMVariable;
 	export let EventUrl4: GAMVariable;
 
+	let events = [{
+		eventTitle: EventTitle1,
+		eventDateTime: EventDateTime1,
+		eventImage: EventImage1,
+		eventUrl: EventUrl1
+	},
+	{
+		eventTitle: EventTitle2,
+		eventDateTime: EventDateTime2,
+		eventImage: EventImage2,
+		eventUrl: EventUrl2
+	},
+	{
+		eventTitle: EventTitle3,
+		eventDateTime: EventDateTime3,
+		eventImage: EventImage3,
+		eventUrl: EventUrl3
+	},
+	{
+		eventTitle: EventTitle4,
+		eventDateTime: EventDateTime4,
+		eventImage: EventImage4,
+		eventUrl: EventUrl4
+	}]
+
 	if (isValidReplacedVariable(Trackingpixel)) addTrackingPixel(Trackingpixel);
 
 	let height: number = -1;
@@ -44,10 +70,9 @@
 		{HeaderButtonText}
 	/>
 	<div class="cards-container">
-		<EventsCard CardNumber=1 EventTitle={EventTitle1} EventDateTime={EventDateTime1} EventImage={EventImage1} EventUrl={EventUrl1} />
-		<EventsCard CardNumber=2 EventTitle={EventTitle2} EventDateTime={EventDateTime2} EventImage={EventImage2} EventUrl={EventUrl2} />
-		<EventsCard CardNumber=3 EventTitle={EventTitle3} EventDateTime={EventDateTime3} EventImage={EventImage3} EventUrl={EventUrl3} />
-		<EventsCard CardNumber=4 EventTitle={EventTitle4} EventDateTime={EventDateTime4} EventImage={EventImage4} EventUrl={EventUrl4} />
+		{#each {length: NumberOfCards} as _, i}
+			<EventsCard TotalCardNumber={NumberOfCards} CardNumber={i+1} EventTitle={events[i].eventTitle} EventDateTime={events[i].eventDateTime} EventImage={events[i].eventImage} EventUrl={events[i].eventUrl} />
+		{/each}
 	</div>
 </aside>
 <Resizer {height} />

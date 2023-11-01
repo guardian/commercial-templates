@@ -9,6 +9,7 @@
 	import Button from './Button.svelte';
 	import ArrowRight from './icons/ArrowRight.svelte';
 
+	export let TotalCardNumber: number;
 	export let CardNumber: number;
 	export let EventTitle: GAMVariable;
 	export let EventDateTime: GAMVariable;
@@ -24,7 +25,7 @@
 	}
 </script>
 
-<a class="card-{CardNumber} card" href={EventUrl} style={`--direction: ${direction}`}>
+<a class="card-{CardNumber} card split-into-{TotalCardNumber}" href={EventUrl} style={`--direction: ${direction}`}>
 	<div class="media">
 		<picture>
 			<img src={EventImage} alt="" />
@@ -128,6 +129,17 @@
 			padding: 12px 10px;
 			display: block;
 			margin: 0px;
+		}
+
+		a.split-into-2 {
+			width: 50%;
+		}
+
+		a.split-into-3 {
+			width: 33%;
+		}
+
+		a.split-into-4 {
 			width: 25%;
 		}
 
