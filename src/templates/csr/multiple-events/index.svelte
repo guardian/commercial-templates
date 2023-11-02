@@ -1,11 +1,6 @@
-<script context="module" lang="ts">
-	export const cdn = 'https://i.guim.co.uk/img/media/';
-	import '$templates/components/fonts/Sans.css';
-</script>
-
 <script lang="ts">
 	import type { GAMVariable } from '$lib/gam';
-
+	import '$templates/components/fonts/Sans.css';
 	import ManualCard from '$templates/components/ManualCard.svelte';
 	import EventsHeader from '$templates/components/EventsHeader.svelte';
 	import Resizer from '$templates/components/Resizer.svelte';
@@ -67,12 +62,18 @@
 	/>
 	<div class="cards-container">
 		{#each {length: NumberOfCards} as _, i}
-			<ManualCard TotalCardNumber={NumberOfCards} CardIndex={i+1} EventTitle={events[i].eventTitle} EventDateTime={events[i].eventDateTime} EventImage={events[i].eventImage} EventUrl={events[i].eventUrl} />
+			<ManualCard
+				TotalCardNumber={NumberOfCards}
+				CardIndex={i+1}
+				EventTitle={events[i].eventTitle}
+				EventDateTime={events[i].eventDateTime}
+				EventImage={events[i].eventImage}
+				EventUrl={events[i].eventUrl}
+			/>
 		{/each}
 	</div>
 </aside>
 <Resizer {height} />
-
 
 <style>
 	aside {
@@ -80,7 +81,6 @@
 		position: relative;
 		display: flex;
 		flex-direction: column;
-
 		font-family: 'GuardianTextSans', 'Helvetica Neue', Helvetica, Arial,
 			'Lucida Grande', sans-serif;
 		font-kerning: normal;
