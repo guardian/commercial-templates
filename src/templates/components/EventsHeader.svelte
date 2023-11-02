@@ -4,13 +4,11 @@
 
 <script lang="ts">
 	import type { GAMVariable } from '$lib/gam';
-	import type { Single } from '$lib/types/capi';
 	import Button from './Button.svelte';
 	import ArrowRight from './icons/ArrowRight.svelte';
+	import LiveLogo from './icons/LiveLogo.svelte';
 	import '$templates/components/fonts/EgyptianWeb.css';
 	import '$templates/components/fonts/SansBold.css';
-
-	import LiveLogo from './icons/LiveLogo.svelte';
 
 	export let BrowseAllUrl: GAMVariable;
 	export let BannerDescription: GAMVariable;
@@ -22,13 +20,13 @@
 		<LiveLogo />
 	</div>
 
-	<div class="adverts_blurb">
-        <span class="adverts__blurb">{BannerDescription}</span>
+	<div class="banner-description-container">
+        <span class="banner-description">{BannerDescription}</span>
     </div>
 
 	<div class="button-container">
 		<a
-			class="hide-until-mobile-landscape button"
+			class="button"
 			href={`${CLICK_MACRO}${BrowseAllUrl}`}
 			target="_top"
 		>
@@ -59,7 +57,7 @@
 		text-decoration: none;
 	}
 
-	.adverts__blurb {
+	.banner-description {
 		font-size: 16px;
 		line-height: 22px;
 		font-family: 'Guardian Egyptian Web', 'Georgia', serif;
@@ -74,7 +72,7 @@
         }
     }
 
-    div.adverts_blurb {
+    div.banner-description-container {
       margin-top: 20px;
       margin-bottom: 20px;
     }
