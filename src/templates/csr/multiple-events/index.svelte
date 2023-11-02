@@ -6,7 +6,7 @@
 <script lang="ts">
 	import type { GAMVariable } from '$lib/gam';
 
-	import EventsCard from '$templates/components/EventsCard.svelte';
+	import ManualCard from '$templates/components/ManualCard.svelte';
 	import EventsHeader from '$templates/components/EventsHeader.svelte';
 	import Resizer from '$templates/components/Resizer.svelte';
 
@@ -67,7 +67,7 @@
 	/>
 	<div class="cards-container">
 		{#each {length: NumberOfCards} as _, i}
-			<EventsCard TotalCardNumber={NumberOfCards} CardNumber={i+1} EventTitle={events[i].eventTitle} EventDateTime={events[i].eventDateTime} EventImage={events[i].eventImage} EventUrl={events[i].eventUrl} />
+			<ManualCard TotalCardNumber={NumberOfCards} CardNumber={i+1} EventTitle={events[i].eventTitle} EventDateTime={events[i].eventDateTime} EventImage={events[i].eventImage} EventUrl={events[i].eventUrl} />
 		{/each}
 	</div>
 </aside>
