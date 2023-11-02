@@ -8,14 +8,12 @@
 
 	import EventsCard from '$templates/components/EventsCard.svelte';
 	import EventsHeader from '$templates/components/EventsHeader.svelte';
-	import { addTrackingPixel, isValidReplacedVariable } from '$lib/gam';
 	import Resizer from '$templates/components/Resizer.svelte';
 
 	export let BrowseAllUrl: GAMVariable;
 	export let BannerDescription: GAMVariable;
 	export let HeaderButtonText: GAMVariable;
 	export let NumberOfCards: GAMVariable;
-	export let Trackingpixel: GAMVariable;
 	export let EventTitle1: GAMVariable;
 	export let EventTitle2: GAMVariable;
 	export let EventTitle3: GAMVariable;
@@ -57,8 +55,6 @@
 		eventImage: EventImage4,
 		eventUrl: EventUrl4
 	}]
-
-	if (isValidReplacedVariable(Trackingpixel)) addTrackingPixel(Trackingpixel);
 
 	let height: number = -1;
 </script>
