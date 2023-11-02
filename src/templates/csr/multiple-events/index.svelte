@@ -67,7 +67,7 @@
 	/>
 	<div class="cards-container">
 		{#each {length: NumberOfCards} as _, i}
-			<ManualCard TotalCardNumber={NumberOfCards} CardNumber={i+1} EventTitle={events[i].eventTitle} EventDateTime={events[i].eventDateTime} EventImage={events[i].eventImage} EventUrl={events[i].eventUrl} />
+			<ManualCard TotalCardNumber={NumberOfCards} CardIndex={i+1} EventTitle={events[i].eventTitle} EventDateTime={events[i].eventDateTime} EventImage={events[i].eventImage} EventUrl={events[i].eventUrl} />
 		{/each}
 	</div>
 </aside>
