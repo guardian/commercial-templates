@@ -25,7 +25,11 @@
 	}
 </script>
 
-<a class="card-{CardIndex} card split-into-{TotalCardNumber}" href={EventUrl} style={`--direction: ${direction}`}>
+<a
+	class="card-{CardIndex} card split-into-{TotalCardNumber}"
+	href={EventUrl}
+	style={`--direction: ${direction}`}
+>
 	<div class="media">
 		<picture>
 			<img src={EventImage} alt="" />
@@ -35,11 +39,7 @@
 		<h2><b>{boldTitle}</b>{regularTitle}</h2>
 		<p>{EventDateTime}</p>
 	</div>
-	<a
-		class="button"
-		href={`${CLICK_MACRO}${EventUrl}`}
-		target="_top"
-	>
+	<a class="button" href={`${CLICK_MACRO}${EventUrl}`} target="_top">
 		Book tickets
 		<ArrowRight width={24} />
 	</a>
@@ -65,7 +65,7 @@
 	}
 
 	a.card:not(:first-of-type)::before {
-		content: "";
+		content: '';
 		position: absolute;
 		top: 91px;
 		bottom: 12px;
@@ -102,7 +102,8 @@
 		display: block;
 		font-size: 0.75rem;
 		line-height: 1rem;
-		font-family: 'GuardianTextSans', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
+		font-family: 'GuardianTextSans', 'Helvetica Neue', Helvetica, Arial,
+			'Lucida Grande', sans-serif;
 		margin: 3px 0px;
 	}
 

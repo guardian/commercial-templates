@@ -26,45 +26,43 @@
 	export let EventUrl3: GAMVariable;
 	export let EventUrl4: GAMVariable;
 
-	let events = [{
-		eventTitle: EventTitle1,
-		eventDateTime: EventDateTime1,
-		eventImage: EventImage1,
-		eventUrl: EventUrl1
-	},
-	{
-		eventTitle: EventTitle2,
-		eventDateTime: EventDateTime2,
-		eventImage: EventImage2,
-		eventUrl: EventUrl2
-	},
-	{
-		eventTitle: EventTitle3,
-		eventDateTime: EventDateTime3,
-		eventImage: EventImage3,
-		eventUrl: EventUrl3
-	},
-	{
-		eventTitle: EventTitle4,
-		eventDateTime: EventDateTime4,
-		eventImage: EventImage4,
-		eventUrl: EventUrl4
-	}]
+	let events = [
+		{
+			eventTitle: EventTitle1,
+			eventDateTime: EventDateTime1,
+			eventImage: EventImage1,
+			eventUrl: EventUrl1,
+		},
+		{
+			eventTitle: EventTitle2,
+			eventDateTime: EventDateTime2,
+			eventImage: EventImage2,
+			eventUrl: EventUrl2,
+		},
+		{
+			eventTitle: EventTitle3,
+			eventDateTime: EventDateTime3,
+			eventImage: EventImage3,
+			eventUrl: EventUrl3,
+		},
+		{
+			eventTitle: EventTitle4,
+			eventDateTime: EventDateTime4,
+			eventImage: EventImage4,
+			eventUrl: EventUrl4,
+		},
+	];
 
 	let height: number = -1;
 </script>
 
 <aside bind:clientHeight={height}>
-	<EventsHeader
-		{BrowseAllUrl}
-		{BannerDescription}
-		{HeaderButtonText}
-	/>
+	<EventsHeader {BrowseAllUrl} {BannerDescription} {HeaderButtonText} />
 	<div class="cards-container">
-		{#each {length: NumberOfCards} as _, i}
+		{#each { length: NumberOfCards } as _, i}
 			<ManualCard
 				TotalCardNumber={NumberOfCards}
-				CardIndex={i+1}
+				CardIndex={i + 1}
 				EventTitle={events[i].eventTitle}
 				EventDateTime={events[i].eventDateTime}
 				EventImage={events[i].eventImage}

@@ -21,15 +21,11 @@
 	</div>
 
 	<div class="banner-description-container">
-        <span class="banner-description">{BannerDescription}</span>
-    </div>
+		<span class="banner-description">{BannerDescription}</span>
+	</div>
 
 	<div class="button-container">
-		<a
-			class="button"
-			href={`${CLICK_MACRO}${BrowseAllUrl}`}
-			target="_top"
-		>
+		<a class="button" href={`${CLICK_MACRO}${BrowseAllUrl}`} target="_top">
 			{HeaderButtonText}
 			<ArrowRight width={30} />
 		</a>
@@ -61,21 +57,21 @@
 		font-size: 16px;
 		line-height: 22px;
 		font-family: 'Guardian Egyptian Web', 'Georgia', serif;
-        color: #000000;
-        background: #ffffff;
-        box-decoration-break: clone;
+		color: #000000;
+		background: #ffffff;
+		box-decoration-break: clone;
 		-webkit-box-decoration-break: clone;
-        padding: 2px 5px 2px 2px;
+		padding: 2px 5px 2px 2px;
 
-        @media (max-width: 1140px) {
-            display: none;
-        }
-    }
+		@media (max-width: 1140px) {
+			display: none;
+		}
+	}
 
-    div.banner-description-container {
-      margin-top: 20px;
-      margin-bottom: 20px;
-    }
+	div.banner-description-container {
+		margin-top: 20px;
+		margin-bottom: 20px;
+	}
 
 	.button-container {
 		display: flex;
@@ -90,7 +86,7 @@
 		font-family: 'GuardianTextSans', 'Helvetica Neue', Helvetica, Arial,
 			'Lucida Grande', sans-serif;
 		background: #ffffff;
-    	color: #000000;
+		color: #000000;
 		text-decoration: none;
 		border-radius: 10rem;
 		padding: 3px;
