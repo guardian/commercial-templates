@@ -75,9 +75,7 @@
 
 	.button-container {
 		display: flex;
-		display: -webkit-flex;
-		-webkit-box-direction: normal;
-		-webkit-box-orient: vertical;
+		flex-direction: row;
 	}
 
 	a.button {

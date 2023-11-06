@@ -73,7 +73,7 @@
 </aside>
 <Resizer {height} />
 
-<style>
+<style lang="scss">
 	aside {
 		background: #f6f6f6;
 		position: relative;
@@ -84,7 +84,6 @@
 		font-kerning: normal;
 		text-rendering: optimizelegibility;
 		font-variant-ligatures: common-ligatures;
-		-webkit-font-smoothing: antialiased;
 	}
 
 	.cards-container {
