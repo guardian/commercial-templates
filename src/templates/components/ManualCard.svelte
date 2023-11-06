@@ -121,7 +121,6 @@
 		padding-left: 0.5rem;
 		margin-top: 3px;
 		align-self: flex-start;
-		-webkit-box-align: center;
 		align-items: center;
 	}
 
