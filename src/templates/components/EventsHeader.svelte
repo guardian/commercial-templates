@@ -90,9 +90,7 @@
 		padding: 3px;
 		padding-left: 1rem;
 		display: inline-flex;
-		display: -webkit-inline-flex;
 		justify-content: space-between;
-		-webkit-box-align: center;
 		align-items: center;
 	}
 
@@ -105,7 +103,6 @@
 
 		.button-container {
 			flex-direction: column;
-			-webkit-flex-direction: column;
 			width: 100%;
 		}
 	}
