@@ -4,7 +4,6 @@
 
 <script lang="ts">
 	import type { GAMVariable } from '$lib/gam';
-	import Button from './Button.svelte';
 	import ArrowRight from './icons/ArrowRight.svelte';
 	import LiveLogo from './icons/LiveLogo.svelte';
 	import '$templates/components/fonts/Headline.css';
