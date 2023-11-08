@@ -1,12 +1,12 @@
 <script context="module" lang="ts">
 	import { CLICK_MACRO } from '$lib/gam';
+	import type { GAMVariable } from '$lib/gam';
 </script>
 
 <script lang="ts">
 	import '$templates/components/fonts/Egyptian.css';
 	import '$templates/components/fonts/Headline.css';
 	import '$templates/components/fonts/Sans.css';
-	import Button from './Button.svelte';
 	import ArrowRight from './icons/ArrowRight.svelte';
 
 	export let TotalCardNumber: number;
@@ -72,7 +72,7 @@
 	}
 
 	.media {
-		background-colour: gray;
+		background-color: gray;
 		margin: 0 0 10px 0;
 	}
 
