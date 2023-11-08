@@ -4,7 +4,7 @@
 
 <script lang="ts">
 	import '$templates/components/fonts/Egyptian.css';
-	import '$templates/components/fonts/EgyptianWeb.css';
+	import '$templates/components/fonts/Headline.css';
 	import '$templates/components/fonts/Sans.css';
 	import Button from './Button.svelte';
 	import ArrowRight from './icons/ArrowRight.svelte';
@@ -92,8 +92,8 @@
 	h2 {
 		font-size: 1rem;
 		line-height: 1.25rem;
-		font-family: 'Guardian Egyptian Web', 'Georgia', serif;
-		font-weight: normal;
+		font-family: 'GH Guardian Headline', 'Georgia', serif;
+		font-weight: 500;
 		padding: 0px;
 		margin-bottom: 3px;
 	}

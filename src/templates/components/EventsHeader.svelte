@@ -7,7 +7,7 @@
 	import Button from './Button.svelte';
 	import ArrowRight from './icons/ArrowRight.svelte';
 	import LiveLogo from './icons/LiveLogo.svelte';
-	import '$templates/components/fonts/EgyptianWeb.css';
+	import '$templates/components/fonts/Headline.css';
 	import '$templates/components/fonts/SansBold.css';
 
 	export let BrowseAllUrl: GAMVariable;
@@ -55,7 +55,8 @@
 	.banner-description {
 		font-size: 16px;
 		line-height: 22px;
-		font-family: 'Guardian Egyptian Web', 'Georgia', serif;
+		font-family: 'GH Guardian Headline', 'Georgia', serif;
+		font-weight: 500;
 		color: #000000;
 		background: #ffffff;
 		box-decoration-break: clone;
