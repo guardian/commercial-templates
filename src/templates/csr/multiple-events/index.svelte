@@ -5,9 +5,9 @@
 	import EventsHeader from '$templates/components/EventsHeader.svelte';
 	import Resizer from '$templates/components/Resizer.svelte';
 
-	export let BrowseAllUrl: GAMVariable;
 	export let BannerDescription: GAMVariable;
 	export let HeaderButtonText: GAMVariable;
+	export let HeaderButtonUrl: GAMVariable;
 	export let NumberOfCards: GAMVariable;
 	export let EventTitle1: GAMVariable;
 	export let EventTitle2: GAMVariable;
@@ -57,7 +57,7 @@
 </script>
 
 <aside bind:clientHeight={height}>
-	<EventsHeader {BrowseAllUrl} {BannerDescription} {HeaderButtonText} />
+	<EventsHeader {HeaderButtonUrl} {BannerDescription} {HeaderButtonText} />
 	<div class="cards-container">
 		{#each events as event}
 			<ManualCard

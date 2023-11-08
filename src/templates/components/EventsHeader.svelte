@@ -9,7 +9,7 @@
 	import '$templates/components/fonts/Headline.css';
 	import '$templates/components/fonts/SansBold.css';
 
-	export let BrowseAllUrl: GAMVariable;
+	export let HeaderButtonUrl: GAMVariable;
 	export let BannerDescription: GAMVariable;
 	export let HeaderButtonText: GAMVariable;
 </script>
@@ -24,7 +24,7 @@
 	</div>
 
 	<div class="button-container">
-		<a class="button" href={`${CLICK_MACRO}${BrowseAllUrl}`} target="_top">
+		<a class="button" href={`${CLICK_MACRO}${HeaderButtonUrl}`} target="_top">
 			{HeaderButtonText}
 			<ArrowRight width={30} />
 		</a>

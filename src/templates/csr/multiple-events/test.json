@@ -1,7 +1,7 @@
 {
-	"BrowseAllUrl": "https://www.theguardian.com/guardian-masterclasses",
 	"BannerDescription": "Hear from leading thinkers and award-winning journalists in livestreamed and interactive events",
 	"HeaderButtonText": "Browse all",
+	"HeaderButtonUrl": "https://www.theguardian.com/guardian-masterclasses",
 	"NumberOfCards": 4,
 	"EventTitle1": "Carlo Rovelli meets Dara Ó Briain: Live in London and online",
 	"EventDateTime1": "Monday 30 October 2023, 7pm–8.30pm GMT",
