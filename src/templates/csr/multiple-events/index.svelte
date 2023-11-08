@@ -59,13 +59,13 @@
 <aside bind:clientHeight={height}>
 	<EventsHeader {BrowseAllUrl} {BannerDescription} {HeaderButtonText} />
 	<div class="cards-container">
-		{#each { length: NumberOfCards } as _, i}
+		{#each events as event}
 			<ManualCard
-				TotalCardNumber={NumberOfCards}
-				EventTitle={events[i].eventTitle}
-				EventDateTime={events[i].eventDateTime}
-				EventImage={events[i].eventImage}
-				EventUrl={events[i].eventUrl}
+				TotalCardNumber={parseInt(NumberOfCards)}
+				EventTitle={event.eventTitle}
+				EventDateTime={event.eventDateTime}
+				EventImage={event.eventImage}
+				EventUrl={event.eventUrl}
 			/>
 		{/each}
 	</div>
