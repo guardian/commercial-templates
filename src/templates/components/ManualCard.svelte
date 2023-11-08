@@ -57,7 +57,7 @@
 		width: 50%;
 	}
 
-	a.card:nth-child(n+3) {
+	a.card:nth-child(n + 3) {
 		display: none;
 	}
 
