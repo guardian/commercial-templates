@@ -34,8 +34,7 @@
 
 <style lang="scss">
 	header {
-		--pink: #c83877;
-		background-color: var(--pink);
+		background-color: #c83877;
 		color: black;
 		padding: 6px 20px;
 		flex-shrink: 0;
