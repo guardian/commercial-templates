@@ -10,7 +10,6 @@
 	import ArrowRight from './icons/ArrowRight.svelte';
 
 	export let TotalCardNumber: number;
-	export let CardIndex: number;
 	export let EventTitle: GAMVariable;
 	export let EventDateTime: GAMVariable;
 	export let EventImage: GAMVariable;
@@ -26,7 +25,7 @@
 </script>
 
 <a
-	class="card-{CardIndex} card split-into-{TotalCardNumber}"
+	class="card split-into-{TotalCardNumber}"
 	href={EventUrl}
 	style={`--direction: ${direction}`}
 >
@@ -51,16 +50,14 @@
 		text-decoration: none;
 	}
 
-	a.card-1,
-	a.card-2 {
+	a.card {
 		padding: 12px 10px;
 		display: block;
 		margin: 0px;
 		width: 50%;
 	}
 
-	a.card-3,
-	a.card-4 {
+	a.card:nth-child(n+3) {
 		display: none;
 	}
 
@@ -125,7 +122,7 @@
 	}
 
 	@media (min-width: 740px) {
-		a.card {
+		a.card:nth-child(n) {
 			padding: 12px 10px;
 			display: block;
 			margin: 0px;

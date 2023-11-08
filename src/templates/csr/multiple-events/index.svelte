@@ -62,7 +62,6 @@
 		{#each { length: NumberOfCards } as _, i}
 			<ManualCard
 				TotalCardNumber={NumberOfCards}
-				CardIndex={i + 1}
 				EventTitle={events[i].eventTitle}
 				EventDateTime={events[i].eventDateTime}
 				EventImage={events[i].eventImage}
