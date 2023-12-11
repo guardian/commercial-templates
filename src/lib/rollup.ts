@@ -9,10 +9,6 @@ import { terser } from 'rollup-plugin-terser';
 import preprocess from 'svelte-preprocess';
 import type { Props } from './svelte';
 
-const performancescript = `window.performance.mark('svelteEnd');
-const measure = window.performance.measure('svelte', 'svelteStart','svelteEnd');
-document.querySelector("#metrics").innerText = \`\${measure.duration.toFixed(2)}ms\`;`;
-
 const virtual = (template: string, props: Props): Plugin => ({
 	name: 'virtual-template',
 	resolveId: (source: string) => {
@@ -28,11 +24,10 @@ const virtual = (template: string, props: Props): Plugin => ({
 		}
 		if (id === 'dom') {
 			return `import Template from "./src/templates/csr/${template}/index.svelte";
-window.performance.mark('svelteStart');
 new Template({
 	target: document.querySelector('#svelte'),
 	props: ${JSON.stringify(props)},
-});${performancescript}`;
+});`;
 		}
 		return null;
 	},

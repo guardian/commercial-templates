@@ -34,7 +34,7 @@
 	};
 
 	onMount(() => {
-		window.addEventListener('message', (ev: MessageEvent<Message>) => {
+		window.addEventListener('message', (ev: MessageEvent<string>) => {
 			if (!ev.isTrusted) return;
 
 			const { source, data: json } = ev;
@@ -49,7 +49,16 @@
 					const iframe = source.frameElement as HTMLIFrameElement;
 					iframe.height = String(data.value.height);
 					break;
-
+				case 'get-page-url':
+					source.postMessage(
+						JSON.stringify({
+							id: data.id,
+							result:
+								'https://www.theguardian.com/lifeandstyle/2023/jul/19/a-moment-that-changed-me-i-borrowed-a-dog-and-discovered-a-healthier-happier-way-of-life',
+						}),
+						'*',
+					);
+					break;
 				default:
 					break;
 			}

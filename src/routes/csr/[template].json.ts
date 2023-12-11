@@ -70,7 +70,6 @@ export const GET: RequestHandler = async ({ params }) => {
 	const html = [
 		`<!-- ${stamp} -->`,
 		`<div id="svelte" data-template-id="${template}"></div>`,
-		`<div id="metrics"></div><style>#metrics{position: fixed; top: 0; left:0; background: #0004; color: white;}</style>`,
 		`<script>${String(chunks[0].code)}</script>`,
 	].join('\n');
 
