@@ -1,10 +1,4 @@
-import {
-	copyFileSync,
-	existsSync,
-	mkdirSync,
-	readFileSync,
-	writeFileSync,
-} from 'fs';
+import { existsSync, readFileSync } from 'fs';
 import vm from 'vm';
 import type { RequestHandler } from '@sveltejs/kit/types';
 import { marked } from 'marked';
@@ -12,6 +6,7 @@ import type { OutputAsset, OutputChunk } from 'rollup';
 import { getCommit } from '$lib/git';
 import { build } from '$lib/rollup';
 import { getProps } from '$lib/svelte';
+import { writeTemplate } from '$lib/writeTemplate';
 
 type Output = {
 	html?: string;
@@ -45,21 +40,6 @@ const prerender = (code: string): Output => {
 
 const isChunk = (output: OutputChunk | OutputAsset): output is OutputChunk =>
 	output.type === 'chunk';
-
-const writeTemplate = (template: string, html: string, css: string) => {
-	const outDir = `build-static/${template}`;
-
-	mkdirSync(outDir, { recursive: true });
-
-	writeFileSync(`${outDir}/index.html`, html, 'utf-8');
-	writeFileSync(`${outDir}/style.css`, css, 'utf-8');
-
-	const adJSON = `src/templates/ssr/${template}/ad.json`;
-
-	if (existsSync(adJSON)) {
-		copyFileSync(adJSON, `${outDir}/ad.json`);
-	}
-};
 
 export const GET: RequestHandler = async ({ params }) => {
 	const template = params.template ?? 'unknown';

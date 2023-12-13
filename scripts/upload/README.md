@@ -9,8 +9,8 @@ It's written in python because Google does not offer a JS SDK.
 
 ## Running locally
 ```bash
-$ cd scripts/upload-to-gam
+$ cd scripts/upload
 $ cp .env.example .env # fill this in
-$ pip install -r requirements.txt
-$ python upload.py
+$ pipenv install
+$ pipenv run python upload.py
 ```
