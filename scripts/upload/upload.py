@@ -3,12 +3,12 @@ from dotenv import load_dotenv
 import json
 from googleads import ad_manager, common
 import datetime
+from termcolor import colored, cprint
 
 load_dotenv()
 
 template_dir = os.path.realpath(
-    os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                 "../../build-static")
+    os.path.join(os.path.dirname(os.path.abspath(__file__)), "../../build-static")
 )
 
 config = {
@@ -49,8 +49,10 @@ def upload_template(
 
         css = open(os.path.join(root, dir, "style.css"), "r").read()
     except:
-        print(
-            'Skipping "%s" because index.html, style.css, or ad.json was missing.' % dir
+        cprint(
+            '[!] Skipping "%s" because index.html, style.css, or ad.json was missing.'
+            % dir,
+            "yellow",
         )
         return
 
@@ -63,33 +65,31 @@ def upload_template(
         version="v202208", where="id = %s" % templateInfo["nativeStyleId"]
     )
 
-    response = native_style_service.getNativeStylesByStatement(
-        statement.ToStatement())
+    response = native_style_service.getNativeStylesByStatement(statement.ToStatement())
 
     if "results" in response and len(response["results"]):
         style = response["results"][0]
-        print(
-            'Native style with ID "%d" and name "%s" was found.'
-            % (style["id"], style["name"])
+        cprint(
+            '[✔️] Native style "%s" with ID "%d" was found for template "%s".'
+            % (style["name"], style["id"], dir),
+            "green",
         )
         style["htmlSnippet"] = html
         style["cssSnippet"] = css
 
-        print('Updating native style "%s" with ID "%d".' % (dir, style["id"]))
+        print('[i] Updating native style "%s".' % (style["name"]))
         try:
             native_style_service.updateNativeStyles([style])
         except Exception as e:
-            print("Error updating native style: %s" % e)
+            cprint("[!] Error updating native style: %s" % e, "red")
             return
 
-        print(
-            'Native style with ID "%d" and name "%s" was updated.'
-            % (style["id"], style["name"])
-        )
+        cprint('[✔️] Native style "%s" was updated.' % (style["name"]), "green")
     else:
-        print(
-            'No native styles found to update for "%s" with nativeStyleId "%s"'
-            % (dir, templateInfo["nativeStyleId"])
+        cprint(
+            '[i] No native styles found to update for "%s" with nativeStyleId "%s"'
+            % (dir, templateInfo["nativeStyleId"]),
+            "yellow",
         )
 
 

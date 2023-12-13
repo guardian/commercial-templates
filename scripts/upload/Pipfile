@@ -6,6 +6,7 @@ name = "pypi"
 [packages]
 googleads = "==40.*"
 python-dotenv = "*"
+termcolor = "*"
 
 [dev-packages]
 
