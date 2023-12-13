@@ -7,7 +7,12 @@ import { copyFileSync, existsSync, mkdirSync, writeFileSync } from 'fs';
  * @param html The HTML to write
  * @param css The CSS to write
  */
-const writeTemplate = (template: string, html: string, css: string) => {
+const writeTemplate = (
+	template: string,
+	type: 'ssr' | 'csr',
+	html: string,
+	css: string,
+) => {
 	const outDir = `build-static/${template}`;
 
 	mkdirSync(outDir, { recursive: true });
@@ -15,7 +20,7 @@ const writeTemplate = (template: string, html: string, css: string) => {
 	writeFileSync(`${outDir}/index.html`, html, 'utf-8');
 	writeFileSync(`${outDir}/style.css`, css, 'utf-8');
 
-	const adJSON = `src/templates/csr/${template}/ad.json`;
+	const adJSON = `src/templates/${type}/${template}/ad.json`;
 
 	if (existsSync(adJSON)) {
 		copyFileSync(adJSON, `${outDir}/ad.json`);

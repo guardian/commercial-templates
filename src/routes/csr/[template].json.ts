@@ -4,7 +4,7 @@ import { marked } from 'marked';
 import { getCommit } from '$lib/git';
 import { build } from '$lib/rollup';
 import { getProps } from '$lib/svelte';
-import { writeTemplate } from '$lib/writeTemplate';
+import { writeTemplate } from '$lib/write-template';
 
 const github = 'https://github.com/guardian/commercial-templates/blob';
 
@@ -59,7 +59,7 @@ export const GET: RequestHandler = async ({ params }) => {
 		? marked.parse(readFileSync(`${dir}/README.md`, 'utf-8'))
 		: `<p><em>no description provided</em></p>`;
 
-	writeTemplate(template, html, css);
+	writeTemplate(template, 'csr', html, css);
 
 	return {
 		body: {
