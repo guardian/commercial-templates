@@ -8,6 +8,7 @@
 	export let BannerDescription: GAMVariable;
 	export let HeaderButtonText: GAMVariable;
 	export let HeaderButtonUrl: GAMVariable;
+	export let NumberOfCards: GAMVariable;
 	export let EventTitle1: GAMVariable;
 	export let EventTitle2: GAMVariable;
 	export let EventTitle3: GAMVariable;
@@ -25,7 +26,7 @@
 	export let EventUrl3: GAMVariable;
 	export let EventUrl4: GAMVariable;
 
-	let events = [
+	const events = [
 		{
 			eventTitle: EventTitle1,
 			eventDateTime: EventDateTime1,
@@ -52,8 +53,6 @@
 		},
 	];
 
-	events = events.filter((event) => event.eventTitle !== '');
-
 	let height: number = -1;
 </script>
 
@@ -62,20 +61,13 @@
 	<div class="cards-container">
 		{#each events as event}
 			<ManualCard
+				cardCount={parseInt(NumberOfCards)}
+				title={event.eventTitle}
+				meta={event.eventDateTime}
 				image={event.eventImage}
 				url={event.eventUrl}
 				callToAction="Book tickets"
-			>
-				<svelte:fragment slot="title">
-					{@const [boldTitle, regularTitle] = event.eventTitle.split(':')}
-					{#if regularTitle}
-						<b>{boldTitle}:</b>{regularTitle}
-					{:else}
-						{boldTitle}
-					{/if}
-				</svelte:fragment>
-				<svelte:fragment slot="text">{event.eventDateTime}</svelte:fragment>
-			</ManualCard>
+			/>
 		{/each}
 	</div>
 </aside>

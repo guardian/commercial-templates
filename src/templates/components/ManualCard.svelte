@@ -1,6 +1,5 @@
 <script context="module" lang="ts">
 	import { CLICK_MACRO } from '$lib/gam';
-	import type { GAMVariable } from '$lib/gam';
 </script>
 
 <script lang="ts">
@@ -9,37 +8,25 @@
 	import '$templates/components/fonts/Sans.css';
 	import ArrowRight from './icons/ArrowRight.svelte';
 
-	export let TotalCardNumber: number;
-	export let EventTitle: GAMVariable;
-	export let EventDateTime: GAMVariable;
-	export let EventImage: GAMVariable;
-	export let EventUrl: GAMVariable;
+	export let image: string;
+	export let url: string;
+	export let callToAction: string;
 	export let direction = 'row';
-
-	let [boldTitle, regularTitle] = EventTitle.split(':');
-	if (regularTitle) {
-		boldTitle += ':';
-	} else {
-		regularTitle = '';
-	}
 </script>
 
-<a
-	class="card split-into-{TotalCardNumber}"
-	href={EventUrl}
-	style={`--direction: ${direction}`}
->
+<a class="card" href={url} style={`--direction: ${direction}`}>
 	<div class="media">
 		<picture>
-			<img src={EventImage} alt="" />
+			<img src={image} alt="" />
 		</picture>
 	</div>
+
 	<div class="text">
-		<h2><b>{boldTitle}</b>{regularTitle}</h2>
-		<p>{EventDateTime}</p>
+		<h2><slot name="title" /></h2>
+		<p><slot name="text" /></p>
 	</div>
-	<a class="button" href={`${CLICK_MACRO}${EventUrl}`} target="_top">
-		Book tickets
+	<a class="button" href={`${CLICK_MACRO}${url}`} target="_top">
+		{callToAction}
 		<ArrowRight width={24} />
 	</a>
 </a>
@@ -54,7 +41,8 @@
 		padding: 12px 10px;
 		display: block;
 		margin: 0px;
-		width: 50%;
+		max-width: 25%;
+		flex: 1;
 	}
 
 	a.card:nth-child(n + 3) {
@@ -126,18 +114,6 @@
 			padding: 12px 10px;
 			display: block;
 			margin: 0px;
-		}
-
-		a.split-into-2 {
-			width: 50%;
-		}
-
-		a.split-into-3 {
-			width: 33%;
-		}
-
-		a.split-into-4 {
-			width: 25%;
 		}
 
 		a.button {
