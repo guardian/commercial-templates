@@ -12,13 +12,13 @@
 	import CapiCard from '$templates/components/CapiCard.svelte';
 	import PaidForHeader from '$templates/components/PaidForHeader.svelte';
 	import SetHeightResizer from '$templates/components/SetHeightResizer.svelte';
-	import { addTrackingPixel, isValidReplacedVariable } from '$lib/gam';
+	import { addPixel, isValidReplacedVariable } from '$lib/gam';
 
 	export let SeriesUrl: GAMVariable;
 	export let ComponentTitle: GAMVariable;
 	export let Trackingpixel: GAMVariable;
 
-	if (isValidReplacedVariable(Trackingpixel)) addTrackingPixel(Trackingpixel);
+	if (isValidReplacedVariable(Trackingpixel)) addPixel(Trackingpixel);
 
 	const promise: Promise<Single> = fetch(
 		`${api}?k=${encodeURI(SeriesUrl)}`,
