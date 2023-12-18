@@ -156,6 +156,11 @@
     tiny-glob "^0.2.9"
     tslib "^2.4.0"
 
+"@poppanator/sveltekit-svg@^4.1.3":
+  version "4.1.3"
+  resolved "https://registry.yarnpkg.com/@poppanator/sveltekit-svg/-/sveltekit-svg-4.1.3.tgz#14511bf96d40ea49338ae73528c027895d614e46"
+  integrity sha512-cKdFxFPPzS470xy2XFQ2m/URa9On4fw7n5wvBqAwVO4sY8dmski+2N3GKFELt4tvzM3JPjAqz76Ex7U5IpKeIg==
+
 "@rollup/plugin-alias@^3.1.8":
   version "3.1.8"
   resolved "https://registry.yarnpkg.com/@rollup/plugin-alias/-/plugin-alias-3.1.8.tgz#645fd84659e08d3d1b059408fcdf69c1dd435a6b"

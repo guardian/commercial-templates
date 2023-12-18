@@ -1,73 +1,100 @@
 <script lang="ts">
 	import type { GAMVariable } from '$lib/gam';
 	import '$templates/components/fonts/Sans.css';
+	import SubscriptionsLogo from '$templates/components/icons/SubscriptionsLogo.svelte';
 	import ManualCard from '$templates/components/ManualCard.svelte';
-	import EventsHeader from '$templates/components/EventsHeader.svelte';
+	import ManualHeader from '$templates/components/ManualHeader.svelte';
 	import Resizer from '$templates/components/Resizer.svelte';
 
-	export let BannerDescription: GAMVariable;
-	export let HeaderButtonText: GAMVariable;
-	export let HeaderButtonUrl: GAMVariable;
-	export let NumberOfCards: GAMVariable;
-	export let EventTitle1: GAMVariable;
-	export let EventTitle2: GAMVariable;
-	export let EventTitle3: GAMVariable;
-	export let EventTitle4: GAMVariable;
-	export let EventDateTime1: GAMVariable;
-	export let EventDateTime2: GAMVariable;
-	export let EventDateTime3: GAMVariable;
-	export let EventDateTime4: GAMVariable;
-	export let EventImage1: GAMVariable;
-	export let EventImage2: GAMVariable;
-	export let EventImage3: GAMVariable;
-	export let EventImage4: GAMVariable;
-	export let EventUrl1: GAMVariable;
-	export let EventUrl2: GAMVariable;
-	export let EventUrl3: GAMVariable;
-	export let EventUrl4: GAMVariable;
+	export let Title: GAMVariable;
+	export let TitleURL: GAMVariable;
+	export let Explainer: GAMVariable;
+	export let ViewAll: GAMVariable;
+	export let IsProminent: GAMVariable;
+	export let Offer1Title: GAMVariable;
+	export let Offer2Title: GAMVariable;
+	export let Offer3Title: GAMVariable;
+	export let Offer4Title: GAMVariable;
+	export let Offer1Meta: GAMVariable;
+	export let Offer2Meta: GAMVariable;
+	export let Offer3Meta: GAMVariable;
+	export let Offer4Meta: GAMVariable;
+	export let Offer1LinkText: GAMVariable;
+	export let Offer2LinkText: GAMVariable;
+	export let Offer3LinkText: GAMVariable;
+	export let Offer4LinkText: GAMVariable;
+	export let Offer1Image: GAMVariable;
+	export let Offer2Image: GAMVariable;
+	export let Offer3Image: GAMVariable;
+	export let Offer4Image: GAMVariable;
+	export let Offer1URL: GAMVariable;
+	export let Offer2URL: GAMVariable;
+	export let Offer3URL: GAMVariable;
+	export let Offer4URL: GAMVariable;
 
-	const events = [
+	let offers = [
 		{
-			eventTitle: EventTitle1,
-			eventDateTime: EventDateTime1,
-			eventImage: EventImage1,
-			eventUrl: EventUrl1,
+			title: Offer1Title,
+			meta: Offer1Meta,
+			linkText: Offer1LinkText,
+			image: Offer1Image,
+			url: Offer1URL,
 		},
 		{
-			eventTitle: EventTitle2,
-			eventDateTime: EventDateTime2,
-			eventImage: EventImage2,
-			eventUrl: EventUrl2,
+			title: Offer2Title,
+			meta: Offer2Meta,
+			linkText: Offer2LinkText,
+			image: Offer2Image,
+			url: Offer2URL,
 		},
 		{
-			eventTitle: EventTitle3,
-			eventDateTime: EventDateTime3,
-			eventImage: EventImage3,
-			eventUrl: EventUrl3,
+			title: Offer3Title,
+			meta: Offer3Meta,
+			linkText: Offer3LinkText,
+			image: Offer3Image,
+			url: Offer3URL,
 		},
 		{
-			eventTitle: EventTitle4,
-			eventDateTime: EventDateTime4,
-			eventImage: EventImage4,
-			eventUrl: EventUrl4,
+			title: Offer4Title,
+			meta: Offer4Meta,
+			linkText: Offer4LinkText,
+			image: Offer4Image,
+			url: Offer4URL,
 		},
 	];
+
+	offers = offers.filter((offer) => offer.title !== '');
 
 	let height: number = -1;
 </script>
 
 <aside bind:clientHeight={height}>
-	<EventsHeader {HeaderButtonUrl} {BannerDescription} {HeaderButtonText} />
+	<ManualHeader
+		buttonText={ViewAll}
+		buttonUrl={TitleURL}
+		backgroundColour="#005689"
+		buttonColour="#ffe500"
+	>
+		<svelte:fragment slot="logo">
+			<SubscriptionsLogo />
+		</svelte:fragment>
+		<svelte:fragment slot="description">
+			{Explainer}
+		</svelte:fragment>
+	</ManualHeader>
 	<div class="cards-container">
-		{#each events as event}
+		{#each offers as offer}
 			<ManualCard
-				cardCount={parseInt(NumberOfCards)}
-				title={event.eventTitle}
-				meta={event.eventDateTime}
-				image={event.eventImage}
-				url={event.eventUrl}
-				callToAction="Book tickets"
-			/>
+				image={offer.image}
+				url={offer.url}
+				callToAction={offer.linkText}
+				buttonColour="#005689"
+			>
+				<svelte:fragment slot="title">
+					{offer.title}
+				</svelte:fragment>
+				<svelte:fragment slot="text">{offer.meta}</svelte:fragment>
+			</ManualCard>
 		{/each}
 	</div>
 </aside>

@@ -11,6 +11,7 @@
 	export let image: string;
 	export let url: string;
 	export let callToAction: string;
+	export let buttonColour: string;
 	export let direction = 'row';
 </script>
 
@@ -25,7 +26,12 @@
 		<h2><slot name="title" /></h2>
 		<p><slot name="text" /></p>
 	</div>
-	<a class="button" href={`${CLICK_MACRO}${url}`} target="_top">
+	<a
+		class="button"
+		href={`${CLICK_MACRO}${url}`}
+		target="_top"
+		style:--button-colour={buttonColour}
+	>
 		{callToAction}
 		<ArrowRight width={24} />
 	</a>
@@ -41,7 +47,6 @@
 		padding: 12px 10px;
 		display: block;
 		margin: 0px;
-		max-width: 25%;
 		flex: 1;
 	}
 
@@ -98,7 +103,7 @@
 		font-weight: 700;
 		font-family: 'GuardianTextSans', 'Helvetica Neue', Helvetica, Arial,
 			'Lucida Grande', sans-serif;
-		background: #c83877;
+		background: var(--button-colour);
 		color: #ffffff;
 		text-decoration: none;
 		border-radius: 10rem;
@@ -110,6 +115,9 @@
 	}
 
 	@media (min-width: 740px) {
+		a.card {
+			max-width: 25%;
+		}
 		a.card:nth-child(n) {
 			padding: 12px 10px;
 			display: block;

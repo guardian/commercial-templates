@@ -4,6 +4,8 @@
 	import ManualCard from '$templates/components/ManualCard.svelte';
 	import EventsHeader from '$templates/components/EventsHeader.svelte';
 	import Resizer from '$templates/components/Resizer.svelte';
+	import ManualHeader from '$templates/components/ManualHeader.svelte';
+	import LiveLogo from '$templates/components/icons/LiveLogo.svelte';
 
 	export let BannerDescription: GAMVariable;
 	export let HeaderButtonText: GAMVariable;
@@ -58,13 +60,27 @@
 </script>
 
 <aside bind:clientHeight={height}>
-	<EventsHeader {HeaderButtonUrl} {BannerDescription} {HeaderButtonText} />
+	<ManualHeader
+		buttonText={HeaderButtonText}
+		buttonUrl={HeaderButtonUrl}
+		backgroundColour="#c83877"
+		buttonColour="#ffffff"
+	>
+		<svelte:fragment slot="logo">
+			<LiveLogo />
+		</svelte:fragment>
+		<svelte:fragment slot="description">
+			Our events are a unique opportunity to hear Guardian journalists discuss
+			their work, meet our audience and keep the story going.
+		</svelte:fragment>
+	</ManualHeader>
 	<div class="cards-container">
 		{#each events as event}
 			<ManualCard
 				image={event.eventImage}
 				url={event.eventUrl}
 				callToAction="Book tickets"
+				buttonColour="#c83877"
 			>
 				<svelte:fragment slot="title">
 					{@const [boldTitle, regularTitle] = event.eventTitle.split(':')}
@@ -97,6 +113,7 @@
 	.cards-container {
 		display: flex;
 		flex-direction: row;
+		justify-content: space-evenly;
 	}
 
 	@media (min-width: 1140px) {
