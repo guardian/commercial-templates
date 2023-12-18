@@ -19,8 +19,6 @@ type ResizeMessage = StandardMessage<
 	{ width?: number | string; height?: number | string }
 >;
 
-type StringMessage = StandardMessage<'message', string>;
-
 type BackgroundMessage = StandardMessage<
 	'background',
 	{
@@ -34,23 +32,21 @@ type BackgroundMessage = StandardMessage<
 	}
 >;
 
-type TypeMessage = StandardMessage<'type', string>;
+type StringMessage = StandardMessage<
+	| 'message'
+	| 'type'
+	| 'get-page-url'
+	| 'passback-refresh'
+	| 'viewport'
+	| 'scroll',
+	string
+>;
 
-type GetPageURLMessage = StandardMessage<'get-page-url', string>;
-
-type PassbackRefreshMessage = StandardMessage<'passback-refresh', string>;
-
-type Message =
-	| ResizeMessage
-	| StringMessage
-	| BackgroundMessage
-	| TypeMessage
-	| GetPageURLMessage
-	| PassbackRefreshMessage;
+type Message = ResizeMessage | StringMessage | BackgroundMessage;
 
 type MessengerResponse = {
 	id: string;
-	result: string;
+	result: unknown;
 };
 
 const generateId = () => {
@@ -79,12 +75,7 @@ const post = (arg: Message): void => {
 
 const isReplyFromMessenger = (json: unknown): json is MessengerResponse => {
 	const reply = json as MessengerResponse;
-	return (
-		'result' in reply &&
-		typeof reply.result === 'string' &&
-		'id' in reply &&
-		typeof reply.id === 'string'
-	);
+	return 'result' in reply && 'id' in reply && typeof reply.id === 'string';
 };
 
 const decodeReply = (e: MessageEvent<string>): MessengerResponse | void => {
@@ -101,7 +92,7 @@ const decodeReply = (e: MessageEvent<string>): MessengerResponse | void => {
 	}
 };
 
-const postAndListen = (arg: Message): Promise<string | void> =>
+const postAndListen = (arg: Message): Promise<unknown | void> =>
 	timeout(
 		new Promise((resolve) => {
 			const id = generateId();
