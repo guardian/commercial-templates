@@ -16,9 +16,6 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: scripts/deploy
 
     steps:
       - uses: actions/checkout@v2
@@ -28,8 +25,21 @@ jobs:
         with:
           python-version: '3.11'
 
+      - name: Setup Node
+        uses: actions/setup-node@v3
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Build
+        run: yarn build
+
       - name: Install Dependencies
         run: pipenv install
+        with:
+          working-directory: ./scripts/deploy
 
       - name: Deploy Templates to GAM
         run: pipenv run python deploy.py
+        with:
+          working-directory: ./scripts/deploy
