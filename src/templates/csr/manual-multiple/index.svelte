@@ -1,12 +1,13 @@
 <script lang="ts">
 	import type { GAMVariable } from '$lib/gam';
 	import '$templates/components/fonts/Sans.css';
-	import SubscriptionsLogo from '$templates/components/icons/SubscriptionsLogo.svelte';
 	import ManualCard from '$templates/components/ManualCard.svelte';
 	import ManualHeader from '$templates/components/ManualHeader.svelte';
 	import Resizer from '$templates/components/Resizer.svelte';
+	import ToneLogo from '$templates/components/ToneLogo.svelte';
 
-	export let Title: GAMVariable;
+	// export let Title: GAMVariable; // Unused??
+	export let Tone: GAMVariable;
 	export let TitleURL: GAMVariable;
 	export let Explainer: GAMVariable;
 	export let ViewAll: GAMVariable;
@@ -75,14 +76,12 @@
 		backgroundColour="#005689"
 		buttonColour="#ffe500"
 	>
-		<svelte:fragment slot="logo">
-			<SubscriptionsLogo />
-		</svelte:fragment>
+		<ToneLogo tone={Tone} slot="logo" />
 		<svelte:fragment slot="description">
 			{Explainer}
 		</svelte:fragment>
 	</ManualHeader>
-	<div class="cards-container">
+	<div class="cards-container" class:is-prominent={IsProminent}>
 		{#each offers as offer}
 			<ManualCard
 				image={offer.image}
@@ -116,6 +115,15 @@
 	.cards-container {
 		display: flex;
 		flex-direction: row;
+
+		&.is-prominent {
+			> :global(:nth-child(1)) {
+				min-width: calc(50% - 19px);
+			}
+			> :global(:nth-child(4)) {
+				display: none;
+			}
+		}
 	}
 
 	@media (min-width: 1140px) {

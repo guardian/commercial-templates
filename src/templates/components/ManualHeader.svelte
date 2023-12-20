@@ -15,7 +15,7 @@
 
 <header style:--bg-colour={backgroundColour}>
 	<div class="logo">
-		<slot name="logo" />
+		<slot name="logo" class="logo" />
 	</div>
 
 	<div class="banner-description-container">

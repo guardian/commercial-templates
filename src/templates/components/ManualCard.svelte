@@ -1,7 +1,3 @@
-<script context="module" lang="ts">
-	import { CLICK_MACRO } from '$lib/gam';
-</script>
-
 <script lang="ts">
 	import '$templates/components/fonts/Egyptian.css';
 	import '$templates/components/fonts/Headline.css';
@@ -25,19 +21,14 @@
 	<div class="text">
 		<h2><slot name="title" /></h2>
 		<p><slot name="text" /></p>
+		<span class="button" style:--button-colour={buttonColour}>
+			{callToAction}
+			<ArrowRight width={24} />
+		</span>
 	</div>
-	<a
-		class="button"
-		href={`${CLICK_MACRO}${url}`}
-		target="_top"
-		style:--button-colour={buttonColour}
-	>
-		{callToAction}
-		<ArrowRight width={24} />
-	</a>
 </a>
 
-<style>
+<style lang="scss">
 	a {
 		color: #000000;
 		text-decoration: none;
@@ -48,10 +39,6 @@
 		display: block;
 		margin: 0px;
 		flex: 1;
-	}
-
-	a.card:nth-child(n + 3) {
-		display: none;
 	}
 
 	a.card:not(:first-of-type)::before {
@@ -65,7 +52,6 @@
 	}
 
 	.media {
-		background-color: gray;
 		margin: 0 0 10px 0;
 	}
 
@@ -97,7 +83,7 @@
 		margin: 3px 0px;
 	}
 
-	a.button {
+	.button {
 		font-size: 12px;
 		line-height: 0;
 		font-weight: 700;
@@ -114,17 +100,21 @@
 		align-items: center;
 	}
 
+	@media (max-width: 739px) {
+		a.card:nth-child(n + 3) {
+			display: none;
+		}
+	}
+
 	@media (min-width: 740px) {
 		a.card {
 			max-width: 25%;
-		}
-		a.card:nth-child(n) {
 			padding: 12px 10px;
 			display: block;
 			margin: 0px;
 		}
 
-		a.button {
+		.button {
 			margin-top: 6px;
 			margin-bottom: 10px;
 		}
@@ -135,6 +125,30 @@
 
 		p {
 			margin: 10px 0px;
+		}
+
+		:global(.is-prominent) .card:nth-child(1) {
+			display: flex;
+			flex-direction: row;
+			align-items: stretch;
+
+			.media {
+				width: calc(66.67% - 10px);
+				margin-right: 10px;
+			}
+
+			.text {
+				flex: 1;
+				padding: 6px 10px 6px 0;
+				display: flex;
+				flex-direction: column;
+				align-items: flex-start;
+			}
+
+			.button {
+				margin-top: auto;
+				margin-bottom: 4px;
+			}
 		}
 	}
 
