@@ -1,9 +1,10 @@
 import os
+import tempfile
 from dotenv import load_dotenv
 import json
-from googleads import ad_manager, common
+from googleads import ad_manager, common, oauth2
 import datetime
-from termcolor import colored, cprint
+from termcolor import cprint
 
 load_dotenv()
 
@@ -14,23 +15,8 @@ template_dir = os.path.realpath(
 
 config = {
     "application_name": os.environ.get("GAM_APPLICATION_NAME"),
-    "network_code": os.environ.get("GAM_NETWORK_CODE"),
-    "client_id": os.environ.get("GAM_CLIENT_ID"),
-    "client_secret": os.environ.get("GAM_CLIENT_SECRET"),
-    "refresh_token": os.environ.get("GAM_REFRESH_TOKEN"),
+    "network_code": os.environ.get("GAM_NETWORK_CODE")
 }
-
-config_yaml = """
-ad_manager:
-  application_name: {application_name}
-  network_code: {network_code}
-  client_id: {client_id}
-  client_secret: {client_secret}
-  refresh_token: {refresh_token}
-""".format(
-    **config
-)
-
 html_prefix = "<!-- DO NOT EDIT -- FILE GENERATED AND DEPLOYED AUTOMATICALLY FROM https://github.com/guardian/commercial-templates ON {} -->".format(
     datetime.datetime.now().strftime("%m/%d/%Y")
 )
@@ -103,10 +89,24 @@ def main(native_style_service: common.GoogleSoapService):
 
 
 if __name__ == "__main__":
-    ad_manager_client = ad_manager.AdManagerClient.LoadFromString(config_yaml)
+    key_json = os.environ.get("SERVICE_ACCOUNT_KEY_FILE") or ""
 
-    native_style_service = ad_manager_client.GetService(
-        "NativeStyleService", version="v202305"
-    )
+    fd, key_file = tempfile.mkstemp()
 
-    main(native_style_service)
+    try:
+        with os.fdopen(fd, 'w') as tmp:
+            tmp.write(key_json)
+
+        oauth2_client = oauth2.GoogleServiceAccountClient(
+            key_file, oauth2.GetAPIScope('ad_manager'))
+
+        ad_manager_client = ad_manager.AdManagerClient(
+            oauth2_client, config['application_name'], config['network_code'])
+
+        native_style_service = ad_manager_client.GetService(
+            "NativeStyleService", version="v202305"
+        )
+
+        main(native_style_service)
+    finally:
+        os.remove(key_file)
