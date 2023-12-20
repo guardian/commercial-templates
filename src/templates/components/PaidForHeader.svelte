@@ -14,12 +14,13 @@
 	export let SeriesUrl: GAMVariable;
 	export let ComponentTitle: GAMVariable;
 	export let edition: Single['branding']['edition'];
+	export let templateType = '';
 
 	export let popup = false;
 </script>
 
 <header>
-	<div class="paid">
+	<div class="paid {templateType === 'multiple' && 'multiple-header'}">
 		<strong>Paid content</strong>
 		<Button
 			aria-controls="popup"
@@ -42,7 +43,7 @@
 		{/if}
 	</div>
 
-	<h1 class="adverts__title">
+	<h1 class="adverts__title {templateType === 'multiple' && 'multiple-title'}">
 		<a
 			href={`${CLICK_MACRO}https://theguardian.com/${SeriesUrl}`}
 			target="_top"
@@ -51,7 +52,7 @@
 		</a>
 	</h1>
 
-	<div class="logo">
+	<div class="logo {templateType === 'multiple' && 'multiple-logo'}">
 		<GuardianLabs {edition} />
 	</div>
 </header>
@@ -63,13 +64,15 @@
 		color: black;
 		padding: 6px 20px;
 		flex-shrink: 0;
-
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		justify-content: space-between;
 	}
 
+	.multiple-header {
+		flex-direction: row;
+	}
 	.paid {
 		position: relative;
 		font-size: 13px;
@@ -82,6 +85,11 @@
 	h1 {
 		color: white;
 		margin: 0;
+	}
+
+	.multiple-title {
+		font-size: 18px;
+		line-height: 24px;
 	}
 
 	.logo {
@@ -121,10 +129,29 @@
 		}
 	}
 
+	@media (min-width: 980px) {
+		.multiple-header {
+			flex-direction: column;
+		}
+	}
+
 	@media (min-width: 1140px) {
 		header {
 			padding: 12px 20px;
 			width: 171px;
+		}
+
+		.multiple-header {
+			align-self: flex-start;
+			justify-content: flex-start;
+		}
+
+		.multiple-title {
+			margin-top: 10px;
+		}
+
+		.multiple-logo {
+			margin-top: auto;
 		}
 	}
 
