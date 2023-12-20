@@ -8,7 +8,8 @@ from termcolor import colored, cprint
 load_dotenv()
 
 template_dir = os.path.realpath(
-    os.path.join(os.path.dirname(os.path.abspath(__file__)), "../../build-static")
+    os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                 "../../build-static")
 )
 
 config = {
@@ -30,10 +31,10 @@ ad_manager:
     **config
 )
 
-html_prefix = "<!-- DO NOT EDIT -- FILE GENERATED AND UPLOADED AUTOMATICALLY FROM https://github.com/guardian/commercial-templates ON {} -->".format(
+html_prefix = "<!-- DO NOT EDIT -- FILE GENERATED AND DEPLOYED AUTOMATICALLY FROM https://github.com/guardian/commercial-templates ON {} -->".format(
     datetime.datetime.now().strftime("%m/%d/%Y")
 )
-css_prefix = "/* DO NOT EDIT -- FILE GENERATED AND UPLOADED AUTOMATICALLY FROM https://github.com/guardian/commercial-templates ON {} */".format(
+css_prefix = "/* DO NOT EDIT -- FILE GENERATED AND DEPLOYED AUTOMATICALLY FROM https://github.com/guardian/commercial-templates ON {} */".format(
     datetime.datetime.now().strftime("%m/%d/%Y")
 )
 
@@ -65,7 +66,8 @@ def upload_template(
         version="v202208", where="id = %s" % templateInfo["nativeStyleId"]
     )
 
-    response = native_style_service.getNativeStylesByStatement(statement.ToStatement())
+    response = native_style_service.getNativeStylesByStatement(
+        statement.ToStatement())
 
     if "results" in response and len(response["results"]):
         style = response["results"][0]
@@ -84,7 +86,8 @@ def upload_template(
             cprint("[!] Error updating native style: %s" % e, "red")
             return
 
-        cprint('[✔️] Native style "%s" was updated.' % (style["name"]), "green")
+        cprint('[✔️] Native style "%s" was updated.' %
+               (style["name"]), "green")
     else:
         cprint(
             '[i] No native styles found to update for "%s" with nativeStyleId "%s"'

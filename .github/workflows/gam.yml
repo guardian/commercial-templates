@@ -1,0 +1,35 @@
+name: Deploy Templates to GAM
+
+permissions:
+  contents: read
+
+concurrency:
+  group: 'deploy'
+  cancel-in-progress: true
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: scripts/deploy
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.11'
+
+      - name: Install Dependencies
+        run: pipenv install
+
+      - name: Deploy Templates to GAM
+        run: pipenv run python deploy.py
