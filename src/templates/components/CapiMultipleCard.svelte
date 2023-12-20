@@ -61,7 +61,7 @@
 		content: '';
 		position: absolute;
 		top: 119px;
-		bottom: 12px;
+		bottom: 102px;
 		margin-left: -10px;
 		width: 1px;
 		background: #dcdcdc;

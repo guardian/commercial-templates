@@ -6,16 +6,17 @@
 	import type { Branding } from '$lib/types/capi';
 
 	export let branding: Branding;
+	export let templateType = '';
 
 	const { logo } = branding;
 
 	const { width, height } = logo.dimensions;
 </script>
 
-<div>
+<div class="{templateType === 'multiple' ? 'multiple-logo-container' : ''}">
 	<p>Paid for by</p>
 	<a href={`${CLICK_MACRO}${branding.logo.link}`}>
-		<img src={logo.src} alt="" style={`aspect-ratio: ${width} / ${height};`} />
+		<img class="{templateType === 'multiple' ? 'multiple-logo' : ''}" src={logo.src} alt="" style={`aspect-ratio: ${width} / ${height};`} />
 	</a>
 </div>
 
@@ -28,12 +29,25 @@
 		padding: 0;
 	}
 
+	.multiple-logo-container {
+		display: flex;
+		align-items: center;
+	}
+
 	img {
 		width: 200px;
+	}
+
+	.multiple-logo {
+		max-width: 100px;
+		max-height: 60px;
+		margin-bottom: 15px;
+		margin-right: 15px;
 	}
 
 	p {
 		margin: 0;
 		padding-bottom: 3px;
+		display: flex;
 	}
 </style>

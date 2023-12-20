@@ -9,6 +9,7 @@
 	import type { GAMVariable } from '$lib/gam';
 	import type { CapiCardOverride } from '$lib/types/capi';
 
+	import Sponsor from '$templates/components/Sponsor.svelte';
 	import CapiMultipleCard from '$templates/components/CapiMultipleCard.svelte';
 	import PaidForHeader from '$templates/components/PaidForHeader.svelte';
 	import { addTrackingPixel, isValidReplacedVariable } from '$lib/gam';
@@ -83,11 +84,16 @@
 				{SeriesUrl}
 				templateType='multiple'
 			/>
-			<div class="cards-container">
-				{#each formattedCards as single}
-					<CapiMultipleCard {single} />
-				{/each}
-			</div>
+				<div class="body">
+					<div class="cards-container">
+						{#each formattedCards as single}
+							<CapiMultipleCard {single} />
+						{/each}
+					</div>
+					<div class="sponsor-container">
+						<Sponsor branding={response.articles[0].branding} templateType ='multiple' />
+					</div>
+				</div>
 		</aside>
 		<Resizer {height} />
 	{/await}
@@ -97,7 +103,7 @@
 
 <style>
 	aside {
-		background: #f6f6f6;
+		background: #ededed;
 		position: relative;
 		display: flex;
 		flex-direction: column;
@@ -115,6 +121,13 @@
 		background-color: #ededed;
 	}
 
+	.sponsor-container {
+		display: flex;
+		justify-content: flex-end;
+		flex-direction: row;
+		height: 90px;
+	}
+
 	h3 {
 		background-color: #69d1ca;
 		color: white;
@@ -123,6 +136,10 @@
 	@media (min-width: 1140px) {
 		aside {
 			flex-direction: row;
+		}
+
+		.body {
+			flex-direction: column;
 		}
 	}
 
