@@ -45,3 +45,7 @@ jobs:
       - name: Deploy Templates to GAM
         run: pipenv run python deploy.py
         working-directory: ./scripts/deploy
+        env:
+          GAM_APPLICATION_NAME: ${{ secrets.GAM_APPLICATION_NAME }}
+          GAM_NETWORK_CODE: ${{ secrets.GAM_NETWORK_CODE }}
+          SERVICE_ACCOUNT_KEY_FILE: ${{ secrets.SERVICE_ACCOUNT_KEY_FILE }}
