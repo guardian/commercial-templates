@@ -37,10 +37,8 @@ jobs:
 
       - name: Install Dependencies
         run: pipenv install
-        with:
-          working-directory: ./scripts/deploy
+        working-directory: ./scripts/deploy
 
       - name: Deploy Templates to GAM
         run: pipenv run python deploy.py
-        with:
-          working-directory: ./scripts/deploy
+        working-directory: ./scripts/deploy
