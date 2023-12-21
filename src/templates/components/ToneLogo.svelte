@@ -1,20 +1,17 @@
 <script lang="ts">
 	export let tone: string;
-	import JobsSvg from './icons/guardian-jobs-logo.svelte';
-	import LiveSvg from './icons/guardian-live-logo.svelte';
-	import TravelSvg from './icons/guardian-holidays-logo.svelte';
-	import MoneySvg from './icons/guardian-moneydeals-logo.svelte';
-	import BookSvg from './icons/guardian-bookshop-logo.svelte';
-	import MasterclassSvg from './icons/guardian-masterclasses-logo.svelte';
-	import WeeklySvg from './icons/guardian-weekly-logo.svelte';
-	import MembersSvg from './icons/guardian-members-logo.svelte';
-	import PatronSvg from './icons/guardian-patron-logo.svelte';
-	import BrandSvg from './icons/guardian-generic-logo.svelte';
-	import LifestyleSvg from './icons/guardian-generic-logo.svelte';
-	import ClimateSvg from './icons/guardian-generic-logo.svelte';
-	import Climate2Svg from './icons/guardian-generic-logo.svelte';
-	import SupportSvg from './icons/guardian-generic-logo.svelte';
-	import SubscriptionSvg from './icons/guardian-subscriptions-logo.svelte';
+	import JobsSvg from './icons/JobsLogo.svelte';
+	import LiveSvg from './icons/LiveLogo.svelte';
+	import TravelSvg from './icons/HolidaysLogo.svelte';
+	import MoneySvg from './icons/MoneydealsLogo.svelte';
+	import BookSvg from './icons/BookshopLogo.svelte';
+	import MasterclassSvg from './icons/MasterclassesLogo.svelte';
+	import WeeklySvg from './icons/WeeklyLogo.svelte';
+	import MembersSvg from './icons/MembersLogo.svelte';
+	import PatronSvg from './icons/PatronLogo.svelte';
+	import BrandSvg from './icons/BrandLogo.svelte';
+	import GenericSvg from './icons/GenericLogo.svelte';
+	import SubscriptionSvg from './icons/SubscriptionsLogo.svelte';
 
 	const toneLogoMapping = {
 		job: JobsSvg,
@@ -27,10 +24,10 @@
 		members: MembersSvg,
 		patron: PatronSvg,
 		brand: BrandSvg,
-		lifestyle: LifestyleSvg,
-		climate: ClimateSvg,
-		climate2: Climate2Svg,
-		support: SupportSvg,
+		lifestyle: GenericSvg,
+		climate: GenericSvg,
+		climate2: GenericSvg,
+		support: GenericSvg,
 		subscription: SubscriptionSvg,
 		'subs-rebrand': SubscriptionSvg,
 	};
