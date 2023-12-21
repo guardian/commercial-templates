@@ -9,9 +9,15 @@
 	export let callToAction: string;
 	export let buttonColour: string;
 	export let direction = 'row';
+	export let isProminent = false;
 </script>
 
-<a class="card" href={url} style={`--direction: ${direction}`}>
+<a
+	class="card"
+	class:is-prominent={isProminent}
+	href={url}
+	style={`--direction: ${direction}`}
+>
 	<div class="media">
 		<picture>
 			<img src={image} alt="" />
@@ -127,7 +133,7 @@
 			margin: 10px 0px;
 		}
 
-		:global(.is-prominent) .card:nth-child(1) {
+		.is-prominent.card:nth-child(1) {
 			display: flex;
 			flex-direction: row;
 			align-items: stretch;

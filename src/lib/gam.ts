@@ -1,9 +1,9 @@
 const CLICK_MACRO = '%%CLICK_URL_UNESC%%';
 const CACHE_BUST = '%%CACHEBUSTER%%';
 
-type GAMVariable<T extends string = string> = `[%${T}%]` | '';
+type GAMVariable<T extends string = string> = T;
 
-const gamVar = <T extends string>(s: T): GAMVariable<T> => `[%${s}%]`;
+const gamVar = <T extends string>(s: T): `[%${GAMVariable<T>}%]` => `[%${s}%]`;
 
 const replaceGAMVariables = (
 	input: string,

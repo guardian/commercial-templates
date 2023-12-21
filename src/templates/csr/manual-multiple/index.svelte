@@ -64,6 +64,8 @@
 		},
 	];
 
+	const isProminent = IsProminent === 'true';
+
 	offers = offers.filter((offer) => offer.title !== '');
 
 	let height: number = -1;
@@ -81,13 +83,14 @@
 			{Explainer}
 		</svelte:fragment>
 	</ManualHeader>
-	<div class="cards-container" class:is-prominent={IsProminent}>
-		{#each offers as offer}
+	<div class="cards-container" class:is-prominent={isProminent}>
+		{#each offers as offer, i}
 			<ManualCard
 				image={offer.image}
 				url={offer.url}
 				callToAction={offer.linkText}
 				buttonColour="#005689"
+				isProminent={isProminent && i === 0}
 			>
 				<svelte:fragment slot="title">
 					{offer.title}
