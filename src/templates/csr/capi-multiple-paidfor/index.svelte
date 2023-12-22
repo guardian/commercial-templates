@@ -17,7 +17,6 @@
 	import { retrieveCapiData, addHeadlineKicker } from '$lib/capiMultiple';
 
 	export let SeriesUrl: GAMVariable;
-	export let BrandLogo: GAMVariable;
 	export let ComponentTitle: GAMVariable;
 	export let Article1Headline: GAMVariable;
 	export let Article1Image: GAMVariable;
