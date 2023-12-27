@@ -1,3 +1,7 @@
+<script context="module" lang="ts">
+	import { clickMacro } from '$lib/gam';
+</script>
+
 <script lang="ts">
 	import '$templates/components/fonts/Egyptian.css';
 	import '$templates/components/fonts/Headline.css';
@@ -8,16 +12,10 @@
 	export let url: string;
 	export let callToAction: string;
 	export let tone: Tone;
-	export let direction = 'row';
 	export let isProminent = false;
 </script>
 
-<a
-	class="card"
-	class:is-prominent={isProminent}
-	href={url}
-	style={`--direction: ${direction}`}
->
+<a class="card" class:is-prominent={isProminent} href={clickMacro(url)}>
 	<div class="media">
 		<picture>
 			<img src={image} alt="" />

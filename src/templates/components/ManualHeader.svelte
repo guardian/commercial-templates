@@ -1,5 +1,5 @@
 <script context="module" lang="ts">
-	import { CLICK_MACRO } from '$lib/gam';
+	import { clickMacro } from '$lib/gam';
 </script>
 
 <script lang="ts">
@@ -25,7 +25,7 @@
 	</div>
 
 	<div class="button-container">
-		<a class="button" href={`${CLICK_MACRO}${buttonUrl}`} target="_top">
+		<a class="button" href={clickMacro(buttonUrl)} target="_top">
 			{buttonText}
 			<ArrowRight width={30} />
 		</a>

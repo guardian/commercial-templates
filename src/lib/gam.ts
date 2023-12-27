@@ -30,6 +30,8 @@ const addTrackingPixel = (url: string) => {
 const isValidReplacedVariable = (s: GAMVariable): boolean =>
 	s.length > 0 && !s.startsWith('[%') && !s.endsWith('%]');
 
+const clickMacro = (url: string): string => `${CLICK_MACRO}${url}`;
+
 export type { GAMVariable };
 export {
 	CACHE_BUST,
@@ -38,4 +40,5 @@ export {
 	gamVar,
 	isValidReplacedVariable,
 	replaceGAMVariables,
+	clickMacro,
 };
