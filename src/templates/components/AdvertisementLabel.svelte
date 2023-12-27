@@ -6,9 +6,11 @@
 	@import './fonts/Sans.css';
 	@import './colours/palette.scss';
 	@import '../../styles/helpers.scss';
+
 	$gs-gutter: 20px;
 	$f-sans-serif-text: 'Guardian Text Sans Web', 'Helvetica Neue', Helvetica,
 		Arial, 'Lucida Grande', sans-serif !default;
+
 	.label {
 		background-color: $neutral-8;
 		border-top: 1px solid $neutral-5;
