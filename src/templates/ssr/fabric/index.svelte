@@ -99,13 +99,6 @@
 	.blink {
 		display: block;
 		text-decoration: none;
-
-		&:hover,
-		&:focus {
-			.blink__anchor {
-				text-decoration: underline;
-			}
-		}
 	}
 	.creative-container {
 		position: relative;
