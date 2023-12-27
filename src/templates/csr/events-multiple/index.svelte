@@ -4,8 +4,8 @@
 	import ManualCard from '$templates/components/ManualCard.svelte';
 	import Resizer from '$templates/components/Resizer.svelte';
 	import ManualHeader from '$templates/components/ManualHeader.svelte';
-	import LiveLogo from '$templates/components/icons/LiveLogo.svelte';
 	import ToneLogo from '$templates/components/ToneLogo.svelte';
+	import type { Tone } from '$lib/types/tones';
 
 	export let BannerDescription: GAMVariable;
 	export let HeaderButtonText: GAMVariable;

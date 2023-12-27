@@ -7,6 +7,7 @@
 	import '$templates/components/fonts/Headline.css';
 	import '$templates/components/fonts/SansBold.css';
 	import '$templates/components/colours/tones.css';
+	import type { Tone } from '$lib/types/tones';
 
 	export let buttonUrl: string;
 	export let buttonText: string;

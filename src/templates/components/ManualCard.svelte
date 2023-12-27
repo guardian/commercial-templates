@@ -1,5 +1,6 @@
 <script context="module" lang="ts">
 	import { clickMacro } from '$lib/gam';
+	import type { Tone } from '$lib/types/tones';
 </script>
 
 <script lang="ts">

@@ -5,6 +5,7 @@
 	import ManualHeader from '$templates/components/ManualHeader.svelte';
 	import Resizer from '$templates/components/Resizer.svelte';
 	import ToneLogo from '$templates/components/ToneLogo.svelte';
+	import type { Tone } from '$lib/types/tones';
 
 	export let Tone: GAMVariable<Tone>;
 	export let TitleURL: GAMVariable;
