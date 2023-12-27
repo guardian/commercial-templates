@@ -7,7 +7,7 @@
 	export let image: string;
 	export let url: string;
 	export let callToAction: string;
-	export let buttonColour: string;
+	export let tone: Tone;
 	export let direction = 'row';
 	export let isProminent = false;
 </script>
@@ -27,7 +27,7 @@
 	<div class="text">
 		<h2><slot name="title" /></h2>
 		<p><slot name="text" /></p>
-		<span class="button" style:--button-colour={buttonColour}>
+		<span class="button" data-tone={tone}>
 			{callToAction}
 			<ArrowRight width={24} />
 		</span>
@@ -95,7 +95,7 @@
 		font-weight: 700;
 		font-family: 'GuardianTextSans', 'Helvetica Neue', Helvetica, Arial,
 			'Lucida Grande', sans-serif;
-		background: var(--button-colour);
+		background: var(--bg);
 		color: #ffffff;
 		text-decoration: none;
 		border-radius: 10rem;

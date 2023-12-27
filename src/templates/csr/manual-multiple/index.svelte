@@ -6,8 +6,7 @@
 	import Resizer from '$templates/components/Resizer.svelte';
 	import ToneLogo from '$templates/components/ToneLogo.svelte';
 
-	// export let Title: GAMVariable; // Unused??
-	export let Tone: GAMVariable;
+	export let Tone: GAMVariable<Tone>;
 	export let TitleURL: GAMVariable;
 	export let Explainer: GAMVariable;
 	export let ViewAll: GAMVariable;
@@ -72,12 +71,7 @@
 </script>
 
 <aside bind:clientHeight={height}>
-	<ManualHeader
-		buttonText={ViewAll}
-		buttonUrl={TitleURL}
-		backgroundColour="#005689"
-		buttonColour="#ffe500"
-	>
+	<ManualHeader buttonText={ViewAll} buttonUrl={TitleURL} tone={Tone}>
 		<ToneLogo tone={Tone} slot="logo" />
 		<svelte:fragment slot="description">
 			{Explainer}
@@ -89,7 +83,7 @@
 				image={offer.image}
 				url={offer.url}
 				callToAction={offer.linkText}
-				buttonColour="#005689"
+				tone={Tone}
 				isProminent={isProminent && i === 0}
 			>
 				<svelte:fragment slot="title">

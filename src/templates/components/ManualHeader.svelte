@@ -6,14 +6,14 @@
 	import ArrowRight from './icons/ArrowRight.svelte';
 	import '$templates/components/fonts/Headline.css';
 	import '$templates/components/fonts/SansBold.css';
+	import '$templates/components/colours/tones.css';
 
 	export let buttonUrl: string;
 	export let buttonText: string;
-	export let backgroundColour: string;
-	export let buttonColour: string;
+	export let tone: Tone;
 </script>
 
-<header style:--bg-colour={backgroundColour}>
+<header data-tone={tone}>
 	<div class="logo">
 		<slot name="logo" class="logo" />
 	</div>
@@ -25,12 +25,7 @@
 	</div>
 
 	<div class="button-container">
-		<a
-			class="button"
-			href={`${CLICK_MACRO}${buttonUrl}`}
-			target="_top"
-			style:--bg-color={buttonColour}
-		>
+		<a class="button" href={`${CLICK_MACRO}${buttonUrl}`} target="_top">
 			{buttonText}
 			<ArrowRight width={30} />
 		</a>
@@ -39,7 +34,7 @@
 
 <style lang="scss">
 	header {
-		background-color: var(--bg-colour);
+		background-color: var(--bg);
 		color: black;
 		padding: 6px 20px;
 		flex-shrink: 0;
@@ -88,7 +83,7 @@
 		font-weight: 700;
 		font-family: 'GuardianTextSans', 'Helvetica Neue', Helvetica, Arial,
 			'Lucida Grande', sans-serif;
-		background: var(--bg-color);
+		background: var(--header-btn-bg, #ffffff);
 		color: #000000;
 		text-decoration: none;
 		border-radius: 10rem;

@@ -90,7 +90,16 @@
 	<ul>
 		{#each Object.keys(props) as prop}
 			<li>
-				{prop}: <input type="text" bind:value={props[prop]} />
+				{#if prop === 'Tone'}
+					{prop}:
+					<select bind:value={props[prop]}>
+						{#each ['job', 'live', 'travel', 'money', 'book', 'masterclass', 'weekly', 'members', 'patron', 'brand', 'brand-new', 'lifestyle', 'climate', 'climate2', 'support', 'subscription', 'subs-rebrand'] as tone}
+							<option value={tone}>{tone}</option>
+						{/each}
+					</select>
+				{:else}
+					{prop}: <input type="text" bind:value={props[prop]} />
+				{/if}
 			</li>
 		{/each}
 	</ul>

@@ -1,5 +1,5 @@
 <script lang="ts">
-	export let tone: string;
+	export let tone: Tone;
 	import JobsSvg from './icons/JobsLogo.svelte';
 	import LiveSvg from './icons/LiveLogo.svelte';
 	import TravelSvg from './icons/HolidaysLogo.svelte';
@@ -12,8 +12,9 @@
 	import BrandSvg from './icons/BrandLogo.svelte';
 	import GenericSvg from './icons/GenericLogo.svelte';
 	import SubscriptionSvg from './icons/SubscriptionsLogo.svelte';
+	import type { ComponentType } from 'svelte';
 
-	const toneLogoMapping = {
+	const toneLogoMapping: Record<Tone, ComponentType> = {
 		job: JobsSvg,
 		live: LiveSvg,
 		travel: TravelSvg,
@@ -24,6 +25,7 @@
 		members: MembersSvg,
 		patron: PatronSvg,
 		brand: BrandSvg,
+		'brand-new': BrandSvg,
 		lifestyle: GenericSvg,
 		climate: GenericSvg,
 		climate2: GenericSvg,

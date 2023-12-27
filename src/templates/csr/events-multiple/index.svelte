@@ -2,14 +2,15 @@
 	import type { GAMVariable } from '$lib/gam';
 	import '$templates/components/fonts/Sans.css';
 	import ManualCard from '$templates/components/ManualCard.svelte';
-	import EventsHeader from '$templates/components/EventsHeader.svelte';
 	import Resizer from '$templates/components/Resizer.svelte';
 	import ManualHeader from '$templates/components/ManualHeader.svelte';
 	import LiveLogo from '$templates/components/icons/LiveLogo.svelte';
+	import ToneLogo from '$templates/components/ToneLogo.svelte';
 
 	export let BannerDescription: GAMVariable;
 	export let HeaderButtonText: GAMVariable;
 	export let HeaderButtonUrl: GAMVariable;
+	export let Tone: GAMVariable<Tone>;
 	export let EventTitle1: GAMVariable;
 	export let EventTitle2: GAMVariable;
 	export let EventTitle3: GAMVariable;
@@ -63,15 +64,13 @@
 	<ManualHeader
 		buttonText={HeaderButtonText}
 		buttonUrl={HeaderButtonUrl}
-		backgroundColour="#c83877"
-		buttonColour="#ffffff"
+		tone={Tone}
 	>
 		<svelte:fragment slot="logo">
-			<LiveLogo />
+			<ToneLogo tone={Tone} />
 		</svelte:fragment>
 		<svelte:fragment slot="description">
-			Our events are a unique opportunity to hear Guardian journalists discuss
-			their work, meet our audience and keep the story going.
+			{BannerDescription}
 		</svelte:fragment>
 	</ManualHeader>
 	<div class="cards-container">
@@ -80,7 +79,7 @@
 				image={event.eventImage}
 				url={event.eventUrl}
 				callToAction="Book tickets"
-				buttonColour="#c83877"
+				tone={Tone}
 			>
 				<svelte:fragment slot="title">
 					{@const [boldTitle, regularTitle] = event.eventTitle.split(':')}

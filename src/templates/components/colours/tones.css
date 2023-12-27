@@ -18,6 +18,11 @@
 	--bg: #d01317;
 }
 
+[data-tone='subs-rebrand'] {
+	--bg: #005689;
+	--header-btn-bg: #ffe500;
+}
+
 [data-tone='live'] {
 	--bg: #c83877;
 }
@@ -40,4 +45,33 @@
 
 [data-tone='book'] {
 	--bg: #8e246f;
+}
+
+[data-tone='climate'],
+[data-tone='climate2'] {
+	--bg: #ffe500;
+}
+
+[data-tone='job'] {
+	--bg: #469d93;
+}
+
+[data-tone='weekly'] {
+	--bg: #2c363b;
+}
+
+[data-tone='members'] {
+	--bg: #bb3a7f;
+}
+
+[data-tone='patron'] {
+	--bg: #4f5249;
+}
+
+[data-tone='lifestyle'] {
+	--bg: #bb3b80;
+}
+
+[data-tone='support'] {
+	--bg: #ff7f0f;
 }
