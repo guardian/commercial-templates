@@ -13,8 +13,6 @@
 	"Layer1BackgroundPosition": "center center",
 	"Layer2BackgroundImage": "https://tpc.googlesyndication.com/pagead/imgad?id=CICAgKDLkOOaNBABGAEyCO6_HUzgllVz",
 	"Layer2BackgroundPosition": "right top",
-	"Layer2BackgroundAnimation": "disabled",
-	"Layer2BackgroundAnimationPosition": "left",
 	"Layer3BackgroundImage": "https://tpc.googlesyndication.com/pagead/imgad?id=CICAgKDLkOOaNBABGAEyCO6_HUzgllVz",
 	"Layer3BackgroundPosition": "left bottom",
 	"MobileBackgroundImage": "",
@@ -26,4 +24,4 @@
 	"MobileLayer2BackgroundPosition": "left top",
 	"MobileLayer3BackgroundImage": "",
 	"MobileLayer3BackgroundPosition": "left top"
-  }
+}
