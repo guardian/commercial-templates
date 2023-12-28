@@ -11,7 +11,7 @@
 
 	export let image: string;
 	export let url: string;
-	export let callToAction: string;
+	export let linkText: string;
 	export let tone: Tone;
 	export let isProminent = false;
 </script>
@@ -26,10 +26,12 @@
 	<div class="text">
 		<h2><slot name="title" /></h2>
 		<p><slot name="text" /></p>
-		<span class="button" data-tone={tone}>
-			{callToAction}
-			<ArrowRight width={24} />
-		</span>
+		{#if linkText}
+			<span class="button" data-tone={tone}>
+				{linkText}
+				<ArrowRight width={24} />
+			</span>
+		{/if}
 	</div>
 </a>
 

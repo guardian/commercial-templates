@@ -83,7 +83,7 @@
 			<ManualCard
 				image={offer.image}
 				url={offer.url}
-				callToAction={offer.linkText}
+				linkText={offer.linkText}
 				tone={Tone}
 				isProminent={isProminent && i === 0}
 			>
