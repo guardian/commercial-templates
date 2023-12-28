@@ -22,7 +22,7 @@ const replaceGAMVariables = (
 	return output;
 };
 
-const addPixel = (url: string) => {
+const addTrackingPixel = (url: string) => {
 	const pixel = new Image();
 	pixel.src = url + CACHE_BUST;
 };
@@ -36,7 +36,7 @@ export type { GAMVariable };
 export {
 	CACHE_BUST,
 	CLICK_MACRO,
-	addPixel,
+	addTrackingPixel,
 	gamVar,
 	isValidReplacedVariable,
 	replaceGAMVariables,
