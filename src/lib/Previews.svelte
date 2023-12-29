@@ -28,6 +28,7 @@
 	].join('');
 
 	export const widths = {
+		'100%': '100%',
 		1300: 'wide',
 		980: 'desktop',
 		740: 'tablet',
@@ -70,7 +71,7 @@
 
 <section id="example">
 	{#each Object.keys(widths) as width}
-		<div class="size">
+		<div class="size {width === '100%' && 'full-width'}">
 			<h4>
 				{widths[width]} size ({width})
 			</h4>
@@ -107,7 +108,7 @@
 	</ul>
 </section>
 
-<style>
+<style lang="scss">
 	#example {
 		box-sizing: border-box;
 		width: 100%;
@@ -121,6 +122,10 @@
 		display: flex;
 		flex-direction: column;
 		width: max-content;
+
+		&.full-width {
+			width: 100%;
+		}
 	}
 
 	iframe {
