@@ -92,11 +92,8 @@
 			position: absolute;
 			top: 0;
 			left: 0;
+			
 			background-repeat: no-repeat;
-		}
-	}
-	@media (max-width: 739px) {
-		.layer {
 			background-image: var(--mobile-background-image);
 			background-position: var(--mobile-background-position);
 		}
