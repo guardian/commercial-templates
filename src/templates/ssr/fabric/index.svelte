@@ -28,57 +28,30 @@
 
 <AdvertisementLabel />
 <div class="creative--fabric">
-	<a
-		id="linkDesktop"
-		class="blink gs-container link hide-until-tablet"
-		href={`${CLICK_MACRO}${ClickthroughUrl}`}
-		target="_blank"
-	>
+	<a class="link" href={`${CLICK_MACRO}${ClickthroughUrl}`} target="_blank">
 		<div class="creative-container">
-			<div class="alt">
-				<div
-					class="layer layer1"
-					style:background-image={`url('${Layer1BackgroundImage}')`}
-					style:background-position={Layer1BackgroundPosition}
-				/>
-				<div
-					id="layer2"
-					class="layer layer2"
-					style:background-image={`url('${Layer2BackgroundImage}')`}
-					style:background-position={Layer2BackgroundPosition}
-				/>
-				<div
-					class="layer layer3"
-					style:background-image={`url('${Layer3BackgroundImage}')`}
-					style:background-position={Layer3BackgroundPosition}
-				/>
-			</div>
-		</div>
-	</a>
-	<a
-		id="linkMobile"
-		class="blink gs-container link mobile-only"
-		href={`${CLICK_MACRO}${ClickthroughUrl}`}
-		target="_blank"
-	>
-		<div class="creative-container">
-			<div class="alt">
-				<div
-					class="layer layer1"
-					style:background-image={`url('${MobileLayer1BackgroundImage}')`}
-					style:background-position={MobileLayer1BackgroundPosition}
-				/>
-				<div
-					class="layer layer2"
-					style:background-image={`url('${MobileLayer2BackgroundImage}')`}
-					style:background-position={MobileLayer2BackgroundPosition}
-				/>
-				<div
-					class="layer layer3"
-					style:background-image={`url('${MobileLayer3BackgroundImage}')`}
-					style:background-position={MobileLayer3BackgroundPosition}
-				/>
-			</div>
+			<div
+				class="layer layer1"
+				style:--tablet-background-image={`url('${Layer1BackgroundImage}')`}
+				style:--tablet-background-position={Layer1BackgroundPosition}
+				style:--mobile-background-image={`url('${MobileLayer1BackgroundImage}')`}
+				style:--mobile-background-position={`url('${MobileLayer1BackgroundPosition}')`}
+			/>
+			<div
+				id="layer2"
+				class="layer layer2"
+				style:--tablet-background-image={`url('${Layer2BackgroundImage}')`}
+				style:--tablet-background-position={Layer2BackgroundPosition}
+				style:--mobile-background-image={`url('${MobileLayer2BackgroundImage}')`}
+				style:--mobile-background-position={`url('${MobileLayer2BackgroundPosition}')`}
+			/>
+			<div
+				class="layer layer3"
+				style:--tablet-background-image={`url('${Layer3BackgroundImage}')`}
+				style:--tablet-background-position={Layer3BackgroundPosition}
+				style:--mobile-background-image={`url('${MobileLayer3BackgroundImage}')`}
+				style:--mobile-background-position={`url('${MobileLayer3BackgroundPosition}')`}
+			/>
 		</div>
 	</a>
 	{#if isValidReplacedVariable(Trackingpixel)}
@@ -95,11 +68,9 @@
 <style lang="scss">
 	$gs-gutter: 20px;
 	$gs-max-columns: 16;
-	.blink {
+	.link {
 		display: block;
 		text-decoration: none;
-	}
-	.gs-container {
 		position: relative;
 
 		@media (min-width: 740px) {
@@ -129,7 +100,6 @@
 			height: 250px;
 			overflow: hidden;
 		}
-
 		.layer1 {
 			z-index: 1;
 		}
@@ -139,7 +109,6 @@
 		.layer3 {
 			z-index: 3;
 		}
-		.alt,
 		.layer {
 			width: 100%;
 			height: 250px;
@@ -150,13 +119,15 @@
 		}
 	}
 	@media (max-width: 739px) {
-		.hide-until-tablet {
-			display: none !important;
+		.layer {
+			background-image: var(--mobile-background-image);
+			background-position: var(--mobile-background-position);
 		}
 	}
 	@media (min-width: 740px) {
-		.mobile-only {
-			display: none !important;
+		.layer {
+			background-image: var(--tablet-background-image);
+			background-position: var(--tablet-background-position);
 		}
 	}
 </style>
