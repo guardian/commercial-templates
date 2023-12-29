@@ -5,7 +5,7 @@
 <style lang="scss">
 	@import './fonts/Sans.css';
 	@import './colours/palette.scss';
-	@import './scss/helpers.scss';
+	@import '../../styles/helpers.scss';
 	$gs-gutter: 20px;
 	$f-sans-serif-text: 'Guardian Text Sans Web', 'Helvetica Neue', Helvetica,
 		Arial, 'Lucida Grande', sans-serif !default;

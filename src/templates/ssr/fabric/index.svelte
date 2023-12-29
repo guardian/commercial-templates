@@ -35,7 +35,7 @@
 	>
 		<div class="creative-container">
 			<div
-				class="layer layer1"
+				class="layer"
 				style:--tablet-background-image={`url('${Layer1BackgroundImage}')`}
 				style:--tablet-background-position={Layer1BackgroundPosition}
 				style:--mobile-background-image={`url('${MobileLayer1BackgroundImage}')`}
@@ -43,14 +43,14 @@
 			/>
 			<div
 				id="layer2"
-				class="layer layer2"
+				class="layer"
 				style:--tablet-background-image={`url('${Layer2BackgroundImage}')`}
 				style:--tablet-background-position={Layer2BackgroundPosition}
 				style:--mobile-background-image={`url('${MobileLayer2BackgroundImage}')`}
 				style:--mobile-background-position={`url('${MobileLayer2BackgroundPosition}')`}
 			/>
 			<div
-				class="layer layer3"
+				class="layer"
 				style:--tablet-background-image={`url('${Layer3BackgroundImage}')`}
 				style:--tablet-background-position={Layer3BackgroundPosition}
 				style:--mobile-background-image={`url('${MobileLayer3BackgroundImage}')`}
@@ -70,7 +70,7 @@
 {thirdPartyJSTracking}
 
 <style lang="scss">
-	@import '../../components/scss/helpers.scss';
+	@import '../../../styles/helpers.scss';
 	.link {
 		display: block;
 		text-decoration: none;
@@ -85,15 +85,6 @@
 		.link {
 			height: 250px;
 			overflow: hidden;
-		}
-		.layer1 {
-			z-index: 1;
-		}
-		.layer2 {
-			z-index: 2;
-		}
-		.layer3 {
-			z-index: 3;
 		}
 		.layer {
 			width: 100%;
