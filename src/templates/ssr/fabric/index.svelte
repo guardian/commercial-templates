@@ -28,7 +28,11 @@
 
 <AdvertisementLabel />
 <div class="creative--fabric">
-	<a class="link" href={`${CLICK_MACRO}${ClickthroughUrl}`} target="_blank">
+	<a
+		class="gs-container link"
+		href={`${CLICK_MACRO}${ClickthroughUrl}`}
+		target="_blank"
+	>
 		<div class="creative-container">
 			<div
 				class="layer layer1"
@@ -66,28 +70,10 @@
 {thirdPartyJSTracking}
 
 <style lang="scss">
-	$gs-gutter: 20px;
-	$gs-max-columns: 16;
+	@import '../../components/scss/helpers.scss';
 	.link {
 		display: block;
 		text-decoration: none;
-		position: relative;
-
-		@media (min-width: 740px) {
-			padding: 0 calc(50% - #{(gs-span(9) + $gs-gutter * 2) / 2});
-		}
-
-		@media (min-width: 980px) {
-			padding: 0 calc(50% - #{(gs-span(12) + $gs-gutter * 2) / 2});
-		}
-
-		@media (min-width: 1140px) {
-			padding: 0 calc(50% - #{(gs-span(14) + $gs-gutter * 2) / 2});
-		}
-
-		@media (min-width: 1300px) {
-			padding: 0 calc(50% - #{(gs-span($gs-max-columns) + $gs-gutter * 2) / 2});
-		}
 	}
 	.creative-container {
 		position: relative;

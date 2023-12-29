@@ -5,31 +5,10 @@
 <style lang="scss">
 	@import './fonts/Sans.css';
 	@import './colours/palette.scss';
+	@import './scss/helpers.scss';
 	$gs-gutter: 20px;
-	$gs-max-columns: 16;
 	$f-sans-serif-text: 'Guardian Text Sans Web', 'Helvetica Neue', Helvetica,
 		Arial, 'Lucida Grande', sans-serif !default;
-
-	.gs-container {
-		position: relative;
-
-		@media (min-width: 740px) {
-			padding: 0 calc(50% - #{(gs-span(9) + $gs-gutter * 2) / 2});
-		}
-
-		@media (min-width: 980px) {
-			padding: 0 calc(50% - #{(gs-span(12) + $gs-gutter * 2) / 2});
-		}
-
-		@media (min-width: 1140px) {
-			padding: 0 calc(50% - #{(gs-span(14) + $gs-gutter * 2) / 2});
-		}
-
-		@media (min-width: 1300px) {
-			padding: 0 calc(50% - #{(gs-span($gs-max-columns) + $gs-gutter * 2) / 2});
-		}
-	}
-
 	.label {
 		background-color: $neutral-8;
 		border-top: 1px solid $neutral-5;
