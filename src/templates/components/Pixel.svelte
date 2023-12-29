@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { GAMVariable } from '$lib/gam';
 
-	export let src: GAMVariable;
+	export let src: string;
 </script>
 
 <img {src} alt="" class="pixel" />

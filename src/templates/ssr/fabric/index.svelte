@@ -27,7 +27,7 @@
 </script>
 
 <AdvertisementLabel />
-<div class="creative creative--fabric">
+<div class="creative--fabric">
 	<a
 		id="linkDesktop"
 		class="blink gs-container link hide-until-tablet"
@@ -38,18 +38,19 @@
 			<div class="alt">
 				<div
 					class="layer layer1"
-					style="background-image: url('{Layer1BackgroundImage}');
-                        background-position: {Layer1BackgroundPosition}"
+					style:background-image={`url('${Layer1BackgroundImage}')`}
+					style:background-position={Layer1BackgroundPosition}
 				/>
 				<div
 					id="layer2"
 					class="layer layer2"
-					style="background-image: url('{Layer2BackgroundImage}');background-position: {Layer2BackgroundPosition}"
+					style:background-image={`url('${Layer2BackgroundImage}')`}
+					style:background-position={Layer2BackgroundPosition}
 				/>
 				<div
 					class="layer layer3"
-					style="background-image: url('{Layer3BackgroundImage}');
-                        background-position: {Layer3BackgroundPosition}"
+					style:background-image={`url('${Layer3BackgroundImage}')`}
+					style:background-position={Layer3BackgroundPosition}
 				/>
 			</div>
 		</div>
@@ -64,18 +65,18 @@
 			<div class="alt">
 				<div
 					class="layer layer1"
-					style="background-image: url('{MobileLayer1BackgroundImage}');
-                        background-position: {MobileLayer1BackgroundPosition}"
+					style:background-image={`url('${MobileLayer1BackgroundImage}')`}
+					style:background-position={MobileLayer1BackgroundPosition}
 				/>
 				<div
 					class="layer layer2"
-					style="background-image: url('{MobileLayer2BackgroundImage}');
-                        background-position: {MobileLayer2BackgroundPosition}"
+					style:background-image={`url('${MobileLayer2BackgroundImage}')`}
+					style:background-position={MobileLayer2BackgroundPosition}
 				/>
 				<div
 					class="layer layer3"
-					style="background-image: url('{MobileLayer3BackgroundImage}');
-                        background-position: {MobileLayer3BackgroundPosition}"
+					style:background-image={`url('${MobileLayer3BackgroundImage}')`}
+					style:background-position={MobileLayer3BackgroundPosition}
 				/>
 			</div>
 		</div>
@@ -92,18 +93,37 @@
 {thirdPartyJSTracking}
 
 <style lang="scss">
-	.creative {
-		display: block;
-		position: relative;
-	}
+	$gs-gutter: 20px;
+	$gs-max-columns: 16;
 	.blink {
 		display: block;
 		text-decoration: none;
+	}
+	.gs-container {
+		position: relative;
+
+		@media (min-width: 740px) {
+			padding: 0 calc(50% - #{(gs-span(9) + $gs-gutter * 2) / 2});
+		}
+
+		@media (min-width: 980px) {
+			padding: 0 calc(50% - #{(gs-span(12) + $gs-gutter * 2) / 2});
+		}
+
+		@media (min-width: 1140px) {
+			padding: 0 calc(50% - #{(gs-span(14) + $gs-gutter * 2) / 2});
+		}
+
+		@media (min-width: 1300px) {
+			padding: 0 calc(50% - #{(gs-span($gs-max-columns) + $gs-gutter * 2) / 2});
+		}
 	}
 	.creative-container {
 		position: relative;
 	}
 	.creative--fabric {
+		display: block;
+		position: relative;
 		&,
 		.link {
 			height: 250px;
@@ -127,18 +147,6 @@
 			top: 0;
 			left: 0;
 			background-repeat: no-repeat;
-		}
-		.layer1 {
-			background-image: url('#{dfpVar(MobileLayer1BackgroundImage)}');
-			background-position: dfpVar(MobileLayer1BackgroundPosition);
-		}
-		.layer2 {
-			background-image: url('#{dfpVar(MobileLayer2BackgroundImage)}');
-			background-position: dfpVar(MobileLayer2BackgroundPosition);
-		}
-		.layer3 {
-			background-image: url('#{dfpVar(MobileLayer3BackgroundImage)}');
-			background-position: dfpVar(MobileLayer3BackgroundPosition);
 		}
 	}
 	@media (max-width: 739px) {

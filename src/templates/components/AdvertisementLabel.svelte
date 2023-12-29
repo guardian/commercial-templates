@@ -1,11 +1,9 @@
-<script lang="ts">
-</script>
-
-<div class="gs-container label label">
+<div class="gs-container label">
 	<div class="label-text">Advertisement</div>
 </div>
 
 <style lang="scss">
+	@import './fonts/Sans.css';
 	@import './colours/palette.scss';
 	$gs-gutter: 20px;
 	$gs-max-columns: 16;
@@ -42,7 +40,7 @@
 	}
 
 	.label-text {
-		padding: 0 $gs-gutter / 2;
+		padding: 0 calc($gs-gutter / 2);
 
 		@media (min-width: 740px) {
 			padding: 0 $gs-gutter;
