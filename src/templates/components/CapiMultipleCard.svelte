@@ -45,16 +45,12 @@
 	}
 
 	a.card {
-		margin: 12px 10px;
+		margin: 12px 10px 0px 10px;;
 		display: block;
 		padding: 0px;
-		width: 50%;
+		width: auto;
 		background-color: #fff;
 		border-top: 1px solid #69d1ca;
-	}
-
-	a.card:nth-child(n + 3) {
-		display: none;
 	}
 
 	a.card:not(:first-of-type)::before {
@@ -97,7 +93,17 @@
 		color: #626262;
 	}
 
+	@media (max-width: 739px) {
+		a.card:not(:first-of-type) .media {
+			display: none;
+		}
+	}
+
 	@media (min-width: 740px) {
+
+		a.card {
+			margin: 12px 10px
+		}
 
 		a.card:nth-child(n) {
 			display: block;

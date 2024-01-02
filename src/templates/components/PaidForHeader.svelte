@@ -62,7 +62,7 @@
 		--green: #69d1ca;
 		background-color: var(--green);
 		color: black;
-		padding: 6px 20px;
+		padding: 6px 10px;
 		flex-shrink: 0;
 		display: flex;
 		flex-direction: column;
@@ -126,6 +126,16 @@
 		&:hover,
 		&:focus {
 			text-decoration: underline;
+		}
+	}
+
+	@media (max-width: 739px) {
+		.multiple-header {
+			align-self: flex-start;
+		}
+
+		h1 {
+			align-self: flex-start;
 		}
 	}
 

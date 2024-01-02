@@ -116,7 +116,7 @@
 
 	.cards-container {
 		display: flex;
-		flex-direction: row;
+		flex-direction: column;
 		background-color: #ededed;
 	}
 
@@ -132,6 +132,12 @@
 		color: white;
 	}
 
+	@media (min-width: 740px) {
+		.cards-container {
+			flex-direction: row;
+		}
+	}
+
 	@media (min-width: 1140px) {
 		aside {
 			flex-direction: row;
@@ -140,11 +146,6 @@
 		.body {
 			flex-direction: column;
 		}
-	}
-
-	.cards-container {
-		display: flex;
-		flex-direction: row;
 	}
 
 </style>
