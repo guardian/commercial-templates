@@ -6,7 +6,7 @@
 	export let single: Single;
 	export let direction = 'row';
 
-	const { articleHeadline, articleUrl, articleText, articleImage } = single;
+	const { articleHeadline, articleUrl, articleText, articleImage, kicker } = single;
 	const pictureSupported =
 		articleImage.sources.length > 0 && 'srcset' in new Image();
 </script>
@@ -35,7 +35,12 @@
 		{/if}
 	</div>
 	<div class="text">
-		<h2>{@html articleHeadline}</h2>
+		<h2>
+			{#if kicker}
+				<span class="kicker">{kicker && kicker}</span><br>
+			{/if}
+			{articleHeadline}
+		</h2>
 		{#if templateType === 'single'}
 			<p>{articleText}</p>
 		{/if}
@@ -122,7 +127,7 @@
 		}
 	}
 
-	:global(.kicker) {
+	.kicker {
 		color: #626262;
 	}
 

@@ -13,14 +13,10 @@ function addHeadlineKicker(
 			overrideCards[i]?.kicker !== `[%''%]` &&
 			overrideCards[i]?.headline !== `[%''%]`
 		) {
-			const headlineWithKicker = `<span class='kicker'>${
-				overrideCards[i]?.kicker as string
-			}</span><br>${overrideCards[i]?.headline as string}`;
-
-			if (cardData[i]?.articleHeadline) {
-				// eslint-disable-next-line @typescript-eslint/no-non-null-assertion -- asserting here as we already perform a check
-				cardData[i]!.articleHeadline = headlineWithKicker;
-			}
+			// eslint-disable-next-line @typescript-eslint/no-non-null-assertion -- headline should always be defined
+			cardData[i]!.articleHeadline = overrideCards[i]?.headline as string;
+			// eslint-disable-next-line @typescript-eslint/no-non-null-assertion -- we define the kicker here - it's an optional parameter
+			cardData[i]!.kicker = overrideCards[i]?.kicker as string;
 		}
 	}
 
