@@ -32,6 +32,7 @@
 	.multiple-logo-container {
 		display: flex;
 		align-items: center;
+		margin-bottom: 15px;
 	}
 
 	img {
@@ -41,8 +42,9 @@
 	.multiple-logo {
 		max-width: 100px;
 		max-height: 60px;
-		margin-bottom: 15px;
+		margin-left: 10px;
 		margin-right: 15px;
+		vertical-align: middle;
 	}
 
 	p {
