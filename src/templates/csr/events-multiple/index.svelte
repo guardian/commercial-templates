@@ -66,12 +66,7 @@
 		buttonUrl={HeaderButtonUrl}
 		tone={Tone}
 	>
-		<svelte:fragment slot="logo">
-			<ToneLogo tone={Tone} />
-		</svelte:fragment>
-		<svelte:fragment slot="description">
-			{@html BannerDescription}
-		</svelte:fragment>
+		{@html BannerDescription}
 	</ManualHeader>
 	<div class="cards-container">
 		{#each events as event}

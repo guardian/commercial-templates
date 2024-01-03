@@ -8,6 +8,7 @@
 	import '$templates/components/fonts/SansBold.css';
 	import '$templates/components/colours/tones.css';
 	import type { Tone } from '$lib/types/tones';
+	import ToneLogo from './ToneLogo.svelte';
 
 	export let buttonUrl: string;
 	export let buttonText: string;
@@ -16,7 +17,7 @@
 
 <header data-tone={tone}>
 	<div class="logo">
-		<slot name="logo" class="logo" />
+		<ToneLogo {tone} />
 	</div>
 
 	<div class="banner-description-container">

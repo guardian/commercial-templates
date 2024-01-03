@@ -73,10 +73,7 @@
 
 <aside bind:clientHeight={height}>
 	<ManualHeader buttonText={ViewAll} buttonUrl={TitleURL} tone={Tone}>
-		<ToneLogo tone={Tone} slot="logo" />
-		<svelte:fragment slot="description">
-			{@html Explainer}
-		</svelte:fragment>
+		{@html Explainer}
 	</ManualHeader>
 	<div class="cards-container" class:is-prominent={isProminent}>
 		{#each offers as offer, i}
