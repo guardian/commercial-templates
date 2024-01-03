@@ -19,9 +19,9 @@
 	export let popup = false;
 </script>
 
-<header class="{templateType === 'multiple' && 'multiple-'}header">
-	<div class="{templateType === 'multiple' && 'multiple-'}paid-content-and-title">
-		<div class="paid {templateType === 'multiple' && 'multiple-paid-content'}">
+<header class="{templateType}-header">
+	<div class="{templateType}-paid-content-and-title">
+		<div class="paid {templateType}-paid-content">
 			<strong>Paid content</strong>
 			<Button
 				aria-controls="popup"
@@ -54,7 +54,7 @@
 		</h1>
 	</div>
 
-	<div class="logo {templateType === 'multiple' && 'multiple-logo'}">
+	<div class="logo {templateType}-logo">
 		<GuardianLabs {edition} />
 	</div>
 </header>
@@ -69,6 +69,14 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
+		justify-content: space-between;
+	}
+
+	.single-paid-content-and-title {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		flex-basis: 60%;
 		justify-content: space-between;
 	}
 

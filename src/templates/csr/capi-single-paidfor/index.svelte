@@ -32,6 +32,7 @@
 {:then single}
 	<aside bind:clientHeight={height}>
 		<PaidForHeader
+		    templateType='single'
 			edition={single.branding.edition}
 			{ComponentTitle}
 			{SeriesUrl}
