@@ -158,6 +158,7 @@
 
 		.multiple-title {
 			margin-top: 10px;
+			align-self: flex-start;
 		}
 
 		.multiple-logo {
