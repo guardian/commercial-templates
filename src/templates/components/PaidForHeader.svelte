@@ -19,38 +19,40 @@
 	export let popup = false;
 </script>
 
-<header>
-	<div class="paid {templateType === 'multiple' && 'multiple-header'}">
-		<strong>Paid content</strong>
-		<Button
-			aria-controls="popup"
-			aria-expanded="true"
-			on:click={() => (popup = !popup)}
-			>About <ArrowDown width={12} flip={popup} /></Button
-		>
-		{#if popup}
-			<div id="popup">
-				<p>
-					Paid content is paid for and controlled by an advertiser and produced
-					by the Guardian Labs team
-				</p>
-				<a
-					class="popup-link"
-					href={`${CLICK_MACRO}https://theguardian.com/content-funding`}
-					target="_top">Learn more about Guardian Labs content &rarr;</a
-				>
-			</div>
-		{/if}
-	</div>
+<header class="{templateType === 'multiple' && 'multiple-'}header">
+	<div class="{templateType === 'multiple' && 'multiple-'}paid-content-and-title">
+		<div class="paid {templateType === 'multiple' && 'multiple-paid-content'}">
+			<strong>Paid content</strong>
+			<Button
+				aria-controls="popup"
+				aria-expanded="true"
+				on:click={() => (popup = !popup)}
+				>About <ArrowDown width={12} flip={popup} /></Button
+			>
+			{#if popup}
+				<div id="popup">
+					<p>
+						Paid content is paid for and controlled by an advertiser and produced
+						by the Guardian Labs team
+					</p>
+					<a
+						class="popup-link"
+						href={`${CLICK_MACRO}https://theguardian.com/content-funding`}
+						target="_top">Learn more about Guardian Labs content &rarr;</a
+					>
+				</div>
+			{/if}
+		</div>
 
-	<h1 class="adverts__title {templateType === 'multiple' && 'multiple-title'}">
-		<a
-			href={`${CLICK_MACRO}https://theguardian.com/${SeriesUrl}`}
-			target="_top"
-		>
-			{ComponentTitle}
-		</a>
-	</h1>
+		<h1 class="adverts__title {templateType === 'multiple' && 'multiple-title'}">
+			<a
+				href={`${CLICK_MACRO}https://theguardian.com/${SeriesUrl}`}
+				target="_top"
+			>
+				{ComponentTitle}
+			</a>
+		</h1>
+	</div>
 
 	<div class="logo {templateType === 'multiple' && 'multiple-logo'}">
 		<GuardianLabs {edition} />
@@ -71,6 +73,16 @@
 	}
 
 	.multiple-header {
+		flex-direction: row;
+		align-content: space-between;
+	}
+
+	.multiple-paid-content-and-title {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.multiple-paid-content {
 		flex-direction: row;
 	}
 	.paid {
@@ -129,18 +141,26 @@
 		}
 	}
 
-	@media (max-width: 739px) {
-		.multiple-header {
-			align-self: flex-start;
-		}
+	@media (min-width: 740px) {
+		.multiple-paid-content-and-title {
+			flex-direction: inherit;
+			align-items: center;
 
-		h1 {
-			align-self: flex-start;
+			.multiple-paid-content {
+				padding: 0 20px;
+			}
+
+			.multiple-title {
+				padding: 5px 0 7px 0;
+			}
 		}
 	}
 
 	@media (min-width: 980px) {
 		.multiple-header {
+			flex-direction: column;
+		}
+		.multiple-paid-content {
 			flex-direction: column;
 		}
 	}
@@ -151,14 +171,13 @@
 			width: 171px;
 		}
 
-		.multiple-header {
+		.multiple-paid-content-and-title {
 			align-self: flex-start;
-			justify-content: flex-start;
-		}
+			align-items: flex-start;
 
-		.multiple-title {
-			margin-top: 10px;
-			align-self: flex-start;
+			.multiple-paid-content {
+				padding: 0;
+			}
 		}
 
 		.multiple-logo {
