@@ -60,9 +60,9 @@
 	a.multiple-card {
 		margin: 12px 10px 0px 10px;;
 		display: block;
-		padding: 0px;
+		padding: 0 0 8px 0;
 		width: auto;
-		background-color: #fff;
+		background-color: #f6f6f6;
 		border-top: 1px solid #69d1ca;
 	}
 
@@ -82,7 +82,7 @@
 
 	a.multiple-card .media {
 		background-color: gray;
-		margin: 0 0 10px 0;
+		margin: 0;
 	}
 
 	picture,
@@ -117,7 +117,7 @@
 				'Lucida Grande', sans-serif;
 			font-weight: 500;
 			padding: 0px;
-			margin-bottom: 3px;
+			margin: 6px 0 8px 0;
 			color: #333
 		}
 	}
