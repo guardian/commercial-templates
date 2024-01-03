@@ -70,7 +70,7 @@
 			<ToneLogo tone={Tone} />
 		</svelte:fragment>
 		<svelte:fragment slot="description">
-			{BannerDescription}
+			{@html BannerDescription}
 		</svelte:fragment>
 	</ManualHeader>
 	<div class="cards-container">
@@ -78,15 +78,15 @@
 			<ManualCard
 				image={event.eventImage}
 				url={event.eventUrl}
-				callToAction="Book tickets"
+				linkText="Book tickets"
 				tone={Tone}
 			>
 				<svelte:fragment slot="title">
 					{@const [boldTitle, regularTitle] = event.eventTitle.split(':')}
 					{#if regularTitle}
-						<b>{boldTitle}:</b>{regularTitle}
+						<b>{@html boldTitle}:</b>{@html regularTitle}
 					{:else}
-						{boldTitle}
+						{@html boldTitle}
 					{/if}
 				</svelte:fragment>
 				<svelte:fragment slot="text">{event.eventDateTime}</svelte:fragment>

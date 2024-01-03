@@ -75,7 +75,7 @@
 	<ManualHeader buttonText={ViewAll} buttonUrl={TitleURL} tone={Tone}>
 		<ToneLogo tone={Tone} slot="logo" />
 		<svelte:fragment slot="description">
-			{Explainer}
+			{@html Explainer}
 		</svelte:fragment>
 	</ManualHeader>
 	<div class="cards-container" class:is-prominent={isProminent}>
@@ -88,9 +88,9 @@
 				isProminent={isProminent && i === 0}
 			>
 				<svelte:fragment slot="title">
-					{offer.title}
+					{@html offer.title}
 				</svelte:fragment>
-				<svelte:fragment slot="text">{offer.meta}</svelte:fragment>
+				<svelte:fragment slot="text">{@html offer.meta}</svelte:fragment>
 			</ManualCard>
 		{/each}
 	</div>
