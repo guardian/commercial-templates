@@ -36,7 +36,7 @@
 			{ComponentTitle}
 			{SeriesUrl}
 		/>
-		<CapiCard {single} />
+		<CapiCard templateType='single' {single} />
 	</aside>
 	<Resizer {height} />
 {:catch}

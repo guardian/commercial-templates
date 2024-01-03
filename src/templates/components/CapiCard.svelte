@@ -2,6 +2,7 @@
 	import type { Single } from '$lib/types/capi';
 	import Sponsor from './Sponsor.svelte';
 
+	export let templateType: string;
 	export let single: Single;
 	export let direction = 'row';
 
@@ -10,7 +11,7 @@
 		articleImage.sources.length > 0 && 'srcset' in new Image();
 </script>
 
-<a href={articleUrl} style={`--direction: ${direction}`}>
+<a class="{templateType}-card" href={articleUrl} style={`--direction: ${direction}`}>
 	<div class="media">
 		{#if pictureSupported}
 			<picture>
@@ -34,27 +35,54 @@
 		{/if}
 	</div>
 	<div class="text">
-		<h2>{articleHeadline}</h2>
-		<p>{articleText}</p>
+		<h2>{@html articleHeadline}</h2>
+		{#if templateType === 'single'}
+			<p>{articleText}</p>
+		{/if}
 	</div>
-	<Sponsor branding={single.branding} />
+	{#if templateType === 'single'}
+		<Sponsor branding={single.branding} />
+	{/if}
 </a>
 
-<style>
+<style lang="scss">
 	a {
+		color: #000000;
 		text-decoration: none;
-		color: inherit;
+	}
+
+	a.single-card {
 		display: grid;
 		gap: 20px;
 		padding: 10px;
 	}
 
-	.media {
+	a.multiple-card {
+		margin: 12px 10px 0px 10px;;
+		display: block;
+		padding: 0px;
+		width: auto;
+		background-color: #fff;
+		border-top: 1px solid #69d1ca;
+	}
+
+	a.multiple-card:not(:first-of-type)::before {
+		content: '';
+		position: absolute;
+		top: 119px;
+		bottom: 102px;
+		margin-left: -10px;
+		width: 1px;
+		background: #dcdcdc;
+	}
+
+	a.single-card .media {
 		margin: -10px;
 	}
 
-	.text {
-		padding: 0;
+	a.multiple-card .media {
+		background-color: gray;
+		margin: 0 0 10px 0;
 	}
 
 	picture,
@@ -63,32 +91,78 @@
 		width: 100%;
 	}
 
-	h2 {
-		margin: 0;
-		padding: 0 0 10px;
-		font-size: 1.25rem;
+	a.single-card .text {
+		padding: 0;
+
+		h2 {
+			margin: 0;
+			padding: 0 0 10px;
+			font-size: 1.25rem;
+		}
+
+		p {
+			display: none;
+			margin: 0;
+			padding: 0;
+		}
 	}
 
-	p {
-		display: none;
-		margin: 0;
-		padding: 0;
+	a.multiple-card .text {
+		padding: 0 5px;
+
+		h2 {
+			font-size: 1rem;
+			line-height: 1.25rem;
+			font-family: 'GuardianTextSans', 'Helvetica Neue', Helvetica, Arial,
+				'Lucida Grande', sans-serif;
+			font-weight: 500;
+			padding: 0px;
+			margin-bottom: 3px;
+			color: #333
+		}
+	}
+
+	:global(.kicker) {
+		color: #626262;
+	}
+
+	@media (max-width: 739px) {
+		a.multiple-card:not(:first-of-type) .media {
+			display: none;
+		}
 	}
 
 	@media (min-width: 740px) {
-		a {
+		a.single-card {
 			grid-template-columns: 1fr 1fr;
 			grid-template-rows: repeat(2, auto);
 		}
 
-		.media {
+		a.single-card .media {
 			grid-row: span 2;
+		}
+
+		a.multiple-card {
+			margin: 12px 10px
+		}
+
+		a.multiple-card:nth-child(n) {
+			display: block;
+		}
+
+		a.multiple-card .text h2 {
+			margin-bottom: 10px;
 		}
 	}
 
 	@media (min-width: 1140px) {
-		.text p {
+		a.single-card .text p {
 			display: block;
 		}
+
+		a.multiple-card:not(:first-of-type)::before {
+			top: 12px;
+		}
 	}
+
 </style>

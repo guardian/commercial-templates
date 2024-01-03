@@ -10,7 +10,7 @@
 	import type { CapiCardOverride } from '$lib/types/capi';
 
 	import Sponsor from '$templates/components/Sponsor.svelte';
-	import CapiMultipleCard from '$templates/components/CapiMultipleCard.svelte';
+	import CapiCard from '$templates/components/CapiCard.svelte';
 	import PaidForHeader from '$templates/components/PaidForHeader.svelte';
 	import { addTrackingPixel, isValidReplacedVariable } from '$lib/gam';
 	import Resizer from '$templates/components/Resizer.svelte';
@@ -86,7 +86,7 @@
 				<div class="body">
 					<div class="cards-container">
 						{#each formattedCards as single}
-							<CapiMultipleCard {single} />
+							<CapiCard templateType='multiple' {single} />
 						{/each}
 					</div>
 					<div class="sponsor-container">
