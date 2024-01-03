@@ -39,10 +39,6 @@
 	--bg: #b39069;
 }
 
-[data-tone='masterclass'] {
-	--bg: #f4bc44;
-}
-
 [data-tone='book'] {
 	--bg: #8e246f;
 }

@@ -1,11 +1,9 @@
 <script lang="ts">
-	export let tone: Tone;
 	import JobsSvg from './icons/JobsLogo.svelte';
 	import LiveSvg from './icons/LiveLogo.svelte';
 	import TravelSvg from './icons/HolidaysLogo.svelte';
 	import MoneySvg from './icons/MoneydealsLogo.svelte';
 	import BookSvg from './icons/BookshopLogo.svelte';
-	import MasterclassSvg from './icons/MasterclassesLogo.svelte';
 	import WeeklySvg from './icons/WeeklyLogo.svelte';
 	import MembersSvg from './icons/MembersLogo.svelte';
 	import PatronSvg from './icons/PatronLogo.svelte';
@@ -13,6 +11,9 @@
 	import GenericSvg from './icons/GenericLogo.svelte';
 	import SubscriptionSvg from './icons/SubscriptionsLogo.svelte';
 	import type { ComponentType } from 'svelte';
+	import type { Tone } from '$lib/types/tones';
+
+	export let tone: Tone;
 
 	const toneLogoMapping: Record<Tone, ComponentType> = {
 		job: JobsSvg,
@@ -20,7 +21,6 @@
 		travel: TravelSvg,
 		money: MoneySvg,
 		book: BookSvg,
-		masterclass: MasterclassSvg,
 		weekly: WeeklySvg,
 		members: MembersSvg,
 		patron: PatronSvg,
