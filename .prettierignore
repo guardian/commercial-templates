@@ -6,4 +6,4 @@ legacy
 /.svelte-kit
 
 # Python
-scripts/upload
+scripts/deploy

@@ -1,11 +1,9 @@
-# Upload to GAM
+# Deploy to GAM
 This script will attempt to upload all commercial templates to GAM, replacing the corresponding generated HTML & CSS.
 
 The script checks for the presence of an `ad.json` file in the template directory. This file must contain the key `nativeStyleId`, specifying the ID for the corresponding [native style][native-style] in GAM.
 
 [native-style]: https://support.google.com/admanager/answer/13404315?hl=en&ref_topic=7032550&sjid=6297647672569553146-EU
-
-It's written in python because Google does not offer a JS SDK.
 
 ## Requirements
 - Python 3.x
@@ -13,8 +11,8 @@ It's written in python because Google does not offer a JS SDK.
 
 ## Running locally
 ```bash
-$ cd scripts/upload
+$ cd scripts/deploy
 $ cp .env.example .env # fill this in
 $ pipenv install
-$ pipenv run python upload.py
+$ pipenv run python deploy.py
 ```
