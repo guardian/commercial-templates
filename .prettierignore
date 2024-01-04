@@ -2,4 +2,8 @@ legacy
 
 # Svelte
 /build
+/build-static
 /.svelte-kit
+
+# Python
+scripts/deploy

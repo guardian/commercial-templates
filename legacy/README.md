@@ -4,7 +4,7 @@
 - Create a `src/template-name` for the template you're migrating
 - Generate `index.html`, `index.scss` and `index.js` following current standards and the specification doc
 - Ensure that you are running at least `node` version 6. (You might want to run `nvm use 6`.)
-- At the root of the repository run `npm install` and `npm run build`.  
+- At the root of the repository run `npm install` and `npm run build`.
   This will generate HTML and CSS artefacts under `/build/<template-name>`, which can be copied into native styles in GAM.
 - You should now be able to test your templates.
 
@@ -43,10 +43,6 @@ This will require you to use:
 - the [`portify`](https://github.com/guardian/commercial-templates/blob/master/src/_shared/js/dev.js) method in `src/_shared/js/dev.js` to programmatically switch between 7000 and 9000 when making outbound requests.
 - the [`JsonComponent`](https://github.com/guardian/frontend/blob/master/common/app/common/JsonComponent.scala) method to serve the JSON response from the frontend controller. This method wraps the JSON response in a [CORS](https://github.com/guardian/frontend/blob/master/common/app/model/Cors.scala) header which allows cross-origin requests.
 
-### Automated ads
-
-A number of ads (`events-multiple` and `masterclass-multiple`) use a reader revenue endpoint. In their associated `test.json` files you will see that the URL's refer to `mem.thegulocal.com` as the domain. The `_src/js/events-multiple.js` needs to be updated to reflect this domain also. This requires the [`membership-frontend`](https://github.com/guardian/membership-frontend) to be running and using the `nginx` server. Make sure to set this up before testing these ads.
-
 ## Testing on Frontend (Prod)
 
 There will shortly be an easier way to preview, but for now:
@@ -63,7 +59,7 @@ There will shortly be an easier way to preview, but for now:
 
 ## Code conventions and pre-commit hooks
 
-This project uses [stylelint](https://github.com/stylelint/). 
+This project uses [stylelint](https://github.com/stylelint/).
 
 To make stylelint list **ALL** errors and warnings, use:
 

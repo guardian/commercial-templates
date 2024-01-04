@@ -6,6 +6,7 @@ import type { OutputAsset, OutputChunk } from 'rollup';
 import { getCommit } from '$lib/git';
 import { build } from '$lib/rollup';
 import { getProps } from '$lib/svelte';
+import { writeTemplate } from '$lib/write-template';
 
 type Output = {
 	html?: string;
@@ -98,6 +99,8 @@ export const GET: RequestHandler = async ({ params }) => {
 	const description = existsSync(`${dir}/README.md`)
 		? marked.parse(readFileSync(`${dir}/README.md`, 'utf-8'))
 		: `<p><em>no description provided</em></p>`;
+
+	writeTemplate(template, 'ssr', html, css);
 
 	return {
 		body: {
