@@ -6,7 +6,6 @@ const tones = [
 	'travel',
 	'money',
 	'book',
-	'masterclass',
 	'weekly',
 	'members',
 	'patron',
