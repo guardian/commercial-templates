@@ -1,12 +1,15 @@
 <script lang="ts">
 	import type { Single } from '$lib/types/capi';
 	import Sponsor from './Sponsor.svelte';
+	import AudioIcon from './icons/AudioIcon.svelte';
+	import CameraIcon from './icons/CameraIcon.svelte';
+	import VideoIcon from './icons/VideoIcon.svelte';
 
 	export let templateType: string;
 	export let single: Single;
 	export let direction = 'row';
 
-	const { articleHeadline, articleUrl, articleText, articleImage, kicker } = single;
+	const { articleHeadline, articleUrl, articleText, articleImage, audioTag, galleryTag, videoTag, kicker } = single;
 	const pictureSupported =
 		articleImage.sources.length > 0 && 'srcset' in new Image();
 </script>
@@ -38,6 +41,13 @@
 		<h2>
 			{#if kicker}
 				<span class="kicker">{kicker && kicker}</span><br>
+			{/if}
+			{#if audioTag}
+				<AudioIcon />
+			{:else if galleryTag}
+				<CameraIcon/>
+			{:else if videoTag}
+				<VideoIcon />
 			{/if}
 			{articleHeadline}
 		</h2>
@@ -129,6 +139,14 @@
 
 	.kicker {
 		color: #626262;
+	}
+
+	:global(svg.icon) {
+		fill: #767676;
+		height: 0.7em;
+		width: 1.2em;
+		line-height: inherit;
+		margin-right: 0.1em;
 	}
 
 	@media (max-width: 739px) {

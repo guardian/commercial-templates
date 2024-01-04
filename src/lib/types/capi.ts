@@ -46,6 +46,7 @@ export type Single = {
 	galleryTag: boolean;
 	videoTag: boolean;
 	branding: Branding;
+	kicker?: string;
 };
 
 export type CapiCardOverride = {
