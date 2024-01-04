@@ -22,7 +22,7 @@
 
 	<div class="banner-description-container">
 		<span class="banner-description">
-			<slot name="description" />
+			<slot />
 		</span>
 	</div>
 
