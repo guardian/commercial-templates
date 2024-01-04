@@ -13,10 +13,15 @@
 	const { width, height } = logo.dimensions;
 </script>
 
-<div class="{templateType === 'multiple' ? 'multiple-logo-container' : ''}">
+<div class={templateType === 'multiple' ? 'multiple-logo-container' : ''}>
 	<p>Paid for by</p>
 	<a href={`${CLICK_MACRO}${branding.logo.link}`}>
-		<img class="{templateType === 'multiple' ? 'multiple-logo' : ''}" src={logo.src} alt="" style={`aspect-ratio: ${width} / ${height};`} />
+		<img
+			class={templateType === 'multiple' ? 'multiple-logo' : ''}
+			src={logo.src}
+			alt=""
+			style={`aspect-ratio: ${width} / ${height};`}
+		/>
 	</a>
 </div>
 

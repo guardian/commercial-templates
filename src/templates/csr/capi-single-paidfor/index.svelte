@@ -32,12 +32,12 @@
 {:then single}
 	<aside bind:clientHeight={height}>
 		<PaidForHeader
-		    templateType='single'
+			templateType="single"
 			edition={single.branding.edition}
 			{ComponentTitle}
 			{SeriesUrl}
 		/>
-		<CapiCard templateType='single' {single} />
+		<CapiCard templateType="single" {single} />
 	</aside>
 	<Resizer {height} />
 {:catch}

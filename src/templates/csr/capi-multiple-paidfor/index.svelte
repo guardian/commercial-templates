@@ -41,29 +41,29 @@
 			headline: Article1Headline,
 			image: Article1Image,
 			url: Article1URL,
-			kicker: Article1Kicker
+			kicker: Article1Kicker,
 		},
 		{
 			headline: Article2Headline,
 			image: Article2Image,
 			url: Article2URL,
-			kicker: Article2Kicker
+			kicker: Article2Kicker,
 		},
 		{
 			headline: Article3Headline,
 			image: Article3Image,
 			url: Article3URL,
-			kicker: Article3Kicker
+			kicker: Article3Kicker,
 		},
 		{
 			headline: Article4Headline,
 			image: Article4Image,
 			url: Article4URL,
-			kicker: Article4Kicker
+			kicker: Article4Kicker,
 		},
 	];
 
-	const requestData = retrieveCapiData(cards, SeriesUrl)
+	const requestData = retrieveCapiData(cards, SeriesUrl);
 
 	if (isValidReplacedVariable(Trackingpixel)) addTrackingPixel(Trackingpixel);
 
@@ -81,18 +81,21 @@
 				edition={response.articles[0].branding.edition}
 				{ComponentTitle}
 				{SeriesUrl}
-				templateType='multiple'
+				templateType="multiple"
 			/>
-				<div class="body">
-					<div class="cards-container">
-						{#each formattedCards as single}
-							<CapiCard templateType='multiple' {single} />
-						{/each}
-					</div>
-					<div class="sponsor-container">
-						<Sponsor branding={response.articles[0].branding} templateType ='multiple' />
-					</div>
+			<div class="body">
+				<div class="cards-container">
+					{#each formattedCards as single}
+						<CapiCard templateType="multiple" {single} />
+					{/each}
 				</div>
+				<div class="sponsor-container">
+					<Sponsor
+						branding={response.articles[0].branding}
+						templateType="multiple"
+					/>
+				</div>
+			</div>
 		</aside>
 		<Resizer {height} />
 	{/await}
@@ -147,5 +150,4 @@
 			flex-direction: column;
 		}
 	}
-
 </style>

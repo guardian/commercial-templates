@@ -9,12 +9,25 @@
 	export let single: Single;
 	export let direction = 'row';
 
-	const { articleHeadline, articleUrl, articleText, articleImage, audioTag, galleryTag, videoTag, kicker } = single;
+	const {
+		articleHeadline,
+		articleUrl,
+		articleText,
+		articleImage,
+		audioTag,
+		galleryTag,
+		videoTag,
+		kicker,
+	} = single;
 	const pictureSupported =
 		articleImage.sources.length > 0 && 'srcset' in new Image();
 </script>
 
-<a class="{templateType}-card" href={articleUrl} style={`--direction: ${direction}`}>
+<a
+	class="{templateType}-card"
+	href={articleUrl}
+	style={`--direction: ${direction}`}
+>
 	<div class="media">
 		{#if pictureSupported}
 			<picture>
@@ -40,12 +53,12 @@
 	<div class="text">
 		<h2>
 			{#if kicker}
-				<span class="kicker">{kicker && kicker}</span><br>
+				<span class="kicker">{kicker && kicker}</span><br />
 			{/if}
 			{#if audioTag}
 				<AudioIcon />
 			{:else if galleryTag}
-				<CameraIcon/>
+				<CameraIcon />
 			{:else if videoTag}
 				<VideoIcon />
 			{/if}
@@ -73,7 +86,7 @@
 	}
 
 	a.multiple-card {
-		margin: 12px 10px 0px 10px;;
+		margin: 12px 10px 0px 10px;
 		display: block;
 		padding: 0 0 8px 0;
 		width: auto;
@@ -133,7 +146,7 @@
 			font-weight: 500;
 			padding: 0px;
 			margin: 6px 0 8px 0;
-			color: #333
+			color: #333;
 		}
 	}
 
@@ -166,7 +179,7 @@
 		}
 
 		a.multiple-card {
-			margin: 12px 10px
+			margin: 12px 10px;
 		}
 
 		a.multiple-card:nth-child(n) {
@@ -187,5 +200,4 @@
 			top: 12px;
 		}
 	}
-
 </style>

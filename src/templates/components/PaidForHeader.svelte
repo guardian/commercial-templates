@@ -32,8 +32,8 @@
 			{#if popup}
 				<div id="popup">
 					<p>
-						Paid content is paid for and controlled by an advertiser and produced
-						by the Guardian Labs team
+						Paid content is paid for and controlled by an advertiser and
+						produced by the Guardian Labs team
 					</p>
 					<a
 						class="popup-link"
@@ -44,7 +44,9 @@
 			{/if}
 		</div>
 
-		<h1 class="adverts__title {templateType === 'multiple' && 'multiple-title'}">
+		<h1
+			class="adverts__title {templateType === 'multiple' && 'multiple-title'}"
+		>
 			<a
 				href={`${CLICK_MACRO}https://theguardian.com/${SeriesUrl}`}
 				target="_top"
