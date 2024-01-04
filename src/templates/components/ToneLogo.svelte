@@ -35,8 +35,10 @@
 	};
 </script>
 
-{#if toneLogoMapping[tone]}
-	<svelte:component this={toneLogoMapping[tone]} />
-{:else}
-	<svelte:component this={BrandSvg} />
-{/if}
+<div style:color="#fff">
+	{#if toneLogoMapping[tone]}
+		<svelte:component this={toneLogoMapping[tone]} />
+	{:else}
+		<svelte:component this={BrandSvg} />
+	{/if}
+</div>

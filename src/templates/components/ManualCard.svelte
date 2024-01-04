@@ -69,7 +69,9 @@
 	picture,
 	img {
 		display: block;
-		width: 100%;
+		width: auto;
+		max-width: 100%;
+		max-height: 150px;
 	}
 
 	h2 {
@@ -115,7 +117,6 @@
 
 	@media (min-width: 740px) {
 		a.card {
-			max-width: 25%;
 			padding: 12px 10px;
 			display: block;
 			margin: 0px;
@@ -142,6 +143,11 @@
 			.media {
 				width: calc(66.67% - 10px);
 				margin-right: 10px;
+
+				picture,
+				img {
+					max-height: 100%;
+				}
 			}
 
 			.text {
