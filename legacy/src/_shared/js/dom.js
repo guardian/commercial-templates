@@ -23,7 +23,6 @@ let img = createElement('img');
 let div = createElement('div');
 
 export {
-    closest,
     write,
     read,
     img,
