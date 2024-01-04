@@ -9,10 +9,7 @@ function addHeadlineKicker(
 	cardData: Single[],
 ) {
 	for (let i = 0; i < overrideCards.length; i++) {
-		if (
-			overrideCards[i]?.kicker !== `[%''%]` &&
-			overrideCards[i]?.headline !== `[%''%]`
-		) {
+		if (overrideCards[i]?.kicker && overrideCards[i]?.headline) {
 			// eslint-disable-next-line @typescript-eslint/no-non-null-assertion -- headline should always be defined
 			cardData[i]!.articleHeadline = overrideCards[i]?.headline as string;
 			// eslint-disable-next-line @typescript-eslint/no-non-null-assertion -- we define the kicker here - it's an optional parameter
@@ -26,7 +23,7 @@ function addHeadlineKicker(
 function retrieveCapiData(cards: CapiCardOverride[], seriesUrl: GAMVariable) {
 	let request = `${apiEndpoint}?k=${encodeURI(seriesUrl)}`;
 	cards.forEach((card) => {
-		if (card.url !== `[%''%]`) {
+		if (card.url) {
 			request += `&t=${encodeURI(card.url)}`;
 		}
 	});
