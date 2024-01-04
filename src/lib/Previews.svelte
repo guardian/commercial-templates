@@ -9,6 +9,7 @@
 	import { replaceGAMVariables } from '$lib/gam';
 	import { onMount } from 'svelte';
 	import type { Message } from './messenger';
+	import { tones } from './types/tones';
 
 	export let template: string;
 	export let html: string;
@@ -90,7 +91,16 @@
 	<ul>
 		{#each Object.keys(props) as prop}
 			<li>
-				{prop}: <input type="text" bind:value={props[prop]} />
+				{#if prop === 'Tone'}
+					{prop}:
+					<select bind:value={props[prop]}>
+						{#each tones as tone}
+							<option value={tone}>{tone}</option>
+						{/each}
+					</select>
+				{:else}
+					{prop}: <input type="text" bind:value={props[prop]} />
+				{/if}
 			</li>
 		{/each}
 	</ul>

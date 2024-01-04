@@ -2,13 +2,15 @@
 	import type { GAMVariable } from '$lib/gam';
 	import '$templates/components/fonts/Sans.css';
 	import ManualCard from '$templates/components/ManualCard.svelte';
-	import EventsHeader from '$templates/components/EventsHeader.svelte';
 	import Resizer from '$templates/components/Resizer.svelte';
+	import ManualHeader from '$templates/components/ManualHeader.svelte';
+	import ToneLogo from '$templates/components/ToneLogo.svelte';
+	import type { Tone } from '$lib/types/tones';
 
 	export let BannerDescription: GAMVariable;
 	export let HeaderButtonText: GAMVariable;
 	export let HeaderButtonUrl: GAMVariable;
-	export let NumberOfCards: GAMVariable;
+	export let Tone: GAMVariable<Tone>;
 	export let EventTitle1: GAMVariable;
 	export let EventTitle2: GAMVariable;
 	export let EventTitle3: GAMVariable;
@@ -53,20 +55,37 @@
 		},
 	];
 
+	events = events.filter((event) => event.eventTitle !== '');
+
 	let height: number = -1;
 </script>
 
 <aside bind:clientHeight={height}>
-	<EventsHeader {HeaderButtonUrl} {BannerDescription} {HeaderButtonText} />
+	<ManualHeader
+		buttonText={HeaderButtonText}
+		buttonUrl={HeaderButtonUrl}
+		tone={Tone}
+	>
+		{@html BannerDescription}
+	</ManualHeader>
 	<div class="cards-container">
 		{#each events as event}
 			<ManualCard
-				TotalCardNumber={parseInt(NumberOfCards)}
-				EventTitle={event.eventTitle}
-				EventDateTime={event.eventDateTime}
-				EventImage={event.eventImage}
-				EventUrl={event.eventUrl}
-			/>
+				image={event.eventImage}
+				url={event.eventUrl}
+				linkText="Book tickets"
+				tone={Tone}
+			>
+				<svelte:fragment slot="title">
+					{@const [boldTitle, regularTitle] = event.eventTitle.split(':')}
+					{#if regularTitle}
+						<b>{@html boldTitle}:</b>{@html regularTitle}
+					{:else}
+						{@html boldTitle}
+					{/if}
+				</svelte:fragment>
+				<svelte:fragment slot="text">{event.eventDateTime}</svelte:fragment>
+			</ManualCard>
 		{/each}
 	</div>
 </aside>
@@ -88,6 +107,7 @@
 	.cards-container {
 		display: flex;
 		flex-direction: row;
+		justify-content: space-evenly;
 	}
 
 	@media (min-width: 1140px) {

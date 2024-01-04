@@ -1,6 +1,6 @@
 <script context="module" lang="ts">
-	import { CLICK_MACRO } from '$lib/gam';
-	import type { GAMVariable } from '$lib/gam';
+	import { clickMacro } from '$lib/gam';
+	import type { Tone } from '$lib/types/tones';
 </script>
 
 <script lang="ts">
@@ -9,42 +9,33 @@
 	import '$templates/components/fonts/Sans.css';
 	import ArrowRight from './icons/ArrowRight.svelte';
 
-	export let TotalCardNumber: number;
-	export let EventTitle: GAMVariable;
-	export let EventDateTime: GAMVariable;
-	export let EventImage: GAMVariable;
-	export let EventUrl: GAMVariable;
-	export let direction = 'row';
-
-	let [boldTitle, regularTitle] = EventTitle.split(':');
-	if (regularTitle) {
-		boldTitle += ':';
-	} else {
-		regularTitle = '';
-	}
+	export let image: string;
+	export let url: string;
+	export let linkText: string;
+	export let tone: Tone;
+	export let isProminent = false;
 </script>
 
-<a
-	class="card split-into-{TotalCardNumber}"
-	href={EventUrl}
-	style={`--direction: ${direction}`}
->
+<a class="card" class:is-prominent={isProminent} href={clickMacro(url)}>
 	<div class="media">
 		<picture>
-			<img src={EventImage} alt="" />
+			<img src={image} alt="" />
 		</picture>
 	</div>
+
 	<div class="text">
-		<h2><b>{boldTitle}</b>{regularTitle}</h2>
-		<p>{EventDateTime}</p>
+		<h2><slot name="title" /></h2>
+		<p><slot name="text" /></p>
+		{#if linkText}
+			<span class="button" data-tone={tone}>
+				{linkText}
+				<ArrowRight width={24} />
+			</span>
+		{/if}
 	</div>
-	<a class="button" href={`${CLICK_MACRO}${EventUrl}`} target="_top">
-		Book tickets
-		<ArrowRight width={24} />
-	</a>
 </a>
 
-<style>
+<style lang="scss">
 	a {
 		color: #000000;
 		text-decoration: none;
@@ -54,11 +45,7 @@
 		padding: 12px 10px;
 		display: block;
 		margin: 0px;
-		width: 50%;
-	}
-
-	a.card:nth-child(n + 3) {
-		display: none;
+		flex: 1;
 	}
 
 	a.card:not(:first-of-type)::before {
@@ -72,7 +59,6 @@
 	}
 
 	.media {
-		background-color: gray;
 		margin: 0 0 10px 0;
 	}
 
@@ -83,7 +69,9 @@
 	picture,
 	img {
 		display: block;
-		width: 100%;
+		width: auto;
+		max-width: 100%;
+		max-height: 150px;
 	}
 
 	h2 {
@@ -104,13 +92,13 @@
 		margin: 3px 0px;
 	}
 
-	a.button {
+	.button {
 		font-size: 12px;
 		line-height: 0;
 		font-weight: 700;
 		font-family: 'GuardianTextSans', 'Helvetica Neue', Helvetica, Arial,
 			'Lucida Grande', sans-serif;
-		background: #c83877;
+		background: var(--bg);
 		color: #ffffff;
 		text-decoration: none;
 		border-radius: 10rem;
@@ -121,26 +109,20 @@
 		align-items: center;
 	}
 
+	@media (max-width: 739px) {
+		a.card:nth-child(n + 3) {
+			display: none;
+		}
+	}
+
 	@media (min-width: 740px) {
-		a.card:nth-child(n) {
+		a.card {
 			padding: 12px 10px;
 			display: block;
 			margin: 0px;
 		}
 
-		a.split-into-2 {
-			width: 50%;
-		}
-
-		a.split-into-3 {
-			width: 33%;
-		}
-
-		a.split-into-4 {
-			width: 25%;
-		}
-
-		a.button {
+		.button {
 			margin-top: 6px;
 			margin-bottom: 10px;
 		}
@@ -151,6 +133,35 @@
 
 		p {
 			margin: 10px 0px;
+		}
+
+		.is-prominent.card:nth-child(1) {
+			display: flex;
+			flex-direction: row;
+			align-items: stretch;
+
+			.media {
+				width: calc(66.67% - 10px);
+				margin-right: 10px;
+
+				picture,
+				img {
+					max-height: 100%;
+				}
+			}
+
+			.text {
+				flex: 1;
+				padding: 6px 10px 6px 0;
+				display: flex;
+				flex-direction: column;
+				align-items: flex-start;
+			}
+
+			.button {
+				margin-top: auto;
+				margin-bottom: 4px;
+			}
 		}
 	}
 
