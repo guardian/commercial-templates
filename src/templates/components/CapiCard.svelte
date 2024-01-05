@@ -5,7 +5,7 @@
 	import CameraIcon from './icons/CameraIcon.svelte';
 	import VideoIcon from './icons/VideoIcon.svelte';
 
-	export let templateType: string;
+	export let templateType: 'single' | 'multiple';
 	export let single: Single;
 	export let direction = 'row';
 
