@@ -3,7 +3,6 @@
 </script>
 
 <script lang="ts">
-	import type { GAMVariable } from '$lib/gam';
 	import type { Single } from '$lib/types/capi';
 	import Button from './Button.svelte';
 	import ArrowDown from './icons/ArrowDown.svelte';
@@ -11,8 +10,8 @@
 
 	import GuardianLabs from './icons/GuardianLabs.svelte';
 
-	export let SeriesUrl: GAMVariable;
-	export let ComponentTitle: GAMVariable;
+	export let SeriesUrl: string;
+	export let ComponentTitle: string;
 	export let edition: Single['branding']['edition'];
 	export let templateType = '';
 
