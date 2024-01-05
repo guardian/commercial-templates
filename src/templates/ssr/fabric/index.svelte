@@ -39,7 +39,7 @@
 				style:--tablet-background-image={`url('${Layer1BackgroundImage}')`}
 				style:--tablet-background-position={Layer1BackgroundPosition}
 				style:--mobile-background-image={`url('${MobileLayer1BackgroundImage}')`}
-				style:--mobile-background-position={`url('${MobileLayer1BackgroundPosition}')`}
+				style:--mobile-background-position={MobileLayer1BackgroundPosition}
 			/>
 			<div
 				id="layer2"
@@ -47,14 +47,14 @@
 				style:--tablet-background-image={`url('${Layer2BackgroundImage}')`}
 				style:--tablet-background-position={Layer2BackgroundPosition}
 				style:--mobile-background-image={`url('${MobileLayer2BackgroundImage}')`}
-				style:--mobile-background-position={`url('${MobileLayer2BackgroundPosition}')`}
+				style:--mobile-background-position={MobileLayer2BackgroundPosition}
 			/>
 			<div
 				class="layer"
 				style:--tablet-background-image={`url('${Layer3BackgroundImage}')`}
 				style:--tablet-background-position={Layer3BackgroundPosition}
 				style:--mobile-background-image={`url('${MobileLayer3BackgroundImage}')`}
-				style:--mobile-background-position={`url('${MobileLayer3BackgroundPosition}')`}
+				style:--mobile-background-position={MobileLayer3BackgroundPosition}
 			/>
 		</div>
 	</a>
@@ -97,11 +97,11 @@
 			background-image: var(--mobile-background-image);
 			background-position: var(--mobile-background-position);
 		}
-	}
-	@media (min-width: 740px) {
-		.layer {
-			background-image: var(--tablet-background-image);
-			background-position: var(--tablet-background-position);
+		@media (min-width: 740px) {
+			.layer {
+				background-image: var(--tablet-background-image);
+				background-position: var(--tablet-background-position);
+			}
 		}
 	}
 </style>

@@ -1,6 +1,4 @@
 <script lang="ts">
-	import type { GAMVariable } from '$lib/gam';
-
 	export let src: string;
 </script>
 
