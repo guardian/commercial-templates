@@ -44,7 +44,8 @@
 		</div>
 
 		<h1
-			class="adverts__title {templateType === 'multiple' && 'multiple-title'}"
+			class="adverts__title"
+			class:multiple-title={templateType === 'multiple'}
 		>
 			<a
 				href={`${CLICK_MACRO}https://theguardian.com/${SeriesUrl}`}
