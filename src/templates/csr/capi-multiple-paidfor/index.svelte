@@ -63,7 +63,9 @@
 		},
 	];
 
-	const getCards = retrieveCapiData(cardOverrides, SeriesUrl).then((response) => addHeadlineKicker(cardOverrides, response.articles));
+	const getCards = retrieveCapiData(cardOverrides, SeriesUrl).then((response) =>
+		addHeadlineKicker(cardOverrides, response.articles),
+	);
 
 	if (isValidReplacedVariable(Trackingpixel)) addTrackingPixel(Trackingpixel);
 
@@ -88,10 +90,7 @@
 					{/each}
 				</div>
 				<div class="sponsor-container">
-					<Sponsor
-						branding={cards[0].branding}
-						templateType="multiple"
-					/>
+					<Sponsor branding={cards[0].branding} templateType="multiple" />
 				</div>
 			</div>
 		</aside>
