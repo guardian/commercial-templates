@@ -36,7 +36,7 @@
 	export let Article4Kicker: GAMVariable;
 	export let Trackingpixel: GAMVariable;
 
-	let cards: CapiCardOverride[] = [
+	let cardOverrides: CapiCardOverride[] = [
 		{
 			headline: Article1Headline,
 			image: Article1Image,
@@ -63,42 +63,40 @@
 		},
 	];
 
-	const requestData = retrieveCapiData(cards, SeriesUrl);
+	const getCards = retrieveCapiData(cardOverrides, SeriesUrl).then((response) => addHeadlineKicker(cardOverrides, response.articles));
 
 	if (isValidReplacedVariable(Trackingpixel)) addTrackingPixel(Trackingpixel);
 
 	let height: number = -1;
 </script>
 
-{#await requestData}
+{#await getCards}
 	<h3>Loading Content for “{SeriesUrl}”</h3>
-{:then response}
-	{#await addHeadlineKicker(cards, response.articles)}
-		<p>Formatting cards...</p>
-	{:then formattedCards}
+{:then cards}
+	{#if cards[0]}
 		<aside bind:clientHeight={height}>
 			<PaidForHeader
-				edition={response.articles[0].branding.edition}
+				edition={cards[0].branding.edition}
 				{ComponentTitle}
 				{SeriesUrl}
 				templateType="multiple"
 			/>
 			<div class="body">
 				<div class="cards-container">
-					{#each formattedCards as single}
+					{#each cards as single}
 						<CapiCard templateType="multiple" {single} />
 					{/each}
 				</div>
 				<div class="sponsor-container">
 					<Sponsor
-						branding={response.articles[0].branding}
+						branding={cards[0].branding}
 						templateType="multiple"
 					/>
 				</div>
 			</div>
 		</aside>
 		<Resizer {height} />
-	{/await}
+	{/if}
 {:catch}
 	<h3>Could not fetch series “{SeriesUrl}”</h3>
 {/await}
