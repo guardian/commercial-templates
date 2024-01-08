@@ -69,7 +69,7 @@
 		{/if}
 	</div>
 	{#if templateType === 'single'}
-		<Sponsor branding={single.branding} />
+		<Sponsor branding={single.branding} {templateType} />
 	{/if}
 </a>
 

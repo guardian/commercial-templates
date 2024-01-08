@@ -6,7 +6,7 @@
 	import type { Branding } from '$lib/types/capi';
 
 	export let branding: Branding;
-	export let templateType = '';
+	export let templateType: 'single' | 'multiple';
 
 	const { logo } = branding;
 

@@ -13,7 +13,7 @@
 	export let SeriesUrl: string;
 	export let ComponentTitle: string;
 	export let edition: Single['branding']['edition'];
-	export let templateType = '';
+	export let templateType: 'single' | 'multiple';
 
 	export let popup = false;
 </script>
