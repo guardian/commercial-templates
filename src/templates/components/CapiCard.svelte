@@ -94,6 +94,10 @@
 		border-top: 1px solid #69d1ca;
 	}
 
+	a.multiple-card:hover {
+		background-color: #e4e4e4;
+	}
+
 	a.multiple-card:not(:first-of-type)::before {
 		content: '';
 		position: absolute;
