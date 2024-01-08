@@ -1,7 +1,4 @@
 <script context="module" lang="ts">
-	export const cdn = 'https://i.guim.co.uk/img/media/';
-	export const api =
-		'https://api.nextgen.guardianapps.co.uk/commercial/api/capi-multiple.json';
 	import '$templates/components/fonts/Sans.css';
 </script>
 
