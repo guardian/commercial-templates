@@ -10,6 +10,7 @@
 		addTrackingPixel,
 	} from '$lib/gam.js';
 	import CapiHostedCard from '$templates/components/CapiHostedCard.svelte';
+	import HostedHeader from '$templates/components/HostedHeader.svelte';
 	import Resizer from '$templates/components/Resizer.svelte';
 	import { addOverridesToCardData, retrieveCapiData } from '$lib/capiMultiple';
 	import type { CapiCardOverride } from '$lib/types/capi';
@@ -67,15 +68,7 @@
 	{#await getCards}
 		<h3>Loading Content...</h3>
 	{:then multiple}
-		<div class="header">
-			<h1>From our advertisers</h1>
-			{#if multiple.logo}
-				<div class="logo">
-					<div>Advertiser content</div>
-					<img src={multiple.logo} alt="advertiser logo" />
-				</div>
-			{/if}
-		</div>
+		<HostedHeader logo={multiple.logo} />
 		<div class="cards-container">
 			{#each multiple.cards as card}
 				<CapiHostedCard {card} />
@@ -100,39 +93,6 @@
 		font-kerning: normal;
 		text-rendering: optimizelegibility;
 		font-variant-ligatures: common-ligatures;
-	}
-
-	.header {
-		display: flex;
-		flex-direction: row;
-		justify-content: space-between;
-	}
-
-	h1 {
-		font-size: 1.25rem;
-		font-weight: 700;
-		line-height: 1;
-		margin: 0;
-	}
-
-	.logo {
-		display: flex;
-		flex-direction: column;
-		background-color: #fff;
-		width: 5em;
-
-		div {
-			padding: 0.5em;
-			font-size: 0.75rem;
-			line-height: 1.1;
-			background-color: var(--brand-colour);
-			color: #fff;
-			text-align: start;
-		}
-
-		img {
-			width: 100%;
-		}
 	}
 
 	.cards-container {
@@ -165,19 +125,6 @@
 	@media (min-width: 1140px) {
 		aside {
 			grid-template-columns: 240px 1fr;
-		}
-
-		.header {
-			flex-direction: column;
-		}
-
-		.logo {
-			width: 7em;
-
-			div {
-				padding: 6px 0 8px;
-				text-align: center;
-			}
 		}
 	}
 </style>
