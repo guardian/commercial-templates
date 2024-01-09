@@ -17,14 +17,15 @@
 		articleHeadline,
 		articleUrl,
 		articleText,
+		articleKicker,
 		articleImage,
 		audioTag,
 		galleryTag,
 		videoTag,
-		kicker,
 	} = single;
+
 	const pictureSupported =
-		articleImage.sources.length > 0 && 'srcset' in new Image();
+		articleImage && articleImage.sources.length > 0 && 'srcset' in new Image();
 </script>
 
 <a
@@ -51,14 +52,14 @@
 				{/each}
 				<img src={articleImage.backupSrc} alt="" />
 			</picture>
-		{:else}
+		{:else if articleImage?.backupSrc}
 			<img src={articleImage.backupSrc} alt="" />
 		{/if}
 	</div>
 	<div class="text">
 		<h2>
-			{#if kicker}
-				<span class="kicker">{kicker && kicker}</span><br />
+			{#if articleKicker}
+				<span class="kicker">{articleKicker && articleKicker}</span><br />
 			{/if}
 			{#if audioTag}
 				<AudioIcon />

@@ -37,8 +37,9 @@ export type Branding = {
 export type Single = {
 	articleHeadline: string;
 	articleText: string;
+	articleKicker: string;
 	articleUrl: string;
-	articleImage: {
+	articleImage?: {
 		sources: Source[];
 		backupSrc: string;
 	};
@@ -46,12 +47,24 @@ export type Single = {
 	galleryTag: boolean;
 	videoTag: boolean;
 	branding: Branding;
+};
+
+export type CapiCard = {
+	headline: string;
+	url: string;
+	audioTag?: boolean;
+	galleryTag?: boolean;
+	videoTag?: boolean;
+	image?: {
+		sources: Source[];
+		backupSrc: string;
+	};
 	kicker?: string;
 };
 
 export type CapiCardOverride = {
 	headline: GAMVariable;
-	image: GAMVariable;
 	url: GAMVariable;
-	kicker: GAMVariable;
+	image: GAMVariable;
+	kicker?: GAMVariable;
 };

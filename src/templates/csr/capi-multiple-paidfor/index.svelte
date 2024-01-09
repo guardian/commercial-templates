@@ -60,7 +60,7 @@
 		},
 	];
 
-	const getCards = retrieveCapiData(cardOverrides, SeriesURL).then((response) =>
+	const getCards = retrieveCapiData(SeriesURL, cardOverrides).then((response) =>
 		addHeadlineKicker(cardOverrides, response.articles),
 	);
 
