@@ -82,7 +82,7 @@
 			{/each}
 		</div>
 	{:catch}
-		<h3>An error has occurred whilst loading content</h3>
+		<h3>An error occurred whilst loading content</h3>
 	{/await}
 </aside>
 <Resizer {height} />
