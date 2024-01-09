@@ -77,7 +77,7 @@
 			<PaidForHeader
 				edition={cards[0].branding.edition}
 				{ComponentTitle}
-				SeriesUrl= {SeriesURL}
+				SeriesUrl={SeriesURL}
 				templateType="multiple"
 			/>
 			<div class="body">
