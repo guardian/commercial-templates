@@ -29,7 +29,8 @@
 	].join('');
 
 	export const widths = {
-		1300: 'desktop',
+		1300: 'wide',
+		980: 'desktop',
 		740: 'tablet',
 		360: 'mobile',
 	};
