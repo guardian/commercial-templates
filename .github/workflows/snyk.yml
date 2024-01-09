@@ -14,5 +14,8 @@ jobs:
       DEBUG: true
       ORG: guardian-commercial
       SKIP_NODE: false
+      SKIP_PYTHON: false
+      PYTHON_VERSION: 3.11
+      PIPFILES: scripts/deploy/Pipfile
     secrets:
       SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
