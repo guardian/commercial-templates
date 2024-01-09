@@ -13,7 +13,7 @@
 	import Resizer from '$templates/components/Resizer.svelte';
 	import { retrieveCapiData, addHeadlineKicker } from '$lib/capiMultiple';
 
-	export let SeriesUrl: GAMVariable;
+	export let SeriesURL: GAMVariable;
 	export let ComponentTitle: GAMVariable;
 	export let Article1Headline: GAMVariable;
 	export let Article1Image: GAMVariable;
@@ -60,7 +60,7 @@
 		},
 	];
 
-	const getCards = retrieveCapiData(cardOverrides, SeriesUrl).then((response) =>
+	const getCards = retrieveCapiData(cardOverrides, SeriesURL).then((response) =>
 		addHeadlineKicker(cardOverrides, response.articles),
 	);
 
@@ -70,14 +70,14 @@
 </script>
 
 {#await getCards}
-	<h3>Loading Content for “{SeriesUrl}”</h3>
+	<h3>Loading Content for “{SeriesURL}”</h3>
 {:then cards}
 	{#if cards[0]}
 		<aside bind:clientHeight={height}>
 			<PaidForHeader
 				edition={cards[0].branding.edition}
 				{ComponentTitle}
-				{SeriesUrl}
+				SeriesUrl={SeriesURL}
 				templateType="multiple"
 			/>
 			<div class="body">
@@ -94,7 +94,7 @@
 		<Resizer {height} />
 	{/if}
 {:catch}
-	<h3>Could not fetch series “{SeriesUrl}”</h3>
+	<h3>Could not fetch series “{SeriesURL}”</h3>
 {/await}
 
 <style>
