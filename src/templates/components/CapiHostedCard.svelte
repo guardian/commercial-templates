@@ -1,3 +1,7 @@
+<script context="module" lang="ts">
+	import { clickMacro } from '$lib/gam';
+</script>
+
 <script lang="ts">
 	import AudioIcon from './icons/AudioIcon.svelte';
 	import CameraIcon from './icons/CameraIcon.svelte';
@@ -11,7 +15,7 @@
 		image?.sources?.length > 0 && 'srcset' in new Image();
 </script>
 
-<a href={url}>
+<a href={clickMacro(url)}>
 	<div class="media">
 		{#if pictureSupported}
 			<picture>
