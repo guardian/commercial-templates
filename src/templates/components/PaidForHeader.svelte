@@ -178,7 +178,7 @@
 	@media (min-width: 1140px) {
 		header {
 			padding: 12px 20px;
-			width: 171px;
+			width: 151px;
 		}
 
 		.multiple-paid-content-and-title {
@@ -197,7 +197,7 @@
 
 	@media (min-width: 1300px) {
 		header {
-			width: 251px;
+			width: 211px;
 		}
 	}
 </style>
