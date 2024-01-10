@@ -4,6 +4,7 @@
 	import AudioIcon from './icons/AudioIcon.svelte';
 	import CameraIcon from './icons/CameraIcon.svelte';
 	import VideoIcon from './icons/VideoIcon.svelte';
+	import { clickMacro } from '$lib/gam';
 
 	export let templateType: 'single' | 'multiple';
 	export let single: Single;
@@ -25,7 +26,7 @@
 
 <a
 	class="{templateType}-card"
-	href={articleUrl}
+	href={clickMacro(articleUrl)}
 	style={`--direction: ${direction}`}
 >
 	<div class="media">
