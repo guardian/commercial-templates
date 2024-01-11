@@ -98,6 +98,9 @@
 {/await}
 
 <style>
+	:global(body) {
+		margin: 0;
+	}
 	aside {
 		background: #ededed;
 		position: relative;
