@@ -16,7 +16,12 @@
 	export let isProminent = false;
 </script>
 
-<a class="card" class:is-prominent={isProminent} href={clickMacro(url)}>
+<a
+	class="card"
+	class:is-prominent={isProminent}
+	href={clickMacro(url)}
+	target="_top"
+>
 	<div class="media">
 		<picture>
 			<img src={image} alt="" />
