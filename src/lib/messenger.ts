@@ -32,6 +32,17 @@ type BackgroundMessage = StandardMessage<
 	}
 >;
 
+type FabricBackgroundMessage = StandardMessage<
+	'background',
+	{
+		scrollType: string;
+		backgroundColor: string;
+		backgroundImage: string;
+		backgroundRepeat: string;
+		backgroundPosition: string;
+	}
+>;
+
 type StringMessage = StandardMessage<
 	| 'message'
 	| 'type'
@@ -42,7 +53,11 @@ type StringMessage = StandardMessage<
 	string
 >;
 
-type Message = ResizeMessage | StringMessage | BackgroundMessage;
+type Message =
+	| ResizeMessage
+	| StringMessage
+	| BackgroundMessage
+	| FabricBackgroundMessage;
 
 type MessengerResponse = {
 	id: string;

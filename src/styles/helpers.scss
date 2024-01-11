@@ -1,20 +1,28 @@
+$gs-gutter: 20px;
+$gs-max-columns: 16;
+$gs-column-width: 60px;
+
+@function gs-span($n-columns) {
+	@return $n-columns * $gs-column-width + $gs-gutter * ($n-columns - 1);
+}
+
 .gs-container {
 	position: relative;
 	margin: 0 auto;
 
 	@media (min-width: 740px) {
-		max-width: 740px;
+		padding: 0 calc(50% - #{(gs-span(9) + $gs-gutter * 2) / 2});
 	}
 
 	@media (min-width: 980px) {
-		max-width: 980px;
+		padding: 0 calc(50% - #{(gs-span(12) + $gs-gutter * 2) / 2});
 	}
 
 	@media (min-width: 1140px) {
-		max-width: 1140px;
+		padding: 0 calc(50% - #{(gs-span(14) + $gs-gutter * 2) / 2});
 	}
 
 	@media (min-width: 1300px) {
-		max-width: 1300px;
+		padding: 0 calc(50% - #{(gs-span($gs-max-columns) + $gs-gutter * 2) / 2});
 	}
 }
