@@ -1,9 +1,5 @@
-<script context="module" lang="ts">
-	import { CLICK_MACRO } from '$lib/gam';
-</script>
-
 <script lang="ts">
-	import type { GAMVariable } from '$lib/gam';
+	import { CLICK_MACRO, type GAMVariable } from '$lib/gam';
 	import ArrowRight from './icons/ArrowRight.svelte';
 	import LiveLogo from './icons/LiveLogo.svelte';
 	import '$templates/components/fonts/Headline.css';
@@ -80,8 +76,7 @@
 	a.button {
 		font-size: 13px;
 		font-weight: 700;
-		font-family: 'GuardianTextSans', 'Helvetica Neue', Helvetica, Arial,
-			'Lucida Grande', sans-serif;
+		font-family: 'GuardianTextSans', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
 		background: #ffffff;
 		color: #000000;
 		text-decoration: none;

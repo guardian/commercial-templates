@@ -1,9 +1,6 @@
-<script context="module" lang="ts">
+<script lang="ts">
 	import { clickMacro } from '$lib/gam';
 	import type { Tone } from '$lib/types/tones';
-</script>
-
-<script lang="ts">
 	import '$templates/components/fonts/Egyptian.css';
 	import '$templates/components/fonts/Headline.css';
 	import '$templates/components/fonts/Sans.css';
@@ -16,12 +13,7 @@
 	export let isProminent = false;
 </script>
 
-<a
-	class="card"
-	class:is-prominent={isProminent}
-	href={clickMacro(url)}
-	target="_top"
->
+<a class="card" class:is-prominent={isProminent} href={clickMacro(url)} target="_top">
 	<div class="media">
 		<picture>
 			<img src={image} alt="" />
@@ -92,8 +84,7 @@
 		display: block;
 		font-size: 0.75rem;
 		line-height: 1rem;
-		font-family: 'GuardianTextSans', 'Helvetica Neue', Helvetica, Arial,
-			'Lucida Grande', sans-serif;
+		font-family: 'GuardianTextSans', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
 		margin: 3px 0px;
 	}
 
@@ -101,8 +92,7 @@
 		font-size: 12px;
 		line-height: 0;
 		font-weight: 700;
-		font-family: 'GuardianTextSans', 'Helvetica Neue', Helvetica, Arial,
-			'Lucida Grande', sans-serif;
+		font-family: 'GuardianTextSans', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
 		background: var(--bg);
 		color: #ffffff;
 		text-decoration: none;

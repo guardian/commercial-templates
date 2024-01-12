@@ -1,10 +1,3 @@
-<script context="module" lang="ts">
-	export const cdn = 'https://i.guim.co.uk/img/media/';
-	export const api =
-		'https://api.nextgen.guardianapps.co.uk/commercial/api/capi-single.json';
-	import '$templates/components/fonts/Sans.css';
-</script>
-
 <script lang="ts">
 	import type { Single } from '$lib/types/capi';
 	import type { GAMVariable } from '$lib/gam';
@@ -14,15 +7,16 @@
 	import { addTrackingPixel, isValidReplacedVariable } from '$lib/gam';
 	import Resizer from '$templates/components/Resizer.svelte';
 
+	export const cdn = 'https://i.guim.co.uk/img/media/';
+	export const api = 'https://api.nextgen.guardianapps.co.uk/commercial/api/capi-single.json';
+	import '$templates/components/fonts/Sans.css';
 	export let SeriesUrl: GAMVariable;
 	export let ComponentTitle: GAMVariable;
 	export let Trackingpixel: GAMVariable;
 
 	if (isValidReplacedVariable(Trackingpixel)) addTrackingPixel(Trackingpixel);
 
-	const promise: Promise<Single> = fetch(
-		`${api}?k=${encodeURI(SeriesUrl)}`,
-	).then((r) => r.json());
+	const promise: Promise<Single> = fetch(`${api}?k=${encodeURI(SeriesUrl)}`).then((r) => r.json());
 
 	let height: number = -1;
 </script>
@@ -51,8 +45,7 @@
 		display: flex;
 		flex-direction: column;
 
-		font-family: 'GuardianTextSans', 'Helvetica Neue', Helvetica, Arial,
-			'Lucida Grande', sans-serif;
+		font-family: 'GuardianTextSans', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
 		font-kerning: normal;
 		text-rendering: optimizelegibility;
 		font-variant-ligatures: common-ligatures;

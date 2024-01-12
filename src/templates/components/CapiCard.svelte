@@ -1,8 +1,5 @@
-<script context="module" lang="ts">
-	import { clickMacro } from '$lib/gam';
-</script>
-
 <script lang="ts">
+	import { clickMacro } from '$lib/gam';
 	import type { Single } from '$lib/types/capi';
 	import Sponsor from './Sponsor.svelte';
 	import AudioIcon from './icons/AudioIcon.svelte';
@@ -21,10 +18,9 @@
 		audioTag,
 		galleryTag,
 		videoTag,
-		kicker,
+		kicker
 	} = single;
-	const pictureSupported =
-		articleImage.sources.length > 0 && 'srcset' in new Image();
+	const pictureSupported = articleImage.sources.length > 0 && 'srcset' in new Image();
 </script>
 
 <a
@@ -150,8 +146,8 @@
 		h2 {
 			font-size: 1rem;
 			line-height: 1.25rem;
-			font-family: 'GuardianTextSans', 'Helvetica Neue', Helvetica, Arial,
-				'Lucida Grande', sans-serif;
+			font-family: 'GuardianTextSans', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande',
+				sans-serif;
 			font-weight: 500;
 			padding: 0px;
 			margin: 6px 0 8px 0;

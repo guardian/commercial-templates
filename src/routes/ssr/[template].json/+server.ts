@@ -1,12 +1,13 @@
+import { json } from '@sveltejs/kit';
 import { existsSync, readFileSync } from 'fs';
 import vm from 'vm';
-import type { RequestHandler } from '@sveltejs/kit/types';
 import { marked } from 'marked';
 import type { OutputAsset, OutputChunk } from 'rollup';
 import { getCommit } from '$lib/git';
 import { build } from '$lib/rollup';
 import { getProps } from '$lib/svelte';
 import { writeTemplate } from '$lib/write-template';
+import type { RequestHandler } from './$types';
 
 type Output = {
 	html?: string;
@@ -34,7 +35,7 @@ const prerender = (code: string): Output => {
 		// @ts-expect-error -- it’s happening in the vm
 		html: share.html,
 		// @ts-expect-error -- it’s happening in the vm
-		css: share.css.code,
+		css: share.css.code
 	};
 };
 
@@ -48,14 +49,12 @@ export const GET: RequestHandler = async ({ params }) => {
 	const path = `${dir}/index.svelte`;
 
 	if (!existsSync(path)) {
-		return {
-			body: {
-				html: false,
-				css: '',
-				props: {},
-				description: 'Not found',
-			},
-		};
+		return json({
+			html: false,
+			css: '',
+			props: {},
+			description: 'Not found'
+		});
 	}
 
 	const gamProps = getProps(path);
@@ -79,7 +78,7 @@ export const GET: RequestHandler = async ({ params }) => {
 
 	const props = {
 		...gamProps,
-		...fallback,
+		...fallback
 	};
 
 	const stamp = `"${template}" updated on ${date} via ${link}`;
@@ -89,9 +88,7 @@ export const GET: RequestHandler = async ({ params }) => {
 		`<div id="svelte" data-template-id="${template}">`,
 		ssr.html,
 		`</div>`,
-		js
-			? `<script>${js.code}</script>`
-			: `<!-- no src/templates/ssr/${template}/index.ts file -->`,
+		js ? `<script>${js.code}</script>` : `<!-- no src/templates/ssr/${template}/index.ts file -->`
 	].join('\n');
 
 	const css = [`/* ${stamp} */`, String(ssr.css), styles].join('\n');
@@ -102,12 +99,10 @@ export const GET: RequestHandler = async ({ params }) => {
 
 	writeTemplate(template, 'ssr', html, css);
 
-	return {
-		body: {
-			html,
-			css,
-			props,
-			description,
-		},
-	};
+	return json({
+		html,
+		css,
+		props,
+		description
+	});
 };

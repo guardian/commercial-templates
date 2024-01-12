@@ -5,21 +5,21 @@ import type { Plugin, RollupOutput } from 'rollup';
 import { rollup } from 'rollup';
 import css from 'rollup-plugin-css-only';
 import svelte from 'rollup-plugin-svelte';
-import { terser } from 'rollup-plugin-terser';
+import terser from '@rollup/plugin-terser';
 import preprocess from 'svelte-preprocess';
 import type { Props } from './svelte';
 
 const virtual = (template: string, props: Props): Plugin => ({
 	name: 'virtual-template',
-	resolveId: (source: string) => {
+	resolveId(source: string) {
 		if (source === 'ssr' || source === 'dom') return source;
 		return null;
 	},
-	load: (id: string) => {
+	load(id: string) {
 		if (id === 'ssr') {
 			return [
 				`import Template from "./src/templates/ssr/${template}/index.svelte"`,
-				`setShare(Template.render(${JSON.stringify(props)}))`,
+				`setShare(Template.render(${JSON.stringify(props)}))`
 			].join('\n');
 		}
 		if (id === 'dom') {
@@ -30,7 +30,7 @@ new Template({
 });`;
 		}
 		return null;
-	},
+	}
 });
 
 /**
@@ -44,21 +44,17 @@ new Template({
 const build = async (
 	template: string,
 	mode: 'ssr' | 'dom',
-	props: Props = {},
+	props: Props = {}
 ): Promise<{
 	styles: string;
 	chunks: RollupOutput['output'];
 }> => {
-	console.info(
-		`Building ${mode === 'dom' ? 'Dynamic' : 'Static'} template “${template}”`,
-	);
+	console.info(`Building ${mode === 'dom' ? 'Dynamic' : 'Static'} template “${template}”`);
 
 	let styles = '';
 
 	const input: ['dom'] | ['ssr', `${string}/index.ts`] =
-		mode === 'dom'
-			? ['dom']
-			: ['ssr', `src/templates/ssr/${template}/index.ts`];
+		mode === 'dom' ? ['dom'] : ['ssr', `src/templates/ssr/${template}/index.ts`];
 
 	const build = await rollup({
 		input,
@@ -69,34 +65,31 @@ const build = async (
 				emitCss: mode === 'dom',
 				compilerOptions: {
 					generate: mode,
-					immutable: true,
-				},
+					immutable: true
+				}
 			}),
 			typescript({ sourceMap: false }),
 			alias({
 				entries: [
 					{
 						find: '$lib',
-						replacement: 'src/lib',
+						replacement: 'src/lib'
 					},
 					{
 						find: '$templates',
-						replacement: 'src/templates',
-					},
-				],
+						replacement: 'src/templates'
+					}
+				]
 			}),
 			nodeResolve(),
 			terser(),
-			// @ts-expect-error -- the community types are not so great
 			css({
 				output: (processedStyles: string) => {
-					styles = processedStyles
-						.replaceAll(/\s+/g, ' ')
-						.replaceAll('\t', ' ');
+					styles = processedStyles.replaceAll(/\s+/g, ' ').replaceAll('\t', ' ');
 					return false;
-				},
-			}),
-		],
+				}
+			})
+		]
 	});
 
 	const output = await build.generate({}).then((output) => output.output);

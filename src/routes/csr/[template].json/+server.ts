@@ -1,10 +1,11 @@
 import { existsSync, readFileSync } from 'fs';
-import type { RequestHandler } from '@sveltejs/kit/types';
+import { json } from '@sveltejs/kit';
 import { marked } from 'marked';
 import { getCommit } from '$lib/git';
 import { build } from '$lib/rollup';
 import { getProps } from '$lib/svelte';
 import { writeTemplate } from '$lib/write-template';
+import type { RequestHandler } from './$types';
 
 const github = 'https://github.com/guardian/commercial-templates/blob';
 
@@ -15,14 +16,12 @@ export const GET: RequestHandler = async ({ params }) => {
 	const path = `${dir}/index.svelte`;
 
 	if (!existsSync(path)) {
-		return {
-			body: {
-				html: false,
-				css: '',
-				props: {},
-				description: 'Not found',
-			},
-		};
+		return json({
+			html: false,
+			css: '',
+			props: {},
+			description: 'Not found'
+		});
 	}
 
 	const gamProps = getProps(path);
@@ -42,7 +41,7 @@ export const GET: RequestHandler = async ({ params }) => {
 
 	const props = {
 		...gamProps,
-		...fallback,
+		...fallback
 	};
 
 	const stamp = `"${template}" updated on ${date} via ${link}`;
@@ -50,7 +49,7 @@ export const GET: RequestHandler = async ({ params }) => {
 	const html = [
 		`<!-- ${stamp} -->`,
 		`<div id="svelte" data-template-id="${template}"></div>`,
-		`<script>${String(chunks[0].code)}</script>`,
+		`<script>${String(chunks[0].code)}</script>`
 	].join('\n');
 
 	const css = [`/* ${stamp} */`, styles].join('\n');
@@ -61,12 +60,10 @@ export const GET: RequestHandler = async ({ params }) => {
 
 	writeTemplate(template, 'csr', html, css);
 
-	return {
-		body: {
-			html,
-			css,
-			props,
-			description,
-		},
-	};
+	return json({
+		html,
+		css,
+		props,
+		description
+	});
 };

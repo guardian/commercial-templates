@@ -12,16 +12,13 @@ const config = {
 
 	kit: {
 		adapter: adapter(),
-		prerender: {
-			default: true,
-		},
-
 		paths: {
 			base: isDev ? undefined : '/commercial-templates',
 		},
 
-		// Github pages really likes its trailing slashes!
-		trailingSlash: isDev ? 'never' : 'always',
+		alias: {
+			'$templates': './src/templates',
+		}
 	},
 };
 

@@ -1,10 +1,7 @@
-<script context="module" lang="ts">
-	import '$templates/components/fonts/Sans.css';
-</script>
-
 <script lang="ts">
 	import type { GAMVariable } from '$lib/gam';
 	import type { CapiCardOverride } from '$lib/types/capi';
+	import '$templates/components/fonts/Sans.css';
 
 	import Sponsor from '$templates/components/Sponsor.svelte';
 	import CapiCard from '$templates/components/CapiCard.svelte';
@@ -38,30 +35,30 @@
 			headline: Article1Headline,
 			image: Article1Image,
 			url: Article1URL,
-			kicker: Article1Kicker,
+			kicker: Article1Kicker
 		},
 		{
 			headline: Article2Headline,
 			image: Article2Image,
 			url: Article2URL,
-			kicker: Article2Kicker,
+			kicker: Article2Kicker
 		},
 		{
 			headline: Article3Headline,
 			image: Article3Image,
 			url: Article3URL,
-			kicker: Article3Kicker,
+			kicker: Article3Kicker
 		},
 		{
 			headline: Article4Headline,
 			image: Article4Image,
 			url: Article4URL,
-			kicker: Article4Kicker,
-		},
+			kicker: Article4Kicker
+		}
 	];
 
 	const getCards = retrieveCapiData(cardOverrides, SeriesURL).then((response) =>
-		addHeadlineKicker(cardOverrides, response.articles),
+		addHeadlineKicker(cardOverrides, response.articles)
 	);
 
 	if (isValidReplacedVariable(Trackingpixel)) addTrackingPixel(Trackingpixel);
@@ -106,8 +103,7 @@
 		position: relative;
 		display: flex;
 		flex-direction: column;
-		font-family: 'GuardianTextSans', 'Helvetica Neue', Helvetica, Arial,
-			'Lucida Grande', sans-serif;
+		font-family: 'GuardianTextSans', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
 		font-kerning: normal;
 		text-rendering: optimizelegibility;
 		font-variant-ligatures: common-ligatures;

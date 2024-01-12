@@ -1,8 +1,5 @@
-<script context="module" lang="ts">
-	import { clickMacro } from '$lib/gam';
-</script>
-
 <script lang="ts">
+	import { clickMacro } from '$lib/gam';
 	import ArrowRight from './icons/ArrowRight.svelte';
 	import '$templates/components/fonts/Headline.css';
 	import '$templates/components/fonts/SansBold.css';
@@ -83,8 +80,7 @@
 	a.button {
 		font-size: 13px;
 		font-weight: 700;
-		font-family: 'GuardianTextSans', 'Helvetica Neue', Helvetica, Arial,
-			'Lucida Grande', sans-serif;
+		font-family: 'GuardianTextSans', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
 		background: var(--header-btn-bg, #ffffff);
 		color: #000000;
 		text-decoration: none;
