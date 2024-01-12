@@ -11,3 +11,7 @@ legacy
 
 # Python
 scripts/deploy
+
+# Backstop
+
+/backstop_data
