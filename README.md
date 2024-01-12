@@ -89,3 +89,17 @@ yarn deploy
 - Go to Line item and click Resume
 
 - Test the line item on the live site, by going to the page you want to test and appending the adtest parameter.
+
+## Testing for visual regression
+
+The commercial-templates repository has been set up with backstopJS for basic visual regression testing. This will help you spot when changes to a template or component have unintended effects on another template.
+
+_Note_: Not every template benefits from visual regression testing. For example, the Public Good and Interscroller templates don't show a local preview as they depend on the messenger code in commercial, so we don't check them for visual regressions.
+
+To run a visual regression test locally, make sure backstopJS is installed globally on your machine, and then run ```backstop test``` in the project root.
+
+If the test flags up any changes you're happy with and expect, run ```backstop approve``` to make these the new reference images.
+
+You can add a new template to visual regression testing by adding it to the backstop.json file. You just need to specify the label, and the localhost url for the new template.
+
+When you next run ```backstop test```, you'll need to subsequently run ```backstop approve``` to accept the screenshot of the new template as the reference image.
