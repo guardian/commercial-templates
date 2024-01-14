@@ -88,7 +88,7 @@ const build = async (
 					styles = processedStyles.replaceAll(/\s+/g, ' ').replaceAll('\t', ' ');
 					return false;
 				}
-			})
+			}) as Plugin
 		]
 	});
 
