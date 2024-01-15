@@ -1,10 +1,8 @@
-<script context="module" lan="ts">
-	const host = 'https://www.theguardian.com';
-</script>
-
 <script lang="ts">
 	import { CLICK_MACRO } from '$lib/gam';
 	import type { Single } from '$lib/types/capi';
+
+	const host = 'https://www.theguardian.com';
 
 	const GLABS_EDITIONS: Record<Single['branding']['edition'], string> = {
 		AU: 'guardian-labs-australia',
