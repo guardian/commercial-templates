@@ -49,7 +49,7 @@
 						sizes={source.sizes}
 					/>
 				{/each}
-				<img src={articleImage.backupSrc} alt="" style="min-height: 80px"/>
+				<img src={articleImage.backupSrc} alt="" style="min-height: 80px" />
 			</picture>
 		{:else}
 			<img src={articleImage.backupSrc} alt="" />
