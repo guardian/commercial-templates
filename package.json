@@ -3,7 +3,7 @@
 	"version": "0.0.1",
 	"license": "Apache-2.0",
 	"scripts": {
-		"dev": "NODE_ENV=development vite dev --port 7777",
+		"dev": "vite dev --port 7777",
 		"build": "vite build && touch build/.nojekyll",
 		"publish": "yarn gh-pages --dist build --dotfiles",
 		"deploy": "yarn build && yarn publish",

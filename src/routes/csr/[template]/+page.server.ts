@@ -3,14 +3,23 @@ import { json } from '@sveltejs/kit';
 import { marked } from 'marked';
 import { getCommit } from '$lib/git';
 import { build } from '$lib/rollup';
+import type { Props } from '$lib/svelte';
 import { getProps } from '$lib/svelte';
 import { writeTemplate } from '$lib/write-template';
-import type { RequestHandler } from './$types';
+import type { PageServerLoad } from './$types';
+
+interface Data {
+	template: string;
+	html: string;
+	props: Props;
+	css: string;
+	description: string;
+}
 
 const github = 'https://github.com/guardian/commercial-templates/blob';
 
-export const GET: RequestHandler = async ({ params }) => {
-	const template = params.template;
+export const load: PageServerLoad = async ({ params }) => {
+	const { template } = params;
 
 	const dir = `src/templates/csr/${template}`;
 	const path = `${dir}/index.svelte`;
@@ -55,15 +64,18 @@ export const GET: RequestHandler = async ({ params }) => {
 	const css = [`/* ${stamp} */`, styles].join('\n');
 
 	const description = existsSync(`${dir}/README.md`)
-		? marked.parse(readFileSync(`${dir}/README.md`, 'utf-8'))
+		? await marked.parse(readFileSync(`${dir}/README.md`, 'utf-8'))
 		: `<p><em>no description provided</em></p>`;
 
 	writeTemplate(template, 'csr', html, css);
 
-	return json({
+	const data: Data = {
+		template,
 		html,
 		css,
 		props,
 		description,
-	});
+	};
+
+	return data;
 };

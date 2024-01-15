@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { PageData } from './$types';
-	import type { Templates } from './templates.json/+server';
+	import type { Templates } from './+page.server';
 	import { base } from '$app/paths';
 
 	const explanations: Record<keyof Templates, string> = {
