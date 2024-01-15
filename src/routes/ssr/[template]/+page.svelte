@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { reloadTemplate } from '$lib/reload';
 	import Code from '$lib/Code.svelte';
-	import Warning from '$lib/Warning.svelte';
 	import Previews from '$lib/Previews.svelte';
+	import { reloadTemplate } from '$lib/reload';
+	import Warning from '$lib/Warning.svelte';
 	import type { PageData } from './$types';
 
 	export let data: PageData;

@@ -1,5 +1,5 @@
-import { json } from '@sveltejs/kit';
 import { readdir } from 'fs/promises';
+import { json } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
 
 export type Templates = Record<'csr' | 'ssr' | 'legacy', string[]>;

@@ -10,7 +10,7 @@ import type { RequestHandler } from './$types';
 const github = 'https://github.com/guardian/commercial-templates/blob';
 
 export const GET: RequestHandler = async ({ params }) => {
-	const template = params.template ?? 'unknown';
+	const template = params.template;
 
 	const dir = `src/templates/csr/${template}`;
 	const path = `${dir}/index.svelte`;

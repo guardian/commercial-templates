@@ -1,12 +1,12 @@
 <script lang="ts">
 	import type { GAMVariable } from '$lib/gam';
 	import '$templates/components/fonts/Sans.css';
+	import type { Tone as TTone } from '$lib/types/tones';
 	import ManualCard from '$templates/components/ManualCard.svelte';
 	import ManualHeader from '$templates/components/ManualHeader.svelte';
 	import Resizer from '$templates/components/Resizer.svelte';
-	import type { Tone } from '$lib/types/tones';
 
-	export let Tone: GAMVariable<Tone>;
+	export let Tone: GAMVariable<TTone>;
 	export let TitleURL: GAMVariable;
 	export let Explainer: GAMVariable;
 	export let ViewAll: GAMVariable;

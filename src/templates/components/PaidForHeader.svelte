@@ -4,7 +4,6 @@
 	import Button from './Button.svelte';
 	import ArrowDown from './icons/ArrowDown.svelte';
 	import '$templates/components/fonts/SansBold.css';
-
 	import GuardianLabs from './icons/GuardianLabs.svelte';
 
 	export let SeriesUrl: string;

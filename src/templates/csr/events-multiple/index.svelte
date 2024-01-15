@@ -1,15 +1,15 @@
 <script lang="ts">
 	import type { GAMVariable } from '$lib/gam';
 	import '$templates/components/fonts/Sans.css';
+	import type { Tone as TTone } from '$lib/types/tones';
 	import ManualCard from '$templates/components/ManualCard.svelte';
-	import Resizer from '$templates/components/Resizer.svelte';
 	import ManualHeader from '$templates/components/ManualHeader.svelte';
-	import type { Tone } from '$lib/types/tones';
+	import Resizer from '$templates/components/Resizer.svelte';
 
 	export let BannerDescription: GAMVariable;
 	export let HeaderButtonText: GAMVariable;
 	export let HeaderButtonUrl: GAMVariable;
-	export let Tone: GAMVariable<Tone>;
+	export let Tone: GAMVariable<TTone>;
 	export let EventTitle1: GAMVariable;
 	export let EventTitle2: GAMVariable;
 	export let EventTitle3: GAMVariable;

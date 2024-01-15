@@ -1,6 +1,6 @@
-import { json } from '@sveltejs/kit';
 import { existsSync, readFileSync } from 'fs';
 import vm from 'vm';
+import { json } from '@sveltejs/kit';
 import { marked } from 'marked';
 import type { OutputAsset, OutputChunk } from 'rollup';
 import { getCommit } from '$lib/git';
@@ -43,7 +43,7 @@ const isChunk = (output: OutputChunk | OutputAsset): output is OutputChunk =>
 	output.type === 'chunk';
 
 export const GET: RequestHandler = async ({ params }) => {
-	const template = params.template ?? 'unknown';
+	const template = params.template;
 
 	const dir = `src/templates/ssr/${template}`;
 	const path = `${dir}/index.svelte`;
@@ -88,7 +88,7 @@ export const GET: RequestHandler = async ({ params }) => {
 		`<div id="svelte" data-template-id="${template}">`,
 		ssr.html,
 		`</div>`,
-		js ? `<script>${js.code}</script>` : `<!-- no src/templates/ssr/${template}/index.ts file -->`
+		`<script>${js.code}</script>`
 	].join('\n');
 
 	const css = [`/* ${stamp} */`, String(ssr.css), styles].join('\n');

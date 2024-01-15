@@ -9,10 +9,7 @@ import { log } from 'isomorphic-git';
  * @param ref the git reference. Defaults to "HEAD".
  * @returns {Promise<ReadCommitResult | undefined>} Either an object with commit data or `undefined` if the file isn’t in git.
  */
-const getCommit = async (
-	filepath: string,
-	ref = 'HEAD',
-): Promise<ReadCommitResult | undefined> => {
+const getCommit = async (filepath: string, ref = 'HEAD'): Promise<ReadCommitResult | undefined> => {
 	const dir = process.cwd();
 
 	const [commit] = await log({
@@ -20,7 +17,7 @@ const getCommit = async (
 		dir,
 		ref,
 		filepath,
-		force: true,
+		force: true
 	});
 
 	return commit;

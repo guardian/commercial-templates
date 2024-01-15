@@ -1,7 +1,7 @@
 <script lang="ts">
+	import type { PageData } from './$types';
 	import type { Templates } from './templates.json/+server';
 	import { base } from '$app/paths';
-	import type { PageData } from './$types';
 
 	const explanations: Record<keyof Templates, string> = {
 		csr: 'Dynamic',

@@ -1,10 +1,4 @@
-<svg
-	aria-hidden="true"
-	width="120.9px"
-	height="63.9px"
-	viewBox="0 0 120.9 63.9"
-	fill="#ffffff"
->
+<svg aria-hidden="true" width="120.9px" height="63.9px" viewBox="0 0 120.9 63.9" fill="#ffffff">
 	<path
 		d="M27.7,21.3l2.1-1.1V3.5h-1.6l-3.9,5.2h-0.4l0.2-5.8h17l0.2,5.8h-0.5L37,3.5h-1.6v16.6l2.1,1.1v0.6h-9.8					V21.3z"
 	/>

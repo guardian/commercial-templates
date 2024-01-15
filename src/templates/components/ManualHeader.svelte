@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { clickMacro } from '$lib/gam';
+	import type { Tone } from '$lib/types/tones';
 	import ArrowRight from './icons/ArrowRight.svelte';
 	import '$templates/components/fonts/Headline.css';
 	import '$templates/components/fonts/SansBold.css';
 	import '$templates/components/colours/tones.css';
-	import type { Tone } from '$lib/types/tones';
 	import ToneLogo from './ToneLogo.svelte';
 
 	export let buttonUrl: string;

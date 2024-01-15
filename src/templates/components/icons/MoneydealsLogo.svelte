@@ -1,11 +1,4 @@
-<svg
-	x="0px"
-	y="0px"
-	width="120.9px"
-	height="63.9px"
-	viewBox="0 0 120.9 63.9"
-	fill="#ffffff"
->
+<svg x="0px" y="0px" width="120.9px" height="63.9px" viewBox="0 0 120.9 63.9" fill="#ffffff">
 	<g>
 		<path
 			d="M21.5,16.5l1.6-0.9V2.7h-1.2l-3,4h-0.3l0.2-4.5h13.2l0.2,4.5h-0.4l-3-4h-1.3v12.9l1.7,0.9v0.4h-7.6V16.5z"

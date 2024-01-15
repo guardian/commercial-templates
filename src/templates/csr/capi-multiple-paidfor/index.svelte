@@ -1,14 +1,13 @@
 <script lang="ts">
+	import { addHeadlineKicker, retrieveCapiData } from '$lib/capiMultiple';
+	import { addTrackingPixel, isValidReplacedVariable } from '$lib/gam';
 	import type { GAMVariable } from '$lib/gam';
 	import type { CapiCardOverride } from '$lib/types/capi';
 	import '$templates/components/fonts/Sans.css';
-
-	import Sponsor from '$templates/components/Sponsor.svelte';
 	import CapiCard from '$templates/components/CapiCard.svelte';
 	import PaidForHeader from '$templates/components/PaidForHeader.svelte';
-	import { addTrackingPixel, isValidReplacedVariable } from '$lib/gam';
 	import Resizer from '$templates/components/Resizer.svelte';
-	import { retrieveCapiData, addHeadlineKicker } from '$lib/capiMultiple';
+	import Sponsor from '$templates/components/Sponsor.svelte';
 
 	export let SeriesURL: GAMVariable;
 	export let ComponentTitle: GAMVariable;

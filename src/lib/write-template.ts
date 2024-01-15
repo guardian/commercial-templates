@@ -7,12 +7,7 @@ import { copyFileSync, existsSync, mkdirSync, writeFileSync } from 'fs';
  * @param html The HTML to write
  * @param css The CSS to write
  */
-const writeTemplate = (
-	template: string,
-	type: 'ssr' | 'csr',
-	html: string,
-	css: string,
-) => {
+const writeTemplate = (template: string, type: 'ssr' | 'csr', html: string, css: string) => {
 	const outDir = `build-static/${template}`;
 
 	mkdirSync(outDir, { recursive: true });

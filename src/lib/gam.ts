@@ -5,10 +5,7 @@ type GAMVariable<T extends string = string> = T;
 
 const gamVar = <T extends string>(s: T): `[%${GAMVariable<T>}%]` => `[%${s}%]`;
 
-const replaceGAMVariables = (
-	input: string,
-	variables: Record<string, string>,
-): string => {
+const replaceGAMVariables = (input: string, variables: Record<string, string>): string => {
 	const output = Object.entries(variables).reduce((replaced, [key, value]) => {
 		return (
 			replaced
@@ -40,5 +37,5 @@ export {
 	gamVar,
 	isValidReplacedVariable,
 	replaceGAMVariables,
-	clickMacro,
+	clickMacro
 };

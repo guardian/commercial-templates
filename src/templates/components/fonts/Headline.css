@@ -1,6 +1,7 @@
 @font-face {
 	font-family: 'GH Guardian Headline';
-	src: url('https://assets.guim.co.uk/static/frontend/fonts/guardian-headline/noalts-not-hinted/GHGuardianHeadline-Light.woff2')
+	src:
+		url('https://assets.guim.co.uk/static/frontend/fonts/guardian-headline/noalts-not-hinted/GHGuardianHeadline-Light.woff2')
 			format('woff2'),
 		url('https://assets.guim.co.uk/static/frontend/fonts/guardian-headline/latin1-not-hinted/GHGuardianHeadline-Light.woff')
 			format('woff'),
@@ -12,7 +13,8 @@
 }
 @font-face {
 	font-family: 'GH Guardian Headline';
-	src: url('https://assets.guim.co.uk/static/frontend/fonts/guardian-headline/noalts-not-hinted/GHGuardianHeadline-LightItalic.woff2')
+	src:
+		url('https://assets.guim.co.uk/static/frontend/fonts/guardian-headline/noalts-not-hinted/GHGuardianHeadline-LightItalic.woff2')
 			format('woff2'),
 		url('https://assets.guim.co.uk/static/frontend/fonts/guardian-headline/latin1-not-hinted/GHGuardianHeadline-LightItalic.woff')
 			format('woff'),
@@ -24,7 +26,8 @@
 }
 @font-face {
 	font-family: 'GH Guardian Headline';
-	src: url('https://assets.guim.co.uk/static/frontend/fonts/guardian-headline/noalts-not-hinted/GHGuardianHeadline-Medium.woff2')
+	src:
+		url('https://assets.guim.co.uk/static/frontend/fonts/guardian-headline/noalts-not-hinted/GHGuardianHeadline-Medium.woff2')
 			format('woff2'),
 		url('https://assets.guim.co.uk/static/frontend/fonts/guardian-headline/noalts-not-hinted/GHGuardianHeadline-Medium.woff')
 			format('woff'),
@@ -36,7 +39,8 @@
 }
 @font-face {
 	font-family: 'GH Guardian Headline';
-	src: url('https://assets.guim.co.uk/static/frontend/fonts/guardian-headline/noalts-not-hinted/GHGuardianHeadline-MediumItalic.woff2')
+	src:
+		url('https://assets.guim.co.uk/static/frontend/fonts/guardian-headline/noalts-not-hinted/GHGuardianHeadline-MediumItalic.woff2')
 			format('woff2'),
 		url('https://assets.guim.co.uk/static/frontend/fonts/guardian-headline/latin1-not-hinted/GHGuardianHeadline-MediumItalic.woff')
 			format('woff'),
@@ -48,7 +52,8 @@
 }
 @font-face {
 	font-family: 'GH Guardian Headline';
-	src: url('https://assets.guim.co.uk/static/frontend/fonts/guardian-headline/noalts-not-hinted/GHGuardianHeadline-Bold.woff2')
+	src:
+		url('https://assets.guim.co.uk/static/frontend/fonts/guardian-headline/noalts-not-hinted/GHGuardianHeadline-Bold.woff2')
 			format('woff2'),
 		url('https://assets.guim.co.uk/static/frontend/fonts/guardian-headline/latin1-not-hinted/GHGuardianHeadline-Bold.woff')
 			format('woff'),
