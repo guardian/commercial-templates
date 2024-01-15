@@ -31,5 +31,9 @@ module.exports = {
 				'svelte/no-at-html-tags': 'off'
 			}
 		}
-	]
+	],
+	rules: {
+		// doesn't seem to work with svelte's `$app/*` imports
+		'import/no-unresolved': 'off',
+	}
 };
