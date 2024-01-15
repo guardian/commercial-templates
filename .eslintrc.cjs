@@ -4,6 +4,7 @@ module.exports = {
 	extends: [
 		'eslint:recommended',
 		'plugin:@typescript-eslint/recommended',
+		'@guardian/eslint-config-typescript',
 		'plugin:svelte/recommended',
 		'prettier'
 	],

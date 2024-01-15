@@ -1,7 +1,7 @@
 <script context="module" lang="ts">
 	const defaultReplacements: Record<string, string> = {
 		CACHEBUSTER: '?cachebust',
-		CLICK_URL_UNESC: '',
+		CLICK_URL_UNESC: ''
 	};
 </script>
 
@@ -25,15 +25,15 @@
 
 		'<body marginwidth="0" marginheight="0">',
 		replaceGAMVariables(html, { ...defaultReplacements, ...props }),
-		'</body>',
+		'</body>'
 	].join('');
 
-	export const widths = {
-		1300: 'wide',
-		980: 'desktop',
-		740: 'tablet',
-		360: 'mobile',
-	};
+	export const widths: Record<string, string> = {
+		'1300': 'wide',
+		'980': 'desktop',
+		'740': 'tablet',
+		'360': 'mobile'
+	} as const;
 
 	onMount(() => {
 		window.addEventListener('message', (ev: MessageEvent<string>) => {
@@ -56,9 +56,9 @@
 						JSON.stringify({
 							id: data.id,
 							result:
-								'https://www.theguardian.com/lifeandstyle/2023/jul/19/a-moment-that-changed-me-i-borrowed-a-dog-and-discovered-a-healthier-happier-way-of-life',
+								'https://www.theguardian.com/lifeandstyle/2023/jul/19/a-moment-that-changed-me-i-borrowed-a-dog-and-discovered-a-healthier-happier-way-of-life'
 						}),
-						'*',
+						'*'
 					);
 					break;
 				default:
