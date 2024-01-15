@@ -38,29 +38,29 @@
 			meta: Offer1Meta,
 			linkText: Offer1LinkText,
 			image: Offer1Image,
-			url: Offer1URL
+			url: Offer1URL,
 		},
 		{
 			title: Offer2Title,
 			meta: Offer2Meta,
 			linkText: Offer2LinkText,
 			image: Offer2Image,
-			url: Offer2URL
+			url: Offer2URL,
 		},
 		{
 			title: Offer3Title,
 			meta: Offer3Meta,
 			linkText: Offer3LinkText,
 			image: Offer3Image,
-			url: Offer3URL
+			url: Offer3URL,
 		},
 		{
 			title: Offer4Title,
 			meta: Offer4Meta,
 			linkText: Offer4LinkText,
 			image: Offer4Image,
-			url: Offer4URL
-		}
+			url: Offer4URL,
+		},
 	];
 
 	const isProminent = IsProminent === 'true';
@@ -99,7 +99,8 @@
 		position: relative;
 		display: flex;
 		flex-direction: column;
-		font-family: 'GuardianTextSans', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
+		font-family: 'GuardianTextSans', 'Helvetica Neue', Helvetica, Arial,
+			'Lucida Grande', sans-serif;
 		font-kerning: normal;
 		text-rendering: optimizelegibility;
 		font-variant-ligatures: common-ligatures;

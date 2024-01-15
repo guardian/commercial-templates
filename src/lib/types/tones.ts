@@ -14,7 +14,7 @@ const tones = [
 	'climate2',
 	'support',
 	'subscription',
-	'subs-rebrand'
+	'subs-rebrand',
 ] as const;
 
 type Tone = (typeof tones)[number];

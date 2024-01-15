@@ -62,7 +62,10 @@ const generateId = () => {
 };
 
 const timeout = async <T>(promise: Promise<T>, ms: number): Promise<T | void> =>
-	Promise.race([promise, new Promise<void>((resolve) => window.setTimeout(resolve, ms))]);
+	Promise.race([
+		promise,
+		new Promise<void>((resolve) => window.setTimeout(resolve, ms)),
+	]);
 
 /**
  * Post message to parent frame
@@ -115,7 +118,7 @@ const postAndListen = (arg: Message): Promise<string | void> =>
 
 			post({ ...arg, id });
 		}),
-		3000
+		3000,
 	);
 
 export { post, timeout, postAndListen, generateId };

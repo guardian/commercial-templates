@@ -35,7 +35,7 @@ const prerender = (code: string): Output => {
 		// @ts-expect-error -- it’s happening in the vm
 		html: share.html,
 		// @ts-expect-error -- it’s happening in the vm
-		css: share.css.code
+		css: share.css.code,
 	};
 };
 
@@ -53,7 +53,7 @@ export const GET: RequestHandler = async ({ params }) => {
 			html: false,
 			css: '',
 			props: {},
-			description: 'Not found'
+			description: 'Not found',
 		});
 	}
 
@@ -78,7 +78,7 @@ export const GET: RequestHandler = async ({ params }) => {
 
 	const props = {
 		...gamProps,
-		...fallback
+		...fallback,
 	};
 
 	const stamp = `"${template}" updated on ${date} via ${link}`;
@@ -88,7 +88,7 @@ export const GET: RequestHandler = async ({ params }) => {
 		`<div id="svelte" data-template-id="${template}">`,
 		ssr.html,
 		`</div>`,
-		`<script>${js.code}</script>`
+		`<script>${js.code}</script>`,
 	].join('\n');
 
 	const css = [`/* ${stamp} */`, String(ssr.css), styles].join('\n');
@@ -103,6 +103,6 @@ export const GET: RequestHandler = async ({ params }) => {
 		html,
 		css,
 		props,
-		description
+		description,
 	});
 };

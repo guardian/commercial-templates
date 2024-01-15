@@ -20,7 +20,7 @@ export const GET: RequestHandler = async ({ params }) => {
 			html: false,
 			css: '',
 			props: {},
-			description: 'Not found'
+			description: 'Not found',
 		});
 	}
 
@@ -41,7 +41,7 @@ export const GET: RequestHandler = async ({ params }) => {
 
 	const props = {
 		...gamProps,
-		...fallback
+		...fallback,
 	};
 
 	const stamp = `"${template}" updated on ${date} via ${link}`;
@@ -49,7 +49,7 @@ export const GET: RequestHandler = async ({ params }) => {
 	const html = [
 		`<!-- ${stamp} -->`,
 		`<div id="svelte" data-template-id="${template}"></div>`,
-		`<script>${String(chunks[0].code)}</script>`
+		`<script>${String(chunks[0].code)}</script>`,
 	].join('\n');
 
 	const css = [`/* ${stamp} */`, styles].join('\n');
@@ -64,6 +64,6 @@ export const GET: RequestHandler = async ({ params }) => {
 		html,
 		css,
 		props,
-		description
+		description,
 	});
 };

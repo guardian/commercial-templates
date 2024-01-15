@@ -14,14 +14,16 @@ export const load: PageLoad = async ({ params, fetch }) => {
 
 	const endpoint = `${base}/ssr/${template}.json`;
 
-	const { html, css, props, description } = (await fetch(endpoint).then((r) => r.json())) as Data;
+	const { html, css, props, description } = (await fetch(endpoint).then((r) =>
+		r.json(),
+	)) as Data;
 
 	const data: Data = {
 		template,
 		html,
 		css,
 		props,
-		description
+		description,
 	};
 
 	return data;

@@ -7,7 +7,8 @@
 	import Resizer from '$templates/components/Resizer.svelte';
 
 	export const cdn = 'https://i.guim.co.uk/img/media/';
-	export const api = 'https://api.nextgen.guardianapps.co.uk/commercial/api/capi-single.json';
+	export const api =
+		'https://api.nextgen.guardianapps.co.uk/commercial/api/capi-single.json';
 	import '$templates/components/fonts/Sans.css';
 
 	export let SeriesUrl: GAMVariable;
@@ -17,7 +18,7 @@
 	if (isValidReplacedVariable(Trackingpixel)) addTrackingPixel(Trackingpixel);
 
 	const promise = fetch(`${api}?k=${encodeURI(SeriesUrl)}`).then((r) =>
-		r.json()
+		r.json(),
 	) as Promise<Single>;
 
 	let height: number = -1;
@@ -47,7 +48,8 @@
 		display: flex;
 		flex-direction: column;
 
-		font-family: 'GuardianTextSans', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
+		font-family: 'GuardianTextSans', 'Helvetica Neue', Helvetica, Arial,
+			'Lucida Grande', sans-serif;
 		font-kerning: normal;
 		text-rendering: optimizelegibility;
 		font-variant-ligatures: common-ligatures;

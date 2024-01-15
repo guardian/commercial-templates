@@ -18,12 +18,14 @@
 	<div class="{templateType}-paid-content-and-title">
 		<div class="paid {templateType}-paid-content">
 			<strong>Paid content</strong>
-			<Button on:click={() => (popup = !popup)}>About <ArrowDown width={12} flip={popup} /></Button>
+			<Button on:click={() => (popup = !popup)}
+				>About <ArrowDown width={12} flip={popup} /></Button
+			>
 			{#if popup}
 				<div id="popup">
 					<p>
-						Paid content is paid for and controlled by an advertiser and produced by the Guardian
-						Labs team
+						Paid content is paid for and controlled by an advertiser and
+						produced by the Guardian Labs team
 					</p>
 					<a
 						class="popup-link"
@@ -34,8 +36,14 @@
 			{/if}
 		</div>
 
-		<h1 class="adverts__title" class:multiple-title={templateType === 'multiple'}>
-			<a href={`${CLICK_MACRO}https://theguardian.com/${SeriesUrl}`} target="_top">
+		<h1
+			class="adverts__title"
+			class:multiple-title={templateType === 'multiple'}
+		>
+			<a
+				href={`${CLICK_MACRO}https://theguardian.com/${SeriesUrl}`}
+				target="_top"
+			>
 				{ComponentTitle}
 			</a>
 		</h1>

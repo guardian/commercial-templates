@@ -23,7 +23,7 @@ export const load: PageLoad = async ({ fetch, params }) => {
 		html,
 		css,
 		props,
-		description
+		description,
 	};
 
 	return data;

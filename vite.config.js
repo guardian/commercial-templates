@@ -11,28 +11,32 @@ const config = {
 				server.watcher.add('/src/templates');
 			},
 			handleHotUpdate(ctx) {
-				const TEMPLATE = /\/templates\/([\w-/]+?)\/[\w-]+?\.(svelte|js|ts|md|css|json)$/i;
+				const TEMPLATE =
+					/\/templates\/([\w-/]+?)\/[\w-]+?\.(svelte|js|ts|md|css|json)$/i;
 				const matches = TEMPLATE.exec(ctx.file);
 
 				if (!matches) return ctx.modules;
 
-				console.warn(`Template ${matches[1]} changed`, 'sending template-update event');
+				console.warn(
+					`Template ${matches[1]} changed`,
+					'sending template-update event',
+				);
 
 				/** @type {import('./src/lib/reload').Data} */
 				const data = {
-					id: matches[1]
+					id: matches[1],
 				};
 
 				ctx.server.ws.send({
 					type: 'custom',
 					event: 'template-update',
-					data
+					data,
 				});
 
 				return [];
-			}
-		}
-	]
+			},
+		},
+	],
 };
 
 export default config;

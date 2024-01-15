@@ -7,12 +7,14 @@ export type Templates = Record<'csr' | 'ssr' | 'legacy', string[]>;
 export const GET: RequestHandler = async () => {
 	const csr = await readdir('src/templates/csr');
 	const ssr = await readdir('src/templates/ssr');
-	const legacy = (await readdir('legacy/src')).filter((id) => !id.startsWith('_'));
+	const legacy = (await readdir('legacy/src')).filter(
+		(id) => !id.startsWith('_'),
+	);
 
 	const body: Templates = {
 		csr,
 		ssr,
-		legacy
+		legacy,
 	};
 
 	return json(body);

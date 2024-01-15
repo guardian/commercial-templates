@@ -32,26 +32,26 @@
 			eventTitle: EventTitle1,
 			eventDateTime: EventDateTime1,
 			eventImage: EventImage1,
-			eventUrl: EventUrl1
+			eventUrl: EventUrl1,
 		},
 		{
 			eventTitle: EventTitle2,
 			eventDateTime: EventDateTime2,
 			eventImage: EventImage2,
-			eventUrl: EventUrl2
+			eventUrl: EventUrl2,
 		},
 		{
 			eventTitle: EventTitle3,
 			eventDateTime: EventDateTime3,
 			eventImage: EventImage3,
-			eventUrl: EventUrl3
+			eventUrl: EventUrl3,
 		},
 		{
 			eventTitle: EventTitle4,
 			eventDateTime: EventDateTime4,
 			eventImage: EventImage4,
-			eventUrl: EventUrl4
-		}
+			eventUrl: EventUrl4,
+		},
 	];
 
 	events = events.filter((event) => event.eventTitle !== '');
@@ -60,12 +60,21 @@
 </script>
 
 <aside bind:clientHeight={height}>
-	<ManualHeader buttonText={HeaderButtonText} buttonUrl={HeaderButtonUrl} tone={Tone}>
+	<ManualHeader
+		buttonText={HeaderButtonText}
+		buttonUrl={HeaderButtonUrl}
+		tone={Tone}
+	>
 		{@html BannerDescription}
 	</ManualHeader>
 	<div class="cards-container">
 		{#each events as event}
-			<ManualCard image={event.eventImage} url={event.eventUrl} linkText="Book tickets" tone={Tone}>
+			<ManualCard
+				image={event.eventImage}
+				url={event.eventUrl}
+				linkText="Book tickets"
+				tone={Tone}
+			>
 				<svelte:fragment slot="title">
 					{@const [boldTitle, regularTitle] = event.eventTitle.split(':')}
 					{#if regularTitle}
@@ -87,7 +96,8 @@
 		position: relative;
 		display: flex;
 		flex-direction: column;
-		font-family: 'GuardianTextSans', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
+		font-family: 'GuardianTextSans', 'Helvetica Neue', Helvetica, Arial,
+			'Lucida Grande', sans-serif;
 		font-kerning: normal;
 		text-rendering: optimizelegibility;
 		font-variant-ligatures: common-ligatures;

@@ -19,7 +19,7 @@ const virtual = (template: string, props: Props): Plugin => ({
 		if (id === 'ssr') {
 			return [
 				`import Template from "./src/templates/ssr/${template}/index.svelte"`,
-				`setShare(Template.render(${JSON.stringify(props)}))`
+				`setShare(Template.render(${JSON.stringify(props)}))`,
 			].join('\n');
 		}
 		if (id === 'dom') {
@@ -30,7 +30,7 @@ new Template({
 });`;
 		}
 		return null;
-	}
+	},
 });
 
 /**
@@ -44,17 +44,21 @@ new Template({
 const build = async (
 	template: string,
 	mode: 'ssr' | 'dom',
-	props: Props = {}
+	props: Props = {},
 ): Promise<{
 	styles: string;
 	chunks: RollupOutput['output'];
 }> => {
-	console.info(`Building ${mode === 'dom' ? 'Dynamic' : 'Static'} template “${template}”`);
+	console.info(
+		`Building ${mode === 'dom' ? 'Dynamic' : 'Static'} template “${template}”`,
+	);
 
 	let styles = '';
 
 	const input: ['dom'] | ['ssr', `${string}/index.ts`] =
-		mode === 'dom' ? ['dom'] : ['ssr', `src/templates/ssr/${template}/index.ts`];
+		mode === 'dom'
+			? ['dom']
+			: ['ssr', `src/templates/ssr/${template}/index.ts`];
 
 	const build = await rollup({
 		input,
@@ -65,31 +69,33 @@ const build = async (
 				emitCss: mode === 'dom',
 				compilerOptions: {
 					generate: mode,
-					immutable: true
-				}
+					immutable: true,
+				},
 			}),
 			typescript({ sourceMap: false }),
 			alias({
 				entries: [
 					{
 						find: '$lib',
-						replacement: 'src/lib'
+						replacement: 'src/lib',
 					},
 					{
 						find: '$templates',
-						replacement: 'src/templates'
-					}
-				]
+						replacement: 'src/templates',
+					},
+				],
 			}),
 			nodeResolve(),
 			terser(),
 			css({
 				output: (processedStyles: string) => {
-					styles = processedStyles.replaceAll(/\s+/g, ' ').replaceAll('\t', ' ');
+					styles = processedStyles
+						.replaceAll(/\s+/g, ' ')
+						.replaceAll('\t', ' ');
 					return false;
-				}
-			}) as Plugin
-		]
+				},
+			}) as Plugin,
+		],
 	});
 
 	const output = await build.generate({}).then((output) => output.output);

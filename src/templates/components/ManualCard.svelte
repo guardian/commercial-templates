@@ -13,7 +13,12 @@
 	export let isProminent = false;
 </script>
 
-<a class="card" class:is-prominent={isProminent} href={clickMacro(url)} target="_top">
+<a
+	class="card"
+	class:is-prominent={isProminent}
+	href={clickMacro(url)}
+	target="_top"
+>
 	<div class="media">
 		<picture>
 			<img src={image} alt="" />
@@ -84,7 +89,8 @@
 		display: block;
 		font-size: 0.75rem;
 		line-height: 1rem;
-		font-family: 'GuardianTextSans', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
+		font-family: 'GuardianTextSans', 'Helvetica Neue', Helvetica, Arial,
+			'Lucida Grande', sans-serif;
 		margin: 3px 0px;
 	}
 
@@ -92,7 +98,8 @@
 		font-size: 12px;
 		line-height: 0;
 		font-weight: 700;
-		font-family: 'GuardianTextSans', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
+		font-family: 'GuardianTextSans', 'Helvetica Neue', Helvetica, Arial,
+			'Lucida Grande', sans-serif;
 		background: var(--bg);
 		color: #ffffff;
 		text-decoration: none;

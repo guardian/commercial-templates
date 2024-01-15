@@ -31,7 +31,7 @@
 		climate2: GenericSvg,
 		support: GenericSvg,
 		subscription: SubscriptionSvg,
-		'subs-rebrand': SubscriptionSvg
+		'subs-rebrand': SubscriptionSvg,
 	};
 </script>
 

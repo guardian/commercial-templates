@@ -154,7 +154,9 @@
 			"version": "==1.2.0"
 		},
 		"googleads": {
-			"hashes": ["sha256:1cb2db619dca882a98b36614014e33b1a7d04b9ffdba2d9f5d3e4a425000c5e2"],
+			"hashes": [
+				"sha256:1cb2db619dca882a98b36614014e33b1a7d04b9ffdba2d9f5d3e4a425000c5e2"
+			],
 			"index": "pypi",
 			"version": "==40.0.0"
 		},

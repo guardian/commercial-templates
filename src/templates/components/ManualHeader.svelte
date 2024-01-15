@@ -80,7 +80,8 @@
 	a.button {
 		font-size: 13px;
 		font-weight: 700;
-		font-family: 'GuardianTextSans', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
+		font-family: 'GuardianTextSans', 'Helvetica Neue', Helvetica, Arial,
+			'Lucida Grande', sans-serif;
 		background: var(--header-btn-bg, #ffffff);
 		color: #000000;
 		text-decoration: none;

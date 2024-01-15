@@ -12,13 +12,13 @@ const config = {
 	kit: {
 		adapter: adapter(),
 		paths: {
-			base: isDev ? undefined : '/commercial-templates'
+			base: isDev ? undefined : '/commercial-templates',
 		},
 
 		alias: {
-			$templates: './src/templates'
-		}
-	}
+			$templates: './src/templates',
+		},
+	},
 };
 
 export default config;

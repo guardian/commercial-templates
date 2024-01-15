@@ -9,7 +9,7 @@
 	const refresh = () =>
 		post({
 			type: 'passback-refresh',
-			value: 'public-good'
+			value: 'public-good',
 		});
 
 	const onload = async () => {
@@ -30,9 +30,9 @@
 		const options: PgmApiOptions = {
 			partnerId: 'gmg-guardian',
 			attributes: {
-				url
+				url,
 			},
-			onHide: refresh
+			onHide: refresh,
 		};
 
 		create(container, options);

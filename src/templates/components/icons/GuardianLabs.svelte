@@ -9,7 +9,7 @@
 	const GLABS_EDITIONS: Record<Single['branding']['edition'], string> = {
 		AU: 'guardian-labs-australia',
 		UK: 'guardian-labs',
-		US: 'guardian-labs-us'
+		US: 'guardian-labs-us',
 	} as const;
 
 	export let fill = 'black';

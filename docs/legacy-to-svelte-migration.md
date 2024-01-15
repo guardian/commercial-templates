@@ -17,7 +17,7 @@ import {
 	getIframeId,
 	sendMessage,
 	resizeIframeHeight,
-	onViewport
+	onViewport,
 } from '../../_shared/js/messages.js';
 import { once } from '../../_shared/js/utils';
 
@@ -28,14 +28,14 @@ const updateBackground = () => {
 		backgroundRepeat,
 		backgroundPosition,
 		backgroundSize,
-		ctaUrl
+		ctaUrl,
 	] = [
 		'interscroller',
 		`url('[%BackgroundImage%]')`,
 		'no-repeat',
 		'center center',
 		'cover',
-		`%%CLICK_URL_UNESC%%%%DEST_URL%%`
+		`%%CLICK_URL_UNESC%%%%DEST_URL%%`,
 	];
 
 	sendMessage('background', {
@@ -44,7 +44,7 @@ const updateBackground = () => {
 		backgroundRepeat,
 		backgroundPosition,
 		backgroundSize,
-		ctaUrl
+		ctaUrl,
 	});
 };
 
@@ -59,9 +59,18 @@ index.html
 
 ```html
 <div class="creative--interscroller">
-	<img src="[%TrackingPixel%]" class="creative__pixel creative__pixel--displayNone" />
-	<img src="[%ResearchPixel%]" class="creative__pixel creative__pixel--displayNone" />
-	<img src="[%ViewabilityTracker%]" class="creative__pixel creative__pixel--displayNone" />
+	<img
+		src="[%TrackingPixel%]"
+		class="creative__pixel creative__pixel--displayNone"
+	/>
+	<img
+		src="[%ResearchPixel%]"
+		class="creative__pixel creative__pixel--displayNone"
+	/>
+	<img
+		src="[%ViewabilityTracker%]"
+		class="creative__pixel creative__pixel--displayNone"
+	/>
 </div>
 ```
 
@@ -101,23 +110,32 @@ So we're left with:
 			backgroundRepeat: 'no-repeat',
 			backgroundPosition: 'center center',
 			backgroundSize: 'cover',
-			ctaUrl: `%%CLICK_URL_UNESC%%%%DEST_URL%%`
-		}
+			ctaUrl: `%%CLICK_URL_UNESC%%%%DEST_URL%%`,
+		},
 	});
 
 	post({
 		type: 'set-ad-height',
 		value: {
 			width: -1,
-			height: '85vh'
-		}
+			height: '85vh',
+		},
 	});
 </script>
 
 <div class="creative--interscroller">
-	<img src="[%TrackingPixel%]" class="creative__pixel creative__pixel--displayNone" />
-	<img src="[%ResearchPixel%]" class="creative__pixel creative__pixel--displayNone" />
-	<img src="[%ViewabilityTracker%]" class="creative__pixel creative__pixel--displayNone" />
+	<img
+		src="[%TrackingPixel%]"
+		class="creative__pixel creative__pixel--displayNone"
+	/>
+	<img
+		src="[%ResearchPixel%]"
+		class="creative__pixel creative__pixel--displayNone"
+	/>
+	<img
+		src="[%ViewabilityTracker%]"
+		class="creative__pixel creative__pixel--displayNone"
+	/>
 </div>
 
 <style lang="scss">

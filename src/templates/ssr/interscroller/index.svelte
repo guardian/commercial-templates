@@ -3,8 +3,16 @@
 </script>
 
 <div class="creative--interscroller">
-	<img src="[%TrackingPixel%]" class="creative__pixel creative__pixel--displayNone" alt="pixel" />
-	<img src="[%ResearchPixel%]" class="creative__pixel creative__pixel--displayNone" alt="pixel" />
+	<img
+		src="[%TrackingPixel%]"
+		class="creative__pixel creative__pixel--displayNone"
+		alt="pixel"
+	/>
+	<img
+		src="[%ResearchPixel%]"
+		class="creative__pixel creative__pixel--displayNone"
+		alt="pixel"
+	/>
 	<img
 		src="[%ViewabilityTracker%]"
 		class="creative__pixel creative__pixel--displayNone"

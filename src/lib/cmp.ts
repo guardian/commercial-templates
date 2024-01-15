@@ -46,8 +46,8 @@ const getUSPData = async (): Promise<ConsentState | void> =>
 				__cmpCall: {
 					command: 'getUSPData',
 					version: 1,
-					callId
-				}
+					callId,
+				},
 			};
 
 			const listener = (e: MessageEvent<string>) => {
@@ -62,7 +62,7 @@ const getUSPData = async (): Promise<ConsentState | void> =>
 
 			window.top?.postMessage(JSON.stringify(message), '*');
 		}),
-		3000
+		3000,
 	);
 
 export { getUSPData, isCcpaOptedOut };

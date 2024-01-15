@@ -9,7 +9,7 @@ type Props = Record<string, GAMVariable>;
 
 const REGEX = {
 	script: /<script[\s\S]*?>[\s\S]+?<\/script>/g,
-	props: /export let (.+?): GAMVariable(<[\s\S]+>)?;/g
+	props: /export let (.+?): GAMVariable(<[\s\S]+>)?;/g,
 };
 
 const getProps = (path: string): Props => {

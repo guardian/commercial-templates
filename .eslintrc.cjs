@@ -6,34 +6,34 @@ module.exports = {
 		'plugin:@typescript-eslint/recommended',
 		'@guardian/eslint-config-typescript',
 		'plugin:svelte/recommended',
-		'prettier'
+		'prettier',
 	],
 	parser: '@typescript-eslint/parser',
 	plugins: ['@typescript-eslint'],
 	parserOptions: {
 		sourceType: 'module',
 		ecmaVersion: 2020,
-		extraFileExtensions: ['.svelte']
+		extraFileExtensions: ['.svelte'],
 	},
 	env: {
 		browser: true,
 		es2017: true,
-		node: true
+		node: true,
 	},
 	overrides: [
 		{
 			files: ['*.svelte'],
 			parser: 'svelte-eslint-parser',
 			parserOptions: {
-				parser: '@typescript-eslint/parser'
+				parser: '@typescript-eslint/parser',
 			},
 			rules: {
-				'svelte/no-at-html-tags': 'off'
-			}
-		}
+				'svelte/no-at-html-tags': 'off',
+			},
+		},
 	],
 	rules: {
 		// doesn't seem to work with svelte's `$app/*` imports
 		'import/no-unresolved': 'off',
-	}
+	},
 };

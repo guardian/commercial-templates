@@ -3,7 +3,7 @@ import { post } from '$lib/messenger';
 // this will tell frontend to add the 'ad-slot--interscroller' class to the ad slot
 post({
 	type: 'type',
-	value: 'interscroller'
+	value: 'interscroller',
 });
 
 post({
@@ -15,15 +15,15 @@ post({
 		backgroundPosition: 'center center',
 		backgroundSize: 'cover',
 		ctaUrl: `%%CLICK_URL_UNESC%%%%DEST_URL%%`,
-		videoSource: `[%VideoSource%]`
-	}
+		videoSource: `[%VideoSource%]`,
+	},
 });
 
 post({
 	type: 'resize',
 	value: {
-		height: '85vh'
-	}
+		height: '85vh',
+	},
 });
 
 export {};

@@ -17,7 +17,10 @@
 	export let OmnitureId: GAMVariable;
 </script>
 
-<aside data-tone={Tone} data-link-name={['creative', 'ad single manual', OmnitureId].join(' | ')}>
+<aside
+	data-tone={Tone}
+	data-link-name={['creative', 'ad single manual', OmnitureId].join(' | ')}
+>
 	<header>
 		<h1 class="adverts__title" data-tone="travel">
 			<a
@@ -70,7 +73,8 @@
 		display: flex;
 		flex-direction: column;
 
-		font-family: 'Guardian Text Egyptian', 'GuardianTextEgyptian', Georgia, serif;
+		font-family: 'Guardian Text Egyptian', 'GuardianTextEgyptian', Georgia,
+			serif;
 		background-color: #f6f6f6;
 
 		@media (min-width: 1140px) {
