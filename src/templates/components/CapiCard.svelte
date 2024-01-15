@@ -49,7 +49,7 @@
 						sizes={source.sizes}
 					/>
 				{/each}
-				<img src={articleImage.backupSrc} alt="" style="min-height: 80px" />
+				<img src={articleImage.backupSrc} alt="" />
 			</picture>
 		{:else}
 			<img src={articleImage.backupSrc} alt="" />
@@ -126,6 +126,7 @@
 	img {
 		display: block;
 		width: 100%;
+		min-height: 80px;
 	}
 
 	a.single-card .text {
