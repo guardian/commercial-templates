@@ -130,6 +130,9 @@
 			&.gs-container {
 				padding: 0 calc(50% - 650px);
 			}
+			.layer {
+				background-size: auto;
+			}
 		}
 		.layer {
 			width: 100%;
@@ -139,6 +142,7 @@
 			left: 0;
 
 			background-repeat: no-repeat;
+			background-size: cover;
 			background-image: var(--mobile-background-image);
 			background-position: var(--mobile-background-position);
 		}
