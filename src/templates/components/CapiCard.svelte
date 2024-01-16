@@ -126,6 +126,7 @@
 	img {
 		display: block;
 		width: 100%;
+		min-height: 80px;
 	}
 
 	a.single-card .text {
