@@ -12,7 +12,10 @@
 	import CapiHostedCard from '$templates/components/CapiHostedCard.svelte';
 	import HostedHeader from '$templates/components/HostedHeader.svelte';
 	import Resizer from '$templates/components/Resizer.svelte';
-	import { addOverridesToCardData, retrieveCapiData } from '$lib/capiMultiple';
+	import {
+		addCapiHostedCardOverrides,
+		retrieveCapiData,
+	} from '$lib/capiMultiple';
 	import type { CapiCardOverride } from '$lib/types/capi';
 
 	export let SeriesURL: GAMVariable;
@@ -56,7 +59,7 @@
 	];
 
 	const getCards = retrieveCapiData(SeriesURL, cardOverrides).then((response) =>
-		addOverridesToCardData(response.articles, cardOverrides, BrandLogo),
+		addCapiHostedCardOverrides(response.articles, cardOverrides, BrandLogo),
 	);
 
 	if (isValidReplacedVariable(TrackingId)) addTrackingPixel(TrackingId);
@@ -86,8 +89,9 @@
 		position: relative;
 		display: grid;
 		gap: 1em;
-		padding: 6px 10px 10px;
-		background: #f6f6f6;
+		padding: 0 10px 10px;
+		background: #ededed;
+		border-top: 1px solid var(--brand-colour);
 		font-family: 'GuardianTextSans', 'Helvetica Neue', Helvetica, Arial,
 			'Lucida Grande', sans-serif;
 		font-kerning: normal;
@@ -101,11 +105,12 @@
 		row-gap: 0.5em;
 		background: #f6f6f6;
 		position: relative;
+		margin-top: 6px;
 	}
 
 	@media (min-width: 425px) {
 		aside {
-			padding: 6px 20px 20px;
+			padding: 0 20px 20px;
 		}
 		.cards-container {
 			grid-template-columns: 1fr 1fr;

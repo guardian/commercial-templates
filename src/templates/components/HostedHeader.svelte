@@ -25,7 +25,7 @@
 		font-size: 1.25rem;
 		font-weight: 700;
 		line-height: 1;
-		margin: 0;
+		margin: 6px 0 0;
 	}
 
 	.logo {

@@ -3,19 +3,19 @@
 </script>
 
 <script lang="ts">
+	import type { CapiHostedCard } from '$lib/types/capi';
 	import AudioIcon from './icons/AudioIcon.svelte';
 	import CameraIcon from './icons/CameraIcon.svelte';
 	import VideoIcon from './icons/VideoIcon.svelte';
 
-	export let card;
+	export let card: CapiHostedCard;
 
 	const { headline, image, url, audioTag, galleryTag, videoTag } = card;
 
-	const pictureSupported =
-		image?.sources?.length > 0 && 'srcset' in new Image();
+	const pictureSupported = image?.sources?.length && 'srcset' in new Image();
 </script>
 
-<a href={clickMacro(url)}>
+<a href={clickMacro(url)} target="_top">
 	<div class="media">
 		{#if pictureSupported}
 			<picture>
@@ -34,7 +34,7 @@
 				{/each}
 				<img src={image.backupSrc} alt="" />
 			</picture>
-		{:else if image.backupSrc}
+		{:else if image?.backupSrc}
 			<img src={image.backupSrc} alt="" />
 		{/if}
 	</div>

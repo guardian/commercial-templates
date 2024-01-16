@@ -49,17 +49,16 @@ export type Single = {
 	branding: Branding;
 };
 
-export type CapiCard = {
+export type CapiHostedCard = {
 	headline: string;
 	url: string;
-	audioTag?: boolean;
-	galleryTag?: boolean;
-	videoTag?: boolean;
 	image?: {
 		sources: Source[];
 		backupSrc: string;
 	};
-	kicker?: string;
+	audioTag?: boolean;
+	galleryTag?: boolean;
+	videoTag?: boolean;
 };
 
 export type CapiCardOverride = {

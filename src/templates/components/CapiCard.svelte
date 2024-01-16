@@ -11,7 +11,6 @@
 
 	export let templateType: 'single' | 'multiple';
 	export let single: Single;
-	export let direction = 'row';
 
 	const {
 		articleHeadline,
@@ -28,12 +27,7 @@
 		articleImage && articleImage.sources.length > 0 && 'srcset' in new Image();
 </script>
 
-<a
-	class="{templateType}-card"
-	href={clickMacro(articleUrl)}
-	target="_top"
-	style={`--direction: ${direction}`}
->
+<a class="{templateType}-card" href={clickMacro(articleUrl)} target="_top">
 	<div class="media">
 		{#if pictureSupported}
 			<picture>
