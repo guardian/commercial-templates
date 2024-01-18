@@ -32,14 +32,19 @@ function addCapiHostedCardOverrides(
 	return {
 		logo: (overrideLogo || cardData[0]?.branding.logo.src) ?? null,
 		cards: cardData
-			.map((capiCard, i) => ({
-				...capiCard,
-				headline: overrideCards[i]?.headline ?? capiCard.articleHeadline,
-				image: overrideCards[i]?.image
-					? { sources: [], backupSrc: overrideCards[i]?.image ?? '' }
-					: cardData[i]?.articleImage,
-				url: capiCard.articleUrl,
-			}))
+			.map((capiCard, i) => {
+				const headlineOverride = overrideCards[i]?.headline ?? '';
+				const imageOverride = overrideCards[i]?.image ?? '';
+
+				return {
+					...capiCard,
+					headline: headlineOverride || capiCard.articleHeadline,
+					image: imageOverride
+						? { sources: [], backupSrc: overrideCards[i]?.image ?? '' }
+						: cardData[i]?.articleImage,
+					url: capiCard.articleUrl,
+				};
+			})
 			// A card should only be displayed if and only if a headline is available
 			.filter((card) => card.headline !== ''),
 	};
