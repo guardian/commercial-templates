@@ -12,7 +12,7 @@
 	import CapiCard from '$templates/components/CapiCard.svelte';
 	import PaidForHeader from '$templates/components/PaidForHeader.svelte';
 	import { addTrackingPixel, isValidReplacedVariable } from '$lib/gam';
-	import Resizer from '$templates/components/Resizer.svelte';
+	import SetHeightResizer from '$templates/components/SetHeightResizer.svelte';
 
 	export let SeriesUrl: GAMVariable;
 	export let ComponentTitle: GAMVariable;
@@ -39,7 +39,7 @@
 		/>
 		<CapiCard templateType="single" {single} />
 	</aside>
-	<Resizer {height} />
+	<SetHeightResizer {height} />
 {:catch}
 	<h3>Could not fetch series “{SeriesUrl}”</h3>
 {/await}
