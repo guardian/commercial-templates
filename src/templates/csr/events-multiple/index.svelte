@@ -2,10 +2,10 @@
 	import type { GAMVariable } from '$lib/gam';
 	import '$templates/components/fonts/Sans.css';
 	import ManualCard from '$templates/components/ManualCard.svelte';
-	import Resizer from '$templates/components/Resizer.svelte';
 	import ManualHeader from '$templates/components/ManualHeader.svelte';
 	import ToneLogo from '$templates/components/ToneLogo.svelte';
 	import type { Tone } from '$lib/types/tones';
+	import SetHeightResizer from '$templates/components/SetHeightResizer.svelte';
 
 	export let BannerDescription: GAMVariable;
 	export let HeaderButtonText: GAMVariable;
@@ -89,7 +89,7 @@
 		{/each}
 	</div>
 </aside>
-<Resizer {height} />
+<SetHeightResizer {height} />
 
 <style lang="scss">
 	aside {

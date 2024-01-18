@@ -103,16 +103,6 @@
 		background-color: #e4e4e4;
 	}
 
-	a.multiple-card:not(:first-of-type)::before {
-		content: '';
-		position: absolute;
-		top: 119px;
-		bottom: 102px;
-		margin-left: -10px;
-		width: 1px;
-		background: #dcdcdc;
-	}
-
 	a.single-card .media {
 		margin: -10px;
 	}
@@ -192,12 +182,28 @@
 			margin: 12px 10px;
 		}
 
+		a.multiple-card:not(:first-of-type)::before {
+			content: '';
+			position: absolute;
+			top: 78px;
+			bottom: 102px;
+			margin-left: -10px;
+			width: 1px;
+			background: #dcdcdc;
+		}
+
 		a.multiple-card:nth-child(n) {
 			display: block;
 		}
 
 		a.multiple-card .text h2 {
 			margin-bottom: 10px;
+		}
+	}
+
+	@media (min-width: 980px) {
+		a.multiple-card:not(:first-of-type)::before {
+			top: 131px;
 		}
 	}
 
