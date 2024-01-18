@@ -34,6 +34,7 @@
 	export let Article4Headline: GAMVariable;
 	export let Article4Image: GAMVariable;
 	export let Article4URL: GAMVariable;
+	export let numberOfElements: GAMVariable;
 
 	let cardOverrides: CapiCardOverride[] = [
 		{
@@ -59,7 +60,11 @@
 	];
 
 	const getCards = retrieveCapiData(SeriesURL, cardOverrides).then((response) =>
-		addCapiHostedCardOverrides(response.articles, cardOverrides, BrandLogo),
+		addCapiHostedCardOverrides(
+			response.articles.slice(0, numberOfElements),
+			cardOverrides,
+			BrandLogo,
+		),
 	);
 
 	if (isValidReplacedVariable(TrackingId)) addTrackingPixel(TrackingId);
