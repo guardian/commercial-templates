@@ -48,6 +48,7 @@
 
 			switch (data.type) {
 				case 'set-ad-height':
+				case 'resize':
 					iframe.height = String(data.value.height);
 					break;
 				case 'get-page-url':

@@ -4,7 +4,7 @@
 	import type { Single } from '$lib/types/capi';
 	import CapiCard from '$templates/components/CapiCard.svelte';
 	import PaidForHeader from '$templates/components/PaidForHeader.svelte';
-	import Resizer from '$templates/components/Resizer.svelte';
+	import SetHeightResizer from '$templates/components/SetHeightResizer.svelte';
 
 	export const cdn = 'https://i.guim.co.uk/img/media/';
 	export const api =
@@ -36,7 +36,7 @@
 		/>
 		<CapiCard templateType="single" {single} />
 	</aside>
-	<Resizer {height} />
+	<SetHeightResizer {height} />
 {:catch}
 	<h3>Could not fetch series “{SeriesUrl}”</h3>
 {/await}
