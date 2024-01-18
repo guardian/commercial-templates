@@ -48,6 +48,7 @@
 
 			switch (data.type) {
 				case 'set-ad-height':
+				case 'resize':
 					const iframe = source.frameElement as HTMLIFrameElement;
 					iframe.height = String(data.value.height);
 					break;
