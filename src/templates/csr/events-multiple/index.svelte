@@ -3,7 +3,6 @@
 	import '$templates/components/fonts/Sans.css';
 	import ManualCard from '$templates/components/ManualCard.svelte';
 	import ManualHeader from '$templates/components/ManualHeader.svelte';
-	import ToneLogo from '$templates/components/ToneLogo.svelte';
 	import type { Tone } from '$lib/types/tones';
 	import SetHeightResizer from '$templates/components/SetHeightResizer.svelte';
 
