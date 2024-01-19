@@ -8,7 +8,6 @@
 <script lang="ts">
 	import { replaceGAMVariables } from '$lib/gam';
 	import { onMount } from 'svelte';
-	import type { Message } from './messenger';
 	import { tones } from './types/tones';
 
 	export let template: string;

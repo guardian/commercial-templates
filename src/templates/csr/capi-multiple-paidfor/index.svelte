@@ -11,7 +11,7 @@
 	import PaidForHeader from '$templates/components/PaidForHeader.svelte';
 	import { addTrackingPixel, isValidReplacedVariable } from '$lib/gam';
 	import Resizer from '$templates/components/Resizer.svelte';
-	import { retrieveCapiData, addHeadlineKicker } from '$lib/capiMultiple';
+	import { retrieveCapiData, addCapiCardOverrides } from '$lib/capiMultiple';
 
 	export let SeriesURL: GAMVariable;
 	export let ComponentTitle: GAMVariable;
@@ -60,8 +60,8 @@
 		},
 	];
 
-	const getCards = retrieveCapiData(cardOverrides, SeriesURL).then((response) =>
-		addHeadlineKicker(cardOverrides, response.articles),
+	const getCards = retrieveCapiData(SeriesURL, cardOverrides).then((response) =>
+		addCapiCardOverrides(response.articles, cardOverrides),
 	);
 
 	if (isValidReplacedVariable(Trackingpixel)) addTrackingPixel(Trackingpixel);

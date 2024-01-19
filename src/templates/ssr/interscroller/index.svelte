@@ -3,14 +3,17 @@
 </script>
 
 <div class="creative--interscroller">
+	<!-- svelte-ignore a11y-missing-attribute - no alt attribute needed for a pixel -->
 	<img
 		src="[%TrackingPixel%]"
 		class="creative__pixel creative__pixel--displayNone"
 	/>
+	<!-- svelte-ignore a11y-missing-attribute - no alt attribute needed for a pixel -->
 	<img
 		src="[%ResearchPixel%]"
 		class="creative__pixel creative__pixel--displayNone"
 	/>
+	<!-- svelte-ignore a11y-missing-attribute - no alt attribute needed for a pixel -->
 	<img
 		src="[%ViewabilityTracker%]"
 		class="creative__pixel creative__pixel--displayNone"
