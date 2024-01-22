@@ -96,7 +96,7 @@ export const load: PageServerLoad = async ({ params }) => {
 		`<div id="svelte" data-template-id="${template}">`,
 		ssr.html,
 		`</div>`,
-		`<script>${js.code}</script>`,
+		`<script>${js?.code ?? ''}</script>`,
 	].join('\n');
 
 	const css = [`/* ${stamp} */`, String(ssr.css), styles].join('\n');
