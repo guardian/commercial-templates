@@ -19,7 +19,6 @@ const config = {
 
 				if (!match) return ctx.modules;
 
-
 				console.warn(
 					`Template ${match} changed`,
 					'sending template-update event',

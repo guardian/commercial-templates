@@ -51,10 +51,14 @@ function addCapiHostedCardOverrides(
 	};
 }
 
+interface CapiMultipleResponse {
+	articles: Single[];
+}
+
 async function retrieveCapiData(
 	seriesUrl: GAMVariable,
 	cardOverrides: CapiCardOverride[],
-) {
+): Promise<CapiMultipleResponse> {
 	const request = new URL(apiEndpoint);
 	request.searchParams.append('k', encodeURI(seriesUrl));
 	cardOverrides.forEach(({ url }) => {
@@ -63,7 +67,9 @@ async function retrieveCapiData(
 		}
 	});
 
-	return fetch(request).then((response) => response.json());
+	return fetch(request).then(
+		(response) => response.json() as Promise<CapiMultipleResponse>,
+	);
 }
 
 export { retrieveCapiData, addCapiHostedCardOverrides, addCapiCardOverrides };
