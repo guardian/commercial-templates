@@ -1,37 +1,69 @@
 import type { GAMVariable } from './gam';
-import type { CapiCardOverride, Single } from './types/capi';
+import type { CapiCardOverride, CapiHostedCard, Single } from './types/capi';
 
 const apiEndpoint =
 	'https://api.nextgen.guardianapps.co.uk/commercial/api/capi-multiple.json';
 
-function addHeadlineKicker(
-	overrideCards: CapiCardOverride[],
+function addCapiCardOverrides(
 	cardData: Single[],
-) {
-	for (let i = 0; i < overrideCards.length; i++) {
-		if (overrideCards[i]?.kicker && overrideCards[i]?.headline) {
-			cardData[i]!.articleHeadline = overrideCards[i]?.headline;
+	overrideCards: CapiCardOverride[],
+): Single[] {
+	return cardData.map((capiCard, i) => {
+		const headlineOverride = overrideCards[i]?.headline;
+		const kickerOverride = overrideCards[i]?.kicker;
 
-			cardData[i]!.kicker = overrideCards[i]?.kicker;
+		if (headlineOverride && kickerOverride) {
+			return {
+				...capiCard,
+				articleHeadline: headlineOverride,
+				articleKicker: kickerOverride,
+			};
 		}
-	}
 
-	return cardData;
+		return capiCard;
+	});
 }
 
-function retrieveCapiData(
-	cards: CapiCardOverride[],
+function addCapiHostedCardOverrides(
+	cardData: Single[],
+	overrideCards: CapiCardOverride[],
+	overrideLogo?: string,
+): { logo: string | null; cards: CapiHostedCard[] } {
+	const logo = overrideLogo ?? cardData[0]?.branding.logo.src;
+	return {
+		logo: logo ?? null,
+		cards: cardData
+			.map((capiCard, i) => {
+				const headlineOverride = overrideCards[i]?.headline ?? '';
+				const imageOverride = overrideCards[i]?.image ?? '';
+
+				return {
+					...capiCard,
+					headline: headlineOverride || capiCard.articleHeadline,
+					image: imageOverride
+						? { sources: [], backupSrc: overrideCards[i]?.image ?? '' }
+						: cardData[i]?.articleImage,
+					url: capiCard.articleUrl,
+				};
+			})
+			// A card should only be displayed if and only if a headline is available
+			.filter((card) => card.headline !== ''),
+	};
+}
+
+async function retrieveCapiData(
 	seriesUrl: GAMVariable,
-): Promise<{ articles: Single[] }> {
-	let request = `${apiEndpoint}?k=${encodeURI(seriesUrl)}`;
-	cards.forEach((card) => {
-		if (card.url) {
-			request += `&t=${encodeURI(card.url)}`;
+	cardOverrides: CapiCardOverride[],
+) {
+	const request = new URL(apiEndpoint);
+	request.searchParams.append('k', encodeURI(seriesUrl));
+	cardOverrides.forEach(({ url }) => {
+		if (url) {
+			request.searchParams.append('t', url);
 		}
 	});
-	return fetch(request).then((response) => response.json()) as Promise<{
-		articles: Single[];
-	}>;
+
+	return fetch(request).then((response) => response.json());
 }
 
-export { retrieveCapiData, addHeadlineKicker };
+export { retrieveCapiData, addCapiHostedCardOverrides, addCapiCardOverrides };

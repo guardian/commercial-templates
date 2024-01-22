@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { addHeadlineKicker, retrieveCapiData } from '$lib/capiMultiple';
 	import { addTrackingPixel, isValidReplacedVariable } from '$lib/gam';
 	import type { GAMVariable } from '$lib/gam';
 	import type { CapiCardOverride } from '$lib/types/capi';
@@ -8,6 +7,7 @@
 	import PaidForHeader from '$templates/components/PaidForHeader.svelte';
 	import Resizer from '$templates/components/Resizer.svelte';
 	import Sponsor from '$templates/components/Sponsor.svelte';
+	import { retrieveCapiData, addCapiCardOverrides } from '$lib/capiMultiple';
 
 	export let SeriesURL: GAMVariable;
 	export let ComponentTitle: GAMVariable;
@@ -56,8 +56,8 @@
 		},
 	];
 
-	const getCards = retrieveCapiData(cardOverrides, SeriesURL).then((response) =>
-		addHeadlineKicker(cardOverrides, response.articles),
+	const getCards = retrieveCapiData(SeriesURL, cardOverrides).then((response) =>
+		addCapiCardOverrides(response.articles, cardOverrides),
 	);
 
 	if (isValidReplacedVariable(Trackingpixel)) addTrackingPixel(Trackingpixel);
