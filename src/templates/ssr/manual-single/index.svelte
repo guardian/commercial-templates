@@ -1,7 +1,7 @@
 <!-- https://polyfill.io/v3/polyfill.min.js?features=default -->
 <script lang="ts">
 	import type { GAMVariable } from '$lib/gam';
-	import { CLICK_MACRO } from '$lib/gam';
+	import { clickMacro } from '$lib/gam';
 	import '$templates/components/colours/tones.css';
 	import '$templates/components/fonts/Egyptian.css';
 	import ArrowRight from '$templates/components/icons/ArrowRight.svelte';
@@ -25,7 +25,7 @@
 		<h1 class="adverts__title" data-tone="travel">
 			<a
 				class="adverts__logo brand_logo"
-				href={`${CLICK_MACRO}${TitleURL}`}
+				href={clickMacro(TitleURL)}
 				data-link-name="title"
 				target="_top"><BrandLogo /></a
 			>
@@ -37,25 +37,18 @@
 	<div class="adverts">
 		<a
 			class="single"
-			href={`${CLICK_MACRO}${OfferURL}`}
+			href={clickMacro(OfferURL)}
 			data-link-name="[%OfferTitle%]"
 			target="_top"
 		>
 			<div class="advert__text">
 				<h2 class="blink__anchor advert__title">[%OfferTitle%]</h2>
 				<p class="advert__standfirst">[%OfferText%]</p>
-				<!-- <span class="advert__more button button--small">
-				[%OfferLinkText%]
-				<ArrowRight />
-			</span> -->
 			</div>
-			<!-- <div class="advert__image-container">
-			<img class="advert__image" src="[%OfferImage%]" alt="" />
-		</div> -->
 		</a>
 		<a
 			class="hide-until-mobile-landscape button"
-			href={`${CLICK_MACRO}${TitleURL}`}
+			href={clickMacro(TitleURL)}
 			data-link-name="viewall"
 			target="_top"
 		>
@@ -79,10 +72,6 @@
 		@media (min-width: 1140px) {
 			flex-direction: row;
 		}
-	}
-
-	img {
-		width: 120px;
 	}
 
 	h2 {

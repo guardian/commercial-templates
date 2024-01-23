@@ -32,7 +32,7 @@
 		support: GenericSvg,
 		subscription: SubscriptionSvg,
 		'subs-rebrand': SubscriptionSvg,
-	};
+	} as const;
 </script>
 
 <div style:color="#fff">
