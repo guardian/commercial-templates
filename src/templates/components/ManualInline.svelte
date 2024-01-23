@@ -34,10 +34,12 @@
 	<div class="text">
 		<h2><slot name="title" /></h2>
 		<p class="description"><slot name="text" /></p>
-		<div class="button">
-			{linkText}
-			<ArrowRight width={24} />
-		</div>
+		{#if linkText}
+			<div class="button">
+				{linkText}
+				<ArrowRight width={24} />
+			</div>
+		{/if}
 	</div>
 </a>
 
