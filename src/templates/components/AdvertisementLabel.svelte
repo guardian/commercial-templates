@@ -6,6 +6,9 @@
 	@import './fonts/Sans.css';
 
 	.container {
+		position: relative;
+		padding: 0 calc(50% - 650px);
+		height: 2em;
 		background-color: #f6f6f6;
 		border-top: 1px solid #dcdcdc;
 		color: #707070;
@@ -14,7 +17,6 @@
 		font-size: 0.75rem;
 		line-height: 1.9;
 		font-weight: 400;
-		height: 2em;
 		box-sizing: border-box;
 	}
 

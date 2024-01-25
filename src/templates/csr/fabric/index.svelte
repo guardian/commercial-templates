@@ -116,29 +116,10 @@
 		margin: 0 auto;
 		height: 250px;
 		overflow: hidden;
+		padding: 0 calc(50% - 650px);
 
-		@media (min-width: 740px) {
-			max-width: 740px;
-		}
-
-		@media (min-width: 980px) {
-			max-width: 980px;
-		}
-
-		@media (min-width: 1140px) {
-			max-width: 1140px;
-		}
-
-		@media (min-width: 1300px) {
-			max-width: 1300px;
-		}
-
-		&.is-parallax {
-			padding: 0 calc(50% - 650px);
-
-			.layer {
-				background-size: auto;
-			}
+		&.is-parallax .layer {
+			background-size: auto;
 		}
 	}
 
