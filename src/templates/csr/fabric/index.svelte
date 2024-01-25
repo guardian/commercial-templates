@@ -64,93 +64,105 @@
 
 <svelte:body style:--background-color={BackgroundColour} />
 <AdvertisementLabel />
-<div class="creative--fabric">
-	<a
-		class="gs-container link"
-		class:is-parallax={BackgroundScrollType === 'parallax'}
-		href={`${CLICK_MACRO}${DEST_URL}`}
-		target="_blank"
-	>
-		<div class="creative-container">
-			<div
-				class="layer"
-				style:--desktop-background-image={`url('${Layer1BackgroundImage}')`}
-				style:--desktop-background-position={Layer1BackgroundPosition}
-				style:--mobile-background-image={`url('${MobileLayer1BackgroundImage}')`}
-				style:--mobile-background-position={MobileLayer1BackgroundPosition}
-			/>
-			<div
-				class="layer"
-				style:--desktop-background-image={`url('${Layer2BackgroundImage}')`}
-				style:--desktop-background-position={Layer2BackgroundPosition}
-				style:--mobile-background-image={`url('${MobileLayer2BackgroundImage}')`}
-				style:--mobile-background-position={MobileLayer2BackgroundPosition}
-			/>
-			<div
-				class="layer"
-				style:--desktop-background-image={`url('${Layer3BackgroundImage}')`}
-				style:--desktop-background-position={Layer3BackgroundPosition}
-				style:--mobile-background-image={`url('${MobileLayer3BackgroundImage}')`}
-				style:--mobile-background-position={MobileLayer3BackgroundPosition}
-			/>
-		</div>
-	</a>
-	{#if isValidReplacedVariable(Trackingpixel)}
-		<Pixel src={Trackingpixel} />
-	{:else if isValidReplacedVariable(Researchpixel)}
-		<Pixel src={Researchpixel} />
-	{:else if isValidReplacedVariable(Viewabilitypixel)}
-		<Pixel src={Viewabilitypixel} />
-	{/if}
-</div>
+<a
+	class="fabric-container"
+	class:is-parallax={BackgroundScrollType === 'parallax'}
+	href={`${CLICK_MACRO}${DEST_URL}`}
+	target="_blank"
+>
+	<div class="creative-container">
+		<div
+			class="layer"
+			style:--desktop-background-image={`url('${Layer1BackgroundImage}')`}
+			style:--desktop-background-position={Layer1BackgroundPosition}
+			style:--mobile-background-image={`url('${MobileLayer1BackgroundImage}')`}
+			style:--mobile-background-position={MobileLayer1BackgroundPosition}
+		/>
+		<div
+			class="layer"
+			style:--desktop-background-image={`url('${Layer2BackgroundImage}')`}
+			style:--desktop-background-position={Layer2BackgroundPosition}
+			style:--mobile-background-image={`url('${MobileLayer2BackgroundImage}')`}
+			style:--mobile-background-position={MobileLayer2BackgroundPosition}
+		/>
+		<div
+			class="layer"
+			style:--desktop-background-image={`url('${Layer3BackgroundImage}')`}
+			style:--desktop-background-position={Layer3BackgroundPosition}
+			style:--mobile-background-image={`url('${MobileLayer3BackgroundImage}')`}
+			style:--mobile-background-position={MobileLayer3BackgroundPosition}
+		/>
+	</div>
+</a>
+{#if isValidReplacedVariable(Trackingpixel)}
+	<Pixel src={Trackingpixel} />
+{:else if isValidReplacedVariable(Researchpixel)}
+	<Pixel src={Researchpixel} />
+{:else if isValidReplacedVariable(Viewabilitypixel)}
+	<Pixel src={Viewabilitypixel} />
+{/if}
 
 {@html thirdPartyJSTracking}
 
 <style lang="scss">
-	@import '../../../styles/helpers.scss';
 	:global(body) {
 		background-color: var(--background-color);
 	}
-	.link {
+
+	.fabric-container {
 		display: block;
+		position: relative;
 		text-decoration: none;
-	}
-	.creative-container {
-		position: relative;
-	}
-	.creative--fabric {
-		display: block;
-		position: relative;
-		&,
-		.link {
-			height: 250px;
-			overflow: hidden;
+		margin: 0 auto;
+		height: 250px;
+		overflow: hidden;
+
+		@media (min-width: 740px) {
+			max-width: 740px;
 		}
-		.is-parallax {
-			&.gs-container {
-				padding: 0 calc(50% - 650px);
-			}
+
+		@media (min-width: 980px) {
+			max-width: 980px;
+		}
+
+		@media (min-width: 1140px) {
+			max-width: 1140px;
+		}
+
+		@media (min-width: 1300px) {
+			max-width: 1300px;
+		}
+
+		&.is-parallax {
+			padding: 0 calc(50% - 650px);
+
 			.layer {
 				background-size: auto;
 			}
 		}
-		.layer {
-			width: 100%;
-			height: 250px;
-			position: absolute;
-			top: 0;
-			left: 0;
+	}
 
-			background-repeat: no-repeat;
-			background-size: cover;
-			background-image: var(--mobile-background-image);
-			background-position: var(--mobile-background-position);
-		}
-		@media (min-width: 740px) {
-			.layer {
-				background-image: var(--desktop-background-image);
-				background-position: var(--desktop-background-position);
-			}
+	.creative-container {
+		position: relative;
+	}
+
+	.layer {
+		width: 100%;
+		height: 250px;
+		position: absolute;
+		top: 0;
+		left: 0;
+
+		background-repeat: no-repeat;
+		background-size: cover;
+		background-image: var(--mobile-background-image);
+		background-position: var(--mobile-background-position);
+	}
+
+	@media (min-width: 740px) {
+		.layer {
+			background-image: var(--desktop-background-image);
+			background-position: var(--desktop-background-position);
 		}
 	}
 </style>
