@@ -1,30 +1,28 @@
-<div class="gs-container label">
-	<div class="label-text">Advertisement</div>
+<div class="container">
+	<div class="text">Advertisement</div>
 </div>
 
 <style lang="scss">
 	@import './fonts/Sans.css';
-	@import './colours/palette.scss';
-	@import '../../styles/helpers.scss';
 
-	$gs-gutter: 20px;
-	$f-sans-serif-text: 'Guardian Text Sans Web', 'Helvetica Neue', Helvetica,
-		Arial, 'Lucida Grande', sans-serif !default;
-
-	.label {
-		background-color: $neutral-8;
-		border-top: 1px solid $neutral-5;
-		color: #6e6e6e;
-		font: normal 0.75rem/1.9 $f-sans-serif-text;
+	.container {
+		background-color: #f6f6f6;
+		border-top: 1px solid #dcdcdc;
+		color: #707070;
+		font-family: 'GuardianTextSans', 'Helvetica Neue', Helvetica, Arial,
+			'Lucida Grande', sans-serif;
+		font-size: 0.75rem;
+		line-height: 1.9;
+		font-weight: 400;
 		height: 2em;
 		box-sizing: border-box;
 	}
 
-	.label-text {
-		padding: 0 calc($gs-gutter / 2);
+	.text {
+		padding: 0 10px;
 
 		@media (min-width: 740px) {
-			padding: 0 $gs-gutter;
+			padding: 0 20px;
 		}
 	}
 </style>
