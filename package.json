@@ -52,5 +52,8 @@
 	"type": "module",
 	"dependencies": {
 		"backstopjs": "^6.3.3"
+	},
+	"resolutions": {
+		"glob": "9.3.5"
 	}
 }
