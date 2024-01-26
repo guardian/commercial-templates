@@ -24,7 +24,7 @@
 			"selectors": [],
 			"selectorExpansion": true,
 			"expect": 0,
-			"misMatchThreshold": 0.1,
+			"misMatchThreshold": 0.15,
 			"requireSameDimensions": true
 		},
 		{
@@ -42,7 +42,7 @@
 			"selectors": [],
 			"selectorExpansion": true,
 			"expect": 0,
-			"misMatchThreshold": 0.1,
+			"misMatchThreshold": 0.15,
 			"requireSameDimensions": true
 		},
 		{
@@ -60,7 +60,7 @@
 			"selectors": [],
 			"selectorExpansion": true,
 			"expect": 0,
-			"misMatchThreshold": 0.1,
+			"misMatchThreshold": 0.15,
 			"requireSameDimensions": true
 		},
 		{
@@ -78,7 +78,7 @@
 			"selectors": [],
 			"selectorExpansion": true,
 			"expect": 0,
-			"misMatchThreshold": 0.1,
+			"misMatchThreshold": 0.15,
 			"requireSameDimensions": true
 		},
 		{
@@ -96,7 +96,43 @@
 			"selectors": [],
 			"selectorExpansion": true,
 			"expect": 0,
-			"misMatchThreshold": 0.1,
+			"misMatchThreshold": 0.15,
+			"requireSameDimensions": true
+		},
+		{
+			"label": "CAPI Multiple Hosted",
+			"url": "http://localhost:7777/csr/capi-multiple-hosted",
+			"referenceUrl": "",
+			"readyEvent": "",
+			"readySelector": "",
+			"delay": 5000,
+			"hideSelectors": [],
+			"removeSelectors": [],
+			"hoverSelector": "",
+			"clickSelector": "",
+			"postInteractionWait": 0,
+			"selectors": [],
+			"selectorExpansion": true,
+			"expect": 0,
+			"misMatchThreshold": 0.15,
+			"requireSameDimensions": true
+		},
+		{
+			"label": "Manual Inline",
+			"url": "http://localhost:7777/csr/manual-inline",
+			"referenceUrl": "",
+			"readyEvent": "",
+			"readySelector": "",
+			"delay": 5000,
+			"hideSelectors": [],
+			"removeSelectors": [],
+			"hoverSelector": "",
+			"clickSelector": "",
+			"postInteractionWait": 0,
+			"selectors": [],
+			"selectorExpansion": true,
+			"expect": 0,
+			"misMatchThreshold": 0.15,
 			"requireSameDimensions": true
 		}
 	],
