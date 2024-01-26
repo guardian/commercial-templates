@@ -96,7 +96,7 @@ The commercial-templates repository has been set up with backstopJS for basic vi
 
 _Note_: Not every template benefits from visual regression testing. For example, the Public Good and Interscroller templates don't show a local preview as they depend on the messenger code in commercial, so we don't check them for visual regressions.
 
-To run a visual regression test locally, make sure backstopJS is installed globally on your machine, and then run `backstop test` in the project root.
+To run a visual regression test locally, make sure backstopJS is installed globally on your machine. Run the development environment locally by running `yarn dev`, and then run `backstop test` in the project root.
 
 If the test flags up any changes you're happy with and expect, run `backstop approve` to make these the new reference images.
 
