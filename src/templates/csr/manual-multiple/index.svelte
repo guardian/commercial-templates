@@ -65,7 +65,7 @@
 
 	const isProminent = IsProminent === 'true';
 
-	offers = offers.filter((offer) => offer.title !== '');
+	offers = offers.filter(({ title }) => title !== '');
 
 	let height: number = -1;
 </script>

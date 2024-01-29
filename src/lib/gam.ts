@@ -1,5 +1,6 @@
 const CLICK_MACRO = '%%CLICK_URL_UNESC%%';
 const CACHE_BUST = '%%CACHEBUSTER%%';
+const DEST_URL = '%%DEST_URL%%';
 
 type GAMVariable<T extends string = string> = T;
 
@@ -36,6 +37,7 @@ export type { GAMVariable };
 export {
 	CACHE_BUST,
 	CLICK_MACRO,
+	DEST_URL,
 	addTrackingPixel,
 	gamVar,
 	isValidReplacedVariable,
