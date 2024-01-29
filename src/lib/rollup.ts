@@ -1,3 +1,4 @@
+import fs from 'fs';
 import alias from '@rollup/plugin-alias';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
 import terser from '@rollup/plugin-terser';
@@ -55,10 +56,13 @@ const build = async (
 
 	let styles = '';
 
-	const input: ['dom'] | ['ssr', `${string}/index.ts`] =
-		mode === 'dom'
-			? ['dom']
-			: ['ssr', `src/templates/ssr/${template}/index.ts`];
+	let input: ['ssr' | 'dom'] | ['ssr', `${string}/index.ts`] = [mode];
+
+	if (mode === 'ssr') {
+		if (fs.existsSync(`src/templates/ssr/${template}/index.ts`)) {
+			input = ['ssr', `src/templates/ssr/${template}/index.ts`];
+		}
+	}
 
 	const build = await rollup({
 		input,
