@@ -1,4 +1,8 @@
-<div class="container">
+<script lang="ts">
+	export let fullWidth: boolean;
+</script>
+
+<div class="container" class:fullWidth>
 	<div class="text">Advertisement</div>
 </div>
 
@@ -7,7 +11,6 @@
 
 	.container {
 		position: relative;
-		padding: 0 calc(50% - 650px);
 		height: 2em;
 		background-color: #f6f6f6;
 		border-top: 1px solid #dcdcdc;
@@ -18,6 +21,26 @@
 		line-height: 1.9;
 		font-weight: 400;
 		box-sizing: border-box;
+
+		&.fullWidth {
+			padding: 0 calc(50% - 650px); // Keep the label central for large screens
+		}
+
+		&:not(.fullWidth) {
+			margin: 0 auto;
+			@media (min-width: 740px) {
+				max-width: 740px;
+			}
+			@media (min-width: 980px) {
+				max-width: 980px;
+			}
+			@media (min-width: 1140px) {
+				max-width: 1140px;
+			}
+			@media (min-width: 1300px) {
+				max-width: 1300px;
+			}
+		}
 	}
 
 	.text {

@@ -63,37 +63,36 @@
 </script>
 
 <svelte:body style:--background-color={BackgroundColour} />
-<AdvertisementLabel />
+<AdvertisementLabel fullWidth={BackgroundScrollType === 'parallax'} />
 <a
 	class="fabric-container"
 	class:is-parallax={BackgroundScrollType === 'parallax'}
 	href={`${CLICK_MACRO}${DEST_URL}`}
 	target="_blank"
 >
-	<div class="creative-container">
-		<div
-			class="layer"
-			style:--desktop-background-image={`url('${Layer1BackgroundImage}')`}
-			style:--desktop-background-position={Layer1BackgroundPosition}
-			style:--mobile-background-image={`url('${MobileLayer1BackgroundImage}')`}
-			style:--mobile-background-position={MobileLayer1BackgroundPosition}
-		/>
-		<div
-			class="layer"
-			style:--desktop-background-image={`url('${Layer2BackgroundImage}')`}
-			style:--desktop-background-position={Layer2BackgroundPosition}
-			style:--mobile-background-image={`url('${MobileLayer2BackgroundImage}')`}
-			style:--mobile-background-position={MobileLayer2BackgroundPosition}
-		/>
-		<div
-			class="layer"
-			style:--desktop-background-image={`url('${Layer3BackgroundImage}')`}
-			style:--desktop-background-position={Layer3BackgroundPosition}
-			style:--mobile-background-image={`url('${MobileLayer3BackgroundImage}')`}
-			style:--mobile-background-position={MobileLayer3BackgroundPosition}
-		/>
-	</div>
+	<div
+		class="layer"
+		style:--desktop-background-image={`url('${Layer1BackgroundImage}')`}
+		style:--desktop-background-position={Layer1BackgroundPosition}
+		style:--mobile-background-image={`url('${MobileLayer1BackgroundImage}')`}
+		style:--mobile-background-position={MobileLayer1BackgroundPosition}
+	/>
+	<div
+		class="layer"
+		style:--desktop-background-image={`url('${Layer2BackgroundImage}')`}
+		style:--desktop-background-position={Layer2BackgroundPosition}
+		style:--mobile-background-image={`url('${MobileLayer2BackgroundImage}')`}
+		style:--mobile-background-position={MobileLayer2BackgroundPosition}
+	/>
+	<div
+		class="layer"
+		style:--desktop-background-image={`url('${Layer3BackgroundImage}')`}
+		style:--desktop-background-position={Layer3BackgroundPosition}
+		style:--mobile-background-image={`url('${MobileLayer3BackgroundImage}')`}
+		style:--mobile-background-position={MobileLayer3BackgroundPosition}
+	/>
 </a>
+
 {#if isValidReplacedVariable(Trackingpixel)}
 	<Pixel src={Trackingpixel} />
 {:else if isValidReplacedVariable(Researchpixel)}
@@ -116,15 +115,23 @@
 		margin: 0 auto;
 		height: 250px;
 		overflow: hidden;
-		padding: 0 calc(50% - 650px);
 
 		&.is-parallax .layer {
 			background-size: auto;
 		}
-	}
 
-	.creative-container {
-		position: relative;
+		@media (min-width: 740px) {
+			max-width: 740px;
+		}
+		@media (min-width: 980px) {
+			max-width: 980px;
+		}
+		@media (min-width: 1140px) {
+			max-width: 1140px;
+		}
+		@media (min-width: 1300px) {
+			max-width: 1300px;
+		}
 	}
 
 	.layer {
