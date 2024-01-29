@@ -3,3 +3,11 @@ pnpm-lock.yaml
 package-lock.json
 yarn.lock
 legacy
+
+# Svelte
+/build
+/build-static
+/.svelte-kit
+
+# Python
+scripts/deploy

@@ -6,12 +6,12 @@
 	import '$templates/components/fonts/EgyptianBold.css';
 	import { clickMacro } from '$lib/gam';
 	import type { GAMVariable } from '$lib/gam';
-	import type { Tone } from '$lib/types/tones';
-	import ToneLogo from '$templates/components/ToneLogo.svelte';
+	import type { Tone as TTone } from '$lib/types/tones';
 	import ArrowRight from '$templates/components/icons/ArrowRight.svelte';
+	import ToneLogo from '$templates/components/ToneLogo.svelte';
 
 	export let TrackingId: GAMVariable;
-	export let Tone: GAMVariable<Tone>;
+	export let Tone: GAMVariable<TTone>;
 	export let BaseUrl: GAMVariable;
 	export let OfferUrl: GAMVariable;
 	export let OfferTitle: GAMVariable;
