@@ -1,9 +1,6 @@
-<script context="module" lang="ts">
+<script lang="ts">
 	import { clickMacro } from '$lib/gam';
 	import type { Tone } from '$lib/types/tones';
-</script>
-
-<script lang="ts">
 	import '$templates/components/fonts/Egyptian.css';
 	import '$templates/components/fonts/Headline.css';
 	import '$templates/components/fonts/Sans.css';

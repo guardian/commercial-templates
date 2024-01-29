@@ -15,9 +15,7 @@ const REGEX = {
 const getProps = (path: string): Props => {
 	const content = readFileSync(path, 'utf8');
 
-	const script = content
-		.match(REGEX.script)
-		?.filter((script) => !script.includes('context="module"'))[0];
+	const script = content.match(REGEX.script)?.[0];
 
 	if (!script) return {};
 

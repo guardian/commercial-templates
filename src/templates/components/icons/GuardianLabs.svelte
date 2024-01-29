@@ -1,24 +1,20 @@
-<script context="module" lan="ts">
-	const host = 'https://www.theguardian.com';
-</script>
-
 <script lang="ts">
 	import { CLICK_MACRO } from '$lib/gam';
 	import type { Single } from '$lib/types/capi';
 
-	export let fill = 'black';
-	export let edition: Single['branding']['edition'];
+	const host = 'https://www.theguardian.com';
 
-	const GLABS_EDITIONS: Record<typeof edition, string> = {
+	const GLABS_EDITIONS: Record<Single['branding']['edition'], string> = {
 		AU: 'guardian-labs-australia',
 		UK: 'guardian-labs',
 		US: 'guardian-labs-us',
-	};
+	} as const;
+
+	export let fill = 'black';
+	export let edition: Single['branding']['edition'] = 'UK';
 </script>
 
-<a
-	href={`${CLICK_MACRO}${host}/${GLABS_EDITIONS[edition] ?? GLABS_EDITIONS.UK}`}
->
+<a href={`${CLICK_MACRO}${host}/${GLABS_EDITIONS[edition]}`}>
 	<svg aria-hidden="true" width="100" height="50" viewBox="0 0 100 50" {fill}>
 		<title>The Guardian Labs</title>
 

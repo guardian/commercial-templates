@@ -1,9 +1,5 @@
-<script context="module" lang="ts">
-	import { CLICK_MACRO } from '$lib/gam';
-</script>
-
 <script lang="ts">
-	import type { GAMVariable } from '$lib/gam';
+	import { CLICK_MACRO, type GAMVariable } from '$lib/gam';
 	import ArrowRight from './icons/ArrowRight.svelte';
 	import LiveLogo from './icons/LiveLogo.svelte';
 	import '$templates/components/fonts/Headline.css';

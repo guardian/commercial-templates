@@ -1,8 +1,8 @@
 <!-- https://polyfill.io/v3/polyfill.min.js?features=default -->
 <script lang="ts">
+	import type { GAMVariable } from '$lib/gam';
+	import { CLICK_MACRO, DEST_URL, isValidReplacedVariable } from '$lib/gam';
 	import { post } from '$lib/messenger';
-	import { CLICK_MACRO, DEST_URL, GAMVariable } from '$lib/gam';
-	import { isValidReplacedVariable } from '$lib/gam';
 	import AdvertisementLabel from '$templates/components/AdvertisementLabel.svelte';
 	import Pixel from '$templates/components/Pixel.svelte';
 
@@ -44,7 +44,7 @@
 				MobileBackgroundImage,
 				MobileBackgroundImagePosition,
 				MobileBackgroundImageRepeat,
-		  ]
+			]
 		: [BackgroundImage, BackgroundImagePosition, BackgroundImageRepeat];
 
 	const checkScrollType = (scrollType: string): string =>

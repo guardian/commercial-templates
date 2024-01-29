@@ -1,14 +1,13 @@
-<script context="module" lang="ts">
+<script lang="ts">
+	import { onMount } from 'svelte';
+	import { replaceGAMVariables } from '$lib/gam';
+	import type { Message } from './messenger';
+	import { tones } from './types/tones';
+
 	const defaultReplacements: Record<string, string> = {
 		CACHEBUSTER: '?cachebust',
 		CLICK_URL_UNESC: '',
 	};
-</script>
-
-<script lang="ts">
-	import { replaceGAMVariables } from '$lib/gam';
-	import { onMount } from 'svelte';
-	import { tones } from './types/tones';
 
 	export let template: string;
 	export let html: string;
@@ -33,7 +32,7 @@
 		980: 'desktop',
 		740: 'tablet',
 		360: 'mobile',
-	};
+	} as const;
 
 	onMount(() => {
 		window.addEventListener('message', (ev: MessageEvent<string>) => {
@@ -41,15 +40,16 @@
 
 			const { source, data: json } = ev;
 
-			const data = JSON.parse(json);
+			const data = JSON.parse(json) as Message;
 
 			if (!source) return;
 			if (!('frameElement' in source)) return;
 
+			const iframe = source.frameElement as HTMLIFrameElement;
+
 			switch (data.type) {
 				case 'set-ad-height':
 				case 'resize':
-					const iframe = source.frameElement as HTMLIFrameElement;
 					iframe.height = String(data.value.height);
 					break;
 				case 'get-page-url':

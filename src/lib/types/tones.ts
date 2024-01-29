@@ -15,9 +15,9 @@ const tones = [
 	'support',
 	'subscription',
 	'subs-rebrand',
-];
+] as const;
 
-type Tone = typeof tones[number];
+type Tone = (typeof tones)[number];
 
 export type { Tone };
 

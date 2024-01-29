@@ -1,3 +1,4 @@
+/* eslint-disable import/no-default-export -- vite config */
 import { sveltekit } from '@sveltejs/kit/vite';
 
 /** @type {import('vite').UserConfig} */
@@ -11,19 +12,21 @@ const config = {
 			},
 			handleHotUpdate(ctx) {
 				const TEMPLATE =
-					/\/templates\/([\w-\/]+?)\/[\w-]+?\.(svelte|js|ts|md|css|json)$/i;
+					/\/templates\/([\w-/]+?)\/[\w-]+?\.(svelte|js|ts|md|css|json)$/i;
 				const matches = TEMPLATE.exec(ctx.file);
 
-				if (!matches) return ctx.modules;
+				const match = matches ? matches[1] : null;
+
+				if (!match) return ctx.modules;
 
 				console.warn(
-					`Template ${matches[1]} changed`,
+					`Template ${match} changed`,
 					'sending template-update event',
 				);
 
 				/** @type {import('./src/lib/reload').Data} */
 				const data = {
-					id: matches[1],
+					id: match,
 				};
 
 				ctx.server.ws.send({

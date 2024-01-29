@@ -1,17 +1,16 @@
-<script context="module" lang="ts">
-	import '$templates/components/fonts/Sans.css';
-</script>
-
 <script lang="ts">
-	import type { GAMVariable } from '$lib/gam';
+	import { addCapiCardOverrides, retrieveCapiData } from '$lib/capiMultiple';
+	import {
+		addTrackingPixel,
+		type GAMVariable,
+		isValidReplacedVariable,
+	} from '$lib/gam';
 	import type { CapiCardOverride } from '$lib/types/capi';
-
-	import Sponsor from '$templates/components/Sponsor.svelte';
+	import '$templates/components/fonts/Sans.css';
 	import CapiCard from '$templates/components/CapiCard.svelte';
 	import PaidForHeader from '$templates/components/PaidForHeader.svelte';
-	import { addTrackingPixel, isValidReplacedVariable } from '$lib/gam';
 	import Resizer from '$templates/components/Resizer.svelte';
-	import { retrieveCapiData, addCapiCardOverrides } from '$lib/capiMultiple';
+	import Sponsor from '$templates/components/Sponsor.svelte';
 
 	export let SeriesURL: GAMVariable;
 	export let ComponentTitle: GAMVariable;

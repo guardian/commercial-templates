@@ -107,7 +107,7 @@ const decodeReply = (e: MessageEvent<string>): MessengerResponse | void => {
 	}
 };
 
-const postAndListen = (arg: Message): Promise<unknown | void> =>
+const postAndListen = (arg: Message): Promise<unknown> =>
 	timeout(
 		new Promise((resolve) => {
 			const id = generateId();

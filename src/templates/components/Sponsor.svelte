@@ -1,8 +1,5 @@
-<script context="module" lang="ts">
-	import { CLICK_MACRO } from '$lib/gam';
-</script>
-
 <script lang="ts">
+	import { CLICK_MACRO } from '$lib/gam';
 	import type { Branding } from '$lib/types/capi';
 
 	export let branding: Branding;

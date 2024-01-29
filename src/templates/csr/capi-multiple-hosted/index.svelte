@@ -5,18 +5,18 @@
 
 <script lang="ts">
 	import {
-		isValidReplacedVariable,
-		type GAMVariable,
-		addTrackingPixel,
-	} from '$lib/gam.js';
-	import CapiHostedCard from '$templates/components/CapiHostedCard.svelte';
-	import HostedHeader from '$templates/components/HostedHeader.svelte';
-	import Resizer from '$templates/components/Resizer.svelte';
-	import {
 		addCapiHostedCardOverrides,
 		retrieveCapiData,
 	} from '$lib/capiMultiple';
+	import {
+		addTrackingPixel,
+		type GAMVariable,
+		isValidReplacedVariable,
+	} from '$lib/gam.js';
 	import type { CapiCardOverride } from '$lib/types/capi';
+	import CapiHostedCard from '$templates/components/CapiHostedCard.svelte';
+	import HostedHeader from '$templates/components/HostedHeader.svelte';
+	import Resizer from '$templates/components/Resizer.svelte';
 
 	export let SeriesURL: GAMVariable;
 	export let BrandLogo: GAMVariable;
@@ -61,7 +61,7 @@
 
 	const getCards = retrieveCapiData(SeriesURL, cardOverrides).then((response) =>
 		addCapiHostedCardOverrides(
-			response.articles.slice(0, numberOfElements),
+			response.articles.slice(0, Number(numberOfElements)),
 			cardOverrides,
 			BrandLogo,
 		),

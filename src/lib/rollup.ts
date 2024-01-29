@@ -1,21 +1,21 @@
 import alias from '@rollup/plugin-alias';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
+import terser from '@rollup/plugin-terser';
 import typescript from '@rollup/plugin-typescript';
 import type { Plugin, RollupOutput } from 'rollup';
 import { rollup } from 'rollup';
 import css from 'rollup-plugin-css-only';
 import svelte from 'rollup-plugin-svelte';
-import { terser } from 'rollup-plugin-terser';
 import preprocess from 'svelte-preprocess';
 import type { Props } from './svelte';
 
 const virtual = (template: string, props: Props): Plugin => ({
 	name: 'virtual-template',
-	resolveId: (source: string) => {
+	resolveId(source: string) {
 		if (source === 'ssr' || source === 'dom') return source;
 		return null;
 	},
-	load: (id: string) => {
+	load(id: string) {
 		if (id === 'ssr') {
 			return [
 				`import Template from "./src/templates/ssr/${template}/index.svelte"`,
@@ -87,7 +87,6 @@ const build = async (
 			}),
 			nodeResolve(),
 			terser(),
-			// @ts-expect-error -- the community types are not so great
 			css({
 				output: (processedStyles: string) => {
 					styles = processedStyles
@@ -95,7 +94,7 @@ const build = async (
 						.replaceAll('\t', ' ');
 					return false;
 				},
-			}),
+			}) as Plugin,
 		],
 	});
 

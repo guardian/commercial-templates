@@ -1,13 +1,9 @@
-<script context="module" lang="ts">
-	import { CLICK_MACRO } from '$lib/gam';
-</script>
-
 <script lang="ts">
+	import { CLICK_MACRO } from '$lib/gam';
 	import type { Single } from '$lib/types/capi';
 	import Button from './Button.svelte';
 	import ArrowDown from './icons/ArrowDown.svelte';
 	import '$templates/components/fonts/SansBold.css';
-
 	import GuardianLabs from './icons/GuardianLabs.svelte';
 
 	export let SeriesUrl: string;
@@ -22,10 +18,7 @@
 	<div class="{templateType}-paid-content-and-title">
 		<div class="paid {templateType}-paid-content">
 			<strong>Paid content</strong>
-			<Button
-				aria-controls="popup"
-				aria-expanded="true"
-				on:click={() => (popup = !popup)}
+			<Button on:click={() => (popup = !popup)}
 				>About <ArrowDown width={12} flip={popup} /></Button
 			>
 			{#if popup}

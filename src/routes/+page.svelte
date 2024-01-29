@@ -1,19 +1,7 @@
-<script context="module" lang="ts">
-	import type { Load } from '@sveltejs/kit';
-	import type { Templates } from './templates.json';
+<script lang="ts">
+	import type { PageData } from './$types';
+	import type { Templates } from './+page.server';
 	import { base } from '$app/paths';
-
-	export const load: Load = async ({ fetch }) => {
-		const templates: Templates = await fetch(`${base}/templates.json`).then(
-			(r) => r.json(),
-		);
-
-		return {
-			props: {
-				templates,
-			},
-		};
-	};
 
 	const explanations: Record<keyof Templates, string> = {
 		csr: 'Dynamic',
@@ -22,10 +10,10 @@
 	};
 
 	const branch = 'main';
-</script>
 
-<script lang="ts">
-	export let templates: Templates;
+	export let data: PageData;
+
+	const { templates } = data;
 
 	const modes: Array<keyof Templates> = ['csr', 'ssr'];
 </script>

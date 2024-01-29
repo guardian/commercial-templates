@@ -12,7 +12,7 @@
 
 	const { headline, image, url, audioTag, galleryTag, videoTag } = card;
 
-	const pictureSupported = image?.sources?.length && 'srcset' in new Image();
+	const pictureSupported = image?.sources.length && 'srcset' in new Image();
 </script>
 
 <a href={clickMacro(url)} target="_top">

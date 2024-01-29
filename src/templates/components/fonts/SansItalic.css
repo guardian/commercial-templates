@@ -1,6 +1,7 @@
 @font-face {
 	font-family: 'GuardianTextSans';
-	src: url('https://assets.guim.co.uk/static/frontend/fonts/guardian-textsans/noalts-not-hinted/GuardianTextSans-RegularItalic.woff2')
+	src:
+		url('https://assets.guim.co.uk/static/frontend/fonts/guardian-textsans/noalts-not-hinted/GuardianTextSans-RegularItalic.woff2')
 			format('woff2'),
 		url('https://assets.guim.co.uk/static/frontend/fonts/guardian-textsans/latin1-not-hinted/GuardianTextSans-RegularItalic.woff')
 			format('woff'),
