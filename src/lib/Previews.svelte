@@ -40,12 +40,20 @@
 
 			const { source, data: json } = ev;
 
-			const data = JSON.parse(json) as Message;
+			let data;
+
+			try {
+				data = JSON.parse(json) as Message;
+			} catch (e) {
+				return;
+			}
 
 			if (!source) return;
 			if (!('frameElement' in source)) return;
 
 			const iframe = source.frameElement as HTMLIFrameElement;
+
+			console.log('messenger message received', data);
 
 			switch (data.type) {
 				case 'set-ad-height':
