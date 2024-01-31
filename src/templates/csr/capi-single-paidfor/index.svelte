@@ -5,11 +5,11 @@
 	import CapiCard from '$templates/components/CapiCard.svelte';
 	import PaidForHeader from '$templates/components/PaidForHeader.svelte';
 	import SetHeightResizer from '$templates/components/SetHeightResizer.svelte';
+	import '$templates/components/fonts/Sans.css';
 
 	export const cdn = 'https://i.guim.co.uk/img/media/';
 	export const api =
 		'https://api.nextgen.guardianapps.co.uk/commercial/api/capi-single.json';
-	import '$templates/components/fonts/Sans.css';
 
 	export let SeriesUrl: GAMVariable;
 	export let ComponentTitle: GAMVariable;

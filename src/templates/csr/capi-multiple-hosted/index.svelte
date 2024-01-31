@@ -1,9 +1,7 @@
-<script context="module" lang="ts">
+<script lang="ts">
 	import '$templates/components/fonts/Sans.css';
 	import '$templates/components/fonts/SansBold.css';
-</script>
 
-<script lang="ts">
 	import {
 		addCapiHostedCardOverrides,
 		retrieveCapiData,

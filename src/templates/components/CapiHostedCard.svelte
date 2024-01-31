@@ -1,8 +1,5 @@
-<script context="module" lang="ts">
-	import { clickMacro } from '$lib/gam';
-</script>
-
 <script lang="ts">
+	import { clickMacro } from '$lib/gam';
 	import type { CapiHostedCard } from '$lib/types/capi';
 	import AudioIcon from './icons/AudioIcon.svelte';
 	import CameraIcon from './icons/CameraIcon.svelte';
