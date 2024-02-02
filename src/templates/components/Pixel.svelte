@@ -1,8 +1,12 @@
 <script lang="ts">
+	import { isValidReplacedVariable } from '$lib/gam';
+
 	export let src: string;
 </script>
 
-<img {src} alt="" class="pixel" />
+{#if isValidReplacedVariable(src)}
+	<img {src} alt="" class="pixel" />
+{/if}
 
 <style lang="scss">
 	.pixel {
@@ -12,5 +16,6 @@
 		width: 1px;
 		height: 1px;
 		opacity: 0;
+		display: none;
 	}
 </style>
