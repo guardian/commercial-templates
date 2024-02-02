@@ -5,17 +5,16 @@
 </script>
 
 {#if isValidReplacedVariable(src)}
-	<img {src} alt="" class="pixel" />
+	<img {src} alt="" />
 {/if}
 
 <style lang="scss">
-	.pixel {
+	img {
 		position: absolute;
 		bottom: 0;
 		right: 0;
 		width: 1px;
 		height: 1px;
 		opacity: 0;
-		display: none;
 	}
 </style>
