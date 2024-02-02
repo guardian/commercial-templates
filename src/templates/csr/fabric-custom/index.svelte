@@ -20,6 +20,7 @@
 
 	const DapAssetsPath = `${DapAssetsRoot}/${DapAssetsFolder}`;
 
+	// relative paths in the CSS need to be replaced with the absolute path
 	const replaceAssetLinks = (html: string) => {
 		const re = /url\('\.\/(.*)'\)/g;
 		return html.replace(re, `url('${DapAssetsPath}/$1')`);
