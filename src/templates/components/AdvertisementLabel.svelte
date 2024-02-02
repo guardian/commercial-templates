@@ -1,5 +1,6 @@
 <script lang="ts">
 	import './fonts/Sans.css';
+
 	export let fullWidth = false;
 </script>
 
