@@ -87,3 +87,5 @@ yarn deploy
   - Add a name, any destination and the variables that your template depends on
 
 - Go to Line item and click Resume
+
+- Test the line item on the live site, by going to the page you want to test and appending the adtest parameter.
