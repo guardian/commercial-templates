@@ -4,9 +4,9 @@
 	import AdvertisementLabel from '$templates/components/AdvertisementLabel.svelte';
 	import Pixel from '$templates/components/Pixel.svelte';
 
-	export let Trackingpixel: string;
-	export let Researchpixel: string;
-	export let Viewabilitypixel: string;
+	export let TrackingPixel: string;
+	export let ResearchPixel: string;
+	export let ViewabilityPixel: string;
 	export let thirdPartyJSTracking: string;
 	export let BackgroundScrollType: 'parallax' | 'none' | 'fixed';
 	export let BackgroundColour: string;
@@ -28,6 +28,8 @@
 	export let MobileLayer2BackgroundPosition: string;
 	export let MobileLayer3BackgroundImage: string;
 	export let MobileLayer3BackgroundPosition: string;
+	export let showLabel = true;
+	export let isXL = false;
 
 	const isMobile = window.matchMedia('(max-width: 739px)').matches;
 	const isTablet = window.matchMedia(
@@ -57,10 +59,13 @@
 	});
 </script>
 
-<AdvertisementLabel fullWidth={BackgroundScrollType === 'parallax'} />
+{#if showLabel}
+	<AdvertisementLabel fullWidth={BackgroundScrollType === 'parallax'} />
+{/if}
 <a
 	class="fabric-container"
 	class:is-parallax={BackgroundScrollType === 'parallax'}
+	class:is-xl={isXL}
 	href={`${CLICK_MACRO}${DEST_URL}`}
 	target="_blank"
 >
@@ -87,12 +92,12 @@
 	/>
 </a>
 
-{#if isValidReplacedVariable(Trackingpixel)}
-	<Pixel src={Trackingpixel} />
-{:else if isValidReplacedVariable(Researchpixel)}
-	<Pixel src={Researchpixel} />
-{:else if isValidReplacedVariable(Viewabilitypixel)}
-	<Pixel src={Viewabilitypixel} />
+{#if isValidReplacedVariable(TrackingPixel)}
+	<Pixel src={TrackingPixel} />
+{:else if isValidReplacedVariable(ResearchPixel)}
+	<Pixel src={ResearchPixel} />
+{:else if isValidReplacedVariable(ViewabilityPixel)}
+	<Pixel src={ViewabilityPixel} />
 {/if}
 
 {@html thirdPartyJSTracking}
@@ -107,8 +112,15 @@
 		position: relative;
 		text-decoration: none;
 		margin: 0 auto;
-		height: 250px;
 		overflow: hidden;
+		height: 250px;
+
+		&.is-xl {
+			height: 500px;
+		}
+		&.is-xl .layer {
+			height: 500px;
+		}
 
 		&.is-parallax .layer {
 			background-size: auto;
@@ -134,7 +146,6 @@
 		position: absolute;
 		top: 0;
 		left: 0;
-
 		background-repeat: no-repeat;
 		background-size: cover;
 		background-image: var(--mobile-background-image);
