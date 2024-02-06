@@ -1,8 +1,12 @@
 <script lang="ts">
+	import { isValidReplacedVariable } from '$lib/gam';
+
 	export let src: string;
 </script>
 
-<img {src} alt="" />
+{#if isValidReplacedVariable(src)}
+	<img {src} alt="" />
+{/if}
 
 <style lang="scss">
 	img {

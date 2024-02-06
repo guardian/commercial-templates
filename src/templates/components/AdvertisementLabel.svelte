@@ -1,5 +1,7 @@
 <script lang="ts">
-	export let fullWidth: boolean;
+	import './fonts/Sans.css';
+
+	export let fullWidth = false;
 </script>
 
 <div class="container" class:fullWidth>
@@ -7,8 +9,6 @@
 </div>
 
 <style lang="scss">
-	@import './fonts/Sans.css';
-
 	.container {
 		position: relative;
 		height: 2em;
