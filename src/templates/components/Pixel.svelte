@@ -2,10 +2,10 @@
 	export let src: string;
 </script>
 
-<img {src} alt="" class="pixel" />
+<img {src} alt="" />
 
 <style lang="scss">
-	.pixel {
+	img {
 		position: absolute;
 		bottom: 0;
 		right: 0;
