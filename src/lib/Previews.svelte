@@ -79,7 +79,7 @@
 
 <section id="example">
 	{#each Object.keys(widths) as width}
-		<div class="size {width === '100%' && 'full-width'}">
+		<div class="size" class:full-width={width === '100%'}>
 			<h4>
 				{widths[width]} size ({width})
 			</h4>
