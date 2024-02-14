@@ -9,6 +9,7 @@
 	export let thirdPartyJSTracking: GAMVariable;
 </script>
 
+<base target="_blank" />
 <div id="creative">
 	<AdvertisementLabel />
 	<a id="creative-link" href={clickMacro(DEST_URL)}> </a>
