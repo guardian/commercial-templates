@@ -23,9 +23,24 @@ const getTag = () => {
 	return Promise.reject('No tag found');
 };
 
+/**
+ * This is a hack to insert the html into the DOM,
+ * using innerHtml would not work if the tag contains a script tag
+ * see https://developer.mozilla.org/en-US/docs/Web/API/Element/innerHTML#security_considerations
+ *
+ * @param tag the html to insert
+ */
+const insertTag = (tag: string) => {
+	const placeholder = document.getElementById('creative-link')!;
+	const range = document.createRange();
+	range.setStart(placeholder, 0);
+	range.setEnd(placeholder, 0);
+	placeholder.appendChild(range.createContextualFragment(tag));
+};
+
 getTag()
 	.then((tag) => {
-		document.getElementById('creative-link')!.innerHTML = tag;
+		insertTag(tag);
 		post({
 			type: 'resize',
 			value: { height: document.getElementById('creative')!.offsetHeight },
