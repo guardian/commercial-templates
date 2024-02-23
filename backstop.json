@@ -119,7 +119,7 @@
 		},
 		{
 			"label": "Manual Inline",
-			"url": "http://localhost:7777/csr/manual-inline",
+			"url": "http://localhost:7777/ssr/manual-inline",
 			"referenceUrl": "",
 			"readyEvent": "",
 			"readySelector": "",
