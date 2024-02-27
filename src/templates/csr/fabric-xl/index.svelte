@@ -6,7 +6,6 @@
 	export let TrackingPixel: GAMVariable;
 	export let ResearchPixel: GAMVariable;
 	export let ViewabilityPixel: GAMVariable;
-	export let thirdPartyJSTracking: GAMVariable;
 	export let ShowLabel: GAMVariable;
 
 	export let BackgroundScrollType: GAMVariable<'parallax' | 'none' | 'fixed'>;
@@ -39,7 +38,6 @@
 	{TrackingPixel}
 	{ResearchPixel}
 	{ViewabilityPixel}
-	{thirdPartyJSTracking}
 	{BackgroundScrollType}
 	{BackgroundColour}
 	{BackgroundImage}

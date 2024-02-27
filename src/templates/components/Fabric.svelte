@@ -7,7 +7,6 @@
 	export let TrackingPixel: string;
 	export let ResearchPixel: string;
 	export let ViewabilityPixel: string;
-	export let thirdPartyJSTracking: string;
 	export let BackgroundScrollType: 'parallax' | 'none' | 'fixed';
 	export let BackgroundColour: string;
 	export let BackgroundImage: string;
@@ -99,8 +98,6 @@
 {:else if isValidReplacedVariable(ViewabilityPixel)}
 	<Pixel src={ViewabilityPixel} />
 {/if}
-
-{@html thirdPartyJSTracking}
 
 <style lang="scss">
 	:global(body) {

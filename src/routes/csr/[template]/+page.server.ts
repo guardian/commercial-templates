@@ -18,6 +18,11 @@ interface Data {
 
 const github = 'https://github.com/guardian/commercial-templates/blob';
 
+const getSupplementalHTML = (template: string) => {
+	const path = `src/templates/csr/${template}/index.html`;
+	return existsSync(path) ? readFileSync(path, 'utf-8') : null;
+};
+
 export const load: PageServerLoad = async ({ params }) => {
 	const { template } = params;
 
@@ -58,6 +63,7 @@ export const load: PageServerLoad = async ({ params }) => {
 	const html = [
 		`<!-- ${stamp} -->`,
 		`<div id="svelte" data-template-id="${template}"></div>`,
+		getSupplementalHTML(template) ?? '',
 		`<script>${String(chunks[0].code)}</script>`,
 	].join('\n');
 
