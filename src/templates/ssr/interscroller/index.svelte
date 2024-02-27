@@ -1,4 +1,3 @@
-<!-- https://polyfill.io/v3/polyfill.min.js?features=default -->
 <script lang="ts">
 </script>
 
