@@ -78,10 +78,10 @@
 
 	h2 {
 		margin: 0;
-		padding: 0.3em 0.3em 0.9em;
+		padding: 0.1em 0.3em 0.9em;
 		color: #fff;
 		font-size: 1.15rem;
-		line-height: 1.5rem;
+		line-height: 130%;
 		font-weight: 400;
 		overflow: hidden;
 	}
