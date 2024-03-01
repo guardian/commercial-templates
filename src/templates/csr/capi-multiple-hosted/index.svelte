@@ -132,7 +132,16 @@
 
 	@media (min-width: 1140px) {
 		aside {
-			grid-template-columns: 240px 1fr;
+			grid-template-columns: 140px 1fr;
+			gap: 21px;
+			margin-right: 10px;
+		}
+	}
+
+	@media (min-width: 1300px) {
+		aside {
+			grid-template-columns: 219px 1fr;
+			margin-right: 21px;
 		}
 	}
 </style>
