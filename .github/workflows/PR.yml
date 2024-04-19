@@ -65,11 +65,8 @@ jobs:
       - name: Install dependencies
         uses: bahmutov/npm-install@v1
 
-      - name: Build
-        run: yarn dev
-
-      - name: Setup site
-        run: yarn dev
+      - name: Setup templates site
+        run: yarn dev & npx wait-on -v -i 1000 http://localhost:7777/
 
       - name: Test
         run: backstop test
