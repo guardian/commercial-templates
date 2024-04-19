@@ -1,6 +1,9 @@
 module.exports = async (page, scenario, vp) => {
-  console.log('SCENARIO > ' + scenario.label);
-  await require('./clickAndHoverHelper')(page, scenario);
-
-  // add more ready handlers here...
+  await page.waitFor(() => {
+    return document.fonts.ready.then(() => {
+      console.log('Fonts loaded');
+      document.getElementsByTagName('body')[0].style['-webkit-font-smoothing'] = 'none';
+      return true;
+    });
+  });
 };
