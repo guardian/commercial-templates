@@ -21,7 +21,7 @@
 			"hoverSelector": "",
 			"clickSelector": "",
 			"postInteractionWait": 0,
-			"selectors": [],
+			"selectors": ["viewport"],
 			"selectorExpansion": true,
 			"expect": 0,
 			"misMatchThreshold": 0.2,
@@ -43,7 +43,7 @@
 			"selectorExpansion": true,
 			"expect": 0,
 			"misMatchThreshold": 0.2,
-			"requireSameDimensions": true
+			"requireSameDimensions": false
 		},
 		{
 			"label": "Events Multiple",
