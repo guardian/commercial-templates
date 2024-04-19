@@ -7,7 +7,7 @@
 			"height": 900
 		}
 	],
-	"onReadyScript": "puppet/onReady.js",
+	"onReadyScript": "puppet/onReady.cjs",
 	"scenarios": [
 		{
 			"label": "CAPI Single PaidFor",
@@ -21,7 +21,7 @@
 			"hoverSelector": "",
 			"clickSelector": "",
 			"postInteractionWait": 0,
-			"selectors": ["viewport"],
+			"selectors": [],
 			"selectorExpansion": true,
 			"expect": 0,
 			"misMatchThreshold": 0.2,
@@ -43,7 +43,7 @@
 			"selectorExpansion": true,
 			"expect": 0,
 			"misMatchThreshold": 0.2,
-			"requireSameDimensions": false
+			"requireSameDimensions": true
 		},
 		{
 			"label": "Events Multiple",
