@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { slide } from "svelte/transition";
+
 	export let html: string;
 	export let css: string;
 	export let showHTML = false;
@@ -11,14 +13,10 @@
 	<div class="html">
 		<h2>HTML</h2>
 		<button on:click={() => (showHTML = !showHTML)}>
-			{#if showHTML}
-				Hide HTML
-			{:else}
-				Show HTML
-			{/if}
+			{showHTML ? 'Hide HTML' : 'Show HTML'}
 		</button>
 		{#if showHTML}
-			<pre>{html}</pre>
+			<pre transition:slide>{html}</pre>
 		{/if}
 	</div>
 	<div>
@@ -31,7 +29,7 @@
 			{/if}
 		</button>
 		{#if showCSS}
-			<pre>{css}</pre>
+			<pre transition:slide>{css}</pre>
 		{/if}
 	</div>
 </section>
