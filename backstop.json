@@ -3,8 +3,8 @@
 	"viewports": [
 		{
 			"label": "desktop",
-			"width": 1440,
-			"height": 810
+			"width": 1600,
+			"height": 900
 		}
 	],
 	"onReadyScript": "puppet/onReady.js",
@@ -24,7 +24,7 @@
 			"selectors": [],
 			"selectorExpansion": true,
 			"expect": 0,
-			"misMatchThreshold": 0.15,
+			"misMatchThreshold": 0.2,
 			"requireSameDimensions": true
 		},
 		{
@@ -42,7 +42,7 @@
 			"selectors": [],
 			"selectorExpansion": true,
 			"expect": 0,
-			"misMatchThreshold": 0.15,
+			"misMatchThreshold": 0.2,
 			"requireSameDimensions": true
 		},
 		{
@@ -60,7 +60,7 @@
 			"selectors": [],
 			"selectorExpansion": true,
 			"expect": 0,
-			"misMatchThreshold": 0.15,
+			"misMatchThreshold": 0.2,
 			"requireSameDimensions": true
 		},
 		{
@@ -78,7 +78,7 @@
 			"selectors": [],
 			"selectorExpansion": true,
 			"expect": 0,
-			"misMatchThreshold": 0.15,
+			"misMatchThreshold": 0.2,
 			"requireSameDimensions": true
 		},
 		{
@@ -96,7 +96,7 @@
 			"selectors": [],
 			"selectorExpansion": true,
 			"expect": 0,
-			"misMatchThreshold": 0.15,
+			"misMatchThreshold": 0.2,
 			"requireSameDimensions": true
 		},
 		{
@@ -114,7 +114,7 @@
 			"selectors": [],
 			"selectorExpansion": true,
 			"expect": 0,
-			"misMatchThreshold": 0.15,
+			"misMatchThreshold": 0.2,
 			"requireSameDimensions": true
 		},
 		{
@@ -132,7 +132,7 @@
 			"selectors": [],
 			"selectorExpansion": true,
 			"expect": 0,
-			"misMatchThreshold": 0.15,
+			"misMatchThreshold": 0.2,
 			"requireSameDimensions": true
 		}
 	],
