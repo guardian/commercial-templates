@@ -12,7 +12,7 @@
 		{
 			"label": "CAPI Single PaidFor",
 			"url": "http://localhost:7777/csr/capi-single-paidfor",
-			"referenceUrl": "",
+			"referenceUrl": "https://guardian.github.io/commercial-templates/csr/capi-single-paidfor",
 			"readyEvent": "",
 			"readySelector": "",
 			"delay": 5000,

@@ -68,5 +68,8 @@ jobs:
       - name: Setup templates site
         run: yarn dev & npx wait-on -v -i 1000 http://localhost:7777/
 
+      - name: Create reference images
+        run: yarn test:reference
+
       - name: Test
         run: yarn test:visual
