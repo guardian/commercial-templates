@@ -51,3 +51,25 @@ jobs:
 
       - name: Build
         run: yarn build
+
+    test:
+      name: Test
+      runs-on: ubuntu-latest
+      steps:
+        - name: Checkout repo
+          uses: actions/checkout@v3
+
+        - name: Setup node
+          uses: guardian/actions-setup-node@main
+
+        - name: Install dependencies
+          uses: bahmutov/npm-install@v1
+
+        - name: Build
+          run: yarn dev
+
+        - name: Setup site
+          run: yarn dev
+
+        - name: Test
+          run: backstop test
