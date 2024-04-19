@@ -63,7 +63,7 @@ jobs:
         uses: guardian/actions-setup-node@main
 
       - name: Install dependencies
-        uses: bahmutov/npm-install@v1
+        run: yarn
 
       - name: Setup templates site
         run: yarn dev & npx wait-on -v -i 1000 http://localhost:7777/
