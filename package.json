@@ -13,7 +13,8 @@
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"lint": "prettier --check . && eslint .",
 		"lint:fix": "prettier --write . && eslint . --fix",
-		"format": "prettier --write ."
+		"format": "prettier --write .",
+		"test:visual": "backstop test"
 	},
 	"devDependencies": {
 		"@guardian/eslint-config-typescript": "^9.0.1",

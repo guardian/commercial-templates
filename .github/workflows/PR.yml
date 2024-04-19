@@ -69,4 +69,4 @@ jobs:
         run: yarn dev & npx wait-on -v -i 1000 http://localhost:7777/
 
       - name: Test
-        run: backstop test
+        run: yarn test:visual
