@@ -102,6 +102,7 @@
 <style lang="scss">
 	:global(body) {
 		background-color: var(--background-color);
+		margin: 0;
 	}
 
 	.fabric-container {
