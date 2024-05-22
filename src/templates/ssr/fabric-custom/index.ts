@@ -6,8 +6,8 @@ const DapAssetsFolder: string = '[%DapAssetsFolder%]';
 
 const DapAssetsPath = `${DapAssetsRoot}/${DapAssetsFolder}`;
 const ThirdPartyTag: string = '[%ThirdPartyTag%]';
-const TrackingPixel: string | undefined = '[%TrackingPixel%]';
-const ResearchPixel: string | undefined = '[%ResearchPixel%]';
+const TrackingPixel: string = '[%TrackingPixel%]';
+const ResearchPixel: string = '[%ResearchPixel%]';
 
 const addTrackingPixel = (url: string) => {
 	const pixel = new Image();
