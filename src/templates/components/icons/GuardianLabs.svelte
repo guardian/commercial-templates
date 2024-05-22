@@ -14,7 +14,7 @@
 	export let edition: Single['branding']['edition'] = 'UK';
 </script>
 
-<a href={`${CLICK_MACRO}${host}/${GLABS_EDITIONS[edition]}`}>
+<a href={`${CLICK_MACRO}${host}/${GLABS_EDITIONS[edition]}`} target="_top">
 	<svg aria-hidden="true" width="100" height="50" viewBox="0 0 100 50" {fill}>
 		<title>The Guardian Labs</title>
 
