@@ -1,10 +1,18 @@
 import { post } from '$lib/messenger';
 
+const CACHE_BUST = '%%CACHEBUSTER%%';
 const DapAssetsRoot = `https://s3-eu-west-1.amazonaws.com/adops-assets/dap-fabrics`;
 const DapAssetsFolder: string = '[%DapAssetsFolder%]';
 
 const DapAssetsPath = `${DapAssetsRoot}/${DapAssetsFolder}`;
 const ThirdPartyTag: string = '[%ThirdPartyTag%]';
+const TrackingPixel: string | undefined = '[%TrackingPixel%]';
+const ResearchPixel: string | undefined = '[%ResearchPixel%]';
+
+const addTrackingPixel = (url: string) => {
+	const pixel = new Image();
+	pixel.src = url + CACHE_BUST;
+};
 
 // relative paths in the CSS need to be replaced with the absolute path
 const replaceAssetLinks = (html: string) => {
@@ -49,3 +57,11 @@ getTag()
 	.catch((e) => {
 		console.error(e);
 	});
+
+if (TrackingPixel) {
+	addTrackingPixel(TrackingPixel);
+}
+
+if (ResearchPixel) {
+	addTrackingPixel(ResearchPixel);
+}
