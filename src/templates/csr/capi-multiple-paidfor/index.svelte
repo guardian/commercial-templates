@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { palette } from '@guardian/source/foundations'
 	import { addCapiCardOverrides, retrieveCapiData } from '$lib/capiMultiple';
 	import {
 		addTrackingPixel,
@@ -72,7 +73,7 @@
 	<h3>Loading Content for “{SeriesURL}”</h3>
 {:then cards}
 	{#if cards[0]}
-		<aside bind:clientHeight={height}>
+		<aside bind:clientHeight={height} style="--background-colour: {palette.neutral[93]}; --labs: {palette.labs[400]}">
 			<PaidForHeader
 				edition={cards[0].branding.edition}
 				{ComponentTitle}
@@ -101,7 +102,7 @@
 		margin: 0;
 	}
 	aside {
-		background: #ededed;
+		background: var(--background-colour);
 		position: relative;
 		display: flex;
 		flex-direction: column;
@@ -116,7 +117,7 @@
 	.cards-container {
 		display: flex;
 		flex-direction: column;
-		background-color: #ededed;
+		background-color: var(--background-colour);
 	}
 
 	.sponsor-container {
@@ -127,7 +128,7 @@
 	}
 
 	h3 {
-		background-color: #69d1ca;
+		background-color: var(--labs);
 		color: white;
 	}
 
