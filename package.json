@@ -13,7 +13,9 @@
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"lint": "prettier --check . && eslint .",
 		"lint:fix": "prettier --write . && eslint . --fix",
-		"format": "prettier --write ."
+		"format": "prettier --write .",
+		"test:reference": "backstop reference",
+		"test:visual": "backstop test"
 	},
 	"devDependencies": {
 		"@guardian/eslint-config-typescript": "^9.0.1",
@@ -50,5 +52,12 @@
 		"vite": "^5.0.12"
 	},
 	"type": "module",
-	"dependencies": {}
+	"dependencies": {
+		"backstopjs": "^6.3.3"
+	},
+	"resolutions": {
+		"express": "^4.19.2",
+		"glob": "^9.3.5",
+		"backstopjs/junit-report-builder/make-dir/semver": "^6.3.1"
+	}
 }

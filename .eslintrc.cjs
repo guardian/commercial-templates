@@ -10,6 +10,7 @@ module.exports = {
 	],
 	parser: '@typescript-eslint/parser',
 	plugins: ['@typescript-eslint'],
+	ignorePatterns: ['backstop_data/**'],
 	parserOptions: {
 		sourceType: 'module',
 		ecmaVersion: 2020,
