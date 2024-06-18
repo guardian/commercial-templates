@@ -1,10 +1,11 @@
 <script lang="ts">
 	import './fonts/Sans.css';
+	import { paletteColours } from './colours/paletteColours';
 
 	export let fullWidth = false;
 </script>
 
-<div class="container" class:fullWidth>
+<div class="container" class:fullWidth style={paletteColours}>
 	<div class="text">Advertisement</div>
 </div>
 
