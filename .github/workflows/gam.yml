@@ -21,14 +21,21 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v3
 
-      - name: Setup node
-        uses: guardian/actions-setup-node@main
+      - run: corepack enable
+        shell: bash
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'pnpm'
 
       - name: Install dependencies
-        uses: bahmutov/npm-install@v1
+        run: pnpm install --frozen-lockfile
+        shell: bash
 
       - name: Lint files
-        run: yarn lint
+        run: pnpm lint
 
   types:
     name: Typescript
@@ -37,14 +44,21 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v3
 
-      - name: Setup node
-        uses: guardian/actions-setup-node@main
+      - run: corepack enable
+        shell: bash
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'pnpm'
 
       - name: Install dependencies
-        uses: bahmutov/npm-install@v1
+        run: pnpm install --frozen-lockfile
+        shell: bash
 
       - name: Check typescript
-        run: yarn tsc
+        run: pnpm tsc
 
   deploy:
     name: Deploy
@@ -62,14 +76,21 @@ jobs:
       - name: Install pipenv
         run: pip install pipenv
 
+      - run: corepack enable
+        shell: bash
+
       - name: Setup Node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'pnpm'
 
       - name: Install dependencies
-        run: yarn install --frozen-lockfile
+        run: pnpm install --frozen-lockfile
+        shell: bash
 
       - name: Build
-        run: yarn build
+        run: pnpm build
 
       - name: Install Dependencies
         run: pipenv install

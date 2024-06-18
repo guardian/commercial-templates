@@ -3,10 +3,11 @@
 	"version": "0.0.1",
 	"license": "Apache-2.0",
 	"scripts": {
+		"preinstall": "npx only-allow pnpm",
 		"dev": "vite dev --port 7777",
 		"build": "vite build && touch build/.nojekyll",
-		"publish": "yarn gh-pages --dist build --dotfiles",
-		"deploy": "yarn build && yarn publish",
+		"publish": "pnpm gh-pages --dist build --dotfiles",
+		"deploy": "pnpm build && pnpm publish",
 		"package": "svelte-kit package",
 		"preview": "vite preview",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
@@ -50,5 +51,8 @@
 		"vite": "^5.0.12"
 	},
 	"type": "module",
-	"dependencies": {}
+	"dependencies": {
+		"svelte-preprocess": "^6.0.1"
+	},
+	"packageManager": "pnpm@8.15.5"
 }
