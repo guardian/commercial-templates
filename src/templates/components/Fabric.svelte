@@ -3,6 +3,7 @@
 	import { post } from '$lib/messenger';
 	import AdvertisementLabel from '$templates/components/AdvertisementLabel.svelte';
 	import Pixel from '$templates/components/Pixel.svelte';
+	import { paletteColours } from './colours/paletteColours';
 
 	export let TrackingPixel: string;
 	export let ResearchPixel: string;
@@ -67,6 +68,7 @@
 	class:is-xl={isXL}
 	href={`${CLICK_MACRO}${DEST_URL}`}
 	target="_blank"
+	style={paletteColours}
 >
 	<div
 		class="layer"
