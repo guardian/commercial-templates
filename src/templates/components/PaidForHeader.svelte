@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { palette } from '@guardian/source/foundations'
 	import { CLICK_MACRO } from '$lib/gam';
 	import type { Single } from '$lib/types/capi';
 	import Button from './Button.svelte';
@@ -15,7 +14,7 @@
 	export let popup = false;
 </script>
 
-<header class="{templateType}-header" style="--labs: {palette.labs[400]}">
+<header class="{templateType}-header">
 	<div class="{templateType}-paid-content-and-title">
 		<div class="paid {templateType}-paid-content">
 			<strong>Paid content</strong>
@@ -57,7 +56,7 @@
 
 <style lang="scss">
 	header {
-		background-color: var(--labs);
+		background-color: var(--labs-400);
 		color: black;
 		padding: 6px 10px;
 		flex-shrink: 0;
@@ -120,7 +119,7 @@
 		position: absolute;
 		color: white;
 		width: 260px;
-		background: #333;
+		background: var(--neutral-20);
 		font-size: 14px;
 		line-height: 16px;
 		padding: 10px;
@@ -135,7 +134,7 @@
 	}
 
 	.popup-link {
-		color: var(--labs);
+		color: var(--labs-400);
 		text-decoration: none;
 
 		&:hover,

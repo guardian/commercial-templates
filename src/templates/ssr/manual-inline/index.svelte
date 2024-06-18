@@ -8,6 +8,7 @@
 	import type { Tone as TTone } from '$lib/types/tones';
 	import ArrowRight from '$templates/components/icons/ArrowRight.svelte';
 	import ToneLogo from '$templates/components/ToneLogo.svelte';
+	import { paletteColours } from '$templates/components/colours/paletteColours';
 
 	export let TrackingId: GAMVariable;
 	export let Tone: GAMVariable<TTone>;
@@ -22,6 +23,7 @@
 <aside
 	data-tone={Tone}
 	data-link-name="creative | manual inline | {TrackingId}"
+	style={paletteColours}
 >
 	<header>
 		<a
@@ -53,7 +55,7 @@
 
 <style lang="scss">
 	aside {
-		background: #ededed;
+		background: var(--neutral-93);
 		position: relative;
 		display: flex;
 		flex-direction: column;
@@ -92,7 +94,7 @@
 		display: flex;
 		flex-direction: column;
 		margin: 6px 5px;
-		color: #121212;
+		color: var(--neutral-7);
 		font-size: 0.75rem;
 		line-height: 1.33;
 	}
@@ -108,7 +110,7 @@
 	// p tags are currently inserted into some GAM Creatives, e.g. Offer Text in Creative with ID: 138461351383.
 	// global is required since these added p tags are not specified in the HTML above.
 	:global(p) {
-		color: #121212;
+		color: var(--neutral-7);
 		margin: 0 0 0.5em;
 	}
 
@@ -116,7 +118,7 @@
 		font-family: 'GuardianTextSans', 'Helvetica Neue', Helvetica, Arial,
 			'Lucida Grande', sans-serif;
 		font-weight: 700;
-		color: #fff;
+		color: var(--neutral-100);
 		width: fit-content;
 		background: #012937;
 		border-radius: 100px;

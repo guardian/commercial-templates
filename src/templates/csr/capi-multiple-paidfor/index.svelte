@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { palette } from '@guardian/source/foundations'
 	import { addCapiCardOverrides, retrieveCapiData } from '$lib/capiMultiple';
 	import {
 		addTrackingPixel,
@@ -12,6 +11,7 @@
 	import PaidForHeader from '$templates/components/PaidForHeader.svelte';
 	import Resizer from '$templates/components/Resizer.svelte';
 	import Sponsor from '$templates/components/Sponsor.svelte';
+	import { paletteColours } from '$templates/components/colours/paletteColours';
 
 	export let SeriesURL: GAMVariable;
 	export let ComponentTitle: GAMVariable;
@@ -73,7 +73,7 @@
 	<h3>Loading Content for “{SeriesURL}”</h3>
 {:then cards}
 	{#if cards[0]}
-		<aside bind:clientHeight={height} style="--background-colour: {palette.neutral[93]}; --labs: {palette.labs[400]}">
+		<aside bind:clientHeight={height} style={paletteColours}>
 			<PaidForHeader
 				edition={cards[0].branding.edition}
 				{ComponentTitle}
@@ -102,7 +102,7 @@
 		margin: 0;
 	}
 	aside {
-		background: var(--background-colour);
+		background: var(--neutral-93);
 		position: relative;
 		display: flex;
 		flex-direction: column;
@@ -117,7 +117,7 @@
 	.cards-container {
 		display: flex;
 		flex-direction: column;
-		background-color: var(--background-colour);
+		background-color: var(--neutral-93);
 	}
 
 	.sponsor-container {
@@ -128,7 +128,7 @@
 	}
 
 	h3 {
-		background-color: var(--labs);
+		background-color: var(--labs-400);
 		color: white;
 	}
 

@@ -5,6 +5,7 @@
 	import ManualCard from '$templates/components/ManualCard.svelte';
 	import ManualHeader from '$templates/components/ManualHeader.svelte';
 	import SetHeightResizer from '$templates/components/SetHeightResizer.svelte';
+	import { paletteColours } from '$templates/components/colours/paletteColours';
 
 	export let Tone: GAMVariable<TTone>;
 	export let TitleURL: GAMVariable;
@@ -70,7 +71,7 @@
 	let height: number = -1;
 </script>
 
-<aside bind:clientHeight={height}>
+<aside bind:clientHeight={height} style={paletteColours}>
 	<ManualHeader buttonText={ViewAll} buttonUrl={TitleURL} tone={Tone}>
 		{@html Explainer}
 	</ManualHeader>
@@ -95,7 +96,7 @@
 
 <style lang="scss">
 	aside {
-		background: #f6f6f6;
+		background: var(--neutral-97);
 		position: relative;
 		display: flex;
 		flex-direction: column;
