@@ -6,9 +6,9 @@
 	import { clickMacro } from '$lib/gam';
 	import type { GAMVariable } from '$lib/gam';
 	import type { Tone as TTone } from '$lib/types/tones';
+	import { paletteColours } from '$templates/components/colours/paletteColours';
 	import ArrowRight from '$templates/components/icons/ArrowRight.svelte';
 	import ToneLogo from '$templates/components/ToneLogo.svelte';
-	import { paletteColours } from '$templates/components/colours/paletteColours';
 
 	export let TrackingId: GAMVariable;
 	export let Tone: GAMVariable<TTone>;

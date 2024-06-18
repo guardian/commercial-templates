@@ -2,10 +2,10 @@
 	import type { GAMVariable } from '$lib/gam';
 	import '$templates/components/fonts/Sans.css';
 	import type { Tone as TTone } from '$lib/types/tones';
+	import { paletteColours } from '$templates/components/colours/paletteColours';
 	import ManualCard from '$templates/components/ManualCard.svelte';
 	import ManualHeader from '$templates/components/ManualHeader.svelte';
 	import SetHeightResizer from '$templates/components/SetHeightResizer.svelte';
-	import { paletteColours } from '$templates/components/colours/paletteColours';
 
 	export let Tone: GAMVariable<TTone>;
 	export let TitleURL: GAMVariable;

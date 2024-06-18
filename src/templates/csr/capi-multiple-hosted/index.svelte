@@ -13,9 +13,9 @@
 	} from '$lib/gam.js';
 	import type { CapiCardOverride } from '$lib/types/capi';
 	import CapiHostedCard from '$templates/components/CapiHostedCard.svelte';
+	import { paletteColours } from '$templates/components/colours/paletteColours';
 	import HostedHeader from '$templates/components/HostedHeader.svelte';
 	import Resizer from '$templates/components/Resizer.svelte';
-	import { paletteColours } from '$templates/components/colours/paletteColours';
 
 	export let SeriesURL: GAMVariable;
 	export let BrandLogo: GAMVariable;
@@ -71,7 +71,10 @@
 	let height: number = -1;
 </script>
 
-<aside bind:clientHeight={height} style="--brand-colour: {BrandColour}; {paletteColours}">
+<aside
+	bind:clientHeight={height}
+	style="--brand-colour: {BrandColour}; {paletteColours}"
+>
 	{#await getCards}
 		<h3>Loading Content...</h3>
 	{:then multiple}

@@ -3,9 +3,9 @@
 	import { clickMacro } from '$lib/gam';
 	import '$templates/components/colours/tones.css';
 	import '$templates/components/fonts/Egyptian.css';
+	import { paletteColours } from '$templates/components/colours/paletteColours';
 	import ArrowRight from '$templates/components/icons/ArrowRight.svelte';
 	import BrandLogo from '$templates/components/icons/BrandLogo.svelte';
-	import { paletteColours } from '$templates/components/colours/paletteColours';
 
 	export let Tone: GAMVariable;
 	export let TitleURL: GAMVariable;

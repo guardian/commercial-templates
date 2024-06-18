@@ -8,10 +8,10 @@
 	import type { CapiCardOverride } from '$lib/types/capi';
 	import '$templates/components/fonts/Sans.css';
 	import CapiCard from '$templates/components/CapiCard.svelte';
+	import { paletteColours } from '$templates/components/colours/paletteColours';
 	import PaidForHeader from '$templates/components/PaidForHeader.svelte';
 	import Resizer from '$templates/components/Resizer.svelte';
 	import Sponsor from '$templates/components/Sponsor.svelte';
-	import { paletteColours } from '$templates/components/colours/paletteColours';
 
 	export let SeriesURL: GAMVariable;
 	export let ComponentTitle: GAMVariable;

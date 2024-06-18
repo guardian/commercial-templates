@@ -3,10 +3,10 @@
 	import { addTrackingPixel, isValidReplacedVariable } from '$lib/gam';
 	import type { Single } from '$lib/types/capi';
 	import CapiCard from '$templates/components/CapiCard.svelte';
+	import { paletteColours } from '$templates/components/colours/paletteColours';
 	import PaidForHeader from '$templates/components/PaidForHeader.svelte';
 	import SetHeightResizer from '$templates/components/SetHeightResizer.svelte';
 	import '$templates/components/fonts/Sans.css';
-	import { paletteColours } from '$templates/components/colours/paletteColours';
 
 	export const cdn = 'https://i.guim.co.uk/img/media/';
 	export const api =
