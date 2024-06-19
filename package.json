@@ -4,6 +4,7 @@
 	"license": "Apache-2.0",
 	"scripts": {
 		"preinstall": "npx only-allow pnpm",
+		"prepare": "svelte-kit sync",
 		"dev": "vite dev --port 7777",
 		"build": "vite build && touch build/.nojekyll",
 		"publish": "pnpm gh-pages --dist build --dotfiles",
