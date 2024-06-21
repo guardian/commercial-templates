@@ -61,7 +61,7 @@ To learn more more about Svelte, you can [follow their tutorial](https://svelte.
 
 ## Viewing your template
 
-Run `yarn dev` to start the local preview environment and head to [`http://localhost:7777`](http://localhost:7777) and click on your template in the list.
+Run `pnpm dev` to start the local preview environment and head to [`http://localhost:7777`](http://localhost:7777) and click on your template in the list.
 
 You should see a preview and the code at the bottom of the page.
 
