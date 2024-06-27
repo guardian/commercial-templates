@@ -20,14 +20,14 @@ found in the [`/legacy` folder](/legacy)
 
 ## Developing Locally
 
-Once you've created a project and installed dependencies by running `yarn`,
+Once you've created a project and installed dependencies by running `pnpm i`,
 start a development server:
 
 ```bash
-yarn dev
+pnpm dev
 
 # or start the server and open the app in a new browser tab
-yarn dev --open
+pnpm dev --open
 ```
 
 When you change templates or shared components, the components will
@@ -41,10 +41,10 @@ Deploying is done via building the project using the static adapter, and then
 pushing the `build` folder to the `gh-pages` branch.
 
 ```bash
-yarn deploy
+pnpm deploy
 ```
 
-> You can build the app by running `yarn build` and then preview it with `yarn preview`,
+> You can build the app by running `pnpm build` and then preview it with `pnpm preview`,
 > regardless of whether you installed an adapter.
 > This should _not_ be used to serve your app in production.
 
