@@ -4,7 +4,7 @@
 	"license": "Apache-2.0",
 	"scripts": {
 		"preinstall": "npx only-allow pnpm",
-		"prepare": "svelte-kit sync",
+		"prepare": "husky install && svelte-kit sync",
 		"dev": "vite dev --port 7777",
 		"build": "vite build && touch build/.nojekyll",
 		"publish": "pnpm gh-pages --dist build --dotfiles",
@@ -36,6 +36,7 @@
 		"eslint-config-prettier": "^9.1.0",
 		"eslint-plugin-svelte": "^2.35.1",
 		"gh-pages": "^6.1.1",
+		"husky": "^9.0.11",
 		"isomorphic-git": "^1.25.3",
 		"marked": "^11.1.1",
 		"prettier": "^3.1.1",
@@ -53,6 +54,5 @@
 		"vite": "^5.0.12"
 	},
 	"type": "module",
-	"dependencies": {},
 	"packageManager": "pnpm@8.15.5"
 }

@@ -59,6 +59,9 @@ devDependencies:
   gh-pages:
     specifier: ^6.1.1
     version: 6.1.1
+  husky:
+    specifier: ^9.0.11
+    version: 9.0.11
   isomorphic-git:
     specifier: ^1.25.3
     version: 1.25.10
@@ -2420,6 +2423,12 @@ packages:
     engines: {node: '>= 0.4'}
     dependencies:
       function-bind: 1.1.2
+    dev: true
+
+  /husky@9.0.11:
+    resolution: {integrity: sha512-AB6lFlbwwyIqMdHYhwPe+kjOC3Oc5P3nThEoW/AaO2BX3vJDjWPFxYLxokUZOo6RNX20He3AaT8sESs9NJcmEw==}
+    engines: {node: '>=18'}
+    hasBin: true
     dev: true
 
   /ignore@5.3.1:
