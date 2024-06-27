@@ -39,7 +39,7 @@
 
 <style lang="scss">
 	a {
-		color: #000000;
+		color: var(--neutral-0);
 		text-decoration: none;
 	}
 
@@ -57,7 +57,7 @@
 		bottom: 12px;
 		margin-left: -10px;
 		width: 1px;
-		background: #dcdcdc;
+		background: var(--neutral-86);
 	}
 
 	.media {
@@ -101,7 +101,7 @@
 		font-family: 'GuardianTextSans', 'Helvetica Neue', Helvetica, Arial,
 			'Lucida Grande', sans-serif;
 		background: var(--bg);
-		color: #ffffff;
+		color: var(--neutral-100);
 		text-decoration: none;
 		border-radius: 10rem;
 		display: inline-flex;

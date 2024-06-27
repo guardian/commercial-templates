@@ -8,6 +8,7 @@
 	import type { CapiCardOverride } from '$lib/types/capi';
 	import '$templates/components/fonts/Sans.css';
 	import CapiCard from '$templates/components/CapiCard.svelte';
+	import { paletteColours } from '$templates/components/colours/paletteColours';
 	import PaidForHeader from '$templates/components/PaidForHeader.svelte';
 	import Resizer from '$templates/components/Resizer.svelte';
 	import Sponsor from '$templates/components/Sponsor.svelte';
@@ -72,7 +73,7 @@
 	<h3>Loading Content for “{SeriesURL}”</h3>
 {:then cards}
 	{#if cards[0]}
-		<aside bind:clientHeight={height}>
+		<aside bind:clientHeight={height} style={paletteColours}>
 			<PaidForHeader
 				edition={cards[0].branding.edition}
 				{ComponentTitle}
@@ -101,7 +102,7 @@
 		margin: 0;
 	}
 	aside {
-		background: #ededed;
+		background: var(--neutral-93);
 		position: relative;
 		display: flex;
 		flex-direction: column;
@@ -116,7 +117,7 @@
 	.cards-container {
 		display: flex;
 		flex-direction: column;
-		background-color: #ededed;
+		background-color: var(--neutral-93);
 	}
 
 	.sponsor-container {
@@ -127,7 +128,7 @@
 	}
 
 	h3 {
-		background-color: #69d1ca;
+		background-color: var(--labs-400);
 		color: white;
 	}
 

@@ -56,8 +56,8 @@
 		line-height: 22px;
 		font-family: 'GH Guardian Headline', 'Georgia', serif;
 		font-weight: 500;
-		color: #000000;
-		background: #ffffff;
+		color: var(--neutral-0);
+		background: var(--neutral-100);
 		box-decoration-break: clone;
 		-webkit-box-decoration-break: clone;
 		padding: 2px 5px 2px 2px;
@@ -82,8 +82,8 @@
 		font-weight: 700;
 		font-family: 'GuardianTextSans', 'Helvetica Neue', Helvetica, Arial,
 			'Lucida Grande', sans-serif;
-		background: var(--header-btn-bg, #ffffff);
-		color: #000000;
+		background: var(--header-btn-bg, var(--neutral-100));
+		color: var(--neutral-0);
 		text-decoration: none;
 		border-radius: 10rem;
 		padding: 3px;

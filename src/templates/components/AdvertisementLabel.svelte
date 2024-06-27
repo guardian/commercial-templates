@@ -1,10 +1,11 @@
 <script lang="ts">
 	import './fonts/Sans.css';
+	import { paletteColours } from './colours/paletteColours';
 
 	export let fullWidth = false;
 </script>
 
-<div class="container" class:fullWidth>
+<div class="container" class:fullWidth style={paletteColours}>
 	<div class="text">Advertisement</div>
 </div>
 
@@ -12,9 +13,9 @@
 	.container {
 		position: relative;
 		height: 2em;
-		background-color: #f6f6f6;
-		border-top: 1px solid #dcdcdc;
-		color: #707070;
+		background-color: var(--neutral-97);
+		border-top: 1px solid var(--neutral-86);
+		color: var(--neutral-46);
 		font-family: 'GuardianTextSans', 'Helvetica Neue', Helvetica, Arial,
 			'Lucida Grande', sans-serif;
 		font-size: 0.75rem;

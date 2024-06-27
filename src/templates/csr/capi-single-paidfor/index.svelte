@@ -3,6 +3,7 @@
 	import { addTrackingPixel, isValidReplacedVariable } from '$lib/gam';
 	import type { Single } from '$lib/types/capi';
 	import CapiCard from '$templates/components/CapiCard.svelte';
+	import { paletteColours } from '$templates/components/colours/paletteColours';
 	import PaidForHeader from '$templates/components/PaidForHeader.svelte';
 	import SetHeightResizer from '$templates/components/SetHeightResizer.svelte';
 	import '$templates/components/fonts/Sans.css';
@@ -27,7 +28,7 @@
 {#await promise}
 	<h3>Loading Content for “{SeriesUrl}”</h3>
 {:then single}
-	<aside bind:clientHeight={height}>
+	<aside bind:clientHeight={height} style={paletteColours}>
 		<PaidForHeader
 			templateType="single"
 			edition={single.branding.edition}
@@ -43,7 +44,7 @@
 
 <style>
 	aside {
-		background: #f6f6f6;
+		background: var(--neutral-97);
 		position: relative;
 		display: flex;
 		flex-direction: column;
@@ -56,7 +57,7 @@
 	}
 
 	h3 {
-		background-color: #69d1ca;
+		background-color: var(--labs-400);
 		color: white;
 	}
 

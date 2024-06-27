@@ -56,8 +56,7 @@
 
 <style lang="scss">
 	header {
-		--green: #69d1ca;
-		background-color: var(--green);
+		background-color: var(--labs-400);
 		color: black;
 		padding: 6px 10px;
 		flex-shrink: 0;
@@ -120,7 +119,7 @@
 		position: absolute;
 		color: white;
 		width: 260px;
-		background: #333;
+		background: var(--neutral-20);
 		font-size: 14px;
 		line-height: 16px;
 		padding: 10px;
@@ -135,7 +134,7 @@
 	}
 
 	.popup-link {
-		color: var(--green);
+		color: var(--labs-400);
 		text-decoration: none;
 
 		&:hover,
