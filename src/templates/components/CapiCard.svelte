@@ -72,7 +72,7 @@
 
 <style lang="scss">
 	a {
-		color: #000000;
+		color: var(--neutral-0);
 		text-decoration: none;
 	}
 
@@ -87,8 +87,8 @@
 		display: block;
 		padding: 0 0 8px 0;
 		width: auto;
-		background-color: #f6f6f6;
-		border-top: 1px solid #69d1ca;
+		background-color: var(--neutral-97);
+		border-top: 1px solid var(--labs-400);
 	}
 
 	a.multiple-card:hover {
@@ -138,7 +138,7 @@
 			font-weight: 500;
 			padding: 0px;
 			margin: 6px 0 8px 0;
-			color: #333;
+			color: var(--neutral-20);
 		}
 	}
 
@@ -181,7 +181,7 @@
 			bottom: 102px;
 			margin-left: -10px;
 			width: 1px;
-			background: #dcdcdc;
+			background: var(--neutral-86);
 		}
 
 		a.multiple-card:nth-child(n) {

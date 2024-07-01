@@ -3,6 +3,7 @@
 	import { clickMacro } from '$lib/gam';
 	import '$templates/components/colours/tones.css';
 	import '$templates/components/fonts/Egyptian.css';
+	import { paletteColours } from '$templates/components/colours/paletteColours';
 	import ArrowRight from '$templates/components/icons/ArrowRight.svelte';
 	import BrandLogo from '$templates/components/icons/BrandLogo.svelte';
 
@@ -19,6 +20,7 @@
 <aside
 	data-tone={Tone}
 	data-link-name={['creative', 'ad single manual', OmnitureId].join(' | ')}
+	style={paletteColours}
 >
 	<header>
 		<h1 class="adverts__title" data-tone="travel">
@@ -66,7 +68,7 @@
 		flex-direction: column;
 		font-family: 'Guardian Text Egyptian', 'GuardianTextEgyptian', Georgia,
 			serif;
-		background-color: #f6f6f6;
+		background-color: var(--neutral-97);
 
 		@media (min-width: 1140px) {
 			flex-direction: row;
@@ -122,7 +124,7 @@
 	}
 
 	a.button {
-		background: #ffe500;
+		background: var(--brand-alt-400);
 		color: black;
 		text-decoration: none;
 		border-radius: 10rem;

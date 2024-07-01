@@ -79,7 +79,7 @@
 	h2 {
 		margin: 0;
 		padding: 0.1em 0.3em 0.9em;
-		color: #fff;
+		color: var(--neutral-100);
 		font-size: 1.15rem;
 		line-height: 130%;
 		font-weight: 400;
@@ -87,7 +87,7 @@
 	}
 
 	:global(svg.icon) {
-		fill: #fff;
+		fill: var(--neutral-100);
 		opacity: 0.5;
 		height: 0.7em;
 		width: 1.2em;

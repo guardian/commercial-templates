@@ -31,7 +31,7 @@
 	.logo {
 		display: flex;
 		flex-direction: column;
-		background-color: #fff;
+		background-color: var(--neutral-100);
 		width: 5em;
 
 		div {
@@ -39,7 +39,7 @@
 			font-size: 0.75rem;
 			line-height: 1.1;
 			background-color: var(--brand-colour);
-			color: #fff;
+			color: var(--neutral-100);
 			text-align: start;
 		}
 
