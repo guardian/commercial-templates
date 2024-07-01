@@ -7,7 +7,7 @@
 
 	export let data: PageData;
 
-	export let { template, html, css, props, description } = data;
+	export let { template = '', html, css = '', props, description } = data;
 
 	reloadTemplate(template);
 </script>

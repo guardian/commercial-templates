@@ -26,12 +26,12 @@
 		'</body>',
 	].join('');
 
-	export const widths = {
+	export const widths: Record<string, string> = {
 		'100%': '100%',
-		1300: 'wide',
-		980: 'desktop',
-		740: 'tablet',
-		360: 'mobile',
+		'1300': 'wide',
+		'980': 'desktop',
+		'740': 'tablet',
+		'360': 'mobile',
 	} as const;
 
 	onMount(() => {
