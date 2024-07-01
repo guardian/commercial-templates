@@ -30,7 +30,7 @@
 		const options: PgmApiOptions = {
 			partnerId: 'gmg-guardian',
 			attributes: {
-				url,
+				url: url as string,
 			},
 			onHide: refresh,
 		};
