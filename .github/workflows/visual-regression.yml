@@ -17,8 +17,16 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Set up Node
-        uses: ./.github/actions/setup-node-env
+      - run: corepack enable
+        shell: bash
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'pnpm'
+
+      - run: pnpm install --frozen-lockfile
+        shell: bash
 
       - name: Install Playwright Browsers
         run: pnpm playwright install --with-deps chromium
