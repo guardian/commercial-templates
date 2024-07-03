@@ -96,7 +96,7 @@
 
 <style lang="scss">
 	aside {
-		background: var(--neutral-97);
+		background: green;
 		position: relative;
 		display: flex;
 		flex-direction: column;
