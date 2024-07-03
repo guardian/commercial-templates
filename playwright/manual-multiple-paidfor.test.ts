@@ -42,7 +42,7 @@ test.describe('Manual Multiple visual regression testing', () => {
 			// compare screenshot to reference
 			await expect(testTemplateLocator).toHaveScreenshot(
 				`Manual-multiple-${breakpoint.replace('%', '')}.png`,
-				{ maxDiffPixelRatio: 0.02 },
+				{ maxDiffPixelRatio: 0.004 },
 			);
 		});
 	}
