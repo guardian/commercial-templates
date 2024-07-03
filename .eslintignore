@@ -9,6 +9,8 @@ node_modules
 /legacy
 .eslintrc.cjs
 svelte.config.js
+playwright.config.ts
+*.test.ts
 
 # Ignore files for PNPM, NPM and YARN
 pnpm-lock.yaml
