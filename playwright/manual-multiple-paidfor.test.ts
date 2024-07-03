@@ -23,7 +23,7 @@ test.describe('Manual Multiple visual regression testing', () => {
 			await referenceTemplateLocator.isVisible();
 			// scroll to it
 			await referenceTemplateLocator.scrollIntoViewIfNeeded();
-
+			// take a reference screenshot
 			await referenceTemplateLocator.screenshot({
 				path: `./playwright/reference-images/Manual-multiple-${breakpoint.replace('%', '')}.png`,
 			});
@@ -39,7 +39,7 @@ test.describe('Manual Multiple visual regression testing', () => {
 			await testTemplateLocator.isVisible();
 			// scroll to it
 			await testTemplateLocator.scrollIntoViewIfNeeded();
-			// compare screenshot
+			// compare screenshot to reference
 			await expect(testTemplateLocator).toHaveScreenshot(
 				`Manual-multiple-${breakpoint.replace('%', '')}.png`,
 				{ maxDiffPixelRatio: 0.02 },
