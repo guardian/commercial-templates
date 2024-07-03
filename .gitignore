@@ -5,6 +5,7 @@ node_modules
 /package
 /build-static
 /test-results
+/playwright/reference-images
 
 .env
 .env.*
