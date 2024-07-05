@@ -5,17 +5,17 @@ const viewport = { width: 1600, height: 1000 };
 const widths = ['360', '740', '980', '1300', '100%'];
 
 test.describe('Manual Single visual regression testing', () => {
-	for (const breakpoint of widths) {
-		test(`Manual Single: ${breakpoint}`, async ({ page }) => {
-			await page.setViewportSize(viewport);
+	test('Get reference screenshots', async ({ page }) => {
+		await page.setViewportSize(viewport);
 
-			await page.goto(
-				'https://guardian.github.io/commercial-templates/ssr/manual-single/',
-				{
-					waitUntil: 'networkidle',
-				},
-			);
+		await page.goto(
+			'https://guardian.github.io/commercial-templates/ssr/manual-single/',
+			{
+				waitUntil: 'networkidle',
+			},
+		);
 
+		for (const breakpoint of widths) {
 			const referenceTemplateLocator = page
 				.frameLocator(`[name='width-${breakpoint}']`)
 				.locator('html');
@@ -27,11 +27,17 @@ test.describe('Manual Single visual regression testing', () => {
 			await referenceTemplateLocator.screenshot({
 				path: `./playwright/reference-images/Manual-single-${breakpoint.replace('%', '')}.png`,
 			});
+		}
+	});
 
-			await page.goto('http://localhost:7777/ssr/manual-single', {
-				waitUntil: 'networkidle',
-			});
+	test('Compare PR templates to reference screenshots', async ({ page }) => {
+		await page.setViewportSize(viewport);
 
+		await page.goto('http://localhost:7777/ssr/manual-single', {
+			waitUntil: 'networkidle',
+		});
+
+		for (const breakpoint of widths) {
 			const testTemplateLocator = page
 				.frameLocator(`[name='width-${breakpoint}']`)
 				.locator('html');
@@ -44,6 +50,6 @@ test.describe('Manual Single visual regression testing', () => {
 				`Manual-single-${breakpoint.replace('%', '')}.png`,
 				{ maxDiffPixelRatio: 0.004 },
 			);
-		});
-	}
+		}
+	});
 });
