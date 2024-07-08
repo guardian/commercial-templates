@@ -20,7 +20,7 @@ test.describe('Manual Single visual regression testing', () => {
 				.frameLocator(`[name='width-${breakpoint}']`)
 				.locator('html');
 			// check that the template is present on the page
-			await referenceTemplateLocator.isVisible();
+			expect(referenceTemplateLocator).toBeVisible();
 			// scroll to it
 			await referenceTemplateLocator.scrollIntoViewIfNeeded();
 			// take a reference screenshot
@@ -42,7 +42,7 @@ test.describe('Manual Single visual regression testing', () => {
 				.frameLocator(`[name='width-${breakpoint}']`)
 				.locator('html');
 			// check that the template is present on the page
-			await testTemplateLocator.isVisible();
+			expect(testTemplateLocator).toBeVisible();
 			// scroll to it
 			await testTemplateLocator.scrollIntoViewIfNeeded();
 			// compare screenshot to reference
