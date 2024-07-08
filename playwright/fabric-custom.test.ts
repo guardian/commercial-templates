@@ -19,7 +19,7 @@ test.describe('Fabric Custom visual regression testing', () => {
 		);
 
 		// the Fabric Custom has an animated creative, so we wait for it to stop moving before taking a screenshot
-		await page.waitForTimeout(15000);
+		await page.waitForTimeout(20000);
 
 		for (const breakpoint of widths) {
 			const referenceTemplateLocator = page
@@ -47,7 +47,7 @@ test.describe('Fabric Custom visual regression testing', () => {
 		});
 
 		// the Fabric Custom has an animated creative, so we wait for it to stop moving before taking a screenshot
-		await page.waitForTimeout(15000);
+		await page.waitForTimeout(20000);
 
 		for (const breakpoint of widths) {
 			const testTemplateLocator = page
