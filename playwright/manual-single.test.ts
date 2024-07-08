@@ -1,4 +1,5 @@
 import { expect, test } from '@playwright/test';
+import { localBaseUrl, referenceBaseUrl } from './utils';
 
 const viewport = { width: 1600, height: 1000 };
 
@@ -8,12 +9,9 @@ test.describe('Manual Single visual regression testing', () => {
 	test('Get reference screenshots', async ({ page }) => {
 		await page.setViewportSize(viewport);
 
-		await page.goto(
-			'https://guardian.github.io/commercial-templates/ssr/manual-single/',
-			{
-				waitUntil: 'networkidle',
-			},
-		);
+		await page.goto(`${referenceBaseUrl}ssr/manual-single/`, {
+			waitUntil: 'networkidle',
+		});
 
 		for (const breakpoint of widths) {
 			const referenceTemplateLocator = page
@@ -33,7 +31,7 @@ test.describe('Manual Single visual regression testing', () => {
 	test('Compare PR templates to reference screenshots', async ({ page }) => {
 		await page.setViewportSize(viewport);
 
-		await page.goto('http://localhost:7777/ssr/manual-single', {
+		await page.goto(`${localBaseUrl}ssr/manual-single`, {
 			waitUntil: 'networkidle',
 		});
 
