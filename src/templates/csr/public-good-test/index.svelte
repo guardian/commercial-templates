@@ -18,7 +18,7 @@
 		const consentState = await getUSPData();
 
 		if (!consentState || isCcpaOptedOut(consentState)) {
-			!consentState && console.error('No consent state found');
+			!consentState && console.error('No consent');
 
 			return refresh();
 		}
