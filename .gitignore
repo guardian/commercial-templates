@@ -4,6 +4,8 @@ node_modules
 /.svelte-kit
 /package
 /build-static
+/test-results
+/playwright/reference-images
 
 .env
 .env.*
