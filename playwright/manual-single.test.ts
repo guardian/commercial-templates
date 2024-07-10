@@ -3,11 +3,11 @@ import { localBaseUrl, referenceBaseUrl, templatePreviewWidths } from './utils';
 
 const viewport = { width: 1600, height: 1000 };
 
-test.describe('Manual Multiple visual regression testing', () => {
+test.describe('Manual Single visual regression testing', () => {
 	test('Get reference screenshots', async ({ page }) => {
 		await page.setViewportSize(viewport);
 
-		await page.goto(`${referenceBaseUrl}csr/manual-multiple/`, {
+		await page.goto(`${referenceBaseUrl}ssr/manual-single/`, {
 			waitUntil: 'networkidle',
 		});
 
@@ -21,7 +21,7 @@ test.describe('Manual Multiple visual regression testing', () => {
 			await referenceTemplateLocator.scrollIntoViewIfNeeded();
 			// take a reference screenshot
 			await referenceTemplateLocator.screenshot({
-				path: `./playwright/reference-images/Manual-multiple-${width.replace('%', '')}.png`,
+				path: `./playwright/reference-images/Manual-single-${width.replace('%', '')}.png`,
 			});
 		}
 	});
@@ -29,7 +29,7 @@ test.describe('Manual Multiple visual regression testing', () => {
 	test('Compare PR templates to reference screenshots', async ({ page }) => {
 		await page.setViewportSize(viewport);
 
-		await page.goto(`${localBaseUrl}csr/manual-multiple`, {
+		await page.goto(`${localBaseUrl}ssr/manual-single`, {
 			waitUntil: 'networkidle',
 		});
 
@@ -43,7 +43,7 @@ test.describe('Manual Multiple visual regression testing', () => {
 			await testTemplateLocator.scrollIntoViewIfNeeded();
 			// compare screenshot to reference
 			await expect(testTemplateLocator).toHaveScreenshot(
-				`Manual-multiple-${width.replace('%', '')}.png`,
+				`Manual-single-${width.replace('%', '')}.png`,
 				{ maxDiffPixelRatio: 0.004 },
 			);
 		}

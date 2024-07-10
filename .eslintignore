@@ -10,7 +10,7 @@ node_modules
 .eslintrc.cjs
 svelte.config.js
 playwright.config.ts
-*.test.ts
+/playwright
 
 # Ignore files for PNPM, NPM and YARN
 pnpm-lock.yaml
