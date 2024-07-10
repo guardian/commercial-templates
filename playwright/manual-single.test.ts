@@ -1,9 +1,7 @@
 import { expect, test } from '@playwright/test';
-import { localBaseUrl, referenceBaseUrl } from './utils';
+import { localBaseUrl, referenceBaseUrl, templatePreviewWidths } from './utils';
 
 const viewport = { width: 1600, height: 1000 };
-
-const widths = ['360', '740', '980', '1300', '100%'];
 
 test.describe('Manual Single visual regression testing', () => {
 	test('Get reference screenshots', async ({ page }) => {
@@ -13,9 +11,9 @@ test.describe('Manual Single visual regression testing', () => {
 			waitUntil: 'networkidle',
 		});
 
-		for (const breakpoint of widths) {
+		for (const width of templatePreviewWidths) {
 			const referenceTemplateLocator = page
-				.frameLocator(`[name='width-${breakpoint}']`)
+				.frameLocator(`[name='width-${width}']`)
 				.locator('html');
 			// check that the template is present on the page
 			expect(referenceTemplateLocator).toBeVisible();
@@ -23,7 +21,7 @@ test.describe('Manual Single visual regression testing', () => {
 			await referenceTemplateLocator.scrollIntoViewIfNeeded();
 			// take a reference screenshot
 			await referenceTemplateLocator.screenshot({
-				path: `./playwright/reference-images/Manual-single-${breakpoint.replace('%', '')}.png`,
+				path: `./playwright/reference-images/Manual-single-${width.replace('%', '')}.png`,
 			});
 		}
 	});
@@ -35,9 +33,9 @@ test.describe('Manual Single visual regression testing', () => {
 			waitUntil: 'networkidle',
 		});
 
-		for (const breakpoint of widths) {
+		for (const width of templatePreviewWidths) {
 			const testTemplateLocator = page
-				.frameLocator(`[name='width-${breakpoint}']`)
+				.frameLocator(`[name='width-${width}']`)
 				.locator('html');
 			// check that the template is present on the page
 			expect(testTemplateLocator).toBeVisible();
@@ -45,7 +43,7 @@ test.describe('Manual Single visual regression testing', () => {
 			await testTemplateLocator.scrollIntoViewIfNeeded();
 			// compare screenshot to reference
 			await expect(testTemplateLocator).toHaveScreenshot(
-				`Manual-single-${breakpoint.replace('%', '')}.png`,
+				`Manual-single-${width.replace('%', '')}.png`,
 				{ maxDiffPixelRatio: 0.004 },
 			);
 		}

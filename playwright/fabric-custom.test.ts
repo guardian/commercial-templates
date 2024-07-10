@@ -1,9 +1,7 @@
 import { expect, test } from '@playwright/test';
-import { localBaseUrl, referenceBaseUrl } from './utils';
+import { localBaseUrl, referenceBaseUrl, templatePreviewWidths } from './utils';
 
 const viewport = { width: 1600, height: 1000 };
-
-const widths = ['360', '740', '980', '1300', '100%'];
 
 test.describe('Fabric Custom visual regression testing', () => {
 	test('Get reference screenshots', async ({ page }) => {
@@ -13,9 +11,9 @@ test.describe('Fabric Custom visual regression testing', () => {
 			waitUntil: 'networkidle',
 		});
 
-		for (const breakpoint of widths) {
+		for (const width of templatePreviewWidths) {
 			const referenceTemplateLocator = page
-				.frameLocator(`[name='width-${breakpoint}']`)
+				.frameLocator(`[name='width-${width}']`)
 				.locator('#creative');
 			// check that the template is present on the page
 			expect(referenceTemplateLocator).toBeVisible();
@@ -24,7 +22,7 @@ test.describe('Fabric Custom visual regression testing', () => {
 			// take a reference screenshot
 			await referenceTemplateLocator.screenshot({
 				animations: 'disabled',
-				path: `./playwright/reference-images/Fabric-custom-${breakpoint.replace('%', '')}.png`,
+				path: `./playwright/reference-images/Fabric-custom-${width.replace('%', '')}.png`,
 			});
 		}
 	});
@@ -36,9 +34,9 @@ test.describe('Fabric Custom visual regression testing', () => {
 			waitUntil: 'networkidle',
 		});
 
-		for (const breakpoint of widths) {
+		for (const width of templatePreviewWidths) {
 			const testTemplateLocator = page
-				.frameLocator(`[name='width-${breakpoint}']`)
+				.frameLocator(`[name='width-${width}']`)
 				.locator('#creative');
 			// check that the template is present on the page
 			expect(testTemplateLocator).toBeVisible();
@@ -46,7 +44,7 @@ test.describe('Fabric Custom visual regression testing', () => {
 			await testTemplateLocator.scrollIntoViewIfNeeded();
 			// compare screenshot to reference
 			await expect(testTemplateLocator).toHaveScreenshot(
-				`Fabric-custom-${breakpoint.replace('%', '')}.png`,
+				`Fabric-custom-${width.replace('%', '')}.png`,
 				{ animations: 'disabled', maxDiffPixelRatio: 0.004 },
 			);
 		}
