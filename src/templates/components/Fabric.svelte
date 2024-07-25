@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { CLICK_MACRO, DEST_URL, isValidReplacedVariable } from '$lib/gam';
 	import { post } from '$lib/messenger';
-	import AdvertisementLabel from '$templates/components/AdvertisementLabel.svelte';
 	import Pixel from '$templates/components/Pixel.svelte';
 
 	export let TrackingPixel: string;
@@ -27,7 +26,6 @@
 	export let MobileLayer2BackgroundPosition: string;
 	export let MobileLayer3BackgroundImage: string;
 	export let MobileLayer3BackgroundPosition: string;
-	export let showLabel = true;
 	export let isXL = false;
 
 	const isMobile = window.matchMedia('(max-width: 739px)').matches;
@@ -58,9 +56,9 @@
 	});
 </script>
 
-{#if showLabel}
+<!-- {#if showLabel}
 	<AdvertisementLabel fullWidth={BackgroundScrollType === 'parallax'} />
-{/if}
+{/if} -->
 <a
 	class="fabric-container"
 	class:is-parallax={BackgroundScrollType === 'parallax'}

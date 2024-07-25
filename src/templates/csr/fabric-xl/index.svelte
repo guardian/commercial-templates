@@ -5,7 +5,6 @@
 	export let TrackingPixel: GAMVariable;
 	export let ResearchPixel: GAMVariable;
 	export let ViewabilityPixel: GAMVariable;
-	export let ShowLabel: GAMVariable;
 
 	export let BackgroundScrollType: GAMVariable<'parallax' | 'none' | 'fixed'>;
 	export let BackgroundColour: GAMVariable;
@@ -29,8 +28,6 @@
 	export let MobileLayer2BackgroundPosition: GAMVariable;
 	export let MobileLayer3BackgroundImage: GAMVariable;
 	export let MobileLayer3BackgroundPosition: GAMVariable;
-
-	const showLabel = ShowLabel === 'yes';
 </script>
 
 <Fabric
@@ -57,6 +54,5 @@
 	{MobileLayer2BackgroundPosition}
 	{MobileLayer3BackgroundImage}
 	{MobileLayer3BackgroundPosition}
-	{showLabel}
 	isXL
 />
