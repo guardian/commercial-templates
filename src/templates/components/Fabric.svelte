@@ -56,9 +56,6 @@
 	});
 </script>
 
-<!-- {#if showLabel}
-	<AdvertisementLabel fullWidth={BackgroundScrollType === 'parallax'} />
-{/if} -->
 <a
 	class="fabric-container"
 	class:is-parallax={BackgroundScrollType === 'parallax'}
