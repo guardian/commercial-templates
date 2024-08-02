@@ -11,14 +11,21 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v3
 
-      - name: Setup node
-        uses: guardian/actions-setup-node@main
+      - run: corepack enable
+        shell: bash
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'pnpm'
 
       - name: Install dependencies
-        uses: bahmutov/npm-install@v1
+        run: pnpm install --frozen-lockfile
+        shell: bash
 
       - name: Lint files
-        run: yarn lint
+        run: pnpm lint
 
   types:
     name: Typescript
@@ -27,11 +34,41 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v3
 
-      - name: Setup node
-        uses: guardian/actions-setup-node@main
+      - run: corepack enable
+        shell: bash
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'pnpm'
 
       - name: Install dependencies
-        uses: bahmutov/npm-install@v1
+        run: pnpm install --frozen-lockfile
+        shell: bash
 
       - name: Check typescript
-        run: yarn tsc
+        run: pnpm tsc
+
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - run: corepack enable
+        shell: bash
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+        shell: bash
+
+      - name: Build
+        run: pnpm build

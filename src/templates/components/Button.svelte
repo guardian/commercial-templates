@@ -3,7 +3,6 @@
 <style>
 	button {
 		display: inline-block;
-		-webkit-appearance: none;
 		background: none;
 		border: 0;
 		color: inherit;

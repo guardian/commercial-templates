@@ -3,7 +3,7 @@
 }
 
 [data-tone='brand-new'] {
-	--bg: #005689;
+	--bg: var(--sport-300);
 }
 
 [data-tone='membership'] {
@@ -18,6 +18,11 @@
 	--bg: #d01317;
 }
 
+[data-tone='subs-rebrand'] {
+	--bg: var(--sport-300);
+	--header-btn-bg: var(--brand-alt-400);
+}
+
 [data-tone='live'] {
 	--bg: #c83877;
 }
@@ -27,17 +32,42 @@
 }
 
 [data-tone='paid-for'] {
-	--bg: #69d1ca;
+	--bg: var(--labs-400);
 }
 
 [data-tone='money'] {
 	--bg: #b39069;
 }
 
-[data-tone='masterclass'] {
-	--bg: #f4bc44;
-}
-
 [data-tone='book'] {
 	--bg: #8e246f;
+}
+
+[data-tone='climate'],
+[data-tone='climate2'] {
+	--bg: var(--brand-alt-400);
+}
+
+[data-tone='job'] {
+	--bg: #469d93;
+}
+
+[data-tone='weekly'] {
+	--bg: #2c363b;
+}
+
+[data-tone='members'] {
+	--bg: #bb3a7f;
+}
+
+[data-tone='patron'] {
+	--bg: #4f5249;
+}
+
+[data-tone='lifestyle'] {
+	--bg: var(--lifestyle-400);
+}
+
+[data-tone='support'] {
+	--bg: var(--opinion-500);
 }

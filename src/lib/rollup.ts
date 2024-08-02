@@ -1,25 +1,23 @@
+import fs from 'fs';
 import alias from '@rollup/plugin-alias';
+import commonjs from '@rollup/plugin-commonjs';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
+import terser from '@rollup/plugin-terser';
 import typescript from '@rollup/plugin-typescript';
 import type { Plugin, RollupOutput } from 'rollup';
 import { rollup } from 'rollup';
 import css from 'rollup-plugin-css-only';
 import svelte from 'rollup-plugin-svelte';
-import { terser } from 'rollup-plugin-terser';
 import preprocess from 'svelte-preprocess';
 import type { Props } from './svelte';
 
-const performancescript = `window.performance.mark('svelteEnd');
-const measure = window.performance.measure('svelte', 'svelteStart','svelteEnd');
-document.querySelector("#metrics").innerText = \`\${measure.duration.toFixed(2)}ms\`;`;
-
 const virtual = (template: string, props: Props): Plugin => ({
 	name: 'virtual-template',
-	resolveId: (source: string) => {
+	resolveId(source: string) {
 		if (source === 'ssr' || source === 'dom') return source;
 		return null;
 	},
-	load: (id: string) => {
+	load(id: string) {
 		if (id === 'ssr') {
 			return [
 				`import Template from "./src/templates/ssr/${template}/index.svelte"`,
@@ -28,11 +26,10 @@ const virtual = (template: string, props: Props): Plugin => ({
 		}
 		if (id === 'dom') {
 			return `import Template from "./src/templates/csr/${template}/index.svelte";
-window.performance.mark('svelteStart');
 new Template({
 	target: document.querySelector('#svelte'),
 	props: ${JSON.stringify(props)},
-});${performancescript}`;
+});`;
 		}
 		return null;
 	},
@@ -60,10 +57,13 @@ const build = async (
 
 	let styles = '';
 
-	const input: ['dom'] | ['ssr', `${string}/index.ts`] =
-		mode === 'dom'
-			? ['dom']
-			: ['ssr', `src/templates/ssr/${template}/index.ts`];
+	let input: ['ssr' | 'dom'] | ['ssr', `${string}/index.ts`] = [mode];
+
+	if (mode === 'ssr') {
+		if (fs.existsSync(`src/templates/ssr/${template}/index.ts`)) {
+			input = ['ssr', `src/templates/ssr/${template}/index.ts`];
+		}
+	}
 
 	const build = await rollup({
 		input,
@@ -78,6 +78,7 @@ const build = async (
 				},
 			}),
 			typescript({ sourceMap: false }),
+			commonjs(),
 			alias({
 				entries: [
 					{
@@ -92,7 +93,6 @@ const build = async (
 			}),
 			nodeResolve(),
 			terser(),
-			// @ts-expect-error -- the community types are not so great
 			css({
 				output: (processedStyles: string) => {
 					styles = processedStyles
@@ -100,7 +100,7 @@ const build = async (
 						.replaceAll('\t', ' ');
 					return false;
 				},
-			}),
+			}) as Plugin,
 		],
 	});
 

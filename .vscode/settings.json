@@ -1,3 +1,4 @@
 {
-	"cSpell.words": ["CACHEBUSTER", "sveltejs", "UNESC"]
+	"cSpell.words": ["CACHEBUSTER", "sveltejs", "UNESC"],
+	"typescript.tsdk": "node_modules/typescript/lib"
 }

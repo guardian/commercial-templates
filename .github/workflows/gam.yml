@@ -1,0 +1,105 @@
+name: Deploy Templates to GAM
+
+permissions:
+  contents: read
+
+concurrency:
+  group: 'deploy'
+  cancel-in-progress: true
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  lint:
+    name: Linting
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - run: corepack enable
+        shell: bash
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+        shell: bash
+
+      - name: Lint files
+        run: pnpm lint
+
+  types:
+    name: Typescript
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - run: corepack enable
+        shell: bash
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+        shell: bash
+
+      - name: Check typescript
+        run: pnpm tsc
+
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    needs: [lint, types]
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.11'
+
+      - name: Install pipenv
+        run: pip install pipenv
+
+      - run: corepack enable
+        shell: bash
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+        shell: bash
+
+      - name: Build
+        run: pnpm build
+
+      - name: Install Dependencies
+        run: pipenv install
+        working-directory: ./scripts/deploy
+
+      - name: Deploy Templates to GAM
+        run: pipenv run python deploy.py
+        working-directory: ./scripts/deploy
+        env:
+          GAM_APPLICATION_NAME: ${{ secrets.GAM_APPLICATION_NAME }}
+          GAM_NETWORK_CODE: ${{ secrets.GAM_NETWORK_CODE }}
+          SERVICE_ACCOUNT_KEY_FILE: ${{ secrets.SERVICE_ACCOUNT_KEY_FILE }}

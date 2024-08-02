@@ -231,8 +231,7 @@
             fill: $paid-article-icon;
         }
 
-        .advert__kicker,
-        .advert__kicker::after {
+        .advert__kicker {
             color: $paid-card-kicker;
         }
     }
@@ -295,17 +294,4 @@
         display: none;
     }
 
-}
-
-.advert__kicker {
-    &:after {
-        content: '/';
-        display: inline-block;
-        margin-left: .2em;
-        color: mix($neutral-1, #ffffff, 20%);
-    }
-
-    &:hover:after {
-        text-decoration: none;
-    }
 }

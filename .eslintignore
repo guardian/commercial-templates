@@ -1,0 +1,18 @@
+.DS_Store
+node_modules
+/build
+/.svelte-kit
+/package
+.env
+.env.*
+!.env.example
+/legacy
+.eslintrc.cjs
+svelte.config.js
+playwright.config.ts
+/playwright
+
+# Ignore files for PNPM, NPM and YARN
+pnpm-lock.yaml
+package-lock.json
+yarn.lock

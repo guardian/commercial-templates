@@ -1,9 +1,10 @@
 const CLICK_MACRO = '%%CLICK_URL_UNESC%%';
 const CACHE_BUST = '%%CACHEBUSTER%%';
+const DEST_URL = '%%DEST_URL%%';
 
-type GAMVariable<T extends string = string> = `[%${T}%]`;
+type GAMVariable<T extends string = string> = T;
 
-const gamVar = <T extends string>(s: T): GAMVariable<T> => `[%${s}%]`;
+const gamVar = <T extends string>(s: T): `[%${GAMVariable<T>}%]` => `[%${s}%]`;
 
 const replaceGAMVariables = (
 	input: string,
@@ -30,12 +31,16 @@ const addTrackingPixel = (url: string) => {
 const isValidReplacedVariable = (s: GAMVariable): boolean =>
 	s.length > 0 && !s.startsWith('[%') && !s.endsWith('%]');
 
+const clickMacro = (url: string): string => `${CLICK_MACRO}${url}`;
+
 export type { GAMVariable };
 export {
 	CACHE_BUST,
 	CLICK_MACRO,
+	DEST_URL,
 	addTrackingPixel,
 	gamVar,
 	isValidReplacedVariable,
 	replaceGAMVariables,
+	clickMacro,
 };

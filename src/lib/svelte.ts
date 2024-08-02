@@ -9,15 +9,13 @@ type Props = Record<string, GAMVariable>;
 
 const REGEX = {
 	script: /<script[\s\S]*?>[\s\S]+?<\/script>/g,
-	props: /export let (.+?): GAMVariable;/g,
+	props: /export let (.+?): GAMVariable(<[\s\S]+>)?;/g,
 };
 
 const getProps = (path: string): Props => {
 	const content = readFileSync(path, 'utf8');
 
-	const script = content
-		.match(REGEX.script)
-		?.filter((script) => !script.includes('context="module"'))[0];
+	const script = content.match(REGEX.script)?.[0];
 
 	if (!script) return {};
 

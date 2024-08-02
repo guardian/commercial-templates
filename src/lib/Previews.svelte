@@ -1,14 +1,13 @@
-<script context="module" lang="ts">
+<script lang="ts">
+	import { onMount } from 'svelte';
+	import { replaceGAMVariables } from '$lib/gam';
+	import type { Message } from './messenger';
+	import { tones } from './types/tones';
+
 	const defaultReplacements: Record<string, string> = {
 		CACHEBUSTER: '?cachebust',
 		CLICK_URL_UNESC: '',
 	};
-</script>
-
-<script lang="ts">
-	import { replaceGAMVariables } from '$lib/gam';
-	import { onMount } from 'svelte';
-	import type { Message } from './messenger';
 
 	export let template: string;
 	export let html: string;
@@ -27,29 +26,50 @@
 		'</body>',
 	].join('');
 
-	export const widths = {
-		1300: 'desktop',
-		740: 'tablet',
-		360: 'mobile',
-	};
+	export const widths: Record<string, string> = {
+		'100%': '100%',
+		'1300': 'wide',
+		'980': 'desktop',
+		'740': 'tablet',
+		'360': 'mobile',
+	} as const;
 
 	onMount(() => {
-		window.addEventListener('message', (ev: MessageEvent<Message>) => {
+		window.addEventListener('message', (ev: MessageEvent<string>) => {
 			if (!ev.isTrusted) return;
 
 			const { source, data: json } = ev;
 
-			const data = JSON.parse(json);
+			let data;
+
+			try {
+				data = JSON.parse(json) as Message;
+			} catch (e) {
+				return;
+			}
 
 			if (!source) return;
 			if (!('frameElement' in source)) return;
 
+			const iframe = source.frameElement as HTMLIFrameElement;
+
+			console.log('messenger message received', data);
+
 			switch (data.type) {
 				case 'set-ad-height':
-					const iframe = source.frameElement as HTMLIFrameElement;
+				case 'resize':
 					iframe.height = String(data.value.height);
 					break;
-
+				case 'get-page-url':
+					source.postMessage(
+						JSON.stringify({
+							id: data.id,
+							result:
+								'https://www.theguardian.com/lifeandstyle/2023/jul/19/a-moment-that-changed-me-i-borrowed-a-dog-and-discovered-a-healthier-happier-way-of-life',
+						}),
+						'*',
+					);
+					break;
 				default:
 					break;
 			}
@@ -59,7 +79,7 @@
 
 <section id="example">
 	{#each Object.keys(widths) as width}
-		<div class="size">
+		<div class="size" class:full-width={width === '100%'}>
 			<h4>
 				{widths[width]} size ({width})
 			</h4>
@@ -81,13 +101,22 @@
 	<ul>
 		{#each Object.keys(props) as prop}
 			<li>
-				{prop}: <input type="text" bind:value={props[prop]} />
+				{#if prop === 'Tone'}
+					{prop}:
+					<select bind:value={props[prop]}>
+						{#each tones as tone}
+							<option value={tone}>{tone}</option>
+						{/each}
+					</select>
+				{:else}
+					{prop}: <input type="text" bind:value={props[prop]} />
+				{/if}
 			</li>
 		{/each}
 	</ul>
 </section>
 
-<style>
+<style lang="scss">
 	#example {
 		box-sizing: border-box;
 		width: 100%;
@@ -101,6 +130,10 @@
 		display: flex;
 		flex-direction: column;
 		width: max-content;
+
+		&.full-width {
+			width: 100%;
+		}
 	}
 
 	iframe {

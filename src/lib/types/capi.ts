@@ -1,3 +1,5 @@
+import type { GAMVariable } from '$lib/gam';
+
 export type Source = {
 	minWidth: string;
 	sizes: string;
@@ -35,8 +37,9 @@ export type Branding = {
 export type Single = {
 	articleHeadline: string;
 	articleText: string;
+	articleKicker: string;
 	articleUrl: string;
-	articleImage: {
+	articleImage?: {
 		sources: Source[];
 		backupSrc: string;
 	};
@@ -44,4 +47,23 @@ export type Single = {
 	galleryTag: boolean;
 	videoTag: boolean;
 	branding: Branding;
+};
+
+export type CapiHostedCard = {
+	headline: string;
+	url: string;
+	image?: {
+		sources: Source[];
+		backupSrc: string;
+	};
+	audioTag?: boolean;
+	galleryTag?: boolean;
+	videoTag?: boolean;
+};
+
+export type CapiCardOverride = {
+	headline: GAMVariable;
+	url: GAMVariable;
+	image: GAMVariable;
+	kicker?: GAMVariable;
 };
