@@ -13,6 +13,13 @@ template_dir = os.path.realpath(
                  "../../build-static")
 )
 
+legacy_template_dir = os.path.realpath(
+    os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                 "../../legacy/build")
+)
+
+legacy_template_types = ['web', 'app', 'amp']
+
 config = {
     "application_name": os.environ.get("GAM_APPLICATION_NAME"),
     "network_code": os.environ.get("GAM_NETWORK_CODE")
@@ -86,6 +93,11 @@ def main(native_style_service: common.GoogleSoapService):
     for root, dirs, files in os.walk(template_dir):
         for dir in dirs:
             upload_template(native_style_service, root, dir)
+
+    for root, dirs, files in os.walk(legacy_template_dir):
+        for dir in dirs:
+            for type in legacy_template_types:
+                upload_template(native_style_service, root, dir + '/' + type)
 
 
 if __name__ == "__main__":
