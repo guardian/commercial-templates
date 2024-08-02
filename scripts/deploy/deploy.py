@@ -108,9 +108,9 @@ def main(native_style_service: common.GoogleSoapService):
                         upload_template(native_style_service,
                                         root, dir + '/' + type)
     else:
-        # for root, dirs, files in os.walk(template_dir):
-        #     for dir in dirs:
-        #         upload_template(native_style_service, root, dir)
+        for root, dirs, files in os.walk(template_dir):
+            for dir in dirs:
+                upload_template(native_style_service, root, dir)
 
 
 if __name__ == "__main__":
