@@ -140,7 +140,7 @@ jobs:
         shell: bash
 
       - name: Build
-        run: npm build
+        run: npm run build
         working-directory: ./legacy
 
       - name: Install Dependencies
