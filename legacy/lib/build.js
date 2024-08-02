@@ -26,7 +26,7 @@ function build(options) {
       const destTestFile = path.resolve(`${dst}/${dir}/test.json`);
 
       if (fs.existsSync(srcTestFile)) {
-        return fs.symlinkSync(srcTestFile, destTestFile);
+        fs.symlinkSync(srcTestFile, destTestFile);
       }
 
 			types.forEach((type)=> {
@@ -34,7 +34,8 @@ function build(options) {
 				const destDeployFile = path.resolve(`${dst}/${dir}/${type}/ad.json`);
 
 				if (fs.existsSync(srcDeployFile)) {
-					return fs.symlinkSync(srcTestFile, destDeployFile);
+					fs.mkdirsSync(`${dst}/${dir}/${type}`);
+					fs.symlinkSync(srcDeployFile, destDeployFile);
 				}
 			});
     });
