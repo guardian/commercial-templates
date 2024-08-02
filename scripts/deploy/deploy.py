@@ -51,7 +51,8 @@ def upload_template(
 
         html = open(os.path.join(root, dir, "index.html"), "r").read()
 
-        css = open(os.path.join(root, dir, "style.css"), "r").read()
+        css_file = args.legacy and "index.css" or "style.css"
+        css = open(os.path.join(root, dir, css_file), "r").read()
     except:
         cprint(
             '[!] Skipping "%s" because index.html, style.css, or ad.json was missing.'
@@ -104,7 +105,7 @@ def main(native_style_service: common.GoogleSoapService):
         for root, dirs, files in os.walk(legacy_template_dir):
             for dir in dirs:
                 for type in legacy_template_types:
-                    if (dir == 'fabric-custom-xl'):
+                    if (os.path.isdir(os.path.join(root, dir, type))):
                         upload_template(native_style_service,
                                         root, dir + '/' + type)
     else:
@@ -114,7 +115,11 @@ def main(native_style_service: common.GoogleSoapService):
 
 
 if __name__ == "__main__":
-    key_json = os.environ.get("SERVICE_ACCOUNT_KEY_FILE") or ""
+    key_json = os.environ.get("SERVICE_ACCOUNT_KEY_FILE")
+
+    if key_json is None:
+        cprint("[!] SERVICE_ACCOUNT_KEY_FILE is not set in .env", "red")
+        exit(1)
 
     fd, key_file = tempfile.mkstemp()
 
