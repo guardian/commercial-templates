@@ -1,3 +1,4 @@
+import argparse
 import os
 import tempfile
 from dotenv import load_dotenv
@@ -5,6 +6,15 @@ import json
 from googleads import ad_manager, common, oauth2
 import datetime
 from termcolor import cprint
+
+parser = argparse.ArgumentParser(
+    prog='CommercialTemplateDeployer',
+    description='Deploys commercial templates to GAM.')
+
+parser.add_argument('--legacy', action='store_true',
+                    help='Deploys legacy templates')
+
+args = parser.parse_args()
 
 load_dotenv()
 
@@ -90,14 +100,17 @@ def upload_template(
 
 
 def main(native_style_service: common.GoogleSoapService):
-    for root, dirs, files in os.walk(template_dir):
-        for dir in dirs:
-            upload_template(native_style_service, root, dir)
-
-    for root, dirs, files in os.walk(legacy_template_dir):
-        for dir in dirs:
-            for type in legacy_template_types:
-                upload_template(native_style_service, root, dir + '/' + type)
+    if (args.legacy):
+        for root, dirs, files in os.walk(legacy_template_dir):
+            for dir in dirs:
+                for type in legacy_template_types:
+                    if (dir == 'fabric-custom-xl'):
+                        upload_template(native_style_service,
+                                        root, dir + '/' + type)
+    else:
+        for root, dirs, files in os.walk(template_dir):
+            for dir in dirs:
+                upload_template(native_style_service, root, dir)
 
 
 if __name__ == "__main__":
