@@ -11,3 +11,4 @@ legacy
 
 # Python
 scripts/deploy
+.mypy_cache

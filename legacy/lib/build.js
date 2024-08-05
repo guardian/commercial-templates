@@ -7,6 +7,8 @@ const buildHtml = require('./html');
 const fs = require('fs-extra');
 const path = require('path');
 
+const types = ['web', 'app', 'amp'];
+
 function build(options) {
     const { src, dst, minify } = options;
     let directories = fs.readdirSync(src)
@@ -24,8 +26,18 @@ function build(options) {
       const destTestFile = path.resolve(`${dst}/${dir}/test.json`);
 
       if (fs.existsSync(srcTestFile)) {
-        return fs.symlinkSync(srcTestFile, destTestFile);
+        fs.symlinkSync(srcTestFile, destTestFile);
       }
+
+			types.forEach((type)=> {
+				const srcDeployFile = path.resolve(`${src}/${dir}/${type}/ad.json`);
+				const destDeployFile = path.resolve(`${dst}/${dir}/${type}/ad.json`);
+
+				if (fs.existsSync(srcDeployFile)) {
+					fs.mkdirsSync(`${dst}/${dir}/${type}`);
+					fs.symlinkSync(srcDeployFile, destDeployFile);
+				}
+			});
     });
 
     directories = mapcat(directories, (dir) => [

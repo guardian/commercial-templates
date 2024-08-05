@@ -103,3 +103,54 @@ jobs:
           GAM_APPLICATION_NAME: ${{ secrets.GAM_APPLICATION_NAME }}
           GAM_NETWORK_CODE: ${{ secrets.GAM_NETWORK_CODE }}
           SERVICE_ACCOUNT_KEY_FILE: ${{ secrets.SERVICE_ACCOUNT_KEY_FILE }}
+
+  deploy-legacy:
+    name: Deploy Legacy
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: ./legacy
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.11'
+
+      - name: Install pipenv
+        run: pip install pipenv
+
+      - run: corepack enable
+        shell: bash
+        working-directory: ./legacy
+
+      - name: Setup Node (Legacy)
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: './legacy/.nvmrc'
+          cache: 'npm'
+          cache-dependency-path: './legacy/package-lock.json'
+
+      - name: Install dependencies
+        run: npm install --frozen-lockfile
+        working-directory: ./legacy
+        shell: bash
+
+      - name: Build
+        run: npm run build
+        working-directory: ./legacy
+
+      - name: Install Dependencies
+        run: pipenv install
+        working-directory: ./scripts/deploy
+
+      - name: Deploy Templates to GAM
+        run: pipenv run python deploy.py --legacy
+        working-directory: ./scripts/deploy
+        env:
+          GAM_APPLICATION_NAME: ${{ secrets.GAM_APPLICATION_NAME }}
+          GAM_NETWORK_CODE: ${{ secrets.GAM_NETWORK_CODE }}
+          SERVICE_ACCOUNT_KEY_FILE: ${{ secrets.SERVICE_ACCOUNT_KEY_FILE }}
