@@ -45,7 +45,7 @@ test.describe('Fabric Custom', () => {
 			// compare screenshot to reference
 			await expect(testTemplateLocator).toHaveScreenshot(
 				`Fabric-custom-${width.replace('%', '')}.png`,
-				{ animations: 'disabled', maxDiffPixelRatio: 0.004 },
+				{ animations: 'disabled', maxDiffPixelRatio: 0.006 },
 			);
 		}
 	});

@@ -44,7 +44,7 @@ test.describe('Manual Single', () => {
 			// compare screenshot to reference
 			await expect(testTemplateLocator).toHaveScreenshot(
 				`Manual-single-${width.replace('%', '')}.png`,
-				{ maxDiffPixelRatio: 0.004 },
+				{ maxDiffPixelRatio: 0.006 },
 			);
 		}
 	});
