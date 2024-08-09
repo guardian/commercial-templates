@@ -6,6 +6,8 @@ on:
   workflow_dispatch:
   pull_request:
 
+permissions: write-all
+
 jobs:
   test:
     name: Visual regression
