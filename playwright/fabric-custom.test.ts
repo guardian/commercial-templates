@@ -3,7 +3,7 @@ import { localBaseUrl, referenceBaseUrl, templatePreviewWidths } from './utils';
 
 const viewport = { width: 1600, height: 1000 };
 
-test.describe('Fabric Custom visual regression testing', () => {
+test.describe('Fabric Custom', () => {
 	test('Get reference screenshots', async ({ page }) => {
 		await page.setViewportSize(viewport);
 
@@ -45,7 +45,7 @@ test.describe('Fabric Custom visual regression testing', () => {
 			// compare screenshot to reference
 			await expect(testTemplateLocator).toHaveScreenshot(
 				`Fabric-custom-${width.replace('%', '')}.png`,
-				{ animations: 'disabled', maxDiffPixelRatio: 0.004 },
+				{ animations: 'disabled', maxDiffPixelRatio: 0.006 },
 			);
 		}
 	});

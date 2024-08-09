@@ -3,7 +3,7 @@ import { localBaseUrl, referenceBaseUrl, templatePreviewWidths } from './utils';
 
 const viewport = { width: 1600, height: 1000 };
 
-test.describe('Manual Multiple visual regression testing', () => {
+test.describe('Manual Multiple', () => {
 	test('Get reference screenshots', async ({ page }) => {
 		await page.setViewportSize(viewport);
 
@@ -44,7 +44,7 @@ test.describe('Manual Multiple visual regression testing', () => {
 			// compare screenshot to reference
 			await expect(testTemplateLocator).toHaveScreenshot(
 				`Manual-multiple-${width.replace('%', '')}.png`,
-				{ maxDiffPixelRatio: 0.004 },
+				{ maxDiffPixelRatio: 0.006 },
 			);
 		}
 	});

@@ -13,6 +13,10 @@ const config: PlaywrightTestConfig = {
 	],
 	testDir: './playwright',
 	snapshotPathTemplate: '{testDir}/reference-images/{arg}{ext}',
+	reporter: [
+		['line'],
+		['json', { outputFile: 'test-results/visual-regression-results.json' }],
+	],
 };
 
 export default config;
