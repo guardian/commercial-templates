@@ -36,3 +36,37 @@ jobs:
 
       - name: Run Playwright
         run: pnpm playwright test
+
+      - uses: actions/github-script@v7
+        with:
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          script: |
+            const { readFileSync, resolve } = require('fs');
+            const resultsTable = readFileSync('./test-results/visual-regression-results-table.txt', 'utf8');
+            const body = `### Visual regression testing results
+            ${resultsTable}
+            Please check that any visual changes in the failing tests are intentional before merging your PR.`
+            if (context.eventName === 'pull_request') {
+              const comments = await github.rest.issues.listComments({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+              });
+              const existingComment = comments.data.find(comment => comment.body.includes('Visual regression testing results'));
+              if (existingComment) {
+                await github.rest.issues.updateComment({
+                  comment_id: existingComment.id,
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  body
+                });
+                return;
+              } else {
+                const { data } = await github.rest.issues.createComment({
+                  issue_number: context.issue.number,
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  body
+                });
+              }
+            }
