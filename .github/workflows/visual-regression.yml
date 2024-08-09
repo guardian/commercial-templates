@@ -50,8 +50,9 @@ jobs:
             const { readFileSync, resolve } = require('fs');
             const resultsTable = readFileSync('./test-results/visual-regression-results-table.txt', 'utf8');
             const body = `### Visual regression testing results
-            ${resultsTable}
-            Please check that any visual changes in the failing tests are intentional before merging your PR.`
+            Please check that any visual changes in the failing tests are intentional before merging your PR.
+
+            ${resultsTable}`
             if (context.eventName === 'pull_request') {
               const comments = await github.rest.issues.listComments({
                 issue_number: context.issue.number,
