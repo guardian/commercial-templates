@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { type GAMVariable } from '$lib/gam';
+	export let thirdPartyJSTracking: GAMVariable;
 </script>
 
 <div class="creative--interscroller">
@@ -20,6 +22,7 @@
 		class="creative__pixel creative__pixel--displayNone"
 		aria-hidden="true"
 	/>
+	{@html thirdPartyJSTracking}
 </div>
 
 <style lang="scss">
@@ -31,3 +34,4 @@
 		display: none;
 	}
 </style>
+
