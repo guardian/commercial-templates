@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { type GAMVariable } from '$lib/gam';
+
 	export let thirdPartyJSTracking: GAMVariable;
 </script>
 
