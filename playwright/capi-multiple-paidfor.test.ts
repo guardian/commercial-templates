@@ -14,7 +14,7 @@ test.describe('CAPI Multiple Paidfor', () => {
 		for (const width of templatePreviewWidths) {
 			const referenceTemplateLocator = page
 				.frameLocator(`[name='width-${width}']`)
-				.locator('html');
+				.locator('aside');
 			// check that the template is present on the page
 			expect(referenceTemplateLocator).toBeVisible();
 			// scroll to it
@@ -36,7 +36,7 @@ test.describe('CAPI Multiple Paidfor', () => {
 		for (const width of templatePreviewWidths) {
 			const testTemplateLocator = page
 				.frameLocator(`[name='width-${width}']`)
-				.locator('html');
+				.locator('aside');
 			// check that the template is present on the page
 			expect(testTemplateLocator).toBeVisible();
 			// scroll to it
