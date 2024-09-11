@@ -77,3 +77,10 @@ jobs:
                 });
               }
             }
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: visual-regression-report
+          path: ./test-results/visual-regression-results.json
+          retention-days: 5
