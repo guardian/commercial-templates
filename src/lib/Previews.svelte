@@ -88,7 +88,7 @@
 				frameborder="0"
 				{width}
 				srcdoc={transformed}
-				height="360"
+				height="600"
 				name={`width-${width}`}
 			/>
 		</div>

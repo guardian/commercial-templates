@@ -11,8 +11,6 @@ test.describe('CAPI Multiple Paidfor', () => {
 			waitUntil: 'networkidle',
 		});
 
-		await page.waitForTimeout(4000);
-
 		for (const width of templatePreviewWidths) {
 			const referenceTemplateLocator = page
 				.frameLocator(`[name='width-${width}']`)
@@ -34,8 +32,6 @@ test.describe('CAPI Multiple Paidfor', () => {
 		await page.goto(`${localBaseUrl}csr/capi-multiple-paidfor`, {
 			waitUntil: 'networkidle',
 		});
-
-		await page.waitForTimeout(4000);
 
 		for (const width of templatePreviewWidths) {
 			const testTemplateLocator = page
