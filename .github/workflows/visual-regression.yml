@@ -82,5 +82,5 @@ jobs:
         if: always()
         with:
           name: visual-regression-report
-          path: ./test-results/visual-regression-results.json
+          path: ./test-results/
           retention-days: 5
