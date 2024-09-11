@@ -1,11 +1,17 @@
 import { expect, test } from '@playwright/test';
 import { localBaseUrl, referenceBaseUrl, templatePreviewWidths } from './utils';
 
+const viewport = { width: 1600, height: 1000 };
+
 test.describe('CAPI Multiple Paidfor', () => {
 	test('Get reference screenshots', async ({ page }) => {
+		await page.setViewportSize(viewport);
+
 		await page.goto(`${referenceBaseUrl}csr/capi-multiple-paidfor/`, {
 			waitUntil: 'networkidle',
 		});
+
+		await page.waitForTimeout(4000);
 
 		for (const width of templatePreviewWidths) {
 			const referenceTemplateLocator = page
@@ -23,9 +29,13 @@ test.describe('CAPI Multiple Paidfor', () => {
 	});
 
 	test('Compare PR templates to reference screenshots', async ({ page }) => {
+		await page.setViewportSize(viewport);
+
 		await page.goto(`${localBaseUrl}csr/capi-multiple-paidfor`, {
 			waitUntil: 'networkidle',
 		});
+
+		await page.waitForTimeout(4000);
 
 		for (const width of templatePreviewWidths) {
 			const testTemplateLocator = page

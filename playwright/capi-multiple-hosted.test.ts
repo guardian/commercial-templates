@@ -11,6 +11,8 @@ test.describe('CAPI Multiple Hosted', () => {
 			waitUntil: 'networkidle',
 		});
 
+		await page.waitForTimeout(4000);
+
 		for (const width of templatePreviewWidths) {
 			const referenceTemplateLocator = page
 				.frameLocator(`[name='width-${width}']`)
@@ -32,6 +34,8 @@ test.describe('CAPI Multiple Hosted', () => {
 		await page.goto(`${localBaseUrl}csr/capi-multiple-hosted`, {
 			waitUntil: 'networkidle',
 		});
+
+		await page.waitForTimeout(4000);
 
 		for (const width of templatePreviewWidths) {
 			const testTemplateLocator = page
