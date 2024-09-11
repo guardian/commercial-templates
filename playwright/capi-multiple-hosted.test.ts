@@ -33,8 +33,6 @@ test.describe('CAPI Multiple Hosted', () => {
 			waitUntil: 'networkidle',
 		});
 
-		await page.waitForTimeout(3000);
-
 		for (const width of templatePreviewWidths) {
 			const testTemplateLocator = page
 				.frameLocator(`[name='width-${width}']`)
