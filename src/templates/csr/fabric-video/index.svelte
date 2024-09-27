@@ -1,13 +1,11 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
+	import { writable, type Writable } from 'svelte/store';
 	import {
 		CLICK_MACRO,
 		DEST_URL,
 		type GAMVariable,
 		isValidReplacedVariable,
 	} from '$lib/gam';
-	import { onScroll, onViewport } from '$lib/messenger';
-	import Fabric from '$templates/components/Fabric.svelte';
 	import Pixel from '$templates/components/Pixel.svelte';
 
 	export let Trackingpixel: GAMVariable;
@@ -36,92 +34,38 @@
 	export let thirdPartyJSTracking: GAMVariable;
 	export let isXL = false;
 
-	let isUpdating = false;
 	const isMobile = window.innerWidth < 740;
 
-	// We want to know when the slot is in view so we can control the video
-	// and animation
-	let inView = false;
-
-	// We'll need an onScroll listener that will be add inside onViewport,
-	// but since onViewport can fire multiple times, we want to make sure
-	// the onScroll listener is added only once.
-	let onScrolling = false;
-
-	// We'll start the video when the slot is in view, but we want this
-	// process to happen only once. When the video ends, we let everyone
-	// know about it.
-	let video: HTMLVideoElement;
+	const video: Writable<HTMLVideoElement | undefined> = writable();
 
 	let played = false;
 
-	function videoEnded() {
-		// We let everyone know the video has ended
-		played = true;
-	}
+	// Add video source
+	// Add video poster image
 	const posterImage = isMobile ? MobileVideoBackupImage : VideoBackupImage;
 	const videoSrc = isMobile ? VideoURLMobile : VideoURL;
 
-	console.log(VideoURL, '!!QWERTY11111!!!');
-	onMount(() => {
-		console.log('onMount is called');
-		console.log('!!QWERTY2222!!!');
-		setTimeout(() => {
-			console.log(video, '!!QWERTY2222!!!'); // Check video after small delay
-		}, 100);
-		//code you wamt to mount on the page when component is rendered
-		if (!VideoURL || !VideoURLMobile) return;
+	video.subscribe((video) => {
+		if (video) {
+			if (!VideoURL || !VideoURLMobile) return;
 
-		// Add video source
-		// Add video poster image
-		//Add class name for mobile video
+			video.load(); //
+			void video.play(); //
 
-		video.load(); //
-		video.play(); //
-
-		let played = false;
-		video.onended = () => (played = true);
-
-		const observer = new IntersectionObserver(
-			(entries) => {
-				entries.forEach((entry) => {
-					console.log(entry.isIntersecting, '!!QWERTY3333!!!');
-					if (entry.isIntersecting && !played) {
-						video.paused && void video.play();
-					} else {
-						console.log('!!QWERTY4444!!!');
-						!video.paused && video.pause();
-					}
-				});
-			},
-			{ root: null, rootMargin: '0px', threshold: 0.2 },
-		);
-
-		observer.observe(video);
-
-		// onViewport().then(({ height }) => {
-		// 	// That's it, the video has only played once so we don't need
-		// 	// to listen anymore
-		// 	if (played) {
-		// 		return false;
-		// 	}
-
-		// 	if (!onScrolling) {
-		// 		onScrolling = true;
-		// 		onScroll().then(({ top, bottom }) => {
-		// 			if (played) {
-		// 				return false;
-		// 			}
-
-		// 			inView = top >= 0 && bottom <= height;
-		// 			if (!isUpdating) {
-		// 				isUpdating = true;
-		// 				updateVideo();
-		// 				updateView(); // We want to make sure the video is updated!!!!DS
-		// 			}
-		// 		});
-		// 	}
-		// });
+			const observer = new IntersectionObserver(
+				(entries) => {
+					entries.forEach((entry) => {
+						if (entry.isIntersecting && !played) {
+							video.paused && void video.play();
+						} else {
+							!video.paused && video.pause();
+						}
+					});
+				},
+				{ root: null, rootMargin: '0px', threshold: 0.2 },
+			);
+			observer.observe(video);
+		}
 	});
 </script>
 
@@ -154,13 +98,13 @@
 		style:--mobile-background-position={MobileLayer3BackgroundPosition}
 	/>
 	<video
-		bind:this={video}
+		bind:this={$video}
 		muted
 		autoplay
 		playsinline
 		class="video video--{VideoAlignment}"
 		class:isMobile
-		on:ended={videoEnded}
+		on:ended={() => (played = true)}
 		src={videoSrc}
 		poster={posterImage}
 	></video>
