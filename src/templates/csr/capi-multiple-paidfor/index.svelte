@@ -132,6 +132,10 @@
 		color: white;
 	}
 
+	div {
+		width: auto;
+	}
+
 	@media (min-width: 740px) {
 		.cards-container {
 			flex-direction: row;
