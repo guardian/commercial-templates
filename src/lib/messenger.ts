@@ -49,8 +49,7 @@ type StringMessage = StandardMessage<
 	| 'get-page-url'
 	| 'passback-refresh'
 	| 'viewport'
-	| 'scroll'
-	| 'click',
+	| 'scroll',
 	string
 >;
 
@@ -128,15 +127,5 @@ const postAndListen = (arg: Message): Promise<unknown> =>
 		3000,
 	);
 
-const onScroll = () =>
-	postAndListen({ type: 'scroll', value: '' }).then(
-		(result) => result as { top: number; bottom: number },
-	);
-
-const onViewport = () =>
-	postAndListen({ type: 'viewport', value: '' }).then(
-		(result) => result as { width: number; height: number },
-	);
-
-export { post, timeout, postAndListen, generateId, onScroll, onViewport };
+export { post, timeout, postAndListen, generateId };
 export type { Message };
