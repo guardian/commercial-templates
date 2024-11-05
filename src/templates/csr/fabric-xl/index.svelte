@@ -28,13 +28,8 @@
 	export let MobileLayer2BackgroundPosition: GAMVariable;
 	export let MobileLayer3BackgroundImage: GAMVariable;
 	export let MobileLayer3BackgroundPosition: GAMVariable;
-	export let VideoURL: GAMVariable;
-	export let VideoBackupImage: GAMVariable;
-	export let MobileVideoBackupImage: GAMVariable;
-	export let VideoURLMobile: GAMVariable;
-	export let VideoAlignment: GAMVariable;
-	export let isXL = false;
-	export let showVideo = true;
+
+	export let isXL = true;
 </script>
 
 <Fabric
@@ -61,11 +56,5 @@
 	{MobileLayer2BackgroundPosition}
 	{MobileLayer3BackgroundImage}
 	{MobileLayer3BackgroundPosition}
-	{VideoURL}
-	{VideoBackupImage}
-	{MobileVideoBackupImage}
-	{VideoURLMobile}
 	{isXL}
-	{VideoAlignment}
-	{showVideo}
 />

@@ -10,7 +10,6 @@
 	import { post } from '$lib/messenger';
 	import Pixel from '$templates/components/Pixel.svelte';
 
-	export let showVideo: boolean;
 	export let TrackingPixel: string;
 	export let ResearchPixel: string;
 	export let ViewabilityPixel: string;
@@ -34,11 +33,12 @@
 	export let MobileLayer2BackgroundPosition: string;
 	export let MobileLayer3BackgroundImage: string;
 	export let MobileLayer3BackgroundPosition: string;
-	export let VideoURL: GAMVariable;
-	export let VideoBackupImage: GAMVariable;
-	export let MobileVideoBackupImage: GAMVariable;
-	export let VideoURLMobile: GAMVariable;
-	export let VideoAlignment: GAMVariable;
+	export let VideoURL: GAMVariable | undefined = undefined;
+	export let VideoBackupImage: GAMVariable | undefined = undefined;
+	export let MobileVideoBackupImage: GAMVariable | undefined = undefined;
+	export let VideoURLMobile: GAMVariable | undefined = undefined;
+	export let VideoAlignment: GAMVariable | undefined = undefined;
+	export let showVideo = false;
 	export let isXL = false;
 
 	const isMobile = window.innerWidth < 740;
