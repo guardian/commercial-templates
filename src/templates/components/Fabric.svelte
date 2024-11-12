@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
 	import { writable, type Writable } from 'svelte/store';
 	import {
 		CLICK_MACRO,
@@ -52,57 +51,59 @@
 	const posterImage = isMobile ? MobileVideoBackupImage : VideoBackupImage;
 	const videoSrc = isMobile ? VideoURLMobile : VideoURL;
 
-	onMount(() => {
-		if (showVideo) {
-			video.subscribe((video) => {
-				if (video) {
-					if (!VideoURL || !VideoURLMobile) return;
-
-					video.load(); //
-					void video.play(); //
-
-					const observer = new IntersectionObserver(
-						(entries) => {
-							entries.forEach((entry) => {
-								if (entry.isIntersecting && !played) {
-									video.paused && void video.play();
-								} else {
-									!video.paused && video.pause();
-								}
-							});
-						},
-						{ root: null, rootMargin: '0px', threshold: 0.2 },
-					);
-					observer.observe(video);
-				}
-			});
+	// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- https://github.com/sveltejs/eslint-plugin-svelte/issues/476
+	if (showVideo) {
+		// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- https://github.com/sveltejs/eslint-plugin-svelte/issues/476
+		if (isXL) {
 			post({ type: 'resize', value: { height: 524 } });
-		} else {
-			const [backgroundImage, backgroundPosition, backgroundRepeat] = isMobile
-				? [
-						MobileBackgroundImage,
-						MobileBackgroundImagePosition,
-						MobileBackgroundImageRepeat,
-					]
-				: [BackgroundImage, BackgroundImagePosition, BackgroundImageRepeat];
-
-			const checkScrollType = (scrollType: string): string =>
-				scrollType === 'parallax' && (isMobile || isTablet)
-					? 'fixed'
-					: scrollType;
-
-			post({
-				type: 'background',
-				value: {
-					scrollType: checkScrollType(BackgroundScrollType),
-					backgroundColor: BackgroundColour,
-					backgroundImage: `url('${backgroundImage}')`,
-					backgroundRepeat,
-					backgroundPosition,
-				},
-			});
 		}
-	});
+		video.subscribe((video) => {
+			if (video) {
+				if (!VideoURL || !VideoURLMobile) return;
+
+				video.load(); //
+				void video.play(); //
+
+				const observer = new IntersectionObserver(
+					(entries) => {
+						entries.forEach((entry) => {
+							if (entry.isIntersecting && !played) {
+								video.paused && void video.play();
+							} else {
+								!video.paused && video.pause();
+							}
+						});
+					},
+					{ root: null, rootMargin: '0px', threshold: 0.2 },
+				);
+				observer.observe(video);
+			}
+		});
+	} else {
+		const [backgroundImage, backgroundPosition, backgroundRepeat] = isMobile
+			? [
+					MobileBackgroundImage,
+					MobileBackgroundImagePosition,
+					MobileBackgroundImageRepeat,
+				]
+			: [BackgroundImage, BackgroundImagePosition, BackgroundImageRepeat];
+
+		const checkScrollType = (scrollType: string): string =>
+			scrollType === 'parallax' && (isMobile || isTablet)
+				? 'fixed'
+				: scrollType;
+
+		post({
+			type: 'background',
+			value: {
+				scrollType: checkScrollType(BackgroundScrollType),
+				backgroundColor: BackgroundColour,
+				backgroundImage: `url('${backgroundImage}')`,
+				backgroundRepeat,
+				backgroundPosition,
+			},
+		});
+	}
 </script>
 
 <a
