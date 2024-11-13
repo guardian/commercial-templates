@@ -37,10 +37,10 @@
 	export let MobileVideoBackupImage: GAMVariable | undefined = undefined;
 	export let VideoURLMobile: GAMVariable | undefined = undefined;
 	export let VideoAlignment: GAMVariable | undefined = undefined;
-	export let showVideo = false;
-	export let isXL = false;
+	export let showVideo: boolean = false;
+	export let isXL: boolean = false;
 
-	const isMobile = window.innerWidth < 740;
+	const isMobile = window.matchMedia('(max-width: 739px)').matches;
 	const isTablet = window.matchMedia(
 		'(min-width: 740px) and (max-width: 979px)',
 	).matches;
@@ -61,8 +61,8 @@
 			if (video) {
 				if (!VideoURL || !VideoURLMobile) return;
 
-				video.load(); //
-				void video.play(); //
+				video.load();
+				void video.play();
 
 				const observer = new IntersectionObserver(
 					(entries) => {

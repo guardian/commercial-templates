@@ -34,9 +34,6 @@
 	export let MobileVideoBackupImage: GAMVariable;
 	export let VideoURLMobile: GAMVariable;
 	export let VideoAlignment: GAMVariable;
-
-	export let isXL = false;
-	export let showVideo = true;
 </script>
 
 <Fabric
@@ -68,6 +65,5 @@
 	{MobileVideoBackupImage}
 	{VideoURLMobile}
 	{VideoAlignment}
-	{isXL}
-	{showVideo}
+	showVideo={true}
 />

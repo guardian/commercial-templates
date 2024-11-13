@@ -28,8 +28,6 @@
 	export let MobileLayer2BackgroundPosition: GAMVariable;
 	export let MobileLayer3BackgroundImage: GAMVariable;
 	export let MobileLayer3BackgroundPosition: GAMVariable;
-
-	export let isXL = true;
 </script>
 
 <Fabric
@@ -56,5 +54,5 @@
 	{MobileLayer2BackgroundPosition}
 	{MobileLayer3BackgroundImage}
 	{MobileLayer3BackgroundPosition}
-	{isXL}
+	isXL={true}
 />
