@@ -69,5 +69,5 @@
 	{VideoURLMobile}
 	{VideoAlignment}
 	isXL=true
-	{showVideo}
+	showVideo=true
 />
