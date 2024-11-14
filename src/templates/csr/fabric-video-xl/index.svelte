@@ -68,6 +68,6 @@
 	{MobileVideoBackupImage}
 	{VideoURLMobile}
 	{VideoAlignment}
-	{isXL}
+	isXL=true
 	{showVideo}
 />
