@@ -1,5 +1,11 @@
 <script lang="ts">
-	import { CLICK_MACRO, DEST_URL, isValidReplacedVariable } from '$lib/gam';
+	import { writable, type Writable } from 'svelte/store';
+	import {
+		CLICK_MACRO,
+		DEST_URL,
+		type GAMVariable,
+		isValidReplacedVariable,
+	} from '$lib/gam';
 	import { post } from '$lib/messenger';
 	import Pixel from '$templates/components/Pixel.svelte';
 
@@ -26,34 +32,78 @@
 	export let MobileLayer2BackgroundPosition: string;
 	export let MobileLayer3BackgroundImage: string;
 	export let MobileLayer3BackgroundPosition: string;
-	export let isXL = false;
+	export let VideoURL: GAMVariable | undefined = undefined;
+	export let VideoBackupImage: GAMVariable | undefined = undefined;
+	export let MobileVideoBackupImage: GAMVariable | undefined = undefined;
+	export let VideoURLMobile: GAMVariable | undefined = undefined;
+	export let VideoAlignment: GAMVariable | undefined = undefined;
+	export let showVideo: boolean = false;
+	export let isXL: boolean = false;
 
 	const isMobile = window.matchMedia('(max-width: 739px)').matches;
 	const isTablet = window.matchMedia(
 		'(min-width: 740px) and (max-width: 979px)',
 	).matches;
 
-	const [backgroundImage, backgroundPosition, backgroundRepeat] = isMobile
-		? [
-				MobileBackgroundImage,
-				MobileBackgroundImagePosition,
-				MobileBackgroundImageRepeat,
-			]
-		: [BackgroundImage, BackgroundImagePosition, BackgroundImageRepeat];
+	const video: Writable<HTMLVideoElement | undefined> = writable();
+	let played = false;
 
-	const checkScrollType = (scrollType: string): string =>
-		scrollType === 'parallax' && (isMobile || isTablet) ? 'fixed' : scrollType;
+	const posterImage = isMobile ? MobileVideoBackupImage : VideoBackupImage;
+	const videoSrc = isMobile ? VideoURLMobile : VideoURL;
 
-	post({
-		type: 'background',
-		value: {
-			scrollType: checkScrollType(BackgroundScrollType),
-			backgroundColor: BackgroundColour,
-			backgroundImage: `url('${backgroundImage}')`,
-			backgroundRepeat,
-			backgroundPosition,
-		},
-	});
+	// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- https://github.com/sveltejs/eslint-plugin-svelte/issues/476
+	if (showVideo) {
+		// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- https://github.com/sveltejs/eslint-plugin-svelte/issues/476
+		if (isXL) {
+			post({ type: 'resize', value: { height: 524 } });
+		}
+		video.subscribe((video) => {
+			if (video) {
+				if (!VideoURL || !VideoURLMobile) return;
+
+				video.load();
+				void video.play();
+
+				const observer = new IntersectionObserver(
+					(entries) => {
+						entries.forEach((entry) => {
+							if (entry.isIntersecting && !played) {
+								video.paused && void video.play();
+							} else {
+								!video.paused && video.pause();
+							}
+						});
+					},
+					{ root: null, rootMargin: '0px', threshold: 0.2 },
+				);
+				observer.observe(video);
+			}
+		});
+	} else {
+		const [backgroundImage, backgroundPosition, backgroundRepeat] = isMobile
+			? [
+					MobileBackgroundImage,
+					MobileBackgroundImagePosition,
+					MobileBackgroundImageRepeat,
+				]
+			: [BackgroundImage, BackgroundImagePosition, BackgroundImageRepeat];
+
+		const checkScrollType = (scrollType: string): string =>
+			scrollType === 'parallax' && (isMobile || isTablet)
+				? 'fixed'
+				: scrollType;
+
+		post({
+			type: 'background',
+			value: {
+				scrollType: checkScrollType(BackgroundScrollType),
+				backgroundColor: BackgroundColour,
+				backgroundImage: `url('${backgroundImage}')`,
+				backgroundRepeat,
+				backgroundPosition,
+			},
+		});
+	}
 </script>
 
 <a
@@ -84,6 +134,20 @@
 		style:--mobile-background-image={`url('${MobileLayer3BackgroundImage}')`}
 		style:--mobile-background-position={MobileLayer3BackgroundPosition}
 	/>
+
+	{#if showVideo}
+		<video
+			bind:this={$video}
+			muted
+			autoplay
+			playsinline
+			class="video video--{VideoAlignment}"
+			class:isMobile
+			on:ended={() => (played = true)}
+			src={videoSrc}
+			poster={posterImage}
+		></video>
+	{/if}
 </a>
 
 {#if isValidReplacedVariable(TrackingPixel)}
@@ -98,6 +162,44 @@
 	:global(body) {
 		background-color: var(--background-color);
 		margin: 0;
+	}
+	.isMobile {
+		width: 740px;
+	}
+
+	.video,
+	.poster,
+	.alt,
+	.layer {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+	}
+
+	.video {
+		width: 1920px;
+		height: 250px;
+	}
+
+	.video--left {
+		top: 50%;
+		left: 0%;
+		transform: translate(0%, -50%);
+	}
+
+	.video--right {
+		top: 50%;
+		right: 0%;
+		left: unset;
+		transform: translate(0%, -50%);
+	}
+
+	.video--center {
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
 	}
 
 	.fabric-container {

@@ -2,9 +2,9 @@
 	import type { GAMVariable } from '$lib/gam';
 	import Fabric from '$templates/components/Fabric.svelte';
 
-	export let TrackingPixel: GAMVariable;
-	export let ResearchPixel: GAMVariable;
-	export let ViewabilityPixel: GAMVariable;
+	export let Trackingpixel: GAMVariable;
+	export let Researchpixel: GAMVariable;
+	export let Viewabilitypixel: GAMVariable;
 
 	export let BackgroundScrollType: GAMVariable<'parallax' | 'none' | 'fixed'>;
 	export let BackgroundColour: GAMVariable;
@@ -28,12 +28,18 @@
 	export let MobileLayer2BackgroundPosition: GAMVariable;
 	export let MobileLayer3BackgroundImage: GAMVariable;
 	export let MobileLayer3BackgroundPosition: GAMVariable;
+
+	export let VideoURL: GAMVariable;
+	export let VideoBackupImage: GAMVariable;
+	export let MobileVideoBackupImage: GAMVariable;
+	export let VideoURLMobile: GAMVariable;
+	export let VideoAlignment: GAMVariable;
 </script>
 
 <Fabric
-	{TrackingPixel}
-	{ResearchPixel}
-	{ViewabilityPixel}
+	TrackingPixel={Trackingpixel}
+	ResearchPixel={Researchpixel}
+	ViewabilityPixel={Viewabilitypixel}
 	{BackgroundScrollType}
 	{BackgroundColour}
 	{BackgroundImage}
@@ -54,5 +60,10 @@
 	{MobileLayer2BackgroundPosition}
 	{MobileLayer3BackgroundImage}
 	{MobileLayer3BackgroundPosition}
-	isXL={true}
+	{VideoURL}
+	{VideoBackupImage}
+	{MobileVideoBackupImage}
+	{VideoURLMobile}
+	{VideoAlignment}
+	showVideo={true}
 />
