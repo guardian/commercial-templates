@@ -18,9 +18,11 @@ let resultsTable = `| Template | Visual test status |
 | ------------- | ------------- |`;
 
 for (const test of tests) {
-	const testStatus = Boolean(test.suites[0].specs[1].ok);
-	const testTitle = test.suites[0].title;
-	resultsTable += `\n| ${testTitle} | ${testStatus ? '✅' : '❌'} |`;
+	if (test.suites) {
+		const testStatus = Boolean(test.suites[0].specs[1].ok);
+		const testTitle = test.suites[0].title;
+		resultsTable += `\n| ${testTitle} | ${testStatus ? '✅' : '❌'} |`;
+	}
 }
 
 writeFileSync(
