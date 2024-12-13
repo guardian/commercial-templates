@@ -17,6 +17,7 @@ fi
 
 if [[ ! -z $changedLock ]]
 then
+	corepack enable pnpm
 	echo "${RED}This application has updated dependencies. Installing with pnpm...${ENDCOLOR}"
 	pnpm install --frozen-lockfile
 fi
