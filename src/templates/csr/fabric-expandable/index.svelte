@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { GAMVariable } from '$lib/gam';
 	import Fabric from '$templates/components/Fabric.svelte';
+	import ArrowDown from '$templates/components/icons/ArrowDown.svelte';
 	import SetHeightResizer from '$templates/components/SetHeightResizer.svelte';
 
 	export let Trackingpixel: GAMVariable;
@@ -125,15 +126,8 @@
 		</svg>
 	</button>
 
-	<button
-		on:click={toggleExpanded}
-		class="toggle-arrow"
-		aria-expanded={expanded ? 'true' : 'false'}
-	>
-		<svg class="arrow-icon" viewBox="-0.525 -4 24 18">
-			<path d="M23.2.7L12.7 9.1l-1.1.9-1.1-.898L0 .7.5 0l11.1 6.3L22.7 0l.5.7z"
-			></path>
-		</svg>
+	<button on:click={() => (expanded = !expanded)} class="toggle-arrow">
+		<ArrowDown width={24} flip={expanded} />
 	</button>
 </aside>
 <SetHeightResizer {height} />
@@ -189,18 +183,9 @@
 		opacity: 0.75;
 	}
 
-	.toggle-arrow[aria-expanded='true'] > .arrow-icon {
-		transform: rotate(180deg);
-	}
-
 	svg {
 		display: inline-block;
 		vertical-align: middle;
 		overflow: hidden;
-	}
-
-	.arrow-icon {
-		width: 24px;
-		transition: transform 0.5s;
 	}
 </style>
