@@ -2,6 +2,7 @@
 	import type { GAMVariable } from '$lib/gam';
 	import Fabric from '$templates/components/Fabric.svelte';
 	import ArrowDown from '$templates/components/icons/ArrowDown.svelte';
+	import CrossIcon from '$templates/components/icons/CrossIcon.svelte';
 	import SetHeightResizer from '$templates/components/SetHeightResizer.svelte';
 
 	export let Trackingpixel: GAMVariable;
@@ -52,10 +53,6 @@
 
 	let expanded = false;
 
-	function toggleExpanded() {
-		expanded = !expanded;
-	}
-
 	let height: number = 250;
 </script>
 
@@ -86,7 +83,7 @@
 		MobileLayer3BackgroundPosition={Slide1Layer3MobileBackgroundPosition}
 	/>
 
-	<div class="expanded-slide" aria-expanded={expanded ? 'true' : 'false'}>
+	<div class="expanded-slide">
 		<Fabric
 			TrackingPixel={Trackingpixel}
 			ResearchPixel={Researchpixel}
@@ -114,20 +111,12 @@
 		/>
 	</div>
 
-	<button
-		on:click={toggleExpanded}
-		class="toggle-cross"
-		aria-expanded={expanded ? 'true' : 'false'}
-	>
-		<svg class="cross-icon" width="30" height="30">
-			<path
-				d="M21 9.8l-.8-.8-5.2 4.8-5.2-4.8-.8.8 4.8 5.2-4.8 5.2.8.8 5.2-4.8 5.2 4.8.8-.8-4.8-5.2 4.8-5.2"
-			></path>
-		</svg>
+	<button on:click={() => (expanded = !expanded)} class="toggle-cross">
+		<CrossIcon plus={expanded} />
 	</button>
 
 	<button on:click={() => (expanded = !expanded)} class="toggle-arrow">
-		<ArrowDown width={24} flip={expanded} />
+		<ArrowDown flip={expanded} />
 	</button>
 </aside>
 <SetHeightResizer {height} />
@@ -165,10 +154,7 @@
 		border-width: 1px;
 		transition: transform 1s;
 		transform: rotate(45deg);
-	}
-
-	.toggle-cross[aria-expanded='true'] {
-		transform: rotate(0);
+		overflow: hidden;
 	}
 
 	.toggle-arrow {
@@ -181,11 +167,5 @@
 		border-radius: 20px 20px 0 0;
 		border-width: 1px 1px 0;
 		opacity: 0.75;
-	}
-
-	svg {
-		display: inline-block;
-		vertical-align: middle;
-		overflow: hidden;
 	}
 </style>
