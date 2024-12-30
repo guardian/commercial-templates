@@ -5,7 +5,7 @@ import { localBaseUrl, referenceBaseUrl } from './utils';
 // not testing at 980px allows us to reliably visually test the Fabric Custom template
 const templatePreviewWidths = ['360', '740', '1300', '100%'];
 
-const viewport = { width: 1500, height: 800 };
+const viewport = { width: 1600, height: 1000 };
 
 test.describe('Fabric Custom', () => {
 	test.setTimeout(60000);
