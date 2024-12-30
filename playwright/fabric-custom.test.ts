@@ -3,7 +3,7 @@ import { localBaseUrl, referenceBaseUrl, templatePreviewWidths } from './utils';
 
 const viewport = { width: 1600, height: 1000 };
 
-test.skip('Fabric Custom', () => {
+test.describe('Fabric Custom', () => {
 	test('Get reference screenshots', async ({ page }) => {
 		await page.setViewportSize(viewport);
 
@@ -19,6 +19,11 @@ test.skip('Fabric Custom', () => {
 			expect(referenceTemplateLocator).toBeVisible();
 			// scroll to it
 			await referenceTemplateLocator.scrollIntoViewIfNeeded();
+			// pause all animations so that we can get a repeatable screenshot
+			await referenceTemplateLocator.evaluate(
+				(creative) => (creative.style.animationPlayState = 'paused !important'),
+			);
+			//await new Promise((r) => setTimeout(r, 5000));
 			// take a reference screenshot
 			await referenceTemplateLocator.screenshot({
 				animations: 'disabled',
@@ -42,6 +47,10 @@ test.skip('Fabric Custom', () => {
 			expect(testTemplateLocator).toBeVisible();
 			// scroll to it
 			await testTemplateLocator.scrollIntoViewIfNeeded();
+			// pause all animations so that we can get a repeatable screenshot
+			await testTemplateLocator.evaluate(
+				(creative) => (creative.style.animationPlayState = 'paused !important'),
+			);
 			// compare screenshot to reference
 			await expect(testTemplateLocator).toHaveScreenshot(
 				`Fabric-custom-${width.replace('%', '')}.png`,
