@@ -26,7 +26,6 @@ test.describe('Fabric Custom', () => {
 			//await new Promise((r) => setTimeout(r, 5000));
 			// take a reference screenshot
 			await referenceTemplateLocator.screenshot({
-				animations: 'disabled',
 				path: `./playwright/reference-images/Fabric-custom-${width.replace('%', '')}.png`,
 			});
 		}
@@ -54,7 +53,7 @@ test.describe('Fabric Custom', () => {
 			// compare screenshot to reference
 			await expect(testTemplateLocator).toHaveScreenshot(
 				`Fabric-custom-${width.replace('%', '')}.png`,
-				{ animations: 'disabled', maxDiffPixelRatio: 0.006 },
+				{ maxDiffPixelRatio: 0.006 },
 			);
 		}
 	});
