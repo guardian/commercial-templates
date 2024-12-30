@@ -1,12 +1,12 @@
 import { expect, test } from '@playwright/test';
 import { localBaseUrl, referenceBaseUrl } from './utils';
 
-const templatePreviewWidths = ['360', '740', '1300', '100%'];
+const templatePreviewWidths = ['360', '740', '980', '1300', '100%'];
 
 const viewport = { width: 1500, height: 800 };
 
 test.describe('Fabric Custom', () => {
-	test.setTimeout(120000);
+	test.setTimeout(60000);
 	test('Get reference screenshots', async ({ page }) => {
 		await page.setViewportSize(viewport);
 
