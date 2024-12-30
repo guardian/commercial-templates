@@ -19,11 +19,8 @@ test.describe('Fabric Custom', () => {
 			expect(referenceTemplateLocator).toBeVisible();
 			// scroll to it
 			await referenceTemplateLocator.scrollIntoViewIfNeeded();
-			// pause all animations so that we can get a repeatable screenshot
-			await referenceTemplateLocator.evaluate(
-				(creative) => (creative.style.animationPlayState = 'paused !important'),
-			);
-			//await new Promise((r) => setTimeout(r, 5000));
+			// wait for animations to complete so that we can get a repeatable screenshot
+			await new Promise((r) => setTimeout(r, 12000));
 			// take a reference screenshot
 			await referenceTemplateLocator.screenshot({
 				path: `./playwright/reference-images/Fabric-custom-${width.replace('%', '')}.png`,
@@ -46,10 +43,8 @@ test.describe('Fabric Custom', () => {
 			expect(testTemplateLocator).toBeVisible();
 			// scroll to it
 			await testTemplateLocator.scrollIntoViewIfNeeded();
-			// pause all animations so that we can get a repeatable screenshot
-			await testTemplateLocator.evaluate(
-				(creative) => (creative.style.animationPlayState = 'paused !important'),
-			);
+			// wait for animations to complete so that we can get a repeatable screenshot
+			await new Promise((r) => setTimeout(r, 12000));
 			// compare screenshot to reference
 			await expect(testTemplateLocator).toHaveScreenshot(
 				`Fabric-custom-${width.replace('%', '')}.png`,
