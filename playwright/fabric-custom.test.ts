@@ -1,5 +1,7 @@
 import { expect, test } from '@playwright/test';
-import { localBaseUrl, referenceBaseUrl, templatePreviewWidths } from './utils';
+import { localBaseUrl, referenceBaseUrl } from './utils';
+
+const templatePreviewWidths = ['360', '740', '1300', '100%'];
 
 const viewport = { width: 1600, height: 1000 };
 
