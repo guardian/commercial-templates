@@ -3,7 +3,7 @@ import { localBaseUrl, referenceBaseUrl, templatePreviewWidths } from './utils';
 
 const viewport = { width: 1600, height: 1000 };
 
-test.describe('Fabric video', () => {
+test.describe('Fabric Video', () => {
 	test('Get reference screenshots', async ({ page }) => {
 		await page.setViewportSize(viewport);
 
