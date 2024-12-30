@@ -3,7 +3,7 @@ import { localBaseUrl, referenceBaseUrl } from './utils';
 
 const templatePreviewWidths = ['360', '740', '1300', '100%'];
 
-const viewport = { width: 1600, height: 1000 };
+const viewport = { width: 1500, height: 800 };
 
 test.describe('Fabric Custom', () => {
 	test.setTimeout(120000);
