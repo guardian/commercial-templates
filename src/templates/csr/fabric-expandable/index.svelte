@@ -1,9 +1,9 @@
 <script lang="ts">
 	import type { GAMVariable } from '$lib/gam';
+	import { post } from '$lib/messenger';
 	import Fabric from '$templates/components/Fabric.svelte';
 	import ArrowDown from '$templates/components/icons/ArrowDown.svelte';
 	import CrossIcon from '$templates/components/icons/CrossIcon.svelte';
-	import Resizer from '$templates/components/Resizer.svelte';
 
 	export let Trackingpixel: GAMVariable;
 	export let Researchpixel: GAMVariable;
@@ -52,6 +52,12 @@
 	export let Slide2Layer3MobileBackgroundPosition: GAMVariable;
 
 	let expanded = false;
+
+	function toggleExpanded() {
+		expanded = !expanded;
+		height = expanded ? 500 : 250;
+		post({ type: 'resize', value: { height } });
+	}
 
 	let height: number = -1;
 </script>
@@ -111,15 +117,14 @@
 		/>
 	</div>
 
-	<button on:click={() => (expanded = !expanded)} class="toggle-cross">
+	<button on:click={() => toggleExpanded()} class="toggle-cross">
 		<CrossIcon plus={expanded} />
 	</button>
 
-	<button on:click={() => (expanded = !expanded)} class="toggle-arrow">
+	<button on:click={() => toggleExpanded()} class="toggle-arrow">
 		<ArrowDown flip={expanded} />
 	</button>
 </aside>
-<Resizer {height} />
 
 <style lang="scss">
 	aside {
