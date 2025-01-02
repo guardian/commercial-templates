@@ -3,7 +3,7 @@
 	import Fabric from '$templates/components/Fabric.svelte';
 	import ArrowDown from '$templates/components/icons/ArrowDown.svelte';
 	import CrossIcon from '$templates/components/icons/CrossIcon.svelte';
-	import SetHeightResizer from '$templates/components/SetHeightResizer.svelte';
+	import Resizer from '$templates/components/Resizer.svelte';
 
 	export let Trackingpixel: GAMVariable;
 	export let Researchpixel: GAMVariable;
@@ -53,7 +53,7 @@
 
 	let expanded = false;
 
-	let height: number = 250;
+	let height: number = -1;
 </script>
 
 <aside bind:clientHeight={height} class={expanded ? 'expanded' : ''}>
@@ -119,7 +119,7 @@
 		<ArrowDown flip={expanded} />
 	</button>
 </aside>
-<SetHeightResizer {height} />
+<Resizer {height} />
 
 <style lang="scss">
 	aside {
