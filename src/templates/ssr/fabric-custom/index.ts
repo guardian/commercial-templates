@@ -5,7 +5,6 @@ const DapAssetsRoot = `https://s3-eu-west-1.amazonaws.com/adops-assets/dap-fabri
 const DapAssetsFolder: string = '[%DapAssetsFolder%]';
 
 const DapAssetsPath = `${DapAssetsRoot}/${DapAssetsFolder}`;
-const ThirdPartyTag: string = '[%ThirdPartyTag%]';
 const TrackingPixel: string = '[%TrackingPixel%]';
 const ResearchPixel: string = '[%ResearchPixel%]';
 
@@ -25,8 +24,6 @@ const getTag = () => {
 		return fetch(`${DapAssetsPath}/index.html`)
 			.then((res) => res.text())
 			.then(replaceAssetLinks);
-	} else if (ThirdPartyTag) {
-		return fetch(ThirdPartyTag).then((res) => res.text());
 	}
 	return Promise.reject('No tag found');
 };
