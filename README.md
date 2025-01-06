@@ -37,11 +37,11 @@ reload automatically. [Read more about Svelte templates in `src/templates/`][t]
 
 ## Visual Regression Testing
 
-This repo has visual regression testing to help prevent the introduction of visual changes or bugs into the templates. The tests work by checking the templates on a local version of the dev site, which will include any changes on that branch, against the templates as they currently are on the main branch, on the GitHub pages site.
+This repository has visual regression testing to help prevent the introduction of visual changes or bugs into the templates. The tests work by checking the templates on a local version of the dev site, which will include any changes on that branch, against the templates as they currently are on the main branch, on the GitHub pages site.
 
 ### Running the tests
 
-On each PR, visual regression testing is automatically triggered to check the the code changes don't have any inadvertent effects on the design of the templates. You can run these tests locally using one of the following commands. Adding the -ui suffix will open a UI that you use to run the tests, which can be useful when debugging.
+On each PR, visual regression testing is automatically triggered to check the the code changes don't have any inadvertent effects on the design of the templates. You can run these tests locally using one of the following commands. Adding the `--ui` suffix will open a UI that you use to run the tests, which can be useful when debugging.
 
 ```bash
 pnpm playwright test
@@ -49,15 +49,15 @@ pnpm playwright test
 pnpm playwright test --ui
 ```
 
-Note that you need to have the site running locally (eg. run `pnpm dev`) in order for the tests to work.
+**Note** that you need to have the site running locally (eg. run `pnpm dev`) in order for the tests to work.
 
-The test results are outputted into the test-results folder. If any tests failed, screenshots showing the expected image, actual image, and diff between the two images are stored in there to help you spot what might be causing the failure.
+The test results are outputted into the `test-results` folder. If any tests failed, screenshots showing the expected image, actual image, and diff between the two images are stored in there to help you spot what might be causing the failure.
 
 ### Adding a test
 
-When a template has been migrated to Svelte, it's a good idea to add a visual regression test for it to help safeguard against visual bugs in the future. The visual regression test files can be found in the playwright folder.
+When a template has been migrated to Svelte, it's a good idea to add a visual regression test for it to help safeguard against visual bugs in the future. The visual regression test files can be found in the `playwright` folder.
 
-Each test consists of two main steps - taking the reference screenshots, and then taking screenshots on the local branch and comparing them to the references. Most of the test files are pretty similar, but will have small differences to account for the quirks of some templates. For example, we remove the autoplay attribute from the Fabric Video ad to try and ensure a repeatable screenshot when testing, to avoid false diffs caused by the video playing to different points when the screenshot is being taken.
+Each test consists of two main steps - taking the reference screenshots, and then taking screenshots on the local branch and comparing them to the references. Most of the test files are pretty similar, but will have small differences to account for the quirks of some templates. For example, we remove the autoplay attribute from the Fabric Video template to try and ensure a repeatable screenshot when testing, by avoiding false diffs caused by the video playing to different points when the screenshot is being taken.
 
 The easiest way to add a visual regression test for a template is to copy an existing test, update the test URLs and names, and make any changes needed for that specific template test to run reliably.
 
