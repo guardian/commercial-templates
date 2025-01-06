@@ -41,7 +41,7 @@ This repository has visual regression testing to help prevent the introduction o
 
 ### Running the tests
 
-On each PR, visual regression testing is automatically triggered to check the the code changes don't have any inadvertent effects on the design of the templates. You can run these tests locally using one of the following commands. Adding the `--ui` suffix will open a UI that you use to run the tests, which can be useful when debugging.
+On each PR, visual regression testing is automatically triggered to check the code changes don't have any inadvertent effects on the design of the templates. You can run these tests locally using one of the following commands. Adding the `--ui` suffix will open a UI that you can use to run the tests, which can be useful when debugging.
 
 ```bash
 pnpm playwright test
