@@ -1,32 +1,15 @@
+import {
+	addTrackingPixel,
+	getDapAssetsPath,
+	getTag,
+} from '$lib/fabric-custom-shared';
 import { post } from '$lib/messenger';
 
-const CACHE_BUST = '%%CACHEBUSTER%%';
-const DapAssetsRoot = `https://s3-eu-west-1.amazonaws.com/adops-assets/dap-fabrics`;
 const DapAssetsFolder: string = '[%DapAssetsFolder%]';
 
-const DapAssetsPath = `${DapAssetsRoot}/${DapAssetsFolder}`;
+const DapAssetsPath = getDapAssetsPath(DapAssetsFolder);
 const TrackingPixel: string = '[%TrackingPixel%]';
 const ResearchPixel: string = '[%ResearchPixel%]';
-
-const addTrackingPixel = (url: string) => {
-	const pixel = new Image();
-	pixel.src = url + CACHE_BUST;
-};
-
-// relative paths in the CSS need to be replaced with the absolute path
-const replaceAssetLinks = (html: string) => {
-	const re = /url\('\.\/(.*)'\)/g;
-	return html.replace(re, `url('${DapAssetsPath}/$1')`);
-};
-
-const getTag = () => {
-	if (DapAssetsFolder) {
-		return fetch(`${DapAssetsPath}/index.html`)
-			.then((res) => res.text())
-			.then(replaceAssetLinks);
-	}
-	return Promise.reject('No tag found');
-};
 
 /**
  * This is a hack to insert the html into the DOM,
@@ -43,7 +26,7 @@ const insertTag = (tag: string) => {
 	placeholder.appendChild(range.createContextualFragment(tag));
 };
 
-getTag()
+getTag(DapAssetsFolder, DapAssetsPath)
 	.then((tag) => {
 		insertTag(tag);
 		post({
