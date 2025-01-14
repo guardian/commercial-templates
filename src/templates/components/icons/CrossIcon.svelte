@@ -15,6 +15,7 @@
 	svg {
 		vertical-align: middle;
 		overflow: hidden;
+		transition: transform 1s;
 	}
 
 	.plus {
