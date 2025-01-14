@@ -51,20 +51,14 @@
 	export let Slide2Layer3MobileBackgroundImage: GAMVariable;
 	export let Slide2Layer3MobileBackgroundPosition: GAMVariable;
 
-	post({ type: 'resize', value: { height: 250 } });
-
 	let expanded = false;
 
-	function toggleExpanded() {
-		expanded = !expanded;
-		height = expanded ? 500 : 250;
-		post({ type: 'resize', value: { height } });
-	}
+	const toggleExpanded = () => (expanded = !expanded);
 
-	let height: number = -1;
+	$: post({ type: 'resize', value: { height: expanded ? 500 : 250 } });
 </script>
 
-<aside bind:clientHeight={height}>
+<aside>
 	<Fabric
 		TrackingPixel={Trackingpixel}
 		ResearchPixel={Researchpixel}
