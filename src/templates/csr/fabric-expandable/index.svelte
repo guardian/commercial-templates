@@ -135,6 +135,7 @@
 		width: 100%;
 		height: 250px;
 		transition: height 1s;
+		pointer-events: none;
 
 		&.expanded {
 			height: 500px;
@@ -155,6 +156,7 @@
 			0 0 1px 0 #fff;
 		border-color: #fff;
 		border-style: solid;
+		pointer-events: auto;
 	}
 
 	.toggle-cross {
