@@ -51,6 +51,8 @@
 	export let Slide2Layer3MobileBackgroundImage: GAMVariable;
 	export let Slide2Layer3MobileBackgroundPosition: GAMVariable;
 
+	post({ type: 'resize', value: { height: 250 } });
+
 	let expanded = false;
 
 	function toggleExpanded() {
@@ -62,7 +64,7 @@
 	let height: number = -1;
 </script>
 
-<aside bind:clientHeight={height} class={expanded ? 'expanded' : ''}>
+<aside bind:clientHeight={height}>
 	<Fabric
 		TrackingPixel={Trackingpixel}
 		ResearchPixel={Researchpixel}
@@ -89,45 +91,48 @@
 		MobileLayer3BackgroundPosition={Slide1Layer3MobileBackgroundPosition}
 	/>
 
-	<div class="expanded-slide">
-		<Fabric
-			TrackingPixel={Trackingpixel}
-			ResearchPixel={Researchpixel}
-			ViewabilityPixel={Viewabilitypixel}
-			BackgroundScrollType={ScrollType}
-			BackgroundColour={Slide2BackgroundColour}
-			BackgroundImage={Slide2BackgroundImage}
-			BackgroundImagePosition={Slide2BackgroundPosition}
-			BackgroundImageRepeat={Slide2BackgroundRepeat}
-			MobileBackgroundImage={Slide2MobileBackgroundImage}
-			MobileBackgroundImagePosition={Slide2MobileBackgroundPosition}
-			MobileBackgroundImageRepeat={Slide2MobileBackgroundRepeat}
-			Layer1BackgroundImage={Slide2Layer1BackgroundImage}
-			Layer1BackgroundPosition={Slide2Layer1BackgroundPosition}
-			Layer2BackgroundImage={Slide2Layer2BackgroundImage}
-			Layer2BackgroundPosition={Slide2Layer2BackgroundPosition}
-			Layer3BackgroundImage={Slide2Layer3BackgroundImage}
-			Layer3BackgroundPosition={Slide2Layer3BackgroundPosition}
-			MobileLayer1BackgroundImage={Slide2Layer1MobileBackgroundImage}
-			MobileLayer1BackgroundPosition={Slide2Layer1MobileBackgroundPosition}
-			MobileLayer2BackgroundImage={Slide2Layer2MobileBackgroundImage}
-			MobileLayer2BackgroundPosition={Slide2Layer2MobileBackgroundPosition}
-			MobileLayer3BackgroundImage={Slide2Layer3MobileBackgroundImage}
-			MobileLayer3BackgroundPosition={Slide2Layer3MobileBackgroundPosition}
-		/>
+	<Fabric
+		TrackingPixel={Trackingpixel}
+		ResearchPixel={Researchpixel}
+		ViewabilityPixel={Viewabilitypixel}
+		BackgroundScrollType={ScrollType}
+		BackgroundColour={Slide2BackgroundColour}
+		BackgroundImage={Slide2BackgroundImage}
+		BackgroundImagePosition={Slide2BackgroundPosition}
+		BackgroundImageRepeat={Slide2BackgroundRepeat}
+		MobileBackgroundImage={Slide2MobileBackgroundImage}
+		MobileBackgroundImagePosition={Slide2MobileBackgroundPosition}
+		MobileBackgroundImageRepeat={Slide2MobileBackgroundRepeat}
+		Layer1BackgroundImage={Slide2Layer1BackgroundImage}
+		Layer1BackgroundPosition={Slide2Layer1BackgroundPosition}
+		Layer2BackgroundImage={Slide2Layer2BackgroundImage}
+		Layer2BackgroundPosition={Slide2Layer2BackgroundPosition}
+		Layer3BackgroundImage={Slide2Layer3BackgroundImage}
+		Layer3BackgroundPosition={Slide2Layer3BackgroundPosition}
+		MobileLayer1BackgroundImage={Slide2Layer1MobileBackgroundImage}
+		MobileLayer1BackgroundPosition={Slide2Layer1MobileBackgroundPosition}
+		MobileLayer2BackgroundImage={Slide2Layer2MobileBackgroundImage}
+		MobileLayer2BackgroundPosition={Slide2Layer2MobileBackgroundPosition}
+		MobileLayer3BackgroundImage={Slide2Layer3MobileBackgroundImage}
+		MobileLayer3BackgroundPosition={Slide2Layer3MobileBackgroundPosition}
+	/>
+
+	<div class={expanded ? 'button-container expanded' : 'button-container'}>
+		<button on:click={() => toggleExpanded()} class="toggle-cross">
+			<CrossIcon plus={expanded} />
+		</button>
+
+		<button on:click={() => toggleExpanded()} class="toggle-arrow">
+			<ArrowDown flip={expanded} />
+		</button>
 	</div>
-
-	<button on:click={() => toggleExpanded()} class="toggle-cross">
-		<CrossIcon plus={expanded} />
-	</button>
-
-	<button on:click={() => toggleExpanded()} class="toggle-arrow">
-		<ArrowDown flip={expanded} />
-	</button>
 </aside>
 
 <style lang="scss">
-	aside {
+	.button-container {
+		position: absolute;
+		top: 0;
+		width: 100%;
 		height: 250px;
 		transition: height 1s;
 
