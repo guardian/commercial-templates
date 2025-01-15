@@ -1,13 +1,8 @@
-import {
-	addTrackingPixel,
-	getDapAssetsPath,
-	getTag,
-} from '$lib/fabric-custom-shared';
+import { addTrackingPixel, getTag, insertTag } from '$lib/fabric-custom-shared';
 import { post } from '$lib/messenger';
 
 const DapAssetsFolder: string = '[%DapAssetsFolder%]';
 
-const DapAssetsPath = getDapAssetsPath(DapAssetsFolder);
 const TrackingPixel: string = '[%TrackingPixel%]';
 const ResearchPixel: string = '[%ResearchPixel%]';
 
@@ -18,15 +13,8 @@ const ResearchPixel: string = '[%ResearchPixel%]';
  *
  * @param tag the html to insert
  */
-const insertTag = (tag: string) => {
-	const placeholder = document.getElementById('creative-link')!;
-	const range = document.createRange();
-	range.setStart(placeholder, 0);
-	range.setEnd(placeholder, 0);
-	placeholder.appendChild(range.createContextualFragment(tag));
-};
 
-getTag(DapAssetsFolder, DapAssetsPath)
+getTag(DapAssetsFolder)
 	.then((tag) => {
 		insertTag(tag);
 		post({
