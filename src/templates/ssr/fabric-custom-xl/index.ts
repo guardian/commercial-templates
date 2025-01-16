@@ -19,7 +19,7 @@ getTag(DapAssetsFolder)
 		insertTag(tag);
 		post({
 			type: 'resize',
-			value: { height: document.getElementById('creative')!.offsetHeight },
+			value: { height: 524 },
 		});
 	})
 	.catch((e) => {
