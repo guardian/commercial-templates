@@ -20,6 +20,9 @@
 		videoTag,
 	} = single;
 
+
+
+	
 	const pictureSupported =
 		articleImage && articleImage.sources.length > 0 && 'srcset' in new Image();
 </script>

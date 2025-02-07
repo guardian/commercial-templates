@@ -51,6 +51,8 @@
 	export let Slide2Layer3MobileBackgroundImage: GAMVariable;
 	export let Slide2Layer3MobileBackgroundPosition: GAMVariable;
 
+	var something = 'why';
+	
 	let expanded = false;
 
 	const toggleExpanded = () => (expanded = !expanded);
