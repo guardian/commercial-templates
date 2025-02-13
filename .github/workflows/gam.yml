@@ -19,13 +19,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4.2.2
+
+      # Temporarily force newer version of corepack
+      # See https://github.com/guardian/support-service-lambdas/pull/2666
+      - run: npm install --global corepack@0.31.0
 
       - run: corepack enable
         shell: bash
 
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v4.2.0
         with:
           node-version-file: '.nvmrc'
           cache: 'pnpm'
@@ -42,13 +46,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4.2.2
+
+      # Temporarily force newer version of corepack
+      # See https://github.com/guardian/support-service-lambdas/pull/2666
+      - run: npm install --global corepack@0.31.0
 
       - run: corepack enable
         shell: bash
 
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v4.2.0
         with:
           node-version-file: '.nvmrc'
           cache: 'pnpm'
@@ -66,21 +74,25 @@ jobs:
     needs: [lint, types]
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4.2.2
 
       - name: Setup Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v5.4.0
         with:
           python-version: '3.11'
 
       - name: Install pipenv
         run: pip install pipenv
 
+      # Temporarily force newer version of corepack
+      # See https://github.com/guardian/support-service-lambdas/pull/2666
+      - run: npm install --global corepack@0.31.0
+
       - run: corepack enable
         shell: bash
 
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v4.2.0
         with:
           node-version-file: '.nvmrc'
           cache: 'pnpm'
@@ -113,10 +125,10 @@ jobs:
         working-directory: ./legacy
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4.2.2
 
       - name: Setup Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v5.4.0
         with:
           python-version: '3.11'
 
@@ -128,7 +140,7 @@ jobs:
         working-directory: ./legacy
 
       - name: Setup Node (Legacy)
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v4.2.0
         with:
           node-version-file: './legacy/.nvmrc'
           cache: 'npm'
