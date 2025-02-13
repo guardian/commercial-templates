@@ -1,7 +1,7 @@
 # See https://help.github.com/articles/about-codeowners/
 
 # Global code owners
-@guardian/commercial-dev
+* @guardian/commercial-dev
 
 # no code owners for the legacy templates
 legacy/
