@@ -6,7 +6,6 @@
 	const explanations: Record<keyof Templates, string> = {
 		csr: 'Dynamic',
 		ssr: 'Static',
-		legacy: 'Deprecated',
 	};
 
 	const branch = 'main';
@@ -45,39 +44,9 @@ Learn how to create your first template:<a
 
 <hr />
 
-<h2>Legacy: not yet converted</h2>
-<ul>
-	{#each templates['legacy'] as template}
-		<li
-			class={[...templates.csr, ...templates.ssr].includes(template)
-				? 'del'
-				: ''}
-		>
-			<a
-				href={`https://github.com/guardian/commercial-templates/blob/${branch}/legacy/src/${template}`}
-			>
-				{template
-					.split('-')
-					.map((word) => word.slice(0, 1).toUpperCase() + word.slice(1))
-					.join(' ')}
-			</a>
-		</li>
-	{/each}
-</ul>
-
 <style>
-	ol,
-	ul {
+	ol {
 		margin: var(--grid-size) 0;
-	}
-
-	ul {
-		column-count: 3;
-	}
-
-	.del {
-		opacity: 0.42;
-		text-decoration: line-through;
 	}
 
 	hr {

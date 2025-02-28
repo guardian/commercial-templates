@@ -7,28 +7,12 @@ from googleads import ad_manager, common, oauth2
 import datetime
 from termcolor import cprint
 
-parser = argparse.ArgumentParser(
-    prog='CommercialTemplateDeployer',
-    description='Deploys commercial templates to GAM.')
-
-parser.add_argument('--legacy', action='store_true',
-                    help='Deploys legacy templates')
-
-args = parser.parse_args()
-
 load_dotenv()
 
 template_dir = os.path.realpath(
     os.path.join(os.path.dirname(os.path.abspath(__file__)),
                  "../../build-static")
 )
-
-legacy_template_dir = os.path.realpath(
-    os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                 "../../legacy/build")
-)
-
-legacy_template_types = ['web', 'app', 'amp']
 
 config = {
     "application_name": os.environ.get("GAM_APPLICATION_NAME"),
@@ -51,8 +35,7 @@ def upload_template(
 
         html = open(os.path.join(root, dir, "index.html"), "r").read()
 
-        css_file = args.legacy and "index.css" or "style.css"
-        css = open(os.path.join(root, dir, css_file), "r").read()
+        css = open(os.path.join(root, dir, "style.css"), "r").read()
     except:
         cprint(
             '[!] Skipping "%s" because index.html, style.css, or ad.json was missing.'
@@ -101,17 +84,9 @@ def upload_template(
 
 
 def main(native_style_service: common.GoogleSoapService):
-    if (args.legacy):
-        for root, dirs, files in os.walk(legacy_template_dir):
-            for dir in dirs:
-                for type in legacy_template_types:
-                    if (os.path.isdir(os.path.join(root, dir, type))):
-                        upload_template(native_style_service,
-                                        root, dir + '/' + type)
-    else:
-        for root, dirs, files in os.walk(template_dir):
-            for dir in dirs:
-                upload_template(native_style_service, root, dir)
+    for root, dirs, files in os.walk(template_dir):
+        for dir in dirs:
+               upload_template(native_style_service, root, dir)
 
 
 if __name__ == "__main__":
