@@ -6,7 +6,6 @@ node_modules
 .env
 .env.*
 !.env.example
-/legacy
 .eslintrc.cjs
 svelte.config.js
 playwright.config.ts
