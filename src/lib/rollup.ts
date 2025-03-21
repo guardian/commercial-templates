@@ -100,7 +100,7 @@ const build = async (
 						.replaceAll('\t', ' ');
 					return false;
 				},
-			}) as Plugin,
+			}),
 		],
 	});
 
