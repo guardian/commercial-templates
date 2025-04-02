@@ -8,7 +8,7 @@ import { gamVar } from '$lib/gam';
 type Props = Record<string, GAMVariable>;
 
 const REGEX = {
-	script: /<script[\s\S]*?>[\s\S]+?<\/script>/g,
+	script: /<script[\s\S]*?>[\s\S]+?<\/script>/gi,
 	props: /export let (.+?): GAMVariable(<[\s\S]+>)?;/g,
 };
 
