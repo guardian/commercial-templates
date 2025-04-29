@@ -11,10 +11,6 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4.2.2
 
-      # Temporarily force newer version of corepack
-      # See https://github.com/guardian/support-service-lambdas/pull/2666
-      - run: npm install --global corepack@0.31.0
-
       - run: corepack enable
         shell: bash
 
@@ -38,10 +34,6 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4.2.2
 
-      # Temporarily force newer version of corepack
-      # See https://github.com/guardian/support-service-lambdas/pull/2666
-      - run: npm install --global corepack@0.31.0
-
       - run: corepack enable
         shell: bash
 
@@ -64,10 +56,6 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4.2.2
-
-      # Temporarily force newer version of corepack
-      # See https://github.com/guardian/support-service-lambdas/pull/2666
-      - run: npm install --global corepack@0.31.0
 
       - run: corepack enable
         shell: bash
