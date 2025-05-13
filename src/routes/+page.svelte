@@ -38,7 +38,7 @@
 <hr />
 
 Learn how to create your first template:<a
-	href={`https://github.com/guardian/commercial-templates/blob/${branch}/src/templates/README.md`}
+	href={`https://github.com/guardian/commercial-templates/blob/${branch}/docs/svelte-template-authoring.md`}
 	>src/templates/README.md</a
 >
 
