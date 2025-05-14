@@ -38,8 +38,8 @@
 <hr />
 
 Learn how to create your first template:<a
-	href={`https://github.com/guardian/commercial-templates/blob/${branch}/src/templates/README.md`}
-	>src/templates/README.md</a
+	href={`https://github.com/guardian/commercial-templates/blob/${branch}/docs/svelte-template-authoring.md`}
+	>docs/svelte-template-authoring.md</a
 >
 
 <hr />
