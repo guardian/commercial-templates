@@ -1,5 +1,5 @@
 const CACHE_BUST = '%%CACHEBUSTER%%';
-const DapAssetsRoot = `https://s3-eu-west-1.amazonaws.com/adops-assets/dap-fabrics`;
+const DapAssetsRoot = `https://adops-assets.global.ssl.fastly.net/adops-assets/dap-fabrics`;
 
 const addTrackingPixel = (url: string) => {
 	const pixel = new Image();
