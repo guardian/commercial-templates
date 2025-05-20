@@ -13,11 +13,12 @@
 		"preview": "vite preview",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
-		"lint": "pnpm lint:check && pnpm format:check",
-		"lint:check": "eslint .",
-		"lint:fix": "eslint . --fix",
-		"format:check": "prettier --check .",
-		"format:fix": "prettier --write ."
+		"lint": "pnpm eslint:check && pnpm prettier:check",
+		"format": "pnpm eslint:fix && pnpm prettier:fix",
+		"eslint:check": "eslint .",
+		"eslint:fix": "eslint . --fix",
+		"prettier:check": "prettier --check .",
+		"prettier:fix": "prettier --write ."
 	},
 	"devDependencies": {
 		"@guardian/eslint-config": "^11.0.0",

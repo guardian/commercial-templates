@@ -17,12 +17,16 @@ const getProps = (path: string): Props => {
 
 	const script = content.match(REGEX.script)?.[0];
 
-	if (!script) {return {};}
+	if (!script) {
+		return {};
+	}
 
 	const props = [...script.matchAll(REGEX.props)]
 		.map((matches) => matches[1])
 		.reduce<Props>((props, prop) => {
-			if (prop) {props[prop] = gamVar(prop);}
+			if (prop) {
+				props[prop] = gamVar(prop);
+			}
 			return props;
 		}, {});
 
