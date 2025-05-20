@@ -66,8 +66,8 @@
 		max-width: 1300px;
 		display: flex;
 		flex-direction: column;
-		font-family: 'Guardian Text Egyptian', 'GuardianTextEgyptian', Georgia,
-			serif;
+		font-family:
+			'Guardian Text Egyptian', 'GuardianTextEgyptian', Georgia, serif;
 		background-color: var(--neutral-97);
 
 		@media (min-width: 1140px) {

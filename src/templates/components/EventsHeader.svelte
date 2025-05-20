@@ -76,8 +76,9 @@
 	a.button {
 		font-size: 13px;
 		font-weight: 700;
-		font-family: 'GuardianTextSans', 'Helvetica Neue', Helvetica, Arial,
-			'Lucida Grande', sans-serif;
+		font-family:
+			'GuardianTextSans', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande',
+			sans-serif;
 		background: var(--neutral-100);
 		color: var(--neutral-0);
 		text-decoration: none;

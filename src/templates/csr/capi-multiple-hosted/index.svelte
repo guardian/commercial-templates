@@ -99,8 +99,9 @@
 		padding: 0 10px 10px;
 		background: var(--neutral-93);
 		border-top: 1px solid var(--brand-colour);
-		font-family: 'GuardianTextSans', 'Helvetica Neue', Helvetica, Arial,
-			'Lucida Grande', sans-serif;
+		font-family:
+			'GuardianTextSans', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande',
+			sans-serif;
 		font-kerning: normal;
 		text-rendering: optimizelegibility;
 		font-variant-ligatures: common-ligatures;

@@ -89,8 +89,9 @@
 		display: block;
 		font-size: 0.75rem;
 		line-height: 1rem;
-		font-family: 'GuardianTextSans', 'Helvetica Neue', Helvetica, Arial,
-			'Lucida Grande', sans-serif;
+		font-family:
+			'GuardianTextSans', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande',
+			sans-serif;
 		margin: 3px 0px;
 	}
 
@@ -98,8 +99,9 @@
 		font-size: 12px;
 		line-height: 0;
 		font-weight: 700;
-		font-family: 'GuardianTextSans', 'Helvetica Neue', Helvetica, Arial,
-			'Lucida Grande', sans-serif;
+		font-family:
+			'GuardianTextSans', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande',
+			sans-serif;
 		background: var(--bg);
 		color: var(--neutral-100);
 		text-decoration: none;

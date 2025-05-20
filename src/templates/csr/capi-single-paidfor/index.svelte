@@ -48,8 +48,9 @@
 		position: relative;
 		display: flex;
 		flex-direction: column;
-		font-family: 'GuardianTextSans', 'Helvetica Neue', Helvetica, Arial,
-			'Lucida Grande', sans-serif;
+		font-family:
+			'GuardianTextSans', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande',
+			sans-serif;
 		font-kerning: normal;
 		text-rendering: optimizelegibility;
 		font-variant-ligatures: common-ligatures;

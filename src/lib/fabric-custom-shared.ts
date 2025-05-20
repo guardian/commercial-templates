@@ -19,7 +19,7 @@ const getTag = (DapAssetsFolder: string) => {
 			.then((res) => res.text())
 			.then((html) => replaceAssetLinks(html, DapAssetsPath));
 	}
-	return Promise.reject('No tag found');
+	return Promise.reject(Error('No tag found'));
 };
 
 const insertTag = (tag: string) => {
