@@ -118,6 +118,8 @@
 		display: flex;
 		flex-direction: column;
 		background-color: var(--neutral-93);
+		/** Needed to absolutely position the horizontal rule between each CapiCard */
+		position: relative;
 	}
 
 	.sponsor-container {

@@ -176,9 +176,11 @@
 
 		a.multiple-card:not(:first-of-type)::before {
 			content: '';
+			/** Absolutely positioned relative to the cards-container div */
 			position: absolute;
-			top: 78px;
-			bottom: 102px;
+			/** Top and bottom offset due to margin */
+			top: 12px;
+			bottom: 12px;
 			margin-left: -10px;
 			width: 1px;
 			background: var(--neutral-86);
@@ -193,19 +195,9 @@
 		}
 	}
 
-	@media (min-width: 980px) {
-		a.multiple-card:not(:first-of-type)::before {
-			top: 131px;
-		}
-	}
-
 	@media (min-width: 1140px) {
 		a.single-card .text p {
 			display: block;
-		}
-
-		a.multiple-card:not(:first-of-type)::before {
-			top: 12px;
 		}
 	}
 </style>
