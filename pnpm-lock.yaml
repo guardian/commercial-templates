@@ -7,11 +7,6 @@ settings:
 overrides:
   rollup@<2.79.2: '>=2.79.2'
 
-dependencies:
-  globals:
-    specifier: ^16.1.0
-    version: 16.1.0
-
 devDependencies:
   '@guardian/eslint-config':
     specifier: ^11.0.0
@@ -20,10 +15,10 @@ devDependencies:
     specifier: ^8.0.1
     version: 8.0.1(prettier@3.5.3)(tslib@2.6.3)
   '@guardian/source':
-    specifier: ^10.2.0
-    version: 10.2.0(tslib@2.6.3)(typescript@5.4.5)
+    specifier: ^3.0.0
+    version: 3.0.0(tslib@2.6.3)(typescript@5.4.5)
   '@playwright/test':
-    specifier: ^1.52.0
+    specifier: ^1.45.0
     version: 1.52.0
   '@rollup/plugin-alias':
     specifier: ^3.1.8
@@ -67,6 +62,9 @@ devDependencies:
   gh-pages:
     specifier: ^6.1.1
     version: 6.1.1
+  globals:
+    specifier: ^16.1.0
+    version: 16.1.0
   husky:
     specifier: ^9.0.11
     version: 9.0.11
@@ -509,14 +507,14 @@ packages:
       tslib: 2.6.3
     dev: true
 
-  /@guardian/source@10.2.0(tslib@2.6.3)(typescript@5.4.5):
-    resolution: {integrity: sha512-mPozNtjGe0ykOjyFPuMS76CAPqafV9oJpHaX1ptx+h5wAMnu6csqKLwkALd6plDM9Y5vfWM8S/UERRlFg/rnzw==}
+  /@guardian/source@3.0.0(tslib@2.6.3)(typescript@5.4.5):
+    resolution: {integrity: sha512-ocdnSojiVmPaDXnPSMo9FQbPgP00JzR74AftgCDqcLTo9uXgLmO0w9TADMHm48MhNsHqH1RDqgDdStd37Qbctw==}
     peerDependencies:
-      '@emotion/react': ^11.11.4
-      '@types/react': ^18.2.79
+      '@emotion/react': ^11.11.1
+      '@types/react': ^18.2.11
       react: ^18.2.0
       tslib: ^2.6.2
-      typescript: ~5.5.2
+      typescript: ~5.3.3
     peerDependenciesMeta:
       '@emotion/react':
         optional: true
@@ -2719,6 +2717,7 @@ packages:
   /globals@16.1.0:
     resolution: {integrity: sha512-aibexHNbb/jiUSObBgpHLj+sIuUmJnYcgXBlrfsiDZ9rt4aF2TFRbyLgZ2iFQuVZ1K5Mx3FVkbKRSgKrbK3K2g==}
     engines: {node: '>=18'}
+    dev: true
 
   /globalthis@1.0.4:
     resolution: {integrity: sha512-DpLKbNU4WylpxJykQujfCcwYWiV/Jhm50Goo0wrVILAv5jOr9d+H+UR3PhSCD2rCCEIg0uc+G+muBTwD54JhDQ==}

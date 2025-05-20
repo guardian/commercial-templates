@@ -23,8 +23,8 @@
 	"devDependencies": {
 		"@guardian/eslint-config": "^11.0.0",
 		"@guardian/prettier": "^8.0.1",
-		"@guardian/source": "^10.2.0",
-		"@playwright/test": "^1.52.0",
+		"@guardian/source": "^3.0.0",
+		"@playwright/test": "^1.45.0",
 		"@rollup/plugin-alias": "^3.1.8",
 		"@rollup/plugin-commonjs": "^26.0.1",
 		"@rollup/plugin-node-resolve": "^15.2.3",
@@ -39,6 +39,7 @@
 		"eslint": "^9.27.0",
 		"eslint-plugin-svelte": "^3.8.2",
 		"gh-pages": "^6.1.1",
+		"globals": "^16.1.0",
 		"husky": "^9.0.11",
 		"isomorphic-git": "^1.25.3",
 		"marked": "^11.1.1",
@@ -62,8 +63,5 @@
 		"overrides": {
 			"rollup@<2.79.2": ">=2.79.2"
 		}
-	},
-	"dependencies": {
-		"globals": "^16.1.0"
 	}
 }
