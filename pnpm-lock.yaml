@@ -66,8 +66,8 @@ devDependencies:
     specifier: ^16.1.0
     version: 16.1.0
   husky:
-    specifier: ^9.0.11
-    version: 9.0.11
+    specifier: ^9.1.7
+    version: 9.1.7
   isomorphic-git:
     specifier: ^1.25.3
     version: 1.25.10
@@ -2828,8 +2828,8 @@ packages:
       lru-cache: 10.2.2
     dev: true
 
-  /husky@9.0.11:
-    resolution: {integrity: sha512-AB6lFlbwwyIqMdHYhwPe+kjOC3Oc5P3nThEoW/AaO2BX3vJDjWPFxYLxokUZOo6RNX20He3AaT8sESs9NJcmEw==}
+  /husky@9.1.7:
+    resolution: {integrity: sha512-5gs5ytaNjBrh5Ow3zrvdUUY+0VxIuWVL4i9irt6friV+BqdCfmV11CQTWMiBYWHbXhco+J1kHfTOUkePhCDvMA==}
     engines: {node: '>=18'}
     hasBin: true
     dev: true
