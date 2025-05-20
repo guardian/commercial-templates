@@ -14,7 +14,7 @@ import type { Props } from './svelte';
 const virtual = (template: string, props: Props): Plugin => ({
 	name: 'virtual-template',
 	resolveId(source: string) {
-		if (source === 'ssr' || source === 'dom') return source;
+		if (source === 'ssr' || source === 'dom') {return source;}
 		return null;
 	},
 	load(id: string) {

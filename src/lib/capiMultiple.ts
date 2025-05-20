@@ -29,7 +29,7 @@ function addCapiHostedCardOverrides(
 	overrideCards: CapiCardOverride[],
 	overrideLogo?: string,
 ): { logo: string | null; cards: CapiHostedCard[] } {
-	const logo = overrideLogo ? overrideLogo : cardData[0]?.branding.logo.src;
+	const logo = overrideLogo ?? cardData[0]?.branding.logo.src;
 	return {
 		logo: logo ?? null,
 		cards: cardData
