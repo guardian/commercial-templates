@@ -24,14 +24,22 @@ function addCapiCardOverrides(
 	});
 }
 
+function decideLogo(cardLogo?: string, overrideLogo?: string): string | null {
+	if (overrideLogo) {
+		return overrideLogo;
+	} else {
+		return cardLogo ?? null;
+	}
+}
+
 function addCapiHostedCardOverrides(
 	cardData: Single[],
 	overrideCards: CapiCardOverride[],
 	overrideLogo?: string,
 ): { logo: string | null; cards: CapiHostedCard[] } {
-	const logo = overrideLogo ?? cardData[0]?.branding.logo.src;
+	const logo = decideLogo(cardData[0]?.branding.logo.src, overrideLogo);
 	return {
-		logo: logo ?? null,
+		logo,
 		cards: cardData
 			.map((capiCard, i) => {
 				const headlineOverride = overrideCards[i]?.headline ?? '';
