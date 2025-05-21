@@ -61,7 +61,20 @@
 			if (video) {
 				if (!VideoURL || !VideoURLMobile) return;
 
+				post({
+					type: 'init-video',
+					value: '',
+				});
+
 				video.load();
+
+				video.ontimeupdate = function () {
+					const percent = Math.round(
+						100 * (video.currentTime / video.duration),
+					);
+					post({ type: 'video-progress', value: { progress: percent } });
+				};
+
 				void video.play();
 
 				const observer = new IntersectionObserver(
