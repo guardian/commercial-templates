@@ -49,15 +49,22 @@ type StringMessage = StandardMessage<
 	| 'get-page-url'
 	| 'passback-refresh'
 	| 'viewport'
-	| 'scroll',
+	| 'scroll'
+	| 'init-video',
 	string
+>;
+
+type VideoProgressMessage = StandardMessage<
+	'video-progress',
+	{ progress: number }
 >;
 
 type Message =
 	| ResizeMessage
 	| StringMessage
 	| BackgroundMessage
-	| FabricBackgroundMessage;
+	| FabricBackgroundMessage
+	| VideoProgressMessage;
 
 type MessengerResponse = {
 	id: string;
