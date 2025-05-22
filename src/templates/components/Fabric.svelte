@@ -12,7 +12,7 @@
 	export let TrackingPixel: string;
 	export let ResearchPixel: string;
 	export let ViewabilityPixel: string;
-	export let BackgroundScrollType: 'parallax' | 'none' | 'fixed';
+	export let BackgroundScrollType: 'parallax' | 'none' | 'fixed' = 'none';
 	export let BackgroundColour: string;
 	export let BackgroundImage: string;
 	export let BackgroundImagePosition: string;
