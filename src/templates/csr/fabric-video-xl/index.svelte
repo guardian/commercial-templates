@@ -2,16 +2,14 @@
 	import type { GAMVariable } from '$lib/gam';
 	import Fabric from '$templates/components/Fabric.svelte';
 
-	export let Trackingpixel: GAMVariable;
-	export let Researchpixel: GAMVariable;
-	export let Viewabilitypixel: GAMVariable;
+	export let TrackingPixel: GAMVariable;
+	export let ResearchPixel: GAMVariable;
+	export let ViewabilityPixel: GAMVariable;
 
-	export let BackgroundScrollType: GAMVariable<'parallax' | 'none' | 'fixed'>;
 	export let BackgroundColour: GAMVariable;
-
 	export let BackgroundImage: GAMVariable;
-	export let BackgroundImagePosition: GAMVariable;
-	export let BackgroundImageRepeat: GAMVariable;
+	export let BackgroundPosition: GAMVariable;
+	export let BackgroundRepeat: GAMVariable;
 	export let Layer1BackgroundImage: GAMVariable;
 	export let Layer1BackgroundPosition: GAMVariable;
 	export let Layer2BackgroundImage: GAMVariable;
@@ -20,8 +18,8 @@
 	export let Layer3BackgroundPosition: GAMVariable;
 
 	export let MobileBackgroundImage: GAMVariable;
-	export let MobileBackgroundImagePosition: GAMVariable;
-	export let MobileBackgroundImageRepeat: GAMVariable;
+	export let MobileBackgroundPosition: GAMVariable;
+	export let MobileBackgroundRepeat: GAMVariable;
 	export let MobileLayer1BackgroundImage: GAMVariable;
 	export let MobileLayer1BackgroundPosition: GAMVariable;
 	export let MobileLayer2BackgroundImage: GAMVariable;
@@ -37,17 +35,16 @@
 </script>
 
 <Fabric
-	TrackingPixel={Trackingpixel}
-	ResearchPixel={Researchpixel}
-	ViewabilityPixel={Viewabilitypixel}
-	{BackgroundScrollType}
+	{TrackingPixel}
+	{ResearchPixel}
+	{ViewabilityPixel}
 	{BackgroundColour}
 	{BackgroundImage}
-	{BackgroundImagePosition}
-	{BackgroundImageRepeat}
+	BackgroundImagePosition={BackgroundPosition}
+	BackgroundImageRepeat={BackgroundRepeat}
 	{MobileBackgroundImage}
-	{MobileBackgroundImagePosition}
-	{MobileBackgroundImageRepeat}
+	MobileBackgroundImagePosition={MobileBackgroundPosition}
+	MobileBackgroundImageRepeat={MobileBackgroundRepeat}
 	{Layer1BackgroundImage}
 	{Layer1BackgroundPosition}
 	{Layer2BackgroundImage}
