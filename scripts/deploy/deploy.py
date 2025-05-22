@@ -71,6 +71,7 @@ def upload_template(
             native_style_service.updateNativeStyles([style])
         except Exception as e:
             cprint("[!] Error updating native style: %s" % e, "red")
+            exit(1)
             return
 
         cprint('[✔️] Native style "%s" was updated.' %
@@ -86,7 +87,7 @@ def upload_template(
 def main(native_style_service: common.GoogleSoapService):
     for root, dirs, files in os.walk(template_dir):
         for dir in dirs:
-               upload_template(native_style_service, root, dir)
+            upload_template(native_style_service, root, dir)
 
 
 if __name__ == "__main__":
