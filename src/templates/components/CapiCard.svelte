@@ -83,12 +83,14 @@
 	}
 
 	a.multiple-card {
+		flex-basis: 100%;
 		margin: 12px 10px 0px 10px;
 		display: block;
 		padding: 0 0 8px 0;
 		width: auto;
 		background-color: var(--neutral-97);
 		border-top: 1px solid var(--labs-400);
+		overflow: hidden;
 	}
 
 	a.multiple-card:hover {
@@ -102,13 +104,26 @@
 	a.multiple-card .media {
 		background-color: gray;
 		margin: 0;
+		width: 100%;
+
+		// Fix 5 : 4 aspect ratio
+		picture {
+			padding-top: calc(4 / 5 * 100%);
+			position: relative;
+			& > * {
+				position: absolute;
+				top: 0;
+				left: 0;
+				height: 100%;
+				width: auto;
+			}
+		}
 	}
 
 	picture,
 	img {
 		display: block;
 		width: 100%;
-		min-height: 80px;
 	}
 
 	a.single-card .text {
