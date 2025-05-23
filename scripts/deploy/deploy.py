@@ -50,7 +50,7 @@ def upload_template(
     css = css_prefix + css
 
     statement = ad_manager.StatementBuilder(
-        version="v202208", where="id = %s" % templateInfo["nativeStyleId"]
+        version="v202505", where="id = %s" % templateInfo["nativeStyleId"]
     )
 
     response = native_style_service.getNativeStylesByStatement(
@@ -110,7 +110,7 @@ if __name__ == "__main__":
             oauth2_client, config['application_name'], config['network_code'])
 
         native_style_service = ad_manager_client.GetService(
-            "NativeStyleService", version="v202405"
+            "NativeStyleService", version="v202505"
         )
 
         main(native_style_service)
