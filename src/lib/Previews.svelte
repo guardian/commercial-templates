@@ -88,8 +88,8 @@
 				frameborder="0"
 				{width}
 				srcdoc={transformed}
-				height="650"
 				name={`width-${width}`}
+				height="700"
 			/>
 		</div>
 	{/each}
