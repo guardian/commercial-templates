@@ -155,7 +155,7 @@
 			autoplay
 			playsinline
 			class="video video--{VideoAlignment}"
-			class:isMobile
+			class:is-mobile={isMobile}
 			on:ended={() => (played = true)}
 			src={videoSrc}
 			poster={posterImage}
@@ -176,9 +176,6 @@
 		background-color: var(--background-color);
 		margin: 0;
 	}
-	.isMobile {
-		width: 740px;
-	}
 
 	.video,
 	.poster,
@@ -194,6 +191,14 @@
 	.video {
 		width: 1920px;
 		height: 250px;
+
+		&.is-mobile {
+			width: 740px;
+		}
+
+		.is-xl & {
+			height: 500px;
+		}
 	}
 
 	.video--left {
