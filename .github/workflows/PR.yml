@@ -3,6 +3,10 @@ on:
   pull_request:
     branches-ignore:
       - 'gh-pages'
+
+permissions:
+  contents: read
+
 jobs:
   lint:
     name: Linting
