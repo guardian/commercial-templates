@@ -67,9 +67,7 @@ You should see a preview and the code at the bottom of the page.
 
 ## Deploying your template
 
-Copy and paste the code at the bottom of the page into the Native Template in Google Ad Manager.
-
-**Note:** The compiled template code is not written to a file.
+Add an `ad.json` file to the template directory that contain a key `nativeStyleId` for the corresponding native template in GAM. The deployment happens automatically on merge to main as long as there is an `ad.json` file to match against in GAM. For more info check this [doc](https://github.com/guardian/commercial-templates/tree/main/scripts/deploy).
 
 ## Resources
 
