@@ -44,9 +44,22 @@ const decodeReply = (e: MessageEvent<string>): GppReturn | void => {
 	}
 };
 
-const isGppOptedOut = (gppData: GPPData) =>
-	gppData.parsedSections.usnat?.SaleOptOut === 1;
+/**
+ * Checks if the user has opted out of consent ie "do not sell" in the GPP data
+ * Example of "do not sell" GPP response data: @see https://github.com/guardian/csnx/blob/3af1d83d53473ea098246bb83075d4b4a99634ce/libs/%40guardian/libs/src/consent-management-platform/usnat/__fixtures__/api.getGPPData.doNotSell.json
+ */
+const isGppOptedOut = (gppData: GPPData) => {
+	// If the user has opted "do not sell" for any of the supported apis, mark them as opted out
+	return Object.values(gppData.parsedSections).some(
+		(sectionData) => sectionData.SaleOptOut === 1,
+	);
+};
 
+/**
+ * Sets up event listener and posts message from the iframe this ad is running in to the top frame.
+ * Uses the GPP framework to determine consent status.
+ * @see https://github.com/guardian/csnx/blob/3af1d83d53473ea098246bb83075d4b4a99634ce/libs/%40guardian/libs/src/consent-management-platform/stub_gpp_usnat.js#L129-L154
+ */
 const getGPPData = async (): Promise<GPPData | void> =>
 	timeout(
 		new Promise((resolve) => {
