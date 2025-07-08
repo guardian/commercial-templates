@@ -22,6 +22,7 @@
 			return refresh();
 		}
 
+		// We do not serve public good ads to users who have specified "do not sell"
 		if (isGppOptedOut(consentState)) {
 			console.error('GPP opted out');
 			return refresh();

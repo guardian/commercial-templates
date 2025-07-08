@@ -1,7 +1,8 @@
+/** @file This file is a version of ./messenger.ts specifically for fetching consent for Public Good ads */
 import { generateId, timeout } from './messenger';
 
+// GPP types and interfaces copied from @guardian/libs
 type GPPSignalStatus = 'not ready' | 'ready';
-
 type GppParsedSections = Record<
 	string,
 	{
@@ -19,7 +20,6 @@ interface GPPData {
 	signalStatus: GPPSignalStatus;
 	gpcEnabled: boolean;
 }
-
 interface GppReturn {
 	__gppReturn: {
 		returnValue: GPPData;
@@ -28,7 +28,7 @@ interface GppReturn {
 	};
 }
 
-const isReplyFromCMP = (json: unknown): json is GppReturn => {
+const isReplyFromGPP = (json: unknown): json is GppReturn => {
 	const reply = json as GppReturn;
 	return '__gppReturn' in reply && typeof reply.__gppReturn === 'object';
 };
@@ -36,7 +36,7 @@ const isReplyFromCMP = (json: unknown): json is GppReturn => {
 const decodeReply = (e: MessageEvent<string>): GppReturn | void => {
 	try {
 		const json: unknown = JSON.parse(e.data);
-		if (isReplyFromCMP(json)) {
+		if (isReplyFromGPP(json)) {
 			return json;
 		}
 	} catch (err) {
