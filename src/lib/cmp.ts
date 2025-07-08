@@ -1,26 +1,39 @@
 import { generateId, timeout } from './messenger';
 
-interface ConsentState {
-	dateCreated: string;
+type GPPSignalStatus = 'not ready' | 'ready';
+
+type GppParsedSections = Record<
+	string,
+	{
+		Version: number;
+		SaleOptOut: number;
+		Gpc: boolean;
+	}
+>;
+interface GPPData {
+	gppVersion: number;
+	gppString: string;
+	applicableSections: number[];
+	supportedAPIs: string[];
+	parsedSections: GppParsedSections;
+	signalStatus: GPPSignalStatus;
 	gpcEnabled: boolean;
-	newUser: boolean;
-	uspString: string;
 }
 
-interface CmpReturn {
-	__cmpReturn: {
-		returnValue: ConsentState;
+interface GppReturn {
+	__gppReturn: {
+		returnValue: GPPData;
 		callId: string;
 		success: boolean;
 	};
 }
 
-const isReplyFromCMP = (json: unknown): json is CmpReturn => {
-	const reply = json as CmpReturn;
-	return '__cmpReturn' in reply && typeof reply.__cmpReturn === 'object';
+const isReplyFromCMP = (json: unknown): json is GppReturn => {
+	const reply = json as GppReturn;
+	return '__gppReturn' in reply && typeof reply.__gppReturn === 'object';
 };
 
-const decodeReply = (e: MessageEvent<string>): CmpReturn | void => {
+const decodeReply = (e: MessageEvent<string>): GppReturn | void => {
 	try {
 		const json: unknown = JSON.parse(e.data);
 
@@ -34,17 +47,17 @@ const decodeReply = (e: MessageEvent<string>): CmpReturn | void => {
 	}
 };
 
-const isCcpaOptedOut = (consentState: ConsentState) => {
-	return consentState.uspString[2] === 'Y';
+const isGppOptedOut = (gppData: GPPData) => {
+	return gppData.parsedSections.usnat?.SaleOptOut === 1;
 };
 
-const getUSPData = async (): Promise<ConsentState | void> =>
+const getGPPData = async (): Promise<GPPData | void> =>
 	timeout(
 		new Promise((resolve) => {
 			const callId = generateId();
 			const message = {
-				__cmpCall: {
-					command: 'getUSPData',
+				__gpp: {
+					command: 'ping',
 					version: 1,
 					callId,
 				},
@@ -52,8 +65,8 @@ const getUSPData = async (): Promise<ConsentState | void> =>
 
 			const listener = (e: MessageEvent<string>) => {
 				const decoded = decodeReply(e);
-				if (decoded && decoded.__cmpReturn.callId === callId) {
-					resolve(decoded.__cmpReturn.returnValue);
+				if (decoded && decoded.__gppReturn.callId === callId) {
+					resolve(decoded.__gppReturn.returnValue);
 					window.removeEventListener('message', listener);
 				}
 			};
@@ -65,4 +78,4 @@ const getUSPData = async (): Promise<ConsentState | void> =>
 		3000,
 	);
 
-export { getUSPData, isCcpaOptedOut };
+export { getGPPData, isGppOptedOut };
