@@ -36,27 +36,23 @@ const isReplyFromCMP = (json: unknown): json is GppReturn => {
 const decodeReply = (e: MessageEvent<string>): GppReturn | void => {
 	try {
 		const json: unknown = JSON.parse(e.data);
-
 		if (isReplyFromCMP(json)) {
 			return json;
 		}
-
-		return;
-	} catch (_) {
-		return;
+	} catch (err) {
+		// Do nothing
 	}
 };
 
-const isGppOptedOut = (gppData: GPPData) => {
-	return gppData.parsedSections.usnat?.SaleOptOut === 1;
-};
+const isGppOptedOut = (gppData: GPPData) =>
+	gppData.parsedSections.usnat?.SaleOptOut === 1;
 
 const getGPPData = async (): Promise<GPPData | void> =>
 	timeout(
 		new Promise((resolve) => {
 			const callId = generateId();
 			const message = {
-				__gpp: {
+				__gppCall: {
 					command: 'ping',
 					version: 1,
 					callId,
@@ -70,7 +66,6 @@ const getGPPData = async (): Promise<GPPData | void> =>
 					window.removeEventListener('message', listener);
 				}
 			};
-
 			window.addEventListener('message', listener);
 
 			window.top?.postMessage(JSON.stringify(message), '*');
