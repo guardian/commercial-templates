@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { getUSPData, isCcpaOptedOut } from '$lib/cmp';
+	import { getGPPData, isGppOptedOut } from '$lib/cmp';
 	import { post } from '$lib/messenger';
 	import { getPageURL } from '$lib/messenger/get-page-url';
 	import { create, type PgmApiOptions } from '$lib/public-good';
@@ -15,11 +15,16 @@
 	const onload = async () => {
 		let url = await getPageURL();
 
-		const consentState = await getUSPData();
+		const consentState = await getGPPData();
 
-		if (!consentState || isCcpaOptedOut(consentState)) {
-			!consentState && console.error('No consent state found');
+		if (!consentState) {
+			console.error('No consent state found');
+			return refresh();
+		}
 
+		// We do not serve public good ads to users who have specified "do not sell"
+		if (isGppOptedOut(consentState)) {
+			console.error('GPP opted out');
 			return refresh();
 		}
 
@@ -27,6 +32,7 @@
 			console.error('No URL found');
 			return refresh();
 		}
+
 		const options: PgmApiOptions = {
 			partnerId: 'gmg-guardian',
 			attributes: {
