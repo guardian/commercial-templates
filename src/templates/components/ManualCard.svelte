@@ -29,7 +29,7 @@
 		<h2><slot name="title" /></h2>
 		<p><slot name="text" /></p>
 		{#if linkText}
-			<span class="button" data-tone={tone}>
+			<span class="button" data-tone={tone ?? 'live'}>
 				{linkText}
 				<ArrowRight width={24} />
 			</span>
