@@ -161,8 +161,7 @@ def upload_template(
             native_style_service.updateNativeStyles([style])
         except Exception as e:
             cprint("[!] Error updating native style: %s" % e, "red")
-            exit(1)
-            return
+            return False
 
         cprint('[✔️] Native style "%s" was updated.' %
                (style["name"]), "green")
