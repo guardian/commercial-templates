@@ -1,6 +1,5 @@
 <script lang="ts">
 	import type { GAMVariable } from '$lib/gam';
-	import { addTrackingPixel, isValidReplacedVariable } from '$lib/gam';
 	import type { Single } from '$lib/types/capi';
 	import CapiCard from '$templates/components/CapiCard.svelte';
 	import { paletteColours } from '$templates/components/colours/paletteColours';
@@ -14,9 +13,6 @@
 
 	export let SeriesUrl: GAMVariable;
 	export let ComponentTitle: GAMVariable;
-	export let Trackingpixel: GAMVariable;
-
-	if (isValidReplacedVariable(Trackingpixel)) addTrackingPixel(Trackingpixel);
 
 	const promise = fetch(`${api}?k=${encodeURI(SeriesUrl)}`).then((r) =>
 		r.json(),

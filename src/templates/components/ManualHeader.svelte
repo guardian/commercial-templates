@@ -14,7 +14,7 @@
 
 <header data-tone={tone}>
 	<div class="logo">
-		<ToneLogo {tone} />
+		<ToneLogo tone={tone ?? 'live'} />
 	</div>
 
 	<div class="banner-description-container">

@@ -1,7 +1,6 @@
 <script lang="ts">
 	import type { GAMVariable } from '$lib/gam';
 	import '$templates/components/fonts/Sans.css';
-	import type { Tone as TTone } from '$lib/types/tones';
 	import { paletteColours } from '$templates/components/colours/paletteColours';
 	import ManualCard from '$templates/components/ManualCard.svelte';
 	import ManualHeader from '$templates/components/ManualHeader.svelte';
@@ -10,7 +9,6 @@
 	export let BannerDescription: GAMVariable;
 	export let HeaderButtonText: GAMVariable;
 	export let HeaderButtonUrl: GAMVariable;
-	export let Tone: GAMVariable<TTone>;
 	export let EventTitle1: GAMVariable;
 	export let EventTitle2: GAMVariable;
 	export let EventTitle3: GAMVariable;
@@ -64,7 +62,7 @@
 	<ManualHeader
 		buttonText={HeaderButtonText}
 		buttonUrl={HeaderButtonUrl}
-		tone={Tone}
+		tone={'live'}
 	>
 		{@html BannerDescription}
 	</ManualHeader>
@@ -74,7 +72,7 @@
 				image={event.eventImage}
 				url={event.eventUrl}
 				linkText="Book tickets"
-				tone={Tone}
+				tone={'live'}
 			>
 				<svelte:fragment slot="title">
 					{@const [boldTitle, regularTitle] = event.eventTitle.split(':')}
