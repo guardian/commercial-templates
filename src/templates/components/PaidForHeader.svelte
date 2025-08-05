@@ -69,9 +69,9 @@
 	.single-paid-content-and-title {
 		display: flex;
 		flex-direction: column;
-		align-items: center;
+		align-items: flex-start;
 		flex-basis: 60%;
-		justify-content: space-between;
+		justify-content: flex-start;
 	}
 
 	.multiple-header {
