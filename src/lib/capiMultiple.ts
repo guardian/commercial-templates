@@ -9,18 +9,15 @@ function addCapiCardOverrides(
 	overrideCards: CapiCardOverride[],
 ): Single[] {
 	return cardData.map((capiCard, i) => {
-		const headlineOverride = overrideCards[i]?.headline;
-		const kickerOverride = overrideCards[i]?.kicker;
-
-		if (headlineOverride && kickerOverride) {
-			return {
-				...capiCard,
-				articleHeadline: headlineOverride,
-				articleKicker: kickerOverride,
-			};
-		}
-
-		return capiCard;
+		const { headline, kicker, image, text, url } = overrideCards[i] ?? {};
+		return {
+			...capiCard,
+			...(headline ? { articleHeadline: headline } : {}),
+			...(kicker ? { articleKicker: kicker } : {}),
+			...(text ? { articleText: text } : {}),
+			...(url ? { articleUrl: url } : {}),
+			...(image ? { articleImage: { sources: [], backupSrc: image } } : {}),
+		};
 	});
 }
 

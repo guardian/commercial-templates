@@ -66,12 +66,42 @@
 		justify-content: space-between;
 	}
 
+	.single-header {
+		align-items: start;
+
+		@media (min-width: 740px) {
+			align-items: center;
+			flex-direction: row;
+		}
+
+		@media (min-width: 980px) {
+			align-items: center;
+			flex-direction: column;
+		}
+
+		@media (min-width: 1300px) {
+			align-items: start;
+		}
+	}
+
 	.single-paid-content-and-title {
 		display: flex;
 		flex-direction: column;
 		align-items: flex-start;
 		flex-basis: 60%;
 		justify-content: flex-start;
+		gap: 4px;
+
+		@media (min-width: 740px) {
+			flex-direction: row;
+			align-items: center;
+			gap: 16px;
+		}
+		@media (min-width: 980px) {
+			flex-direction: column;
+			align-items: flex-start;
+			gap: 4px;
+		}
 	}
 
 	.multiple-header {
@@ -89,7 +119,7 @@
 	}
 	.paid {
 		position: relative;
-		font-size: 13px;
+		font-size: 14px;
 
 		strong {
 			padding-right: 0.5em;
@@ -127,6 +157,7 @@
 		box-sizing: border-box;
 		font-weight: normal;
 		right: auto;
+		z-index: 1;
 
 		p {
 			margin-top: 0;
