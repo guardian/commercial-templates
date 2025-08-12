@@ -12,22 +12,18 @@
 	import Resizer from '$templates/components/Resizer.svelte';
 	import type { CapiCardOverride } from '../../../lib/types/capi';
 
-	export let SeriesUrl: GAMVariable; // IS USED
-	export let ComponentTitle: GAMVariable; // IS USED
-	// export let CustomUrl: GAMVariable; // IS USED!
-	export let ArticleHeadline: GAMVariable; // IS USED
-	export let ArticleUrl: GAMVariable; // IS USED
-	export let ArticleKicker: GAMVariable; // NOT USED - change to kicker
-	export let ArticleText: GAMVariable; // NOT USED - change to kicker
-	export let ArticleImage: GAMVariable; // IS USED
-	// export let BrandLogo: GAMVariable; // IS USED!
-	export let TrackingId: GAMVariable; // IS USED
+	export let SeriesUrl: GAMVariable;
+	export let ComponentTitle: GAMVariable;
+	export let ArticleHeadline: GAMVariable;
+	export let ArticleUrl: GAMVariable;
+	export let ArticleText: GAMVariable;
+	export let ArticleImage: GAMVariable;
+	export let TrackingId: GAMVariable;
 
 	let cardOverrides: CapiCardOverride = {
 		headline: ArticleHeadline,
 		url: ArticleUrl,
 		image: ArticleImage,
-		kicker: ArticleKicker,
 		text: ArticleText,
 	};
 

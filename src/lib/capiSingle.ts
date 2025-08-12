@@ -11,7 +11,7 @@ function addCapiCardOverrides(
 	return {
 		...cardData,
 		...(overrides.headline ? { articleHeadline: overrides.headline } : {}),
-		...(overrides.kicker ? { articleKicker: overrides.kicker } : {}),
+		...(overrides.text ? { articleText: overrides.text } : {}),
 		...(overrides.image
 			? { articleImage: { sources: [], backupSrc: overrides.image } }
 			: {}),
