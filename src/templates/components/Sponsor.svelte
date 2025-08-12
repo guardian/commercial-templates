@@ -37,8 +37,7 @@
 	}
 
 	img {
-		width: 200px;
-		max-width: 100px;
+		max-width: 200px;
 		max-height: 60px;
 		margin-left: 10px;
 		margin-right: 15px;
