@@ -125,7 +125,6 @@
 	.paid {
 		position: relative;
 		font-size: 14px;
-		flex-basis: auto;
 
 		strong {
 			padding-right: 0.5em;

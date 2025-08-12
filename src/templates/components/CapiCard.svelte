@@ -134,7 +134,6 @@
 			margin: 0;
 			padding: 0 0 10px;
 			font-size: 1.25rem;
-			font-weight: 400;
 			color: var(--neutral-0);
 		}
 
@@ -156,6 +155,7 @@
 				'GuardianTextSans', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande',
 				sans-serif;
 			padding: 0px;
+			font-weight: 400;
 			margin: 6px 0 8px 0;
 			color: var(--neutral-20);
 		}

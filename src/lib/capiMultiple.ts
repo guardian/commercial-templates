@@ -9,13 +9,12 @@ function addCapiCardOverrides(
 	overrideCards: CapiCardOverride[],
 ): Single[] {
 	return cardData.map((capiCard, i) => {
-		const { headline, kicker, image, text, url } = overrideCards[i] ?? {};
+		const { headline, kicker, image, text } = overrideCards[i] ?? {};
 		return {
 			...capiCard,
 			...(headline ? { articleHeadline: headline } : {}),
 			...(kicker ? { articleKicker: kicker } : {}),
 			...(text ? { articleText: text } : {}),
-			...(url ? { articleUrl: url } : {}),
 			...(image ? { articleImage: { sources: [], backupSrc: image } } : {}),
 		};
 	});

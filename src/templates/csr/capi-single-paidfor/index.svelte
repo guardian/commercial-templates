@@ -5,12 +5,12 @@
 		isValidReplacedVariable,
 		type GAMVariable,
 	} from '$lib/gam';
-	import '$templates/components/fonts/Sans.css';
 	import CapiCard from '$templates/components/CapiCard.svelte';
 	import { paletteColours } from '$templates/components/colours/paletteColours';
 	import PaidForHeader from '$templates/components/PaidForHeader.svelte';
 	import Resizer from '$templates/components/Resizer.svelte';
-	import type { CapiCardOverride } from '../../../lib/types/capi';
+	import type { CapiCardOverride } from '$lib/types/capi';
+	import '$templates/components/fonts/Sans.css';
 
 	export let SeriesUrl: GAMVariable;
 	export let ComponentTitle: GAMVariable;
