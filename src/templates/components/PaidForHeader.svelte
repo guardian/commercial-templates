@@ -72,11 +72,13 @@
 		@media (min-width: 740px) {
 			align-items: center;
 			flex-direction: row;
+			gap: 8px;
 		}
 
 		@media (min-width: 980px) {
 			align-items: center;
 			flex-direction: column;
+			gap: 0;
 		}
 
 		@media (min-width: 1300px) {
@@ -88,7 +90,6 @@
 		display: flex;
 		flex-direction: column;
 		align-items: flex-start;
-		flex-basis: 60%;
 		justify-content: flex-start;
 		gap: 4px;
 
@@ -97,10 +98,14 @@
 			align-items: center;
 			gap: 16px;
 		}
+
 		@media (min-width: 980px) {
 			flex-direction: column;
-			align-items: flex-start;
 			gap: 4px;
+		}
+
+		@media (min-width: 1300px) {
+			align-items: flex-start;
 		}
 	}
 
@@ -120,6 +125,7 @@
 	.paid {
 		position: relative;
 		font-size: 14px;
+		flex-basis: auto;
 
 		strong {
 			padding-right: 0.5em;
