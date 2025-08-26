@@ -58,7 +58,7 @@
 		"vite": "^5.4.19"
 	},
 	"type": "module",
-	"packageManager": "pnpm@8.15.5",
+	"packageManager": "pnpm@10.14.0",
 	"pnpm": {
 		"overrides": {
 			"rollup@<2.79.2": ">=2.79.2"
