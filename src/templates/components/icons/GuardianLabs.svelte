@@ -43,3 +43,10 @@
 		/>
 	</svg>
 </a>
+
+<style lang="scss">
+	svg {
+		display: inline-block;
+		vertical-align: middle;
+	}
+</style>

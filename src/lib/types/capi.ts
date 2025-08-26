@@ -62,8 +62,9 @@ export type CapiHostedCard = {
 };
 
 export type CapiCardOverride = {
-	headline: GAMVariable;
-	url: GAMVariable;
-	image: GAMVariable;
+	headline?: GAMVariable;
+	url?: GAMVariable;
+	image?: GAMVariable;
 	kicker?: GAMVariable;
+	text?: GAMVariable;
 };

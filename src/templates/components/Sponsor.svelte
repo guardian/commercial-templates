@@ -13,12 +13,7 @@
 <div class={templateType === 'multiple' ? 'multiple-logo-container' : ''}>
 	<p>Paid for by</p>
 	<a href={`${CLICK_MACRO}${branding.logo.link}`}>
-		<img
-			class={templateType === 'multiple' ? 'multiple-logo' : ''}
-			src={logo.src}
-			alt=""
-			style={`aspect-ratio: ${width} / ${height};`}
-		/>
+		<img src={logo.src} alt="" style={`aspect-ratio: ${width} / ${height};`} />
 	</a>
 </div>
 
@@ -38,11 +33,7 @@
 	}
 
 	img {
-		width: 200px;
-	}
-
-	.multiple-logo {
-		max-width: 100px;
+		max-width: 200px;
 		max-height: 60px;
 		margin-left: 10px;
 		margin-right: 15px;

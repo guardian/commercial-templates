@@ -134,12 +134,14 @@
 			margin: 0;
 			padding: 0 0 10px;
 			font-size: 1.25rem;
+			color: var(--neutral-0);
 		}
 
 		p {
 			display: none;
 			margin: 0;
 			padding: 0;
+			color: var(--neutral-38);
 		}
 	}
 
@@ -152,15 +154,16 @@
 			font-family:
 				'GuardianTextSans', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande',
 				sans-serif;
-			font-weight: 500;
 			padding: 0px;
+			font-weight: 400;
 			margin: 6px 0 8px 0;
 			color: var(--neutral-20);
 		}
 	}
 
 	.kicker {
-		color: #626262;
+		font-size: 16px;
+		color: var(--labs-200);
 	}
 
 	:global(svg.icon) {

@@ -1,27 +1,42 @@
 <script lang="ts">
-	import type { GAMVariable } from '$lib/gam';
-	import type { Single } from '$lib/types/capi';
+	import { retrieveCapiData, addCapiCardOverrides } from '$lib/capiSingle';
+	import {
+		addTrackingPixel,
+		isValidReplacedVariable,
+		type GAMVariable,
+	} from '$lib/gam';
 	import CapiCard from '$templates/components/CapiCard.svelte';
 	import { paletteColours } from '$templates/components/colours/paletteColours';
 	import PaidForHeader from '$templates/components/PaidForHeader.svelte';
-	import SetHeightResizer from '$templates/components/SetHeightResizer.svelte';
+	import Resizer from '$templates/components/Resizer.svelte';
+	import type { CapiCardOverride } from '$lib/types/capi';
 	import '$templates/components/fonts/Sans.css';
-
-	export const cdn = 'https://i.guim.co.uk/img/media/';
-	export const api =
-		'https://api.nextgen.guardianapps.co.uk/commercial/api/capi-single.json';
 
 	export let SeriesUrl: GAMVariable;
 	export let ComponentTitle: GAMVariable;
+	export let ArticleHeadline: GAMVariable;
+	export let ArticleUrl: GAMVariable;
+	export let ArticleText: GAMVariable;
+	export let ArticleImage: GAMVariable;
+	export let TrackingId: GAMVariable;
 
-	const promise = fetch(`${api}?k=${encodeURI(SeriesUrl)}`).then((r) =>
-		r.json(),
-	) as Promise<Single>;
+	let cardOverrides: CapiCardOverride = {
+		headline: ArticleHeadline,
+		url: ArticleUrl,
+		image: ArticleImage,
+		text: ArticleText,
+	};
+
+	const getCard = retrieveCapiData(SeriesUrl, cardOverrides).then((response) =>
+		addCapiCardOverrides(response, cardOverrides),
+	);
+
+	if (isValidReplacedVariable(TrackingId)) addTrackingPixel(TrackingId);
 
 	let height: number = -1;
 </script>
 
-{#await promise}
+{#await getCard}
 	<h3>Loading Content for “{SeriesUrl}”</h3>
 {:then single}
 	<aside bind:clientHeight={height} style={paletteColours}>
@@ -33,7 +48,7 @@
 		/>
 		<CapiCard templateType="single" {single} />
 	</aside>
-	<SetHeightResizer {height} />
+	<Resizer {height} />
 {:catch}
 	<h3>Could not fetch series “{SeriesUrl}”</h3>
 {/await}
