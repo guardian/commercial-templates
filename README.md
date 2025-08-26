@@ -73,14 +73,12 @@ pnpm deploy
 ## Testing a Creative in GAM
 
 - Create a Native Format
-
   - Open GAM
   - Click Native in the left hand menu and go to the Native Formats tab
   - Find the Native Template you are working on, click the checkbox, select "Copy"
   - Rename the template to "{template name} TEST"
 
 - Create a Native Style
-
   - Click Native in the left hand menu and go to the Native Formats tab
   - Click "New Native Style"
   - Select "HTML & CSS editor"
@@ -94,7 +92,6 @@ pnpm deploy
   - Click Save and Activate
 
 - Create a Line Item
-
   - Find an existing Line Item used for testing, from the comm Dev Test Order, such as [this one](https://admanager.google.com/59666047#delivery/line_item/detail/line_item_id=6492048457)
   - Copy without creatives
     - Update the Name
@@ -103,7 +100,6 @@ pnpm deploy
     - Update the custom targeting. Adding a value for adtest and slot is strongly advised
 
 - Create a Creative
-
   - Go to Creative tab of your line item
   - Add new creative
   - Add a name, any destination and the variables that your template depends on

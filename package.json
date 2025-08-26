@@ -41,7 +41,7 @@
 		"gh-pages": "^6.1.1",
 		"globals": "^16.1.0",
 		"husky": "^9.1.7",
-		"isomorphic-git": "^1.25.3",
+		"isomorphic-git": "^1.33.0",
 		"marked": "^11.1.1",
 		"prettier": "^3.5.3",
 		"prettier-plugin-svelte": "^3.4.0",
@@ -58,7 +58,7 @@
 		"vite": "^5.4.19"
 	},
 	"type": "module",
-	"packageManager": "pnpm@8.15.5",
+	"packageManager": "pnpm@10.14.0",
 	"pnpm": {
 		"overrides": {
 			"rollup@<2.79.2": ">=2.79.2"
