@@ -54,29 +54,29 @@
 			position: absolute;
 		}
 
-		.creative__button--left {
+		:global(.creative__button--left) {
 			left: 0;
 		}
-		.creative__button--center {
+		:global(.creative__button--center) {
 			left: 50%;
 			transform: translate(-50%, 0);
 		}
-		.creative__button--right {
+		:global(.creative__button--right) {
 			right: 0;
 		}
 
-		.creative__button--top {
+		:global(.creative__button--top) {
 			top: 0;
 		}
-		.creative__button--middle {
+		:global(.creative__button--middle) {
 			top: 50%;
 			transform: translate(0, -50%);
 		}
-		.creative__button--bottom {
+		:global(.creative__button--bottom) {
 			bottom: 0;
 		}
 
-		.creative__button--center.creative__button--middle {
+		:global(.creative__button--center.creative__button--middle) {
 			transform: translate(-50%, -50%);
 		}
 	}
