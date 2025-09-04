@@ -60,8 +60,8 @@ importers:
         specifier: ^9.27.0
         version: 9.34.0
       eslint-plugin-svelte:
-        specifier: ^3.8.2
-        version: 3.11.0(eslint@9.34.0)(svelte@4.2.20)
+        specifier: ^3.12.1
+        version: 3.12.1(eslint@9.34.0)(svelte@4.2.20)
       gh-pages:
         specifier: ^6.1.1
         version: 6.3.0
@@ -277,6 +277,12 @@ packages:
 
   '@eslint-community/eslint-utils@4.7.0':
     resolution: {integrity: sha512-dyybb3AcajC7uha6CvhdVRJqaKyn7w2YKqKyAN37NKYgZT36w+iRb0Dymmc5qEJ549c/S31cMMSFd75bteCpCw==}
+    engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
+    peerDependencies:
+      eslint: ^6.0.0 || ^7.0.0 || >=8.0.0
+
+  '@eslint-community/eslint-utils@4.8.0':
+    resolution: {integrity: sha512-MJQFqrZgcW0UNYLGOuQpey/oTN59vyWwplvCGZztn1cKz9agZPPYpJB7h2OMmuu7VLqkvEjN8feFZJmxNF9D+Q==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     peerDependencies:
       eslint: ^6.0.0 || ^7.0.0 || >=8.0.0
@@ -1226,8 +1232,8 @@ packages:
     peerDependencies:
       eslint: '>=6'
 
-  eslint-plugin-svelte@3.11.0:
-    resolution: {integrity: sha512-KliWlkieHyEa65aQIkRwUFfHzT5Cn4u3BQQsu3KlkJOs7c1u7ryn84EWaOjEzilbKgttT4OfBURA8Uc4JBSQIw==}
+  eslint-plugin-svelte@3.12.1:
+    resolution: {integrity: sha512-gVwqUHUiD3r/T7wLqGggl24afEkUiJqV1BjBXu0C0Y2l6dB9InYOddksccrL8oOJ+DP4lLFVXVjzHexTbPs/1A==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
     peerDependencies:
       eslint: ^8.57.1 || ^9.0.0
@@ -2680,6 +2686,11 @@ snapshots:
       eslint: 9.34.0
       eslint-visitor-keys: 3.4.3
 
+  '@eslint-community/eslint-utils@4.8.0(eslint@9.34.0)':
+    dependencies:
+      eslint: 9.34.0
+      eslint-visitor-keys: 3.4.3
+
   '@eslint-community/regexpp@4.12.1': {}
 
   '@eslint/config-array@0.21.0':
@@ -3203,7 +3214,7 @@ snapshots:
 
   '@typescript-eslint/utils@8.22.0(eslint@9.34.0)(typescript@5.9.2)':
     dependencies:
-      '@eslint-community/eslint-utils': 4.7.0(eslint@9.34.0)
+      '@eslint-community/eslint-utils': 4.8.0(eslint@9.34.0)
       '@typescript-eslint/scope-manager': 8.22.0
       '@typescript-eslint/types': 8.22.0
       '@typescript-eslint/typescript-estree': 8.22.0(typescript@5.9.2)
@@ -3214,7 +3225,7 @@ snapshots:
 
   '@typescript-eslint/utils@8.41.0(eslint@9.34.0)(typescript@5.9.2)':
     dependencies:
-      '@eslint-community/eslint-utils': 4.7.0(eslint@9.34.0)
+      '@eslint-community/eslint-utils': 4.8.0(eslint@9.34.0)
       '@typescript-eslint/scope-manager': 8.41.0
       '@typescript-eslint/types': 8.41.0
       '@typescript-eslint/typescript-estree': 8.41.0(typescript@5.9.2)
@@ -3766,9 +3777,9 @@ snapshots:
       - supports-color
       - typescript
 
-  eslint-plugin-svelte@3.11.0(eslint@9.34.0)(svelte@4.2.20):
+  eslint-plugin-svelte@3.12.1(eslint@9.34.0)(svelte@4.2.20):
     dependencies:
-      '@eslint-community/eslint-utils': 4.7.0(eslint@9.34.0)
+      '@eslint-community/eslint-utils': 4.8.0(eslint@9.34.0)
       '@jridgewell/sourcemap-codec': 1.5.5
       eslint: 9.34.0
       esutils: 2.0.3
