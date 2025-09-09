@@ -41,7 +41,6 @@
 	export let isXL: boolean = false;
 	export let FullWidthTopSlot: 'yes' | 'no';
 
-	
 	const isMobile = window.matchMedia('(max-width: 739px)').matches;
 	const isTablet = window.matchMedia(
 		'(min-width: 740px) and (max-width: 979px)',
@@ -52,7 +51,6 @@
 
 	const posterImage = isMobile ? MobileVideoBackupImage : VideoBackupImage;
 	const videoSrc = isMobile ? VideoURLMobile : VideoURL;
-
 
 	// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- https://github.com/sveltejs/eslint-plugin-svelte/issues/476
 	if (showVideo) {
