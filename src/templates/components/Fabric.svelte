@@ -39,7 +39,9 @@
 	export let VideoAlignment: GAMVariable | undefined = undefined;
 	export let showVideo: boolean = false;
 	export let isXL: boolean = false;
+	export let FullWidthTopSlot: 'yes' | 'no';
 
+	
 	const isMobile = window.matchMedia('(max-width: 739px)').matches;
 	const isTablet = window.matchMedia(
 		'(min-width: 740px) and (max-width: 979px)',
@@ -50,6 +52,7 @@
 
 	const posterImage = isMobile ? MobileVideoBackupImage : VideoBackupImage;
 	const videoSrc = isMobile ? VideoURLMobile : VideoURL;
+
 
 	// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- https://github.com/sveltejs/eslint-plugin-svelte/issues/476
 	if (showVideo) {
@@ -155,6 +158,7 @@
 			autoplay
 			playsinline
 			class="video video--{VideoAlignment}"
+			class:is-top-slot-video={FullWidthTopSlot === 'yes'}
 			class:is-mobile={isMobile}
 			on:ended={() => (played = true)}
 			src={videoSrc}
@@ -189,7 +193,7 @@
 	}
 
 	.video {
-		width: 1920px;
+		width: 1300px;
 		height: 250px;
 
 		&.is-mobile {
@@ -198,6 +202,10 @@
 
 		.is-xl & {
 			height: 500px;
+		}
+
+		&.is-top-slot-video {
+			width: 1920px;
 		}
 	}
 
