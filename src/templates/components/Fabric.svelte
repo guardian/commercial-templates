@@ -124,6 +124,7 @@
 	class="fabric-container"
 	class:is-parallax={BackgroundScrollType === 'parallax'}
 	class:is-xl={isXL}
+	class:is-top-slot-video={FullWidthTopSlot === 'yes'}
 	href={`${CLICK_MACRO}${DEST_URL}`}
 	target="_blank"
 >
@@ -256,6 +257,12 @@
 		}
 		@media (min-width: 1300px) {
 			max-width: 1300px;
+		}
+
+		&.is-top-slot-video {
+			@media (min-width: 1300px) {
+				max-width: 1920px;
+			}
 		}
 	}
 
