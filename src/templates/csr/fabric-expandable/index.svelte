@@ -83,7 +83,7 @@
 		MobileLayer2BackgroundPosition={Slide1Layer2MobileBackgroundPosition}
 		MobileLayer3BackgroundImage={Slide1Layer3MobileBackgroundImage}
 		MobileLayer3BackgroundPosition={Slide1Layer3MobileBackgroundPosition}
-		FullWidthTopSlot={'no'}
+		IsFullWidthTopSlot={'no'}
 	/>
 
 	<Fabric
@@ -110,7 +110,7 @@
 		MobileLayer2BackgroundPosition={Slide2Layer2MobileBackgroundPosition}
 		MobileLayer3BackgroundImage={Slide2Layer3MobileBackgroundImage}
 		MobileLayer3BackgroundPosition={Slide2Layer3MobileBackgroundPosition}
-		FullWidthTopSlot={'no'}
+		IsFullWidthTopSlot={'no'}
 	/>
 
 	<div class={expanded ? 'button-container expanded' : 'button-container'}>

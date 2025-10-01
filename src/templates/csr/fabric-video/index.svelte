@@ -64,5 +64,5 @@
 	{VideoURLMobile}
 	{VideoAlignment}
 	showVideo={true}
-	FullWidthTopSlot={IsFullWidthTopSlot}
+	{IsFullWidthTopSlot}
 />
