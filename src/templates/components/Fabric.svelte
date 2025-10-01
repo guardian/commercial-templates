@@ -39,7 +39,7 @@
 	export let VideoAlignment: GAMVariable | undefined = undefined;
 	export let showVideo: boolean = false;
 	export let isXL: boolean = false;
-	export let FullWidthTopSlot: 'yes' | 'no';
+	export let IsFullWidthTopSlot: GAMVariable<'yes' | 'no'>;
 
 	const isMobile = window.matchMedia('(max-width: 739px)').matches;
 	const isTablet = window.matchMedia(
@@ -124,7 +124,7 @@
 	class="fabric-container"
 	class:is-parallax={BackgroundScrollType === 'parallax'}
 	class:is-xl={isXL}
-	class:is-top-slot-video={FullWidthTopSlot === 'yes'}
+	class:is-top-slot-video={IsFullWidthTopSlot === 'yes'}
 	href={`${CLICK_MACRO}${DEST_URL}`}
 	target="_blank"
 >
@@ -157,7 +157,7 @@
 			autoplay
 			playsinline
 			class="video video--{VideoAlignment}"
-			class:is-top-slot-video={FullWidthTopSlot === 'yes'}
+			class:is-top-slot-video={IsFullWidthTopSlot === 'yes'}
 			class:is-mobile={isMobile}
 			on:ended={() => (played = true)}
 			src={videoSrc}
