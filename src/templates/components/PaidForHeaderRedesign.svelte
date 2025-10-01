@@ -4,7 +4,7 @@
 	import Button from './Button.svelte';
 	import ArrowDown from './icons/ArrowDown.svelte';
 	import '$templates/components/fonts/SansBold.css';
-	import GuardianLabs from './icons/GuardianLabs.svelte';
+	import GuardianLabsRedesign from './icons/GuardianLabsRedesign.svelte';
 
 	export let SeriesUrl: string;
 	export let ComponentTitle: string;
@@ -15,6 +15,9 @@
 </script>
 
 <header class="{templateType}-header">
+	<div class="logo {templateType}-logo">
+		<GuardianLabsRedesign {edition} />
+	</div>
 	<div class="{templateType}-paid-content-and-title">
 		<div class="paid {templateType}-paid-content">
 			<strong>Paid content</strong>
@@ -48,22 +51,62 @@
 			</a>
 		</h1>
 	</div>
-
-	<div class="logo {templateType}-logo">
-		<GuardianLabs {edition} />
-	</div>
 </header>
 
 <style lang="scss">
 	header {
-		background-color: var(--labs-400);
-		color: black;
+		background-color: var(--labs-700);
+		color: var(--labs-100);
 		padding: 6px 10px;
 		flex-shrink: 0;
 		display: flex;
-		flex-direction: column;
+		flex-direction: row;
 		align-items: center;
 		justify-content: space-between;
+
+		@media (min-width: 1140px) {
+			padding: 12px 20px;
+			width: 151px;
+		}
+
+		@media (min-width: 1300px) {
+			width: 211px;
+		}
+	}
+
+	h1 {
+		color: black;
+		margin: 0;
+		font-size: 16px;
+		font-family: 'GuardianTextSans';
+		font-weight: 700;
+	}
+
+	a {
+		color: inherit;
+		text-decoration: none;
+	}
+
+	.logo {
+		padding: 6px;
+		border-right: 1px solid var(--neutral-73);
+		align-self: flex-start;
+	}
+
+	.paid {
+		display: flex;
+		justify-content: space-between;
+		position: relative;
+		font-size: 14px;
+		width: 100%;
+
+		strong {
+			padding-right: 0.5em;
+		}
+
+		button {
+			color: black;
+		}
 	}
 
 	.single-header {
@@ -71,13 +114,11 @@
 
 		@media (min-width: 740px) {
 			align-items: center;
-			flex-direction: row;
 			gap: 8px;
 		}
 
 		@media (min-width: 980px) {
 			align-items: center;
-			flex-direction: column;
 			gap: 0;
 		}
 
@@ -87,6 +128,7 @@
 	}
 
 	.single-paid-content-and-title {
+		padding-left: 10px;
 		display: flex;
 		flex-direction: column;
 		align-items: flex-start;
@@ -94,7 +136,7 @@
 		gap: 4px;
 
 		@media (min-width: 740px) {
-			flex-direction: row;
+			flex-direction: column;
 			align-items: center;
 			gap: 16px;
 		}
@@ -122,36 +164,10 @@
 	.multiple-paid-content {
 		flex-direction: row;
 	}
-	.paid {
-		position: relative;
-		font-size: 14px;
-
-		strong {
-			padding-right: 0.5em;
-		}
-
-		svg {
-			fill: currentColor;
-		}
-	}
-
-	h1 {
-		color: white;
-		margin: 0;
-	}
 
 	.multiple-title {
 		font-size: 18px;
 		line-height: 24px;
-	}
-
-	.logo {
-		align-self: flex-end;
-	}
-
-	a {
-		color: inherit;
-		text-decoration: none;
 	}
 
 	#popup {
@@ -224,12 +240,6 @@
 
 		.multiple-logo {
 			margin-top: auto;
-		}
-	}
-
-	@media (min-width: 1300px) {
-		header {
-			width: 211px;
 		}
 	}
 </style>
