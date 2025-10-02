@@ -64,4 +64,5 @@
 	{VideoAlignment}
 	isXL={true}
 	showVideo={true}
+	IsFullWidthTopSlot={'no'}
 />

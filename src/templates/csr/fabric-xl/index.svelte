@@ -54,5 +54,6 @@
 	{MobileLayer2BackgroundPosition}
 	{MobileLayer3BackgroundImage}
 	{MobileLayer3BackgroundPosition}
+	IsFullWidthTopSlot={'no'}
 	isXL={true}
 />

@@ -32,6 +32,7 @@
 	export let MobileVideoBackupImage: GAMVariable;
 	export let VideoURLMobile: GAMVariable;
 	export let VideoAlignment: GAMVariable;
+	export let IsFullWidthTopSlot: GAMVariable<'yes' | 'no'>;
 </script>
 
 <Fabric
@@ -63,4 +64,5 @@
 	{VideoURLMobile}
 	{VideoAlignment}
 	showVideo={true}
+	{IsFullWidthTopSlot}
 />
