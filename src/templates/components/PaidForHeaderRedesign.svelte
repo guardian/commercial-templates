@@ -56,26 +56,25 @@
 <style lang="scss">
 	header {
 		background-color: var(--labs-700);
-		color: var(--labs-100);
+		color: black;
 		padding: 6px 10px;
 		flex-shrink: 0;
 		display: flex;
 		flex-direction: row;
-		align-items: center;
 		justify-content: space-between;
 
 		@media (min-width: 1140px) {
+			flex-direction: column;
 			padding: 12px 20px;
-			width: 151px;
 		}
 
 		@media (min-width: 1300px) {
-			width: 211px;
+			/* TODO: Amend padding after setting up widths via grid/etc in template components */
+			padding: 0 !important;
 		}
 	}
 
 	h1 {
-		color: black;
 		margin: 0;
 		font-size: 16px;
 		font-family: 'GuardianTextSans';
@@ -91,6 +90,10 @@
 		padding: 6px;
 		border-right: 1px solid var(--neutral-73);
 		align-self: flex-start;
+
+		@media (min-width: 1300px) {
+			border-right: none;
+		}
 	}
 
 	.paid {
@@ -101,6 +104,7 @@
 		width: 100%;
 
 		strong {
+			color: var(--labs-100);
 			padding-right: 0.5em;
 		}
 
@@ -113,17 +117,11 @@
 		align-items: start;
 
 		@media (min-width: 740px) {
-			align-items: center;
 			gap: 8px;
 		}
 
 		@media (min-width: 980px) {
-			align-items: center;
 			gap: 0;
-		}
-
-		@media (min-width: 1300px) {
-			align-items: start;
 		}
 	}
 
@@ -131,23 +129,15 @@
 		padding-left: 10px;
 		display: flex;
 		flex-direction: column;
-		align-items: flex-start;
-		justify-content: flex-start;
 		gap: 4px;
 
 		@media (min-width: 740px) {
-			flex-direction: column;
-			align-items: center;
+			flex: 1;
 			gap: 16px;
 		}
 
 		@media (min-width: 980px) {
-			flex-direction: column;
 			gap: 4px;
-		}
-
-		@media (min-width: 1300px) {
-			align-items: flex-start;
 		}
 	}
 
