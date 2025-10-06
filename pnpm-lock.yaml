@@ -18,8 +18,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(prettier@3.6.2)(tslib@2.8.1)
       '@guardian/source':
-        specifier: ^3.0.0
-        version: 3.0.0(tslib@2.8.1)(typescript@5.9.2)
+        specifier: 11.3.0
+        version: 11.3.0(tslib@2.8.1)(typescript@5.9.2)
       '@playwright/test':
         specifier: ^1.45.0
         version: 1.55.0
@@ -334,14 +334,14 @@ packages:
       prettier: ^3.2.2
       tslib: ^2.6.2
 
-  '@guardian/source@3.0.0':
-    resolution: {integrity: sha512-ocdnSojiVmPaDXnPSMo9FQbPgP00JzR74AftgCDqcLTo9uXgLmO0w9TADMHm48MhNsHqH1RDqgDdStd37Qbctw==}
+  '@guardian/source@11.3.0':
+    resolution: {integrity: sha512-J8KDoa/dZ926zkx1LdmoGo5i83znqjGDYuyOOc/UBcfH8dKbXDBmi4tvg8Xbl7/C4jSJpgG1JkjRHyzDarcAjg==}
     peerDependencies:
-      '@emotion/react': ^11.11.1
-      '@types/react': ^18.2.11
+      '@emotion/react': ^11.11.4
+      '@types/react': ^18.2.79
       react: ^18.2.0
       tslib: ^2.6.2
-      typescript: ~5.3.3
+      typescript: ~5.5.2
     peerDependenciesMeta:
       '@emotion/react':
         optional: true
@@ -2704,7 +2704,7 @@ snapshots:
       prettier: 3.6.2
       tslib: 2.8.1
 
-  '@guardian/source@3.0.0(tslib@2.8.1)(typescript@5.9.2)':
+  '@guardian/source@11.3.0(tslib@2.8.1)(typescript@5.9.2)':
     dependencies:
       mini-svg-data-uri: 1.4.4
       tslib: 2.8.1

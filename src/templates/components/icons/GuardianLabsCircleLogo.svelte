@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { CLICK_MACRO } from '$lib/gam';
 	import type { Single } from '$lib/types/capi';
+	import { palette } from '@guardian/source/foundations';
 
 	const host = 'https://www.theguardian.com';
 
@@ -10,14 +11,21 @@
 		US: 'guardian-labs-us',
 	} as const;
 
-	export let fill = 'white';
+	export let textFill = palette.neutral[100];
+	export let circleFill = palette.labs[100];
 	export let edition: Single['branding']['edition'] = 'UK';
 </script>
 
 <a href={`${CLICK_MACRO}${host}/${GLABS_EDITIONS[edition]}`} target="_top">
-	<svg aria-hidden="true" width="70" height="70" viewBox="0 0 71 71" {fill}>
+	<svg
+		aria-hidden="true"
+		width="70"
+		height="70"
+		viewBox="0 0 71 71"
+		fill={textFill}
+	>
 		<title>The Guardian Labs</title>
-		<circle cx="35" cy="35" r="35" fill="#09615B" />
+		<circle cx="35" cy="35" r="35" fill={circleFill} />
 		<g transform="translate(1 17) scale(0.75 0.75)">
 			<path
 				data-content="The Guardian"

@@ -4,7 +4,7 @@
 	import Button from './Button.svelte';
 	import ArrowDown from './icons/ArrowDown.svelte';
 	import '$templates/components/fonts/SansBold.css';
-	import GuardianLabsRedesign from './icons/GuardianLabsRedesign.svelte';
+	import GuardianLabsRedesign from './icons/GuardianLabsCircleLogo.svelte';
 
 	export let SeriesUrl: string;
 	export let ComponentTitle: string;
