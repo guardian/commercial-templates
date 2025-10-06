@@ -7,6 +7,7 @@ export const paletteColours = `
 --neutral-20: ${palette.neutral[20]};
 --neutral-38: ${palette.neutral[38]};
 --neutral-46: ${palette.neutral[46]};
+--neutral-73: ${palette.neutral[73]};
 --neutral-86: ${palette.neutral[86]};
 --neutral-93: ${palette.neutral[93]};
 --neutral-97: ${palette.neutral[97]};
@@ -14,6 +15,8 @@ export const paletteColours = `
 --opinion-500: ${palette.opinion[500]};
 --sport-300: ${palette.sport[300]};
 --lifestyle-400: ${palette.lifestyle[400]};
+--labs-100: ${palette.labs[100]};
 --labs-200: ${palette.labs[200]};
 --labs-400: ${palette.labs[400]};
+--labs-700: ${palette.labs[700]};
 `;
