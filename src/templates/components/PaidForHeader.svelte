@@ -129,10 +129,6 @@
 		strong {
 			padding-right: 0.5em;
 		}
-
-		svg {
-			fill: currentColor;
-		}
 	}
 
 	h1 {
