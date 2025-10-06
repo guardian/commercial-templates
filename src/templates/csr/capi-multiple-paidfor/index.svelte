@@ -12,6 +12,7 @@
 	import PaidForHeader from '$templates/components/PaidForHeader.svelte';
 	import Resizer from '$templates/components/Resizer.svelte';
 	import Sponsor from '$templates/components/Sponsor.svelte';
+	import PaidForHeaderRedesign from '$templates/components/PaidForHeaderRedesign.svelte';
 
 	export let SeriesURL: GAMVariable;
 	export let ComponentTitle: GAMVariable;
@@ -74,7 +75,7 @@
 {:then cards}
 	{#if cards[0]}
 		<aside bind:clientHeight={height} style={paletteColours}>
-			<PaidForHeader
+			<PaidForHeaderRedesign
 				edition={cards[0].branding.edition}
 				{ComponentTitle}
 				SeriesUrl={SeriesURL}
