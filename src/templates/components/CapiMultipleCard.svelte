@@ -4,7 +4,6 @@
 	import AudioIcon from './icons/AudioIcon.svelte';
 	import CameraIcon from './icons/CameraIcon.svelte';
 	import VideoIcon from './icons/VideoIcon.svelte';
-	import Sponsor from './Sponsor.svelte';
 
 	export let templateType: 'single' | 'multiple';
 	export let single: Single;
@@ -12,7 +11,6 @@
 	const {
 		articleHeadline,
 		articleUrl,
-		articleText,
 		articleKicker,
 		articleImage,
 		audioTag,

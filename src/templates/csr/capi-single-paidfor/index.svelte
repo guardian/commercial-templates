@@ -11,9 +11,6 @@
 	import Resizer from '$templates/components/Resizer.svelte';
 	import type { CapiCardOverride } from '$lib/types/capi';
 	import '$templates/components/fonts/Sans.css';
-	import PaidForHeaderRedesign from '$templates/components/PaidForHeaderRedesign.svelte';
-	import CapiCardRedesign from '$templates/components/CapiSingleCard.svelte';
-	import CapiSingleCard from '$templates/components/CapiSingleCard.svelte';
 
 	export let SeriesUrl: GAMVariable;
 	export let ComponentTitle: GAMVariable;
@@ -43,13 +40,13 @@
 	<h3>Loading Content for “{SeriesUrl}”</h3>
 {:then single}
 	<aside bind:clientHeight={height} style={paletteColours}>
-		<PaidForHeaderRedesign
+		<PaidForHeader
 			templateType="single"
 			edition={single.branding.edition}
 			{ComponentTitle}
 			{SeriesUrl}
 		/>
-		<CapiSingleCard {single} />
+		<CapiCard templateType="single" {single} />
 	</aside>
 	<Resizer {height} />
 {:catch}

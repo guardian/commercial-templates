@@ -12,7 +12,6 @@
 	import PaidForHeader from '$templates/components/PaidForHeader.svelte';
 	import Resizer from '$templates/components/Resizer.svelte';
 	import Sponsor from '$templates/components/Sponsor.svelte';
-	import CapiMultipleCard from '$templates/components/CapiMultipleCard.svelte';
 
 	export let SeriesURL: GAMVariable;
 	export let ComponentTitle: GAMVariable;
@@ -84,7 +83,7 @@
 			<div class="body">
 				<div class="cards-container">
 					{#each cards as single}
-						<CapiMultipleCard templateType="multiple" {single} />
+						<CapiCard templateType="multiple" {single} />
 					{/each}
 				</div>
 				<div class="sponsor-container">
