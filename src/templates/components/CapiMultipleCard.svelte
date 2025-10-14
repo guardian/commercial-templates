@@ -5,7 +5,6 @@
 	import CameraIcon from './icons/CameraIcon.svelte';
 	import VideoIcon from './icons/VideoIcon.svelte';
 
-	export let templateType: 'single' | 'multiple';
 	export let single: Single;
 
 	const {
@@ -22,7 +21,7 @@
 		articleImage && articleImage.sources.length > 0 && 'srcset' in new Image();
 </script>
 
-<a class="{templateType}-card" href={clickMacro(articleUrl)} target="_top">
+<a class="multiple-card" href={clickMacro(articleUrl)} target="_top">
 	<div class="text">
 		<h2>
 			{#if articleKicker}
