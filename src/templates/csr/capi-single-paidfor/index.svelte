@@ -12,7 +12,8 @@
 	import type { CapiCardOverride } from '$lib/types/capi';
 	import '$templates/components/fonts/Sans.css';
 	import PaidForHeaderRedesign from '$templates/components/PaidForHeaderRedesign.svelte';
-	import CapiCardRedesign from '$templates/components/CapiCardRedesign.svelte';
+	import CapiCardRedesign from '$templates/components/CapiSingleCard.svelte';
+	import CapiSingleCard from '$templates/components/CapiSingleCard.svelte';
 
 	export let SeriesUrl: GAMVariable;
 	export let ComponentTitle: GAMVariable;
@@ -48,7 +49,7 @@
 			{ComponentTitle}
 			{SeriesUrl}
 		/>
-		<CapiCardRedesign templateType="single" {single} />
+		<CapiSingleCard {single} />
 	</aside>
 	<Resizer {height} />
 {:catch}
