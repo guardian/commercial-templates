@@ -4,8 +4,9 @@
 	import AudioIcon from './icons/AudioIcon.svelte';
 	import CameraIcon from './icons/CameraIcon.svelte';
 	import VideoIcon from './icons/VideoIcon.svelte';
-	import SponsorRedesign from './SponsorRedesign.svelte';
+	import Sponsor from './Sponsor.svelte';
 
+	export let templateType: 'single' | 'multiple';
 	export let single: Single;
 
 	const {
@@ -23,11 +24,11 @@
 		articleImage && articleImage.sources.length > 0 && 'srcset' in new Image();
 </script>
 
-<a class="single-card" href={clickMacro(articleUrl)} target="_top">
+<a class="{templateType}-card" href={clickMacro(articleUrl)} target="_top">
 	<div class="text">
 		<h2>
 			{#if articleKicker}
-				<span class="kicker">{articleKicker}</span><br />
+				<span class="kicker">{articleKicker && articleKicker}</span><br />
 			{/if}
 			{#if audioTag}
 				<AudioIcon />
@@ -38,7 +39,6 @@
 			{/if}
 			{articleHeadline}
 		</h2>
-		<p>{articleText}</p>
 	</div>
 	<div class="media">
 		{#if pictureSupported}
@@ -62,10 +62,6 @@
 			<img src={articleImage.backupSrc} alt="" />
 		{/if}
 	</div>
-
-	<div class="sponsor">
-		<SponsorRedesign branding={single.branding} templateType="single" />
-	</div>
 </a>
 
 <style lang="scss">
@@ -77,19 +73,22 @@
 		margin-right: 0.1em;
 	}
 
-	.single-card {
+	.multiple-card {
 		color: var(--neutral-0);
 		text-decoration: none;
-		border-top: 1px solid var(--neutral-73);
-		margin-top: 8px;
-		display: grid;
-		gap: 20px;
-		padding: 8px;
+		flex-basis: 100%;
+		margin: 12px 10px 0px 10px;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		padding: 0 0 8px 0;
+		width: auto;
+		background-color: var(--neutral-97);
+		overflow: hidden;
 	}
 
-	.single-card .media {
-		margin-left: -10px;
-		margin-right: -10px;
+	.multiple-card:hover {
+		background-color: #e4e4e4;
 	}
 
 	picture,
@@ -98,22 +97,17 @@
 		width: 100%;
 	}
 
-	.single-card .text {
-		padding: 0;
+	.multiple-card .text {
+		padding: 0 5px;
 
 		h2 {
-			margin: 0;
-			padding: 0 0 10px;
-			font-size: 24px;
+			font-size: 17px;
+			font-weight: 700;
+			line-height: 1.25rem;
 			font-family: 'GuardianTextSans';
 			color: var(--neutral-7);
-		}
-
-		p {
-			display: none;
-			margin: 0;
-			padding: 0;
-			color: var(--neutral-38);
+			padding: 0px;
+			margin: 6px 0 8px 0;
 		}
 	}
 
@@ -122,30 +116,65 @@
 		color: var(--labs-200);
 	}
 
-	@media (min-width: 740px) {
-		.single-card {
-			display: grid;
-			grid-template-columns: repeat(2, 1fr);
-			grid-template-rows: repeat(2, 1fr), 100px;
-		}
+	@media (max-width: 739px) {
+		.multiple-card:not(:first-of-type) {
+			padding-top: 8px;
+			flex-direction: row-reverse;
 
-		.single-card .media,
-		.single-card .text {
-			grid-row: span 2;
-		}
-
-		.single-card img {
-			border-radius: 0;
-		}
-
-		.single-card .sponsor {
-			grid-column-start: 2;
+			picture {
+				position: relative;
+				height: 95px;
+				width: 120px;
+				overflow: hidden;
+				& > * {
+					position: absolute;
+					height: 100%;
+					width: auto;
+					transform: translateX(-25%);
+				}
+			}
 		}
 	}
 
-	@media (min-width: 1140px) {
-		.single-card .text p {
-			display: block;
+	@media (min-width: 740px) {
+		.multiple-card {
+			margin: 12px 10px;
+		}
+
+		.multiple-card:not(:first-of-type)::before {
+			content: '';
+			/** Absolutely positioned relative to the cards-container div */
+			position: absolute;
+			/** Top and bottom offset due to margin */
+			top: 12px;
+			bottom: 12px;
+			margin-left: -10px;
+			width: 1px;
+			background: var(--neutral-73);
+		}
+
+		.multiple-card .text h2 {
+			margin-bottom: 10px;
+		}
+
+		.multiple-card .media {
+			background-color: gray;
+			margin: 0;
+			width: 100%;
+
+			// Fix 5 : 4 aspect ratio
+			picture {
+				padding-top: calc(4 / 5 * 100%);
+				position: relative;
+				& > * {
+					position: absolute;
+					top: 50%;
+					left: 50%;
+					transform: translate(-50%, -50%);
+					height: 100%;
+					width: auto;
+				}
+			}
 		}
 	}
 </style>
