@@ -80,12 +80,11 @@
 		justify-content: space-between;
 		padding: 0 0 8px 0;
 		width: auto;
-		background-color: var(--neutral-97);
 		overflow: hidden;
 	}
 
 	.multiple-card:hover {
-		background-color: #e4e4e4;
+		background-color: var(--neutral-97);
 	}
 
 	picture,

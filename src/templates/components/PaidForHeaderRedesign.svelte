@@ -104,6 +104,10 @@
 			gap: 4px;
 		}
 
+		@media (min-width: 1140px) {
+			padding: 0 10px;
+		}
+
 		.paid-info {
 			display: flex;
 			justify-content: space-between;
