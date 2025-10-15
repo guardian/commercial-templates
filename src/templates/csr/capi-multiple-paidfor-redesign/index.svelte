@@ -7,11 +7,9 @@
 	} from '$lib/gam';
 	import type { CapiCardOverride } from '$lib/types/capi';
 	import '$templates/components/fonts/Sans.css';
-	import CapiCard from '$templates/components/CapiCard.svelte';
 	import { paletteColours } from '$templates/components/colours/paletteColours';
 	import PaidForHeaderRedesign from '$templates/components/PaidForHeaderRedesign.svelte';
 	import Resizer from '$templates/components/Resizer.svelte';
-	import Sponsor from '$templates/components/Sponsor.svelte';
 	import CapiMultipleCard from '$templates/components/CapiMultipleCard.svelte';
 	import SponsorRedesign from '$templates/components/SponsorRedesign.svelte';
 
@@ -106,6 +104,10 @@
 	:global(body) {
 		margin: 0;
 	}
+
+	div {
+		width: auto;
+	}
 	aside {
 		background: var(--neutral-100);
 		position: relative;
@@ -118,6 +120,11 @@
 		text-rendering: optimizelegibility;
 		font-variant-ligatures: common-ligatures;
 		-webkit-font-smoothing: antialiased;
+	}
+
+	h3 {
+		background-color: var(--labs-400);
+		color: white;
 	}
 
 	.cards-container {
@@ -133,15 +140,6 @@
 		justify-content: flex-end;
 		flex-direction: row;
 		height: 90px;
-	}
-
-	h3 {
-		background-color: var(--labs-400);
-		color: white;
-	}
-
-	div {
-		width: auto;
 	}
 
 	@media (min-width: 740px) {
