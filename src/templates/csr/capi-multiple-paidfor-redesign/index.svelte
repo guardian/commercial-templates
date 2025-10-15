@@ -137,9 +137,8 @@
 
 	.sponsor-container {
 		display: flex;
-		justify-content: flex-end;
 		flex-direction: row;
-		height: 90px;
+		justify-content: flex-end;
 	}
 
 	@media (min-width: 740px) {

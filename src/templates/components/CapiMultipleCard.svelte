@@ -83,10 +83,6 @@
 		overflow: hidden;
 	}
 
-	.multiple-card:hover {
-		background-color: var(--neutral-97);
-	}
-
 	picture,
 	img {
 		display: block;

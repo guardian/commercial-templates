@@ -116,10 +116,6 @@
 				color: var(--labs-100);
 				padding-right: 0.5em;
 			}
-
-			button {
-				color: black;
-			}
 		}
 
 		.title {
