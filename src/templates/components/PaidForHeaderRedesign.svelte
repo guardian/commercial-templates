@@ -87,6 +87,7 @@
 
 		@media (min-width: 1140px) {
 			border-right: none;
+			padding-left: 0;
 		}
 	}
 
@@ -103,6 +104,10 @@
 
 		@media (min-width: 980px) {
 			gap: 4px;
+		}
+
+		@media (min-width: 1140px) {
+			padding-left: 0;
 		}
 
 		.paid-info {

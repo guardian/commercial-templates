@@ -139,6 +139,10 @@
 		display: flex;
 		flex-direction: row;
 		justify-content: flex-end;
+
+		@media (min-width: 1140px) {
+			margin-right: 10px;
+		}
 	}
 
 	@media (min-width: 740px) {
