@@ -152,10 +152,6 @@
 			display: grid;
 			grid-template-columns: 151px 1fr;
 		}
-
-		.body {
-			flex-direction: column;
-		}
 	}
 
 	@media (min-width: 1300px) {
