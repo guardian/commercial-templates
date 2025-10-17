@@ -21,22 +21,24 @@
 	<div class="paid-info-and-title">
 		<div class="paid-info">
 			<strong class="paid-info--label">Paid content</strong>
-			<Button on:click={() => (popup = !popup)}
-				>About <ArrowDown width={12} flip={popup} /></Button
-			>
-			{#if popup}
-				<div id="popup" class="popup">
-					<p class="popup-text">
-						Paid content is paid for and controlled by an advertiser and
-						produced by the Guardian Labs team
-					</p>
-					<a
-						class="popup-link"
-						href={`${CLICK_MACRO}https://theguardian.com/content-funding`}
-						target="_top">Learn more about Guardian Labs content &rarr;</a
-					>
-				</div>
-			{/if}
+			<div class="popup-container">
+				<Button on:click={() => (popup = !popup)}
+					>About <ArrowDown width={12} flip={popup} /></Button
+				>
+				{#if popup}
+					<div id="popup" class="popup">
+						<p class="popup-text">
+							Paid content is paid for and controlled by an advertiser and
+							produced by the Guardian Labs team
+						</p>
+						<a
+							class="popup-link"
+							href={`${CLICK_MACRO}https://theguardian.com/content-funding`}
+							target="_top">Learn more about Guardian Labs content &rarr;</a
+						>
+					</div>
+				{/if}
+			</div>
 		</div>
 
 		<h1 class="title" class:multiple-title={templateType === 'multiple'}>
@@ -73,9 +75,8 @@
 			padding: 12px 20px;
 		}
 
-		@media (min-width: 1300px) {
-			/* TODO: Amend padding after setting up widths via grid/etc in template components */
-			padding: 0 !important;
+		@media (min-width: 1140px) {
+			padding: 12px;
 		}
 	}
 
@@ -84,8 +85,9 @@
 		border-right: 1px solid var(--neutral-73);
 		align-self: flex-start;
 
-		@media (min-width: 1300px) {
+		@media (min-width: 1140px) {
 			border-right: none;
+			padding-left: 0;
 		}
 	}
 
@@ -104,6 +106,10 @@
 			gap: 4px;
 		}
 
+		@media (min-width: 1140px) {
+			padding-left: 0;
+		}
+
 		.paid-info {
 			display: flex;
 			justify-content: space-between;
@@ -114,10 +120,6 @@
 			.paid-info--label {
 				color: var(--labs-100);
 				padding-right: 0.5em;
-			}
-
-			button {
-				color: black;
 			}
 		}
 
@@ -134,18 +136,22 @@
 		}
 	}
 
+	.popup-container {
+		position: relative;
+	}
+
 	.popup {
 		position: absolute;
-		color: white;
+		color: var(--neutral-7);
 		width: 260px;
-		background: var(--neutral-20);
+		background: var(--neutral-93);
 		font-size: 14px;
 		line-height: 16px;
-		padding: 10px;
+		padding: 12px;
 		border-radius: 4px;
 		box-sizing: border-box;
 		font-weight: normal;
-		right: auto;
+		right: 0;
 		z-index: 1;
 
 		.popup-text {
@@ -153,13 +159,17 @@
 		}
 
 		.popup-link {
-			color: var(--labs-400);
+			color: var(--labs-200);
 			text-decoration: none;
 
 			&:hover,
 			&:focus {
 				text-decoration: underline;
 			}
+		}
+
+		@media (min-width: 1140px) {
+			right: -125%;
 		}
 	}
 </style>
