@@ -144,6 +144,9 @@
 	}
 
 	@media (min-width: 1140px) {
+		.single-card {
+			margin: 8px 20px 0;
+		}
 		.single-card .text p {
 			display: block;
 		}

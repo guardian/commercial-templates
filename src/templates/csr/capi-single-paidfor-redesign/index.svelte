@@ -57,7 +57,7 @@
 
 <style>
 	aside {
-		background: var(--neutral-97);
+		background: var(--neutral-100);
 		position: relative;
 		display: flex;
 		flex-direction: column;
@@ -77,7 +77,14 @@
 
 	@media (min-width: 1140px) {
 		aside {
-			flex-direction: row;
+			display: grid;
+			grid-template-columns: 151px 1fr;
+		}
+	}
+
+	@media (min-width: 1300px) {
+		aside {
+			grid-template-columns: 211px 1fr;
 		}
 	}
 </style>
