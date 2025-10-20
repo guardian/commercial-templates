@@ -81,7 +81,7 @@
 		color: var(--neutral-0);
 		text-decoration: none;
 		border-top: 1px solid var(--neutral-73);
-		margin-top: 8px;
+		margin: 8px;
 		display: grid;
 		gap: 20px;
 		padding: 8px;
@@ -145,7 +145,7 @@
 
 	@media (min-width: 1140px) {
 		.single-card {
-			margin: 8px 20px 0;
+			margin: 8px 20px 8px;
 		}
 		.single-card .text p {
 			display: block;
