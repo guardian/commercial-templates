@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { clickMacro } from '$lib/gam';
 	import type { Single } from '$lib/types/capi';
+	import CapiMedia from './CapiMedia.svelte';
 	import AudioIcon from './icons/AudioIcon.svelte';
 	import CameraIcon from './icons/CameraIcon.svelte';
 	import VideoIcon from './icons/VideoIcon.svelte';
@@ -18,9 +19,6 @@
 		galleryTag,
 		videoTag,
 	} = single;
-
-	const pictureSupported =
-		articleImage && articleImage.sources.length > 0 && 'srcset' in new Image();
 </script>
 
 <a class="single-card" href={clickMacro(articleUrl)} target="_top">
@@ -41,25 +39,8 @@
 		<p>{articleText}</p>
 	</div>
 	<div class="media">
-		{#if pictureSupported}
-			<picture>
-				{#each articleImage.sources.filter((source) => source.minWidth === '0') as source}
-					<source
-						media={`(min-width: ${source.minWidth}px) and (-webkit-min-device-pixel-ratio: 1.25), (min-width: ${source.minWidth}px) and (min-resolution: 120dpi)`}
-						srcset={source.hidpiSrcset}
-						sizes={source.sizes}
-					/>
-
-					<source
-						media={`(min-width: ${source.minWidth}px)`}
-						srcset={source.lodpiSrcset}
-						sizes={source.sizes}
-					/>
-				{/each}
-				<img src={articleImage.backupSrc} alt="" />
-			</picture>
-		{:else if articleImage?.backupSrc}
-			<img src={articleImage.backupSrc} alt="" />
+		{#if articleImage}
+			<CapiMedia {articleImage} />
 		{/if}
 	</div>
 
@@ -81,7 +62,7 @@
 		color: var(--neutral-0);
 		text-decoration: none;
 		border-top: 1px solid var(--neutral-73);
-		margin-top: 8px;
+		margin: 8px;
 		display: grid;
 		gap: 20px;
 		padding: 8px;
@@ -144,6 +125,9 @@
 	}
 
 	@media (min-width: 1140px) {
+		.single-card {
+			margin: 8px 20px 8px;
+		}
 		.single-card .text p {
 			display: block;
 		}
