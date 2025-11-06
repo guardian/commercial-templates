@@ -109,6 +109,7 @@
 		width: auto;
 	}
 	aside {
+		padding: 12px;
 		background: var(--neutral-100);
 		position: relative;
 		display: flex;
@@ -128,6 +129,7 @@
 
 		@media (min-width: 1300px) {
 			grid-template-columns: 211px 1fr;
+			gap: 12px;
 		}
 	}
 
@@ -139,6 +141,8 @@
 	.cards-container {
 		display: flex;
 		flex-direction: column;
+		column-gap: 20px;
+
 		background-color: var(--neutral-100);
 		/** Needed to absolutely position the horizontal rule between each CapiCard */
 		position: relative;

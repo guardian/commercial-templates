@@ -67,6 +67,8 @@
 	}
 
 	.media {
+		/** Stop image overflowing its container */
+		overflow: hidden;
 		/** This is needed to absolutely position the hover overlay */
 		position: relative;
 	}
@@ -90,12 +92,10 @@
 		display: flex;
 		flex-direction: column;
 		justify-content: space-between;
-
 		flex-basis: 100%;
-		margin: 12px 10px 0px 10px;
+		margin-top: 12px;
 		width: auto;
-		/* background-color: transparent; */
-		overflow: hidden;
+
 		/** Needed to absolutely position the dividers */
 		position: relative;
 
@@ -118,7 +118,6 @@
 		}
 
 		@media (min-width: 740px) {
-			margin: 12px 10px;
 			position: relative;
 
 			/** Left border between cards on tablet/desktop */
@@ -139,7 +138,7 @@
 		padding: 0 4px;
 
 		h3 {
-			font-size: 1.25rem;
+			font-size: 1.0625rem;
 			font-weight: 700;
 			line-height: 1.15;
 			font-family: 'GuardianTextSans';
