@@ -19,9 +19,9 @@
 	} = single;
 </script>
 
-<a class="multiple-card" href={clickMacro(articleUrl)} target="_top">
+<a class="card" href={clickMacro(articleUrl)} target="_top">
 	<div class="text">
-		<h2>
+		<h3>
 			{#if articleKicker}
 				<span class="kicker">{articleKicker && articleKicker}</span><br />
 			{/if}
@@ -33,13 +33,14 @@
 				<VideoIcon />
 			{/if}
 			{articleHeadline}
-		</h2>
+		</h3>
 	</div>
-	<div class="media">
-		{#if articleImage}
+	{#if articleImage}
+		<div class="media">
+			<div class="hover-overlay" aria-hidden="true" />
 			<CapiMedia {articleImage} />
-		{/if}
-	</div>
+		</div>
+	{/if}
 </a>
 
 <style lang="scss">
@@ -51,103 +52,109 @@
 		margin-right: 0.1em;
 	}
 
-	.multiple-card {
+	.hover-overlay {
+		/** Display none until hovering on the card link */
+		display: none;
+		z-index: 1;
+		width: 100%;
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background: var(--neutral-0);
+		opacity: 0.1;
+	}
+
+	.media {
+		/** This is needed to absolutely position the hover overlay */
+		position: relative;
+	}
+
+	a {
 		color: var(--neutral-0);
 		text-decoration: none;
-		flex-basis: 100%;
-		margin: 12px 10px 0px 10px;
+		position: relative;
+
+		&:hover {
+			.hover-overlay {
+				display: block;
+			}
+			.text {
+				text-decoration: underline;
+			}
+		}
+	}
+
+	.card {
 		display: flex;
 		flex-direction: column;
 		justify-content: space-between;
-		padding: 0 0 8px 0;
+
+		flex-basis: 100%;
+		margin: 12px 10px 0px 10px;
 		width: auto;
+		/* background-color: transparent; */
 		overflow: hidden;
+		/** Needed to absolutely position the dividers */
+		position: relative;
+
+		@media (max-width: 739px) {
+			/* Only show the media for the first card on mobile */
+			&:not(:first-of-type) .media {
+				display: none;
+			}
+
+			/** Top border between cards on mobile */
+			&:not(:first-of-type)::before {
+				content: '';
+				/** Absolutely positioned relative to the card div */
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				border-top: 1px solid var(--neutral-86);
+			}
+		}
+
+		@media (min-width: 740px) {
+			margin: 12px 10px;
+			position: relative;
+
+			/** Left border between cards on tablet/desktop */
+			&:not(:first-of-type)::before {
+				content: '';
+				/** Absolutely positioned relative to the card div */
+				position: absolute;
+				top: 0;
+				left: 0;
+				bottom: 0;
+				border-left: 1px solid var(--neutral-86);
+				transform: translateX(-10px);
+			}
+		}
 	}
 
-	picture,
-	img {
-		display: block;
-		width: 100%;
-	}
+	.text {
+		padding: 0 4px;
 
-	.multiple-card .text {
-		padding: 0 5px;
-
-		h2 {
-			font-size: 17px;
+		h3 {
+			font-size: 1.25rem;
 			font-weight: 700;
-			line-height: 1.25rem;
+			line-height: 1.15;
 			font-family: 'GuardianTextSans';
 			color: var(--neutral-7);
 			padding: 0px;
 			margin: 6px 0 8px 0;
 		}
+
+		@media (min-width: 740px) {
+			margin-bottom: 10px;
+		}
 	}
 
 	.kicker {
-		font-size: 16px;
+		font-size: 17px;
 		color: var(--labs-200);
-	}
-
-	@media (max-width: 739px) {
-		.multiple-card:not(:first-of-type) {
-			padding-top: 8px;
-			flex-direction: row-reverse;
-
-			picture {
-				position: relative;
-				height: 95px;
-				width: 120px;
-				overflow: hidden;
-				& > * {
-					position: absolute;
-					height: 100%;
-					width: auto;
-					transform: translateX(-25%);
-				}
-			}
-		}
-	}
-
-	@media (min-width: 740px) {
-		.multiple-card {
-			margin: 12px 10px;
-		}
-
-		.multiple-card:not(:first-of-type)::before {
-			content: '';
-			/** Absolutely positioned relative to the cards-container div */
-			position: absolute;
-			/** Top and bottom offset due to margin */
-			top: 12px;
-			bottom: 12px;
-			margin-left: -10px;
-			width: 1px;
-			background: var(--neutral-73);
-		}
-
-		.multiple-card .text h2 {
-			margin-bottom: 10px;
-		}
-
-		.multiple-card .media {
-			background-color: gray;
-			margin: 0;
-			width: 100%;
-
-			// Fix 5 : 4 aspect ratio
-			picture {
-				padding-top: calc(4 / 5 * 100%);
-				position: relative;
-				& > * {
-					position: absolute;
-					top: 50%;
-					left: 50%;
-					transform: translate(-50%, -50%);
-					height: 100%;
-					width: auto;
-				}
-			}
-		}
 	}
 </style>

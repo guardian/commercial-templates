@@ -120,6 +120,15 @@
 		text-rendering: optimizelegibility;
 		font-variant-ligatures: common-ligatures;
 		-webkit-font-smoothing: antialiased;
+
+		@media (min-width: 1140px) {
+			display: grid;
+			grid-template-columns: 151px 1fr;
+		}
+
+		@media (min-width: 1300px) {
+			grid-template-columns: 211px 1fr;
+		}
 	}
 
 	h3 {
@@ -133,6 +142,10 @@
 		background-color: var(--neutral-100);
 		/** Needed to absolutely position the horizontal rule between each CapiCard */
 		position: relative;
+
+		@media (min-width: 740px) {
+			flex-direction: row;
+		}
 	}
 
 	.sponsor-container {
@@ -142,25 +155,6 @@
 
 		@media (min-width: 1140px) {
 			margin-right: 10px;
-		}
-	}
-
-	@media (min-width: 740px) {
-		.cards-container {
-			flex-direction: row;
-		}
-	}
-
-	@media (min-width: 1140px) {
-		aside {
-			display: grid;
-			grid-template-columns: 151px 1fr;
-		}
-	}
-
-	@media (min-width: 1300px) {
-		aside {
-			grid-template-columns: 211px 1fr;
 		}
 	}
 </style>
