@@ -82,8 +82,7 @@
 
 	.logo {
 		padding: 6px;
-		border-right: 1px solid var(--neutral-73);
-		align-self: flex-start;
+		border-right: 1px solid var(--neutral-86);
 
 		@media (min-width: 1140px) {
 			border-right: none;

@@ -19,7 +19,7 @@
 	} = single;
 </script>
 
-<a class="card" href={clickMacro(articleUrl)} target="_top">
+<a class="multiple-card" href={clickMacro(articleUrl)} target="_top">
 	<div class="text">
 		<h3>
 			{#if articleKicker}
@@ -88,7 +88,7 @@
 		}
 	}
 
-	.card {
+	.multiple-card {
 		display: flex;
 		flex-direction: column;
 		justify-content: space-between;
