@@ -1,8 +1,11 @@
 import { expect, test } from '@playwright/test';
 import { localBaseUrl, referenceBaseUrl, templates } from './utils';
+import {
+	takeScreenshotsFabricExpandable,
+	compareScreenshotsFabricExpandable,
+} from './fabric-expandable';
 
 const viewport = { width: 1600, height: 1000 };
-
 test.describe.configure({ mode: 'parallel' });
 
 templates.forEach(({ name, path, templatePreviewWidths }) =>
@@ -13,6 +16,7 @@ templates.forEach(({ name, path, templatePreviewWidths }) =>
 		}
 		await page.setViewportSize(viewport);
 
+		// Take screenshots of templates in PROD for reference
 		await page.goto(`${referenceBaseUrl}${path}/`, {
 			waitUntil: 'networkidle',
 		});
@@ -40,22 +44,7 @@ templates.forEach(({ name, path, templatePreviewWidths }) =>
 			}
 
 			if (path.includes('fabric-expandable')) {
-				// expand the template ad
-				referenceTemplateLocator.locator('.toggle-arrow').click();
-				// wait for template expansion transition
-				await new Promise((r) => setTimeout(r, 1500));
-				// take a reference screenshot of the expanded template
-				await referenceTemplateLocator.screenshot({
-					path: `./playwright/reference-images/Fabric-expandable-${width.replace('%', '')}-expanded.png`,
-				});
-				// collapse the template ad
-				referenceTemplateLocator.locator('.toggle-arrow').click();
-				// wait for template collapse transition
-				await new Promise((r) => setTimeout(r, 1500));
-				// take a reference screenshot of the template when not expanded
-				await referenceTemplateLocator.screenshot({
-					path: `./playwright/reference-images/Fabric-expandable-${width.replace('%', '')}-not-expanded.png`,
-				});
+				takeScreenshotsFabricExpandable(referenceTemplateLocator, width);
 			} else {
 				// take a reference screenshot
 				await referenceTemplateLocator.screenshot({
@@ -64,6 +53,7 @@ templates.forEach(({ name, path, templatePreviewWidths }) =>
 			}
 		}
 
+		// Compare current templates with reference templates
 		await page.goto(`${localBaseUrl}${path}/`, {
 			waitUntil: 'networkidle',
 		});
@@ -78,24 +68,7 @@ templates.forEach(({ name, path, templatePreviewWidths }) =>
 			await testTemplateLocator.scrollIntoViewIfNeeded();
 
 			if (path.includes('fabric-expandable')) {
-				// expand the template ad
-				testTemplateLocator.locator('.toggle-arrow').click();
-				// wait for template expansion transition
-				await new Promise((r) => setTimeout(r, 1500));
-				// take a reference screenshot of the expanded template
-				await expect(testTemplateLocator).toHaveScreenshot(
-					`Fabric-expandable-${width.replace('%', '')}-expanded.png`,
-					{ maxDiffPixelRatio: 0.006 },
-				);
-				// collapse the template ad
-				testTemplateLocator.locator('.toggle-arrow').click();
-				// wait for template collapse transition
-				await new Promise((r) => setTimeout(r, 1500));
-				//take a reference screenshot of the template when not expanded
-				await expect(testTemplateLocator).toHaveScreenshot(
-					`Fabric-expandable-${width.replace('%', '')}-not-expanded.png`,
-					{ maxDiffPixelRatio: 0.006 },
-				);
+				compareScreenshotsFabricExpandable(testTemplateLocator, width);
 			} else {
 				// compare screenshot to reference
 				await expect(testTemplateLocator).toHaveScreenshot(
