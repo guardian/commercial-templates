@@ -40,6 +40,7 @@
 	</div>
 	<div class="media">
 		{#if articleImage}
+			<div class="hover-overlay" aria-hidden="true" />
 			<CapiMedia {articleImage} />
 		{/if}
 	</div>
@@ -58,28 +59,66 @@
 		margin-right: 0.1em;
 	}
 
-	.single-card {
+	.hover-overlay {
+		/** Display none until hovering on the card link */
+		display: none;
+		z-index: 1;
+		width: 100%;
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background: var(--neutral-0);
+		opacity: 0.1;
+	}
+
+	.media {
+		/** Stop image overflowing its container */
+		overflow: hidden;
+		/** This is needed to absolutely position the hover overlay */
+		position: relative;
+
+		margin-left: -10px;
+		margin-right: -10px;
+
+		@media (min-width: 740px) {
+			grid-row: span 2;
+		}
+	}
+
+	a {
 		color: var(--neutral-0);
 		text-decoration: none;
-		border-top: 1px solid var(--neutral-73);
+		position: relative;
+
+		border-top: 1px solid var(--neutral-86);
 		margin: 8px;
 		display: grid;
 		gap: 20px;
 		padding: 8px;
+
+		&:hover {
+			.hover-overlay {
+				display: block;
+			}
+			.text :not(p) {
+				text-decoration: underline;
+			}
+		}
+
+		@media (min-width: 740px) {
+			display: grid;
+			grid-template-columns: repeat(2, 1fr);
+			grid-template-rows: repeat(2, 1fr) 100px;
+		}
+
+		@media (min-width: 1140px) {
+			margin: 8px 20px 8px;
+		}
 	}
 
-	.single-card .media {
-		margin-left: -10px;
-		margin-right: -10px;
-	}
-
-	picture,
-	img {
-		display: block;
-		width: 100%;
-	}
-
-	.single-card .text {
+	.text {
 		padding: 0;
 
 		h2 {
@@ -95,6 +134,13 @@
 			margin: 0;
 			padding: 0;
 			color: var(--neutral-38);
+			@media (min-width: 740px) {
+				display: block;
+			}
+		}
+
+		@media (min-width: 740px) {
+			grid-row: span 2;
 		}
 	}
 
@@ -103,33 +149,9 @@
 		color: var(--labs-200);
 	}
 
-	@media (min-width: 740px) {
-		.single-card {
-			display: grid;
-			grid-template-columns: repeat(2, 1fr);
-			grid-template-rows: repeat(2, 1fr), 100px;
-		}
-
-		.single-card .media,
-		.single-card .text {
-			grid-row: span 2;
-		}
-
-		.single-card img {
-			border-radius: 0;
-		}
-
-		.single-card .sponsor {
+	.sponsor {
+		@media (min-width: 740px) {
 			grid-column-start: 2;
-		}
-	}
-
-	@media (min-width: 1140px) {
-		.single-card {
-			margin: 8px 20px 8px;
-		}
-		.single-card .text p {
-			display: block;
 		}
 	}
 </style>

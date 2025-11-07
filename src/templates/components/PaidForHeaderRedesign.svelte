@@ -41,14 +41,14 @@
 			</div>
 		</div>
 
-		<h1 class="title" class:multiple-title={templateType === 'multiple'}>
-			<a
-				href={`${CLICK_MACRO}https://theguardian.com/${SeriesUrl}`}
-				target="_top"
-			>
+		<a
+			href={`${CLICK_MACRO}https://theguardian.com/${SeriesUrl}`}
+			target="_top"
+		>
+			<h2 class="title" class:multiple-title={templateType === 'multiple'}>
 				{ComponentTitle}
-			</a>
-		</h1>
+			</h2>
+		</a>
 	</div>
 </header>
 
@@ -82,8 +82,7 @@
 
 	.logo {
 		padding: 6px;
-		border-right: 1px solid var(--neutral-73);
-		align-self: flex-start;
+		border-right: 1px solid var(--neutral-86);
 
 		@media (min-width: 1140px) {
 			border-right: none;
@@ -95,6 +94,7 @@
 		padding-left: 10px;
 		display: flex;
 		flex-direction: column;
+		justify-content: space-around;
 		gap: 4px;
 		flex: 1;
 
@@ -108,6 +108,7 @@
 
 		@media (min-width: 1140px) {
 			padding-left: 0;
+			justify-content: unset;
 		}
 
 		.paid-info {
@@ -123,16 +124,21 @@
 			}
 		}
 
+		a {
+			color: inherit;
+			text-decoration: none;
+
+			&:hover .title {
+				color: inherit;
+				text-decoration: underline;
+			}
+		}
+
 		.title {
 			margin: 0;
-			font-size: 16px;
+			font-size: 1.25rem;
 			font-family: 'GuardianTextSans';
 			font-weight: 700;
-
-			a {
-				color: inherit;
-				text-decoration: none;
-			}
 		}
 	}
 

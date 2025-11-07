@@ -5,9 +5,7 @@
 		isValidReplacedVariable,
 		type GAMVariable,
 	} from '$lib/gam';
-	import CapiCard from '$templates/components/CapiCard.svelte';
 	import { paletteColours } from '$templates/components/colours/paletteColours';
-	import PaidForHeader from '$templates/components/PaidForHeader.svelte';
 	import Resizer from '$templates/components/Resizer.svelte';
 	import type { CapiCardOverride } from '$lib/types/capi';
 	import '$templates/components/fonts/Sans.css';
@@ -57,6 +55,7 @@
 
 <style>
 	aside {
+		padding: 12px;
 		background: var(--neutral-100);
 		position: relative;
 		display: flex;
@@ -68,22 +67,13 @@
 		text-rendering: optimizelegibility;
 		font-variant-ligatures: common-ligatures;
 		-webkit-font-smoothing: antialiased;
-	}
 
-	h3 {
-		background-color: var(--labs-400);
-		color: white;
-	}
-
-	@media (min-width: 1140px) {
-		aside {
+		@media (min-width: 1140px) {
 			display: grid;
 			grid-template-columns: 151px 1fr;
 		}
-	}
 
-	@media (min-width: 1300px) {
-		aside {
+		@media (min-width: 1300px) {
 			grid-template-columns: 211px 1fr;
 		}
 	}
