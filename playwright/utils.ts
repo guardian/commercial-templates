@@ -40,14 +40,21 @@ const csrTemplates = [
 		path: 'csr/fabric-expandable',
 		templatePreviewWidths,
 	},
-	{ name: 'Fabric-video', path: 'csr/fabric-video', templatePreviewWidths },
-	// {
-	// 	name: 'Fabric-video-xl',
-	// 	path: 'csr/fabric-video-xl',
-	// 	templatePreviewWidths,
-	// },
-	{ name: 'Fabric-xl', path: 'csr/fabric-xl', templatePreviewWidths },
-	{ name: 'Fabric', path: 'csr/fabric', templatePreviewWidths },
+	{
+		name: 'Fabric-video',
+		path: 'csr/fabric-video',
+		templatePreviewWidths,
+	},
+	{
+		name: 'Fabric-xl',
+		path: 'csr/fabric-xl',
+		templatePreviewWidths,
+	},
+	{
+		name: 'Fabric',
+		path: 'csr/fabric',
+		templatePreviewWidths,
+	},
 	{
 		name: 'Manual-multiple',
 		path: 'csr/manual-multiple',
@@ -63,7 +70,11 @@ const ssrTemplates = [
 		// not testing at 980px allows us to reliably visually test the Fabric Custom template
 		templatePreviewWidths: templatePreviewWidths.filter((_) => _ !== '980'),
 	},
-	{ name: 'Manual-single', path: 'ssr/manual-single', templatePreviewWidths },
+	{
+		name: 'Manual-single',
+		path: 'ssr/manual-single',
+		templatePreviewWidths,
+	},
 ];
 
 const templates = [...csrTemplates, ...ssrTemplates];
