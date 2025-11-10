@@ -20,11 +20,11 @@
 </script>
 
 <a class="multiple-card" href={clickMacro(articleUrl)} target="_top">
-	<div class="text">
-		<h3>
-			{#if articleKicker}
-				<span class="kicker">{articleKicker && articleKicker}</span><br />
-			{/if}
+	<h3 class="text">
+		{#if articleKicker}
+			<span class="kicker">{articleKicker && articleKicker}</span><br />
+		{/if}
+		<span class="headline">
 			{#if audioTag}
 				<AudioIcon />
 			{:else if galleryTag}
@@ -33,8 +33,8 @@
 				<VideoIcon />
 			{/if}
 			{articleHeadline}
-		</h3>
-	</div>
+		</span>
+	</h3>
 	{#if articleImage}
 		<div class="media">
 			<div class="hover-overlay" aria-hidden="true" />
@@ -82,7 +82,7 @@
 			.hover-overlay {
 				display: block;
 			}
-			.text {
+			.headline {
 				text-decoration: underline;
 			}
 		}
@@ -93,8 +93,8 @@
 		flex-direction: column;
 		justify-content: space-between;
 		flex-basis: 100%;
-		margin-top: 12px;
 		width: auto;
+		margin-bottom: 8px;
 
 		/** Needed to absolutely position the dividers */
 		position: relative;
@@ -125,7 +125,7 @@
 				content: '';
 				/** Absolutely positioned relative to the card div */
 				position: absolute;
-				top: 0;
+				top: 8px;
 				left: 0;
 				bottom: 0;
 				border-left: 1px solid var(--neutral-86);
@@ -135,25 +135,25 @@
 	}
 
 	.text {
-		padding: 0 4px;
-
-		h3 {
-			font-size: 1.0625rem;
-			font-weight: 700;
-			line-height: 1.15;
-			font-family: 'GuardianTextSans';
-			color: var(--neutral-7);
-			padding: 0px;
-			margin: 6px 0 8px 0;
-		}
+		margin: 0 0 4px;
 
 		@media (min-width: 740px) {
 			margin-bottom: 10px;
 		}
 	}
 
+	.headline {
+		font-size: 1.0625rem;
+		font-weight: 700;
+		line-height: 1.15;
+		font-family: 'GuardianTextSans';
+		color: var(--neutral-7);
+		padding: 0px;
+	}
+
 	.kicker {
-		font-size: 17px;
+		font-size: 14px;
+		font-weight: 400;
 		color: var(--labs-200);
 	}
 </style>
