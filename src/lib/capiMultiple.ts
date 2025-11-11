@@ -1,13 +1,13 @@
 import type { GAMVariable } from './gam';
-import type { CapiCard, CapiCardOverride, CapiHostedCard } from './types/capi';
+import type { CapiCardOverride, CapiHostedCard, Single } from './types/capi';
 
 const apiEndpoint =
 	'https://api.nextgen.guardianapps.co.uk/commercial/api/capi-multiple.json';
 
 function addCapiCardOverrides(
-	cardData: CapiCard[],
+	cardData: Single[],
 	overrideCards: CapiCardOverride[],
-): CapiCard[] {
+): Single[] {
 	return cardData.map((capiCard, i) => ({
 		...capiCard,
 		// eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing -- nullish coalescing operator doesn't handle empty strings
@@ -26,7 +26,7 @@ function decideLogo(cardLogo?: string, overrideLogo?: string): string | null {
 }
 
 function addCapiHostedCardOverrides(
-	cardData: CapiCard[],
+	cardData: Single[],
 	overrideCards: CapiCardOverride[],
 	overrideLogo?: string,
 ): { logo: string | null; cards: CapiHostedCard[] } {
@@ -53,7 +53,7 @@ function addCapiHostedCardOverrides(
 }
 
 interface CapiMultipleResponse {
-	articles: CapiCard[];
+	articles: Single[];
 }
 
 async function retrieveCapiData(

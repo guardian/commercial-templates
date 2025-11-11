@@ -1,13 +1,13 @@
 <script lang="ts">
 	import { clickMacro } from '$lib/gam';
-	import type { CapiCard } from '$lib/types/capi';
+	import type { Single } from '$lib/types/capi';
 	import CapiMedia from './CapiMedia.svelte';
 	import AudioIcon from './icons/AudioIcon.svelte';
 	import CameraIcon from './icons/CameraIcon.svelte';
 	import VideoIcon from './icons/VideoIcon.svelte';
 	import SponsorRedesign from './SponsorRedesign.svelte';
 
-	export let single: CapiCard;
+	export let single: Single;
 
 	const {
 		articleHeadline,

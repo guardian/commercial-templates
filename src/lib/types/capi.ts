@@ -29,8 +29,8 @@ export type Branding = {
 
 export type CapiRequestType = 'single' | 'multiple';
 export type CapiResponse<CapiRequestType> = 'multiple' extends CapiRequestType
-	? { articles: CapiCard[] }
-	: CapiCard;
+	? { articles: Single[] }
+	: Single;
 
 /**
  * Best effort at interpreting Scala types.
@@ -39,7 +39,7 @@ export type CapiResponse<CapiRequestType> = 'multiple' extends CapiRequestType
  *
  * [route conf](https://github.com/guardian/frontend/blob/9d2ee56372de4bb730146100527f83b2efd41c35/commercial/conf/routes#L30)
  */
-export type CapiCard = {
+export type Single = {
 	articleHeadline: string;
 	articleText: string;
 	articleKicker: string;

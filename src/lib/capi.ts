@@ -1,9 +1,9 @@
 import type { GAMVariable } from './gam';
 import type {
-	CapiCard,
 	CapiCardOverride,
 	CapiRequestType,
 	CapiResponse,
+	Single,
 } from './types/capi';
 
 const apiEndpoint = 'https://api.nextgen.guardianapps.co.uk/commercial/api';
@@ -20,9 +20,9 @@ async function retrieveCapiData<T extends CapiRequestType>(
 }
 
 function addCapiCardOverrides(
-	cardData: CapiCard[],
+	cardData: Single[],
 	overrideCards: CapiCardOverride[],
-): CapiCard[] {
+): Single[] {
 	return cardData.map((capiCard, i) => ({
 		...capiCard,
 		/* eslint-disable @typescript-eslint/prefer-nullish-coalescing -- nullish coalescing operator doesn't handle empty strings */

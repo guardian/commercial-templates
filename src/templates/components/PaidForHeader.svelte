@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { CLICK_MACRO } from '$lib/gam';
-	import type { CapiCard } from '$lib/types/capi';
+	import type { Single } from '$lib/types/capi';
 	import Button from './Button.svelte';
 	import ArrowDown from './icons/ArrowDown.svelte';
 	import '$templates/components/fonts/SansBold.css';
@@ -8,7 +8,7 @@
 
 	export let SeriesUrl: string;
 	export let ComponentTitle: string;
-	export let edition: CapiCard['branding']['edition'];
+	export let edition: Single['branding']['edition'];
 	export let templateType: 'single' | 'multiple';
 
 	export let popup = false;
