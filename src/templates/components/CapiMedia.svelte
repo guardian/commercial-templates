@@ -1,7 +1,7 @@
 <script lang="ts">
-	import type { Single } from '$lib/types/capi';
+	import type { CapiCard } from '$lib/types/capi';
 
-	export let articleImage: NonNullable<Single['articleImage']>;
+	export let articleImage: NonNullable<CapiCard['articleImage']>;
 
 	const pictureSupported =
 		articleImage && articleImage.sources.length > 0 && 'srcset' in new Image();

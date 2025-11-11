@@ -1,17 +1,17 @@
 <script lang="ts">
 	import { CLICK_MACRO } from '$lib/gam';
-	import type { Single } from '$lib/types/capi';
+	import type { CapiCard } from '$lib/types/capi';
 
 	const host = 'https://www.theguardian.com';
 
-	const GLABS_EDITIONS: Record<Single['branding']['edition'], string> = {
+	const GLABS_EDITIONS: Record<CapiCard['branding']['edition'], string> = {
 		AU: 'guardian-labs-australia',
 		UK: 'guardian-labs',
 		US: 'guardian-labs-us',
 	} as const;
 
 	export let fill = 'black';
-	export let edition: Single['branding']['edition'] = 'UK';
+	export let edition: CapiCard['branding']['edition'] = 'UK';
 </script>
 
 <a href={`${CLICK_MACRO}${host}/${GLABS_EDITIONS[edition]}`} target="_top">
