@@ -8,20 +8,13 @@ function addCapiCardOverrides(
 	cardData: Single[],
 	overrideCards: CapiCardOverride[],
 ): Single[] {
-	return cardData.map((capiCard, i) => {
-		const headlineOverride = overrideCards[i]?.headline;
-		const kickerOverride = overrideCards[i]?.kicker;
-
-		if (headlineOverride && kickerOverride) {
-			return {
-				...capiCard,
-				articleHeadline: headlineOverride,
-				articleKicker: kickerOverride,
-			};
-		}
-
-		return capiCard;
-	});
+	return cardData.map((capiCard, i) => ({
+		...capiCard,
+		// eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing -- nullish coalescing operator doesn't handle empty strings
+		articleHeadline: overrideCards[i]?.headline || capiCard.articleHeadline,
+		// eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing -- nullish coalescing operator doesn't handle empty strings
+		articleKicker: overrideCards[i]?.kicker || capiCard.articleKicker,
+	}));
 }
 
 function decideLogo(cardLogo?: string, overrideLogo?: string): string | null {
