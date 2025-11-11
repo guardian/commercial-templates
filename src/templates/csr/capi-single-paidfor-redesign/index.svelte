@@ -15,14 +15,12 @@
 	export let SeriesUrl: GAMVariable;
 	export let ComponentTitle: GAMVariable;
 	export let ArticleHeadline: GAMVariable;
-	export let ArticleUrl: GAMVariable;
 	export let ArticleText: GAMVariable;
 	export let ArticleImage: GAMVariable;
 	export let TrackingPixel: GAMVariable;
 
 	let cardOverrides: CapiCardOverride = {
 		headline: ArticleHeadline,
-		url: ArticleUrl,
 		image: ArticleImage,
 		text: ArticleText,
 	};
