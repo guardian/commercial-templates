@@ -16,20 +16,40 @@
 	export let SeriesURL: GAMVariable;
 	export let ComponentTitle: GAMVariable;
 	export let Article1Headline: GAMVariable;
+	export let Article1Image: GAMVariable;
 	export let Article1Kicker: GAMVariable;
 	export let Article2Headline: GAMVariable;
+	export let Article2Image: GAMVariable;
 	export let Article2Kicker: GAMVariable;
 	export let Article3Headline: GAMVariable;
+	export let Article3Image: GAMVariable;
 	export let Article3Kicker: GAMVariable;
 	export let Article4Headline: GAMVariable;
+	export let Article4Image: GAMVariable;
 	export let Article4Kicker: GAMVariable;
 	export let TrackingPixel: GAMVariable;
 
 	let cardOverrides: CapiCardOverride[] = [
-		{ headline: Article1Headline, kicker: Article1Kicker },
-		{ headline: Article2Headline, kicker: Article2Kicker },
-		{ headline: Article3Headline, kicker: Article3Kicker },
-		{ headline: Article4Headline, kicker: Article4Kicker },
+		{
+			headline: Article1Headline,
+			image: Article1Image,
+			kicker: Article1Kicker,
+		},
+		{
+			headline: Article2Headline,
+			image: Article2Image,
+			kicker: Article2Kicker,
+		},
+		{
+			headline: Article3Headline,
+			image: Article3Image,
+			kicker: Article3Kicker,
+		},
+		{
+			headline: Article4Headline,
+			image: Article4Image,
+			kicker: Article4Kicker,
+		},
 	];
 
 	const getCards = retrieveCapiData('multiple', SeriesURL).then((response) =>
