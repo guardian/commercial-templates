@@ -9,7 +9,6 @@
 	export let SeriesUrl: string;
 	export let ComponentTitle: string;
 	export let edition: Single['branding']['edition'];
-	export let templateType: 'single' | 'multiple';
 
 	export let popup = false;
 </script>
@@ -45,7 +44,7 @@
 			href={`${CLICK_MACRO}https://theguardian.com/${SeriesUrl}`}
 			target="_top"
 		>
-			<h2 class="title" class:multiple-title={templateType === 'multiple'}>
+			<h2 class="title">
 				{ComponentTitle}
 			</h2>
 		</a>
