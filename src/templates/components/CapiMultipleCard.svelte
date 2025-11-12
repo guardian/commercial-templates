@@ -151,6 +151,10 @@
 		font-family: 'GuardianTextSans';
 		color: var(--neutral-7);
 		padding: 0px;
+
+		@media (min-width: 980px) {
+			font-size: 1.25rem;
+		}
 	}
 
 	.kicker {

@@ -123,9 +123,13 @@
 		h2 {
 			margin: 0;
 			padding: 0 0 10px;
-			font-size: 24px;
+			font-size: 1.0625rem;
+			line-height: 1.15;
 			font-family: 'GuardianTextSans';
 			color: var(--neutral-7);
+			@media (min-width: 980px) {
+				font-size: 1.25rem;
+			}
 		}
 
 		p {
