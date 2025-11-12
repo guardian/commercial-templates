@@ -72,6 +72,7 @@
 				SeriesUrl={SeriesURL}
 				templateType="multiple"
 			/>
+
 			<div class="body">
 				<div class="cards-container">
 					{#each cards as single}
@@ -122,11 +123,6 @@
 		}
 	}
 
-	h3 {
-		background-color: var(--labs-400);
-		color: white;
-	}
-
 	.cards-container {
 		display: flex;
 		flex-direction: column;
@@ -139,15 +135,14 @@
 		@media (min-width: 740px) {
 			flex-direction: row;
 		}
+		@media (min-width: 1140px) {
+			margin-left: 10px;
+		}
 	}
 
 	.sponsor-container {
 		display: flex;
 		flex-direction: row;
 		justify-content: flex-end;
-
-		@media (min-width: 1140px) {
-			margin-right: 10px;
-		}
 	}
 </style>

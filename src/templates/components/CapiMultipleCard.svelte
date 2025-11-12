@@ -118,6 +118,8 @@
 		}
 
 		@media (min-width: 740px) {
+			margin-bottom: unset;
+
 			position: relative;
 
 			/** Left border between cards on tablet/desktop */

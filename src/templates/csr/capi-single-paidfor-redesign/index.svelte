@@ -47,10 +47,12 @@
 			{SeriesUrl}
 		/>
 
-		<CapiSingleCard {single} />
+		<div class="body">
+			<CapiSingleCard {single} />
 
-		<div class="sponsor">
-			<SponsorRedesign branding={single.branding} />
+			<div class="sponsor-container">
+				<SponsorRedesign branding={single.branding} />
+			</div>
 		</div>
 	</aside>
 	<Resizer {height} />
@@ -59,6 +61,14 @@
 {/await}
 
 <style>
+	:global(body) {
+		margin: 0;
+	}
+
+	div {
+		width: auto;
+	}
+
 	aside {
 		padding: 12px;
 		background: var(--neutral-100);
@@ -83,9 +93,9 @@
 		}
 	}
 
-	.sponsor {
-		@media (min-width: 740px) {
-			grid-column-start: 2;
-		}
+	.sponsor-container {
+		display: flex;
+		flex-direction: row;
+		justify-content: flex-end;
 	}
 </style>
