@@ -80,7 +80,7 @@
 		}
 	}
 
-	a {
+	.single-card {
 		color: var(--neutral-0);
 		text-decoration: none;
 		position: relative;
@@ -101,11 +101,19 @@
 		@media (min-width: 740px) {
 			display: grid;
 			grid-template-columns: repeat(2, 1fr);
-			/* grid-template-rows: repeat(2, 1fr) 100px; */
 		}
 
 		@media (min-width: 1140px) {
-			margin: 8px 20px 8px;
+			margin: 0 0 8px 20px;
+			position: relative;
+			::before {
+				content: '';
+				position: absolute;
+				top: 0;
+				left: -10px;
+				bottom: 0;
+				border-left: 1px solid var(--neutral-86);
+			}
 		}
 	}
 
