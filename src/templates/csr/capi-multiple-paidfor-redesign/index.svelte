@@ -118,7 +118,6 @@
 
 		@media (min-width: 1300px) {
 			grid-template-columns: 211px 1fr;
-			gap: 12px;
 		}
 	}
 
