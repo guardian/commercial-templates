@@ -27,6 +27,11 @@ export type Branding = {
 	edition: 'UK' | 'AU' | 'US';
 };
 
+export type CapiRequestType = 'single' | 'multiple';
+export type CapiResponse<CapiRequestType> = 'multiple' extends CapiRequestType
+	? { articles: Single[] }
+	: Single;
+
 /**
  * Best effort at interpreting Scala types.
  *

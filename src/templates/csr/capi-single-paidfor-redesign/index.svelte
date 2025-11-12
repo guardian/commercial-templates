@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { retrieveCapiData, addCapiCardOverrides } from '$lib/capiSingle';
+	import { retrieveCapiData, addCapiCardOverrides } from '$lib/capi';
 	import {
 		addTrackingPixel,
 		isValidReplacedVariable,
@@ -15,23 +15,22 @@
 	export let SeriesUrl: GAMVariable;
 	export let ComponentTitle: GAMVariable;
 	export let ArticleHeadline: GAMVariable;
-	export let ArticleUrl: GAMVariable;
 	export let ArticleText: GAMVariable;
 	export let ArticleImage: GAMVariable;
-	export let TrackingId: GAMVariable;
+	export let TrackingPixel: GAMVariable;
 
 	let cardOverrides: CapiCardOverride = {
 		headline: ArticleHeadline,
-		url: ArticleUrl,
 		image: ArticleImage,
 		text: ArticleText,
 	};
 
-	const getCard = retrieveCapiData(SeriesUrl, cardOverrides).then((response) =>
-		addCapiCardOverrides(response, cardOverrides),
+	const getCard = retrieveCapiData('single', SeriesUrl).then(
+		(response) =>
+			addCapiCardOverrides([response], [cardOverrides])[0] || response,
 	);
 
-	if (isValidReplacedVariable(TrackingId)) addTrackingPixel(TrackingId);
+	if (isValidReplacedVariable(TrackingPixel)) addTrackingPixel(TrackingPixel);
 
 	let height: number = -1;
 </script>

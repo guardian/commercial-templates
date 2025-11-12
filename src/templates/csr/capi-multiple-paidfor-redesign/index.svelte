@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { addCapiCardOverrides, retrieveCapiData } from '$lib/capiMultiple';
+	import { addCapiCardOverrides, retrieveCapiData } from '$lib/capi';
 	import {
 		addTrackingPixel,
 		type GAMVariable,
@@ -17,54 +17,46 @@
 	export let ComponentTitle: GAMVariable;
 	export let Article1Headline: GAMVariable;
 	export let Article1Image: GAMVariable;
-	export let Article1URL: GAMVariable;
 	export let Article1Kicker: GAMVariable;
 	export let Article2Headline: GAMVariable;
 	export let Article2Image: GAMVariable;
-	export let Article2URL: GAMVariable;
 	export let Article2Kicker: GAMVariable;
 	export let Article3Headline: GAMVariable;
 	export let Article3Image: GAMVariable;
-	export let Article3URL: GAMVariable;
 	export let Article3Kicker: GAMVariable;
 	export let Article4Headline: GAMVariable;
 	export let Article4Image: GAMVariable;
-	export let Article4URL: GAMVariable;
 	export let Article4Kicker: GAMVariable;
-	export let Trackingpixel: GAMVariable;
+	export let TrackingPixel: GAMVariable;
 
 	let cardOverrides: CapiCardOverride[] = [
 		{
 			headline: Article1Headline,
 			image: Article1Image,
-			url: Article1URL,
 			kicker: Article1Kicker,
 		},
 		{
 			headline: Article2Headline,
 			image: Article2Image,
-			url: Article2URL,
 			kicker: Article2Kicker,
 		},
 		{
 			headline: Article3Headline,
 			image: Article3Image,
-			url: Article3URL,
 			kicker: Article3Kicker,
 		},
 		{
 			headline: Article4Headline,
 			image: Article4Image,
-			url: Article4URL,
 			kicker: Article4Kicker,
 		},
 	];
 
-	const getCards = retrieveCapiData(SeriesURL, cardOverrides).then((response) =>
+	const getCards = retrieveCapiData('multiple', SeriesURL).then((response) =>
 		addCapiCardOverrides(response.articles, cardOverrides),
 	);
 
-	if (isValidReplacedVariable(Trackingpixel)) addTrackingPixel(Trackingpixel);
+	if (isValidReplacedVariable(TrackingPixel)) addTrackingPixel(TrackingPixel);
 
 	let height: number = -1;
 </script>
