@@ -44,10 +44,6 @@
 			<CapiMedia {articleImage} />
 		{/if}
 	</div>
-
-	<div class="sponsor">
-		<SponsorRedesign branding={single.branding} templateType="single" />
-	</div>
 </a>
 
 <style lang="scss">
@@ -79,9 +75,6 @@
 		/** This is needed to absolutely position the hover overlay */
 		position: relative;
 
-		margin-left: -10px;
-		margin-right: -10px;
-
 		@media (min-width: 740px) {
 			grid-row: span 2;
 		}
@@ -92,11 +85,9 @@
 		text-decoration: none;
 		position: relative;
 
-		border-top: 1px solid var(--neutral-86);
-		margin: 8px;
+		margin: 8px 0;
 		display: grid;
 		gap: 20px;
-		padding: 8px;
 
 		&:hover {
 			.hover-overlay {
@@ -110,7 +101,7 @@
 		@media (min-width: 740px) {
 			display: grid;
 			grid-template-columns: repeat(2, 1fr);
-			grid-template-rows: repeat(2, 1fr) 100px;
+			/* grid-template-rows: repeat(2, 1fr) 100px; */
 		}
 
 		@media (min-width: 1140px) {
@@ -147,11 +138,5 @@
 	.kicker {
 		font-size: 16px;
 		color: var(--labs-200);
-	}
-
-	.sponsor {
-		@media (min-width: 740px) {
-			grid-column-start: 2;
-		}
 	}
 </style>
