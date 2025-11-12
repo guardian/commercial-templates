@@ -79,10 +79,7 @@
 					{/each}
 				</div>
 				<div class="sponsor-container">
-					<SponsorRedesign
-						branding={cards[0].branding}
-						templateType="multiple"
-					/>
+					<SponsorRedesign branding={cards[0].branding} />
 				</div>
 			</div>
 		</aside>
