@@ -71,6 +71,13 @@
 		overflow: hidden;
 		/** This is needed to absolutely position the hover overlay */
 		position: relative;
+
+		@media (max-width: 739.9px) {
+			width: 120px;
+			height: auto;
+			flex-shrink: 0;
+			margin-top: 8px;
+		}
 	}
 
 	a {
@@ -90,7 +97,6 @@
 
 	.multiple-card {
 		display: flex;
-		flex-direction: column;
 		justify-content: space-between;
 		flex-basis: 100%;
 		width: auto;
@@ -99,11 +105,10 @@
 		/** Needed to absolutely position the dividers */
 		position: relative;
 
-		@media (max-width: 739px) {
-			/* Only show the media for the first card on mobile */
-			&:not(:first-of-type) .media {
-				display: none;
-			}
+		@media (max-width: 739.9px) {
+			flex-direction: row-reverse;
+			align-items: flex-start;
+			column-gap: 10px;
 
 			/** Top border between cards on mobile */
 			&:not(:first-of-type)::before {
@@ -119,8 +124,7 @@
 
 		@media (min-width: 740px) {
 			margin-bottom: unset;
-
-			position: relative;
+			flex-direction: column;
 
 			/** Left border between cards on tablet/desktop */
 			&:not(:first-of-type)::before {
