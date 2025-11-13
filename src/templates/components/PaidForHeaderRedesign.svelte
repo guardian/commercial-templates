@@ -9,7 +9,6 @@
 	export let SeriesUrl: string;
 	export let ComponentTitle: string;
 	export let edition: Single['branding']['edition'];
-	export let templateType: 'single' | 'multiple';
 
 	export let popup = false;
 </script>
@@ -23,7 +22,7 @@
 			<strong class="paid-info--label">Paid content</strong>
 			<div class="popup-container">
 				<Button on:click={() => (popup = !popup)}
-					>About <ArrowDown width={12} flip={popup} /></Button
+					>About <ArrowDown width={14} flip={popup} /></Button
 				>
 				{#if popup}
 					<div id="popup" class="popup">
@@ -45,7 +44,7 @@
 			href={`${CLICK_MACRO}https://theguardian.com/${SeriesUrl}`}
 			target="_top"
 		>
-			<h2 class="title" class:multiple-title={templateType === 'multiple'}>
+			<h2 class="title">
 				{ComponentTitle}
 			</h2>
 		</a>
@@ -122,6 +121,14 @@
 				color: var(--labs-100);
 				padding-right: 0.5em;
 			}
+
+			@media (min-width: 1140px) {
+				flex-direction: column;
+				gap: 8px;
+			}
+			@media (min-width: 1300px) {
+				flex-direction: row;
+			}
 		}
 
 		a {
@@ -175,7 +182,7 @@
 		}
 
 		@media (min-width: 1140px) {
-			right: -125%;
+			left: 0;
 		}
 	}
 </style>

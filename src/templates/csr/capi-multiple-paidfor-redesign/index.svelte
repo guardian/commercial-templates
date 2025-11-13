@@ -70,8 +70,8 @@
 				edition={cards[0].branding.edition}
 				{ComponentTitle}
 				SeriesUrl={SeriesURL}
-				templateType="multiple"
 			/>
+
 			<div class="body">
 				<div class="cards-container">
 					{#each cards as single}
@@ -79,10 +79,7 @@
 					{/each}
 				</div>
 				<div class="sponsor-container">
-					<SponsorRedesign
-						branding={cards[0].branding}
-						templateType="multiple"
-					/>
+					<SponsorRedesign branding={cards[0].branding} />
 				</div>
 			</div>
 		</aside>
@@ -121,13 +118,7 @@
 
 		@media (min-width: 1300px) {
 			grid-template-columns: 211px 1fr;
-			gap: 12px;
 		}
-	}
-
-	h3 {
-		background-color: var(--labs-400);
-		color: white;
 	}
 
 	.cards-container {
@@ -142,15 +133,14 @@
 		@media (min-width: 740px) {
 			flex-direction: row;
 		}
+		@media (min-width: 1140px) {
+			margin-left: 10px;
+		}
 	}
 
 	.sponsor-container {
 		display: flex;
 		flex-direction: row;
 		justify-content: flex-end;
-
-		@media (min-width: 1140px) {
-			margin-right: 10px;
-		}
 	}
 </style>

@@ -11,6 +11,7 @@
 	import '$templates/components/fonts/Sans.css';
 	import PaidForHeaderRedesign from '$templates/components/PaidForHeaderRedesign.svelte';
 	import CapiSingleCard from '$templates/components/CapiSingleCard.svelte';
+	import SponsorRedesign from '../../components/SponsorRedesign.svelte';
 
 	export let SeriesUrl: GAMVariable;
 	export let ComponentTitle: GAMVariable;
@@ -40,12 +41,18 @@
 {:then single}
 	<aside bind:clientHeight={height} style={paletteColours}>
 		<PaidForHeaderRedesign
-			templateType="single"
 			edition={single.branding.edition}
 			{ComponentTitle}
 			{SeriesUrl}
 		/>
-		<CapiSingleCard {single} />
+
+		<div class="body">
+			<CapiSingleCard {single} />
+
+			<div class="sponsor-container">
+				<SponsorRedesign branding={single.branding} />
+			</div>
+		</div>
 	</aside>
 	<Resizer {height} />
 {:catch}
@@ -53,6 +60,14 @@
 {/await}
 
 <style>
+	:global(body) {
+		margin: 0;
+	}
+
+	div {
+		width: auto;
+	}
+
 	aside {
 		padding: 12px;
 		background: var(--neutral-100);
@@ -75,5 +90,11 @@
 		@media (min-width: 1300px) {
 			grid-template-columns: 211px 1fr;
 		}
+	}
+
+	.sponsor-container {
+		display: flex;
+		flex-direction: row;
+		justify-content: flex-end;
 	}
 </style>

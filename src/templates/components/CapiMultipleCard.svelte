@@ -118,6 +118,8 @@
 		}
 
 		@media (min-width: 740px) {
+			margin-bottom: unset;
+
 			position: relative;
 
 			/** Left border between cards on tablet/desktop */
@@ -149,6 +151,10 @@
 		font-family: 'GuardianTextSans';
 		color: var(--neutral-7);
 		padding: 0px;
+
+		@media (min-width: 980px) {
+			font-size: 1.25rem;
+		}
 	}
 
 	.kicker {

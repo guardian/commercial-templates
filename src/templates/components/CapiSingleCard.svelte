@@ -44,10 +44,6 @@
 			<CapiMedia {articleImage} />
 		{/if}
 	</div>
-
-	<div class="sponsor">
-		<SponsorRedesign branding={single.branding} templateType="single" />
-	</div>
 </a>
 
 <style lang="scss">
@@ -79,24 +75,19 @@
 		/** This is needed to absolutely position the hover overlay */
 		position: relative;
 
-		margin-left: -10px;
-		margin-right: -10px;
-
 		@media (min-width: 740px) {
 			grid-row: span 2;
 		}
 	}
 
-	a {
+	.single-card {
 		color: var(--neutral-0);
 		text-decoration: none;
 		position: relative;
 
-		border-top: 1px solid var(--neutral-86);
-		margin: 8px;
+		margin: 8px 0;
 		display: grid;
 		gap: 20px;
-		padding: 8px;
 
 		&:hover {
 			.hover-overlay {
@@ -110,11 +101,19 @@
 		@media (min-width: 740px) {
 			display: grid;
 			grid-template-columns: repeat(2, 1fr);
-			grid-template-rows: repeat(2, 1fr) 100px;
 		}
 
 		@media (min-width: 1140px) {
-			margin: 8px 20px 8px;
+			margin: 0 0 8px 20px;
+			position: relative;
+			::before {
+				content: '';
+				position: absolute;
+				top: 0;
+				left: -10px;
+				bottom: 0;
+				border-left: 1px solid var(--neutral-86);
+			}
 		}
 	}
 
@@ -124,9 +123,13 @@
 		h2 {
 			margin: 0;
 			padding: 0 0 10px;
-			font-size: 24px;
+			font-size: 1.0625rem;
+			line-height: 1.15;
 			font-family: 'GuardianTextSans';
 			color: var(--neutral-7);
+			@media (min-width: 980px) {
+				font-size: 1.25rem;
+			}
 		}
 
 		p {
@@ -147,11 +150,5 @@
 	.kicker {
 		font-size: 16px;
 		color: var(--labs-200);
-	}
-
-	.sponsor {
-		@media (min-width: 740px) {
-			grid-column-start: 2;
-		}
 	}
 </style>
