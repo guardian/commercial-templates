@@ -141,10 +141,10 @@
 	}
 
 	.text {
-		margin: 0 0 4px;
+		margin: -6px 0 4px;
 
 		@media (min-width: 740px) {
-			margin-bottom: 10px;
+			margin: 0 0 10px;
 		}
 	}
 
@@ -154,7 +154,6 @@
 		line-height: 1.15;
 		font-family: 'GuardianTextSans';
 		color: var(--neutral-7);
-		padding: 0px;
 
 		@media (min-width: 980px) {
 			font-size: 1.25rem;
@@ -162,8 +161,9 @@
 	}
 
 	.kicker {
-		font-size: 14px;
+		font-size: 0.875rem;
 		font-weight: 400;
+		line-height: 1.15;
 		color: var(--labs-200);
 	}
 </style>
