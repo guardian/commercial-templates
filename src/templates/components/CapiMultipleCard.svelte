@@ -76,7 +76,6 @@
 			width: 120px;
 			height: auto;
 			flex-shrink: 0;
-			margin-top: 8px;
 		}
 	}
 
@@ -109,6 +108,7 @@
 			flex-direction: row-reverse;
 			align-items: flex-start;
 			column-gap: 10px;
+			padding-top: 8px;
 
 			/** Top border between cards on mobile */
 			&:not(:first-of-type)::before {
