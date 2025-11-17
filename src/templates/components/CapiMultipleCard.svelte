@@ -72,7 +72,7 @@
 		/** This is needed to absolutely position the hover overlay */
 		position: relative;
 
-		@media (max-width: 739.9px) {
+		@media (width < 740px) {
 			width: 120px;
 			height: auto;
 			flex-shrink: 0;
@@ -105,7 +105,7 @@
 		/** Needed to absolutely position the dividers */
 		position: relative;
 
-		@media (max-width: 739.9px) {
+		@media (width < 740px) {
 			flex-direction: row-reverse;
 			align-items: flex-start;
 			column-gap: 10px;
