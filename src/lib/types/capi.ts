@@ -47,6 +47,7 @@ export type Single = {
 	articleImage?: {
 		sources: Source[];
 		backupSrc: string;
+		altText?: string;
 	};
 	audioTag: boolean;
 	galleryTag: boolean;
