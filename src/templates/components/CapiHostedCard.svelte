@@ -29,10 +29,10 @@
 						sizes={source.sizes}
 					/>
 				{/each}
-				<img src={image.backupSrc} alt="" />
+				<img src={image.backupSrc} alt={image.altText} />
 			</picture>
 		{:else if image?.backupSrc}
-			<img src={image.backupSrc} alt="" />
+			<img src={image.backupSrc} alt={image.altText} />
 		{/if}
 	</div>
 	<h2>

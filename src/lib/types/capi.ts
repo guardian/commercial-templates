@@ -61,6 +61,7 @@ export type CapiHostedCard = {
 	image?: {
 		sources: Source[];
 		backupSrc: string;
+		altText?: string;
 	};
 	audioTag?: boolean;
 	galleryTag?: boolean;
