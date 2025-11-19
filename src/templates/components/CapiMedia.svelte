@@ -22,10 +22,10 @@
 				sizes={source.sizes}
 			/>
 		{/each}
-		<img src={articleImage.backupSrc} alt="" />
+		<img src={articleImage.backupSrc} alt={articleImage.altText} />
 	</picture>
 {:else if articleImage?.backupSrc}
-	<img src={articleImage.backupSrc} alt="" />
+	<img src={articleImage.backupSrc} alt={articleImage.altText} />
 {/if}
 
 <style lang="scss">
