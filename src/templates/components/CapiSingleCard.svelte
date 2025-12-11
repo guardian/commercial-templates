@@ -5,7 +5,6 @@
 	import AudioIcon from './icons/AudioIcon.svelte';
 	import CameraIcon from './icons/CameraIcon.svelte';
 	import VideoIcon from './icons/VideoIcon.svelte';
-	import SponsorRedesign from './SponsorRedesign.svelte';
 
 	export let single: Single;
 
