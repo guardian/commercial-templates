@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v5.0.0
+        uses: actions/checkout@v6.0.1
 
       - run: corepack enable
         shell: bash
@@ -42,7 +42,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v5.0.0
+        uses: actions/checkout@v6.0.1
 
       - run: corepack enable
         shell: bash
@@ -66,7 +66,7 @@ jobs:
     needs: [lint, types]
 
     steps:
-      - uses: actions/checkout@v5.0.0
+      - uses: actions/checkout@v6.0.1
 
       - name: Setup Python
         uses: actions/setup-python@v6.0.0
