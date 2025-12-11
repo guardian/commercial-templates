@@ -4,228 +4,185 @@
 	import Button from './Button.svelte';
 	import ArrowDown from './icons/ArrowDown.svelte';
 	import '$templates/components/fonts/SansBold.css';
-	import GuardianLabs from './icons/GuardianLabs.svelte';
+	import GuardianLabsLogo from './icons/GuardianLabsCircleLogo.svelte';
 
 	export let SeriesUrl: string;
 	export let ComponentTitle: string;
 	export let edition: Single['branding']['edition'];
-	export let templateType: 'single' | 'multiple';
 
 	export let popup = false;
 </script>
 
-<header class="{templateType}-header">
-	<div class="{templateType}-paid-content-and-title">
-		<div class="paid {templateType}-paid-content">
-			<strong>Paid content</strong>
-			<Button on:click={() => (popup = !popup)}
-				>About <ArrowDown width={12} flip={popup} /></Button
-			>
-			{#if popup}
-				<div id="popup">
-					<p>
-						Paid content is paid for and controlled by an advertiser and
-						produced by the Guardian Labs team
-					</p>
-					<a
-						class="popup-link"
-						href={`${CLICK_MACRO}https://theguardian.com/content-funding`}
-						target="_top">Learn more about Guardian Labs content &rarr;</a
-					>
-				</div>
-			{/if}
+<header class="header">
+	<div class="logo">
+		<GuardianLabsLogo {edition} />
+	</div>
+	<div class="paid-info-and-title">
+		<div class="paid-info">
+			<strong class="paid-info--label">Paid content</strong>
+			<div class="popup-container">
+				<Button on:click={() => (popup = !popup)}
+					>About <ArrowDown width={14} flip={popup} /></Button
+				>
+				{#if popup}
+					<div id="popup" class="popup">
+						<p class="popup-text">
+							Paid content is paid for and controlled by an advertiser and
+							produced by the Guardian Labs team
+						</p>
+						<a
+							class="popup-link"
+							href={`${CLICK_MACRO}https://theguardian.com/content-funding`}
+							target="_top">Learn more about Guardian Labs content &rarr;</a
+						>
+					</div>
+				{/if}
+			</div>
 		</div>
 
-		<h1
-			class="adverts__title"
-			class:multiple-title={templateType === 'multiple'}
+		<a
+			href={`${CLICK_MACRO}https://theguardian.com/${SeriesUrl}`}
+			target="_top"
 		>
-			<a
-				href={`${CLICK_MACRO}https://theguardian.com/${SeriesUrl}`}
-				target="_top"
-			>
+			<h2 class="title">
 				{ComponentTitle}
-			</a>
-		</h1>
-	</div>
-
-	<div class="logo {templateType}-logo">
-		<GuardianLabs {edition} />
+			</h2>
+		</a>
 	</div>
 </header>
 
 <style lang="scss">
-	header {
-		background-color: var(--labs-400);
+	.header {
+		background-color: var(--labs-700);
 		color: black;
 		padding: 6px 10px;
 		flex-shrink: 0;
 		display: flex;
-		flex-direction: column;
-		align-items: center;
+		flex-direction: row;
 		justify-content: space-between;
-	}
-
-	.single-header {
-		align-items: start;
 
 		@media (min-width: 740px) {
-			align-items: center;
-			flex-direction: row;
 			gap: 8px;
 		}
 
 		@media (min-width: 980px) {
-			align-items: center;
-			flex-direction: column;
 			gap: 0;
 		}
 
-		@media (min-width: 1300px) {
-			align-items: start;
+		@media (min-width: 1140px) {
+			flex-direction: column;
+			padding: 12px 20px;
+		}
+
+		@media (min-width: 1140px) {
+			padding: 12px;
 		}
 	}
 
-	.single-paid-content-and-title {
+	.logo {
+		padding: 6px;
+		border-right: 1px solid var(--neutral-86);
+
+		@media (min-width: 1140px) {
+			border-right: none;
+			padding-left: 0;
+		}
+	}
+
+	.paid-info-and-title {
+		padding-left: 10px;
 		display: flex;
 		flex-direction: column;
-		align-items: flex-start;
-		justify-content: flex-start;
+		justify-content: space-around;
 		gap: 4px;
+		flex: 1;
 
 		@media (min-width: 740px) {
-			flex-direction: row;
-			align-items: center;
 			gap: 16px;
 		}
 
 		@media (min-width: 980px) {
-			flex-direction: column;
 			gap: 4px;
 		}
 
-		@media (min-width: 1300px) {
-			align-items: flex-start;
+		@media (min-width: 1140px) {
+			padding-left: 0;
+			justify-content: unset;
+		}
+
+		.paid-info {
+			display: flex;
+			justify-content: space-between;
+			position: relative;
+			font-size: 14px;
+			width: 100%;
+
+			.paid-info--label {
+				color: var(--labs-100);
+				padding-right: 0.5em;
+			}
+
+			@media (min-width: 1140px) {
+				flex-direction: column;
+				gap: 8px;
+			}
+			@media (min-width: 1300px) {
+				flex-direction: row;
+			}
+		}
+
+		a {
+			color: inherit;
+			text-decoration: none;
+
+			&:hover .title {
+				color: inherit;
+				text-decoration: underline;
+			}
+		}
+
+		.title {
+			margin: 0;
+			font-size: 1.25rem;
+			font-family: 'GuardianTextSans';
+			font-weight: 700;
 		}
 	}
 
-	.multiple-header {
-		flex-direction: row;
-		align-content: space-between;
-	}
-
-	.multiple-paid-content-and-title {
-		display: flex;
-		flex-direction: column;
-	}
-
-	.multiple-paid-content {
-		flex-direction: row;
-	}
-	.paid {
+	.popup-container {
 		position: relative;
-		font-size: 14px;
-
-		strong {
-			padding-right: 0.5em;
-		}
 	}
 
-	h1 {
-		color: white;
-		margin: 0;
-	}
-
-	.multiple-title {
-		font-size: 18px;
-		line-height: 24px;
-	}
-
-	.logo {
-		align-self: flex-end;
-	}
-
-	a {
-		color: inherit;
-		text-decoration: none;
-	}
-
-	#popup {
+	.popup {
 		position: absolute;
-		color: white;
+		color: var(--neutral-7);
 		width: 260px;
-		background: var(--neutral-20);
+		background: var(--neutral-93);
 		font-size: 14px;
 		line-height: 16px;
-		padding: 10px;
+		padding: 12px;
 		border-radius: 4px;
 		box-sizing: border-box;
 		font-weight: normal;
-		right: auto;
+		right: 0;
 		z-index: 1;
 
-		p {
+		.popup-text {
 			margin-top: 0;
 		}
-	}
 
-	.popup-link {
-		color: var(--labs-400);
-		text-decoration: none;
+		.popup-link {
+			color: var(--labs-200);
+			text-decoration: none;
 
-		&:hover,
-		&:focus {
-			text-decoration: underline;
-		}
-	}
-
-	@media (min-width: 740px) {
-		.multiple-paid-content-and-title {
-			flex-direction: inherit;
-			align-items: center;
-
-			.multiple-paid-content {
-				padding: 0 20px;
-			}
-
-			.multiple-title {
-				padding: 5px 0 7px 0;
-			}
-		}
-	}
-
-	@media (min-width: 980px) {
-		.multiple-header {
-			flex-direction: column;
-		}
-		.multiple-paid-content {
-			flex-direction: column;
-		}
-	}
-
-	@media (min-width: 1140px) {
-		header {
-			padding: 12px 20px;
-			width: 151px;
-		}
-
-		.multiple-paid-content-and-title {
-			align-self: flex-start;
-			align-items: flex-start;
-
-			.multiple-paid-content {
-				padding: 0;
+			&:hover,
+			&:focus {
+				text-decoration: underline;
 			}
 		}
 
-		.multiple-logo {
-			margin-top: auto;
-		}
-	}
-
-	@media (min-width: 1300px) {
-		header {
-			width: 211px;
+		@media (min-width: 1140px) {
+			left: 0;
 		}
 	}
 </style>

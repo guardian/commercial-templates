@@ -1,37 +1,37 @@
 <script lang="ts">
-	import { retrieveCapiData, addCapiCardOverrides } from '$lib/capiSingle';
+	import { retrieveCapiData, addCapiCardOverrides } from '$lib/capi';
 	import {
 		addTrackingPixel,
 		isValidReplacedVariable,
 		type GAMVariable,
 	} from '$lib/gam';
-	import CapiCard from '$templates/components/CapiCard.svelte';
 	import { paletteColours } from '$templates/components/colours/paletteColours';
-	import PaidForHeader from '$templates/components/PaidForHeader.svelte';
 	import Resizer from '$templates/components/Resizer.svelte';
 	import type { CapiCardOverride } from '$lib/types/capi';
 	import '$templates/components/fonts/Sans.css';
+	import PaidForHeader from '$templates/components/PaidForHeader.svelte';
+	import CapiSingleCard from '$templates/components/CapiSingleCard.svelte';
+	import Sponsor from '../../components/Sponsor.svelte';
 
 	export let SeriesUrl: GAMVariable;
 	export let ComponentTitle: GAMVariable;
 	export let ArticleHeadline: GAMVariable;
-	export let ArticleUrl: GAMVariable;
 	export let ArticleText: GAMVariable;
 	export let ArticleImage: GAMVariable;
-	export let TrackingId: GAMVariable;
+	export let TrackingPixel: GAMVariable;
 
 	let cardOverrides: CapiCardOverride = {
 		headline: ArticleHeadline,
-		url: ArticleUrl,
 		image: ArticleImage,
 		text: ArticleText,
 	};
 
-	const getCard = retrieveCapiData(SeriesUrl, cardOverrides).then((response) =>
-		addCapiCardOverrides(response, cardOverrides),
+	const getCard = retrieveCapiData('single', SeriesUrl).then(
+		(response) =>
+			addCapiCardOverrides([response], [cardOverrides])[0] || response,
 	);
 
-	if (isValidReplacedVariable(TrackingId)) addTrackingPixel(TrackingId);
+	if (isValidReplacedVariable(TrackingPixel)) addTrackingPixel(TrackingPixel);
 
 	let height: number = -1;
 </script>
@@ -41,12 +41,18 @@
 {:then single}
 	<aside bind:clientHeight={height} style={paletteColours}>
 		<PaidForHeader
-			templateType="single"
 			edition={single.branding.edition}
 			{ComponentTitle}
 			{SeriesUrl}
 		/>
-		<CapiCard templateType="single" {single} />
+
+		<div class="body">
+			<CapiSingleCard {single} />
+
+			<div class="sponsor-container">
+				<Sponsor branding={single.branding} />
+			</div>
+		</div>
 	</aside>
 	<Resizer {height} />
 {:catch}
@@ -54,8 +60,17 @@
 {/await}
 
 <style>
+	:global(body) {
+		margin: 0;
+	}
+
+	div {
+		width: auto;
+	}
+
 	aside {
-		background: var(--neutral-97);
+		padding: 12px;
+		background: var(--neutral-100);
 		position: relative;
 		display: flex;
 		flex-direction: column;
@@ -66,16 +81,20 @@
 		text-rendering: optimizelegibility;
 		font-variant-ligatures: common-ligatures;
 		-webkit-font-smoothing: antialiased;
-	}
 
-	h3 {
-		background-color: var(--labs-400);
-		color: white;
-	}
-
-	@media (min-width: 1140px) {
-		aside {
-			flex-direction: row;
+		@media (min-width: 1140px) {
+			display: grid;
+			grid-template-columns: 151px 1fr;
 		}
+
+		@media (min-width: 1300px) {
+			grid-template-columns: 211px 1fr;
+		}
+	}
+
+	.sponsor-container {
+		display: flex;
+		flex-direction: row;
+		justify-content: flex-end;
 	}
 </style>
