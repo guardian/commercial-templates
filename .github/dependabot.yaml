@@ -61,6 +61,6 @@ updates:
     schedule:
       interval: 'weekly'
   - package-ecosystem: 'pip'
-    directory: '/scripts'
+    directory: '/scripts/deploy'
     schedule:
       interval: 'monthly'
