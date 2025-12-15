@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { CLICK_MACRO } from '$lib/gam';
+	import { clickMacro } from '$lib/gam';
 	import type { Branding } from '$lib/types/capi';
 
 	export let branding: Branding;
@@ -7,7 +7,7 @@
 
 <div>
 	<p>Paid for by</p>
-	<a href={`${CLICK_MACRO}${branding.logo.link}`}>
+	<a href={clickMacro(branding.logo.link)}>
 		<img src={branding.logo.src} alt={`logo for ${branding.sponsorName}`} />
 	</a>
 </div>

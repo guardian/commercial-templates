@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { CLICK_MACRO } from '$lib/gam';
+	import { clickMacro } from '$lib/gam';
 	import type { Single } from '$lib/types/capi';
 	import Button from './Button.svelte';
 	import ArrowDown from './icons/ArrowDown.svelte';
@@ -32,7 +32,7 @@
 						</p>
 						<a
 							class="popup-link"
-							href={`${CLICK_MACRO}https://theguardian.com/content-funding`}
+							href={clickMacro('https://theguardian.com/content-funding')}
 							target="_top">Learn more about Guardian Labs content &rarr;</a
 						>
 					</div>
@@ -40,10 +40,7 @@
 			</div>
 		</div>
 
-		<a
-			href={`${CLICK_MACRO}https://theguardian.com/${SeriesUrl}`}
-			target="_top"
-		>
+		<a href={clickMacro(`https://theguardian.com/${SeriesUrl}`)} target="_top">
 			<h2 class="title">
 				{ComponentTitle}
 			</h2>

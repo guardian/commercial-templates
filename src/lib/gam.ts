@@ -36,7 +36,6 @@ const clickMacro = (url: string): string => `${CLICK_MACRO}${url}`;
 export type { GAMVariable };
 export {
 	CACHE_BUST,
-	CLICK_MACRO,
 	DEST_URL,
 	addTrackingPixel,
 	gamVar,

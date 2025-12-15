@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { CLICK_MACRO } from '$lib/gam';
+	import { clickMacro } from '$lib/gam';
 	import type { Single } from '$lib/types/capi';
 	import { palette } from '@guardian/source/foundations';
 
@@ -16,7 +16,7 @@
 	export let edition: Single['branding']['edition'] = 'UK';
 </script>
 
-<a href={`${CLICK_MACRO}${host}/${GLABS_EDITIONS[edition]}`} target="_top">
+<a href={clickMacro(`${host}/${GLABS_EDITIONS[edition]}`)} target="_top">
 	<svg
 		aria-hidden="true"
 		width="70"
