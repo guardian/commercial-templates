@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { CLICK_MACRO, type GAMVariable } from '$lib/gam';
+	import { clickMacro, type GAMVariable } from '$lib/gam';
 	import ArrowRight from './icons/ArrowRight.svelte';
 	import LiveLogo from './icons/LiveLogo.svelte';
 	import '$templates/components/fonts/Headline.css';
@@ -20,7 +20,7 @@
 	</div>
 
 	<div class="button-container">
-		<a class="button" href={`${CLICK_MACRO}${HeaderButtonUrl}`} target="_top">
+		<a class="button" href={clickMacro(HeaderButtonUrl)} target="_top">
 			{HeaderButtonText}
 			<ArrowRight width={30} />
 		</a>

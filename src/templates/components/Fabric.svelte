@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { writable, type Writable } from 'svelte/store';
 	import {
-		CLICK_MACRO,
+		clickMacro,
 		DEST_URL,
 		type GAMVariable,
 		isValidReplacedVariable,
@@ -125,7 +125,7 @@
 	class:is-parallax={BackgroundScrollType === 'parallax'}
 	class:is-xl={isXL}
 	class:is-top-slot-video={IsFullWidthTopSlot === 'yes'}
-	href={`${CLICK_MACRO}${DEST_URL}`}
+	href={clickMacro(DEST_URL)}
 	target="_blank"
 >
 	<div
