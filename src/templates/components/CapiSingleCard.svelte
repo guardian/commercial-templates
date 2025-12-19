@@ -73,10 +73,6 @@
 		overflow: hidden;
 		/** This is needed to absolutely position the hover overlay */
 		position: relative;
-
-		@media (min-width: 740px) {
-			grid-row: span 2;
-		}
 	}
 
 	.single-card {
@@ -86,6 +82,7 @@
 
 		margin: 8px 0;
 		display: grid;
+
 		gap: 20px;
 
 		&:hover {
@@ -122,12 +119,12 @@
 		h2 {
 			margin: 0;
 			padding: 0 0 10px;
-			font-size: 1.0625rem;
+			font-size: 1.25rem;
 			line-height: 1.15;
 			font-family: 'GuardianTextSans';
 			color: var(--neutral-7);
 			@media (min-width: 980px) {
-				font-size: 1.25rem;
+				font-size: 1.5rem;
 			}
 		}
 
@@ -139,10 +136,6 @@
 			@media (min-width: 740px) {
 				display: block;
 			}
-		}
-
-		@media (min-width: 740px) {
-			grid-row: span 2;
 		}
 	}
 

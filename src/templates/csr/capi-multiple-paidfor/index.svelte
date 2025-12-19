@@ -98,6 +98,7 @@
 		width: auto;
 	}
 	aside {
+		margin: auto;
 		padding: 12px;
 		background: var(--neutral-100);
 		position: relative;
@@ -111,12 +112,20 @@
 		font-variant-ligatures: common-ligatures;
 		-webkit-font-smoothing: antialiased;
 
+		max-width: 740px;
+
+		@media (min-width: 980px) {
+			max-width: 980px;
+		}
+
 		@media (min-width: 1140px) {
+			max-width: 1140px;
 			display: grid;
 			grid-template-columns: 151px 1fr;
 		}
 
 		@media (min-width: 1300px) {
+			max-width: 1300px;
 			grid-template-columns: 211px 1fr;
 		}
 	}
