@@ -6,7 +6,11 @@
 	import VideoIcon from './icons/VideoIcon.svelte';
 	import CapiMedia from './CapiMedia.svelte';
 
-	export let single: Single;
+	interface Props {
+		single: Single;
+	}
+
+	let { single }: Props = $props();
 
 	const {
 		articleHeadline,
@@ -37,7 +41,7 @@
 	</h3>
 	{#if articleImage}
 		<div class="media">
-			<div class="hover-overlay" aria-hidden="true" />
+			<div class="hover-overlay" aria-hidden="true"></div>
 			<CapiMedia {articleImage} />
 		</div>
 	{/if}

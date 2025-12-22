@@ -5,9 +5,14 @@
 	import '$templates/components/fonts/Headline.css';
 	import '$templates/components/fonts/SansBold.css';
 
-	export let HeaderButtonUrl: GAMVariable;
-	export let BannerDescription: GAMVariable;
-	export let HeaderButtonText: GAMVariable;
+	interface Props {
+		HeaderButtonUrl: GAMVariable;
+		BannerDescription: GAMVariable;
+		HeaderButtonText: GAMVariable;
+	}
+
+	let { HeaderButtonUrl, BannerDescription, HeaderButtonText }: Props =
+		$props();
 </script>
 
 <header>

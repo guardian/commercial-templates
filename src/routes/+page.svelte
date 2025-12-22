@@ -10,7 +10,11 @@
 
 	const branch = 'main';
 
-	export let data: PageData;
+	interface Props {
+		data: PageData;
+	}
+
+	let { data }: Props = $props();
 
 	const { templates } = data;
 

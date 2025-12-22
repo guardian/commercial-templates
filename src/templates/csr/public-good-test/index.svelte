@@ -4,7 +4,7 @@
 	import { getPageURL } from '$lib/messenger/get-page-url';
 	import { create, type PgmApiOptions } from '$lib/public-good';
 
-	let container: HTMLElement;
+	let container: HTMLElement = $state();
 
 	const refresh = () =>
 		post({
@@ -47,7 +47,7 @@
 	<script
 		type="text/javascript"
 		src="https://assets.publicgood.com/pgm/v1/dpg.js"
-		on:load={onload}
+		{onload}
 	></script>
 </svelte:head>
 <div
@@ -57,7 +57,7 @@
 	data-pgs-target-id="db973434-8db2-4293-9485-45ba5b591416"
 	data-pgs-target-type="campaign"
 	bind:this={container}
-/>
+></div>
 
 <style lang="scss">
 	#public-good {

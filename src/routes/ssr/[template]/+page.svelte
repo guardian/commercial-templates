@@ -1,3 +1,5 @@
+<!-- @migration-task Error while migrating Svelte code: migrating this component would require adding a `$props` rune but there's already a variable named props.
+     Rename the variable and try again or migrate by hand. -->
 <script lang="ts">
 	import Code from '$lib/Code.svelte';
 	import Previews from '$lib/Previews.svelte';
@@ -7,7 +9,13 @@
 
 	export let data: PageData;
 
-	const { template = '', html = '', css = '', props, description } = data;
+	const {
+		template = '',
+		html = '',
+		css = '',
+		templateProps,
+		description,
+	} = data;
 
 	reloadTemplate(template);
 </script>
@@ -20,6 +28,6 @@
 
 {@html description}
 
-<Previews {template} {html} {css} {props} />
+<Previews {template} {html} {css} {templateProps} />
 
 <Code {html} {css} />

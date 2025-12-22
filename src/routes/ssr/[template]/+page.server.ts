@@ -13,7 +13,7 @@ interface Data {
 	template: string;
 	html: string;
 	css: string;
-	props?: Record<string, string>;
+	templateProps?: Record<string, string>;
 	description: string;
 }
 
@@ -67,7 +67,7 @@ export const load: PageServerLoad = async ({ params }) => {
 
 	const gamProps = getProps(path);
 
-	const { chunks, styles } = await build(template, 'ssr', gamProps);
+	const { chunks, styles } = await build(template, 'server', gamProps);
 
 	const ssr = prerender(chunks[0].code);
 
@@ -84,7 +84,7 @@ export const load: PageServerLoad = async ({ params }) => {
 		? (JSON.parse(readFileSync(`${dir}/test.json`, 'utf-8')) as FallbackProps)
 		: {};
 
-	const props = {
+	const templateProps = {
 		...gamProps,
 		...fallback,
 	};
@@ -111,7 +111,7 @@ export const load: PageServerLoad = async ({ params }) => {
 		template,
 		html,
 		css,
-		props,
+		templateProps,
 		description,
 	};
 

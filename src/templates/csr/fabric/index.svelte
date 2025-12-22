@@ -2,32 +2,59 @@
 	import type { GAMVariable } from '$lib/gam';
 	import Fabric from '$templates/components/Fabric.svelte';
 
-	export let Trackingpixel: GAMVariable;
-	export let Researchpixel: GAMVariable;
-	export let Viewabilitypixel: GAMVariable;
+	interface Props {
+		Trackingpixel: GAMVariable;
+		Researchpixel: GAMVariable;
+		Viewabilitypixel: GAMVariable;
+		BackgroundScrollType: GAMVariable<'parallax' | 'none' | 'fixed'>;
+		BackgroundColour: GAMVariable;
+		BackgroundImage: GAMVariable;
+		BackgroundImagePosition: GAMVariable;
+		BackgroundImageRepeat: GAMVariable;
+		Layer1BackgroundImage: GAMVariable;
+		Layer1BackgroundPosition: GAMVariable;
+		Layer2BackgroundImage: GAMVariable;
+		Layer2BackgroundPosition: GAMVariable;
+		Layer3BackgroundImage: GAMVariable;
+		Layer3BackgroundPosition: GAMVariable;
+		MobileBackgroundImage: GAMVariable;
+		MobileBackgroundImagePosition: GAMVariable;
+		MobileBackgroundImageRepeat: GAMVariable;
+		MobileLayer1BackgroundImage: GAMVariable;
+		MobileLayer1BackgroundPosition: GAMVariable;
+		MobileLayer2BackgroundImage: GAMVariable;
+		MobileLayer2BackgroundPosition: GAMVariable;
+		MobileLayer3BackgroundImage: GAMVariable;
+		MobileLayer3BackgroundPosition: GAMVariable;
+	}
 
-	export let BackgroundScrollType: GAMVariable<'parallax' | 'none' | 'fixed'>;
-	export let BackgroundColour: GAMVariable;
+	let {
+		Trackingpixel,
+		Researchpixel,
+		Viewabilitypixel,
+		BackgroundScrollType,
+		BackgroundColour,
+		BackgroundImage,
+		BackgroundImagePosition,
+		BackgroundImageRepeat,
+		Layer1BackgroundImage,
+		Layer1BackgroundPosition,
+		Layer2BackgroundImage,
+		Layer2BackgroundPosition,
+		Layer3BackgroundImage,
+		Layer3BackgroundPosition,
+		MobileBackgroundImage,
+		MobileBackgroundImagePosition,
+		MobileBackgroundImageRepeat,
+		MobileLayer1BackgroundImage,
+		MobileLayer1BackgroundPosition,
+		MobileLayer2BackgroundImage,
+		MobileLayer2BackgroundPosition,
+		MobileLayer3BackgroundImage,
+		MobileLayer3BackgroundPosition,
+	}: Props = $props();
 
-	export let BackgroundImage: GAMVariable;
-	export let BackgroundImagePosition: GAMVariable;
-	export let BackgroundImageRepeat: GAMVariable;
-	export let Layer1BackgroundImage: GAMVariable;
-	export let Layer1BackgroundPosition: GAMVariable;
-	export let Layer2BackgroundImage: GAMVariable;
-	export let Layer2BackgroundPosition: GAMVariable;
-	export let Layer3BackgroundImage: GAMVariable;
-	export let Layer3BackgroundPosition: GAMVariable;
-
-	export let MobileBackgroundImage: GAMVariable;
-	export let MobileBackgroundImagePosition: GAMVariable;
-	export let MobileBackgroundImageRepeat: GAMVariable;
-	export let MobileLayer1BackgroundImage: GAMVariable;
-	export let MobileLayer1BackgroundPosition: GAMVariable;
-	export let MobileLayer2BackgroundImage: GAMVariable;
-	export let MobileLayer2BackgroundPosition: GAMVariable;
-	export let MobileLayer3BackgroundImage: GAMVariable;
-	export let MobileLayer3BackgroundPosition: GAMVariable;
+	console.log(BackgroundScrollType);
 </script>
 
 <Fabric

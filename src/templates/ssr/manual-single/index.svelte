@@ -7,14 +7,18 @@
 	import ArrowRight from '$templates/components/icons/ArrowRight.svelte';
 	import BrandLogo from '$templates/components/icons/BrandLogo.svelte';
 
-	export let Tone: GAMVariable;
-	export let TitleURL: GAMVariable;
-	export let OfferURL: GAMVariable;
-	export let Explainer: GAMVariable;
-	export let ViewAll: GAMVariable;
+	interface Props {
+		Tone: GAMVariable;
+		TitleURL: GAMVariable;
+		OfferURL: GAMVariable;
+		Explainer: GAMVariable;
+		ViewAll: GAMVariable;
+		// What’s this about?
+		OmnitureId: GAMVariable;
+	}
 
-	// What’s this about?
-	export let OmnitureId: GAMVariable;
+	let { Tone, TitleURL, OfferURL, Explainer, ViewAll, OmnitureId }: Props =
+		$props();
 </script>
 
 <aside

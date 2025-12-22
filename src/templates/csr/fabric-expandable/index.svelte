@@ -1,61 +1,109 @@
 <script lang="ts">
+	import { run } from 'svelte/legacy';
+
 	import type { GAMVariable } from '$lib/gam';
 	import { post } from '$lib/messenger';
 	import Fabric from '$templates/components/Fabric.svelte';
 	import ArrowDown from '$templates/components/icons/ArrowDown.svelte';
 	import CrossIcon from '$templates/components/icons/CrossIcon.svelte';
 
-	export let Trackingpixel: GAMVariable;
-	export let Researchpixel: GAMVariable;
-	export let Viewabilitypixel: GAMVariable;
+	interface Props {
+		Trackingpixel: GAMVariable;
+		Researchpixel: GAMVariable;
+		Viewabilitypixel: GAMVariable;
+		ScrollType: GAMVariable<'parallax' | 'none' | 'fixed'>;
+		Slide1BackgroundColour: GAMVariable;
+		Slide1BackgroundImage: GAMVariable;
+		Slide1BackgroundRepeat: GAMVariable;
+		Slide1BackgroundPosition: GAMVariable;
+		Slide1MobileBackgroundImage: GAMVariable;
+		Slide1MobileBackgroundRepeat: GAMVariable;
+		Slide1MobileBackgroundPosition: GAMVariable;
+		Slide1Layer1BackgroundImage: GAMVariable;
+		Slide1Layer1BackgroundPosition: GAMVariable;
+		Slide1Layer1MobileBackgroundImage: GAMVariable;
+		Slide1Layer1MobileBackgroundPosition: GAMVariable;
+		Slide1Layer2BackgroundImage: GAMVariable;
+		Slide1Layer2BackgroundPosition: GAMVariable;
+		Slide1Layer2MobileBackgroundImage: GAMVariable;
+		Slide1Layer2MobileBackgroundPosition: GAMVariable;
+		Slide1Layer3BackgroundImage: GAMVariable;
+		Slide1Layer3BackgroundPosition: GAMVariable;
+		Slide1Layer3MobileBackgroundImage: GAMVariable;
+		Slide1Layer3MobileBackgroundPosition: GAMVariable;
+		Slide2BackgroundColour: GAMVariable;
+		Slide2BackgroundImage: GAMVariable;
+		Slide2BackgroundRepeat: GAMVariable;
+		Slide2BackgroundPosition: GAMVariable;
+		Slide2MobileBackgroundImage: GAMVariable;
+		Slide2MobileBackgroundRepeat: GAMVariable;
+		Slide2MobileBackgroundPosition: GAMVariable;
+		Slide2Layer1BackgroundImage: GAMVariable;
+		Slide2Layer1BackgroundPosition: GAMVariable;
+		Slide2Layer1MobileBackgroundImage: GAMVariable;
+		Slide2Layer1MobileBackgroundPosition: GAMVariable;
+		Slide2Layer2BackgroundImage: GAMVariable;
+		Slide2Layer2BackgroundPosition: GAMVariable;
+		Slide2Layer2MobileBackgroundImage: GAMVariable;
+		Slide2Layer2MobileBackgroundPosition: GAMVariable;
+		Slide2Layer3BackgroundImage: GAMVariable;
+		Slide2Layer3BackgroundPosition: GAMVariable;
+		Slide2Layer3MobileBackgroundImage: GAMVariable;
+		Slide2Layer3MobileBackgroundPosition: GAMVariable;
+	}
 
-	export let ScrollType: GAMVariable<'parallax' | 'none' | 'fixed'>;
+	let {
+		Trackingpixel,
+		Researchpixel,
+		Viewabilitypixel,
+		ScrollType,
+		Slide1BackgroundColour,
+		Slide1BackgroundImage,
+		Slide1BackgroundRepeat,
+		Slide1BackgroundPosition,
+		Slide1MobileBackgroundImage,
+		Slide1MobileBackgroundRepeat,
+		Slide1MobileBackgroundPosition,
+		Slide1Layer1BackgroundImage,
+		Slide1Layer1BackgroundPosition,
+		Slide1Layer1MobileBackgroundImage,
+		Slide1Layer1MobileBackgroundPosition,
+		Slide1Layer2BackgroundImage,
+		Slide1Layer2BackgroundPosition,
+		Slide1Layer2MobileBackgroundImage,
+		Slide1Layer2MobileBackgroundPosition,
+		Slide1Layer3BackgroundImage,
+		Slide1Layer3BackgroundPosition,
+		Slide1Layer3MobileBackgroundImage,
+		Slide1Layer3MobileBackgroundPosition,
+		Slide2BackgroundColour,
+		Slide2BackgroundImage,
+		Slide2BackgroundRepeat,
+		Slide2BackgroundPosition,
+		Slide2MobileBackgroundImage,
+		Slide2MobileBackgroundRepeat,
+		Slide2MobileBackgroundPosition,
+		Slide2Layer1BackgroundImage,
+		Slide2Layer1BackgroundPosition,
+		Slide2Layer1MobileBackgroundImage,
+		Slide2Layer1MobileBackgroundPosition,
+		Slide2Layer2BackgroundImage,
+		Slide2Layer2BackgroundPosition,
+		Slide2Layer2MobileBackgroundImage,
+		Slide2Layer2MobileBackgroundPosition,
+		Slide2Layer3BackgroundImage,
+		Slide2Layer3BackgroundPosition,
+		Slide2Layer3MobileBackgroundImage,
+		Slide2Layer3MobileBackgroundPosition,
+	}: Props = $props();
 
-	export let Slide1BackgroundColour: GAMVariable;
-	export let Slide1BackgroundImage: GAMVariable;
-	export let Slide1BackgroundRepeat: GAMVariable;
-	export let Slide1BackgroundPosition: GAMVariable;
-	export let Slide1MobileBackgroundImage: GAMVariable;
-	export let Slide1MobileBackgroundRepeat: GAMVariable;
-	export let Slide1MobileBackgroundPosition: GAMVariable;
-	export let Slide1Layer1BackgroundImage: GAMVariable;
-	export let Slide1Layer1BackgroundPosition: GAMVariable;
-	export let Slide1Layer1MobileBackgroundImage: GAMVariable;
-	export let Slide1Layer1MobileBackgroundPosition: GAMVariable;
-	export let Slide1Layer2BackgroundImage: GAMVariable;
-	export let Slide1Layer2BackgroundPosition: GAMVariable;
-	export let Slide1Layer2MobileBackgroundImage: GAMVariable;
-	export let Slide1Layer2MobileBackgroundPosition: GAMVariable;
-	export let Slide1Layer3BackgroundImage: GAMVariable;
-	export let Slide1Layer3BackgroundPosition: GAMVariable;
-	export let Slide1Layer3MobileBackgroundImage: GAMVariable;
-	export let Slide1Layer3MobileBackgroundPosition: GAMVariable;
-
-	export let Slide2BackgroundColour: GAMVariable;
-	export let Slide2BackgroundImage: GAMVariable;
-	export let Slide2BackgroundRepeat: GAMVariable;
-	export let Slide2BackgroundPosition: GAMVariable;
-	export let Slide2MobileBackgroundImage: GAMVariable;
-	export let Slide2MobileBackgroundRepeat: GAMVariable;
-	export let Slide2MobileBackgroundPosition: GAMVariable;
-	export let Slide2Layer1BackgroundImage: GAMVariable;
-	export let Slide2Layer1BackgroundPosition: GAMVariable;
-	export let Slide2Layer1MobileBackgroundImage: GAMVariable;
-	export let Slide2Layer1MobileBackgroundPosition: GAMVariable;
-	export let Slide2Layer2BackgroundImage: GAMVariable;
-	export let Slide2Layer2BackgroundPosition: GAMVariable;
-	export let Slide2Layer2MobileBackgroundImage: GAMVariable;
-	export let Slide2Layer2MobileBackgroundPosition: GAMVariable;
-	export let Slide2Layer3BackgroundImage: GAMVariable;
-	export let Slide2Layer3BackgroundPosition: GAMVariable;
-	export let Slide2Layer3MobileBackgroundImage: GAMVariable;
-	export let Slide2Layer3MobileBackgroundPosition: GAMVariable;
-
-	let expanded = false;
+	let expanded = $state(false);
 
 	const toggleExpanded = () => (expanded = !expanded);
 
-	$: post({ type: 'resize', value: { height: expanded ? 500 : 250 } });
+	run(() => {
+		post({ type: 'resize', value: { height: expanded ? 500 : 250 } });
+	});
 </script>
 
 <aside>
@@ -114,11 +162,11 @@
 	/>
 
 	<div class={expanded ? 'button-container expanded' : 'button-container'}>
-		<button on:click={() => toggleExpanded()} class="toggle-cross">
+		<button onclick={() => toggleExpanded()} class="toggle-cross">
 			<CrossIcon plus={expanded} />
 		</button>
 
-		<button on:click={() => toggleExpanded()} class="toggle-arrow">
+		<button onclick={() => toggleExpanded()} class="toggle-arrow">
 			<ArrowDown flip={expanded} />
 		</button>
 	</div>

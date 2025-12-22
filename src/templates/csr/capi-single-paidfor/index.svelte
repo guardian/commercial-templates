@@ -13,12 +13,23 @@
 	import CapiSingleCard from '$templates/components/CapiSingleCard.svelte';
 	import Sponsor from '../../components/Sponsor.svelte';
 
-	export let SeriesUrl: GAMVariable;
-	export let ComponentTitle: GAMVariable;
-	export let ArticleHeadline: GAMVariable;
-	export let ArticleText: GAMVariable;
-	export let ArticleImage: GAMVariable;
-	export let TrackingPixel: GAMVariable;
+	interface Props {
+		SeriesUrl: GAMVariable;
+		ComponentTitle: GAMVariable;
+		ArticleHeadline: GAMVariable;
+		ArticleText: GAMVariable;
+		ArticleImage: GAMVariable;
+		TrackingPixel: GAMVariable;
+	}
+
+	let {
+		SeriesUrl,
+		ComponentTitle,
+		ArticleHeadline,
+		ArticleText,
+		ArticleImage,
+		TrackingPixel,
+	}: Props = $props();
 
 	let cardOverrides: CapiCardOverride = {
 		headline: ArticleHeadline,
@@ -33,7 +44,7 @@
 
 	if (isValidReplacedVariable(TrackingPixel)) addTrackingPixel(TrackingPixel);
 
-	let height: number = -1;
+	let height: number = $state(-1);
 </script>
 
 {#await getCard}

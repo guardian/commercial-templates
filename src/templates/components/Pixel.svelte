@@ -5,7 +5,11 @@
 		throw new Error("Don't use the <Pixel /> component in SSR templates");
 	}
 
-	export let src: string;
+	interface Props {
+		src: string;
+	}
+
+	let { src }: Props = $props();
 </script>
 
 {#if isValidReplacedVariable(src)}

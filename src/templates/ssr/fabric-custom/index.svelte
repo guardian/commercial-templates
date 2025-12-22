@@ -2,8 +2,12 @@
 	import { type GAMVariable } from '$lib/gam';
 	import FabricCustom from '$templates/components/FabricCustom.svelte';
 
-	export let ViewabilityTracker: GAMVariable;
-	export let thirdPartyJSTracking: GAMVariable;
+	interface Props {
+		ViewabilityTracker: GAMVariable;
+		thirdPartyJSTracking: GAMVariable;
+	}
+
+	let { ViewabilityTracker, thirdPartyJSTracking }: Props = $props();
 </script>
 
 <FabricCustom {ViewabilityTracker} {thirdPartyJSTracking} />

@@ -9,22 +9,27 @@
 		CLICK_URL_UNESC: '',
 	};
 
-	export let template: string;
-	export let html: string;
-	export let css: string;
-	export let props: Record<string, string> = {};
+	interface Props {
+		template: string;
+		html: string;
+		css: string;
+		templateProps?: Record<string, string>;
+	}
+	let { template, html, css, templateProps = {} }: Props = $props();
 
-	$: transformed = [
-		'<',
-		'style>',
-		css,
-		'</',
-		'style>',
+	let transformed = $derived(
+		[
+			'<',
+			'style>',
+			css,
+			'</',
+			'style>',
 
-		'<body marginwidth="0" marginheight="0">',
-		replaceGAMVariables(html, { ...defaultReplacements, ...props }),
-		'</body>',
-	].join('');
+			'<body marginwidth="0" marginheight="0">',
+			replaceGAMVariables(html, { ...defaultReplacements, ...templateProps }),
+			'</body>',
+		].join(''),
+	);
 
 	export const widths: Record<string, string> = {
 		'100%': '100%',
@@ -99,17 +104,17 @@
 	<h3>Inputs</h3>
 
 	<ul>
-		{#each Object.keys(props) as prop}
+		{#each Object.keys(templateProps) as prop}
 			<li>
 				{#if prop === 'Tone'}
 					{prop}:
-					<select bind:value={props[prop]}>
+					<select bind:value={templateProps[prop]}>
 						{#each tones as tone}
 							<option value={tone}>{tone}</option>
 						{/each}
 					</select>
 				{:else}
-					{prop}: <input type="text" bind:value={props[prop]} />
+					{prop}: <input type="text" bind:value={templateProps[prop]} />
 				{/if}
 			</li>
 		{/each}

@@ -6,27 +6,51 @@
 	import ManualHeader from '$templates/components/ManualHeader.svelte';
 	import SetHeightResizer from '$templates/components/SetHeightResizer.svelte';
 
-	export let BannerDescription: GAMVariable;
-	export let HeaderButtonText: GAMVariable;
-	export let HeaderButtonUrl: GAMVariable;
-	export let EventTitle1: GAMVariable;
-	export let EventTitle2: GAMVariable;
-	export let EventTitle3: GAMVariable;
-	export let EventTitle4: GAMVariable;
-	export let EventDateTime1: GAMVariable;
-	export let EventDateTime2: GAMVariable;
-	export let EventDateTime3: GAMVariable;
-	export let EventDateTime4: GAMVariable;
-	export let EventImage1: GAMVariable;
-	export let EventImage2: GAMVariable;
-	export let EventImage3: GAMVariable;
-	export let EventImage4: GAMVariable;
-	export let EventUrl1: GAMVariable;
-	export let EventUrl2: GAMVariable;
-	export let EventUrl3: GAMVariable;
-	export let EventUrl4: GAMVariable;
+	interface Props {
+		BannerDescription: GAMVariable;
+		HeaderButtonText: GAMVariable;
+		HeaderButtonUrl: GAMVariable;
+		EventTitle1: GAMVariable;
+		EventTitle2: GAMVariable;
+		EventTitle3: GAMVariable;
+		EventTitle4: GAMVariable;
+		EventDateTime1: GAMVariable;
+		EventDateTime2: GAMVariable;
+		EventDateTime3: GAMVariable;
+		EventDateTime4: GAMVariable;
+		EventImage1: GAMVariable;
+		EventImage2: GAMVariable;
+		EventImage3: GAMVariable;
+		EventImage4: GAMVariable;
+		EventUrl1: GAMVariable;
+		EventUrl2: GAMVariable;
+		EventUrl3: GAMVariable;
+		EventUrl4: GAMVariable;
+	}
 
-	let events = [
+	let {
+		BannerDescription,
+		HeaderButtonText,
+		HeaderButtonUrl,
+		EventTitle1,
+		EventTitle2,
+		EventTitle3,
+		EventTitle4,
+		EventDateTime1,
+		EventDateTime2,
+		EventDateTime3,
+		EventDateTime4,
+		EventImage1,
+		EventImage2,
+		EventImage3,
+		EventImage4,
+		EventUrl1,
+		EventUrl2,
+		EventUrl3,
+		EventUrl4,
+	}: Props = $props();
+
+	let events = $state([
 		{
 			eventTitle: EventTitle1,
 			eventDateTime: EventDateTime1,
@@ -51,11 +75,11 @@
 			eventImage: EventImage4,
 			eventUrl: EventUrl4,
 		},
-	];
+	]);
 
 	events = events.filter((event) => event.eventTitle !== '');
 
-	let height: number = -1;
+	let height: number = $state(-1);
 </script>
 
 <aside bind:clientHeight={height} style={paletteColours}>
@@ -74,15 +98,17 @@
 				linkText="Book tickets"
 				tone={'live'}
 			>
-				<svelte:fragment slot="title">
+				{#snippet title()}
 					{@const [boldTitle, regularTitle] = event.eventTitle.split(':')}
 					{#if regularTitle}
 						<b>{@html boldTitle}:</b>{@html regularTitle}
 					{:else}
 						{@html boldTitle}
 					{/if}
-				</svelte:fragment>
-				<svelte:fragment slot="text">{event.eventDateTime}</svelte:fragment>
+				{/snippet}
+				{#snippet text()}
+					{event.eventDateTime}
+				{/snippet}
 			</ManualCard>
 		{/each}
 	</div>

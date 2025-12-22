@@ -7,33 +7,63 @@
 	import ManualHeader from '$templates/components/ManualHeader.svelte';
 	import SetHeightResizer from '$templates/components/SetHeightResizer.svelte';
 
-	export let Tone: GAMVariable<TTone>;
-	export let TitleURL: GAMVariable;
-	export let Explainer: GAMVariable;
-	export let ViewAll: GAMVariable;
-	export let IsProminent: GAMVariable;
-	export let Offer1Title: GAMVariable;
-	export let Offer2Title: GAMVariable;
-	export let Offer3Title: GAMVariable;
-	export let Offer4Title: GAMVariable;
-	export let Offer1Meta: GAMVariable;
-	export let Offer2Meta: GAMVariable;
-	export let Offer3Meta: GAMVariable;
-	export let Offer4Meta: GAMVariable;
-	export let Offer1LinkText: GAMVariable;
-	export let Offer2LinkText: GAMVariable;
-	export let Offer3LinkText: GAMVariable;
-	export let Offer4LinkText: GAMVariable;
-	export let Offer1Image: GAMVariable;
-	export let Offer2Image: GAMVariable;
-	export let Offer3Image: GAMVariable;
-	export let Offer4Image: GAMVariable;
-	export let Offer1URL: GAMVariable;
-	export let Offer2URL: GAMVariable;
-	export let Offer3URL: GAMVariable;
-	export let Offer4URL: GAMVariable;
+	interface Props {
+		Tone: GAMVariable<TTone>;
+		TitleURL: GAMVariable;
+		Explainer: GAMVariable;
+		ViewAll: GAMVariable;
+		IsProminent: GAMVariable;
+		Offer1Title: GAMVariable;
+		Offer2Title: GAMVariable;
+		Offer3Title: GAMVariable;
+		Offer4Title: GAMVariable;
+		Offer1Meta: GAMVariable;
+		Offer2Meta: GAMVariable;
+		Offer3Meta: GAMVariable;
+		Offer4Meta: GAMVariable;
+		Offer1LinkText: GAMVariable;
+		Offer2LinkText: GAMVariable;
+		Offer3LinkText: GAMVariable;
+		Offer4LinkText: GAMVariable;
+		Offer1Image: GAMVariable;
+		Offer2Image: GAMVariable;
+		Offer3Image: GAMVariable;
+		Offer4Image: GAMVariable;
+		Offer1URL: GAMVariable;
+		Offer2URL: GAMVariable;
+		Offer3URL: GAMVariable;
+		Offer4URL: GAMVariable;
+	}
 
-	let offers = [
+	let {
+		Tone,
+		TitleURL,
+		Explainer,
+		ViewAll,
+		IsProminent,
+		Offer1Title,
+		Offer2Title,
+		Offer3Title,
+		Offer4Title,
+		Offer1Meta,
+		Offer2Meta,
+		Offer3Meta,
+		Offer4Meta,
+		Offer1LinkText,
+		Offer2LinkText,
+		Offer3LinkText,
+		Offer4LinkText,
+		Offer1Image,
+		Offer2Image,
+		Offer3Image,
+		Offer4Image,
+		Offer1URL,
+		Offer2URL,
+		Offer3URL,
+		Offer4URL,
+	}: Props = $props();
+
+	let offers = $state([
 		{
 			title: Offer1Title,
 			meta: Offer1Meta,
@@ -62,13 +92,13 @@
 			image: Offer4Image,
 			url: Offer4URL,
 		},
-	];
+	]);
 
 	const isProminent = IsProminent === 'true';
 
 	offers = offers.filter(({ title }) => title !== '');
 
-	let height: number = -1;
+	let height: number = $state(-1);
 </script>
 
 <aside bind:clientHeight={height} style={paletteColours}>
@@ -84,10 +114,12 @@
 				tone={Tone}
 				isProminent={isProminent && i === 0}
 			>
-				<svelte:fragment slot="title">
+				{#snippet title()}
 					{@html offer.title}
-				</svelte:fragment>
-				<svelte:fragment slot="text">{@html offer.meta}</svelte:fragment>
+				{/snippet}
+				{#snippet text()}
+					{@html offer.meta}
+				{/snippet}
 			</ManualCard>
 		{/each}
 	</div>

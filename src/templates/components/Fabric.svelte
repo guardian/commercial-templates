@@ -9,37 +9,73 @@
 	import { post } from '$lib/messenger';
 	import Pixel from '$templates/components/Pixel.svelte';
 
-	export let TrackingPixel: string;
-	export let ResearchPixel: string;
-	export let ViewabilityPixel: string;
-	export let BackgroundScrollType: 'parallax' | 'none' | 'fixed' = 'none';
-	export let BackgroundColour: string;
-	export let BackgroundImage: string;
-	export let BackgroundImagePosition: string;
-	export let BackgroundImageRepeat: string;
-	export let MobileBackgroundImage: string;
-	export let MobileBackgroundImagePosition: string;
-	export let MobileBackgroundImageRepeat: string;
-	export let Layer1BackgroundImage: string;
-	export let Layer1BackgroundPosition: string;
-	export let Layer2BackgroundImage: string;
-	export let Layer2BackgroundPosition: string;
-	export let Layer3BackgroundImage: string;
-	export let Layer3BackgroundPosition: string;
-	export let MobileLayer1BackgroundImage: string;
-	export let MobileLayer1BackgroundPosition: string;
-	export let MobileLayer2BackgroundImage: string;
-	export let MobileLayer2BackgroundPosition: string;
-	export let MobileLayer3BackgroundImage: string;
-	export let MobileLayer3BackgroundPosition: string;
-	export let VideoURL: GAMVariable | undefined = undefined;
-	export let VideoBackupImage: GAMVariable | undefined = undefined;
-	export let MobileVideoBackupImage: GAMVariable | undefined = undefined;
-	export let VideoURLMobile: GAMVariable | undefined = undefined;
-	export let VideoAlignment: GAMVariable | undefined = undefined;
-	export let showVideo: boolean = false;
-	export let isXL: boolean = false;
-	export let IsFullWidthTopSlot: GAMVariable<'yes' | 'no'>;
+	interface Props {
+		TrackingPixel: string;
+		ResearchPixel: string;
+		ViewabilityPixel: string;
+		BackgroundScrollType?: 'parallax' | 'none' | 'fixed';
+		BackgroundColour: string;
+		BackgroundImage: string;
+		BackgroundImagePosition: string;
+		BackgroundImageRepeat: string;
+		MobileBackgroundImage: string;
+		MobileBackgroundImagePosition: string;
+		MobileBackgroundImageRepeat: string;
+		Layer1BackgroundImage: string;
+		Layer1BackgroundPosition: string;
+		Layer2BackgroundImage: string;
+		Layer2BackgroundPosition: string;
+		Layer3BackgroundImage: string;
+		Layer3BackgroundPosition: string;
+		MobileLayer1BackgroundImage: string;
+		MobileLayer1BackgroundPosition: string;
+		MobileLayer2BackgroundImage: string;
+		MobileLayer2BackgroundPosition: string;
+		MobileLayer3BackgroundImage: string;
+		MobileLayer3BackgroundPosition: string;
+		VideoURL?: GAMVariable | undefined;
+		VideoBackupImage?: GAMVariable | undefined;
+		MobileVideoBackupImage?: GAMVariable | undefined;
+		VideoURLMobile?: GAMVariable | undefined;
+		VideoAlignment?: GAMVariable | undefined;
+		showVideo?: boolean;
+		isXL?: boolean;
+		IsFullWidthTopSlot: GAMVariable<'yes' | 'no'>;
+	}
+
+	let {
+		TrackingPixel,
+		ResearchPixel,
+		ViewabilityPixel,
+		BackgroundScrollType = 'none',
+		BackgroundColour,
+		BackgroundImage,
+		BackgroundImagePosition,
+		BackgroundImageRepeat,
+		MobileBackgroundImage,
+		MobileBackgroundImagePosition,
+		MobileBackgroundImageRepeat,
+		Layer1BackgroundImage,
+		Layer1BackgroundPosition,
+		Layer2BackgroundImage,
+		Layer2BackgroundPosition,
+		Layer3BackgroundImage,
+		Layer3BackgroundPosition,
+		MobileLayer1BackgroundImage,
+		MobileLayer1BackgroundPosition,
+		MobileLayer2BackgroundImage,
+		MobileLayer2BackgroundPosition,
+		MobileLayer3BackgroundImage,
+		MobileLayer3BackgroundPosition,
+		VideoURL = undefined,
+		VideoBackupImage = undefined,
+		MobileVideoBackupImage = undefined,
+		VideoURLMobile = undefined,
+		VideoAlignment = undefined,
+		showVideo = false,
+		isXL = false,
+		IsFullWidthTopSlot,
+	}: Props = $props();
 
 	const isMobile = window.matchMedia('(max-width: 739px)').matches;
 	const isTablet = window.matchMedia(
@@ -47,7 +83,7 @@
 	).matches;
 
 	const video: Writable<HTMLVideoElement | undefined> = writable();
-	let played = false;
+	let played = $state(false);
 
 	const posterImage = isMobile ? MobileVideoBackupImage : VideoBackupImage;
 	const videoSrc = isMobile ? VideoURLMobile : VideoURL;
@@ -134,21 +170,21 @@
 		style:--desktop-background-position={Layer1BackgroundPosition}
 		style:--mobile-background-image={`url('${MobileLayer1BackgroundImage}')`}
 		style:--mobile-background-position={MobileLayer1BackgroundPosition}
-	/>
+	></div>
 	<div
 		class="layer"
 		style:--desktop-background-image={`url('${Layer2BackgroundImage}')`}
 		style:--desktop-background-position={Layer2BackgroundPosition}
 		style:--mobile-background-image={`url('${MobileLayer2BackgroundImage}')`}
 		style:--mobile-background-position={MobileLayer2BackgroundPosition}
-	/>
+	></div>
 	<div
 		class="layer"
 		style:--desktop-background-image={`url('${Layer3BackgroundImage}')`}
 		style:--desktop-background-position={Layer3BackgroundPosition}
 		style:--mobile-background-image={`url('${MobileLayer3BackgroundImage}')`}
 		style:--mobile-background-position={MobileLayer3BackgroundPosition}
-	/>
+	></div>
 
 	{#if showVideo}
 		<video
@@ -159,7 +195,7 @@
 			class="video video--{VideoAlignment}"
 			class:is-top-slot-video={IsFullWidthTopSlot === 'yes'}
 			class:is-mobile={isMobile}
-			on:ended={() => (played = true)}
+			onended={() => (played = true)}
 			src={videoSrc}
 			poster={posterImage}
 		></video>

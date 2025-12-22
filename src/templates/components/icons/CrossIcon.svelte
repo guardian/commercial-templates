@@ -1,8 +1,12 @@
 <script lang="ts">
-	export let width = 30;
 	const height = width;
 
-	export let plus = false;
+	interface Props {
+		width?: number;
+		plus?: boolean;
+	}
+
+	let { width = 30, plus = false }: Props = $props();
 </script>
 
 <svg {width} {height} class:plus

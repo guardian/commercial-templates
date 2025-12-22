@@ -1,8 +1,12 @@
 <script lang="ts">
 	import { clickMacro, DEST_URL, type GAMVariable } from '$lib/gam';
 
-	export let ViewabilityTracker: GAMVariable;
-	export let thirdPartyJSTracking: GAMVariable;
+	interface Props {
+		ViewabilityTracker: GAMVariable;
+		thirdPartyJSTracking: GAMVariable;
+	}
+
+	let { ViewabilityTracker, thirdPartyJSTracking }: Props = $props();
 </script>
 
 <base target="_blank" />

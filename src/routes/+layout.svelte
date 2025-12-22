@@ -6,6 +6,11 @@
 	import '../templates/components/fonts/SansBold.css';
 	import '../templates/components/fonts/SansItalic.css';
 	import '../templates/components/fonts/SansBoldItalic.css';
+	interface Props {
+		children?: import('svelte').Snippet;
+	}
+
+	let { children }: Props = $props();
 </script>
 
 <svelte:head>
@@ -20,7 +25,7 @@
 </nav>
 
 <main>
-	<slot />
+	{@render children?.()}
 </main>
 
 <style>

@@ -1,8 +1,12 @@
 <script lang="ts">
-	export let width = 24;
 	const height = (24 / 18) * width;
 
-	export let flip = false;
+	interface Props {
+		width?: number;
+		flip?: boolean;
+	}
+
+	let { width = 24, flip = false }: Props = $props();
 </script>
 
 <svg viewBox="0 -4 24 18" {width} {height} class:flip

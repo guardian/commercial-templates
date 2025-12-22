@@ -40,7 +40,7 @@ export const load: PageServerLoad = async ({ params }) => {
 
 	const gamProps = getProps(path);
 
-	const { styles, chunks } = await build(template, 'dom', gamProps);
+	const { styles, chunks } = await build(template, 'client', gamProps);
 
 	const commit = await getCommit(path);
 	const sha = commit?.oid.slice(0, 9) ?? '';

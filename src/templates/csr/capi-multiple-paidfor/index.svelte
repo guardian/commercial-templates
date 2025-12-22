@@ -13,21 +13,41 @@
 	import CapiMultipleCard from '$templates/components/CapiMultipleCard.svelte';
 	import Sponsor from '$templates/components/Sponsor.svelte';
 
-	export let SeriesURL: GAMVariable;
-	export let ComponentTitle: GAMVariable;
-	export let Article1Headline: GAMVariable;
-	export let Article1Image: GAMVariable;
-	export let Article1Kicker: GAMVariable;
-	export let Article2Headline: GAMVariable;
-	export let Article2Image: GAMVariable;
-	export let Article2Kicker: GAMVariable;
-	export let Article3Headline: GAMVariable;
-	export let Article3Image: GAMVariable;
-	export let Article3Kicker: GAMVariable;
-	export let Article4Headline: GAMVariable;
-	export let Article4Image: GAMVariable;
-	export let Article4Kicker: GAMVariable;
-	export let TrackingPixel: GAMVariable;
+	interface Props {
+		SeriesURL: GAMVariable;
+		ComponentTitle: GAMVariable;
+		Article1Headline: GAMVariable;
+		Article1Image: GAMVariable;
+		Article1Kicker: GAMVariable;
+		Article2Headline: GAMVariable;
+		Article2Image: GAMVariable;
+		Article2Kicker: GAMVariable;
+		Article3Headline: GAMVariable;
+		Article3Image: GAMVariable;
+		Article3Kicker: GAMVariable;
+		Article4Headline: GAMVariable;
+		Article4Image: GAMVariable;
+		Article4Kicker: GAMVariable;
+		TrackingPixel: GAMVariable;
+	}
+
+	let {
+		SeriesURL,
+		ComponentTitle,
+		Article1Headline,
+		Article1Image,
+		Article1Kicker,
+		Article2Headline,
+		Article2Image,
+		Article2Kicker,
+		Article3Headline,
+		Article3Image,
+		Article3Kicker,
+		Article4Headline,
+		Article4Image,
+		Article4Kicker,
+		TrackingPixel,
+	}: Props = $props();
 
 	let cardOverrides: CapiCardOverride[] = [
 		{
@@ -58,7 +78,7 @@
 
 	if (isValidReplacedVariable(TrackingPixel)) addTrackingPixel(TrackingPixel);
 
-	let height: number = -1;
+	let height: number = $state(-1);
 </script>
 
 {#await getCards}

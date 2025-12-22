@@ -1,7 +1,15 @@
 <script lang="ts">
+	import { run } from 'svelte/legacy';
+
 	import { post } from '$lib/messenger';
 
-	export let height: number;
+	interface Props {
+		height: number;
+	}
 
-	$: post({ type: 'resize', value: { height } });
+	let { height }: Props = $props();
+
+	run(() => {
+		post({ type: 'resize', value: { height } });
+	});
 </script>

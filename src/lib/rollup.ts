@@ -8,7 +8,7 @@ import type { Plugin, RollupOutput } from 'rollup';
 import { rollup } from 'rollup';
 import css from 'rollup-plugin-css-only';
 import svelte from 'rollup-plugin-svelte';
-import preprocess from 'svelte-preprocess';
+import { sveltePreprocess } from 'svelte-preprocess';
 import type { Props } from './svelte';
 
 const virtual = (template: string, props: Props): Plugin => ({
@@ -47,23 +47,23 @@ new Template({
  */
 const build = async (
 	template: string,
-	mode: 'ssr' | 'dom',
+	mode: 'server' | 'client',
 	props: Props = {},
 ): Promise<{
 	styles: string;
 	chunks: RollupOutput['output'];
 }> => {
 	console.info(
-		`Building ${mode === 'dom' ? 'Dynamic' : 'Static'} template “${template}”`,
+		`Building ${mode === 'client' ? 'Dynamic' : 'Static'} template “${template}”`,
 	);
 
 	let styles = '';
 
-	let input: ['ssr' | 'dom'] | ['ssr', `${string}/index.ts`] = [mode];
+	let input: ['server' | 'client'] | ['server', `${string}/index.ts`] = [mode];
 
-	if (mode === 'ssr') {
+	if (mode === 'server') {
 		if (fs.existsSync(`src/templates/ssr/${template}/index.ts`)) {
-			input = ['ssr', `src/templates/ssr/${template}/index.ts`];
+			input = ['server', `src/templates/ssr/${template}/index.ts`];
 		}
 	}
 
@@ -72,8 +72,8 @@ const build = async (
 		plugins: [
 			virtual(template, props),
 			svelte({
-				preprocess: preprocess(),
-				emitCss: mode === 'dom',
+				preprocess: sveltePreprocess(),
+				emitCss: mode === 'client',
 				compilerOptions: {
 					generate: mode,
 					immutable: true,

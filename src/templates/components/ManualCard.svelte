@@ -6,11 +6,25 @@
 	import '$templates/components/fonts/Sans.css';
 	import ArrowRight from './icons/ArrowRight.svelte';
 
-	export let image: string;
-	export let url: string;
-	export let linkText: string;
-	export let tone: Tone;
-	export let isProminent = false;
+	interface Props {
+		image: string;
+		url: string;
+		linkText: string;
+		tone: Tone;
+		isProminent?: boolean;
+		title?: import('svelte').Snippet;
+		text?: import('svelte').Snippet;
+	}
+
+	let {
+		image,
+		url,
+		linkText,
+		tone,
+		isProminent = false,
+		title,
+		text,
+	}: Props = $props();
 </script>
 
 <a
@@ -26,8 +40,8 @@
 	</div>
 
 	<div class="text">
-		<h2><slot name="title" /></h2>
-		<p><slot name="text" /></p>
+		<h2>{@render title?.()}</h2>
+		<p>{@render text?.()}</p>
 		{#if linkText}
 			<span class="button" data-tone={tone ?? 'live'}>
 				{linkText}

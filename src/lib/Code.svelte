@@ -1,10 +1,19 @@
 <script lang="ts">
 	import { slide } from 'svelte/transition';
 
-	export let html: string;
-	export let css: string;
-	export let showHTML = false;
-	export let showCSS = false;
+	interface Props {
+		html: string;
+		css: string;
+		showHTML?: boolean;
+		showCSS?: boolean;
+	}
+
+	let {
+		html,
+		css,
+		showHTML = $bindable(false),
+		showCSS = $bindable(false),
+	}: Props = $props();
 </script>
 
 <section id="code">
@@ -12,7 +21,7 @@
 
 	<div class="html">
 		<h2>HTML</h2>
-		<button on:click={() => (showHTML = !showHTML)}>
+		<button onclick={() => (showHTML = !showHTML)}>
 			{showHTML ? 'Hide HTML' : 'Show HTML'}
 		</button>
 		{#if showHTML}
@@ -21,7 +30,7 @@
 	</div>
 	<div>
 		<h2>CSS</h2>
-		<button on:click={() => (showCSS = !showCSS)}>
+		<button onclick={() => (showCSS = !showCSS)}>
 			{#if showCSS}
 				Hide CSS
 			{:else}

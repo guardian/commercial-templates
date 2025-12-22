@@ -17,23 +17,45 @@
 	import HostedHeader from '$templates/components/HostedHeader.svelte';
 	import Resizer from '$templates/components/Resizer.svelte';
 
-	export let SeriesURL: GAMVariable;
-	export let BrandLogo: GAMVariable;
-	export let BrandColour: GAMVariable;
-	export let TrackingId: GAMVariable;
-	export let Article1Headline: GAMVariable;
-	export let Article1Image: GAMVariable;
-	export let Article1URL: GAMVariable;
-	export let Article2Headline: GAMVariable;
-	export let Article2Image: GAMVariable;
-	export let Article2URL: GAMVariable;
-	export let Article3Headline: GAMVariable;
-	export let Article3Image: GAMVariable;
-	export let Article3URL: GAMVariable;
-	export let Article4Headline: GAMVariable;
-	export let Article4Image: GAMVariable;
-	export let Article4URL: GAMVariable;
-	export let numberOfElements: GAMVariable;
+	interface Props {
+		SeriesURL: GAMVariable;
+		BrandLogo: GAMVariable;
+		BrandColour: GAMVariable;
+		TrackingId: GAMVariable;
+		Article1Headline: GAMVariable;
+		Article1Image: GAMVariable;
+		Article1URL: GAMVariable;
+		Article2Headline: GAMVariable;
+		Article2Image: GAMVariable;
+		Article2URL: GAMVariable;
+		Article3Headline: GAMVariable;
+		Article3Image: GAMVariable;
+		Article3URL: GAMVariable;
+		Article4Headline: GAMVariable;
+		Article4Image: GAMVariable;
+		Article4URL: GAMVariable;
+		numberOfElements: GAMVariable;
+	}
+
+	let {
+		SeriesURL,
+		BrandLogo,
+		BrandColour,
+		TrackingId,
+		Article1Headline,
+		Article1Image,
+		Article1URL,
+		Article2Headline,
+		Article2Image,
+		Article2URL,
+		Article3Headline,
+		Article3Image,
+		Article3URL,
+		Article4Headline,
+		Article4Image,
+		Article4URL,
+		numberOfElements,
+	}: Props = $props();
 
 	let cardOverrides: CapiCardOverride[] = [
 		{
@@ -68,7 +90,7 @@
 
 	if (isValidReplacedVariable(TrackingId)) addTrackingPixel(TrackingId);
 
-	let height: number = -1;
+	let height: number = $state(-1);
 </script>
 
 <aside

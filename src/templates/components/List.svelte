@@ -1,5 +1,9 @@
 <script lang="ts">
-	export let sizes: number[];
+	interface Props {
+		sizes: number[];
+	}
+
+	let { sizes }: Props = $props();
 </script>
 
 <ol>

@@ -7,9 +7,14 @@
 	import '$templates/components/colours/tones.css';
 	import ToneLogo from './ToneLogo.svelte';
 
-	export let buttonUrl: string;
-	export let buttonText: string;
-	export let tone: Tone;
+	interface Props {
+		buttonUrl: string;
+		buttonText: string;
+		tone: Tone;
+		children?: import('svelte').Snippet;
+	}
+
+	let { buttonUrl, buttonText, tone, children }: Props = $props();
 </script>
 
 <header data-tone={tone}>
@@ -19,7 +24,7 @@
 
 	<div class="banner-description-container">
 		<span class="banner-description">
-			<slot />
+			{@render children?.()}
 		</span>
 	</div>
 
