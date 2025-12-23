@@ -70,7 +70,7 @@
 
 	aside {
 		margin: auto;
-		padding: 12px;
+		padding: 12px 10px 24px;
 		background: var(--neutral-100);
 		position: relative;
 		display: flex;
@@ -85,6 +85,10 @@
 
 		max-width: 740px;
 
+		@media (min-width: 480px) {
+			padding: 12px 20px 24px;
+		}
+
 		@media (min-width: 980px) {
 			max-width: 980px;
 		}
@@ -96,7 +100,8 @@
 
 		@media (min-width: 1300px) {
 			max-width: 1300px;
-			grid-template-columns: 211px 1fr;
+			display: grid;
+			grid-template-columns: 231px 1fr;
 		}
 	}
 
