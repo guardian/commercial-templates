@@ -1,15 +1,13 @@
 <script lang="ts">
-	import { createBubbler } from 'svelte/legacy';
-
-	const bubble = createBubbler();
 	interface Props {
 		children?: import('svelte').Snippet;
+		onclick?: (ev: MouseEvent) => void;
 	}
 
-	let { children }: Props = $props();
+	let { children, onclick }: Props = $props();
 </script>
 
-<button onclick={bubble('click')} aria-controls="popup" aria-expanded="true"
+<button {onclick} aria-controls="popup" aria-expanded="true"
 	>{@render children?.()}</button
 >
 

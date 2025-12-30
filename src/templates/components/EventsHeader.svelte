@@ -25,7 +25,12 @@
 	</div>
 
 	<div class="button-container">
-		<a class="button" href={clickMacro(HeaderButtonUrl)} target="_top">
+		<a
+			class="button"
+			href={clickMacro(HeaderButtonUrl)}
+			target="_top"
+			rel="external"
+		>
 			{HeaderButtonText}
 			<ArrowRight width={30} />
 		</a>

@@ -1,10 +1,6 @@
 <script lang="ts">
 	import { isValidReplacedVariable } from '$lib/gam';
 
-	if (!('window' in globalThis)) {
-		throw new Error("Don't use the <Pixel /> component in SSR templates");
-	}
-
 	interface Props {
 		src: string;
 	}

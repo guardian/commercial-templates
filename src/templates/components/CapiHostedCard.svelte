@@ -11,16 +11,18 @@
 
 	let { card }: Props = $props();
 
-	const { headline, image, url, audioTag, galleryTag, videoTag } = card;
+	let { headline, image, url, audioTag, galleryTag, videoTag } = $derived(card);
 
-	const pictureSupported = image?.sources.length && 'srcset' in new Image();
+	let pictureSupported = $derived(
+		image?.sources.length && 'srcset' in new Image(),
+	);
 </script>
 
-<a href={clickMacro(url)} target="_top">
+<a href={clickMacro(url)} target="_top" rel="external">
 	<div class="media">
 		{#if pictureSupported}
 			<picture>
-				{#each image.sources.filter((source) => source.minWidth === '0') as source}
+				{#each image?.sources.filter((source) => source.minWidth === '0') as source}
 					<source
 						media={`(min-width: ${source.minWidth}px) and (-webkit-min-device-pixel-ratio: 1.25), (min-width: ${source.minWidth}px) and (min-resolution: 120dpi)`}
 						srcset={source.hidpiSrcset}
@@ -33,7 +35,7 @@
 						sizes={source.sizes}
 					/>
 				{/each}
-				<img src={image.backupSrc} alt={image.altText} />
+				<img src={image?.backupSrc} alt={image?.altText} />
 			</picture>
 		{:else if image?.backupSrc}
 			<img src={image.backupSrc} alt={image.altText} />

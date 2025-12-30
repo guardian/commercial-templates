@@ -1,12 +1,12 @@
 <script lang="ts">
-	const height = (24 / 18) * width;
-
 	interface Props {
 		width?: number;
 		flip?: boolean;
 	}
 
 	let { width = 24, flip = false }: Props = $props();
+
+	let height = $derived((24 / 18) * width);
 </script>
 
 <svg viewBox="0 -4 24 18" {width} {height} class:flip

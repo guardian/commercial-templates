@@ -1,12 +1,12 @@
 <script lang="ts">
-	const height = width;
-
 	interface Props {
 		width?: number;
 		plus?: boolean;
 	}
 
 	let { width = 30, plus = false }: Props = $props();
+
+	let height = $derived(width);
 </script>
 
 <svg {width} {height} class:plus

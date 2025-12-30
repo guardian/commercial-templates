@@ -29,7 +29,7 @@
 		<div class="paid-info">
 			<strong class="paid-info--label">Paid content</strong>
 			<div class="popup-container">
-				<Button on:click={() => (popup = !popup)}
+				<Button onclick={() => (popup = !popup)}
 					>About <ArrowDown width={14} flip={popup} /></Button
 				>
 				{#if popup}
@@ -48,7 +48,11 @@
 			</div>
 		</div>
 
-		<a href={clickMacro(`https://theguardian.com/${SeriesUrl}`)} target="_top">
+		<a
+			href={clickMacro(`https://theguardian.com/${SeriesUrl}`)}
+			target="_top"
+			rel="external"
+		>
 			<h2 class="title">
 				{ComponentTitle}
 			</h2>

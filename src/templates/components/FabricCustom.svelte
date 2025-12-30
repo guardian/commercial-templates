@@ -11,7 +11,13 @@
 
 <base target="_blank" />
 <div id="creative">
-	<a id="creative-link" href={clickMacro(DEST_URL)}> </a>
+	<a
+		id="creative-link"
+		href={clickMacro(DEST_URL)}
+		title="Click Through URL"
+		rel="external"
+	>
+	</a>
 </div>
 <div id="js-fabric-custom"></div>
 {@html ViewabilityTracker}

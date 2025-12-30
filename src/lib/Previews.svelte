@@ -1,35 +1,12 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { replaceGAMVariables } from '$lib/gam';
 	import type { Message } from './messenger';
 	import { tones } from './types/tones';
 
-	const defaultReplacements: Record<string, string> = {
-		CACHEBUSTER: '?cachebust',
-		CLICK_URL_UNESC: '',
-	};
-
 	interface Props {
 		template: string;
-		html: string;
-		css: string;
-		templateProps?: Record<string, string>;
 	}
-	let { template, html, css, templateProps = {} }: Props = $props();
-
-	let transformed = $derived(
-		[
-			'<',
-			'style>',
-			css,
-			'</',
-			'style>',
-
-			'<body marginwidth="0" marginheight="0">',
-			replaceGAMVariables(html, { ...defaultReplacements, ...templateProps }),
-			'</body>',
-		].join(''),
-	);
+	let { template }: Props = $props();
 
 	export const widths: Record<string, string> = {
 		'100%': '100%',
@@ -58,8 +35,6 @@
 
 			const iframe = source.frameElement as HTMLIFrameElement;
 
-			console.log('messenger message received', data);
-
 			switch (data.type) {
 				case 'set-ad-height':
 				case 'resize':
@@ -83,7 +58,7 @@
 </script>
 
 <section id="example">
-	{#each Object.keys(widths) as width}
+	{#each Object.keys(widths) as width, i}
 		<div class="size" class:full-width={width === '100%'}>
 			<h4>
 				{widths[width]} size ({width})
@@ -92,33 +67,12 @@
 				title={`Template example for ${template}`}
 				frameborder="0"
 				{width}
-				srcdoc={transformed}
+				src="/templates/{template}"
 				name={`width-${width}`}
 				height="700"
-			/>
+			></iframe>
 		</div>
 	{/each}
-</section>
-
-<section>
-	<h3>Inputs</h3>
-
-	<ul>
-		{#each Object.keys(templateProps) as prop}
-			<li>
-				{#if prop === 'Tone'}
-					{prop}:
-					<select bind:value={templateProps[prop]}>
-						{#each tones as tone}
-							<option value={tone}>{tone}</option>
-						{/each}
-					</select>
-				{:else}
-					{prop}: <input type="text" bind:value={templateProps[prop]} />
-				{/if}
-			</li>
-		{/each}
-	</ul>
 </section>
 
 <style lang="scss">

@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { slide } from 'svelte/transition';
+	import { dev } from '$app/environment';
 
 	interface Props {
 		html: string;
@@ -19,28 +20,34 @@
 <section id="code">
 	<h3>CODE</h3>
 
-	<div class="html">
-		<h2>HTML</h2>
-		<button onclick={() => (showHTML = !showHTML)}>
-			{showHTML ? 'Hide HTML' : 'Show HTML'}
-		</button>
-		{#if showHTML}
-			<pre transition:slide>{html}</pre>
-		{/if}
-	</div>
-	<div>
-		<h2>CSS</h2>
-		<button onclick={() => (showCSS = !showCSS)}>
-			{#if showCSS}
-				Hide CSS
-			{:else}
-				Show CSS
+	{#if dev}
+		<p>
+			<strong>Note:</strong> This code is only available in production builds.
+		</p>
+	{:else}
+		<div class="html">
+			<h2>HTML</h2>
+			<button onclick={() => (showHTML = !showHTML)}>
+				{showHTML ? 'Hide HTML' : 'Show HTML'}
+			</button>
+			{#if showHTML}
+				<pre transition:slide>{html}</pre>
 			{/if}
-		</button>
-		{#if showCSS}
-			<pre transition:slide>{css}</pre>
-		{/if}
-	</div>
+		</div>
+		<div>
+			<h2>CSS</h2>
+			<button onclick={() => (showCSS = !showCSS)}>
+				{#if showCSS}
+					Hide CSS
+				{:else}
+					Show CSS
+				{/if}
+			</button>
+			{#if showCSS}
+				<pre transition:slide>{css}</pre>
+			{/if}
+		</div>
+	{/if}
 </section>
 
 <style>

@@ -8,6 +8,8 @@
 	} from '$lib/gam';
 	import { post } from '$lib/messenger';
 	import Pixel from '$templates/components/Pixel.svelte';
+	import { MediaQuery } from 'svelte/reactivity';
+	import { onMount } from 'svelte';
 
 	interface Props {
 		TrackingPixel: string;
@@ -77,83 +79,85 @@
 		IsFullWidthTopSlot,
 	}: Props = $props();
 
-	const isMobile = window.matchMedia('(max-width: 739px)').matches;
-	const isTablet = window.matchMedia(
-		'(min-width: 740px) and (max-width: 979px)',
-	).matches;
+	const isMobile = new MediaQuery('(max-width: 739px)').current;
+	const isTablet = new MediaQuery('(min-width: 740px) and (max-width: 979px)')
+		.current;
 
-	const video: Writable<HTMLVideoElement | undefined> = writable();
+	let video: HTMLVideoElement | undefined = $state();
 	let played = $state(false);
 
-	const posterImage = isMobile ? MobileVideoBackupImage : VideoBackupImage;
-	const videoSrc = isMobile ? VideoURLMobile : VideoURL;
+	let posterImage = $derived(
+		isMobile ? MobileVideoBackupImage : VideoBackupImage,
+	);
+	let videoSrc = $derived(isMobile ? VideoURLMobile : VideoURL);
 
-	// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- https://github.com/sveltejs/eslint-plugin-svelte/issues/476
-	if (showVideo) {
-		// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- https://github.com/sveltejs/eslint-plugin-svelte/issues/476
-		if (isXL) {
-			post({ type: 'resize', value: { height: 524 } });
+	$effect(() => {
+		if (video) {
+			if (!VideoURL || !VideoURLMobile) return;
+
+			post({
+				type: 'init-video',
+				value: '',
+			});
+
+			video.load();
+
+			video.ontimeupdate = function () {
+				if (!video) return;
+				const percent = Math.round(100 * (video.currentTime / video.duration));
+				post({ type: 'video-progress', value: { progress: percent } });
+			};
+
+			void video.play();
+
+			const observer = new IntersectionObserver(
+				(entries) => {
+					entries.forEach((entry) => {
+						if (!video) return;
+						if (entry.isIntersecting && !played) {
+							video.paused && void video.play();
+						} else {
+							!video.paused && video.pause();
+						}
+					});
+				},
+				{ root: null, rootMargin: '0px', threshold: 0.2 },
+			);
+			observer.observe(video);
 		}
-		video.subscribe((video) => {
-			if (video) {
-				if (!VideoURL || !VideoURLMobile) return;
+	});
 
-				post({
-					type: 'init-video',
-					value: '',
-				});
-
-				video.load();
-
-				video.ontimeupdate = function () {
-					const percent = Math.round(
-						100 * (video.currentTime / video.duration),
-					);
-					post({ type: 'video-progress', value: { progress: percent } });
-				};
-
-				void video.play();
-
-				const observer = new IntersectionObserver(
-					(entries) => {
-						entries.forEach((entry) => {
-							if (entry.isIntersecting && !played) {
-								video.paused && void video.play();
-							} else {
-								!video.paused && video.pause();
-							}
-						});
-					},
-					{ root: null, rootMargin: '0px', threshold: 0.2 },
-				);
-				observer.observe(video);
+	onMount(() => {
+		if (showVideo) {
+			if (isXL) {
+				post({ type: 'resize', value: { height: 524 } });
 			}
-		});
-	} else {
-		const [backgroundImage, backgroundPosition, backgroundRepeat] = isMobile
-			? [
-					MobileBackgroundImage,
-					MobileBackgroundImagePosition,
-					MobileBackgroundImageRepeat,
-				]
-			: [BackgroundImage, BackgroundImagePosition, BackgroundImageRepeat];
+		} else {
+			const [backgroundImage, backgroundPosition, backgroundRepeat] = isMobile
+				? [
+						MobileBackgroundImage,
+						MobileBackgroundImagePosition,
+						MobileBackgroundImageRepeat,
+					]
+				: [BackgroundImage, BackgroundImagePosition, BackgroundImageRepeat];
 
-		const checkScrollType = (scrollType: string): string =>
-			scrollType === 'parallax' && (isMobile || isTablet)
-				? 'fixed'
-				: scrollType;
+			const checkScrollType = (scrollType: string): string =>
+				scrollType === 'parallax' && (isMobile || isTablet)
+					? 'fixed'
+					: scrollType;
 
-		post({
-			type: 'background',
-			value: {
-				scrollType: checkScrollType(BackgroundScrollType),
-				backgroundColor: BackgroundColour,
-				backgroundImage: `url('${backgroundImage}')`,
-				backgroundRepeat,
-				backgroundPosition,
-			},
-		});
-	}
+			post({
+				type: 'background',
+				value: {
+					scrollType: checkScrollType(BackgroundScrollType),
+					backgroundColor: BackgroundColour,
+					backgroundImage: `url('${backgroundImage}')`,
+					backgroundRepeat,
+					backgroundPosition,
+				},
+			});
+		}
+	});
 </script>
 
 <a
@@ -163,6 +167,7 @@
 	class:is-top-slot-video={IsFullWidthTopSlot === 'yes'}
 	href={clickMacro(DEST_URL)}
 	target="_blank"
+	rel="external"
 >
 	<div
 		class="layer"
@@ -188,7 +193,7 @@
 
 	{#if showVideo}
 		<video
-			bind:this={$video}
+			bind:this={video}
 			muted
 			autoplay
 			playsinline

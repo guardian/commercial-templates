@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { ComponentType } from 'svelte';
+	import type { Component } from 'svelte';
 	import type { Tone } from '$lib/types/tones';
 	import BookSvg from './icons/BookshopLogo.svelte';
 	import BrandSvg from './icons/BrandLogo.svelte';
@@ -19,7 +19,7 @@
 
 	let { tone }: Props = $props();
 
-	const toneLogoMapping: Record<Tone, ComponentType> = {
+	const toneLogoMapping: Record<Tone, Component> = {
 		job: JobsSvg,
 		live: LiveSvg,
 		travel: TravelSvg,

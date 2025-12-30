@@ -20,10 +20,15 @@
 		audioTag,
 		galleryTag,
 		videoTag,
-	} = single;
+	} = $derived(single);
 </script>
 
-<a class="multiple-card" href={clickMacro(articleUrl)} target="_top">
+<a
+	class="multiple-card"
+	href={clickMacro(articleUrl)}
+	target="_top"
+	rel="external"
+>
 	<h3 class="text">
 		{#if articleKicker}
 			<span class="kicker">{articleKicker && articleKicker}</span><br />

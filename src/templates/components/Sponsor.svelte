@@ -11,7 +11,7 @@
 
 <div>
 	<p>Paid for by</p>
-	<a href={clickMacro(branding.logo.link)}>
+	<a href={clickMacro(branding.logo.link)} target="_top" rel="external">
 		<img src={branding.logo.src} alt={`logo for ${branding.sponsorName}`} />
 	</a>
 </div>

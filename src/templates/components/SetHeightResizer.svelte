@@ -1,6 +1,4 @@
 <script lang="ts">
-	import { run } from 'svelte/legacy';
-
 	import { post } from '$lib/messenger';
 
 	interface Props {
@@ -9,7 +7,7 @@
 
 	let { height }: Props = $props();
 
-	run(() => {
+	$effect(() => {
 		post({ type: 'set-ad-height', value: { height, width: -1 } });
 	});
 </script>

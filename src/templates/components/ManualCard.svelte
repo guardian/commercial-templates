@@ -32,6 +32,7 @@
 	class:is-prominent={isProminent}
 	href={clickMacro(url)}
 	target="_top"
+	rel="external"
 >
 	<div class="media">
 		<picture>
