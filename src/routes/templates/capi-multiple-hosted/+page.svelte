@@ -12,9 +12,9 @@
 	import { paletteColours } from '$templates/components/colours/paletteColours';
 	import HostedHeader from '$templates/components/HostedHeader.svelte';
 	import Resizer from '$templates/components/Resizer.svelte';
-	import type { PageProps } from './$types';
+	import type { PageData } from './$types';
 
-	let { data }: PageProps = $props();
+	export let data: PageData;
 
 	let {
 		SeriesURL,
@@ -69,7 +69,7 @@
 
 	if (isValidReplacedVariable(TrackingId)) addTrackingPixel(TrackingId);
 
-	let height: number = $state(-1);
+	$: height = -1;
 </script>
 
 <aside

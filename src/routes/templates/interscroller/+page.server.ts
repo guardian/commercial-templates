@@ -3,6 +3,9 @@ import { building } from '$app/environment';
 
 export const config = {
 	thirdPartyJSTracking: '',
+	TrackingPixel: '',
+	ViewabilityTracker: '',
+	ResearchPixel: '',
 };
 
 export const load = (() => {

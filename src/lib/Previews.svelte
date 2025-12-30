@@ -1,12 +1,8 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import type { Message } from './messenger';
-	import { tones } from './types/tones';
 
-	interface Props {
-		template: string;
-	}
-	let { template }: Props = $props();
+	export let template: string;
 
 	export const widths: Record<string, string> = {
 		'100%': '100%',

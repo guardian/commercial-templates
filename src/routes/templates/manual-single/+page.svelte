@@ -5,9 +5,9 @@
 	import { paletteColours } from '$templates/components/colours/paletteColours';
 	import ArrowRight from '$templates/components/icons/ArrowRight.svelte';
 	import BrandLogo from '$templates/components/icons/BrandLogo.svelte';
-	import type { PageProps } from './$types';
+	import type { PageData } from './$types';
 
-	let { data }: PageProps = $props();
+	export let data: PageData;
 
 	let { Tone, TitleURL, OfferURL, Explainer, ViewAll, OmnitureId } = data;
 </script>

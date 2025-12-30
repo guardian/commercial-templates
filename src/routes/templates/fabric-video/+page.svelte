@@ -1,8 +1,8 @@
 <script lang="ts">
 	import Fabric from '$templates/components/Fabric.svelte';
-	import type { PageProps } from './$types';
+	import type { PageData } from './$types';
 
-	let { data }: PageProps = $props();
+	export let data: PageData;
 
 	let {
 		Trackingpixel,

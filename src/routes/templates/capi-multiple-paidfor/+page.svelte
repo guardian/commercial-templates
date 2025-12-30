@@ -8,9 +8,9 @@
 	import Resizer from '$templates/components/Resizer.svelte';
 	import CapiMultipleCard from '$templates/components/CapiMultipleCard.svelte';
 	import Sponsor from '$templates/components/Sponsor.svelte';
-	import type { PageProps } from './$types';
+	import type { PageData } from './$types';
 
-	let { data }: PageProps = $props();
+	export let data: PageData;
 
 	let {
 		SeriesURL,
@@ -59,7 +59,7 @@
 
 	if (isValidReplacedVariable(TrackingPixel)) addTrackingPixel(TrackingPixel);
 
-	let height: number = $state(-1);
+	$: height = -1;
 </script>
 
 {#await getCards}

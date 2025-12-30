@@ -8,9 +8,9 @@
 	import PaidForHeader from '$templates/components/PaidForHeader.svelte';
 	import CapiSingleCard from '$templates/components/CapiSingleCard.svelte';
 	import Sponsor from '$templates/components/Sponsor.svelte';
-	import type { PageProps } from './$types';
+	import type { PageData } from './$types';
 
-	let { data }: PageProps = $props();
+	export let data: PageData;
 
 	let {
 		SeriesUrl,
@@ -34,7 +34,7 @@
 
 	if (isValidReplacedVariable(TrackingPixel)) addTrackingPixel(TrackingPixel);
 
-	let height: number = $state(-1);
+	$: height = -1;
 </script>
 
 {#await getCard}

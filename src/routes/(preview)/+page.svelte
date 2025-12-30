@@ -4,7 +4,7 @@
 
 	const branch = 'main';
 
-	let { data }: PageData = $props();
+	export let data: PageData;
 
 	const { templates } = data;
 </script>

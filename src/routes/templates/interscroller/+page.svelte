@@ -1,31 +1,29 @@
 <script lang="ts">
-	import type { PageProps } from './$types';
+	import type { PageData } from './$types';
 
-	let { data }: PageProps = $props();
-
-	let { thirdPartyJSTracking } = data;
+	export let data: PageData;
 </script>
 
 <div class="creative--interscroller">
 	<!-- svelte-ignore a11y_missing_attribute -->
 	<img
-		src="[TrackingPixel]"
+		src={data.TrackingPixel}
 		class="creative__pixel creative__pixel--displayNone"
 		aria-hidden="true"
 	/>
 	<!-- svelte-ignore a11y_missing_attribute -->
 	<img
-		src="[ResearchPixel]"
+		src={data.ResearchPixel}
 		class="creative__pixel creative__pixel--displayNone"
 		aria-hidden="true"
 	/>
 	<!-- svelte-ignore a11y_missing_attribute -->
 	<img
-		src="[ViewabilityTracker]"
+		src={data.ViewabilityPixel}
 		class="creative__pixel creative__pixel--displayNone"
 		aria-hidden="true"
 	/>
-	{@html thirdPartyJSTracking}
+	{@html data.thirdPartyJSTracking}
 </div>
 
 <style lang="scss">

@@ -2,11 +2,11 @@
 	import Code from '$lib/Code.svelte';
 	import Previews from '$lib/Previews.svelte';
 	import Warning from '$lib/Warning.svelte';
-	import { page } from '$app/state';
+	import type { PageData } from './$types';
 
-	let { data } = $props();
+	export let data: PageData;
 
-	let { defaultProps, description, template, html, css } = $derived(data);
+	$: ({ defaultProps, description, template, html, css } = data);
 </script>
 
 <Warning />

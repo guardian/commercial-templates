@@ -3,10 +3,10 @@
 	import Fabric from '$templates/components/Fabric.svelte';
 	import ArrowDown from '$templates/components/icons/ArrowDown.svelte';
 	import CrossIcon from '$templates/components/icons/CrossIcon.svelte';
-	import { onMount } from 'svelte';
-	import type { PageProps } from './$types';
+	import type { PageData } from './$types';
+	import { browser } from '$app/environment';
 
-	let { data }: PageProps = $props();
+	export let data: PageData;
 
 	let {
 		Trackingpixel,
@@ -53,13 +53,12 @@
 		Slide2Layer3MobileBackgroundPosition,
 	} = data;
 
-	let expanded = $state(false);
+	let expanded = false;
 
 	const toggleExpanded = () => (expanded = !expanded);
 
-	onMount(() => {
+	$: browser &&
 		post({ type: 'resize', value: { height: expanded ? 500 : 250 } });
-	});
 </script>
 
 <aside>

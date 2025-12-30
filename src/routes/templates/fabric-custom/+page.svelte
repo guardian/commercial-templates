@@ -4,9 +4,9 @@
 	import { post } from '$lib/messenger';
 	import FabricCustom from '$templates/components/FabricCustom.svelte';
 	import { onMount } from 'svelte';
-	import type { PageProps } from './$types';
+	import type { PageData } from './$types';
 
-	let { data }: PageProps = $props();
+	export let data: PageData;
 
 	let {
 		ViewabilityTracker,

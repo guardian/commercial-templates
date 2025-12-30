@@ -2,19 +2,10 @@
 	import { slide } from 'svelte/transition';
 	import { dev } from '$app/environment';
 
-	interface Props {
-		html: string;
-		css: string;
-		showHTML?: boolean;
-		showCSS?: boolean;
-	}
-
-	let {
-		html,
-		css,
-		showHTML = $bindable(false),
-		showCSS = $bindable(false),
-	}: Props = $props();
+	export let html: string;
+	export let css: string;
+	export let showHTML: boolean = false;
+	export let showCSS: boolean = false;
 </script>
 
 <section id="code">

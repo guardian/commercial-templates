@@ -4,7 +4,7 @@
 	import { getPageURL } from '$lib/messenger/get-page-url';
 	import { create, type PgmApiOptions } from '$lib/public-good';
 
-	let container: HTMLElement = $state();
+	let container: HTMLElement;
 
 	const refresh = () =>
 		post({
@@ -47,7 +47,7 @@
 	<script
 		type="text/javascript"
 		src="https://assets.publicgood.com/pgm/v1/dpg.js"
-		{onload}
+		on:load={onload}
 	></script>
 </svelte:head>
 <div
