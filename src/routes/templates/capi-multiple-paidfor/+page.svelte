@@ -1,13 +1,14 @@
 <script lang="ts">
 	import { addCapiCardOverrides, retrieveCapiData } from '$lib/capi';
 	import { addTrackingPixel, isValidReplacedVariable } from '$lib/gam';
-	import type { CapiCardOverride } from '$lib/types/capi';
+	import type { CapiCardOverride, Single } from '$lib/types/capi';
 	import { paletteColours } from '$lib/components/colours/paletteColours';
 	import PaidForHeader from '$lib/components/PaidForHeader.svelte';
 	import Resizer from '$lib/components/Resizer.svelte';
 	import CapiMultipleCard from '$lib/components/CapiMultipleCard.svelte';
 	import Sponsor from '$lib/components/Sponsor.svelte';
 	import type { PageData } from './$types';
+	import { onMount } from 'svelte';
 
 	export let data: PageData;
 
@@ -52,44 +53,54 @@
 		},
 	];
 
-	const getCards = retrieveCapiData('multiple', SeriesURL).then((response) =>
-		addCapiCardOverrides(response.articles, cardOverrides),
-	);
+	let cards: Single[];
+	let error: unknown = null;
+	let loading = true;
+
+	onMount(async () => {
+		try {
+			cards = await retrieveCapiData('multiple', SeriesURL).then((response) =>
+				addCapiCardOverrides(response.articles, cardOverrides),
+			);
+		} catch (e) {
+			error = e;
+		} finally {
+			loading = false;
+		}
+	});
 
 	if (isValidReplacedVariable(TrackingPixel)) addTrackingPixel(TrackingPixel);
 
 	$: height = -1;
 </script>
 
-{#await getCards}
+{#if loading}
 	<h3>Loading Content for “{SeriesURL}”</h3>
-{:then cards}
-	{#if cards[0]}
-		<aside bind:clientHeight={height} style={paletteColours}>
-			<PaidForHeader
-				edition={cards[0].branding.edition}
-				{ComponentTitle}
-				SeriesUrl={SeriesURL}
-			/>
-
-			<div class="body">
-				<div class="cards-container">
-					{#each cards as single}
-						<CapiMultipleCard {single} />
-					{/each}
-				</div>
-				<div class="sponsor-container">
-					<Sponsor branding={cards[0].branding} />
-				</div>
-			</div>
-		</aside>
-		<Resizer {height} />
-	{/if}
-{:catch}
+{:else if error}
 	<h3>Could not fetch series “{SeriesURL}”</h3>
-{/await}
+{:else if cards[0]}
+	<aside bind:clientHeight={height} style={paletteColours}>
+		<PaidForHeader
+			edition={cards[0].branding.edition}
+			{ComponentTitle}
+			SeriesUrl={SeriesURL}
+		/>
 
-<style>
+		<div class="body">
+			<div class="cards-container">
+				{#each cards as single}
+					<CapiMultipleCard {single} />
+				{/each}
+			</div>
+			<div class="sponsor-container">
+				<Sponsor branding={cards[0].branding} />
+			</div>
+		</div>
+	</aside>
+	<Resizer {height} />
+{/if}
+
+<style lang="scss">
 	@use '$styles/fonts/Sans';
 	:global(body) {
 		margin: 0;

@@ -16,18 +16,18 @@
 		ResearchPixel,
 	} = data;
 
-	onMount(() => {
-		getTag(DapAssetsFolder)
-			.then((tag) => {
-				insertTag(tag);
-				post({
-					type: 'resize',
-					value: { height: document.getElementById('creative')!.offsetHeight },
-				});
-			})
-			.catch((e) => {
-				console.error(e);
+	onMount(async () => {
+		try {
+			const tag = await getTag(DapAssetsFolder);
+
+			insertTag(tag);
+			post({
+				type: 'resize',
+				value: { height: document.getElementById('creative')!.offsetHeight },
 			});
+		} catch (error) {
+			console.error('Error fetching or inserting tag:', error);
+		}
 
 		if (TrackingPixel) {
 			addTrackingPixel(TrackingPixel);

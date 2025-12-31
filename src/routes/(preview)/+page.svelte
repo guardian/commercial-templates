@@ -37,7 +37,7 @@ Learn how to create your first template:<a
 
 <hr />
 
-<style>
+<style lang="scss">
 	ol {
 		margin: var(--grid-size) 0;
 	}

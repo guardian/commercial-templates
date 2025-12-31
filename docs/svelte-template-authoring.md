@@ -24,7 +24,7 @@ Ad Manager variables are passed to the template/route as part of the page data.
 
 <aside>My ad content with {MyVar}</aside>
 
-<style>
+<style lang="scss">
 	aside {
 		color: white;
 		background-color: black;

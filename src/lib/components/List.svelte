@@ -8,7 +8,7 @@
 	{/each}
 </ol>
 
-<style>
+<style lang="scss">
 	ol {
 		font-family: sans-serif;
 		color: blanchedalmond;

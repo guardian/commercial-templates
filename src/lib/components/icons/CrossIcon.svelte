@@ -11,7 +11,7 @@
 	/></svg
 >
 
-<style>
+<style lang="scss">
 	svg {
 		vertical-align: middle;
 		overflow: hidden;

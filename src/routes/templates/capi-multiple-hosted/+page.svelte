@@ -6,10 +6,12 @@
 	import { addTrackingPixel, isValidReplacedVariable } from '$lib/gam.js';
 	import type { CapiCardOverride } from '$lib/types/capi';
 	import CapiHostedCard from '$lib/components/CapiHostedCard.svelte';
+	import type { CapiHostedCard as TCapiHostedCard } from '$lib/types/capi';
 	import { paletteColours } from '$lib/components/colours/paletteColours';
 	import HostedHeader from '$lib/components/HostedHeader.svelte';
 	import Resizer from '$lib/components/Resizer.svelte';
 	import type { PageData } from './$types';
+	import { onMount } from 'svelte';
 
 	export let data: PageData;
 
@@ -56,13 +58,28 @@
 		},
 	];
 
-	const getCards = retrieveCapiData(SeriesURL, cardOverrides).then((response) =>
-		addCapiHostedCardOverrides(
-			response.articles.slice(0, Number(numberOfElements)),
-			cardOverrides,
-			BrandLogo,
-		),
-	);
+	let cards: TCapiHostedCard[];
+	let logo: string | null = null;
+	let error: unknown = null;
+	let loading = true;
+
+	onMount(async () => {
+		try {
+			const result = await retrieveCapiData(SeriesURL, cardOverrides).then(
+				(response) =>
+					addCapiHostedCardOverrides(
+						response.articles.slice(0, Number(numberOfElements)),
+						cardOverrides,
+						BrandLogo,
+					),
+			);
+			({ cards, logo } = result);
+		} catch (e) {
+			error = e;
+		} finally {
+			loading = false;
+		}
+	});
 
 	if (isValidReplacedVariable(TrackingId)) addTrackingPixel(TrackingId);
 
@@ -73,18 +90,18 @@
 	bind:clientHeight={height}
 	style="--brand-colour: {BrandColour}; {paletteColours}"
 >
-	{#await getCards}
+	{#if loading}
 		<h3>Loading Content...</h3>
-	{:then multiple}
-		<HostedHeader logo={multiple.logo} />
+	{:else if error}
+		<h3>Could not fetch content</h3>
+	{:else}
+		<HostedHeader {logo} />
 		<div class="cards-container">
-			{#each multiple.cards as card}
+			{#each cards as card}
 				<CapiHostedCard {card} />
 			{/each}
 		</div>
-	{:catch}
-		<h3>An error occurred whilst loading content</h3>
-	{/await}
+	{/if}
 </aside>
 <Resizer {height} />
 

@@ -1,6 +1,6 @@
 <button on:click aria-controls="popup" aria-expanded="true"><slot /></button>
 
-<style>
+<style lang="scss">
 	button {
 		display: inline-block;
 		background: none;

@@ -18,7 +18,7 @@
 </main>
 
 <style lang="scss">
-	@use '../../styles';
+	@use '$styles/global';
 	@use '$styles/fonts/Sans';
 	@use '$styles/fonts/SansBold';
 	@use '$styles/fonts/SansItalic';
