@@ -1,39 +1,13 @@
+import { transformGamVariables } from '$lib/transform-gam-variables';
 import type { PageServerLoad } from './$types';
-import { building } from '$app/environment';
 
-type Config = Record<string, string> & {
-	Trackingpixel: string;
-	Researchpixel: string;
-	Viewabilitypixel: string;
-	BackgroundScrollType: 'parallax' | 'none' | 'fixed';
-	BackgroundColour: string;
-	BackgroundImage: string;
-	BackgroundImagePosition: string;
-	BackgroundImageRepeat: string;
-	Layer1BackgroundImage: string;
-	Layer1BackgroundPosition: string;
-	Layer2BackgroundImage: string;
-	Layer2BackgroundPosition: string;
-	Layer3BackgroundImage: string;
-	Layer3BackgroundPosition: string;
-	MobileBackgroundImage: string;
-	MobileBackgroundImagePosition: string;
-	MobileBackgroundImageRepeat: string;
-	MobileLayer1BackgroundImage: string;
-	MobileLayer1BackgroundPosition: string;
-	MobileLayer2BackgroundImage: string;
-	MobileLayer2BackgroundPosition: string;
-	MobileLayer3BackgroundImage: string;
-	MobileLayer3BackgroundPosition: string;
-};
-
-export const config: Config = {
+export const gamVariables = {
 	Trackingpixel: '',
 	Researchpixel: '',
 	Viewabilitypixel: '',
 	thirdPartyJSTracking:
 		"<SCRIPT TYPE='application/javascript' SRC='https://pixel.adsafeprotected.com/rjss/st/726370/54949606/skeleton.js'></SCRIPT> <NOSCRIPT><IMG SRC='https://pixel.adsafeprotected.com/rfw/st/726370/54949605/skeleton.gif?gdpr=${GDPR}&gdpr_consent=${GDPR_CONSENT_278}&gdpr_pd=${GDPR_PD}' BORDER=0 WIDTH=1 HEIGHT=1 ALT=''></NOSCRIPT>",
-	BackgroundScrollType: 'none',
+	BackgroundScrollType: 'none' as 'parallax' | 'none' | 'fixed',
 	BackgroundColour: 'transparent',
 	BackgroundImage: '',
 	BackgroundImagePosition: 'center center',
@@ -62,11 +36,5 @@ export const config: Config = {
 };
 
 export const load = (() => {
-	if (building) {
-		return Object.fromEntries(
-			Object.entries(config).map(([key]) => [key, '[%' + key + '%]']),
-		) as Config;
-	}
-
-	return config;
+	return transformGamVariables(gamVariables);
 }) satisfies PageServerLoad;

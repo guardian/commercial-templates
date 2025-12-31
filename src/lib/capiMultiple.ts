@@ -1,4 +1,3 @@
-import type { GAMVariable } from './gam';
 import type { CapiCardOverride, CapiHostedCard, Single } from './types/capi';
 
 const apiEndpoint =
@@ -10,9 +9,9 @@ function addCapiCardOverrides(
 ): Single[] {
 	return cardData.map((capiCard, i) => ({
 		...capiCard,
-		// eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing -- nullish coalescing operator doesn't handle empty strings
+		// eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing -- we want to override empty strings too
 		articleHeadline: overrideCards[i]?.headline || capiCard.articleHeadline,
-		// eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing -- nullish coalescing operator doesn't handle empty strings
+		// eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing -- we want to override empty strings too
 		articleKicker: overrideCards[i]?.kicker || capiCard.articleKicker,
 	}));
 }
@@ -57,7 +56,7 @@ interface CapiMultipleResponse {
 }
 
 async function retrieveCapiData(
-	seriesUrl: GAMVariable,
+	seriesUrl: string,
 	cardOverrides: CapiCardOverride[],
 ): Promise<CapiMultipleResponse> {
 	const request = new URL(apiEndpoint);

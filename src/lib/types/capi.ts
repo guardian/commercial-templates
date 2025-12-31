@@ -1,5 +1,3 @@
-import type { GAMVariable } from '$lib/gam';
-
 export type Source = {
 	minWidth: string;
 	sizes: string;
@@ -69,9 +67,9 @@ export type CapiHostedCard = {
 };
 
 export type CapiCardOverride = {
-	headline?: GAMVariable;
-	url?: GAMVariable;
-	image?: GAMVariable;
-	kicker?: GAMVariable;
-	text?: GAMVariable;
+	headline?: string;
+	url?: string;
+	image?: string;
+	kicker?: string;
+	text?: string;
 };

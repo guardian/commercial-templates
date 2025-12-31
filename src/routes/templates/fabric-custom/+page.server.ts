@@ -1,14 +1,7 @@
+import { transformGamVariables } from '$lib/transform-gam-variables';
 import type { PageServerLoad } from './$types';
-import { building } from '$app/environment';
 
-interface Props {
-	DapAssetsFolder: string;
-	TrackingPixel: string;
-	ResearchPixel: string;
-	ViewabilityTracker: string;
-	thirdPartyJSTracking: string;
-}
-export const config: Props = {
+export const gamVariables = {
 	DapAssetsFolder: 'GooglePixel2',
 	TrackingPixel: '',
 	ResearchPixel: '',
@@ -18,11 +11,5 @@ export const config: Props = {
 };
 
 export const load = (() => {
-	if (building) {
-		return Object.fromEntries(
-			Object.entries(config).map(([key]) => [key, '[%' + key + '%]']),
-		) as unknown as Props;
-	}
-
-	return config;
+	return transformGamVariables(gamVariables);
 }) satisfies PageServerLoad;

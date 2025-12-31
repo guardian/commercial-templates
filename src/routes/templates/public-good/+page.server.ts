@@ -1,14 +1,8 @@
+import { transformGamVariables } from '$lib/transform-gam-variables';
 import type { PageServerLoad } from './$types';
-import { building } from '$app/environment';
 
-export const config = {};
+export const gamVariables = {};
 
 export const load = (() => {
-	if (building) {
-		return Object.fromEntries(
-			Object.entries(config).map(([key]) => [key, '[%' + key + '%]']),
-		);
-	}
-
-	return config;
+	return transformGamVariables(gamVariables);
 }) satisfies PageServerLoad;

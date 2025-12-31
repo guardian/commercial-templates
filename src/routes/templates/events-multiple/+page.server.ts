@@ -1,7 +1,7 @@
+import { transformGamVariables } from '$lib/transform-gam-variables';
 import type { PageServerLoad } from './$types';
-import { building } from '$app/environment';
 
-export const config = {
+export const gamVariables = {
 	BannerDescription: 'Join Guardian Live for exclusive cultural events',
 	HeaderButtonText: 'See all events',
 	HeaderButtonUrl: 'https://membership.theguardian.com/events',
@@ -24,11 +24,5 @@ export const config = {
 };
 
 export const load = (() => {
-	if (building) {
-		return Object.fromEntries(
-			Object.entries(config).map(([key]) => [key, '[%' + key + '%]']),
-		);
-	}
-
-	return config;
+	return transformGamVariables(gamVariables);
 }) satisfies PageServerLoad;
