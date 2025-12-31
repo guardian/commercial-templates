@@ -6,7 +6,7 @@
 
 	export let data: PageData;
 
-	$: ({ defaultProps, description, template, html, css } = data);
+	$: ({ gamVariables, description, template, html, css } = data);
 </script>
 
 <Warning />
@@ -17,6 +17,6 @@
 
 {@html description}
 
-<Previews {template} {defaultProps} />
+<Previews {template} {gamVariables} />
 
 <Code {html} {css} />

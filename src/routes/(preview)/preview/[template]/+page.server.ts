@@ -12,9 +12,9 @@ export const load = (async ({ params }) => {
 		? await marked.parse(readFileSync(`${srcDir}/README.md`, 'utf-8'))
 		: `<p><em>no description provided</em></p>`;
 
-	const { config: defaultProps } = (await import(
-		`../../../templates/${template}/+page.server.ts`
-	)) as { config: Record<string, string> };
+	const { gamVariables } = (await import(
+		`../../../templates/${template}/variables.ts`
+	)) as { gamVariables: Record<string, string> };
 
 	const html = existsSync(`${outDir}/html.html`)
 		? readFileSync(`${outDir}/html.html`, 'utf-8')
@@ -27,7 +27,7 @@ export const load = (async ({ params }) => {
 	return {
 		description,
 		template,
-		defaultProps,
+		gamVariables,
 		html,
 		css,
 	};

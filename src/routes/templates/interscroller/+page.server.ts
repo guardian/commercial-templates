@@ -1,12 +1,6 @@
 import { transformGamVariables } from '$lib/transform-gam-variables';
 import type { PageServerLoad } from './$types';
-
-export const gamVariables = {
-	thirdPartyJSTracking: '',
-	TrackingPixel: '',
-	ViewabilityTracker: '',
-	ResearchPixel: '',
-};
+import { gamVariables } from './variables';
 
 export const load = (() => {
 	return transformGamVariables(gamVariables);

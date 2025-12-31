@@ -1,31 +1,6 @@
 import { transformGamVariables } from '$lib/transform-gam-variables';
 import type { PageServerLoad } from './$types';
-
-export const gamVariables = {
-	TrackingPixel: '',
-	ResearchPixel: '',
-	ViewabilityPixel: '',
-	BackgroundScrollType: 'none' as 'parallax' | 'none' | 'fixed',
-	BackgroundColour: 'transparent',
-	BackgroundImage: '',
-	BackgroundImagePosition: 'center center',
-	BackgroundImageRepeat: 'no-repeat',
-	Layer1BackgroundImage: '',
-	Layer1BackgroundPosition: 'center center',
-	Layer2BackgroundImage: '',
-	Layer2BackgroundPosition: 'center center',
-	Layer3BackgroundImage: '',
-	Layer3BackgroundPosition: 'center center',
-	MobileBackgroundImage: '',
-	MobileBackgroundImagePosition: 'center center',
-	MobileBackgroundImageRepeat: 'no-repeat',
-	MobileLayer1BackgroundImage: '',
-	MobileLayer1BackgroundPosition: 'center center',
-	MobileLayer2BackgroundImage: '',
-	MobileLayer2BackgroundPosition: 'center center',
-	MobileLayer3BackgroundImage: '',
-	MobileLayer3BackgroundPosition: 'center center',
-};
+import { gamVariables } from './variables';
 
 export const load = (() => {
 	return transformGamVariables(gamVariables);

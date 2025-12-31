@@ -4,6 +4,8 @@
 
 	export let template: string;
 
+	export let gamVariables: Record<string, string>;
+
 	export const widths: Record<string, string> = {
 		'100%': '100%',
 		'1300': 'wide',
@@ -71,6 +73,22 @@
 	{/each}
 </section>
 
+<section>
+	<h3>Variables</h3>
+	<em
+		>edit <span class="code">src/templates/{template}/variables.ts</span> to update
+		the preview's variables</em
+	>
+	<table class="inputs">
+		{#each Object.entries(gamVariables) as [name, value]}
+			<tr>
+				<td>{name}</td>
+				<td>{value}</td>
+			</tr>
+		{/each}
+	</table>
+</section>
+
 <style lang="scss">
 	#example {
 		box-sizing: border-box;
@@ -94,5 +112,43 @@
 	iframe {
 		outline: var(--grid-size) solid var(--grid-color);
 		background-color: white;
+	}
+
+	.code {
+		font-family: monospace;
+		background-color: rgba(0, 0, 0, 0.05);
+		padding: 0.1rem 0.3rem;
+		border-radius: 3px;
+		border: 1px solid rgba(0, 0, 0, 0.1);
+	}
+
+	.inputs {
+		border-collapse: collapse;
+		width: 100%;
+		max-width: 600px;
+		margin-top: var(--grid-size);
+		font-family: monospace;
+		font-size: 0.875rem;
+
+		tr:nth-child(odd) {
+			background-color: rgba(0, 0, 0, 0.02);
+		}
+
+		td {
+			padding: calc(var(--grid-size) * 1.5) var(--grid-size);
+			border: 1px solid rgba(0, 0, 0, 0.1);
+			text-align: left;
+
+			&:first-child {
+				font-weight: 600;
+				color: #333;
+				width: 30%;
+			}
+
+			&:last-child {
+				color: #666;
+				word-break: break-word;
+			}
+		}
 	}
 </style>

@@ -1,25 +1,6 @@
 import { transformGamVariables } from '$lib/transform-gam-variables';
 import type { PageServerLoad } from './$types';
-
-export const gamVariables = {
-	SeriesURL: 'guardian-clearing',
-	BrandLogo: '',
-	BrandColour: '#E1A100',
-	TrackingId: '',
-	Article1Headline: '',
-	Article1Image: '',
-	Article1URL: '',
-	Article2Headline: '',
-	Article2Image: '',
-	Article2URL: '',
-	Article3Headline: '',
-	Article3Image: '',
-	Article3URL: '',
-	Article4Headline: '',
-	Article4Image: '',
-	Article4URL: '',
-	numberOfElements: '4',
-};
+import { gamVariables } from './variables';
 
 export const load = (() => {
 	return transformGamVariables(gamVariables);

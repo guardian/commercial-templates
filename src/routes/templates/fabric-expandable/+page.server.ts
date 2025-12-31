@@ -1,50 +1,6 @@
 import { transformGamVariables } from '$lib/transform-gam-variables';
 import type { PageServerLoad } from './$types';
-
-export const gamVariables = {
-	Trackingpixel: '',
-	Researchpixel: '',
-	Viewabilitypixel: '',
-	ScrollType: 'none' as 'parallax' | 'none' | 'fixed',
-	Slide1BackgroundColour: 'transparent',
-	Slide1BackgroundImage: '',
-	Slide1BackgroundRepeat: 'no-repeat',
-	Slide1BackgroundPosition: 'center center',
-	Slide1MobileBackgroundImage: '',
-	Slide1MobileBackgroundRepeat: 'no-repeat',
-	Slide1MobileBackgroundPosition: 'center center',
-	Slide1Layer1BackgroundImage: '',
-	Slide1Layer1BackgroundPosition: 'center center',
-	Slide1Layer1MobileBackgroundImage: '',
-	Slide1Layer1MobileBackgroundPosition: 'center center',
-	Slide1Layer2BackgroundImage: '',
-	Slide1Layer2BackgroundPosition: 'center center',
-	Slide1Layer2MobileBackgroundImage: '',
-	Slide1Layer2MobileBackgroundPosition: 'center center',
-	Slide1Layer3BackgroundImage: '',
-	Slide1Layer3BackgroundPosition: 'center center',
-	Slide1Layer3MobileBackgroundImage: '',
-	Slide1Layer3MobileBackgroundPosition: 'center center',
-	Slide2BackgroundColour: 'transparent',
-	Slide2BackgroundImage: '',
-	Slide2BackgroundRepeat: 'no-repeat',
-	Slide2BackgroundPosition: 'center center',
-	Slide2MobileBackgroundImage: '',
-	Slide2MobileBackgroundRepeat: 'no-repeat',
-	Slide2MobileBackgroundPosition: 'center center',
-	Slide2Layer1BackgroundImage: '',
-	Slide2Layer1BackgroundPosition: 'center center',
-	Slide2Layer1MobileBackgroundImage: '',
-	Slide2Layer1MobileBackgroundPosition: 'center center',
-	Slide2Layer2BackgroundImage: '',
-	Slide2Layer2BackgroundPosition: 'center center',
-	Slide2Layer2MobileBackgroundImage: '',
-	Slide2Layer2MobileBackgroundPosition: 'center center',
-	Slide2Layer3BackgroundImage: '',
-	Slide2Layer3BackgroundPosition: 'center center',
-	Slide2Layer3MobileBackgroundImage: '',
-	Slide2Layer3MobileBackgroundPosition: 'center center',
-};
+import { gamVariables } from './variables';
 
 export const load = (() => {
 	return transformGamVariables(gamVariables);
