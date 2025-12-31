@@ -18,6 +18,7 @@ const config = {
 
 		alias: {
 			$templates: './src/templates',
+			$styles: './src/styles',
 		},
 		output: {
 			bundleStrategy: 'inline',

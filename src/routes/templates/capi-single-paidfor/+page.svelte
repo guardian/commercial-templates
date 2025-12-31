@@ -4,7 +4,6 @@
 	import { paletteColours } from '$lib/components/colours/paletteColours';
 	import Resizer from '$lib/components/Resizer.svelte';
 	import type { CapiCardOverride } from '$lib/types/capi';
-	import '$lib/components/fonts/Sans.css';
 	import PaidForHeader from '$lib/components/PaidForHeader.svelte';
 	import CapiSingleCard from '$lib/components/CapiSingleCard.svelte';
 	import Sponsor from '$lib/components/Sponsor.svelte';
@@ -61,6 +60,8 @@
 {/await}
 
 <style>
+	@use '$styles/fonts/Sans';
+
 	:global(body) {
 		margin: 0;
 	}

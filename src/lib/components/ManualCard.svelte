@@ -1,9 +1,6 @@
 <script lang="ts">
 	import { clickMacro } from '$lib/gam';
 	import type { Tone } from '$lib/types/tones';
-	import '$lib/components/fonts/Egyptian.css';
-	import '$lib/components/fonts/Headline.css';
-	import '$lib/components/fonts/Sans.css';
 	import ArrowRight from './icons/ArrowRight.svelte';
 
 	export let image: string;
@@ -38,6 +35,9 @@
 </a>
 
 <style lang="scss">
+	@use '$styles/fonts/Egyptian';
+	@use '$styles/fonts/Headline';
+	@use '$styles/fonts/Sans';
 	a {
 		color: var(--neutral-0);
 		text-decoration: none;

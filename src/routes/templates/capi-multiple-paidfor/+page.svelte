@@ -2,7 +2,6 @@
 	import { addCapiCardOverrides, retrieveCapiData } from '$lib/capi';
 	import { addTrackingPixel, isValidReplacedVariable } from '$lib/gam';
 	import type { CapiCardOverride } from '$lib/types/capi';
-	import '$lib/components/fonts/Sans.css';
 	import { paletteColours } from '$lib/components/colours/paletteColours';
 	import PaidForHeader from '$lib/components/PaidForHeader.svelte';
 	import Resizer from '$lib/components/Resizer.svelte';
@@ -91,6 +90,7 @@
 {/await}
 
 <style>
+	@use '$styles/fonts/Sans';
 	:global(body) {
 		margin: 0;
 	}

@@ -1,9 +1,9 @@
-html {
+:global(html) {
 	--grid-color: aliceblue;
 	--grid-size: 10px;
 }
 
-body {
+:global(body) {
 	margin: 0;
 	font-family: 'GuardianTextSans', 'Guardian Text Sans', sans-serif;
 

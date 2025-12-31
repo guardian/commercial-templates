@@ -2,9 +2,6 @@
 	import { clickMacro } from '$lib/gam';
 	import type { Tone } from '$lib/types/tones';
 	import ArrowRight from './icons/ArrowRight.svelte';
-	import '$lib/components/fonts/Headline.css';
-	import '$lib/components/fonts/SansBold.css';
-	import '$lib/components/colours/tones.css';
 	import ToneLogo from './ToneLogo.svelte';
 
 	export let buttonUrl: string;
@@ -32,6 +29,10 @@
 </header>
 
 <style lang="scss">
+	@use '$styles/fonts/Headline';
+	@use '$styles/fonts/SansBold';
+	@use '$styles/tones';
+
 	header {
 		background-color: var(--bg);
 		color: black;

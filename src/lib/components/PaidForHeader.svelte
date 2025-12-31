@@ -3,7 +3,6 @@
 	import type { Single } from '$lib/types/capi';
 	import Button from './Button.svelte';
 	import ArrowDown from './icons/ArrowDown.svelte';
-	import '$lib/components/fonts/SansBold.css';
 	import GuardianLabsLogo from './icons/GuardianLabsCircleLogo.svelte';
 
 	export let SeriesUrl: string;
@@ -49,6 +48,8 @@
 </header>
 
 <style lang="scss">
+	@use '$styles/fonts/SansBold';
+
 	.header {
 		background-color: var(--labs-700);
 		color: black;

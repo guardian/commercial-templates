@@ -1,7 +1,4 @@
 <script lang="ts">
-	import '$lib/components/fonts/Sans.css';
-	import '$lib/components/fonts/SansBold.css';
-
 	import {
 		addCapiHostedCardOverrides,
 		retrieveCapiData,
@@ -92,6 +89,8 @@
 <Resizer {height} />
 
 <style lang="scss">
+	@use '$styles/fonts/Sans';
+	@use '$styles/fonts/SansBold';
 	aside {
 		max-width: 1300px;
 		position: relative;

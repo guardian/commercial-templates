@@ -1,20 +1,14 @@
 <script lang="ts">
-	import { base } from '$app/paths';
-
-	import '../../styles.css';
-	import '$lib/fonts/Sans.css';
-	import '$lib/fonts/SansBold.css';
-	import '$lib/fonts/SansItalic.css';
-	import '$lib/fonts/SansBoldItalic.css';
+	import { asset, resolve } from '$app/paths';
 </script>
 
 <svelte:head>
-	<link rel="icon" href={`${base}/favicon.png`} />
-	<link rel="icon" href={`${base}/favicon.svg`} />
+	<link rel="icon" href={asset('/favicon.png')} />
+	<link rel="icon" type="image/svg+xml" href={asset('/favicon.svg')} />
 </svelte:head>
 
 <nav>
-	<a href={`${base}/`}>All templates</a>
+	<a href={resolve('/')}>All templates</a>
 
 	<a href="https://github.com/guardian/commercial-templates">Edit on Github</a>
 </nav>
@@ -23,7 +17,13 @@
 	<slot />
 </main>
 
-<style>
+<style lang="scss">
+	@use '../../styles';
+	@use '$styles/fonts/Sans';
+	@use '$styles/fonts/SansBold';
+	@use '$styles/fonts/SansItalic';
+	@use '$styles/fonts/SansBoldItalic';
+
 	nav {
 		background-color: darkblue;
 		padding: 1rem;

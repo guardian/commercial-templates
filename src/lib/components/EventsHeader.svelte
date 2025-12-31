@@ -2,8 +2,6 @@
 	import { clickMacro } from '$lib/gam';
 	import ArrowRight from './icons/ArrowRight.svelte';
 	import LiveLogo from './icons/LiveLogo.svelte';
-	import '$lib/components/fonts/Headline.css';
-	import '$lib/components/fonts/SansBold.css';
 
 	export let HeaderButtonUrl: string;
 	export let BannerDescription: string;
@@ -28,6 +26,9 @@
 </header>
 
 <style lang="scss">
+	@use '$styles/fonts/Headline';
+	@use '$styles/fonts/SansBold';
+
 	header {
 		background-color: #c83877;
 		color: black;

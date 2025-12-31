@@ -1,6 +1,4 @@
 <script lang="ts">
-	import '$lib/components/fonts/SansBold.css';
-
 	export let logo: string | null;
 </script>
 
@@ -15,6 +13,7 @@
 </header>
 
 <style lang="scss">
+	@use '$styles/fonts/SansBold';
 	header {
 		display: flex;
 		flex-direction: row;

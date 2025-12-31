@@ -1,5 +1,4 @@
 <script lang="ts">
-	import '$lib/components/fonts/Sans.css';
 	import { paletteColours } from '$lib/components/colours/paletteColours';
 	import ManualCard from '$lib/components/ManualCard.svelte';
 	import ManualHeader from '$lib/components/ManualHeader.svelte';
@@ -98,6 +97,7 @@
 <SetHeightResizer {height} />
 
 <style lang="scss">
+	@use '$styles/fonts/Sans';
 	aside {
 		background: var(--neutral-97);
 		position: relative;

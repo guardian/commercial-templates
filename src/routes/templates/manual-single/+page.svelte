@@ -1,7 +1,5 @@
 <script lang="ts">
 	import { clickMacro } from '$lib/gam';
-	import '$lib/components/colours/tones.css';
-	import '$lib/components/fonts/Egyptian.css';
 	import { paletteColours } from '$lib/components/colours/paletteColours';
 	import ArrowRight from '$lib/components/icons/ArrowRight.svelte';
 	import BrandLogo from '$lib/components/icons/BrandLogo.svelte';
@@ -67,6 +65,8 @@
 </aside>
 
 <style lang="scss">
+	@use '$styles/fonts/Egyptian';
+	@use '$styles/tones';
 	aside {
 		height: 250px;
 		width: 100%;
