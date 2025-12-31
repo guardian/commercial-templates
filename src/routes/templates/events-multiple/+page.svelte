@@ -1,9 +1,9 @@
 <script lang="ts">
-	import '$templates/components/fonts/Sans.css';
-	import { paletteColours } from '$templates/components/colours/paletteColours';
-	import ManualCard from '$templates/components/ManualCard.svelte';
-	import ManualHeader from '$templates/components/ManualHeader.svelte';
-	import SetHeightResizer from '$templates/components/SetHeightResizer.svelte';
+	import '$lib/components/fonts/Sans.css';
+	import { paletteColours } from '$lib/components/colours/paletteColours';
+	import ManualCard from '$lib/components/ManualCard.svelte';
+	import ManualHeader from '$lib/components/ManualHeader.svelte';
+	import SetHeightResizer from '$lib/components/SetHeightResizer.svelte';
 	import type { PageData } from './$types';
 
 	export let data: PageData;

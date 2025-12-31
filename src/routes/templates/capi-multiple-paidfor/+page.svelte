@@ -2,12 +2,12 @@
 	import { addCapiCardOverrides, retrieveCapiData } from '$lib/capi';
 	import { addTrackingPixel, isValidReplacedVariable } from '$lib/gam';
 	import type { CapiCardOverride } from '$lib/types/capi';
-	import '$templates/components/fonts/Sans.css';
-	import { paletteColours } from '$templates/components/colours/paletteColours';
-	import PaidForHeader from '$templates/components/PaidForHeader.svelte';
-	import Resizer from '$templates/components/Resizer.svelte';
-	import CapiMultipleCard from '$templates/components/CapiMultipleCard.svelte';
-	import Sponsor from '$templates/components/Sponsor.svelte';
+	import '$lib/components/fonts/Sans.css';
+	import { paletteColours } from '$lib/components/colours/paletteColours';
+	import PaidForHeader from '$lib/components/PaidForHeader.svelte';
+	import Resizer from '$lib/components/Resizer.svelte';
+	import CapiMultipleCard from '$lib/components/CapiMultipleCard.svelte';
+	import Sponsor from '$lib/components/Sponsor.svelte';
 	import type { PageData } from './$types';
 
 	export let data: PageData;

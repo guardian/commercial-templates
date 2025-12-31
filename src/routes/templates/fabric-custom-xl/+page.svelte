@@ -2,7 +2,7 @@
 	import { getTag, insertTag } from '$lib/fabric-custom-shared';
 	import { addTrackingPixel } from '$lib/gam';
 	import { post } from '$lib/messenger';
-	import FabricCustom from '$templates/components/FabricCustom.svelte';
+	import FabricCustom from '$lib/components/FabricCustom.svelte';
 	import { onMount } from 'svelte';
 	import type { PageData } from './$types';
 

@@ -7,7 +7,7 @@
 		isValidReplacedVariable,
 	} from '$lib/gam';
 	import { post } from '$lib/messenger';
-	import Pixel from '$templates/components/Pixel.svelte';
+	import Pixel from '$lib/components/Pixel.svelte';
 	import { browser } from '$app/environment';
 	import { onMount } from 'svelte';
 

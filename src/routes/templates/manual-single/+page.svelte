@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { clickMacro } from '$lib/gam';
-	import '$templates/components/colours/tones.css';
-	import '$templates/components/fonts/Egyptian.css';
-	import { paletteColours } from '$templates/components/colours/paletteColours';
-	import ArrowRight from '$templates/components/icons/ArrowRight.svelte';
-	import BrandLogo from '$templates/components/icons/BrandLogo.svelte';
+	import '$lib/components/colours/tones.css';
+	import '$lib/components/fonts/Egyptian.css';
+	import { paletteColours } from '$lib/components/colours/paletteColours';
+	import ArrowRight from '$lib/components/icons/ArrowRight.svelte';
+	import BrandLogo from '$lib/components/icons/BrandLogo.svelte';
 	import type { PageData } from './$types';
 
 	export let data: PageData;

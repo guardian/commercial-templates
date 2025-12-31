@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { clickMacro } from '$lib/gam';
 	import type { Tone } from '$lib/types/tones';
-	import '$templates/components/fonts/Egyptian.css';
-	import '$templates/components/fonts/Headline.css';
-	import '$templates/components/fonts/Sans.css';
+	import '$lib/components/fonts/Egyptian.css';
+	import '$lib/components/fonts/Headline.css';
+	import '$lib/components/fonts/Sans.css';
 	import ArrowRight from './icons/ArrowRight.svelte';
 
 	export let image: string;

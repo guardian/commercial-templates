@@ -2,10 +2,10 @@
 	import { base } from '$app/paths';
 
 	import '../../styles.css';
-	import '../../templates/components/fonts/Sans.css';
-	import '../../templates/components/fonts/SansBold.css';
-	import '../../templates/components/fonts/SansItalic.css';
-	import '../../templates/components/fonts/SansBoldItalic.css';
+	import '$lib/fonts/Sans.css';
+	import '$lib/fonts/SansBold.css';
+	import '$lib/fonts/SansItalic.css';
+	import '$lib/fonts/SansBoldItalic.css';
 </script>
 
 <svelte:head>

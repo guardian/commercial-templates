@@ -1,5 +1,5 @@
 <script lang="ts">
-	import '$templates/components/fonts/SansBold.css';
+	import '$lib/components/fonts/SansBold.css';
 
 	export let logo: string | null;
 </script>

@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { post } from '$lib/messenger';
-	import Fabric from '$templates/components/Fabric.svelte';
-	import ArrowDown from '$templates/components/icons/ArrowDown.svelte';
-	import CrossIcon from '$templates/components/icons/CrossIcon.svelte';
+	import Fabric from '$lib/components/Fabric.svelte';
+	import ArrowDown from '$lib/components/icons/ArrowDown.svelte';
+	import CrossIcon from '$lib/components/icons/CrossIcon.svelte';
 	import type { PageData } from './$types';
 	import { browser } from '$app/environment';
 

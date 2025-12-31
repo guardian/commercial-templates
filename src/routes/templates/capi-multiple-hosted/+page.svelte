@@ -1,6 +1,6 @@
 <script lang="ts">
-	import '$templates/components/fonts/Sans.css';
-	import '$templates/components/fonts/SansBold.css';
+	import '$lib/components/fonts/Sans.css';
+	import '$lib/components/fonts/SansBold.css';
 
 	import {
 		addCapiHostedCardOverrides,
@@ -8,10 +8,10 @@
 	} from '$lib/capiMultiple';
 	import { addTrackingPixel, isValidReplacedVariable } from '$lib/gam.js';
 	import type { CapiCardOverride } from '$lib/types/capi';
-	import CapiHostedCard from '$templates/components/CapiHostedCard.svelte';
-	import { paletteColours } from '$templates/components/colours/paletteColours';
-	import HostedHeader from '$templates/components/HostedHeader.svelte';
-	import Resizer from '$templates/components/Resizer.svelte';
+	import CapiHostedCard from '$lib/components/CapiHostedCard.svelte';
+	import { paletteColours } from '$lib/components/colours/paletteColours';
+	import HostedHeader from '$lib/components/HostedHeader.svelte';
+	import Resizer from '$lib/components/Resizer.svelte';
 	import type { PageData } from './$types';
 
 	export let data: PageData;

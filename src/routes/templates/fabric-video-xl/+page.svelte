@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Fabric from '$templates/components/Fabric.svelte';
+	import Fabric from '$lib/components/Fabric.svelte';
 	import type { PageData } from './$types';
 
 	export let data: PageData;

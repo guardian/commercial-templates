@@ -3,7 +3,7 @@
 	import type { Single } from '$lib/types/capi';
 	import Button from './Button.svelte';
 	import ArrowDown from './icons/ArrowDown.svelte';
-	import '$templates/components/fonts/SansBold.css';
+	import '$lib/components/fonts/SansBold.css';
 	import GuardianLabsLogo from './icons/GuardianLabsCircleLogo.svelte';
 
 	export let SeriesUrl: string;

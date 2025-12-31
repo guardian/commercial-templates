@@ -1,4 +1,10 @@
-import { readdir, readFile, writeFile } from 'node:fs/promises';
+import {
+	copyFile,
+	mkdir,
+	readdir,
+	readFile,
+	writeFile,
+} from 'node:fs/promises';
 import { join } from 'node:path';
 import { JSDOM } from 'jsdom';
 
@@ -67,6 +73,7 @@ export function extractTemplateAssets() {
 		apply: 'build',
 		closeBundle: async () => {
 			const buildDir = 'build/templates';
+			const outDir = 'build/extracted-templates';
 
 			try {
 				const templates = await readdir(buildDir, { withFileTypes: true });
@@ -76,8 +83,31 @@ export function extractTemplateAssets() {
 						continue;
 					}
 
+					const srcDir = join('src/routes/templates', template.name);
 					const templateDir = join(buildDir, template.name);
+					const templateOutDir = join(outDir, template.name);
 					const htmlPath = join(templateDir, 'index.html');
+					const adJsonPath = join(srcDir, 'ad.json');
+
+					await mkdir(templateOutDir, { recursive: true });
+
+					try {
+						// Copy ad.json as-is
+						await copyFile(adJsonPath, join(templateOutDir, 'ad.json'));
+						console.log(`  ✓ ${template.name}/ad.json copied`);
+					} catch (err) {
+						if (
+							err &&
+							typeof err === 'object' &&
+							'code' in err &&
+							err.code !== 'ENOENT'
+						) {
+							console.error(
+								`  ✗ Error copying ad.json for ${template.name}:`,
+								err,
+							);
+						}
+					}
 
 					try {
 						const html = await readFile(htmlPath, 'utf-8');
@@ -86,7 +116,7 @@ export function extractTemplateAssets() {
 						// Write CSS file
 						if (extracted.css) {
 							await writeFile(
-								join(templateDir, 'style.css'),
+								join(templateOutDir, 'style.css'),
 								extracted.css,
 								'utf-8',
 							);
@@ -96,11 +126,11 @@ export function extractTemplateAssets() {
 						// Write body-only HTML (for GAM native ad HTML field)
 						if (extracted.html) {
 							await writeFile(
-								join(templateDir, 'html.html'),
+								join(templateOutDir, 'index.html'),
 								extracted.html,
 								'utf-8',
 							);
-							console.log(`  ✓ ${template.name}/html.html`);
+							console.log(`  ✓ ${template.name}/index.html`);
 						}
 					} catch (err) {
 						if (

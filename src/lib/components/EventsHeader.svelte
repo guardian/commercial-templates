@@ -2,8 +2,8 @@
 	import { clickMacro, type GAMVariable } from '$lib/gam';
 	import ArrowRight from './icons/ArrowRight.svelte';
 	import LiveLogo from './icons/LiveLogo.svelte';
-	import '$templates/components/fonts/Headline.css';
-	import '$templates/components/fonts/SansBold.css';
+	import '$lib/components/fonts/Headline.css';
+	import '$lib/components/fonts/SansBold.css';
 
 	export let HeaderButtonUrl: GAMVariable;
 	export let BannerDescription: GAMVariable;
