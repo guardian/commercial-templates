@@ -1,20 +1,16 @@
 <script lang="ts">
 	import { writable, type Writable } from 'svelte/store';
-	import {
-		clickMacro,
-		DEST_URL,
-		type GAMVariable,
-		isValidReplacedVariable,
-	} from '$lib/gam';
+	import { clickMacro, DEST_URL, isValidReplacedVariable } from '$lib/gam';
 	import { post } from '$lib/messenger';
 	import Pixel from '$lib/components/Pixel.svelte';
 	import { browser } from '$app/environment';
 	import { onMount } from 'svelte';
+	import type { ScrollType } from '$lib/types/background';
 
 	export let TrackingPixel: string;
 	export let ResearchPixel: string;
 	export let ViewabilityPixel: string;
-	export let BackgroundScrollType: 'parallax' | 'none' | 'fixed' = 'none';
+	export let BackgroundScrollType: ScrollType = 'none';
 	export let BackgroundColour: string;
 	export let BackgroundImage: string;
 	export let BackgroundImagePosition: string;
@@ -34,14 +30,14 @@
 	export let MobileLayer2BackgroundPosition: string;
 	export let MobileLayer3BackgroundImage: string;
 	export let MobileLayer3BackgroundPosition: string;
-	export let VideoURL: GAMVariable | undefined = undefined;
-	export let VideoBackupImage: GAMVariable | undefined = undefined;
-	export let MobileVideoBackupImage: GAMVariable | undefined = undefined;
-	export let VideoURLMobile: GAMVariable | undefined = undefined;
-	export let VideoAlignment: GAMVariable | undefined = undefined;
+	export let VideoURL: string | undefined = undefined;
+	export let VideoBackupImage: string | undefined = undefined;
+	export let MobileVideoBackupImage: string | undefined = undefined;
+	export let VideoURLMobile: string | undefined = undefined;
+	export let VideoAlignment: string | undefined = undefined;
 	export let showVideo: boolean = false;
 	export let isXL: boolean = false;
-	export let IsFullWidthTopSlot: GAMVariable<'yes' | 'no'>;
+	export let IsFullWidthTopSlot: 'yes' | 'no';
 
 	const isMobile = browser && window.matchMedia('(max-width: 739px)').matches;
 	const isTablet =

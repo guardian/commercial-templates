@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { PageData } from '../$types';
+	import type { PageData } from './$types';
 	import { resolve } from '$app/paths';
 
 	const branch = 'main';
@@ -14,12 +14,16 @@
 <ol>
 	{#each templates as template}
 		<li>
-			<a href={resolve(`/preview/${template}`)}
-				>{template
+			<a href={resolve(`/preview/${template.name}`)}
+				>{template.name
 					.split('-')
 					.map((word) => word.slice(0, 1).toUpperCase() + word.slice(1))
 					.join(' ')}</a
 			>
+			(<a
+				href="https://admanager.google.com/59666047#creatives/native/native_style/detail/style_id={template.id}"
+				target="_blank">{template.id}</a
+			>)
 		</li>
 	{/each}
 </ol>

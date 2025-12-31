@@ -5,9 +5,9 @@
 	export let data: PageData;
 
 	let {
-		TrackingPixel,
-		ResearchPixel,
-		ViewabilityPixel,
+		Trackingpixel,
+		Researchpixel,
+		Viewabilitypixel,
 		BackgroundColour,
 		BackgroundImage,
 		BackgroundPosition,
@@ -36,9 +36,9 @@
 </script>
 
 <Fabric
-	{TrackingPixel}
-	{ResearchPixel}
-	{ViewabilityPixel}
+	TrackingPixel={Trackingpixel}
+	ResearchPixel={Researchpixel}
+	ViewabilityPixel={Viewabilitypixel}
 	{BackgroundColour}
 	{BackgroundImage}
 	BackgroundImagePosition={BackgroundPosition}

@@ -1,13 +1,13 @@
 <script lang="ts">
-	import { clickMacro, type GAMVariable } from '$lib/gam';
+	import { clickMacro } from '$lib/gam';
 	import ArrowRight from './icons/ArrowRight.svelte';
 	import LiveLogo from './icons/LiveLogo.svelte';
 	import '$lib/components/fonts/Headline.css';
 	import '$lib/components/fonts/SansBold.css';
 
-	export let HeaderButtonUrl: GAMVariable;
-	export let BannerDescription: GAMVariable;
-	export let HeaderButtonText: GAMVariable;
+	export let HeaderButtonUrl: string;
+	export let BannerDescription: string;
+	export let HeaderButtonText: string;
 </script>
 
 <header>

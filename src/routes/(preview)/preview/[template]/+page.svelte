@@ -1,12 +1,11 @@
 <script lang="ts">
-	import Code from '$lib/Code.svelte';
 	import Previews from '$lib/Previews.svelte';
 	import Warning from '$lib/Warning.svelte';
 	import type { PageData } from './$types';
 
 	export let data: PageData;
 
-	$: ({ gamVariables, description, template, html, css } = data);
+	$: ({ gamVariables, description, template } = data);
 </script>
 
 <Warning />
@@ -18,5 +17,3 @@
 {@html description}
 
 <Previews {template} {gamVariables} />
-
-<Code {html} {css} />

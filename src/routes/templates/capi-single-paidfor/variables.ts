@@ -1,8 +1,9 @@
 export const gamVariables = {
-	SeriesUrl: 'guardian-clearing',
-	ComponentTitle: 'The Guardian Hub',
-	ArticleHeadline: '',
-	ArticleText: '',
+	SeriesUrl: 'the-future-of-work--forging-an-inclusive-economy',
+	ComponentTitle: 'The future of work: Forging an inclusive economy',
+	ArticleHeadline: 'More than 2 billion workers make up the informal economy',
+	ArticleText:
+		'The informal economy employs 6 out of every 10 workers in the world—and the economic recovery of these workers is a critical component of a global economic rebound from the Covid-19 crisis.',
 	ArticleImage: '',
 	TrackingPixel: '',
 };

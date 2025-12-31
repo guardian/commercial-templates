@@ -9,7 +9,16 @@
 
 	export let data: PageData;
 
-	let { Tone, TitleURL, OfferURL, Explainer, ViewAll, OmnitureId } = data;
+	let {
+		Tone,
+		TitleURL,
+		OfferURL,
+		OfferTitle,
+		OfferText,
+		Explainer,
+		ViewAll,
+		OmnitureId,
+	} = data;
 </script>
 
 <aside
@@ -35,13 +44,13 @@
 		<a
 			class="single"
 			href={clickMacro(OfferURL)}
-			data-link-name="[%OfferTitle%]"
+			data-link-name={OfferTitle}
 			target="_top"
 			rel="external"
 		>
 			<div class="advert__text">
-				<h2 class="blink__anchor advert__title">[%OfferTitle%]</h2>
-				<p class="advert__standfirst">[%OfferText%]</p>
+				<h2 class="blink__anchor advert__title">{OfferTitle}</h2>
+				<p class="advert__standfirst">{OfferText}</p>
 			</div>
 		</a>
 		<a

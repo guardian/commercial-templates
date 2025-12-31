@@ -117,11 +117,11 @@
 	/>
 
 	<div class={expanded ? 'button-container expanded' : 'button-container'}>
-		<button onclick={() => toggleExpanded()} class="toggle-cross">
+		<button on:click={() => toggleExpanded()} class="toggle-cross">
 			<CrossIcon plus={expanded} />
 		</button>
 
-		<button onclick={() => toggleExpanded()} class="toggle-arrow">
+		<button on:click={() => toggleExpanded()} class="toggle-arrow">
 			<ArrowDown flip={expanded} />
 		</button>
 	</div>

@@ -6,7 +6,6 @@ export const load = (async ({ params }) => {
 	const { template } = params;
 
 	const srcDir = `src/routes/templates/${template}`;
-	const outDir = `build/templates/${template}`;
 
 	const description = existsSync(`${srcDir}/README.md`)
 		? await marked.parse(readFileSync(`${srcDir}/README.md`, 'utf-8'))
@@ -16,19 +15,9 @@ export const load = (async ({ params }) => {
 		`../../../templates/${template}/variables.ts`
 	)) as { gamVariables: Record<string, string> };
 
-	const html = existsSync(`${outDir}/html.html`)
-		? readFileSync(`${outDir}/html.html`, 'utf-8')
-		: '';
-
-	const css = existsSync(`${outDir}/style.css`)
-		? readFileSync(`${outDir}/style.css`, 'utf-8')
-		: '';
-
 	return {
 		description,
 		template,
 		gamVariables,
-		html,
-		css,
 	};
 }) satisfies PageServerLoad;

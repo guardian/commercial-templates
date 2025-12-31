@@ -1,7 +1,7 @@
 export const gamVariables = {
-	SeriesURL: 'guardian-clearing',
+	SeriesURL: 'advertiser-content/advent-zagreb/advent-zagreb',
 	BrandLogo: '',
-	BrandColour: '#E1A100',
+	BrandColour: '#222B5E',
 	TrackingId: '',
 	Article1Headline: '',
 	Article1Image: '',

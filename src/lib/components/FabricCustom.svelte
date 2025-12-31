@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { clickMacro, DEST_URL, type GAMVariable } from '$lib/gam';
+	import { clickMacro, DEST_URL } from '$lib/gam';
 
-	export let ViewabilityTracker: GAMVariable;
-	export let thirdPartyJSTracking: GAMVariable;
+	export let ViewabilityTracker: string;
+	export let thirdPartyJSTracking: string;
 </script>
 
 <base target="_blank" />
