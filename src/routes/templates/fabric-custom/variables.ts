@@ -1,0 +1,8 @@
+export const gamVariables = {
+	DapAssetsFolder: 'GooglePixel2',
+	TrackingPixel: '',
+	ResearchPixel: '',
+	ViewabilityTracker: '<img src="">',
+	thirdPartyJSTracking:
+		"<SCRIPT TYPE='application/javascript' SRC='https://pixel.adsafeprotected.com/rjss/st/726370/54949606/skeleton.js'></SCRIPT> <NOSCRIPT><IMG SRC='https://pixel.adsafeprotected.com/rfw/st/726370/54949605/skeleton.gif?gdpr=${GDPR}&gdpr_consent=${GDPR_CONSENT_278}&gdpr_pd=${GDPR_PD}' BORDER=0 WIDTH=1 HEIGHT=1 ALT=''></NOSCRIPT>",
+};

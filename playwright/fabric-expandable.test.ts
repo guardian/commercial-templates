@@ -42,7 +42,7 @@ test.describe('Fabric Expandable', () => {
 	test('Compare PR templates to reference screenshots', async ({ page }) => {
 		await page.setViewportSize(viewport);
 
-		await page.goto(`${localBaseUrl}csr/fabric-expandable`, {
+		await page.goto(`${localBaseUrl}/fabric-expandable`, {
 			waitUntil: 'networkidle',
 		});
 

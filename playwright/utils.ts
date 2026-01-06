@@ -1,4 +1,4 @@
-const localBaseUrl = 'http://localhost:7777/';
+const localBaseUrl = 'http://localhost:7777/preview';
 
 const referenceBaseUrl = 'https://guardian.github.io/commercial-templates/';
 

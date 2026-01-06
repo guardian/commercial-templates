@@ -29,7 +29,7 @@ test.describe('Manual Single', () => {
 	test('Compare PR templates to reference screenshots', async ({ page }) => {
 		await page.setViewportSize(viewport);
 
-		await page.goto(`${localBaseUrl}ssr/manual-single`, {
+		await page.goto(`${localBaseUrl}/manual-single`, {
 			waitUntil: 'networkidle',
 		});
 
