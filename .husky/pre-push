@@ -5,4 +5,4 @@ then
 	exit 1
 fi
 
-pnpm check
+pnpm lint && pnpm check
