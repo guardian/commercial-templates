@@ -67,6 +67,11 @@
 <style lang="scss">
 	@use '$styles/fonts/Egyptian';
 	@use '$styles/tones';
+
+	:global(body) {
+		margin: 0;
+	}
+
 	aside {
 		height: 250px;
 		width: 100%;

@@ -93,7 +93,7 @@
 	{#if loading}
 		<h3>Loading Content...</h3>
 	{:else if error}
-		<h3>Could not fetch content</h3>
+		<h3>An error occurred whilst loading content</h3>
 	{:else}
 		<HostedHeader {logo} />
 		<div class="cards-container">
@@ -108,6 +108,11 @@
 <style lang="scss">
 	@use '$styles/fonts/Sans';
 	@use '$styles/fonts/SansBold';
+
+	:global(body) {
+		margin: 0;
+	}
+
 	aside {
 		max-width: 1300px;
 		position: relative;

@@ -38,6 +38,8 @@
 	@use '$styles/fonts/Egyptian';
 	@use '$styles/fonts/Headline';
 	@use '$styles/fonts/Sans';
+	@use '$styles/tones';
+
 	a {
 		color: var(--neutral-0);
 		text-decoration: none;

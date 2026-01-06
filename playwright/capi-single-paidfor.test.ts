@@ -29,7 +29,7 @@ test.describe('CAPI Single Paidfor', () => {
 	test('Compare PR templates to reference screenshots', async ({ page }) => {
 		await page.setViewportSize(viewport);
 
-		await page.goto(`${localBaseUrl}csr/capi-single-paidfor`, {
+		await page.goto(`${localBaseUrl}/capi-single-paidfor`, {
 			waitUntil: 'networkidle',
 		});
 

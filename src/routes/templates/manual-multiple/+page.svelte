@@ -98,6 +98,11 @@
 
 <style lang="scss">
 	@use '$styles/fonts/Sans';
+
+	:global(body) {
+		margin: 0;
+	}
+
 	aside {
 		background: var(--neutral-97);
 		position: relative;

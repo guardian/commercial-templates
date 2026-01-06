@@ -29,7 +29,7 @@ test.describe('CAPI Multiple Paidfor', () => {
 	test('Compare PR templates to reference screenshots', async ({ page }) => {
 		await page.setViewportSize(viewport);
 
-		await page.goto(`${localBaseUrl}csr/capi-multiple-paidfor`, {
+		await page.goto(`${localBaseUrl}/capi-multiple-paidfor`, {
 			waitUntil: 'networkidle',
 		});
 

@@ -1,6 +1,6 @@
 export const gamVariables = {
 	SeriesURL: 'guardian-clearing',
-	ComponentTitle: 'The Guardian Hub',
+	ComponentTitle: 'The Guardian Clearing Hub',
 	Article1Headline: '',
 	Article1Image: '',
 	Article1Kicker: 'Kicker 1',
