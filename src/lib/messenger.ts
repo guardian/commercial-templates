@@ -27,8 +27,9 @@ type BackgroundMessage = StandardMessage<
 		backgroundRepeat: string;
 		backgroundPosition: string;
 		backgroundSize: string;
-		ctaUrl: string;
-		videoSource: string;
+		ctaUrl?: string;
+		videoSource?: string;
+		transform?: string;
 	}
 >;
 
