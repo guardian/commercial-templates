@@ -10,10 +10,10 @@
 		href="%%CLICK_URL_UNESC%%%%DEST_URL_ESC%%"
 		target="_blank"
 	>
-		<!-- svelte-ignore a11y-missing-attribute -->
 		<img
 			class="creative__button creative__button--[%ButtonVerticalPosition%] creative__button--[%ButtonHorizontalPosition%]"
 			src="[%Button%]"
+			alt="button"
 		/>
 	</a>
 	<!-- svelte-ignore a11y-missing-attribute -->
