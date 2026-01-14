@@ -12,7 +12,7 @@ export const load = (async ({ params }) => {
 		: `<p><em>no description provided</em></p>`;
 
 	const { gamVariables } = (await import(
-		`../../../templates/${template}/variables.ts`
+		`../../../templates/${template}/variables.gam.ts`
 	)) as { gamVariables: Record<string, string> };
 
 	return {

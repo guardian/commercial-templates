@@ -1,10 +1,11 @@
 /* eslint-disable import/no-default-export -- vite config */
 import { sveltekit } from '@sveltejs/kit/vite';
-import { extractTemplateAssets } from './vite-plugin-extract-assets.js';
+import { extractTemplateAssets } from './src/vite/vite-plugin-extract-assets';
+import { transformGAMVariables } from './src/vite/vite-plugin-transform-gam-variables';
 
 /** @type {import('vite').UserConfig} */
 const config = {
-	plugins: [sveltekit(), extractTemplateAssets()],
+	plugins: [transformGAMVariables(), sveltekit(), extractTemplateAssets()],
 	css: {
 		preprocessorOptions: {
 			scss: {
