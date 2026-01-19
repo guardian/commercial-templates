@@ -11,7 +11,6 @@ const config = {
 
 	kit: {
 		adapter: adapter({
-			fallback: 'index.html',
 			pages: buildRoute ? `build/templates/${buildRoute}` : 'build',
 		}),
 
