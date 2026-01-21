@@ -6,5 +6,4 @@ export const gamVariables = {
 	TrackingPixel: '/',
 	ResearchPixel: '/',
 	ViewabilityTracker: '/',
-	thirdPartyJSTracking: '',
 };

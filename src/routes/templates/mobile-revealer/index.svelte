@@ -70,6 +70,7 @@
 		aria-hidden="true"
 	/>
 
+	<!-- This will only add the GAM tag when pre-rendering as a raw string, these JS tags have been known to cause issues when injected into svelte's compiled JS by GAM -->
 	{#if building}
 		[%thirdPartyJSTracking%]
 	{/if}

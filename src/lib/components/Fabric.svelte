@@ -3,7 +3,7 @@
 	import { clickMacro, DEST_URL, isValidReplacedVariable } from '$lib/gam';
 	import { post } from '$lib/messenger';
 	import Pixel from '$lib/components/Pixel.svelte';
-	import { browser } from '$app/environment';
+	import { browser, building } from '$app/environment';
 	import { onMount } from 'svelte';
 	import type { ScrollType } from '$lib/types/background';
 
@@ -172,6 +172,11 @@
 	<Pixel src={ResearchPixel} />
 {:else if isValidReplacedVariable(ViewabilityPixel)}
 	<Pixel src={ViewabilityPixel} />
+{/if}
+
+<!-- This will only add the GAM tag when pre-rendering as a raw string, these JS tags have been known to cause issues when injected into svelte's compiled JS by GAM -->
+{#if building}
+	[%thirdPartyJSTracking%]
 {/if}
 
 <style lang="scss">
