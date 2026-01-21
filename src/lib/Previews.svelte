@@ -1,30 +1,10 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { replaceGAMVariables } from '$lib/gam';
 	import type { Message } from './messenger';
-	import { tones } from './types/tones';
-
-	const defaultReplacements: Record<string, string> = {
-		CACHEBUSTER: '?cachebust',
-		CLICK_URL_UNESC: '',
-	};
 
 	export let template: string;
-	export let html: string;
-	export let css: string;
-	export let props: Record<string, string> = {};
 
-	$: transformed = [
-		'<',
-		'style>',
-		css,
-		'</',
-		'style>',
-
-		'<body marginwidth="0" marginheight="0">',
-		replaceGAMVariables(html, { ...defaultReplacements, ...props }),
-		'</body>',
-	].join('');
+	export let gamVariables: Record<string, string>;
 
 	export const widths: Record<string, string> = {
 		'100%': '100%',
@@ -53,8 +33,6 @@
 
 			const iframe = source.frameElement as HTMLIFrameElement;
 
-			console.log('messenger message received', data);
-
 			switch (data.type) {
 				case 'set-ad-height':
 				case 'resize':
@@ -78,7 +56,7 @@
 </script>
 
 <section id="example">
-	{#each Object.keys(widths) as width}
+	{#each Object.keys(widths) as width, i}
 		<div class="size" class:full-width={width === '100%'}>
 			<h4>
 				{widths[width]} size ({width})
@@ -87,33 +65,28 @@
 				title={`Template example for ${template}`}
 				frameborder="0"
 				{width}
-				srcdoc={transformed}
+				src="/templates/{template}"
 				name={`width-${width}`}
 				height="700"
-			/>
+			></iframe>
 		</div>
 	{/each}
 </section>
 
 <section>
-	<h3>Inputs</h3>
-
-	<ul>
-		{#each Object.keys(props) as prop}
-			<li>
-				{#if prop === 'Tone'}
-					{prop}:
-					<select bind:value={props[prop]}>
-						{#each tones as tone}
-							<option value={tone}>{tone}</option>
-						{/each}
-					</select>
-				{:else}
-					{prop}: <input type="text" bind:value={props[prop]} />
-				{/if}
-			</li>
+	<h3>Variables</h3>
+	<em
+		>edit <span class="code">src/templates/{template}/variables.gam.ts</span> to update
+		the preview's variables</em
+	>
+	<table class="inputs">
+		{#each Object.entries(gamVariables) as [name, value]}
+			<tr>
+				<td>{name}</td>
+				<td>{value}</td>
+			</tr>
 		{/each}
-	</ul>
+	</table>
 </section>
 
 <style lang="scss">
@@ -139,5 +112,43 @@
 	iframe {
 		outline: var(--grid-size) solid var(--grid-color);
 		background-color: white;
+	}
+
+	.code {
+		font-family: monospace;
+		background-color: rgba(0, 0, 0, 0.05);
+		padding: 0.1rem 0.3rem;
+		border-radius: 3px;
+		border: 1px solid rgba(0, 0, 0, 0.1);
+	}
+
+	.inputs {
+		border-collapse: collapse;
+		width: 100%;
+		max-width: 600px;
+		margin-top: var(--grid-size);
+		font-family: monospace;
+		font-size: 0.875rem;
+
+		tr:nth-child(odd) {
+			background-color: rgba(0, 0, 0, 0.02);
+		}
+
+		td {
+			padding: calc(var(--grid-size) * 1.5) var(--grid-size);
+			border: 1px solid rgba(0, 0, 0, 0.1);
+			text-align: left;
+
+			&:first-child {
+				font-weight: 600;
+				color: #333;
+				width: 30%;
+			}
+
+			&:last-child {
+				color: #666;
+				word-break: break-word;
+			}
+		}
 	}
 </style>

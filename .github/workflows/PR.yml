@@ -75,4 +75,4 @@ jobs:
         shell: bash
 
       - name: Build
-        run: pnpm build
+        run: pnpm build:templates

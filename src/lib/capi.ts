@@ -1,4 +1,3 @@
-import type { GAMVariable } from './gam';
 import type {
 	CapiCardOverride,
 	CapiRequestType,
@@ -10,7 +9,7 @@ const apiEndpoint = 'https://api.nextgen.guardianapps.co.uk/commercial/api';
 
 async function retrieveCapiData<T extends CapiRequestType>(
 	type: T,
-	seriesUrl: GAMVariable,
+	seriesUrl: string,
 ): Promise<CapiResponse<T>> {
 	const request = new URL(`${apiEndpoint}/capi-${type}.json`);
 	request.searchParams.append('k', encodeURI(seriesUrl));
@@ -25,14 +24,16 @@ function addCapiCardOverrides(
 ): Single[] {
 	return cardData.map((capiCard, i) => ({
 		...capiCard,
-		/* eslint-disable @typescript-eslint/prefer-nullish-coalescing -- nullish coalescing operator doesn't handle empty strings */
+
+		// eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing -- we want to override empty strings too
 		articleHeadline: overrideCards[i]?.headline || capiCard.articleHeadline,
+		// eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing -- we want to override empty strings too
 		articleKicker: overrideCards[i]?.kicker || capiCard.articleKicker,
+		// eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing -- we want to override empty strings too
 		articleText: overrideCards[i]?.text || capiCard.articleText,
 		articleImage: overrideCards[i]?.image
 			? { sources: [], backupSrc: overrideCards[i]?.image ?? '' }
 			: capiCard.articleImage,
-		/* eslint-enable @typescript-eslint/prefer-nullish-coalescing -- nullish coalescing operator doesn't handle empty strings */
 	}));
 }
 

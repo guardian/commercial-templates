@@ -29,7 +29,7 @@ test.describe('Manual Multiple', () => {
 	test('Compare PR templates to reference screenshots', async ({ page }) => {
 		await page.setViewportSize(viewport);
 
-		await page.goto(`${localBaseUrl}csr/manual-multiple`, {
+		await page.goto(`${localBaseUrl}/manual-multiple`, {
 			waitUntil: 'networkidle',
 		});
 

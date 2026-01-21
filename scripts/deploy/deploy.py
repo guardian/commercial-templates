@@ -11,7 +11,7 @@ load_dotenv()
 
 template_dir = os.path.realpath(
     os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                 "../../build-static")
+                 "../../build/extracted-templates")
 )
 
 config = {
@@ -26,6 +26,8 @@ css_prefix = "/* DO NOT EDIT -- FILE GENERATED AND DEPLOYED AUTOMATICALLY FROM h
 )
 
 # Uploads a native style template to GAM given a directory name
+
+
 def upload_template(
     native_style_service: common.GoogleSoapService, root: str, dir: str
 ):
@@ -154,12 +156,14 @@ def main(native_style_service: common.GoogleSoapService):
 
     # Report final results
     if successful_templates:
-        cprint(f'\n[✔️] Successfully deployed {len(successful_templates)} template(s):', "green")
+        cprint(
+            f'\n[✔️] Successfully deployed {len(successful_templates)} template(s):', "green")
         for template in successful_templates:
             cprint(f'  - {template}', "green")
 
     if failed_templates:
-        cprint(f'\n[!] Failed to deploy {len(failed_templates)} template(s):', "red")
+        cprint(
+            f'\n[!] Failed to deploy {len(failed_templates)} template(s):', "red")
         for template in failed_templates:
             cprint(f'  - {template}', "red")
         cprint('\n[!] DEPLOYMENT FAILED: Common causes:', "red")

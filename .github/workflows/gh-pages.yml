@@ -35,7 +35,7 @@ jobs:
         shell: bash
 
       - name: Build site
-        run: pnpm build
+        run: pnpm build:preview
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v4.0.0

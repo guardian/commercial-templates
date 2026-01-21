@@ -29,7 +29,7 @@ test.describe('CAPI Multiple Hosted', () => {
 	test('Compare PR templates to reference screenshots', async ({ page }) => {
 		await page.setViewportSize(viewport);
 
-		await page.goto(`${localBaseUrl}csr/capi-multiple-hosted`, {
+		await page.goto(`${localBaseUrl}/capi-multiple-hosted`, {
 			waitUntil: 'networkidle',
 		});
 
