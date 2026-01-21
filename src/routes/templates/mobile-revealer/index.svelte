@@ -3,6 +3,7 @@
 	import { post } from '$lib/messenger';
 	import { building } from '$app/environment';
 	import type { PageData } from './$types';
+	import { CACHE_BUST } from '$lib/gam';
 
 	export let data: PageData;
 
@@ -52,13 +53,13 @@
 	</a>
 	<!-- svelte-ignore a11y-missing-attribute -->
 	<img
-		src="${TrackingPixel}%%CACHEBUSTER%%"
+		src="${TrackingPixel}${CACHE_BUST}"
 		class="creative__pixel creative__pixel--displayNone"
 		aria-hidden="true"
 	/>
 	<!-- svelte-ignore a11y-missing-attribute -->
 	<img
-		src="${ResearchPixel}%%CACHEBUSTER%%"
+		src="${ResearchPixel}${CACHE_BUST}"
 		class="creative__pixel creative__pixel--displayNone"
 		aria-hidden="true"
 	/>
