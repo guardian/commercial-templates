@@ -1,7 +1,41 @@
 <script lang="ts">
-	import { type GAMVariable } from '$lib/gam';
+	import { onMount } from 'svelte';
+	import { post } from '$lib/messenger';
+	import { building } from '$app/environment';
+	import type { PageData } from './$types';
 
-	export let thirdPartyJSTracking: GAMVariable;
+	export let data: PageData;
+
+	let {
+		BackgroundImage,
+		Button,
+		ButtonVerticalPosition,
+		ButtonHorizontalPosition,
+		TrackingPixel,
+		ResearchPixel,
+		ViewabilityTracker,
+	} = data;
+
+	onMount(() => {
+		post({
+			type: 'background',
+			value: {
+				scrollType: 'fixed',
+				backgroundImage: `url('${BackgroundImage}')`,
+				backgroundRepeat: 'no-repeat',
+				backgroundPosition: 'center center',
+				backgroundSize: 'cover',
+				transform: 'translate3d(0,0,0)',
+			},
+		});
+
+		post({
+			type: 'resize',
+			value: {
+				height: '250px',
+			},
+		});
+	});
 </script>
 
 <div class="creative creative--revealer">
@@ -11,31 +45,33 @@
 		target="_blank"
 	>
 		<img
-			class="creative__button creative__button--[%ButtonVerticalPosition%] creative__button--[%ButtonHorizontalPosition%]"
-			src="[%Button%]"
+			class="creative__button creative__button--${ButtonVerticalPosition} creative__button--${ButtonHorizontalPosition}"
+			src="${Button}"
 			alt="button"
 		/>
 	</a>
 	<!-- svelte-ignore a11y-missing-attribute -->
 	<img
-		src="[%TrackingPixel%]%%CACHEBUSTER%%"
+		src="${TrackingPixel}%%CACHEBUSTER%%"
 		class="creative__pixel creative__pixel--displayNone"
 		aria-hidden="true"
 	/>
 	<!-- svelte-ignore a11y-missing-attribute -->
 	<img
-		src="[%ResearchPixel%]%%CACHEBUSTER%%"
+		src="${ResearchPixel}%%CACHEBUSTER%%"
 		class="creative__pixel creative__pixel--displayNone"
 		aria-hidden="true"
 	/>
 	<!-- svelte-ignore a11y-missing-attribute -->
 	<img
-		src="[%ViewabilityTracker%]"
+		src="${ViewabilityTracker}"
 		class="creative__pixel creative__pixel--displayNone"
 		aria-hidden="true"
 	/>
 
-	{@html thirdPartyJSTracking}
+	{#if building}
+		[%thirdPartyJSTracking%]
+	{/if}
 </div>
 
 <style lang="scss">
