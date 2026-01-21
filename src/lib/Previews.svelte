@@ -76,8 +76,8 @@
 <section>
 	<h3>Variables</h3>
 	<em
-		>edit <span class="code">src/templates/{template}/variables.gam.ts</span> to
-		update the preview's variables</em
+		>edit <span class="code">src/templates/{template}/variables.gam.ts</span> to update
+		the preview's variables</em
 	>
 	<table class="inputs">
 		{#each Object.entries(gamVariables) as [name, value]}
