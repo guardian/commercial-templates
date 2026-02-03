@@ -87,6 +87,7 @@
 		MobileLayer3BackgroundImage={Slide1Layer3MobileBackgroundImage}
 		MobileLayer3BackgroundPosition={Slide1Layer3MobileBackgroundPosition}
 		IsFullWidthTopSlot={'no'}
+		hasThirdPartyJSTracking={false}
 	/>
 
 	<Fabric
@@ -114,6 +115,7 @@
 		MobileLayer3BackgroundImage={Slide2Layer3MobileBackgroundImage}
 		MobileLayer3BackgroundPosition={Slide2Layer3MobileBackgroundPosition}
 		IsFullWidthTopSlot={'no'}
+		hasThirdPartyJSTracking={false}
 	/>
 
 	<div class={expanded ? 'button-container expanded' : 'button-container'}>

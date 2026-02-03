@@ -1,6 +1,4 @@
 export const gamVariables = {
-	ClickthroughUrl:
-		'http://www.armani.com/gb/giorgioarmani/women/new-normal_section',
 	BackgroundColour: 'transparent',
 	BackgroundImage:
 		'https://tpc.googlesyndication.com/pagead/imgad?id=CICAgKCLn4zhRRABGAEyCNF40kFrzoD3',
@@ -36,4 +34,5 @@ export const gamVariables = {
 	Trackingpixel: '',
 	Researchpixel: '',
 	Viewabilitypixel: '',
+	ShowLabel: 'yes',
 };

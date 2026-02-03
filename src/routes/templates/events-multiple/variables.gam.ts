@@ -27,4 +27,5 @@ export const gamVariables = {
 		'https://media.guim.co.uk/3ce77c6fd861c52d0c6e5b14f3cd8f4b48b9057a/0_475_3333_2000/3333.jpg',
 	EventUrl4:
 		'https://membership.theguardian.com/live/in-conversation-with-afua-hirsch-722077582487',
+	NumberOfCards: '3',
 };

@@ -30,4 +30,5 @@ export const gamVariables = {
 	MobileLayer3BackgroundImage:
 		'https://tpc.googlesyndication.com/simgad/12866258743989584254',
 	MobileLayer3BackgroundPosition: 'left center',
+	ShowLabel: 'yes',
 };

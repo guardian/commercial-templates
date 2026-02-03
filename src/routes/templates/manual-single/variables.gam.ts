@@ -1,7 +1,6 @@
 import type { Tone } from '$lib/types/tones';
 
 export const gamVariables = {
-	ClickthroughUrl: '',
 	OmnitureId: '',
 	Tone: 'brand-new' as Tone,
 	Title: 'The Guardian Live',

@@ -1,17 +1,16 @@
 import type { ScrollType } from '$lib/types/background';
 
 export const gamVariables = {
-	ClickthroughUrl: '',
 	ScrollType: 'none' as ScrollType,
-	ShowMoreType: '',
-	BackgroundColour: '',
+	ShowMoreType: 'plus' as 'plus' | 'arrow' | 'plus-and-arrow',
+	BackgroundColour: 'transparent',
 	BackgroundImage: '',
 	BackgroundImagePosition: '',
 	BackgroundImageRepeat: '',
 	MobileBackgroundImage: '',
 	MobileBackgroundImagePosition: '',
 	MobileBackgroundImageRepeat: '',
-	Slide1BackgroundColour: '',
+	Slide1BackgroundColour: 'transparent',
 	Slide1BackgroundImage: '',
 	Slide1BackgroundRepeat: '',
 	Slide1BackgroundPosition: '',
@@ -39,7 +38,7 @@ export const gamVariables = {
 	Slide1Layer3MobileBackgroundImage: '',
 	Slide1Layer3MobileBackgroundRepeat: '',
 	Slide1Layer3MobileBackgroundPosition: '',
-	Slide2BackgroundColour: '',
+	Slide2BackgroundColour: 'transparent',
 	Slide2BackgroundImage: '',
 	Slide2BackgroundRepeat: '',
 	Slide2BackgroundPosition: '',
@@ -71,4 +70,5 @@ export const gamVariables = {
 	Trackingpixel: '',
 	Researchpixel: '',
 	Viewabilitypixel: '',
+	ShowLabel: 'yes',
 };

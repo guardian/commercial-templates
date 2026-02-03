@@ -1,6 +1,4 @@
 export const gamVariables = {
-	ClickthroughUrl:
-		'http://www.armani.com/gb/giorgioarmani/women/new-normal_section',
 	BackgroundColour: 'transparent',
 	BackgroundImage: '',
 	BackgroundRepeat: 'no-repeat',
