@@ -1,0 +1,31 @@
+export const gamVariables = {
+	BannerDescription:
+		'Hear from leading thinkers and award-winning journalists in livestreamed and interactive events',
+	HeaderButtonText: 'Browse all',
+	HeaderButtonUrl: 'https://www.theguardian.com/guardian-masterclasses',
+	EventTitle1: 'Carlo Rovelli meets Dara Ó Briain: Live in London and online',
+	EventDateTime1: 'Monday 30 October 2023, 7pm–8.30pm GMT',
+	EventImage1:
+		'https://media.guim.co.uk/a2a1c4db8beab56c032b81def3ba41eab148a6ea/0_0_1200_720/1200.jpg',
+	EventUrl1:
+		'https://membership.theguardian.com/live/carlo-rovelli-meets-dara-o-briain-live-in-london-and-online-687195088007',
+	EventTitle2: 'Guardian Newsroom: How will the US presidential race unfold?',
+	EventDateTime2: 'Thursday 2 November 2023, 8pm–9.15pm GMT',
+	EventImage2:
+		'https://media.guim.co.uk/1b3edde6a42aec60a8f05930bb17784b7478697d/0_260_3900_2340/3900.jpg',
+	EventUrl2:
+		'https://membership.theguardian.com/live/guardian-newsroom-how-will-the-us-presidential-race-unfold-715912903767',
+	EventTitle3: 'John Crace meets Ian Hislop',
+	EventDateTime3: 'Monday 6 November 2023, 8pm–9.15pm GMT',
+	EventImage3:
+		'https://media.guim.co.uk/5b5f3a8ff2eb9532d3c467fb940755aa2bc3e718/0_1_1200_720/1200.jpg',
+	EventUrl3:
+		'https://membership.theguardian.com/live/john-crace-meets-ian-hislop-685572585057',
+	EventTitle4: 'In conversation with Afua Hirsch',
+	EventDateTime4: 'Wednesday 8 November 2023, 8pm–9pm GMT',
+	EventImage4:
+		'https://media.guim.co.uk/3ce77c6fd861c52d0c6e5b14f3cd8f4b48b9057a/0_475_3333_2000/3333.jpg',
+	EventUrl4:
+		'https://membership.theguardian.com/live/in-conversation-with-afua-hirsch-722077582487',
+	NumberOfCards: '3',
+};

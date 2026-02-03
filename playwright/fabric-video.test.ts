@@ -34,7 +34,7 @@ test.describe('Fabric Video', () => {
 	test('Compare PR templates to reference screenshots', async ({ page }) => {
 		await page.setViewportSize(viewport);
 
-		await page.goto(`${localBaseUrl}csr/fabric-video`, {
+		await page.goto(`${localBaseUrl}/fabric-video`, {
 			waitUntil: 'networkidle',
 		});
 
