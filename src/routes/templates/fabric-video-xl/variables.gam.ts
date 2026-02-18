@@ -30,7 +30,7 @@ export const gamVariables = {
 		'https://tpc.googlesyndication.com/pagead/imgad?id=CICAgKCLn8ywtAEQARgBMgilQLMRCw4e5A',
 	MobileVideoBackupImage: '',
 	VideoAlignment: 'center',
-	Trackingpixel: '',
-	Researchpixel: '',
-	Viewabilitypixel: '',
+	TrackingPixel: '',
+	ResearchPixel: '',
+	ViewabilityPixel: '',
 };

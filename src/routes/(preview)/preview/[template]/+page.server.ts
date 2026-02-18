@@ -15,9 +15,19 @@ export const load = (async ({ params }) => {
 		`../../../templates/${template}/variables.gam.ts`
 	)) as { gamVariables: Record<string, string> };
 
+	const adJson = existsSync(`${srcDir}/ad.json`)
+		? (JSON.parse(readFileSync(`${srcDir}/ad.json`, 'utf-8')) as {
+				nativeStyleId: string;
+				creativeTemplateId: string;
+				testNativeStyleId: string;
+				testCreativeId: string;
+			})
+		: null;
+
 	return {
 		description,
 		template,
 		gamVariables,
+		adJson,
 	};
 }) satisfies PageServerLoad;

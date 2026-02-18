@@ -10,9 +10,15 @@ export const load: PageServerLoad = async () => {
 			const adJson = `src/routes/templates/${name}/ad.json`;
 			try {
 				const adFile = await readFile(adJson, 'utf-8').then(
-					(data: string) => JSON.parse(data) as { nativeStyleId: string },
+					(data: string) =>
+						JSON.parse(data) as {
+							nativeStyleId: string;
+							creativeTemplateId: string;
+							testNativeStyleId: string;
+							testCreativeId: string;
+						},
 				);
-				return adFile.nativeStyleId;
+				return adFile;
 			} catch {
 				return null;
 			}
@@ -21,7 +27,8 @@ export const load: PageServerLoad = async () => {
 
 	const templates = templateNames.map((name, index) => ({
 		name,
-		id: templateIds[index],
+		id: templateIds[index]?.nativeStyleId,
+		creativeId: templateIds[index]?.testCreativeId,
 	}));
 
 	return {
