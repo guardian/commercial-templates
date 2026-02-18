@@ -3,5 +3,5 @@ export const gamVariables = {
 	TrackingPixel: '',
 	ResearchPixel: '',
 	ViewabilityTracker: '<img src="">',
-	ShowLabel: 'yes'
+	ShowLabel: 'yes',
 };

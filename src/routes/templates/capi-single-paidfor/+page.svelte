@@ -115,6 +115,11 @@
 			max-width: 1300px;
 			display: grid;
 			grid-template-columns: 231px 1fr;
+			/*
+			 * Equivalent of 60px grid column + 20px gap
+			 * @todo - replace this with the Guardian grid
+			 */
+			padding-right: 80px;
 		}
 	}
 
