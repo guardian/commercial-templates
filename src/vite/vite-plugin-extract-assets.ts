@@ -42,11 +42,11 @@ function extractAssets(fullHtml: string, templateName: string) {
 	const css = extractStyles(dom);
 	const html = extractHtml(dom);
 
-	const comment = `<!-- '${templateName}' updated on ${new Date().toISOString()} -->\n`;
-
+	const htmlComment = `<!-- '${templateName}' updated on ${new Date().toISOString()} -->\n`;
+	const cssComment = `/* '${templateName}' updated on ${new Date().toISOString()} */\n`;
 	return {
-		css: css ? comment + css : null,
-		html: html ? comment + html : null,
+		css: css ? cssComment + css : null,
+		html: html ? htmlComment + html : null,
 	};
 }
 
