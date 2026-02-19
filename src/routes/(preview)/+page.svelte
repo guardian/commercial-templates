@@ -15,7 +15,6 @@
 	<thead>
 		<tr>
 			<th>Template</th>
-			<th>Native Template</th>
 			<th>Preview in GAM</th>
 		</tr>
 	</thead>
@@ -31,15 +30,9 @@
 					>
 				</td>
 				<td>
-					<a
-						href="https://admanager.google.com/59666047#creatives/native/native_style/detail/style_id={template.id}"
-						target="_blank">{template.id}</a
-					>
-				</td>
-				<td>
 					{#if template.creativeId}
 						<a
-							href={`https://admanager.google.com/59666047#creatives/creative/detail/creative_id=${template.creativeId}&tab=preview`}
+							href={`https://admanager.google.com/59666047#creatives/creative/detail/line_item_id=7228230439&creative_id=${template.creativeId}&tab=preview`}
 							target="_blank">{template.creativeId}</a
 						>
 					{:else}
@@ -64,7 +57,7 @@ Learn how to create your first template:<a
 	table {
 		margin: var(--grid-size) 0;
 		border-collapse: collapse;
-		width: 100%;
+		width: 400px;
 	}
 
 	th,
