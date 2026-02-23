@@ -27,7 +27,7 @@
 		<br />
 
 		<a
-			href={`hhttps://admanager.google.com/59666047#creatives/creative/detail/line_item_id=7228230439&creative_id=${adJson?.testCreativeId}&tab=preview`}
+			href={`https://admanager.google.com/59666047#creatives/creative/detail/line_item_id=7228230439&creative_id=${adJson?.testCreativeId}&tab=preview`}
 			>Preview in GAM</a
 		>
 	</div>
