@@ -1,6 +1,7 @@
 const localBaseUrl = 'http://localhost:7777/preview';
 
-const referenceBaseUrl = 'https://guardian.github.io/commercial-templates/';
+const referenceBaseUrl =
+	'https://guardian.github.io/commercial-templates/preview';
 
 const templatePreviewWidths = ['360', '740', '980', '1300', '100%'];
 
