@@ -7,7 +7,7 @@ Templates themselves are defined as sveltekit routes in the `src/routes/template
 - `+page.svelte` (required)
 - `+page.server.ts` (optional, if your templates needs GAM variables)
 - `README.md` (optional description)
-- `variables.ts` (optional, if your template needs GAM variables)
+- `variables.gam.ts` (optional, if your template needs GAM variables)
 
 ## Anatomy of a Svelte template
 
