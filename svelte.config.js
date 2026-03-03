@@ -37,6 +37,7 @@ const config = {
 		},
 
 		prerender: {
+			// The crawler tries to follow %%CLICK_URL_UNESC%% and breaks the build, so we disable it and instead specify the entries to prerender manually.
 			crawl: false,
 			entries: buildRoute
 				? undefined
