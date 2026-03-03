@@ -22,7 +22,7 @@
 		{#each templates as template}
 			<tr>
 				<td>
-					<a href={resolve(`/preview/${template.name}`)}
+					<a href={resolve(`/preview/${template.name}/`)}
 						>{template.name
 							.split('-')
 							.map((word) => word.slice(0, 1).toUpperCase() + word.slice(1))
