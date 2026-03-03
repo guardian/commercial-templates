@@ -12,12 +12,13 @@ const config = {
 	kit: {
 		adapter: adapter({
 			pages: buildRoute ? `build/templates/${buildRoute}` : 'build',
+			fallback: buildRoute ? undefined : 'index.html',
 		}),
 
 		outDir: buildRoute ? `.svelte-kit/${buildRoute}` : '.svelte-kit',
 
 		paths: {
-			base: process.argv.includes('dev') ? '' : '/gampad/ads',
+			base: buildRoute ? '/gampad/ads' : '/commercial-templates',
 		},
 
 		files: {

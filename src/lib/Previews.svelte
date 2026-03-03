@@ -1,10 +1,17 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import type { Message } from './messenger';
+	import { resolve } from '$app/paths';
+	import type { RouteId } from '$app/types';
 
-	export let template: string;
+	type ExtractTemplateName<T extends string> =
+		T extends `/templates/${infer Name}` ? Name : never;
 
-	export let gamVariables: Record<string, string>;
+	type TemplateName = ExtractTemplateName<RouteId>;
+
+	export let template: TemplateName;
+
+	export let gamVariables: Record<string, string | number> | null;
 
 	export const widths: Record<string, string> = {
 		'100%': '100%',
@@ -65,7 +72,7 @@
 				title={`Template example for ${template}`}
 				frameborder="0"
 				{width}
-				src="/templates/{template}"
+				src={resolve(`/templates/${template}/`)}
 				name={`width-${width}`}
 				height="700"
 			></iframe>
@@ -76,16 +83,25 @@
 <section>
 	<h3>Variables</h3>
 	<em
-		>edit <span class="code">src/templates/{template}/variables.gam.ts</span> to update
-		the preview's variables</em
+		>edit <span class="code"
+			>src/routes/templates/{template}/variables.gam.ts</span
+		> to update the preview's variables</em
 	>
 	<table class="inputs">
-		{#each Object.entries(gamVariables) as [name, value]}
+		{#if !gamVariables}
 			<tr>
-				<td>{name}</td>
-				<td>{value}</td>
+				<td colspan="2">
+					<em>no variables found</em>
+				</td>
 			</tr>
-		{/each}
+		{:else}
+			{#each Object.entries(gamVariables) as [name, value]}
+				<tr>
+					<td>{name}</td>
+					<td>{value}</td>
+				</tr>
+			{/each}
+		{/if}
 	</table>
 </section>
 
