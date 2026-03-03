@@ -1,5 +1,3 @@
-import { dev } from '$app/environment';
+export const trailingSlash = 'always';
 
-export const trailingSlash = dev ? 'never' : 'always';
-
-export const prerender = false;
+export const prerender = true;
