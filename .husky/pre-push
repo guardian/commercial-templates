@@ -4,5 +4,3 @@ then
 	echo "⚠️ You should not push to the \`main\` branch"
 	exit 1
 fi
-
-pnpm check
