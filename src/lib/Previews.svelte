@@ -88,20 +88,28 @@
 		> to update the preview's variables</em
 	>
 	<table class="inputs">
-		{#if !gamVariables}
+		<thead>
 			<tr>
-				<td colspan="2">
-					<em>no variables found</em>
-				</td>
+				<th>Name</th>
+				<th>Value</th>
 			</tr>
-		{:else}
-			{#each Object.entries(gamVariables) as [name, value]}
+		</thead>
+		<tbody>
+			{#if !gamVariables}
 				<tr>
-					<td>{name}</td>
-					<td>{value}</td>
+					<td colspan="2">
+						<em>no variables found</em>
+					</td>
 				</tr>
-			{/each}
-		{/if}
+			{:else}
+				{#each Object.entries(gamVariables) as [name, value]}
+					<tr>
+						<td>{name}</td>
+						<td>{value}</td>
+					</tr>
+				{/each}
+			{/if}
+		</tbody>
 	</table>
 </section>
 
