@@ -7,7 +7,7 @@ test.describe('CAPI Multiple Paidfor', () => {
 	test('Get reference screenshots', async ({ page }) => {
 		await page.setViewportSize(viewport);
 
-		await page.goto(`${referenceBaseUrl}csr/capi-multiple-paidfor/`, {
+		await page.goto(`${referenceBaseUrl}capi-multiple-paidfor/`, {
 			waitUntil: 'networkidle',
 		});
 

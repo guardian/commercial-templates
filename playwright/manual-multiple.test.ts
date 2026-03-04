@@ -7,7 +7,7 @@ test.describe('Manual Multiple', () => {
 	test('Get reference screenshots', async ({ page }) => {
 		await page.setViewportSize(viewport);
 
-		await page.goto(`${referenceBaseUrl}csr/manual-multiple/`, {
+		await page.goto(`${referenceBaseUrl}manual-multiple/`, {
 			waitUntil: 'networkidle',
 		});
 
