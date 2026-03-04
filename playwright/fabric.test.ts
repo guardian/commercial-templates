@@ -7,7 +7,7 @@ test.describe('Fabric', () => {
 	test('Get reference screenshots', async ({ page }) => {
 		await page.setViewportSize(viewport);
 
-		await page.goto(`${referenceBaseUrl}fabric/`, {
+		await page.goto(`${referenceBaseUrl}/fabric/`, {
 			waitUntil: 'networkidle',
 		});
 
