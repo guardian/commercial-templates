@@ -1,3 +1,5 @@
-export const trailingSlash = 'always';
+import { dev } from '$app/environment';
 
-export const prerender = true;
+export const trailingSlash = dev ? 'never' : 'always';
+
+export const prerender = false;

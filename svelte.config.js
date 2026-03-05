@@ -1,11 +1,7 @@
 import adapter from '@sveltejs/adapter-static';
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
-import { readdir } from 'fs/promises';
 
 const buildRoute = process.env.BUILD_TEMPLATE;
-
-const dirs = await readdir('src/routes/templates');
-const templateNames = dirs.filter((dir) => !dir.startsWith('+'));
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -16,6 +12,7 @@ const config = {
 	kit: {
 		adapter: adapter({
 			pages: buildRoute ? `build/templates/${buildRoute}` : 'build',
+			fallback: buildRoute ? undefined : 'index.html',
 		}),
 
 		outDir: buildRoute ? `.svelte-kit/${buildRoute}` : '.svelte-kit',
@@ -37,11 +34,7 @@ const config = {
 		},
 
 		prerender: {
-			// The crawler tries to follow %%CLICK_URL_UNESC%% and breaks the build, so we disable it and instead specify the entries to prerender manually.
 			crawl: false,
-			entries: buildRoute
-				? undefined
-				: ['*', ...templateNames.map((name) => `/preview/${name}/`)],
 		},
 	},
 };
