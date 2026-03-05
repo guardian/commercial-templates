@@ -29,7 +29,7 @@ test.describe('Fabric', () => {
 	test('Compare PR templates to reference screenshots', async ({ page }) => {
 		await page.setViewportSize(viewport);
 
-		await page.goto(`${localBaseUrl}/fabric`, {
+		await page.goto(`${localBaseUrl}csr/fabric`, {
 			waitUntil: 'networkidle',
 		});
 

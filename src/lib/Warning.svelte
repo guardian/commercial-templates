@@ -3,7 +3,7 @@
 	of at least 1300px
 </aside>
 
-<style lang="scss">
+<style>
 	#warning {
 		display: block;
 		position: sticky;

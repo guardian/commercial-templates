@@ -22,11 +22,12 @@ const getTag = (DapAssetsFolder: string) => {
 	return Promise.reject(Error('No tag found'));
 };
 
-const insertTag = (tag: string, target: HTMLElement) => {
+const insertTag = (tag: string) => {
+	const placeholder = document.getElementById('creative-link')!;
 	const range = document.createRange();
-	range.setStart(target, 0);
-	range.setEnd(target, 0);
-	target.appendChild(range.createContextualFragment(tag));
+	range.setStart(placeholder, 0);
+	range.setEnd(placeholder, 0);
+	placeholder.appendChild(range.createContextualFragment(tag));
 };
 
 export { addTrackingPixel, replaceAssetLinks, getTag, insertTag };

@@ -90,7 +90,7 @@ jobs:
         shell: bash
 
       - name: Build
-        run: pnpm build:templates
+        run: pnpm build
 
       - name: Install Dependencies
         run: pipenv install

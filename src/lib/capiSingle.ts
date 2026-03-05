@@ -1,3 +1,4 @@
+import type { GAMVariable } from './gam';
 import type { CapiCardOverride, Single } from './types/capi';
 
 const apiEndpoint =
@@ -18,7 +19,7 @@ function addCapiCardOverrides(
 }
 
 async function retrieveCapiData(
-	seriesUrl: string,
+	seriesUrl: GAMVariable,
 	cardOverrides: CapiCardOverride,
 ): Promise<Single> {
 	const request = new URL(apiEndpoint);
