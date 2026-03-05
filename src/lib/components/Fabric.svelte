@@ -135,21 +135,21 @@
 		style:--desktop-background-position={Layer1BackgroundPosition}
 		style:--mobile-background-image={`url('${MobileLayer1BackgroundImage}')`}
 		style:--mobile-background-position={MobileLayer1BackgroundPosition}
-	></div>
+	/>
 	<div
 		class="layer"
 		style:--desktop-background-image={`url('${Layer2BackgroundImage}')`}
 		style:--desktop-background-position={Layer2BackgroundPosition}
 		style:--mobile-background-image={`url('${MobileLayer2BackgroundImage}')`}
 		style:--mobile-background-position={MobileLayer2BackgroundPosition}
-	></div>
+	/>
 	<div
 		class="layer"
 		style:--desktop-background-image={`url('${Layer3BackgroundImage}')`}
 		style:--desktop-background-position={Layer3BackgroundPosition}
 		style:--mobile-background-image={`url('${MobileLayer3BackgroundImage}')`}
 		style:--mobile-background-position={MobileLayer3BackgroundPosition}
-	></div>
+	/>
 
 	{#if showVideo}
 		<video

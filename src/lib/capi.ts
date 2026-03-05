@@ -32,7 +32,7 @@ function addCapiCardOverrides(
 		// eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing -- we want to override empty strings too
 		articleText: overrideCards[i]?.text || capiCard.articleText,
 		articleImage: overrideCards[i]?.image
-			? { sources: [], backupSrc: overrideCards[i].image ?? '' }
+			? { sources: [], backupSrc: overrideCards[i]?.image ?? '' }
 			: capiCard.articleImage,
 	}));
 }
