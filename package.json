@@ -37,7 +37,8 @@
 		"eslint:check": "eslint .",
 		"eslint:fix": "eslint . --fix",
 		"prettier:check": "prettier --check .",
-		"prettier:fix": "prettier --write ."
+		"prettier:fix": "prettier --write .",
+		"lint-staged": "lint-staged"
 	},
 	"devDependencies": {
 		"@guardian/eslint-config": "^11.0.0",
@@ -64,6 +65,7 @@
 		"husky": "^9.1.7",
 		"isomorphic-git": "^1.33.1",
 		"jsdom": "^27.3.0",
+		"lint-staged": "^16.3.2",
 		"marked": "^11.1.1",
 		"prettier": "^3.7.4",
 		"prettier-plugin-svelte": "^3.4.1",
@@ -83,6 +85,13 @@
 	},
 	"type": "module",
 	"packageManager": "pnpm@10.14.0",
+	"lint-staged": {
+		"src/**/*.(js|ts|svelte)": [
+			"pnpm prettier --write",
+			"pnpm eslint --fix",
+			"pnpm svelte-check"
+		]
+	},
 	"pnpm": {
 		"overrides": {
 			"rollup@<2.79.2": ">=2.79.2",
