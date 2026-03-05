@@ -39,7 +39,7 @@
 	</div>
 	<div class="media">
 		{#if articleImage}
-			<div class="hover-overlay" aria-hidden="true"></div>
+			<div class="hover-overlay" aria-hidden="true" />
 			<CapiMedia {articleImage} />
 		{/if}
 	</div>
