@@ -68,16 +68,14 @@
 			<h4>
 				{widths[width]} size ({width})
 			</h4>
-			<div class="iframe-container">
-				<iframe
-					title={`Template example for ${template}`}
-					frameborder="0"
-					{width}
-					src={resolve(`/templates/${template}/`)}
-					name={`width-${width}`}
-					height="700"
-				></iframe>
-			</div>
+			<iframe
+				title={`Template example for ${template}`}
+				frameborder="0"
+				{width}
+				src={resolve(`/templates/${template}/`)}
+				name={`width-${width}`}
+				height="700"
+			></iframe>
 		</div>
 	{/each}
 </section>
@@ -129,9 +127,6 @@
 
 	iframe {
 		outline: var(--grid-size) solid var(--grid-color);
-	}
-
-	.iframe-container {
 		background-color: white;
 	}
 

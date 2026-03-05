@@ -7,7 +7,7 @@ test.describe('CAPI Multiple Hosted', () => {
 	test('Get reference screenshots', async ({ page }) => {
 		await page.setViewportSize(viewport);
 
-		await page.goto(`${referenceBaseUrl}/capi-multiple-hosted/`, {
+		await page.goto(`${referenceBaseUrl}csr/capi-multiple-hosted/`, {
 			waitUntil: 'networkidle',
 		});
 

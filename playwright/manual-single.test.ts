@@ -7,7 +7,7 @@ test.describe('Manual Single', () => {
 	test('Get reference screenshots', async ({ page }) => {
 		await page.setViewportSize(viewport);
 
-		await page.goto(`${referenceBaseUrl}/manual-single/`, {
+		await page.goto(`${referenceBaseUrl}ssr/manual-single/`, {
 			waitUntil: 'networkidle',
 		});
 
