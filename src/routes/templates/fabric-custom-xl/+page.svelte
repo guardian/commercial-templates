@@ -49,4 +49,8 @@
 	:global(body) {
 		margin: 0;
 	}
+
+	#creative {
+		min-height: 500px;
+	}
 </style>
