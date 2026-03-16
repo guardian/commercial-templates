@@ -42,7 +42,7 @@
 	"devDependencies": {
 		"@guardian/eslint-config": "^14.0.0",
 		"@guardian/prettier": "^10.0.0",
-		"@guardian/source": "11.3.0",
+		"@guardian/source": "12.2.1",
 		"@playwright/test": "^1.58.2",
 		"@sveltejs/adapter-auto": "^7.0.1",
 		"@sveltejs/adapter-static": "^3.0.10",
