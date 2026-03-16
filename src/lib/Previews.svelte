@@ -68,14 +68,16 @@
 			<h4>
 				{widths[width]} size ({width})
 			</h4>
-			<iframe
-				title={`Template example for ${template}`}
-				frameborder="0"
-				{width}
-				src={resolve(`/templates/${template}/`)}
-				name={`width-${width}`}
-				height="700"
-			></iframe>
+			<div class="iframe-container">
+				<iframe
+					title={`Template example for ${template}`}
+					frameborder="0"
+					{width}
+					src={resolve(`/templates/${template}/`)}
+					name={`width-${width}`}
+					height="700"
+				></iframe>
+			</div>
 		</div>
 	{/each}
 </section>
@@ -88,20 +90,28 @@
 		> to update the preview's variables</em
 	>
 	<table class="inputs">
-		{#if !gamVariables}
+		<thead>
 			<tr>
-				<td colspan="2">
-					<em>no variables found</em>
-				</td>
+				<th>Name</th>
+				<th>Value</th>
 			</tr>
-		{:else}
-			{#each Object.entries(gamVariables) as [name, value]}
+		</thead>
+		<tbody>
+			{#if !gamVariables}
 				<tr>
-					<td>{name}</td>
-					<td>{value}</td>
+					<td colspan="2">
+						<em>no variables found</em>
+					</td>
 				</tr>
-			{/each}
-		{/if}
+			{:else}
+				{#each Object.entries(gamVariables) as [name, value]}
+					<tr>
+						<td>{name}</td>
+						<td>{value}</td>
+					</tr>
+				{/each}
+			{/if}
+		</tbody>
 	</table>
 </section>
 
@@ -127,6 +137,9 @@
 
 	iframe {
 		outline: var(--grid-size) solid var(--grid-color);
+	}
+
+	.iframe-container {
 		background-color: white;
 	}
 

@@ -49,4 +49,9 @@
 	:global(body) {
 		margin: 0;
 	}
+
+	#creative {
+		// This is so that the creative div takes up space even before the creative is injected, so that google's `fluid` tag will know the height even before the creative is injected and can size the creative correctly from the start
+		min-height: 500px;
+	}
 </style>

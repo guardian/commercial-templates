@@ -37,7 +37,7 @@
 	</h3>
 	{#if articleImage}
 		<div class="media">
-			<div class="hover-overlay" aria-hidden="true" />
+			<div class="hover-overlay" aria-hidden="true"></div>
 			<CapiMedia {articleImage} />
 		</div>
 	{/if}
