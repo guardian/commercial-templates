@@ -196,7 +196,7 @@ if __name__ == "__main__":
             oauth2_client, config['application_name'], config['network_code'])
 
         native_style_service = ad_manager_client.GetService(
-            "NativeStyleService", version="v202505"
+            "NativeStyleService", version="v202602"
         )
 
         main(native_style_service)
