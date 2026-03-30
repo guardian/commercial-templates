@@ -22,7 +22,7 @@ jobs:
       - run: corepack enable
         shell: bash
 
-      - uses: actions/setup-node@v6.2.0
+      - uses: actions/setup-node@v6.3.0
         with:
           node-version-file: '.nvmrc'
           cache: 'pnpm'
@@ -78,7 +78,7 @@ jobs:
               }
             }
 
-      - uses: actions/upload-artifact@v6.0.0
+      - uses: actions/upload-artifact@v7.0.0
         if: always()
         with:
           name: visual-regression-report
