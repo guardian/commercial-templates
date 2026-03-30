@@ -11,32 +11,42 @@ updates:
       semver-minor-days: 14
       semver-patch-days: 7
     groups:
-      rollup:
-        patterns:
-          - 'rollup'
-      svelte:
-        patterns:
-          - 'svelte'
-      types:
-        patterns:
-          - '@types/*'
       linters:
         patterns:
           - '*eslint*'
           - '*prettier*'
       typescript:
+        dependency-type: 'development'
         patterns:
           - 'typescript'
+      types:
+        patterns:
+          - '@types/*'
+          - 'type-fest'
       guardian:
         patterns:
           - '@guardian/*'
-      minor-devDependencies:
-        dependency-type: 'development'
+      dependenciesMinor:
+        dependency-type: 'production'
+        update-types:
+          - minor
+          - patch
         exclude-patterns:
-          - 'svelte'
-          - 'rollup'
           - '@guardian/*'
           - '@types/*'
+          - 'type-fest'
+          - '*eslint*'
+          - '*prettier*'
+          - 'typescript'
+      devDependenciesMinor:
+        dependency-type: 'development'
+        update-types:
+          - minor
+          - patch
+        exclude-patterns:
+          - '@guardian/*'
+          - '@types/*'
+          - 'type-fest'
           - '*eslint*'
           - '*prettier*'
           - 'typescript'
@@ -46,6 +56,14 @@ updates:
       interval: 'weekly'
     cooldown:
       default-days: 7
+    groups:
+      actionsMinor:
+        update-types:
+          - minor
+          - patch
+      actionsMajor:
+        update-types:
+          - major
   - package-ecosystem: 'pip'
     directory: '/scripts/deploy'
     schedule:
