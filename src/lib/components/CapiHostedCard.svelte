@@ -6,13 +6,14 @@
 	import VideoIcon from './icons/VideoIcon.svelte';
 
 	export let card: CapiHostedCard;
+	export let singleCard = false;
 
 	const { headline, image, url, audioTag, galleryTag, videoTag } = card;
 
 	const pictureSupported = image?.sources.length && 'srcset' in new Image();
 </script>
 
-<a href={clickMacro(url)} target="_top">
+<a href={clickMacro(url)} target="_top" class:singleCard>
 	<div class="media">
 		{#if pictureSupported}
 			<picture>
@@ -56,6 +57,11 @@
 		max-width: 700px;
 		text-decoration: none;
 		background-color: var(--brand-colour);
+
+		&.singleCard {
+			flex-direction: row;
+			max-width: unset;
+		}
 	}
 
 	a:hover,
@@ -113,6 +119,10 @@
 	@media (min-width: 740px) {
 		.media {
 			max-height: 60%;
+
+			.singleCard & {
+				max-height: 100%;
+			}
 		}
 
 		a:nth-child(n + 2) {
