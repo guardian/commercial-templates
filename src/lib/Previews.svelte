@@ -18,6 +18,7 @@
 		'1300': 'wide',
 		'980': 'desktop',
 		'740': 'tablet',
+		'450': 'mobile-large',
 		'360': 'mobile',
 	} as const;
 
