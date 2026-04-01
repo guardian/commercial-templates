@@ -98,7 +98,7 @@
 		<HostedHeader {logo} />
 		<div class="cards-container">
 			{#each cards as card}
-				<CapiHostedCard {card} />
+				<CapiHostedCard {card} singleCard={cards.length === 1} />
 			{/each}
 		</div>
 	{/if}
