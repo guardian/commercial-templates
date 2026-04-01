@@ -90,6 +90,10 @@
 		line-height: 130%;
 		font-weight: 400;
 		overflow: hidden;
+
+		.singleCard & {
+			padding: 0.9em 0.9em 0.1rem;
+		}
 	}
 
 	:global(svg.icon) {
