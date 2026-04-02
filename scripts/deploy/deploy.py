@@ -9,6 +9,8 @@ from termcolor import cprint
 
 load_dotenv()
 
+GAM_API_VERSION = "v202602"
+
 template_dir = os.path.realpath(
     os.path.join(os.path.dirname(os.path.abspath(__file__)),
                  "../../build/extracted-templates")
@@ -90,7 +92,7 @@ def upload_template(
     css = css_prefix + css
 
     statement = ad_manager.StatementBuilder(
-        version="v202505", where="id = %s" % templateInfo["nativeStyleId"]
+        version=GAM_API_VERSION, where="id = %s" % templateInfo["nativeStyleId"]
     )
 
     response = native_style_service.getNativeStylesByStatement(
@@ -196,7 +198,7 @@ if __name__ == "__main__":
             oauth2_client, config['application_name'], config['network_code'])
 
         native_style_service = ad_manager_client.GetService(
-            "NativeStyleService", version="v202602"
+            "NativeStyleService", version=GAM_API_VERSION
         )
 
         main(native_style_service)
