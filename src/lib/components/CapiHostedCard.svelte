@@ -90,7 +90,6 @@
 		font-size: 1.15rem;
 		line-height: 130%;
 		font-weight: 400;
-		overflow: hidden;
 
 		.singleCard & {
 			max-width: 40%;
