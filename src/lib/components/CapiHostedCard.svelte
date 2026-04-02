@@ -59,11 +59,9 @@
 		background-color: var(--brand-colour);
 		overflow: hidden;
 
-		@media (min-width: 740px) {
-			&.singleCard {
-				flex-direction: row;
-				max-width: unset;
-			}
+		&.singleCard {
+			flex-direction: row;
+			max-width: unset;
 		}
 	}
 
@@ -95,20 +93,8 @@
 		overflow: hidden;
 
 		.singleCard & {
-			position: absolute;
-			bottom: 0;
-			background-color: var(--brand-colour);
-			width: 100%;
-			box-sizing: border-box;
-			min-height: 4rem;
-
-			@media (min-width: 740px) {
-				position: initial;
-				background-color: transparent;
-				width: unset;
-				min-height: unset;
-				padding: 0.9em 0.9em 0.1rem;
-			}
+			max-width: 40%;
+			padding: 0.9em 0.9em;
 		}
 	}
 
