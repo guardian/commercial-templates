@@ -84,10 +84,12 @@
 	if (isValidReplacedVariable(TrackingId)) addTrackingPixel(TrackingId);
 
 	$: height = -1;
+	$: singleCard = cards?.length === 1;
 </script>
 
 <aside
 	bind:clientHeight={height}
+	class:singleCard
 	style="--brand-colour: {BrandColour}; {paletteColours}"
 >
 	{#if loading}
@@ -98,7 +100,7 @@
 		<HostedHeader {logo} />
 		<div class="cards-container">
 			{#each cards as card}
-				<CapiHostedCard {card} />
+				<CapiHostedCard {card} {singleCard} />
 			{/each}
 		</div>
 	{/if}
@@ -145,6 +147,10 @@
 		.cards-container {
 			grid-template-columns: 1fr 1fr;
 			column-gap: 0.5em;
+
+			.singleCard & {
+				grid-template-columns: 1fr;
+			}
 		}
 	}
 
