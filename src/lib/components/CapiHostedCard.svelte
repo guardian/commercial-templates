@@ -92,7 +92,8 @@
 		overflow: hidden;
 
 		.singleCard & {
-			padding: 0.9em 0.9em 0.1rem;
+			max-width: 40%;
+			padding: 0.9em 0.9em;
 		}
 	}
 
