@@ -57,7 +57,6 @@
 		max-width: 700px;
 		text-decoration: none;
 		background-color: var(--brand-colour);
-		overflow: hidden;
 
 		&.singleCard {
 			flex-direction: row;
@@ -90,6 +89,7 @@
 		font-size: 1.15rem;
 		line-height: 130%;
 		font-weight: 400;
+		overflow: hidden;
 
 		.singleCard & {
 			max-width: 40%;
