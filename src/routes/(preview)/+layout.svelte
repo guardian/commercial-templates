@@ -7,15 +7,18 @@
 	<link rel="icon" type="image/svg+xml" href={asset('/favicon.svg')} />
 </svelte:head>
 
-<nav>
-	<a href={resolve('/')}>All templates</a>
+<div class="container">
+	<nav>
+		<a href={resolve('/')}>All templates</a>
 
-	<a href="https://github.com/guardian/commercial-templates">Edit on Github</a>
-</nav>
+		<a href="https://github.com/guardian/commercial-templates">Edit on Github</a
+		>
+	</nav>
 
-<main>
-	<slot />
-</main>
+	<main>
+		<slot />
+	</main>
+</div>
 
 <style lang="scss">
 	@use '$styles/global';
@@ -35,6 +38,26 @@
 
 	nav a {
 		color: inherit;
+	}
+
+	.container {
+		display: flex;
+		flex-direction: column;
+		min-height: 100vh;
+
+		background-image:
+			repeating-linear-gradient(
+				to right,
+				transparent 0 calc(var(--grid-size) - 1px),
+				var(--grid-color) calc(var(--grid-size) - 1px) var(--grid-size)
+			),
+			repeating-linear-gradient(
+				to bottom,
+				transparent 0 calc(var(--grid-size) - 1px),
+				var(--grid-color) calc(var(--grid-size) - 1px) var(--grid-size)
+			);
+		background-repeat: repeat;
+		background-size: var(--grid-size);
 	}
 
 	main {
