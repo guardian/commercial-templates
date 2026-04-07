@@ -80,6 +80,8 @@
 		width: 100%;
 		height: 100%;
 		object-fit: cover;
+		// Prevent images expanding the height of the ad
+		max-height: 360px;
 	}
 
 	h2 {
@@ -123,6 +125,7 @@
 
 	@media (min-width: 740px) {
 		.media {
+			display: flex;
 			max-height: 60%;
 
 			.singleCard & {

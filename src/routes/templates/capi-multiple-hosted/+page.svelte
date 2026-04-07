@@ -174,7 +174,11 @@
 	@media (min-width: 1300px) {
 		aside {
 			grid-template-columns: 219px 1fr;
-			margin-right: 21px;
+			/*
+			 * Equivalent of 60px grid column + 20px gap
+			 * @todo - replace this with the Guardian grid
+			 */
+			margin-right: 80px;
 		}
 	}
 </style>
