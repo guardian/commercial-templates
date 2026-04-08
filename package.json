@@ -70,7 +70,7 @@
 		"tslib": "^2.8.1",
 		"typescript": "^5.9.3",
 		"vite": "^5.4.21",
-		"vitest": "^4.1.0"
+		"vitest": "^4.1.2"
 	},
 	"type": "module",
 	"packageManager": "pnpm@10.14.0",
