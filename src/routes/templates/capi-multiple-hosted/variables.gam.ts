@@ -15,5 +15,5 @@ export const gamVariables = {
 	Article4Headline: '',
 	Article4Image: '',
 	Article4URL: '',
-	numberOfElements: '4',
+	numberOfElements: '1',
 };
