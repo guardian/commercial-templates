@@ -18,8 +18,8 @@
 
 <div
 	class="creative creative--image"
-	style:--width={adWidth}
-	style:--height={adHeight}
+	style:--width={`${adWidth}px`}
+	style:--height={`${adHeight}px`}
 >
 	<a
 		class="creative__cta"
@@ -60,10 +60,9 @@
 <style lang="scss">
 	.creative {
 		&--image {
-			//unitless variable from GAM using
-			//calc to force to px
-			width: calc(var(--width) * 1px);
-			height: calc(var(--height) * 1px);
+			width: var(--width);
+			height: var(--height);
+			margin-inline: auto;
 		}
 
 		&__pixel--displayNone {
