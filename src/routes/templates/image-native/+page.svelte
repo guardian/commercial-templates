@@ -8,8 +8,8 @@
 	let {
 		BackgroundImageX1,
 		BackgroundImageX2,
-		adWidth,
-		adHeight,
+		AdWidth,
+		AdHeight,
 		TrackingPixel,
 		ResearchPixel,
 		ViewabilityTracker,
@@ -18,8 +18,8 @@
 
 <div
 	class="creative creative--image"
-	style:--width={`${adWidth}px`}
-	style:--height={`${adHeight}px`}
+	style:--width={`${AdWidth}px`}
+	style:--height={`${AdHeight}px`}
 >
 	<a
 		class="creative__cta"
@@ -29,7 +29,7 @@
 		<picture>
 			<source srcset={`${BackgroundImageX1}, ${BackgroundImageX2} 2x`} />
 			<!-- svelte-ignore a11y-missing-attribute -->
-			<img src={BackgroundImageX1} width={adWidth} height={adHeight} />
+			<img src={BackgroundImageX1} width={AdWidth} height={AdHeight} />
 		</picture>
 	</a>
 	<!-- svelte-ignore a11y-missing-attribute -->
