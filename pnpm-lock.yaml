@@ -42,6 +42,9 @@ importers:
       '@types/jsdom':
         specifier: 28.0.1
         version: 28.0.1
+      '@types/node':
+        specifier: 25.6.0
+        version: 25.6.0
       eslint:
         specifier: 9.39.4
         version: 9.39.4
