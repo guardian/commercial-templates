@@ -24,6 +24,7 @@
 		"build:template:mobile-revealer": "BUILD_TEMPLATE=mobile-revealer REPLACE_GAM_VARS=true vite build",
 		"build:template:public-good": "BUILD_TEMPLATE=public-good REPLACE_GAM_VARS=true vite build",
 		"build:template:public-good-test": "BUILD_TEMPLATE=public-good-test REPLACE_GAM_VARS=true vite build",
+		"build:template:image-native": "BUILD_TEMPLATE=image-native REPLACE_GAM_VARS=true vite build",
 		"build:templates": "pnpm run /^build:template:.*/",
 		"publish": "pnpm gh-pages --dist build --dotfiles",
 		"deploy": "pnpm build && pnpm publish",
