@@ -8,14 +8,16 @@ The script checks for the presence of an `ad.json` file in the template director
 
 ## Requirements
 
-- Python 3.x
-- An OAuth2 client id and secret
+- Node.js (version from `.nvmrc`)
+- `pnpm`
+- GAM credentials in `scripts/deploy/.env`
 
 ## Running locally
 
 ```bash
-$ cd scripts/deploy
-$ cp .env.example .env # fill this in
-$ pipenv install
-$ pipenv run python deploy.py
+cd <repo-root>/scripts/deploy
+cp .env.example .env # fill this in
+cd ../..
+pnpm install
+pnpm deploy:gam
 ```

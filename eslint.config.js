@@ -10,6 +10,7 @@ export default [
 		ignores: [
 			...svelteFiles,
 			'**/*.config.{js,ts}',
+			'scripts/deploy/**',
 			'**/build',
 			'**/.svelte-kit',
 			'**/playwright',
