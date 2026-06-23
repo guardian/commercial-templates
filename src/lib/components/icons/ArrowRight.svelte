@@ -1,6 +1,10 @@
 <script lang="ts">
-	export let width = 30;
-	export let flip = false;
+	interface Props {
+		width?: number;
+		flip?: boolean;
+	}
+
+	let { width = 30, flip = false }: Props = $props();
 </script>
 
 <svg

@@ -13,7 +13,11 @@
 	import type { PageData } from './$types';
 	import { onMount } from 'svelte';
 
-	export let data: PageData;
+	interface Props {
+		data: PageData;
+	}
+
+	let { data }: Props = $props();
 
 	let {
 		SeriesURL,
@@ -58,10 +62,10 @@
 		},
 	];
 
-	let cards: TCapiHostedCard[];
-	let logo: string | null = null;
-	let error: unknown = null;
-	let loading = true;
+	let cards: TCapiHostedCard[] = $state([]);
+	let logo: string | null = $state(null);
+	let error: unknown = $state(null);
+	let loading = $state(true);
 
 	onMount(async () => {
 		try {
@@ -83,8 +87,8 @@
 
 	if (isValidReplacedVariable(TrackingId)) addTrackingPixel(TrackingId);
 
-	$: height = -1;
-	$: singleCard = cards?.length === 1;
+	let height = $derived(-1);
+	let singleCard = $derived(cards?.length === 1);
 </script>
 
 <aside

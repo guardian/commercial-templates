@@ -5,18 +5,22 @@
 	import type { PageData } from './$types';
 	import { building } from '$app/environment';
 
-	export let data: PageData;
+	interface Props {
+		data: PageData;
+	}
+
+	let { data }: Props = $props();
 
 	let { ViewabilityTracker, DapAssetsFolder, TrackingPixel, ResearchPixel } =
 		data;
 
-	let creativeLink: HTMLAnchorElement;
+	let creativeLink: HTMLAnchorElement | undefined = $state();
 
 	onMount(async () => {
 		try {
 			const tag = await getTag(DapAssetsFolder);
 
-			insertTag(tag, creativeLink);
+			if (creativeLink) insertTag(tag, creativeLink);
 		} catch (error) {
 			console.error('Error fetching or inserting tag:', error);
 		}

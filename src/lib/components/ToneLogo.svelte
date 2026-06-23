@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { ComponentType } from 'svelte';
+	import type { Component } from 'svelte';
 	import type { Tone } from '$lib/types/tones';
 	import BookSvg from './icons/BookshopLogo.svelte';
 	import BrandSvg from './icons/BrandLogo.svelte';
@@ -13,9 +13,13 @@
 	import SubscriptionSvg from './icons/SubscriptionsLogo.svelte';
 	import WeeklySvg from './icons/WeeklyLogo.svelte';
 
-	export let tone: Tone;
+	interface Props {
+		tone: Tone;
+	}
 
-	const toneLogoMapping: Record<Tone, ComponentType> = {
+	let { tone }: Props = $props();
+
+	const toneLogoMapping: Record<Tone, Component> = {
 		job: JobsSvg,
 		live: LiveSvg,
 		travel: TravelSvg,
@@ -37,8 +41,9 @@
 
 <div style:color="#fff">
 	{#if toneLogoMapping[tone]}
-		<svelte:component this={toneLogoMapping[tone]} />
+		{@const SvelteComponent = toneLogoMapping[tone]}
+		<SvelteComponent />
 	{:else}
-		<svelte:component this={BrandSvg} />
+		<BrandSvg />
 	{/if}
 </div>

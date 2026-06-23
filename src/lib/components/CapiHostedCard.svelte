@@ -5,8 +5,12 @@
 	import CameraIcon from './icons/CameraIcon.svelte';
 	import VideoIcon from './icons/VideoIcon.svelte';
 
-	export let card: CapiHostedCard;
-	export let singleCard = false;
+	interface Props {
+		card: CapiHostedCard;
+		singleCard?: boolean;
+	}
+
+	let { card, singleCard = false }: Props = $props();
 
 	const { headline, image, url, audioTag, galleryTag, videoTag } = card;
 

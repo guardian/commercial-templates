@@ -1,8 +1,16 @@
 <script lang="ts">
+	import { run } from 'svelte/legacy';
+
 	import { browser } from '$app/environment';
 	import { post } from '$lib/messenger';
 
-	export let height: number;
+	interface Props {
+		height: number;
+	}
 
-	$: browser && post({ type: 'set-ad-height', value: { height, width: -1 } });
+	let { height }: Props = $props();
+
+	run(() => {
+		browser && post({ type: 'set-ad-height', value: { height, width: -1 } });
+	});
 </script>

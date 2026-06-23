@@ -3,9 +3,13 @@
 	import Warning from '$lib/Warning.svelte';
 	import type { PageData } from './$types';
 
-	export let data: PageData;
+	interface Props {
+		data: PageData;
+	}
 
-	$: ({ gamVariables, description, template, adJson } = data);
+	let { data }: Props = $props();
+
+	let { gamVariables, description, template, adJson } = $derived(data);
 </script>
 
 <Warning />

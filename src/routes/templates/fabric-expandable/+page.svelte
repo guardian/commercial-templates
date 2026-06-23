@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { run } from 'svelte/legacy';
+
 	import { post } from '$lib/messenger';
 	import Fabric from '$lib/components/Fabric.svelte';
 	import ArrowDown from '$lib/components/icons/ArrowDown.svelte';
@@ -6,7 +8,11 @@
 	import type { PageData } from './$types';
 	import { browser } from '$app/environment';
 
-	export let data: PageData;
+	interface Props {
+		data: PageData;
+	}
+
+	let { data }: Props = $props();
 
 	let {
 		Trackingpixel,
@@ -53,12 +59,14 @@
 		Slide2Layer3MobileBackgroundPosition,
 	} = data;
 
-	let expanded = false;
+	let expanded = $state(false);
 
 	const toggleExpanded = () => (expanded = !expanded);
 
-	$: browser &&
-		post({ type: 'resize', value: { height: expanded ? 500 : 250 } });
+	run(() => {
+		browser &&
+			post({ type: 'resize', value: { height: expanded ? 500 : 250 } });
+	});
 </script>
 
 <aside>
@@ -119,11 +127,11 @@
 	/>
 
 	<div class={expanded ? 'button-container expanded' : 'button-container'}>
-		<button on:click={() => toggleExpanded()} class="toggle-cross">
+		<button onclick={() => toggleExpanded()} class="toggle-cross">
 			<CrossIcon plus={expanded} />
 		</button>
 
-		<button on:click={() => toggleExpanded()} class="toggle-arrow">
+		<button onclick={() => toggleExpanded()} class="toggle-arrow">
 			<ArrowDown flip={expanded} />
 		</button>
 	</div>

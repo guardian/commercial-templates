@@ -10,7 +10,11 @@
 	import type { PageData } from './$types';
 	import { onMount } from 'svelte';
 
-	export let data: PageData;
+	interface Props {
+		data: PageData;
+	}
+
+	let { data }: Props = $props();
 
 	let {
 		SeriesURL,
@@ -53,9 +57,9 @@
 		},
 	];
 
-	let cards: Single[];
-	let error: unknown = null;
-	let loading = true;
+	let cards: Single[] = $state([]);
+	let error: unknown = $state(null);
+	let loading = $state(true);
 
 	onMount(async () => {
 		try {
@@ -71,7 +75,7 @@
 
 	if (isValidReplacedVariable(TrackingPixel)) addTrackingPixel(TrackingPixel);
 
-	$: height = -1;
+	let height = $derived(-1);
 </script>
 
 {#if loading}

@@ -5,7 +5,11 @@
 	import type { PageData } from './$types';
 	import { CACHE_BUST } from '$lib/gam';
 
-	export let data: PageData;
+	interface Props {
+		data: PageData;
+	}
+
+	let { data }: Props = $props();
 
 	let {
 		BackgroundImage,
@@ -51,19 +55,19 @@
 			alt="button"
 		/>
 	</a>
-	<!-- svelte-ignore a11y-missing-attribute -->
+	<!-- svelte-ignore a11y_missing_attribute -->
 	<img
 		src="{TrackingPixel}{CACHE_BUST}"
 		class="creative__pixel creative__pixel--displayNone"
 		aria-hidden="true"
 	/>
-	<!-- svelte-ignore a11y-missing-attribute -->
+	<!-- svelte-ignore a11y_missing_attribute -->
 	<img
 		src="{ResearchPixel}{CACHE_BUST}"
 		class="creative__pixel creative__pixel--displayNone"
 		aria-hidden="true"
 	/>
-	<!-- svelte-ignore a11y-missing-attribute -->
+	<!-- svelte-ignore a11y_missing_attribute -->
 	<img
 		src={ViewabilityTracker}
 		class="creative__pixel creative__pixel--displayNone"

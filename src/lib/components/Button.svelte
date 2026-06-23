@@ -1,4 +1,15 @@
-<button on:click aria-controls="popup" aria-expanded="true"><slot /></button>
+<script lang="ts">
+	interface Props {
+		children?: import('svelte').Snippet;
+		onclick?: (event: MouseEvent) => void;
+	}
+
+	let { children, onclick }: Props = $props();
+</script>
+
+<button {onclick} aria-controls="popup" aria-expanded="true"
+	>{@render children?.()}</button
+>
 
 <style lang="scss">
 	button {

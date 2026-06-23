@@ -10,7 +10,11 @@
 	import type { PageData } from './$types';
 	import { onMount } from 'svelte';
 
-	export let data: PageData;
+	interface Props {
+		data: PageData;
+	}
+
+	let { data }: Props = $props();
 
 	let {
 		SeriesUrl,
@@ -27,9 +31,9 @@
 		text: ArticleText,
 	};
 
-	let card: Single;
-	let error: unknown = null;
-	let loading = true;
+	let card: Single | undefined = $state();
+	let error: unknown = $state(null);
+	let loading = $state(true);
 
 	onMount(async () => {
 		try {
@@ -46,14 +50,14 @@
 
 	if (isValidReplacedVariable(TrackingPixel)) addTrackingPixel(TrackingPixel);
 
-	$: height = -1;
+	let height = $derived(-1);
 </script>
 
 {#if loading}
 	<h3>Loading Content for "{SeriesUrl}"</h3>
 {:else if error}
 	<h3>Could not fetch series "{SeriesUrl}"</h3>
-{:else}
+{:else if card}
 	<aside bind:clientHeight={height} style={paletteColours}>
 		<PaidForHeader
 			edition={card.branding.edition}

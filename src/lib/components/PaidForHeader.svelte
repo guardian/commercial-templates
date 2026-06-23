@@ -5,11 +5,19 @@
 	import ArrowDown from './icons/ArrowDown.svelte';
 	import GuardianLabsLogo from './icons/GuardianLabsCircleLogo.svelte';
 
-	export let SeriesUrl: string;
-	export let ComponentTitle: string;
-	export let edition: Single['branding']['edition'];
+	interface Props {
+		SeriesUrl: string;
+		ComponentTitle: string;
+		edition: Single['branding']['edition'];
+		popup?: boolean;
+	}
 
-	export let popup = false;
+	let {
+		SeriesUrl,
+		ComponentTitle,
+		edition,
+		popup = $bindable(false),
+	}: Props = $props();
 </script>
 
 <header class="header">
@@ -20,7 +28,7 @@
 		<div class="paid-info">
 			<strong class="paid-info--label">Paid content</strong>
 			<div class="popup-container">
-				<Button on:click={() => (popup = !popup)}
+				<Button onclick={() => (popup = !popup)}
 					>About <ArrowDown width={14} flip={popup} /></Button
 				>
 				{#if popup}

@@ -1,7 +1,7 @@
 import { copyFile, mkdir, readFile, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { JSDOM } from 'jsdom';
-import type { Plugin } from 'vite';
+import { parseAst, type Plugin } from 'vite';
 
 const buildTemplate = process.env.BUILD_TEMPLATE;
 
@@ -17,6 +17,101 @@ const extractStyles = (dom: JSDOM) => {
 	});
 
 	return cssContent.trim();
+};
+
+/**
+ * Recursively collect the `[start, end)` source ranges of every string literal
+ * and template-literal text chunk (`TemplateElement`) in an ESTree AST. These
+ * are the only places a `<` is literal text rather than a JS operator
+ * (`i < e.length`, `1 << 24`), so they are the only places it is safe to escape.
+ *
+ * @param {unknown} node - An AST node, array of nodes, or primitive.
+ * @param {Array<[number, number]>} ranges - Accumulator of `[start, end)` pairs.
+ */
+const collectLiteralRanges = (
+	node: unknown,
+	ranges: Array<[number, number]>,
+): void => {
+	if (!node || typeof node !== 'object') {
+		return;
+	}
+
+	if (Array.isArray(node)) {
+		node.forEach((child) => collectLiteralRanges(child, ranges));
+		return;
+	}
+
+	const n = node as {
+		type?: string;
+		start: number;
+		end: number;
+		value?: unknown;
+	};
+
+	if (
+		(n.type === 'Literal' && typeof n.value === 'string') ||
+		n.type === 'TemplateElement'
+	) {
+		ranges.push([n.start, n.end]);
+		return;
+	}
+
+	Object.values(n).forEach((child) => collectLiteralRanges(child, ranges));
+};
+
+/**
+ * Escape HTML-like sequences inside inline <script> bodies.
+ *
+ * Google Ad Manager renders native creatives through SafeFrame, which re-parses
+ * the creative HTML in a tag-aware mode that is NOT script-aware. Any `<` that
+ * starts a tag-like sequence inside an inline script (`<header`, `</h1>`, `<!`)
+ * ends the script early on the live site and dumps the rest of the bundle onto
+ * the page as raw text. Svelte's compiled output embeds exactly these sequences
+ * in its template strings (e.g. `we("<header><h1>...</h1></header>")`).
+ *
+ * Every such `<` lives inside a JS string or template literal, so we replace it
+ * with its `\x3c` escape. `\x3c` === `<` within a literal, so the runtime value
+ * is unchanged while the served source contains no tag-like `<` for SafeFrame to
+ * trip on. Operator `<` in code is left alone: the AST tells us which `<`
+ * characters are inside literals and which are expressions.
+ *
+ * @param {JSDOM} dom
+ */
+const escapeInlineScripts = (dom: JSDOM) => {
+	const scripts = dom.window.document.querySelectorAll('body script');
+	scripts.forEach((script) => {
+		const original = script.textContent;
+		if (!original.includes('<')) {
+			return;
+		}
+
+		const ast = parseAst(original);
+		const ranges: Array<[number, number]> = [];
+		collectLiteralRanges(ast, ranges);
+		ranges.sort((a, b) => a[0] - b[0]);
+
+		let escaped = '';
+		let cursor = 0;
+		for (const [start, end] of ranges) {
+			escaped += original.slice(cursor, start);
+			escaped += original.slice(start, end).replaceAll('<', '\\x3c');
+			cursor = end;
+		}
+		escaped += original.slice(cursor);
+
+		// Escaping only rewrites `<` inside literals, so the result is always
+		// valid JS. Re-parse as a guard so any future change that breaks this
+		// assumption fails the build loudly instead of shipping broken JS.
+		try {
+			new dom.window.Function(escaped);
+		} catch (err) {
+			throw new Error(
+				`Escaping < to \\x3c produced invalid JS in an inline script. Original error: ${String(err)}`,
+			);
+		}
+
+		script.textContent = escaped;
+	});
 };
 
 /**
@@ -38,6 +133,8 @@ const extractHtml = (dom: JSDOM) => {
  */
 function extractAssets(fullHtml: string, templateName: string) {
 	const dom = new JSDOM(fullHtml);
+
+	escapeInlineScripts(dom);
 
 	const css = extractStyles(dom);
 	const html = extractHtml(dom);
