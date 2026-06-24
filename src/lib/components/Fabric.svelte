@@ -3,7 +3,7 @@
 	import { clickMacro, DEST_URL, isValidReplacedVariable } from '$lib/gam';
 	import { post } from '$lib/messenger';
 	import Pixel from '$lib/components/Pixel.svelte';
-	import { browser, building } from '$app/environment';
+	import { building } from '$app/environment';
 	import { onMount } from 'svelte';
 	import type { ScrollType } from '$lib/types/background';
 
@@ -77,18 +77,23 @@
 		hasThirdPartyJSTracking = true,
 	}: Props = $props();
 
-	const isMobile = browser && window.matchMedia('(max-width: 739px)').matches;
-	const isTablet =
-		browser &&
-		window.matchMedia('(min-width: 740px) and (max-width: 979px)').matches;
+	let isMobile = $state(false);
+	let isTablet = $state(false);
 
 	const video: Writable<HTMLVideoElement | undefined> = writable();
 	let played = $state(false);
 
-	const posterImage = isMobile ? MobileVideoBackupImage : VideoBackupImage;
-	const videoSrc = isMobile ? VideoURLMobile : VideoURL;
+	const posterImage = $derived(
+		isMobile ? MobileVideoBackupImage : VideoBackupImage,
+	);
+	const videoSrc = $derived(isMobile ? VideoURLMobile : VideoURL);
 
 	onMount(() => {
+		isMobile = window.matchMedia('(max-width: 739px)').matches;
+		isTablet = window.matchMedia(
+			'(min-width: 740px) and (max-width: 979px)',
+		).matches;
+
 		// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- https://github.com/sveltejs/eslint-plugin-svelte/issues/476
 		if (showVideo) {
 			// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- https://github.com/sveltejs/eslint-plugin-svelte/issues/476
