@@ -20,97 +20,108 @@ const extractStyles = (dom: JSDOM) => {
 };
 
 /**
- * Recursively collect the `[start, end)` source ranges of every string literal
- * and template-literal text chunk (`TemplateElement`) in an ESTree AST. These
- * are the only places a `<` is literal text rather than a JS operator
- * (`i < e.length`, `1 << 24`), so they are the only places it is safe to escape.
- *
- * @param {unknown} node - An AST node, array of nodes, or primitive.
- * @param {Array<[number, number]>} ranges - Accumulator of `[start, end)` pairs.
+ * A node from the JavaScript parser. The parser turns the script into a big tree
+ * of these; we only ever need a node's `type` and where it sits in the source
+ * (`start` and `end`)
  */
-const collectLiteralRanges = (
-	node: unknown,
-	ranges: Array<[number, number]>,
-): void => {
-	if (!node || typeof node !== 'object') {
-		return;
+type AstNode = {
+	type: string;
+	start: number;
+	end: number;
+	value?: unknown;
+};
+
+/** True when `value` looks like a node from the parser */
+const isAstNode = (value: unknown): value is AstNode => {
+	if (typeof value !== 'object' || value === null) {
+		return false;
 	}
 
-	if (Array.isArray(node)) {
-		node.forEach((child) => collectLiteralRanges(child, ranges));
-		return;
+	const candidate = value as Record<string, unknown>;
+	return (
+		typeof candidate.type === 'string' &&
+		typeof candidate.start === 'number' &&
+		typeof candidate.end === 'number'
+	);
+};
+
+/** A chunk of the script, from `start` up to but not including `end`. */
+type TextRange = { start: number; end: number };
+
+/**
+ * Make an inline script safe to drop into an HTML ad slot.
+ *
+ * Google Ad Manager's SafeFrame reads our whole ad as HTML. If
+ * they spot something that looks like an HTML tag inside our script, even
+ * though it's only text sitting inside some JavaScript, they cut the script
+ * short and dump the rest onto the page as visible text, which breaks the ad.
+ *
+ * Svelte's compiled code is full of HTML written as text, for example:
+ *     someFunction("<header><h1>Hello</h1></header>")
+ * The "<" characters there are what trips the ad server up.
+ *
+ * So we swap every "<" that sits inside a piece of text for "\x3c". The browser
+ * reads "\x3c" as "<", so the script still does exactly the same thing — but the
+ * saved file no longer contains anything that looks like a tag.
+ *
+ * We ask the JavaScript parser which "<" are inside text and which are code,
+ * so we never change the wrong one.
+ */
+export const escapeScriptMarkup = (code: string): string => {
+	if (!code.includes('<')) {
+		return code;
 	}
 
-	const n = node as {
-		type?: string;
-		start: number;
-		end: number;
-		value?: unknown;
+	// Find where every piece of text lives in the script. A piece of text is
+	// either a string or the literal characters in a `template`.
+	const findTextRanges = (node: AstNode): TextRange[] => {
+		const isText =
+			(node.type === 'Literal' && typeof node.value === 'string') ||
+			node.type === 'TemplateElement';
+
+		if (isText) {
+			return [{ start: node.start, end: node.end }];
+		}
+
+		// Otherwise, look through this node's children for more text.
+		return Object.values(node).flat().filter(isAstNode).flatMap(findTextRanges);
 	};
 
-	if (
-		(n.type === 'Literal' && typeof n.value === 'string') ||
-		n.type === 'TemplateElement'
-	) {
-		ranges.push([n.start, n.end]);
-		return;
+	const textRanges = findTextRanges(parseAst(code)).sort(
+		(a, b) => a.start - b.start,
+	);
+
+	// Rebuild the script, escaping "<" only inside those pieces of text.
+	let result = '';
+	let position = 0;
+	for (const { start, end } of textRanges) {
+		result += code.slice(position, start);
+		result += code.slice(start, end).replaceAll('<', '\\x3c');
+		position = end;
+	}
+	result += code.slice(position);
+
+	// Safety net: swapping "<" for "\x3c" should always leave valid JavaScript.
+	// If it somehow doesn't, stop the build rather than ship a broken ad.
+	try {
+		parseAst(result);
+	} catch (error) {
+		throw new Error(
+			`Escaping "<" produced invalid JavaScript in an inline script: ${String(error)}`,
+		);
 	}
 
-	Object.values(n).forEach((child) => collectLiteralRanges(child, ranges));
+	return result;
 };
 
 /**
- * Escape HTML-like sequences inside inline <script> bodies.
- *
- * Google Ad Manager renders native creatives through SafeFrame, which re-parses
- * the creative HTML in a tag-aware mode that is NOT script-aware. Any `<` that
- * starts a tag-like sequence inside an inline script (`<header`, `</h1>`, `<!`)
- * ends the script early on the live site and dumps the rest of the bundle onto
- * the page as raw text. Svelte's compiled output embeds exactly these sequences
- * in its template strings (e.g. `we("<header><h1>...</h1></header>")`).
- *
- * Every such `<` lives inside a JS string or template literal, so we replace it
- * with its `\x3c` escape. `\x3c` === `<` within a literal, so the runtime value
- * is unchanged while the served source contains no tag-like `<` for SafeFrame to
- * trip on. Operator `<` in code is left alone: the AST tells us which `<`
- * characters are inside literals and which are expressions.
- *
- * @param {JSDOM} dom
+ * Clean up every `<script>` in the page body so the extracted ad is safe to
+ * show inside an ad slot.
  */
 const escapeInlineScripts = (dom: JSDOM) => {
 	const scripts = dom.window.document.querySelectorAll('body script');
 	scripts.forEach((script) => {
-		const original = script.textContent;
-		if (!original.includes('<')) {
-			return;
-		}
-
-		const ast = parseAst(original);
-		const ranges: Array<[number, number]> = [];
-		collectLiteralRanges(ast, ranges);
-		ranges.sort((a, b) => a[0] - b[0]);
-
-		let escaped = '';
-		let cursor = 0;
-		for (const [start, end] of ranges) {
-			escaped += original.slice(cursor, start);
-			escaped += original.slice(start, end).replaceAll('<', '\\x3c');
-			cursor = end;
-		}
-		escaped += original.slice(cursor);
-
-		// Escaping only rewrites `<` inside literals, so the result is always
-		// valid JS. Re-parse as a guard so any future change that breaks this
-		// assumption fails the build loudly instead of shipping broken JS.
-		try {
-			new dom.window.Function(escaped);
-		} catch (err) {
-			throw new Error(
-				`Escaping < to \\x3c produced invalid JS in an inline script. Original error: ${String(err)}`,
-			);
-		}
-
-		script.textContent = escaped;
+		script.textContent = escapeScriptMarkup(script.textContent);
 	});
 };
 
