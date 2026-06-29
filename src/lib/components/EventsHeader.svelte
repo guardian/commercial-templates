@@ -3,9 +3,14 @@
 	import ArrowRight from './icons/ArrowRight.svelte';
 	import LiveLogo from './icons/LiveLogo.svelte';
 
-	export let HeaderButtonUrl: string;
-	export let BannerDescription: string;
-	export let HeaderButtonText: string;
+	interface Props {
+		HeaderButtonUrl: string;
+		BannerDescription: string;
+		HeaderButtonText: string;
+	}
+
+	let { HeaderButtonUrl, BannerDescription, HeaderButtonText }: Props =
+		$props();
 </script>
 
 <header>

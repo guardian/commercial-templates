@@ -2,6 +2,9 @@ import { describe, expect, it } from 'vitest';
 import { transformGAMVariables } from './vite-plugin-transform-gam-variables.js';
 
 describe('transformGAMVariables', () => {
+	// The plugin only registers its `transform` hook when building templates.
+	process.env.REPLACE_GAM_VARS = 'true';
+
 	const plugin = transformGAMVariables() as {
 		transform: (
 			code: string,

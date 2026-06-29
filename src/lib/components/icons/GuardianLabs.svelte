@@ -10,8 +10,12 @@
 		US: 'guardian-labs-us',
 	} as const;
 
-	export let fill = 'black';
-	export let edition: Single['branding']['edition'] = 'UK';
+	interface Props {
+		fill?: string;
+		edition?: Single['branding']['edition'];
+	}
+
+	let { fill = 'black', edition = 'UK' }: Props = $props();
 </script>
 
 <a href={clickMacro(`${host}/${GLABS_EDITIONS[edition]}`)} target="_top">

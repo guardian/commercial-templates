@@ -1,7 +1,11 @@
 <script lang="ts">
 	import { isValidReplacedVariable } from '$lib/gam';
 
-	export let src: string;
+	interface Props {
+		src: string;
+	}
+
+	let { src }: Props = $props();
 </script>
 
 {#if isValidReplacedVariable(src)}

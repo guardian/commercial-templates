@@ -1,8 +1,16 @@
 <script lang="ts">
+	import { run } from 'svelte/legacy';
+
 	import { browser } from '$app/environment';
 	import { post } from '$lib/messenger';
 
-	export let height: number;
+	interface Props {
+		height: number;
+	}
 
-	$: browser && post({ type: 'resize', value: { height } });
+	let { height }: Props = $props();
+
+	run(() => {
+		browser && post({ type: 'resize', value: { height } });
+	});
 </script>

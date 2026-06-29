@@ -5,7 +5,11 @@
 	import SetHeightResizer from '$lib/components/SetHeightResizer.svelte';
 	import type { PageData } from './$types';
 
-	export let data: PageData;
+	interface Props {
+		data: PageData;
+	}
+
+	let { data }: Props = $props();
 
 	let {
 		Tone,
@@ -35,7 +39,7 @@
 		Offer4URL,
 	} = data;
 
-	let offers = [
+	let offers = $state([
 		{
 			title: Offer1Title,
 			meta: Offer1Meta,
@@ -64,13 +68,13 @@
 			image: Offer4Image,
 			url: Offer4URL,
 		},
-	];
+	]);
 
 	const isProminent = IsProminent === 'true';
 
 	offers = offers.filter(({ title }) => title !== '');
 
-	$: height = -1;
+	let height = $derived(-1);
 </script>
 
 <aside bind:clientHeight={height} style={paletteColours}>
@@ -86,10 +90,12 @@
 				tone={Tone}
 				isProminent={isProminent && i === 0}
 			>
-				<svelte:fragment slot="title">
+				{#snippet title()}
 					{@html offer.title}
-				</svelte:fragment>
-				<svelte:fragment slot="text">{@html offer.meta}</svelte:fragment>
+				{/snippet}
+				{#snippet text()}
+					{@html offer.meta}
+				{/snippet}
 			</ManualCard>
 		{/each}
 	</div>

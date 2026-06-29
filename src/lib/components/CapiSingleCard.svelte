@@ -6,7 +6,11 @@
 	import CameraIcon from './icons/CameraIcon.svelte';
 	import VideoIcon from './icons/VideoIcon.svelte';
 
-	export let single: Single;
+	interface Props {
+		single: Single;
+	}
+
+	let { single }: Props = $props();
 
 	const {
 		articleHeadline,

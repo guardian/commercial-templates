@@ -2,7 +2,11 @@
 	import { clickMacro } from '$lib/gam';
 	import type { Branding } from '$lib/types/capi';
 
-	export let branding: Branding;
+	interface Props {
+		branding: Branding;
+	}
+
+	let { branding }: Props = $props();
 </script>
 
 <div>

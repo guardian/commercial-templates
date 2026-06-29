@@ -1,5 +1,9 @@
 <script lang="ts">
-	export let logo: string | null;
+	interface Props {
+		logo: string | null;
+	}
+
+	let { logo }: Props = $props();
 </script>
 
 <header>

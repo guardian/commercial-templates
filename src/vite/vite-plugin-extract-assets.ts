@@ -1,7 +1,7 @@
 import { copyFile, mkdir, readFile, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { JSDOM } from 'jsdom';
-import type { Plugin } from 'vite';
+import { parseAst, type Plugin } from 'vite';
 
 const buildTemplate = process.env.BUILD_TEMPLATE;
 
@@ -17,6 +17,112 @@ const extractStyles = (dom: JSDOM) => {
 	});
 
 	return cssContent.trim();
+};
+
+/**
+ * A node from the JavaScript parser. The parser turns the script into a big tree
+ * of these; we only ever need a node's `type` and where it sits in the source
+ * (`start` and `end`)
+ */
+type AstNode = {
+	type: string;
+	start: number;
+	end: number;
+	value?: unknown;
+};
+
+/** True when `value` looks like a node from the parser */
+const isAstNode = (value: unknown): value is AstNode => {
+	if (typeof value !== 'object' || value === null) {
+		return false;
+	}
+
+	const candidate = value as Record<string, unknown>;
+	return (
+		typeof candidate.type === 'string' &&
+		typeof candidate.start === 'number' &&
+		typeof candidate.end === 'number'
+	);
+};
+
+/** A chunk of the script, from `start` up to but not including `end`. */
+type TextRange = { start: number; end: number };
+
+/**
+ * Make an inline script safe to drop into an HTML ad slot.
+ *
+ * Google Ad Manager's SafeFrame reads our whole ad as HTML. If
+ * they spot something that looks like an HTML tag inside our script, even
+ * though it's only text sitting inside some JavaScript, they cut the script
+ * short and dump the rest onto the page as visible text, which breaks the ad.
+ *
+ * Svelte's compiled code is full of HTML written as text, for example:
+ *     someFunction("<header><h1>Hello</h1></header>")
+ * The "<" characters there are what trips the ad server up.
+ *
+ * So we swap every "<" that sits inside a piece of text for "\x3c". The browser
+ * reads "\x3c" as "<", so the script still does exactly the same thing — but the
+ * saved file no longer contains anything that looks like a tag.
+ *
+ * We ask the JavaScript parser which "<" are inside text and which are code,
+ * so we never change the wrong one.
+ */
+export const escapeScriptMarkup = (code: string): string => {
+	if (!code.includes('<')) {
+		return code;
+	}
+
+	// Find where every piece of text lives in the script. A piece of text is
+	// either a string or the literal characters in a `template`.
+	const findTextRanges = (node: AstNode): TextRange[] => {
+		const isText =
+			(node.type === 'Literal' && typeof node.value === 'string') ||
+			node.type === 'TemplateElement';
+
+		if (isText) {
+			return [{ start: node.start, end: node.end }];
+		}
+
+		// Otherwise, look through this node's children for more text.
+		return Object.values(node).flat().filter(isAstNode).flatMap(findTextRanges);
+	};
+
+	const textRanges = findTextRanges(parseAst(code)).sort(
+		(a, b) => a.start - b.start,
+	);
+
+	// Rebuild the script, escaping "<" only inside those pieces of text.
+	let result = '';
+	let position = 0;
+	for (const { start, end } of textRanges) {
+		result += code.slice(position, start);
+		result += code.slice(start, end).replaceAll('<', '\\x3c');
+		position = end;
+	}
+	result += code.slice(position);
+
+	// Safety net: swapping "<" for "\x3c" should always leave valid JavaScript.
+	// If it somehow doesn't, stop the build rather than ship a broken ad.
+	try {
+		parseAst(result);
+	} catch (error) {
+		throw new Error(
+			`Escaping "<" produced invalid JavaScript in an inline script: ${String(error)}`,
+		);
+	}
+
+	return result;
+};
+
+/**
+ * Clean up every `<script>` in the page body so the extracted ad is safe to
+ * show inside an ad slot.
+ */
+const escapeInlineScripts = (dom: JSDOM) => {
+	const scripts = dom.window.document.querySelectorAll('body script');
+	scripts.forEach((script) => {
+		script.textContent = escapeScriptMarkup(script.textContent);
+	});
 };
 
 /**
@@ -38,6 +144,8 @@ const extractHtml = (dom: JSDOM) => {
  */
 function extractAssets(fullHtml: string, templateName: string) {
 	const dom = new JSDOM(fullHtml);
+
+	escapeInlineScripts(dom);
 
 	const css = extractStyles(dom);
 	const html = extractHtml(dom);

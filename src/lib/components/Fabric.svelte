@@ -3,55 +3,97 @@
 	import { clickMacro, DEST_URL, isValidReplacedVariable } from '$lib/gam';
 	import { post } from '$lib/messenger';
 	import Pixel from '$lib/components/Pixel.svelte';
-	import { browser, building } from '$app/environment';
+	import { building } from '$app/environment';
 	import { onMount } from 'svelte';
 	import type { ScrollType } from '$lib/types/background';
 
-	export let TrackingPixel: string;
-	export let ResearchPixel: string;
-	export let ViewabilityPixel: string;
-	export let BackgroundScrollType: ScrollType = 'none';
-	export let BackgroundColour: string;
-	export let BackgroundImage: string;
-	export let BackgroundImagePosition: string;
-	export let BackgroundImageRepeat: string;
-	export let MobileBackgroundImage: string;
-	export let MobileBackgroundImagePosition: string;
-	export let MobileBackgroundImageRepeat: string;
-	export let Layer1BackgroundImage: string;
-	export let Layer1BackgroundPosition: string;
-	export let Layer2BackgroundImage: string;
-	export let Layer2BackgroundPosition: string;
-	export let Layer3BackgroundImage: string;
-	export let Layer3BackgroundPosition: string;
-	export let MobileLayer1BackgroundImage: string;
-	export let MobileLayer1BackgroundPosition: string;
-	export let MobileLayer2BackgroundImage: string;
-	export let MobileLayer2BackgroundPosition: string;
-	export let MobileLayer3BackgroundImage: string;
-	export let MobileLayer3BackgroundPosition: string;
-	export let VideoURL: string | undefined = undefined;
-	export let VideoBackupImage: string | undefined = undefined;
-	export let MobileVideoBackupImage: string | undefined = undefined;
-	export let VideoURLMobile: string | undefined = undefined;
-	export let VideoAlignment: string | undefined = undefined;
-	export let showVideo: boolean = false;
-	export let isXL: boolean = false;
-	export let IsFullWidthTopSlot: 'yes' | 'no';
-	export let hasThirdPartyJSTracking: boolean = true;
+	interface Props {
+		TrackingPixel: string;
+		ResearchPixel: string;
+		ViewabilityPixel: string;
+		BackgroundScrollType?: ScrollType;
+		BackgroundColour: string;
+		BackgroundImage: string;
+		BackgroundImagePosition: string;
+		BackgroundImageRepeat: string;
+		MobileBackgroundImage: string;
+		MobileBackgroundImagePosition: string;
+		MobileBackgroundImageRepeat: string;
+		Layer1BackgroundImage: string;
+		Layer1BackgroundPosition: string;
+		Layer2BackgroundImage: string;
+		Layer2BackgroundPosition: string;
+		Layer3BackgroundImage: string;
+		Layer3BackgroundPosition: string;
+		MobileLayer1BackgroundImage: string;
+		MobileLayer1BackgroundPosition: string;
+		MobileLayer2BackgroundImage: string;
+		MobileLayer2BackgroundPosition: string;
+		MobileLayer3BackgroundImage: string;
+		MobileLayer3BackgroundPosition: string;
+		VideoURL?: string | undefined;
+		VideoBackupImage?: string | undefined;
+		MobileVideoBackupImage?: string | undefined;
+		VideoURLMobile?: string | undefined;
+		VideoAlignment?: string | undefined;
+		showVideo?: boolean;
+		isXL?: boolean;
+		IsFullWidthTopSlot: 'yes' | 'no';
+		hasThirdPartyJSTracking?: boolean;
+	}
 
-	const isMobile = browser && window.matchMedia('(max-width: 739px)').matches;
-	const isTablet =
-		browser &&
-		window.matchMedia('(min-width: 740px) and (max-width: 979px)').matches;
+	let {
+		TrackingPixel,
+		ResearchPixel,
+		ViewabilityPixel,
+		BackgroundScrollType = 'none',
+		BackgroundColour,
+		BackgroundImage,
+		BackgroundImagePosition,
+		BackgroundImageRepeat,
+		MobileBackgroundImage,
+		MobileBackgroundImagePosition,
+		MobileBackgroundImageRepeat,
+		Layer1BackgroundImage,
+		Layer1BackgroundPosition,
+		Layer2BackgroundImage,
+		Layer2BackgroundPosition,
+		Layer3BackgroundImage,
+		Layer3BackgroundPosition,
+		MobileLayer1BackgroundImage,
+		MobileLayer1BackgroundPosition,
+		MobileLayer2BackgroundImage,
+		MobileLayer2BackgroundPosition,
+		MobileLayer3BackgroundImage,
+		MobileLayer3BackgroundPosition,
+		VideoURL = undefined,
+		VideoBackupImage = undefined,
+		MobileVideoBackupImage = undefined,
+		VideoURLMobile = undefined,
+		VideoAlignment = undefined,
+		showVideo = false,
+		isXL = false,
+		IsFullWidthTopSlot,
+		hasThirdPartyJSTracking = true,
+	}: Props = $props();
+
+	let isMobile = $state(false);
+	let isTablet = $state(false);
 
 	const video: Writable<HTMLVideoElement | undefined> = writable();
-	let played = false;
+	let played = $state(false);
 
-	const posterImage = isMobile ? MobileVideoBackupImage : VideoBackupImage;
-	const videoSrc = isMobile ? VideoURLMobile : VideoURL;
+	const posterImage = $derived(
+		isMobile ? MobileVideoBackupImage : VideoBackupImage,
+	);
+	const videoSrc = $derived(isMobile ? VideoURLMobile : VideoURL);
 
 	onMount(() => {
+		isMobile = window.matchMedia('(max-width: 739px)').matches;
+		isTablet = window.matchMedia(
+			'(min-width: 740px) and (max-width: 979px)',
+		).matches;
+
 		// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- https://github.com/sveltejs/eslint-plugin-svelte/issues/476
 		if (showVideo) {
 			// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- https://github.com/sveltejs/eslint-plugin-svelte/issues/476
@@ -160,7 +202,7 @@
 			class="video video--{VideoAlignment}"
 			class:is-top-slot-video={IsFullWidthTopSlot === 'yes'}
 			class:is-mobile={isMobile}
-			on:ended={() => (played = true)}
+			onended={() => (played = true)}
 			src={videoSrc}
 			poster={posterImage}
 		></video>

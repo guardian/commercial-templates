@@ -9,9 +9,12 @@
 
 	type TemplateName = ExtractTemplateName<RouteId>;
 
-	export let template: TemplateName;
+	interface Props {
+		template: TemplateName;
+		gamVariables: Record<string, string | number> | null;
+	}
 
-	export let gamVariables: Record<string, string | number> | null;
+	let { template, gamVariables }: Props = $props();
 
 	export const widths: Record<string, string> = {
 		'100%': '100%',

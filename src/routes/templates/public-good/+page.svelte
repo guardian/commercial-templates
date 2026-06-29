@@ -4,7 +4,7 @@
 	import { getPageURL } from '$lib/messenger/get-page-url';
 	import { create, type PgmApiOptions } from '$lib/public-good';
 
-	let container: HTMLElement;
+	let container: HTMLElement | undefined = $state();
 
 	const refresh = () =>
 		post({
@@ -41,6 +41,11 @@
 			onHide: refresh,
 		};
 
+		if (!container) {
+			console.error('No container found');
+			return refresh();
+		}
+
 		create(container, options);
 	};
 </script>
@@ -49,7 +54,7 @@
 	<script
 		type="text/javascript"
 		src="https://assets.publicgood.com/pgm/v1/pgm-api.js"
-		on:load={onload}
+		{onload}
 	></script>
 </svelte:head>
 <div id="public-good" bind:this={container}></div>

@@ -5,7 +5,11 @@
 	import SetHeightResizer from '$lib/components/SetHeightResizer.svelte';
 	import type { PageData } from './$types';
 
-	export let data: PageData;
+	interface Props {
+		data: PageData;
+	}
+
+	let { data }: Props = $props();
 
 	let {
 		BannerDescription,
@@ -29,7 +33,7 @@
 		EventUrl4,
 	} = data;
 
-	let events = [
+	let events = $state([
 		{
 			eventTitle: EventTitle1,
 			eventDateTime: EventDateTime1,
@@ -54,11 +58,11 @@
 			eventImage: EventImage4,
 			eventUrl: EventUrl4,
 		},
-	];
+	]);
 
 	events = events.filter((event) => event.eventTitle !== '');
 
-	$: height = -1;
+	let height = $derived(-1);
 </script>
 
 <aside bind:clientHeight={height} style={paletteColours}>
@@ -77,15 +81,17 @@
 				linkText="Book tickets"
 				tone={'live'}
 			>
-				<svelte:fragment slot="title">
+				{#snippet title()}
 					{@const [boldTitle, regularTitle] = event.eventTitle.split(':')}
 					{#if regularTitle}
 						<b>{@html boldTitle}:</b>{@html regularTitle}
 					{:else}
 						{@html boldTitle}
 					{/if}
-				</svelte:fragment>
-				<svelte:fragment slot="text">{event.eventDateTime}</svelte:fragment>
+				{/snippet}
+				{#snippet text()}
+					{event.eventDateTime}
+				{/snippet}
 			</ManualCard>
 		{/each}
 	</div>
