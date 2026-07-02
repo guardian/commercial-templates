@@ -4,7 +4,7 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-googleads = "==49.*"
+googleads = "==50.*"
 python-dotenv = "*"
 termcolor = "*"
 argparse = "*"
