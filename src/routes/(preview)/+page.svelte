@@ -10,7 +10,7 @@
 
 	let { data }: Props = $props();
 
-	const templates = $derived(data.templates);
+	const { templates } = data;
 </script>
 
 <h1>Commercial Templates</h1>

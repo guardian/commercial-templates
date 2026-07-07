@@ -6,7 +6,7 @@
 
 	let { width = 30, plus = false }: Props = $props();
 
-	const height = $derived(width);
+	const height = width;
 </script>
 
 <svg {width} {height} class:plus

@@ -16,23 +16,28 @@
 
 	let { data }: Props = $props();
 
+	let {
+		SeriesUrl,
+		ComponentTitle,
+		ArticleHeadline,
+		ArticleText,
+		ArticleImage,
+		TrackingPixel,
+	} = data;
+
+	let cardOverrides: CapiCardOverride = {
+		headline: ArticleHeadline,
+		image: ArticleImage,
+		text: ArticleText,
+	};
+
 	let card: Single | undefined = $state();
 	let error: unknown = $state(null);
 	let loading = $state(true);
 
-	const cardOverrides: CapiCardOverride = $derived({
-		headline: data.ArticleHeadline,
-		image: data.ArticleImage,
-		text: data.ArticleText,
-	});
-
 	onMount(async () => {
-		if (isValidReplacedVariable(data.TrackingPixel)) {
-			addTrackingPixel(data.TrackingPixel);
-		}
-
 		try {
-			card = await retrieveCapiData('single', data.SeriesUrl).then(
+			card = await retrieveCapiData('single', SeriesUrl).then(
 				(response) =>
 					addCapiCardOverrides([response], [cardOverrides])[0] || response,
 			);
@@ -43,19 +48,21 @@
 		}
 	});
 
+	if (isValidReplacedVariable(TrackingPixel)) addTrackingPixel(TrackingPixel);
+
 	let height = $derived(-1);
 </script>
 
 {#if loading}
-	<h3>Loading Content for "{data.SeriesUrl}"</h3>
+	<h3>Loading Content for "{SeriesUrl}"</h3>
 {:else if error}
-	<h3>Could not fetch series "{data.SeriesUrl}"</h3>
+	<h3>Could not fetch series "{SeriesUrl}"</h3>
 {:else if card}
 	<aside bind:clientHeight={height} style={paletteColours}>
 		<PaidForHeader
 			edition={card.branding.edition}
-			ComponentTitle={data.ComponentTitle}
-			SeriesUrl={data.SeriesUrl}
+			{ComponentTitle}
+			{SeriesUrl}
 		/>
 		<div class="body">
 			<CapiSingleCard single={card} />

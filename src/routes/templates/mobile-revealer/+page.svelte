@@ -11,12 +11,22 @@
 
 	let { data }: Props = $props();
 
+	let {
+		BackgroundImage,
+		Button,
+		ButtonVerticalPosition,
+		ButtonHorizontalPosition,
+		TrackingPixel,
+		ResearchPixel,
+		ViewabilityTracker,
+	} = data;
+
 	onMount(() => {
 		post({
 			type: 'background',
 			value: {
 				scrollType: 'fixed',
-				backgroundImage: `url('${data.BackgroundImage}')`,
+				backgroundImage: `url('${BackgroundImage}')`,
 				backgroundRepeat: 'no-repeat',
 				backgroundPosition: 'center center',
 				backgroundSize: 'cover',
@@ -40,26 +50,26 @@
 		target="_blank"
 	>
 		<img
-			class="creative__button creative__button--{data.ButtonVerticalPosition} creative__button--{data.ButtonHorizontalPosition}"
-			src={data.Button}
+			class="creative__button creative__button--{ButtonVerticalPosition} creative__button--{ButtonHorizontalPosition}"
+			src={Button}
 			alt="button"
 		/>
 	</a>
 	<!-- svelte-ignore a11y_missing_attribute -->
 	<img
-		src="{data.TrackingPixel}{CACHE_BUST}"
+		src="{TrackingPixel}{CACHE_BUST}"
 		class="creative__pixel creative__pixel--displayNone"
 		aria-hidden="true"
 	/>
 	<!-- svelte-ignore a11y_missing_attribute -->
 	<img
-		src="{data.ResearchPixel}{CACHE_BUST}"
+		src="{ResearchPixel}{CACHE_BUST}"
 		class="creative__pixel creative__pixel--displayNone"
 		aria-hidden="true"
 	/>
 	<!-- svelte-ignore a11y_missing_attribute -->
 	<img
-		src={data.ViewabilityTracker}
+		src={ViewabilityTracker}
 		class="creative__pixel creative__pixel--displayNone"
 		aria-hidden="true"
 	/>

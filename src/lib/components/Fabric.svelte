@@ -84,9 +84,9 @@
 	let played = $state(false);
 
 	const posterImage = $derived(
-		!!isMobile ? MobileVideoBackupImage : VideoBackupImage,
+		isMobile ? MobileVideoBackupImage : VideoBackupImage,
 	);
-	const videoSrc = $derived(!!isMobile ? VideoURLMobile : VideoURL);
+	const videoSrc = $derived(isMobile ? VideoURLMobile : VideoURL);
 
 	onMount(() => {
 		isMobile = window.matchMedia('(max-width: 739px)').matches;

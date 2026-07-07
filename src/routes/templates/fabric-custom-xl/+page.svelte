@@ -11,23 +11,26 @@
 
 	let { data }: Props = $props();
 
+	let { ViewabilityTracker, DapAssetsFolder, TrackingPixel, ResearchPixel } =
+		data;
+
 	let creativeLink: HTMLAnchorElement | undefined = $state();
 
 	onMount(async () => {
 		try {
-			const tag = await getTag(data.DapAssetsFolder);
+			const tag = await getTag(DapAssetsFolder);
 
 			if (creativeLink) insertTag(tag, creativeLink);
 		} catch (error) {
 			console.error('Error fetching or inserting tag:', error);
 		}
 
-		if (data.TrackingPixel) {
-			addTrackingPixel(data.TrackingPixel);
+		if (TrackingPixel) {
+			addTrackingPixel(TrackingPixel);
 		}
 
-		if (data.ResearchPixel) {
-			addTrackingPixel(data.ResearchPixel);
+		if (ResearchPixel) {
+			addTrackingPixel(ResearchPixel);
 		}
 	});
 </script>
@@ -39,7 +42,7 @@
 	</a>
 </div>
 <div id="js-fabric-custom"></div>
-{@html data.ViewabilityTracker}
+{@html ViewabilityTracker}
 
 <!-- This will only add the GAM tag when pre-rendering as a raw string, these JS tags have been known to cause issues when injected into svelte's compiled JS by GAM -->
 {#if building}

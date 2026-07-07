@@ -7,32 +7,58 @@
 	}
 
 	let { data }: Props = $props();
+
+	let {
+		TrackingPixel,
+		ResearchPixel,
+		ViewabilityPixel,
+		BackgroundScrollType,
+		BackgroundColour,
+		BackgroundImage,
+		BackgroundImagePosition,
+		BackgroundImageRepeat,
+		Layer1BackgroundImage,
+		Layer1BackgroundPosition,
+		Layer2BackgroundImage,
+		Layer2BackgroundPosition,
+		Layer3BackgroundImage,
+		Layer3BackgroundPosition,
+		MobileBackgroundImage,
+		MobileBackgroundImagePosition,
+		MobileBackgroundImageRepeat,
+		MobileLayer1BackgroundImage,
+		MobileLayer1BackgroundPosition,
+		MobileLayer2BackgroundImage,
+		MobileLayer2BackgroundPosition,
+		MobileLayer3BackgroundImage,
+		MobileLayer3BackgroundPosition,
+	} = data;
 </script>
 
 <Fabric
-	TrackingPixel={data.TrackingPixel}
-	ResearchPixel={data.ResearchPixel}
-	ViewabilityPixel={data.ViewabilityPixel}
-	BackgroundScrollType={data.BackgroundScrollType}
-	BackgroundColour={data.BackgroundColour}
-	BackgroundImage={data.BackgroundImage}
-	BackgroundImagePosition={data.BackgroundImagePosition}
-	BackgroundImageRepeat={data.BackgroundImageRepeat}
-	MobileBackgroundImage={data.MobileBackgroundImage}
-	MobileBackgroundImagePosition={data.MobileBackgroundImagePosition}
-	MobileBackgroundImageRepeat={data.MobileBackgroundImageRepeat}
-	Layer1BackgroundImage={data.Layer1BackgroundImage}
-	Layer1BackgroundPosition={data.Layer1BackgroundPosition}
-	Layer2BackgroundImage={data.Layer2BackgroundImage}
-	Layer2BackgroundPosition={data.Layer2BackgroundPosition}
-	Layer3BackgroundImage={data.Layer3BackgroundImage}
-	Layer3BackgroundPosition={data.Layer3BackgroundPosition}
-	MobileLayer1BackgroundImage={data.MobileLayer1BackgroundImage}
-	MobileLayer1BackgroundPosition={data.MobileLayer1BackgroundPosition}
-	MobileLayer2BackgroundImage={data.MobileLayer2BackgroundImage}
-	MobileLayer2BackgroundPosition={data.MobileLayer2BackgroundPosition}
-	MobileLayer3BackgroundImage={data.MobileLayer3BackgroundImage}
-	MobileLayer3BackgroundPosition={data.MobileLayer3BackgroundPosition}
+	{TrackingPixel}
+	{ResearchPixel}
+	{ViewabilityPixel}
+	{BackgroundScrollType}
+	{BackgroundColour}
+	{BackgroundImage}
+	{BackgroundImagePosition}
+	{BackgroundImageRepeat}
+	{MobileBackgroundImage}
+	{MobileBackgroundImagePosition}
+	{MobileBackgroundImageRepeat}
+	{Layer1BackgroundImage}
+	{Layer1BackgroundPosition}
+	{Layer2BackgroundImage}
+	{Layer2BackgroundPosition}
+	{Layer3BackgroundImage}
+	{Layer3BackgroundPosition}
+	{MobileLayer1BackgroundImage}
+	{MobileLayer1BackgroundPosition}
+	{MobileLayer2BackgroundImage}
+	{MobileLayer2BackgroundPosition}
+	{MobileLayer3BackgroundImage}
+	{MobileLayer3BackgroundPosition}
 	IsFullWidthTopSlot={'no'}
 	isXL={true}
 />

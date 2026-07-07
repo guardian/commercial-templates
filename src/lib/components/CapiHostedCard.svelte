@@ -12,17 +12,14 @@
 
 	let { card, singleCard = false }: Props = $props();
 
-	const { headline, image, url, audioTag, galleryTag, videoTag } =
-		$derived(card);
+	const { headline, image, url, audioTag, galleryTag, videoTag } = card;
 
-	const pictureSupported = $derived(
-		!!image?.sources.length && 'srcset' in new Image(),
-	);
+	const pictureSupported = image?.sources.length && 'srcset' in new Image();
 </script>
 
 <a href={clickMacro(url)} target="_top" class:singleCard>
 	<div class="media">
-		{#if pictureSupported && image}
+		{#if pictureSupported}
 			<picture>
 				{#each image.sources.filter((source) => source.minWidth === '0') as source}
 					<source

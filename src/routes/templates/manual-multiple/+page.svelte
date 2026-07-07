@@ -11,51 +11,75 @@
 
 	let { data }: Props = $props();
 
-	const offers = $derived.by(() =>
-		[
-			{
-				title: data.Offer1Title,
-				meta: data.Offer1Meta,
-				linkText: data.Offer1LinkText,
-				image: data.Offer1Image,
-				url: data.Offer1URL,
-			},
-			{
-				title: data.Offer2Title,
-				meta: data.Offer2Meta,
-				linkText: data.Offer2LinkText,
-				image: data.Offer2Image,
-				url: data.Offer2URL,
-			},
-			{
-				title: data.Offer3Title,
-				meta: data.Offer3Meta,
-				linkText: data.Offer3LinkText,
-				image: data.Offer3Image,
-				url: data.Offer3URL,
-			},
-			{
-				title: data.Offer4Title,
-				meta: data.Offer4Meta,
-				linkText: data.Offer4LinkText,
-				image: data.Offer4Image,
-				url: data.Offer4URL,
-			},
-		].filter(({ title }) => title !== ''),
-	);
+	let {
+		Tone,
+		TitleURL,
+		Explainer,
+		ViewAll,
+		IsProminent,
+		Offer1Title,
+		Offer2Title,
+		Offer3Title,
+		Offer4Title,
+		Offer1Meta,
+		Offer2Meta,
+		Offer3Meta,
+		Offer4Meta,
+		Offer1LinkText,
+		Offer2LinkText,
+		Offer3LinkText,
+		Offer4LinkText,
+		Offer1Image,
+		Offer2Image,
+		Offer3Image,
+		Offer4Image,
+		Offer1URL,
+		Offer2URL,
+		Offer3URL,
+		Offer4URL,
+	} = data;
 
-	const isProminent = $derived(data.IsProminent === 'true');
+	let offers = $state([
+		{
+			title: Offer1Title,
+			meta: Offer1Meta,
+			linkText: Offer1LinkText,
+			image: Offer1Image,
+			url: Offer1URL,
+		},
+		{
+			title: Offer2Title,
+			meta: Offer2Meta,
+			linkText: Offer2LinkText,
+			image: Offer2Image,
+			url: Offer2URL,
+		},
+		{
+			title: Offer3Title,
+			meta: Offer3Meta,
+			linkText: Offer3LinkText,
+			image: Offer3Image,
+			url: Offer3URL,
+		},
+		{
+			title: Offer4Title,
+			meta: Offer4Meta,
+			linkText: Offer4LinkText,
+			image: Offer4Image,
+			url: Offer4URL,
+		},
+	]);
+
+	const isProminent = IsProminent === 'true';
+
+	offers = offers.filter(({ title }) => title !== '');
 
 	let height = $derived(-1);
 </script>
 
 <aside bind:clientHeight={height} style={paletteColours}>
-	<ManualHeader
-		buttonText={data.ViewAll}
-		buttonUrl={data.TitleURL}
-		tone={data.Tone}
-	>
-		{@html data.Explainer}
+	<ManualHeader buttonText={ViewAll} buttonUrl={TitleURL} tone={Tone}>
+		{@html Explainer}
 	</ManualHeader>
 	<div class="cards-container" class:is-prominent={isProminent}>
 		{#each offers as offer, i}
@@ -63,7 +87,7 @@
 				image={offer.image}
 				url={offer.url}
 				linkText={offer.linkText}
-				tone={data.Tone}
+				tone={Tone}
 				isProminent={isProminent && i === 0}
 			>
 				{#snippet title()}

@@ -7,9 +7,8 @@
 
 	let { articleImage }: Props = $props();
 
-	const pictureSupported = $derived(
-		articleImage.sources.length > 0 && 'srcset' in new Image(),
-	);
+	const pictureSupported =
+		articleImage && articleImage.sources.length > 0 && 'srcset' in new Image();
 </script>
 
 {#if pictureSupported}

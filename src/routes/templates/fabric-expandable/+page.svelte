@@ -14,6 +14,51 @@
 
 	let { data }: Props = $props();
 
+	let {
+		Trackingpixel,
+		Researchpixel,
+		Viewabilitypixel,
+		ScrollType,
+		Slide1BackgroundColour,
+		Slide1BackgroundImage,
+		Slide1BackgroundRepeat,
+		Slide1BackgroundPosition,
+		Slide1MobileBackgroundImage,
+		Slide1MobileBackgroundRepeat,
+		Slide1MobileBackgroundPosition,
+		Slide1Layer1BackgroundImage,
+		Slide1Layer1BackgroundPosition,
+		Slide1Layer1MobileBackgroundImage,
+		Slide1Layer1MobileBackgroundPosition,
+		Slide1Layer2BackgroundImage,
+		Slide1Layer2BackgroundPosition,
+		Slide1Layer2MobileBackgroundImage,
+		Slide1Layer2MobileBackgroundPosition,
+		Slide1Layer3BackgroundImage,
+		Slide1Layer3BackgroundPosition,
+		Slide1Layer3MobileBackgroundImage,
+		Slide1Layer3MobileBackgroundPosition,
+		Slide2BackgroundColour,
+		Slide2BackgroundImage,
+		Slide2BackgroundRepeat,
+		Slide2BackgroundPosition,
+		Slide2MobileBackgroundImage,
+		Slide2MobileBackgroundRepeat,
+		Slide2MobileBackgroundPosition,
+		Slide2Layer1BackgroundImage,
+		Slide2Layer1BackgroundPosition,
+		Slide2Layer1MobileBackgroundImage,
+		Slide2Layer1MobileBackgroundPosition,
+		Slide2Layer2BackgroundImage,
+		Slide2Layer2BackgroundPosition,
+		Slide2Layer2MobileBackgroundImage,
+		Slide2Layer2MobileBackgroundPosition,
+		Slide2Layer3BackgroundImage,
+		Slide2Layer3BackgroundPosition,
+		Slide2Layer3MobileBackgroundImage,
+		Slide2Layer3MobileBackgroundPosition,
+	} = data;
+
 	let expanded = $state(false);
 
 	const toggleExpanded = () => (expanded = !expanded);
@@ -26,57 +71,57 @@
 
 <aside>
 	<Fabric
-		TrackingPixel={data.Trackingpixel}
-		ResearchPixel={data.Researchpixel}
-		ViewabilityPixel={data.Viewabilitypixel}
-		BackgroundScrollType={data.ScrollType}
-		BackgroundColour={data.Slide1BackgroundColour}
-		BackgroundImage={data.Slide1BackgroundImage}
-		BackgroundImagePosition={data.Slide1BackgroundPosition}
-		BackgroundImageRepeat={data.Slide1BackgroundRepeat}
-		MobileBackgroundImage={data.Slide1MobileBackgroundImage}
-		MobileBackgroundImagePosition={data.Slide1MobileBackgroundPosition}
-		MobileBackgroundImageRepeat={data.Slide1MobileBackgroundRepeat}
-		Layer1BackgroundImage={data.Slide1Layer1BackgroundImage}
-		Layer1BackgroundPosition={data.Slide1Layer1BackgroundPosition}
-		Layer2BackgroundImage={data.Slide1Layer2BackgroundImage}
-		Layer2BackgroundPosition={data.Slide1Layer2BackgroundPosition}
-		Layer3BackgroundImage={data.Slide1Layer3BackgroundImage}
-		Layer3BackgroundPosition={data.Slide1Layer3BackgroundPosition}
-		MobileLayer1BackgroundImage={data.Slide1Layer1MobileBackgroundImage}
-		MobileLayer1BackgroundPosition={data.Slide1Layer1MobileBackgroundPosition}
-		MobileLayer2BackgroundImage={data.Slide1Layer2MobileBackgroundImage}
-		MobileLayer2BackgroundPosition={data.Slide1Layer2MobileBackgroundPosition}
-		MobileLayer3BackgroundImage={data.Slide1Layer3MobileBackgroundImage}
-		MobileLayer3BackgroundPosition={data.Slide1Layer3MobileBackgroundPosition}
+		TrackingPixel={Trackingpixel}
+		ResearchPixel={Researchpixel}
+		ViewabilityPixel={Viewabilitypixel}
+		BackgroundScrollType={ScrollType}
+		BackgroundColour={Slide1BackgroundColour}
+		BackgroundImage={Slide1BackgroundImage}
+		BackgroundImagePosition={Slide1BackgroundPosition}
+		BackgroundImageRepeat={Slide1BackgroundRepeat}
+		MobileBackgroundImage={Slide1MobileBackgroundImage}
+		MobileBackgroundImagePosition={Slide1MobileBackgroundPosition}
+		MobileBackgroundImageRepeat={Slide1MobileBackgroundRepeat}
+		Layer1BackgroundImage={Slide1Layer1BackgroundImage}
+		Layer1BackgroundPosition={Slide1Layer1BackgroundPosition}
+		Layer2BackgroundImage={Slide1Layer2BackgroundImage}
+		Layer2BackgroundPosition={Slide1Layer2BackgroundPosition}
+		Layer3BackgroundImage={Slide1Layer3BackgroundImage}
+		Layer3BackgroundPosition={Slide1Layer3BackgroundPosition}
+		MobileLayer1BackgroundImage={Slide1Layer1MobileBackgroundImage}
+		MobileLayer1BackgroundPosition={Slide1Layer1MobileBackgroundPosition}
+		MobileLayer2BackgroundImage={Slide1Layer2MobileBackgroundImage}
+		MobileLayer2BackgroundPosition={Slide1Layer2MobileBackgroundPosition}
+		MobileLayer3BackgroundImage={Slide1Layer3MobileBackgroundImage}
+		MobileLayer3BackgroundPosition={Slide1Layer3MobileBackgroundPosition}
 		IsFullWidthTopSlot={'no'}
 		hasThirdPartyJSTracking={false}
 	/>
 
 	<Fabric
-		TrackingPixel={data.Trackingpixel}
-		ResearchPixel={data.Researchpixel}
-		ViewabilityPixel={data.Viewabilitypixel}
-		BackgroundScrollType={data.ScrollType}
-		BackgroundColour={data.Slide2BackgroundColour}
-		BackgroundImage={data.Slide2BackgroundImage}
-		BackgroundImagePosition={data.Slide2BackgroundPosition}
-		BackgroundImageRepeat={data.Slide2BackgroundRepeat}
-		MobileBackgroundImage={data.Slide2MobileBackgroundImage}
-		MobileBackgroundImagePosition={data.Slide2MobileBackgroundPosition}
-		MobileBackgroundImageRepeat={data.Slide2MobileBackgroundRepeat}
-		Layer1BackgroundImage={data.Slide2Layer1BackgroundImage}
-		Layer1BackgroundPosition={data.Slide2Layer1BackgroundPosition}
-		Layer2BackgroundImage={data.Slide2Layer2BackgroundImage}
-		Layer2BackgroundPosition={data.Slide2Layer2BackgroundPosition}
-		Layer3BackgroundImage={data.Slide2Layer3BackgroundImage}
-		Layer3BackgroundPosition={data.Slide2Layer3BackgroundPosition}
-		MobileLayer1BackgroundImage={data.Slide2Layer1MobileBackgroundImage}
-		MobileLayer1BackgroundPosition={data.Slide2Layer1MobileBackgroundPosition}
-		MobileLayer2BackgroundImage={data.Slide2Layer2MobileBackgroundImage}
-		MobileLayer2BackgroundPosition={data.Slide2Layer2MobileBackgroundPosition}
-		MobileLayer3BackgroundImage={data.Slide2Layer3MobileBackgroundImage}
-		MobileLayer3BackgroundPosition={data.Slide2Layer3MobileBackgroundPosition}
+		TrackingPixel={Trackingpixel}
+		ResearchPixel={Researchpixel}
+		ViewabilityPixel={Viewabilitypixel}
+		BackgroundScrollType={ScrollType}
+		BackgroundColour={Slide2BackgroundColour}
+		BackgroundImage={Slide2BackgroundImage}
+		BackgroundImagePosition={Slide2BackgroundPosition}
+		BackgroundImageRepeat={Slide2BackgroundRepeat}
+		MobileBackgroundImage={Slide2MobileBackgroundImage}
+		MobileBackgroundImagePosition={Slide2MobileBackgroundPosition}
+		MobileBackgroundImageRepeat={Slide2MobileBackgroundRepeat}
+		Layer1BackgroundImage={Slide2Layer1BackgroundImage}
+		Layer1BackgroundPosition={Slide2Layer1BackgroundPosition}
+		Layer2BackgroundImage={Slide2Layer2BackgroundImage}
+		Layer2BackgroundPosition={Slide2Layer2BackgroundPosition}
+		Layer3BackgroundImage={Slide2Layer3BackgroundImage}
+		Layer3BackgroundPosition={Slide2Layer3BackgroundPosition}
+		MobileLayer1BackgroundImage={Slide2Layer1MobileBackgroundImage}
+		MobileLayer1BackgroundPosition={Slide2Layer1MobileBackgroundPosition}
+		MobileLayer2BackgroundImage={Slide2Layer2MobileBackgroundImage}
+		MobileLayer2BackgroundPosition={Slide2Layer2MobileBackgroundPosition}
+		MobileLayer3BackgroundImage={Slide2Layer3MobileBackgroundImage}
+		MobileLayer3BackgroundPosition={Slide2Layer3MobileBackgroundPosition}
 		IsFullWidthTopSlot={'no'}
 		hasThirdPartyJSTracking={false}
 	/>

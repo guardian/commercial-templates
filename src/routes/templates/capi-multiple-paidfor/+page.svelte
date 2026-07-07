@@ -16,41 +16,55 @@
 
 	let { data }: Props = $props();
 
+	let {
+		SeriesURL,
+		ComponentTitle,
+		Article1Headline,
+		Article1Image,
+		Article1Kicker,
+		Article2Headline,
+		Article2Image,
+		Article2Kicker,
+		Article3Headline,
+		Article3Image,
+		Article3Kicker,
+		Article4Headline,
+		Article4Image,
+		Article4Kicker,
+		TrackingPixel,
+	} = data;
+
+	let cardOverrides: CapiCardOverride[] = [
+		{
+			headline: Article1Headline,
+			image: Article1Image,
+			kicker: Article1Kicker,
+		},
+		{
+			headline: Article2Headline,
+			image: Article2Image,
+			kicker: Article2Kicker,
+		},
+		{
+			headline: Article3Headline,
+			image: Article3Image,
+			kicker: Article3Kicker,
+		},
+		{
+			headline: Article4Headline,
+			image: Article4Image,
+			kicker: Article4Kicker,
+		},
+	];
+
 	let cards: Single[] = $state([]);
 	let error: unknown = $state(null);
 	let loading = $state(true);
 
-	const cardOverrides: CapiCardOverride[] = $derived.by(() => [
-		{
-			headline: data.Article1Headline,
-			image: data.Article1Image,
-			kicker: data.Article1Kicker,
-		},
-		{
-			headline: data.Article2Headline,
-			image: data.Article2Image,
-			kicker: data.Article2Kicker,
-		},
-		{
-			headline: data.Article3Headline,
-			image: data.Article3Image,
-			kicker: data.Article3Kicker,
-		},
-		{
-			headline: data.Article4Headline,
-			image: data.Article4Image,
-			kicker: data.Article4Kicker,
-		},
-	]);
-
 	onMount(async () => {
-		if (isValidReplacedVariable(data.TrackingPixel)) {
-			addTrackingPixel(data.TrackingPixel);
-		}
-
 		try {
-			cards = await retrieveCapiData('multiple', data.SeriesURL).then(
-				(response) => addCapiCardOverrides(response.articles, cardOverrides),
+			cards = await retrieveCapiData('multiple', SeriesURL).then((response) =>
+				addCapiCardOverrides(response.articles, cardOverrides),
 			);
 		} catch (e) {
 			error = e;
@@ -59,19 +73,21 @@
 		}
 	});
 
+	if (isValidReplacedVariable(TrackingPixel)) addTrackingPixel(TrackingPixel);
+
 	let height = $derived(-1);
 </script>
 
 {#if loading}
-	<h3>Loading Content for "{data.SeriesURL}"</h3>
+	<h3>Loading Content for “{SeriesURL}”</h3>
 {:else if error}
-	<h3>Could not fetch series "{data.SeriesURL}"</h3>
+	<h3>Could not fetch series “{SeriesURL}”</h3>
 {:else if cards[0]}
 	<aside bind:clientHeight={height} style={paletteColours}>
 		<PaidForHeader
 			edition={cards[0].branding.edition}
-			ComponentTitle={data.ComponentTitle}
-			SeriesUrl={data.SeriesURL}
+			{ComponentTitle}
+			SeriesUrl={SeriesURL}
 		/>
 
 		<div class="body">

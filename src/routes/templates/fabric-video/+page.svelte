@@ -7,36 +7,67 @@
 	}
 
 	let { data }: Props = $props();
+
+	let {
+		Trackingpixel,
+		Researchpixel,
+		Viewabilitypixel,
+		BackgroundColour,
+		BackgroundImage,
+		BackgroundPosition,
+		BackgroundRepeat,
+		Layer1BackgroundImage,
+		Layer1BackgroundPosition,
+		Layer2BackgroundImage,
+		Layer2BackgroundPosition,
+		Layer3BackgroundImage,
+		Layer3BackgroundPosition,
+		MobileBackgroundImage,
+		MobileBackgroundPosition,
+		MobileBackgroundRepeat,
+		MobileLayer1BackgroundImage,
+		MobileLayer1BackgroundPosition,
+		MobileLayer2BackgroundImage,
+		MobileLayer2BackgroundPosition,
+		MobileLayer3BackgroundImage,
+		MobileLayer3BackgroundPosition,
+		VideoURL,
+		VideoBackupImage,
+		MobileVideoBackupImage,
+		VideoURLMobile,
+		VideoAlignment,
+		IsFullWidthTopSlot,
+	} = data;
 </script>
 
 <Fabric
-	TrackingPixel={data.Trackingpixel}
-	ResearchPixel={data.Researchpixel}
-	ViewabilityPixel={data.Viewabilitypixel}
-	BackgroundColour={data.BackgroundColour}
-	BackgroundImage={data.BackgroundImage}
-	BackgroundImagePosition={data.BackgroundPosition}
-	BackgroundImageRepeat={data.BackgroundRepeat}
-	MobileBackgroundImage={data.MobileBackgroundImage}
-	MobileBackgroundImagePosition={data.MobileBackgroundPosition}
-	MobileBackgroundImageRepeat={data.MobileBackgroundRepeat}
-	Layer1BackgroundImage={data.Layer1BackgroundImage}
-	Layer1BackgroundPosition={data.Layer1BackgroundPosition}
-	Layer2BackgroundImage={data.Layer2BackgroundImage}
-	Layer2BackgroundPosition={data.Layer2BackgroundPosition}
-	Layer3BackgroundImage={data.Layer3BackgroundImage}
-	Layer3BackgroundPosition={data.Layer3BackgroundPosition}
-	MobileLayer1BackgroundImage={data.MobileLayer1BackgroundImage}
-	MobileLayer1BackgroundPosition={data.MobileLayer1BackgroundPosition}
-	MobileLayer2BackgroundImage={data.MobileLayer2BackgroundImage}
-	MobileLayer2BackgroundPosition={data.MobileLayer2BackgroundPosition}
-	MobileLayer3BackgroundImage={data.MobileLayer3BackgroundImage}
-	MobileLayer3BackgroundPosition={data.MobileLayer3BackgroundPosition}
-	VideoURL={data.VideoURL}
-	VideoBackupImage={data.VideoBackupImage}
-	MobileVideoBackupImage={data.MobileVideoBackupImage}
-	VideoURLMobile={data.VideoURLMobile}
-	VideoAlignment={data.VideoAlignment}
+	TrackingPixel={Trackingpixel}
+	ResearchPixel={Researchpixel}
+	ViewabilityPixel={Viewabilitypixel}
+	{BackgroundColour}
+	{BackgroundImage}
+	BackgroundImagePosition={BackgroundPosition}
+	BackgroundImageRepeat={BackgroundRepeat}
+	{MobileBackgroundImage}
+	MobileBackgroundImagePosition={MobileBackgroundPosition}
+	MobileBackgroundImageRepeat={MobileBackgroundRepeat}
+	{Layer1BackgroundImage}
+	{Layer1BackgroundPosition}
+	{Layer2BackgroundImage}
+	{Layer2BackgroundPosition}
+	{Layer3BackgroundImage}
+	{Layer3BackgroundPosition}
+	{MobileLayer1BackgroundImage}
+	{MobileLayer1BackgroundPosition}
+	{MobileLayer2BackgroundImage}
+	{MobileLayer2BackgroundPosition}
+	{MobileLayer3BackgroundImage}
+	{MobileLayer3BackgroundPosition}
+	{VideoURL}
+	{VideoBackupImage}
+	{MobileVideoBackupImage}
+	{VideoURLMobile}
+	{VideoAlignment}
 	showVideo={true}
-	IsFullWidthTopSlot={data.IsFullWidthTopSlot}
+	{IsFullWidthTopSlot}
 />
