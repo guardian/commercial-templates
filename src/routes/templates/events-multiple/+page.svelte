@@ -11,67 +11,45 @@
 
 	let { data }: Props = $props();
 
-	let {
-		BannerDescription,
-		HeaderButtonText,
-		HeaderButtonUrl,
-		EventTitle1,
-		EventTitle2,
-		EventTitle3,
-		EventTitle4,
-		EventDateTime1,
-		EventDateTime2,
-		EventDateTime3,
-		EventDateTime4,
-		EventImage1,
-		EventImage2,
-		EventImage3,
-		EventImage4,
-		EventUrl1,
-		EventUrl2,
-		EventUrl3,
-		EventUrl4,
-	} = data;
-
-	let events = $state([
-		{
-			eventTitle: EventTitle1,
-			eventDateTime: EventDateTime1,
-			eventImage: EventImage1,
-			eventUrl: EventUrl1,
-		},
-		{
-			eventTitle: EventTitle2,
-			eventDateTime: EventDateTime2,
-			eventImage: EventImage2,
-			eventUrl: EventUrl2,
-		},
-		{
-			eventTitle: EventTitle3,
-			eventDateTime: EventDateTime3,
-			eventImage: EventImage3,
-			eventUrl: EventUrl3,
-		},
-		{
-			eventTitle: EventTitle4,
-			eventDateTime: EventDateTime4,
-			eventImage: EventImage4,
-			eventUrl: EventUrl4,
-		},
-	]);
-
-	events = events.filter((event) => event.eventTitle !== '');
+	const events = $derived.by(() =>
+		[
+			{
+				eventTitle: data.EventTitle1,
+				eventDateTime: data.EventDateTime1,
+				eventImage: data.EventImage1,
+				eventUrl: data.EventUrl1,
+			},
+			{
+				eventTitle: data.EventTitle2,
+				eventDateTime: data.EventDateTime2,
+				eventImage: data.EventImage2,
+				eventUrl: data.EventUrl2,
+			},
+			{
+				eventTitle: data.EventTitle3,
+				eventDateTime: data.EventDateTime3,
+				eventImage: data.EventImage3,
+				eventUrl: data.EventUrl3,
+			},
+			{
+				eventTitle: data.EventTitle4,
+				eventDateTime: data.EventDateTime4,
+				eventImage: data.EventImage4,
+				eventUrl: data.EventUrl4,
+			},
+		].filter((event) => event.eventTitle !== ''),
+	);
 
 	let height = $derived(-1);
 </script>
 
 <aside bind:clientHeight={height} style={paletteColours}>
 	<ManualHeader
-		buttonText={HeaderButtonText}
-		buttonUrl={HeaderButtonUrl}
+		buttonText={data.HeaderButtonText}
+		buttonUrl={data.HeaderButtonUrl}
 		tone={'live'}
 	>
-		{@html BannerDescription}
+		{@html data.BannerDescription}
 	</ManualHeader>
 	<div class="cards-container">
 		{#each events as event}

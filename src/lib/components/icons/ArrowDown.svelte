@@ -6,7 +6,7 @@
 
 	let { width = 24, flip = false }: Props = $props();
 
-	const height = (24 / 18) * width;
+	const height = $derived((24 / 18) * width);
 </script>
 
 <svg viewBox="0 -4 24 18" {width} {height} class:flip

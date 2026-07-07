@@ -19,48 +19,28 @@
 
 	let { data }: Props = $props();
 
-	let {
-		SeriesURL,
-		BrandLogo,
-		BrandColour,
-		TrackingId,
-		Article1Headline,
-		Article1Image,
-		Article1URL,
-		Article2Headline,
-		Article2Image,
-		Article2URL,
-		Article3Headline,
-		Article3Image,
-		Article3URL,
-		Article4Headline,
-		Article4Image,
-		Article4URL,
-		numberOfElements,
-	} = data;
-
-	let cardOverrides: CapiCardOverride[] = [
+	const cardOverrides: CapiCardOverride[] = $derived.by(() => [
 		{
-			headline: Article1Headline,
-			image: Article1Image,
-			url: Article1URL,
+			headline: data.Article1Headline,
+			image: data.Article1Image,
+			url: data.Article1URL,
 		},
 		{
-			headline: Article2Headline,
-			image: Article2Image,
-			url: Article2URL,
+			headline: data.Article2Headline,
+			image: data.Article2Image,
+			url: data.Article2URL,
 		},
 		{
-			headline: Article3Headline,
-			image: Article3Image,
-			url: Article3URL,
+			headline: data.Article3Headline,
+			image: data.Article3Image,
+			url: data.Article3URL,
 		},
 		{
-			headline: Article4Headline,
-			image: Article4Image,
-			url: Article4URL,
+			headline: data.Article4Headline,
+			image: data.Article4Image,
+			url: data.Article4URL,
 		},
-	];
+	]);
 
 	let cards: TCapiHostedCard[] = $state([]);
 	let logo: string | null = $state(null);
@@ -68,13 +48,17 @@
 	let loading = $state(true);
 
 	onMount(async () => {
+		if (isValidReplacedVariable(data.TrackingId)) {
+			addTrackingPixel(data.TrackingId);
+		}
+
 		try {
-			const result = await retrieveCapiData(SeriesURL, cardOverrides).then(
+			const result = await retrieveCapiData(data.SeriesURL, cardOverrides).then(
 				(response) =>
 					addCapiHostedCardOverrides(
-						response.articles.slice(0, Number(numberOfElements)),
+						response.articles.slice(0, Number(data.numberOfElements)),
 						cardOverrides,
-						BrandLogo,
+						data.BrandLogo,
 					),
 			);
 			({ cards, logo } = result);
@@ -85,8 +69,6 @@
 		}
 	});
 
-	if (isValidReplacedVariable(TrackingId)) addTrackingPixel(TrackingId);
-
 	let height = $derived(-1);
 	let singleCard = $derived(cards?.length === 1);
 </script>
@@ -94,7 +76,7 @@
 <aside
 	bind:clientHeight={height}
 	class:singleCard
-	style="--brand-colour: {BrandColour}; {paletteColours}"
+	style="--brand-colour: {data.BrandColour}; {paletteColours}"
 >
 	{#if loading}
 		<h3>Loading Content...</h3>

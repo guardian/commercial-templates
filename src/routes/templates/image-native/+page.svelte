@@ -8,22 +8,12 @@
 	}
 
 	let { data }: Props = $props();
-
-	let {
-		BackgroundImageX1,
-		BackgroundImageX2,
-		AdWidth,
-		AdHeight,
-		TrackingPixel,
-		ResearchPixel,
-		ViewabilityTracker,
-	} = data;
 </script>
 
 <div
 	class="creative creative--image"
-	style:--width={`${AdWidth}px`}
-	style:--height={`${AdHeight}px`}
+	style:--width={`${data.AdWidth}px`}
+	style:--height={`${data.AdHeight}px`}
 >
 	<a
 		class="creative__cta"
@@ -31,26 +21,32 @@
 		target="_blank"
 	>
 		<picture>
-			<source srcset={`${BackgroundImageX1}, ${BackgroundImageX2} 2x`} />
+			<source
+				srcset={`${data.BackgroundImageX1}, ${data.BackgroundImageX2} 2x`}
+			/>
 			<!-- svelte-ignore a11y_missing_attribute -->
-			<img src={BackgroundImageX1} width={AdWidth} height={AdHeight} />
+			<img
+				src={data.BackgroundImageX1}
+				width={data.AdWidth}
+				height={data.AdHeight}
+			/>
 		</picture>
 	</a>
 	<!-- svelte-ignore a11y_missing_attribute -->
 	<img
-		src="{TrackingPixel}{CACHE_BUST}"
+		src="{data.TrackingPixel}{CACHE_BUST}"
 		class="creative__pixel creative__pixel--displayNone"
 		aria-hidden="true"
 	/>
 	<!-- svelte-ignore a11y_missing_attribute -->
 	<img
-		src="{ResearchPixel}{CACHE_BUST}"
+		src="{data.ResearchPixel}{CACHE_BUST}"
 		class="creative__pixel creative__pixel--displayNone"
 		aria-hidden="true"
 	/>
 	<!-- svelte-ignore a11y_missing_attribute -->
 	<img
-		src={ViewabilityTracker}
+		src={data.ViewabilityTracker}
 		class="creative__pixel creative__pixel--displayNone"
 		aria-hidden="true"
 	/>

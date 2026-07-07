@@ -21,7 +21,7 @@
 		audioTag,
 		galleryTag,
 		videoTag,
-	} = single;
+	} = $derived(single);
 </script>
 
 <a class="single-card" href={clickMacro(articleUrl)} target="_top">

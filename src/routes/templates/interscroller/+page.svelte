@@ -10,14 +10,6 @@
 
 	let { data }: Props = $props();
 
-	let {
-		BackgroundImage,
-		VideoSource,
-		TrackingPixel,
-		ResearchPixel,
-		ViewabilityTracker,
-	} = data;
-
 	onMount(() => {
 		// this will tell frontend to add the 'ad-slot--interscroller' class to the ad slot
 		post({
@@ -29,12 +21,12 @@
 			type: 'background',
 			value: {
 				scrollType: 'interscroller',
-				backgroundImage: `url('${BackgroundImage}')`,
+				backgroundImage: `url('${data.BackgroundImage}')`,
 				backgroundRepeat: 'no-repeat',
 				backgroundPosition: 'center center',
 				backgroundSize: 'cover',
 				ctaUrl: `%%CLICK_URL_UNESC%%%%DEST_URL%%`,
-				videoSource: VideoSource,
+				videoSource: data.VideoSource,
 			},
 		});
 
@@ -50,19 +42,19 @@
 <div class="creative--interscroller">
 	<!-- svelte-ignore a11y_missing_attribute -->
 	<img
-		src={TrackingPixel}
+		src={data.TrackingPixel}
 		class="creative__pixel creative__pixel--displayNone"
 		aria-hidden="true"
 	/>
 	<!-- svelte-ignore a11y_missing_attribute -->
 	<img
-		src={ResearchPixel}
+		src={data.ResearchPixel}
 		class="creative__pixel creative__pixel--displayNone"
 		aria-hidden="true"
 	/>
 	<!-- svelte-ignore a11y_missing_attribute -->
 	<img
-		src={ViewabilityTracker}
+		src={data.ViewabilityTracker}
 		class="creative__pixel creative__pixel--displayNone"
 		aria-hidden="true"
 	/>

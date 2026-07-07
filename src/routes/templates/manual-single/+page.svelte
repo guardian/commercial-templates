@@ -10,59 +10,48 @@
 	}
 
 	let { data }: Props = $props();
-
-	let {
-		Tone,
-		TitleURL,
-		OfferURL,
-		OfferTitle,
-		OfferText,
-		Explainer,
-		ViewAll,
-		OmnitureId,
-	} = data;
 </script>
 
 <aside
-	data-tone={Tone}
-	data-link-name={['creative', 'ad single manual', OmnitureId].join(' | ')}
+	data-tone={data.Tone}
+	data-link-name={['creative', 'ad single manual', data.OmnitureId].join(' | ')}
 	style={paletteColours}
 >
 	<header>
 		<h1 class="adverts__title" data-tone="travel">
 			<a
 				class="adverts__logo brand_logo"
-				href={clickMacro(TitleURL)}
+				href={clickMacro(data.TitleURL)}
 				data-link-name="title"
 				target="_top"
 				rel="external"><BrandLogo /></a
 			>
 		</h1>
 		<div class="adverts_blurb">
-			{Explainer}
+			{data.Explainer}
 		</div>
 	</header>
 	<div class="adverts">
 		<a
 			class="single"
-			href={clickMacro(OfferURL)}
-			data-link-name={OfferTitle}
+			href={clickMacro(data.OfferURL)}
+			data-link-name={data.OfferTitle}
 			target="_top"
 			rel="external"
 		>
 			<div class="advert__text">
-				<h2 class="blink__anchor advert__title">{OfferTitle}</h2>
-				<p class="advert__standfirst">{OfferText}</p>
+				<h2 class="blink__anchor advert__title">{data.OfferTitle}</h2>
+				<p class="advert__standfirst">{data.OfferText}</p>
 			</div>
 		</a>
 		<a
 			class="hide-until-mobile-landscape button"
-			href={clickMacro(TitleURL)}
+			href={clickMacro(data.TitleURL)}
 			data-link-name="viewall"
 			target="_top"
 			rel="external"
 		>
-			{ViewAll}
+			{data.ViewAll}
 			<ArrowRight width={24} />
 		</a>
 	</div>
