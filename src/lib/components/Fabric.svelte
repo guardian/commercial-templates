@@ -211,9 +211,11 @@
 
 {#if isValidReplacedVariable(TrackingPixel)}
 	<Pixel src={TrackingPixel} />
-{:else if isValidReplacedVariable(ResearchPixel)}
+{/if}
+{#if isValidReplacedVariable(ResearchPixel)}
 	<Pixel src={ResearchPixel} />
-{:else if isValidReplacedVariable(ViewabilityPixel)}
+{/if}
+{#if isValidReplacedVariable(ViewabilityPixel)}
 	<Pixel src={ViewabilityPixel} />
 {/if}
 
