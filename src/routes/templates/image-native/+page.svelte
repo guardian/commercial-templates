@@ -37,23 +37,29 @@
 		</picture>
 	</a>
 	<!-- svelte-ignore a11y_missing_attribute -->
-	<img
-		src="{TrackingPixel}{CACHE_BUST}"
-		class="creative__pixel creative__pixel--displayNone"
-		aria-hidden="true"
-	/>
+	{#if TrackingPixel}
+		<img
+			src="{TrackingPixel}{CACHE_BUST}"
+			class="creative__pixel creative__pixel--displayNone"
+			aria-hidden="true"
+		/>
+	{/if}
 	<!-- svelte-ignore a11y_missing_attribute -->
-	<img
-		src="{ResearchPixel}{CACHE_BUST}"
-		class="creative__pixel creative__pixel--displayNone"
-		aria-hidden="true"
-	/>
+	{#if ResearchPixel}
+		<img
+			src="{ResearchPixel}{CACHE_BUST}"
+			class="creative__pixel creative__pixel--displayNone"
+			aria-hidden="true"
+		/>
+	{/if}
 	<!-- svelte-ignore a11y_missing_attribute -->
-	<img
-		src={ViewabilityTracker}
-		class="creative__pixel creative__pixel--displayNone"
-		aria-hidden="true"
-	/>
+	{#if ViewabilityTracker}
+		<img
+			src={ViewabilityTracker}
+			class="creative__pixel creative__pixel--displayNone"
+			aria-hidden="true"
+		/>
+	{/if}
 
 	<!-- This will only add the GAM tag when pre-rendering as a raw string, these JS tags have been known to cause issues when injected into svelte's compiled JS by GAM -->
 	{#if building}
@@ -62,6 +68,10 @@
 </div>
 
 <style lang="scss">
+	:global(body) {
+		margin: 0;
+	}
+
 	.creative {
 		&--image {
 			width: var(--width);
