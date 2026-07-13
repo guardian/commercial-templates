@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { building } from '$app/environment';
 	import type { PageData } from './$types';
-	import { CACHE_BUST, isValidReplacedVariable } from '$lib/gam';
+	import { CACHE_BUST } from '$lib/gam';
 
 	interface Props {
 		data: PageData;
@@ -9,7 +9,15 @@
 
 	let { data }: Props = $props();
 
-	let { BackgroundImageX1, BackgroundImageX2, AdWidth, AdHeight } = data;
+	let {
+		BackgroundImageX1,
+		BackgroundImageX2,
+		AdWidth,
+		AdHeight,
+		TrackingPixel,
+		ResearchPixel,
+		ViewabilityTracker,
+	} = data;
 </script>
 
 <div
@@ -28,30 +36,24 @@
 			<img src={BackgroundImageX1} width={AdWidth} height={AdHeight} />
 		</picture>
 	</a>
-	{#if isValidReplacedVariable(data.TrackingPixel)}
-		<!-- svelte-ignore a11y_missing_attribute -->
-		<img
-			src="{data.TrackingPixel}{CACHE_BUST}"
-			class="creative__pixel creative__pixel--displayNone"
-			aria-hidden="true"
-		/>
-	{/if}
-	{#if isValidReplacedVariable(data.ResearchPixel)}
-		<!-- svelte-ignore a11y_missing_attribute -->
-		<img
-			src="{data.ResearchPixel}{CACHE_BUST}"
-			class="creative__pixel creative__pixel--displayNone"
-			aria-hidden="true"
-		/>
-	{/if}
-	{#if isValidReplacedVariable(data.ViewabilityTracker)}
-		<!-- svelte-ignore a11y_missing_attribute -->
-		<img
-			src={data.ViewabilityTracker}
-			class="creative__pixel creative__pixel--displayNone"
-			aria-hidden="true"
-		/>
-	{/if}
+	<!-- svelte-ignore a11y_missing_attribute -->
+	<img
+		src="{TrackingPixel}{CACHE_BUST}"
+		class="creative__pixel creative__pixel--displayNone"
+		aria-hidden="true"
+	/>
+	<!-- svelte-ignore a11y_missing_attribute -->
+	<img
+		src="{ResearchPixel}{CACHE_BUST}"
+		class="creative__pixel creative__pixel--displayNone"
+		aria-hidden="true"
+	/>
+	<!-- svelte-ignore a11y_missing_attribute -->
+	<img
+		src={ViewabilityTracker}
+		class="creative__pixel creative__pixel--displayNone"
+		aria-hidden="true"
+	/>
 
 	<!-- This will only add the GAM tag when pre-rendering as a raw string, these JS tags have been known to cause issues when injected into svelte's compiled JS by GAM -->
 	{#if building}
@@ -60,10 +62,6 @@
 </div>
 
 <style lang="scss">
-	:global(body) {
-		margin: 0;
-	}
-
 	.creative {
 		&--image {
 			width: var(--width);
