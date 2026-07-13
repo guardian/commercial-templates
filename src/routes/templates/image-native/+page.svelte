@@ -28,24 +28,24 @@
 			<img src={BackgroundImageX1} width={AdWidth} height={AdHeight} />
 		</picture>
 	</a>
-	<!-- svelte-ignore a11y_missing_attribute -->
 	{#if isValidReplacedVariable(data.TrackingPixel)}
+		<!-- svelte-ignore a11y_missing_attribute -->
 		<img
 			src="{data.TrackingPixel}{CACHE_BUST}"
 			class="creative__pixel creative__pixel--displayNone"
 			aria-hidden="true"
 		/>
 	{/if}
-	<!-- svelte-ignore a11y_missing_attribute -->
 	{#if isValidReplacedVariable(data.ResearchPixel)}
+		<!-- svelte-ignore a11y_missing_attribute -->
 		<img
 			src="{data.ResearchPixel}{CACHE_BUST}"
 			class="creative__pixel creative__pixel--displayNone"
 			aria-hidden="true"
 		/>
 	{/if}
-	<!-- svelte-ignore a11y_missing_attribute -->
 	{#if isValidReplacedVariable(data.ViewabilityTracker)}
+		<!-- svelte-ignore a11y_missing_attribute -->
 		<img
 			src={data.ViewabilityTracker}
 			class="creative__pixel creative__pixel--displayNone"
