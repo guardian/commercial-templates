@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { building } from '$app/environment';
 	import type { PageData } from './$types';
-	import { CACHE_BUST } from '$lib/gam';
+	import { CACHE_BUST, isValidReplacedVariable } from '$lib/gam';
 
 	interface Props {
 		data: PageData;
@@ -29,7 +29,7 @@
 		</picture>
 	</a>
 	<!-- svelte-ignore a11y_missing_attribute -->
-	{#if data.TrackingPixel}
+	{#if isValidReplacedVariable(data.TrackingPixel)}
 		<img
 			src="{data.TrackingPixel}{CACHE_BUST}"
 			class="creative__pixel creative__pixel--displayNone"
@@ -37,7 +37,7 @@
 		/>
 	{/if}
 	<!-- svelte-ignore a11y_missing_attribute -->
-	{#if data.ResearchPixel}
+	{#if isValidReplacedVariable(data.ResearchPixel)}
 		<img
 			src="{data.ResearchPixel}{CACHE_BUST}"
 			class="creative__pixel creative__pixel--displayNone"
@@ -45,7 +45,7 @@
 		/>
 	{/if}
 	<!-- svelte-ignore a11y_missing_attribute -->
-	{#if data.ViewabilityTracker}
+	{#if isValidReplacedVariable(data.ViewabilityTracker)}
 		<img
 			src={data.ViewabilityTracker}
 			class="creative__pixel creative__pixel--displayNone"
