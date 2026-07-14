@@ -1,109 +1,123 @@
 # Guardian Commercial Templates
 
-This projects creates bespoke ads that fit perfectly on [The Guardian][],
-known as “native” in Google Ad Manager parlance.
+Guardian Commercial Templates is the codebase for the bespoke native ads we build and preview for The Guardian. It contains the template routes, preview app, build tooling, and deployment scripts used to turn commercial concepts into editable Svelte templates and publish them to Google Ad Manager and GitHub Pages.
 
-[the guardian]: https://theguardian.com/
+The current preview site is published at [guardian.github.io/commercial-templates](https://guardian.github.io/commercial-templates/), and the template authoring guide lives in [docs/svelte-template-authoring.md](docs/svelte-template-authoring.md).
 
-Aiming to provide a great developer and reader experience, this project uses
-[Svelte][] to build the template, and [SvelteKit][] to help preview development.
-You can see the current templates on [guardian.github.io/commercial-templates](https://guardian.github.io/commercial-templates/).
+## Contents
 
-[svelte]: https://svelte.dev/
-[sveltekit]: https://kit.svelte.dev/
+- [Guardian Commercial Templates](#guardian-commercial-templates)
+  - [Contents](#contents)
+  - [1. Introduction](#1-introduction)
+  - [2. Getting Started](#2-getting-started)
+  - [3. How It Works](#3-how-it-works)
+  - [4. Useful Links](#4-useful-links)
+  - [5. Terminology](#5-terminology)
 
-- [More information on creating Svelte templates](/docs/svelte-template-authoring.md)
+## 1. Introduction
 
-## Developing Locally
+This project exists to help commercial editors, designers, and engineers produce native advertising that fits The Guardian's tone and layout. Instead of hand-coding one-off ad pages, each creative is implemented as a template route that can be previewed locally, checked visually, and deployed into Google Ad Manager.
 
-Once you've created a project and installed dependencies by running `pnpm i`,
-start a development server:
+The project currently contains 18 templates across several families, including Fabric, CAPI, Manual, Public Good, Image Native, Events, Mobile Revealer, and Interscroller. Those templates share a common preview app and build pipeline, so changes to the shared rendering logic can be checked consistently across every ad format.
+
+The main integrations are Google Ad Manager for native styles and creative previews, the commercial templates preview site on GitHub Pages, and the Guardian content APIs used by some templates to fetch article or series data.
+
+## 2. Getting Started
+
+Prerequisites:
+
+- Node.js and pnpm
+- Access to the repository and the relevant Google Ad Manager environment if you are testing creative previews
+
+Install dependencies:
+
+```bash
+pnpm i
+```
+
+Start the local preview app:
 
 ```bash
 pnpm dev
-
-# or start the server and open the app in a new browser tab
-pnpm dev --open
 ```
 
-When you change templates or shared components, the components will
-reload automatically. [Read more about Svelte templates in `src/templates/`][t]
+Then open [http://localhost:7777](http://localhost:7777) and choose a template from the preview list. The preview page renders each template in several widths so you can check responsive behaviour quickly.
 
-[t]: docs/svelte-template-authoring.md
-
-## Visual Regression Testing
-
-This repository has visual regression testing to help prevent the introduction of visual changes or bugs into the templates. The tests work by checking the templates on a local version of the dev site, which will include any changes on that branch, against the templates as they currently are on the main branch, on the GitHub pages site.
-
-### Running the tests
-
-On each PR, visual regression testing is automatically triggered to check the code changes don't have any inadvertent effects on the design of the templates. You can run these tests locally using one of the following commands. Adding the `--ui` suffix will open a UI that you can use to run the tests, which can be useful when debugging.
+Useful local commands:
 
 ```bash
+pnpm check
+pnpm lint
 pnpm playwright test
-
 pnpm playwright test --ui
 ```
 
-**Note** that you need to have the site running locally (eg. run `pnpm dev`) in order for the tests to work.
+Run Playwright visual regression tests only while the dev server is running. Test output and diffs are written to `test-results/`.
 
-The test results are outputted into the `test-results` folder. If any tests failed, screenshots showing the expected image, actual image, and diff between the two images are stored in there to help you spot what might be causing the failure.
+When you are adding or changing a template, the usual flow is to update the route in `src/routes/templates/<template>/`, adjust any `variables.gam.ts` or `ad.json` values, verify the preview locally, and then add or update the matching Playwright test in `playwright/`.
 
-### Adding a test
+## 3. How It Works
 
-When a template has been migrated to Svelte, it's a good idea to add a visual regression test for it to help safeguard against visual bugs in the future. The visual regression test files can be found in the `playwright` folder.
+The app is built with SvelteKit and Vite. Each template is implemented as a SvelteKit route under `src/routes/templates/`, while the preview experience is handled by the `(preview)` routes. The preview page loads the template route in several iframes, injects GAM variables for display, and uses `postMessage` to keep the iframe height in sync with the rendered ad.
 
-Each test consists of two main steps - taking the reference screenshots, and then taking screenshots on the local branch and comparing them to the references. Most of the test files are pretty similar, but will have small differences to account for the quirks of some templates. For example, we remove the autoplay attribute from the Fabric Video template to try and ensure a repeatable screenshot when testing, by avoiding false diffs caused by the video playing to different points when the screenshot is being taken.
-
-The easiest way to add a visual regression test for a template is to copy an existing test, update the test URLs and names, and make any changes needed for that specific template test to run reliably.
-
-## Deploying to Github Pages
-
-Deploying is done via building the project using the static adapter, and then
-pushing the `build` folder to the `gh-pages` branch.
-
-```bash
-pnpm deploy
+```mermaid
+flowchart LR
+  A[Template route in src/routes/templates/<name>] --> B[Preview route in src/routes/(preview)]
+  B --> C[iframe previews at multiple widths]
+  A --> D[ad.json and variables.gam.ts]
+  D --> E[Google Ad Manager preview and deployment]
+  A --> F[Playwright visual regression tests]
+  A --> G[Vite build plugins and shared components]
 ```
 
-> You can build the app by running `pnpm build` and then preview it with `pnpm preview`,
-> regardless of whether you installed an adapter.
-> This should _not_ be used to serve your app in production.
+The main project pieces are:
 
-## Testing a Creative in GAM
+- `src/routes/templates/` contains the 18 template routes. Most templates have a `+page.svelte`, an optional `+page.server.ts` or `+page.ts`, an optional `variables.gam.ts`, an optional template `README.md`, and an `ad.json` file.
+- `src/routes/(preview)/` provides the preview shell, template listing, and GAM preview links.
+- `src/lib/` contains shared rendering components and helpers used by multiple templates.
+- `src/vite/` contains custom Vite plugins for extracting assets and transforming GAM variables during template builds.
+- `playwright/` contains the visual regression tests that compare the current branch against the published reference images.
+- `scripts/deploy/` contains the Python uploader that pushes generated creative output into GAM.
 
-- Create a Native Format
-  - Open GAM
-  - Click Native in the left hand menu and go to the Native Formats tab
-  - Find the Native Template you are working on, click the checkbox, select "Copy"
-  - Rename the template to "{template name} TEST"
+Two implementation details are easy to miss if you are new to the repo:
 
-- Create a Native Style
-  - Click Native in the left hand menu and go to the Native Formats tab
-  - Click "New Native Style"
-  - Select "HTML & CSS editor"
-  - Enter a name: "{Template Name} Test"
-  - Ad size: Fluid
-  - Ad Targeting:
-    - Inventory: theguardian.com
-  - Native Format: Select the format you created in the previous step
-  - Click Continue
-  - Paste in the HTML and CSS
-  - Click Save and Activate
+- Some templates fetch data from the Guardian CAPI endpoints, so the route may include a `README.md` describing the endpoint or series lookup used by that template.
+- Deployment depends on `ad.json` containing a `nativeStyleId`, and some templates also include test IDs so the preview app can link directly into GAM.
 
-- Create a Line Item
-  - Find an existing Line Item used for testing, from the comm Dev Test Order, such as [this one](https://admanager.google.com/59666047#delivery/line_item/detail/line_item_id=6492048457)
-  - Copy without creatives
-    - Update the Name
-    - Update Expected Creatives to your native format
-    - Set Start Time to "Immediately"
-    - Update the custom targeting. Adding a value for adtest and slot is strongly advised
+## 4. Useful Links
 
-- Create a Creative
-  - Go to Creative tab of your line item
-  - Add new creative
-  - Add a name, any destination and the variables that your template depends on
+- [Svelte template authoring guide](docs/svelte-template-authoring.md) - how to structure a new template route and preview it locally.
+- [Deployment script README](scripts/deploy/README.md) - how generated templates are uploaded into Google Ad Manager.
+- [Google Ad Manager native styles help](https://support.google.com/admanager/answer/13404315) - reference for the ad format used by these templates.
+- [Svelte documentation](https://svelte.dev/docs) - framework reference for template and component code.
+- [SvelteKit documentation](https://kit.svelte.dev/docs/introduction) - routing, data loading, and build behaviour.
+- [Visual regression results](test-results/) - local screenshots and diffs from Playwright runs.
 
-- Go to Line item and click Resume
+## 5. Terminology
 
-- Test the line item on the live site, by going to the page you want to test and appending the adtest parameter.
+Native style
+: The Google Ad Manager object that stores the HTML and CSS for a native ad creative.
+
+GAM
+: Google Ad Manager, the system used to preview, configure, and serve the commercial templates.
+
+Template
+: A single SvelteKit route under `src/routes/templates/` that renders one commercial ad format.
+
+Preview
+: The local or GitHub Pages view that renders a template in multiple widths and exposes links into GAM.
+
+`ad.json`
+: The per-template configuration file that stores GAM identifiers such as `nativeStyleId` and related preview IDs.
+
+CAPI
+: Guardian Content API. Some templates use CAPI responses to populate the ad with article or series data.
+
+Fabric
+: The main family of Guardian commercial templates for rich native formats, including standard, expandable, and video variants.
+
+Manual
+: Templates that are assembled with more explicitly supplied content rather than being driven by CAPI data.
+
+Public Good
+: Templates used for public-good style commercial campaigns and their corresponding preview/test variants.
