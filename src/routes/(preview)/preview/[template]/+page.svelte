@@ -20,12 +20,12 @@
 {#if adJson}
 	<div>
 		<a
-			href={`https://admanager.google.com/59666047#nativeStyles/nativeStyle/detail/${adJson?.nativeStyleId}?tab=preview`}
+			href={`https://admanager.google.com/59666047#creatives/native/native_style/detail/style_id=${adJson?.nativeStyleId}&tab=style_ad`}
 			>Prod Native Style</a
 		>
 		<br />
 		<a
-			href={`https://admanager.google.com/59666047#nativeStyles/nativeStyle/detail/${adJson?.testNativeStyleId}?tab=preview`}
+			href={`https://admanager.google.com/59666047#creatives/native/native_style/detail/style_id=${adJson?.testNativeStyleId}&tab=style_ad`}
 			>Test Native Style</a
 		>
 		<br />
