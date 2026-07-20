@@ -43,6 +43,7 @@
 	},
 	"devDependencies": {
 		"@guardian/eslint-config": "14.0.1",
+		"@guardian/google-admanager-api": "7.0.4",
 		"@guardian/prettier": "10.0.0",
 		"@guardian/source": "12.2.1",
 		"@playwright/test": "1.58.2",
@@ -53,6 +54,7 @@
 		"@types/eslint": "9.6.1",
 		"@types/jsdom": "28.0.1",
 		"@types/node": "25.6.0",
+		"dotenv": "^17.4.2",
 		"eslint": "9.39.4",
 		"eslint-plugin-svelte": "3.17.0",
 		"gh-pages": "6.3.0",
@@ -71,7 +73,7 @@
 		"svelte-preprocess": "6.0.3",
 		"tslib": "2.8.1",
 		"typescript": "5.9.3",
-		"vite": "8.1.2",
+		"vite": "7.3.6",
 		"vitest": "4.1.9"
 	},
 	"type": "module",
