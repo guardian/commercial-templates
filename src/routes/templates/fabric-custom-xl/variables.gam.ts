@@ -4,5 +4,5 @@ export const gamVariables = {
 		'https://tpc.googlesyndication.com/pagead/imgad?id=CICAgKCrtKGjoAEQARgBMgjYagW3ARF6Fw',
 	TrackingPixel: '',
 	ResearchPixel: '',
-	ViewabilityTracker: '<img src="">',
+	ViewabilityTracker: `<img src="">`,
 };
