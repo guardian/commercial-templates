@@ -1,13 +1,14 @@
-import { config as loadEnv } from 'dotenv';
-import { resolve, dirname } from 'node:path';
-import { fileURLToPath } from 'node:url';
 import { existsSync, readdirSync, readFileSync } from 'node:fs';
+import { dirname, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
+import type {
+	NativeStyleService} from '@guardian/google-admanager-api';
 import {
 	AdManagerClient,
 	GoogleSACredential,
-	NativeStyleService,
 	StatementBuilder,
 } from '@guardian/google-admanager-api';
+import { config as loadEnv } from 'dotenv';
 
 loadEnv();
 
@@ -25,9 +26,27 @@ const serviceAccountKeyRaw = process.env.SERVICE_ACCOUNT_KEY_FILE;
 const dateLabel = new Date().toLocaleDateString('en-US');
 const htmlPrefix = `<!-- DO NOT EDIT -- FILE GENERATED AND DEPLOYED AUTOMATICALLY FROM https://github.com/guardian/commercial-templates ON ${dateLabel} -->`;
 const cssPrefix = `/* DO NOT EDIT -- FILE GENERATED AND DEPLOYED AUTOMATICALLY FROM https://github.com/guardian/commercial-templates ON ${dateLabel} */`;
+const dryRun = process.argv.includes('--dry-run');
+
+if (dryRun) {
+	console.log(
+		'[i] Running in dry-run mode: templates and GAM IDs will be validated, but styles will not be updated.',
+	);
+}
 
 type TemplateInfo = {
-	testNativeStyleId?: number;
+	testNativeStyleId?: unknown;
+};
+
+const parsePositiveInteger = (value: unknown): number | null => {
+	if (typeof value === 'number') {
+		if (Number.isInteger(value) && value > 0) {
+			return value;
+		}
+		return null;
+	}
+
+	return null;
 };
 
 const fail = (message: string): never => {
@@ -48,6 +67,7 @@ const uploadTemplate = async (
 	nativeStyleService: NativeStyleService,
 	root: string,
 	dirName: string,
+	dryRunMode: boolean,
 ): Promise<boolean> => {
 	const requiredFiles = ['ad.json', 'index.html', 'style.css'];
 	const missingFiles = requiredFiles.filter(
@@ -90,40 +110,31 @@ const uploadTemplate = async (
 
 	if (templateInfo.testNativeStyleId === undefined) {
 		console.error(
-			`[!] ERROR: Template "${dirName}" ad.json is missing required field "nativeStyleId"`,
+			`[!] ERROR: Template "${dirName}" ad.json is missing required field "testNativeStyleId"`,
 		);
 		return false;
 	}
 
-	if (
-		typeof templateInfo.testNativeStyleId !== 'number' ||
-		!Number.isFinite(templateInfo.testNativeStyleId)
-	) {
+	const parsedNativeStyleId = parsePositiveInteger(templateInfo.testNativeStyleId);
+	if (parsedNativeStyleId === null) {
 		console.error(
-			`[!] ERROR: Template "${dirName}" ad.json has invalid "nativeStyleId" (must be a number)`,
-		);
-		return false;
-	}
-
-	if (templateInfo.testNativeStyleId <= 0) {
-		console.error(
-			`[!] ERROR: Template "${dirName}" ad.json has empty "nativeStyleId"`,
+			`[!] ERROR: Template "${dirName}" ad.json has invalid "testNativeStyleId" (must be a positive integer)`,
 		);
 		return false;
 	}
 
 	const statement = new StatementBuilder()
 		.where('id = :id')
-		.addValue('id', templateInfo.testNativeStyleId)
+		.addValue('id', parsedNativeStyleId)
 		.toStatement();
 
 	try {
 		const response = await nativeStyleService.getNativeStylesByStatement(statement);
-		if (response.results?.length) {
+		if (response.results.length) {
 			const style = response.results[0];
 			if (!style) {
 				console.error(
-					`[!] ERROR: No native style found for template "${dirName}" with nativeStyleId "${templateInfo.testNativeStyleId}". Please check the nativeStyleId in ad.json.`,
+					`[!] ERROR: No native style found for template "${dirName}" with testNativeStyleId "${parsedNativeStyleId}". Please check testNativeStyleId in ad.json.`,
 				);
 				return false;
 			}
@@ -137,14 +148,21 @@ const uploadTemplate = async (
 				cssSnippet: cssPrefix + css,
 			};
 
-			console.log(`[i] Updating native style "${style?.name}".`);
+			if (dryRunMode) {
+				console.log(
+					`[DRY RUN] Would update native style "${style.name}" (ID "${style.id}") for template "${dirName}".`,
+				);
+				return true;
+			}
+
+			console.log(`[i] Updating native style "${style.name}".`);
 			await nativeStyleService.updateNativeStyles([updatedStyle]);
-			console.log(`[OK] Native style "${style?.name}" was updated.`);
+			console.log(`[OK] Native style "${style.name}" was updated.`);
 			return true;
 		}
 
 		console.error(
-			`[!] ERROR: No native styles found to update for "${dirName}" with nativeStyleId "${templateInfo.testNativeStyleId}". Please check the nativeStyleId in ad.json.`,
+			`[!] ERROR: No native styles found to update for "${dirName}" with testNativeStyleId "${parsedNativeStyleId}". Please check testNativeStyleId in ad.json.`,
 		);
 		return false;
 	} catch (error) {
@@ -154,7 +172,11 @@ const uploadTemplate = async (
 	}
 };
 
-const main = async (nativeStyleService: NativeStyleService): Promise<void> => {
+const main = async (
+	nativeStyleService: NativeStyleService,
+	dryRunMode: boolean,
+): Promise<void> => {
+
 	if (!existsSync(templateDir)) {
 		fail(
 			`[!] ERROR: Template directory "${templateDir}" does not exist. Please run the build process first.`,
@@ -179,6 +201,7 @@ const main = async (nativeStyleService: NativeStyleService): Promise<void> => {
 			nativeStyleService,
 			templateDir,
 			dirName.name,
+			dryRunMode,
 		);
 		if (result) {
 			successfulTemplates.push(dirName.name);
@@ -188,8 +211,9 @@ const main = async (nativeStyleService: NativeStyleService): Promise<void> => {
 	}
 
 	if (successfulTemplates.length > 0) {
+		const action = dryRunMode ? 'validated' : 'deployed';
 		console.log(
-			`\n[OK] Successfully deployed ${successfulTemplates.length} template(s):`,
+			`\n[OK] Successfully ${action} ${successfulTemplates.length} template(s):`,
 		);
 		for (const template of successfulTemplates) {
 			console.log(`  - ${template}`);
@@ -203,10 +227,15 @@ const main = async (nativeStyleService: NativeStyleService): Promise<void> => {
 		}
 		console.error('\n[!] DEPLOYMENT FAILED: Common causes:');
 		console.error('[!] - Missing required files (ad.json, index.html, style.css)');
-		console.error('[!] - Invalid ad.json format or missing nativeStyleId');
-		console.error("[!] - Invalid nativeStyleId that doesn't exist in GAM");
+		console.error('[!] - Invalid ad.json format or missing testNativeStyleId');
+		console.error("[!] - Invalid testNativeStyleId that doesn't exist in GAM");
 		console.error('[!] Please fix these issues before merging.');
 		process.exit(1);
+	}
+
+	if (dryRunMode) {
+		console.log('\n[OK] Dry run completed: all templates validated successfully.');
+		return;
 	}
 
 	console.log('\n[OK] All templates deployed successfully!');
@@ -247,4 +276,4 @@ const adManagerClient = new AdManagerClient(
 );
 
 const nativeStyleService = await adManagerClient.getService('NativeStyleService');
-await main(nativeStyleService);
+await main(nativeStyleService, dryRun);
