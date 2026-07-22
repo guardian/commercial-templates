@@ -23,7 +23,6 @@
 		"build:template:manual-single": "BUILD_TEMPLATE=manual-single REPLACE_GAM_VARS=true vite build",
 		"build:template:mobile-revealer": "BUILD_TEMPLATE=mobile-revealer REPLACE_GAM_VARS=true vite build",
 		"build:template:public-good": "BUILD_TEMPLATE=public-good REPLACE_GAM_VARS=true vite build",
-		"build:template:public-good-test": "BUILD_TEMPLATE=public-good-test REPLACE_GAM_VARS=true vite build",
 		"build:template:image-native": "BUILD_TEMPLATE=image-native REPLACE_GAM_VARS=true vite build",
 		"build:templates": "pnpm run /^build:template:.*/",
 		"deploy:gam:test": "node --experimental-strip-types scripts/deploy/deploy.ts",
