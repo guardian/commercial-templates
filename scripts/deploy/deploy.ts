@@ -31,15 +31,29 @@ const htmlPrefix = `<!-- DO NOT EDIT -- FILE GENERATED AND DEPLOYED AUTOMATICALL
 const cssPrefix = `/* DO NOT EDIT -- FILE GENERATED AND DEPLOYED AUTOMATICALLY FROM https://github.com/guardian/commercial-templates ON ${dateLabel} */`;
 const dryRun = process.argv.includes('--dry-run');
 const ciMode = process.argv.includes('--ci');
+const useProductionStyleIds = process.argv.includes('--production');
+const nativeStyleIdField = useProductionStyleIds
+	? 'nativeStyleId'
+	: 'testNativeStyleId';
+const deploymentTargetLabel = useProductionStyleIds
+	? 'production native styles'
+	: 'test native styles';
 
 if (dryRun) {
 	console.log(
-		'[i] Running in dry-run mode: templates and GAM IDs will be validated, but styles will not be updated.',
+		`[i] Running in dry-run mode for ${deploymentTargetLabel}: templates and GAM IDs will be validated, but styles will not be updated.`,
+	);
+}
+
+if (useProductionStyleIds) {
+	console.log(
+		'[i] Production ID mode enabled: using "nativeStyleId" values from ad.json.',
 	);
 }
 
 type TemplateInfo = {
-	testNativeStyleId?: unknown;
+	nativeStyleId?: number;
+	testNativeStyleId?: number;
 };
 
 const parsePositiveInteger = (value: unknown): number | null => {
@@ -90,6 +104,30 @@ const requiredEnv = (name: string): string => {
 	return value;
 };
 
+const getConfiguredNativeStyleId = (
+	templateInfo: TemplateInfo,
+	templateName: string,
+): number | null => {
+	const configuredStyleId = templateInfo[nativeStyleIdField];
+
+	if (configuredStyleId === undefined) {
+		console.error(
+			`[!] ERROR: Template "${templateName}" ad.json is missing required field "${nativeStyleIdField}"`,
+		);
+		return null;
+	}
+
+	const parsedNativeStyleId = parsePositiveInteger(configuredStyleId);
+	if (parsedNativeStyleId === null) {
+		console.error(
+			`[!] ERROR: Template "${templateName}" ad.json has invalid "${nativeStyleIdField}" (must be a positive integer)`,
+		);
+		return null;
+	}
+
+	return parsedNativeStyleId;
+};
+
 const resolveStylePreview = async (
 	nativeStyleService: NativeStyleService,
 	root: string,
@@ -97,11 +135,14 @@ const resolveStylePreview = async (
 ): Promise<{ templateName: string; styleId: number; styleName: string }> => {
 	const infoJson = readFileSync(resolve(root, templateName, 'ad.json'), 'utf8');
 	const templateInfo = JSON.parse(infoJson) as TemplateInfo;
-	const parsedNativeStyleId = parsePositiveInteger(templateInfo.testNativeStyleId);
+	const parsedNativeStyleId = getConfiguredNativeStyleId(
+		templateInfo,
+		templateName,
+	);
 
 	if (parsedNativeStyleId === null) {
 		throw new Error(
-			`Template "${templateName}" has invalid testNativeStyleId; expected a positive integer.`,
+			`Template "${templateName}" has invalid or missing ${nativeStyleIdField}. See error above.`,
 		);
 	}
 
@@ -114,7 +155,7 @@ const resolveStylePreview = async (
 
 	if (!style) {
 		throw new Error(
-			`No native style found for template "${templateName}" with testNativeStyleId "${parsedNativeStyleId}".`,
+			`No native style found for template "${templateName}" with ${nativeStyleIdField} "${parsedNativeStyleId}".`,
 		);
 	}
 
@@ -166,18 +207,8 @@ const uploadTemplate = async (
 		return false;
 	}
 
-	if (templateInfo.testNativeStyleId === undefined) {
-		console.error(
-			`[!] ERROR: Template "${dirName}" ad.json is missing required field "testNativeStyleId"`,
-		);
-		return false;
-	}
-
-	const parsedNativeStyleId = parsePositiveInteger(templateInfo.testNativeStyleId);
+	const parsedNativeStyleId = getConfiguredNativeStyleId(templateInfo, dirName);
 	if (parsedNativeStyleId === null) {
-		console.error(
-			`[!] ERROR: Template "${dirName}" ad.json has invalid "testNativeStyleId" (must be a positive integer)`,
-		);
 		return false;
 	}
 
@@ -192,7 +223,7 @@ const uploadTemplate = async (
 			const style = response.results[0];
 			if (!style) {
 				console.error(
-					`[!] ERROR: No native style found for template "${dirName}" with testNativeStyleId "${parsedNativeStyleId}". Please check testNativeStyleId in ad.json.`,
+					`[!] ERROR: No native style found for template "${dirName}" with ${nativeStyleIdField} "${parsedNativeStyleId}". Please check ${nativeStyleIdField} in ad.json.`,
 				);
 				return false;
 			}
@@ -228,13 +259,13 @@ const uploadTemplate = async (
 		}
 
 		console.error(
-			`[!] ERROR: No native styles found to update for "${dirName}" with testNativeStyleId "${parsedNativeStyleId}". Please check testNativeStyleId in ad.json.`,
+			`[!] ERROR: No native styles found to update for "${dirName}" with ${nativeStyleIdField} "${parsedNativeStyleId}". Please check ${nativeStyleIdField} in ad.json.`,
 		);
 		return false;
 	} catch (error) {
 		const message = formatUnknownError(error);
 		console.error(
-			`[!] ERROR: GAM getNativeStylesByStatement failed for template "${dirName}" with testNativeStyleId "${parsedNativeStyleId}": ${message}`,
+			`[!] ERROR: GAM getNativeStylesByStatement failed for template "${dirName}" with ${nativeStyleIdField} "${parsedNativeStyleId}": ${message}`,
 		);
 		return false;
 	}
@@ -262,7 +293,7 @@ const main = async (
 		.map((entry) => entry.name);
 
 	console.log(
-		`[i] Resolving GAM style names for ${templateNames.length} template(s) before ${dryRunMode ? 'validation' : 'deployment'}...`,
+		`[i] Resolving GAM style names for ${templateNames.length} template(s) before ${dryRunMode ? 'validation' : 'deployment'} to ${deploymentTargetLabel}...`,
 	);
 
 	const previewRows: Array<{ templateName: string; styleId: number; styleName: string }> = [];
@@ -276,7 +307,7 @@ const main = async (
 			previewRows.push(preview);
 		} catch (error) {
 			fail(
-				`[!] ERROR: Failed to resolve GAM style preview for template "${templateName}": ${formatUnknownError(error)}`,
+				`[!] ERROR: Failed to resolve GAM style preview for template "${templateName}" using ${nativeStyleIdField}: ${formatUnknownError(error)}`,
 			);
 		}
 	}
@@ -295,17 +326,33 @@ const main = async (
 		const rl = createInterface({ input: process.stdin, output: process.stdout });
 		const answer = (
 			await rl.question(
-				`\nProceed with ${dryRunMode ? 'this dry run' : 'deployment'}? [y/N]: `,
+				`\nProceed with ${dryRunMode ? 'this dry run' : 'deployment'} to ${deploymentTargetLabel}? [y/N]: `,
 			)
 		)
 			.trim()
 			.toLowerCase();
-		rl.close();
 
 		if (answer !== 'y' && answer !== 'yes') {
+			rl.close();
 			console.log('[i] Aborted by user. No templates were changed.');
 			process.exit(0);
 		}
+
+		if (useProductionStyleIds && !dryRunMode) {
+			const prodConfirm = (
+				await rl.question(
+					'\n⚠️  You are about to deploy to PRODUCTION. Type "production" to confirm: ',
+				)
+			).trim();
+
+			if (prodConfirm !== 'production') {
+				rl.close();
+				console.log('[i] Aborted by user. Production confirmation failed.');
+				process.exit(0);
+			}
+		}
+
+		rl.close();
 	}
 
 	const failedTemplates: string[] = [];
@@ -328,7 +375,7 @@ const main = async (
 	if (successfulTemplates.length > 0) {
 		const action = dryRunMode ? 'validated' : 'deployed';
 		console.log(
-			`\n[OK] Successfully ${action} ${successfulTemplates.length} template(s):`,
+			`\n[OK] Successfully ${action} ${successfulTemplates.length} template(s) to ${deploymentTargetLabel}:`,
 		);
 		for (const template of successfulTemplates) {
 			console.log(`  - ${template}`);
@@ -342,18 +389,26 @@ const main = async (
 		}
 		console.error('\n[!] DEPLOYMENT FAILED: Common causes:');
 		console.error('[!] - Missing required files (ad.json, index.html, style.css)');
-		console.error('[!] - Invalid ad.json format or missing testNativeStyleId');
-		console.error("[!] - Invalid testNativeStyleId that doesn't exist in GAM");
+		console.error(
+			`[!] - Invalid ad.json format or missing ${nativeStyleIdField}`,
+		);
+		console.error(
+			`[!] - Invalid ${nativeStyleIdField} that doesn't exist in GAM`,
+		);
 		console.error('[!] Please fix these issues before merging.');
 		process.exit(1);
 	}
 
 	if (dryRunMode) {
-		console.log('\n[OK] Dry run completed: all templates validated successfully.');
+		console.log(
+			`\n[OK] Dry run completed: all templates validated successfully against ${deploymentTargetLabel}.`,
+		);
 		return;
 	}
 
-	console.log('\n[OK] All templates deployed successfully!');
+	console.log(
+		`\n[OK] All templates deployed successfully to ${deploymentTargetLabel}!`,
+	);
 };
 
 const validatedServiceAccountKeyRaw =
