@@ -70,6 +70,30 @@ pnpm deploy
 > regardless of whether you installed an adapter.
 > This should _not_ be used to serve your app in production.
 
+## Deploying to GAM
+
+Templates are deployed to Google Ad Manager (GAM) using the TypeScript deploy script. On merge to `main`, the CI workflow automatically builds and deploys all templates to production.
+
+You can also deploy manually:
+
+```bash
+# Deploy to test native styles
+pnpm deploy:gam:test
+
+# Dry-run (validate without updating)
+pnpm deploy:gam:test:dry-run
+
+# Deploy to production native styles
+pnpm deploy:gam:prod
+
+# Dry-run production
+pnpm deploy:gam:prod:dry-run
+```
+
+To test your changes to the styles you can deploy to the test native styles, and then preview them in GAM.
+
+See [`scripts/deploy/README.md`](scripts/deploy/README.md) for credentials setup and more details.
+
 ## Testing a Creative in GAM
 
 - Create a Native Format
