@@ -151,7 +151,7 @@ const resolveStylePreview = async (
 		.addValue('id', parsedNativeStyleId)
 		.toStatement();
 	const response = await nativeStyleService.getNativeStylesByStatement(statement);
-	const style = (response.results ?? [])[0];
+	const style = response.results[0];
 
 	if (!style) {
 		throw new Error(
