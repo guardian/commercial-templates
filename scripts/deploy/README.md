@@ -19,7 +19,8 @@ cd <repo-root>/scripts/deploy
 cp .env.example .env # fill this in
 cd ../..
 pnpm install
-pnpm deploy:gam
+pnpm build:templates
+pnpm deploy:gam:test
 ```
 
 ## Modes
