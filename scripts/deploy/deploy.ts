@@ -98,7 +98,7 @@ const formatUnknownError = (error: unknown): string => {
 const requiredEnv = (name: string): string => {
 	const value = process.env[name];
 	if (!value) {
-		fail(`[!] ${name} is not set in .env`);
+		fail(`[!] ${name} is not set (expected as an environment variable or in scripts/deploy/.env)`);
 		throw new Error('unreachable');
 	}
 	return value;
