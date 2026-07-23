@@ -219,9 +219,8 @@ const uploadTemplate = async (
 
 	try {
 		const response = await nativeStyleService.getNativeStylesByStatement(statement);
-		const results = response.results ?? [];
-		if (results.length) {
-			const style = results[0];
+		if (response.results.length) {
+			const style = response.results[0];
 			if (!style) {
 				console.error(
 					`[!] ERROR: No native style found for template "${dirName}" with ${nativeStyleIdField} "${parsedNativeStyleId}". Please check ${nativeStyleIdField} in ad.json.`,
