@@ -4,6 +4,7 @@ node_modules
 /.svelte-kit
 /package
 /build-static
+/storybook-static
 /test-results
 /playwright/reference-images
 
