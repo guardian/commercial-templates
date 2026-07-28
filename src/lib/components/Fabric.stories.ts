@@ -1,3 +1,4 @@
+import { breakpoints } from '@guardian/source/foundations';
 import type { Meta, StoryObj } from '@storybook/sveltekit';
 import { gamVariables } from '../../routes/templates/fabric/variables.gam';
 import Fabric from './Fabric.svelte';
@@ -7,7 +8,13 @@ const meta = {
 	component: Fabric,
 	parameters: {
 		chromatic: {
-			viewports: [360, 740, 980, 1300, 1600],
+			viewports: [
+				360,
+				breakpoints.tablet,
+				breakpoints.desktop,
+				breakpoints.wide,
+				1600,
+			],
 		},
 	},
 	args: {
