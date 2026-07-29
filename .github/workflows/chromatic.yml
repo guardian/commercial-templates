@@ -56,7 +56,7 @@ jobs:
 
       - name: Publish to Chromatic
         if: ${{ steps.chromatic-token.outputs.configured == 'true' }}
-        uses: chromaui/action@4a45535b6910c0b99226ebcb7648faf88fb1ee2e # v18.0.1
+        uses: chromaui/action@94713c544284a14195de3b50ef24301579f1877e # v18.0.1
         with:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
           token: ${{ secrets.GITHUB_TOKEN }}
