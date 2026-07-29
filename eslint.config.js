@@ -12,6 +12,7 @@ export default [
 			'**/*.config.{js,ts}',
 			'**/build',
 			'**/.svelte-kit',
+			'**/storybook-static',
 			'**/playwright',
 		],
 	},
