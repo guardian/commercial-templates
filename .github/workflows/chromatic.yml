@@ -1,0 +1,71 @@
+name: Chromatic
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches-ignore:
+      - 'gh-pages'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  chromatic:
+    name: Chromatic
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout pull request head
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        if: ${{ github.event_name == 'pull_request' }}
+        with:
+          fetch-depth: 0
+          ref: ${{ github.event.pull_request.head.sha }}
+
+      - name: Checkout branch
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        if: ${{ github.event_name != 'pull_request' }}
+        with:
+          fetch-depth: 0
+
+      - run: corepack enable
+        shell: bash
+
+      - name: Setup Node
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+        shell: bash
+
+      - name: Check Chromatic project token
+        id: chromatic-token
+        env:
+          CHROMATIC_PROJECT_TOKEN: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+        run: |
+          if [[ -n "$CHROMATIC_PROJECT_TOKEN" ]]; then
+            echo 'configured=true' >> "$GITHUB_OUTPUT"
+          else
+            echo 'configured=false' >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Publish to Chromatic
+        if: ${{ steps.chromatic-token.outputs.configured == 'true' }}
+        uses: chromaui/action@4a45535b6910c0b99226ebcb7648faf88fb1ee2e # v18.0.1
+        with:
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          autoAcceptChanges: main
+          onlyChanged: true
+          exitOnceUploaded: true
+          exitZeroOnChanges: true
+          buildScriptName: storybook:build
+
+      - name: Chromatic project token not configured
+        if: ${{ steps.chromatic-token.outputs.configured != 'true' }}
+        run: echo 'Skipping Chromatic until the CHROMATIC_PROJECT_TOKEN secret is added.'
