@@ -14,7 +14,9 @@ import { config as loadEnv } from 'dotenv';
 
 /**
  * A large portion of this code was generated using claude opus 4.6.
- * It is quite verbose but also has a few features that probably wouldn't have been added had this been written by hand.
+ * It is quite verbose but also has a few features that are useful for
+ * deployment and testing, such as dry-run mode, CI mode, and production/test
+ * style ID selection.
  */
 
 const GAM_API_VERSION = 'v202602';
