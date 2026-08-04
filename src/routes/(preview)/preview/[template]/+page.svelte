@@ -34,6 +34,10 @@
 			href={`https://admanager.google.com/59666047#creatives/creative/detail/line_item_id=7228230439&creative_id=${adJson?.testCreativeId}&tab=preview`}
 			>Preview in GAM</a
 		>
+		<br />
+		<a href={`https://www.theguardian.com/uk?adtest=commdev-${template}-test`}
+			>View test native style on site</a
+		>
 	</div>
 {/if}
 

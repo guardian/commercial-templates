@@ -68,14 +68,6 @@ jobs:
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
-      - name: Setup Python
-        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
-        with:
-          python-version: '3.11'
-
-      - name: Install pipenv
-        run: pip install pipenv
-
       - run: corepack enable
         shell: bash
 
@@ -92,13 +84,8 @@ jobs:
       - name: Build
         run: pnpm build:templates
 
-      - name: Install Dependencies
-        run: pipenv install
-        working-directory: ./scripts/deploy
-
       - name: Deploy Templates to GAM
-        run: pipenv run python deploy.py
-        working-directory: ./scripts/deploy
+        run: pnpm deploy:gam:prod --ci
         env:
           GAM_APPLICATION_NAME: ${{ secrets.GAM_APPLICATION_NAME }}
           GAM_NETWORK_CODE: ${{ secrets.GAM_NETWORK_CODE }}
