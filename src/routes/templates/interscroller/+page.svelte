@@ -16,6 +16,7 @@
 		TrackingPixel,
 		ResearchPixel,
 		ViewabilityTracker,
+		hasAudio,
 	} = data;
 
 	onMount(() => {
@@ -35,6 +36,7 @@
 				backgroundSize: 'cover',
 				ctaUrl: `%%CLICK_URL_UNESC%%%%DEST_URL%%`,
 				videoSource: VideoSource,
+				hasAudio: hasAudio,
 			},
 		});
 
