@@ -12,6 +12,11 @@ import {
 } from '@guardian/google-admanager-api';
 import { config as loadEnv } from 'dotenv';
 
+/**
+ * A large portion of this code was generated using claude opus 4.6.
+ * It is quite verbose but also has a few features that probably wouldn't have been added had this been written by hand.
+ */
+
 const GAM_API_VERSION = 'v202602';
 
 const __filename = fileURLToPath(import.meta.url);
