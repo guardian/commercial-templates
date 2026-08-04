@@ -15,7 +15,10 @@ const renderMessengerMessage = (message: Message): void => {
 		return;
 	}
 
-	if (message.type !== 'background') {
+	if (
+		message.type !== 'background' ||
+		message.value.scrollType !== 'interscroller'
+	) {
 		return;
 	}
 
@@ -25,8 +28,6 @@ const renderMessengerMessage = (message: Message): void => {
 	document.body.style.backgroundPosition = value.backgroundPosition;
 	document.body.style.backgroundSize =
 		'backgroundSize' in value ? value.backgroundSize : '';
-	document.body.style.backgroundAttachment =
-		value.scrollType === 'fixed' ? 'fixed' : '';
 };
 
 export { renderMessengerMessage, resetMessengerStyles };
