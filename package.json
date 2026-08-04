@@ -8,7 +8,7 @@
 		"dev": "vite dev --port 7777",
 		"storybook": "storybook dev -p 6006",
 		"storybook:build": "storybook build",
-		"chromatic": "chromatic",
+		"chromatic": "chromatic --build-script-name=storybook:build --exit-zero-on-changes",
 		"build:preview": "vite build && touch build/.nojekyll",
 		"build:template:capi-multiple-hosted": "BUILD_TEMPLATE=capi-multiple-hosted REPLACE_GAM_VARS=true vite build",
 		"build:template:capi-multiple-paidfor": "BUILD_TEMPLATE=capi-multiple-paidfor REPLACE_GAM_VARS=true vite build",

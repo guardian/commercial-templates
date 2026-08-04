@@ -35,6 +35,26 @@ reload automatically. [Read more about Svelte templates in `src/templates/`][t]
 
 This repository has visual regression testing to help prevent the introduction of visual changes or bugs into the templates. The tests work by checking the templates on a local version of the dev site, which will include any changes on that branch, against the templates as they currently are on the main branch, on the GitHub pages site.
 
+### Storybook and Chromatic trial
+
+Chromatic runs alongside the existing Playwright tests during the trial. It
+publishes Storybook on pull requests and pushes to `main`, using TurboSnap to test
+only stories affected by a change. Visual changes do not fail the workflow during
+the trial and can be reviewed in the Chromatic UI.
+
+Run Storybook locally with:
+
+```bash
+pnpm storybook
+```
+
+Publishing locally requires the project token to be available as the
+`CHROMATIC_PROJECT_TOKEN` environment variable:
+
+```bash
+pnpm chromatic
+```
+
 ### Running the tests
 
 On each PR, visual regression testing is automatically triggered to check the code changes don't have any inadvertent effects on the design of the templates. You can run these tests locally using one of the following commands. Adding the `--ui` suffix will open a UI that you can use to run the tests, which can be useful when debugging.
