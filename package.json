@@ -56,7 +56,7 @@
 		"@storybook/sveltekit": "10.5.4",
 		"@sveltejs/adapter-auto": "7.0.1",
 		"@sveltejs/adapter-static": "3.0.10",
-		"@sveltejs/kit": "2.57.1",
+		"@sveltejs/kit": "2.69.1",
 		"@sveltejs/vite-plugin-svelte": "4.0.4",
 		"@types/eslint": "9.6.1",
 		"@types/jsdom": "28.0.1",
