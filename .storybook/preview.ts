@@ -5,6 +5,7 @@ import '../src/styles/global.scss';
 
 sb.mock(import('../src/lib/capi.ts'), { spy: true });
 sb.mock(import('../src/lib/capiMultiple.ts'), { spy: true });
+sb.mock(import('../src/lib/messenger.ts'), { spy: true });
 
 const preview: Preview = {
 	parameters: {

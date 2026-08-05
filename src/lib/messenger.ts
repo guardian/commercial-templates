@@ -60,7 +60,7 @@ type VideoProgressMessage = StandardMessage<
 	{ progress: number }
 >;
 
-type Message =
+export type Message =
 	| ResizeMessage
 	| StringMessage
 	| BackgroundMessage
@@ -136,4 +136,3 @@ const postAndListen = (arg: Message): Promise<unknown> =>
 	);
 
 export { post, timeout, postAndListen, generateId };
-export type { Message };
