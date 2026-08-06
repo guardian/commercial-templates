@@ -30,6 +30,7 @@ type BackgroundMessage = StandardMessage<
 		ctaUrl?: string;
 		videoSource?: string;
 		transform?: string;
+		hasAudio?: string;
 	}
 >;
 

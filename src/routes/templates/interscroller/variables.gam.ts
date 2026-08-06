@@ -7,4 +7,5 @@ export const gamVariables = {
 	TrackingPixel: '/',
 	ResearchPixel: '/',
 	ViewabilityTracker: '/',
+	hasAudio: 'true',
 };
