@@ -64,9 +64,3 @@ updates:
       actionsMajor:
         update-types:
           - major
-  - package-ecosystem: 'pip'
-    directory: '/scripts/deploy'
-    schedule:
-      interval: 'monthly'
-    cooldown:
-      default-days: 7
