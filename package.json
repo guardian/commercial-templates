@@ -48,10 +48,10 @@
 		"lint-staged": "lint-staged"
 	},
 	"devDependencies": {
-		"@guardian/eslint-config": "14.0.1",
-		"@guardian/google-admanager-api": "7.0.4",
-		"@guardian/prettier": "10.0.0",
-		"@guardian/source": "12.2.1",
+		"@guardian/eslint-config": "16.0.0",
+		"@guardian/google-admanager-api": "7.0.5",
+		"@guardian/prettier": "11.0.0",
+		"@guardian/source": "13.0.0",
 		"@playwright/test": "1.58.2",
 		"@storybook/sveltekit": "10.5.4",
 		"@sveltejs/adapter-auto": "7.0.1",
