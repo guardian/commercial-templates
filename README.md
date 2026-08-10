@@ -14,6 +14,25 @@ You can see the current templates on [guardian.github.io/commercial-templates](h
 
 - [More information on creating Svelte templates](/docs/svelte-template-authoring.md)
 
+## Template Ownership
+
+Templates in this repo are owned or co-owned by Comm Dev and/or DAP. Each
+template has a `README.md` in its `src/routes/templates/<name>` directory
+(shown on its [preview page](https://guardian.github.io/commercial-templates/))
+describing what it is and who owns it. [`.github/CODEOWNERS`](/.github/CODEOWNERS)
+uses the same ownership to automatically request review from the right team(s)
+on a PR, with Comm Dev reviewing every PR by default.
+
+| Template family                                                          | Primary owner | Shared with                        | What they own                  |
+| ------------------------------------------------------------------------ | ------------- | ---------------------------------- | ------------------------------ |
+| Labs HostedBy (`capi-multiple-hosted`)                                   | Comm Dev      | DAP                                | Template, styling, behaviour   |
+| PaidFor (`capi-multiple-paidfor`, `capi-single-paidfor`)                 | Comm Dev      | DAP                                | Template, styling, behaviour   |
+| Fabrics (`fabric`, `fabric-custom`, `fabric-expandable`, `fabric-video`) | DAP           | Comm Dev                           | Native template                |
+| XL (`fabric-xl`, `fabric-custom-xl`, `fabric-video-xl`)                  | DAP           | Comm Dev                           | Native template                |
+| Interscroller (`interscroller`)                                          | Shared        | WebX  | Rendering spans multiple teams |
+
+Templates not listed above default to Comm Dev ownership.
+
 ## Developing Locally
 
 Once you've created a project and installed dependencies by running `pnpm i`,
