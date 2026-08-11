@@ -23,13 +23,13 @@ describing what it is and who owns it. [`.github/CODEOWNERS`](/.github/CODEOWNER
 uses the same ownership to automatically request review from the right team(s)
 on a PR, with Comm Dev reviewing every PR by default.
 
-| Template family                                                          | Primary owner | Shared with                        | What they own                  |
-| ------------------------------------------------------------------------ | ------------- | ---------------------------------- | ------------------------------ |
-| Labs HostedBy (`capi-multiple-hosted`)                                   | Comm Dev      | DAP                                | Template, styling, behaviour   |
-| PaidFor (`capi-multiple-paidfor`, `capi-single-paidfor`)                 | Comm Dev      | DAP                                | Template, styling, behaviour   |
-| Fabrics (`fabric`, `fabric-custom`, `fabric-expandable`, `fabric-video`) | DAP           | Comm Dev                           | Native template                |
-| XL (`fabric-xl`, `fabric-custom-xl`, `fabric-video-xl`)                  | DAP           | Comm Dev                           | Native template                |
-| Interscroller (`interscroller`)                                          | Shared        | WebX  | Rendering spans multiple teams |
+| Template family                                                          | Primary owner | Shared with | What they own                  |
+| ------------------------------------------------------------------------ | ------------- | ----------- | ------------------------------ |
+| Labs HostedBy (`capi-multiple-hosted`)                                   | Comm Dev      | DAP         | Template, styling, behaviour   |
+| PaidFor (`capi-multiple-paidfor`, `capi-single-paidfor`)                 | Comm Dev      | DAP         | Template, styling, behaviour   |
+| Fabrics (`fabric`, `fabric-custom`, `fabric-expandable`, `fabric-video`) | DAP           | Comm Dev    | Native template                |
+| XL (`fabric-xl`, `fabric-custom-xl`, `fabric-video-xl`)                  | DAP           | Comm Dev    | Native template                |
+| Interscroller (`interscroller`)                                          | Shared        | WebX        | Rendering spans multiple teams |
 
 Templates not listed above default to Comm Dev ownership.
 
