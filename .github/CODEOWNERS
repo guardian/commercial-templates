@@ -1,4 +1,36 @@
 # See https://help.github.com/articles/about-codeowners/
+#
+# Comm Dev (@guardian/commercial-dev) are reviewers on every PR by default via
+# the global rule below. Templates primarily or jointly owned by DAP
+# (@guardian/dap) also list that team below, so more specific rules keep both
+# teams as reviewers rather than overriding the global one.
 
 # Global code owners
 * @guardian/commercial-dev
+
+# --- Fabrics / XL native templates: primary owner DAP, shared with Comm Dev ---
+/src/routes/templates/fabric/            @guardian/dap @guardian/commercial-dev
+/src/routes/templates/fabric-custom/     @guardian/dap @guardian/commercial-dev
+/src/routes/templates/fabric-custom-xl/  @guardian/dap @guardian/commercial-dev
+/src/routes/templates/fabric-expandable/ @guardian/dap @guardian/commercial-dev
+/src/routes/templates/fabric-video/      @guardian/dap @guardian/commercial-dev
+/src/routes/templates/fabric-video-xl/   @guardian/dap @guardian/commercial-dev
+/src/routes/templates/fabric-xl/         @guardian/dap @guardian/commercial-dev
+
+/playwright/fabric.test.ts               @guardian/dap @guardian/commercial-dev
+/playwright/fabric-custom.test.ts        @guardian/dap @guardian/commercial-dev
+/playwright/fabric-expandable.test.ts    @guardian/dap @guardian/commercial-dev
+/playwright/fabric-video.test.ts         @guardian/dap @guardian/commercial-dev
+/playwright/fabric-xl.test.ts            @guardian/dap @guardian/commercial-dev
+
+# --- Labs HostedBy / PaidFor: primary owner Comm Dev, shared with DAP ---
+/src/routes/templates/capi-multiple-hosted/  @guardian/commercial-dev @guardian/dap
+/src/routes/templates/capi-multiple-paidfor/ @guardian/commercial-dev @guardian/dap
+/src/routes/templates/capi-single-paidfor/   @guardian/commercial-dev @guardian/dap
+
+/playwright/capi-multiple-hosted.test.ts  @guardian/commercial-dev @guardian/dap
+/playwright/capi-multiple-paidfor.test.ts @guardian/commercial-dev @guardian/dap
+/playwright/capi-single-paidfor.test.ts   @guardian/commercial-dev @guardian/dap
+
+# --- Interscroller: rendering spans Comm Dev, DAP and WebX ---
+/src/routes/templates/interscroller/ @guardian/commercial-dev @guardian/dap @guardian/dotcom-platform
