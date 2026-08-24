@@ -59,6 +59,7 @@
 		"@sveltejs/kit": "2.57.1",
 		"@sveltejs/vite-plugin-svelte": "4.0.4",
 		"@types/eslint": "9.6.1",
+		"@types/google-publisher-tag": "1.20260810.0",
 		"@types/jsdom": "28.0.1",
 		"@types/node": "25.6.0",
 		"chromatic": "18.0.1",
