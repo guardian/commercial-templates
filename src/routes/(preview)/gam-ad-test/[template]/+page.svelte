@@ -60,7 +60,6 @@
 
 			slot.addService(api.pubads());
 			slot.setTargeting('slot', 'top-above-nav');
-			slot.setTargeting('slot-fabric', 'fabric1');
 
 			api.pubads().setTargeting('at', `commdev-${template}-test`);
 			api.enableServices();
