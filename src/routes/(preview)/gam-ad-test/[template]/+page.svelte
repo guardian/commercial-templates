@@ -1,0 +1,126 @@
+<script lang="ts">
+	import { onDestroy, onMount } from 'svelte';
+	import { browser } from '$app/environment';
+	import type { PageData } from './$types';
+
+	interface Props {
+		data: PageData;
+	}
+
+	let { data }: Props = $props();
+	const template = $derived(data.template);
+
+	const adSlotId = 'dfp-ad--top-above-nav';
+	const adUnitPath = '/59666047/theguardian.com/sport/article/ng';
+	const slotSizes: Array<[number, number] | 'fluid'> = ['fluid'];
+
+	function loadGptScript(): Promise<void> {
+		if (!browser) return Promise.resolve();
+
+		window.googletag =
+			window.googletag || ({ cmd: [] } as unknown as typeof googletag);
+
+		if (document.querySelector('script[data-gpt="true"]')) {
+			// already loading/loaded — resolve via the queue, don't inject again
+			return new Promise((res) => window.googletag!.cmd.push(() => res()));
+		}
+
+		return new Promise((resolve, reject) => {
+			const s = document.createElement('script');
+			s.async = true;
+			s.src = 'https://securepubads.g.doubleclick.net/tag/js/gpt.js';
+			s.dataset.gpt = 'true';
+			s.onload = () => resolve();
+			s.onerror = () => reject(new Error('Failed to load GPT script'));
+			document.head.appendChild(s);
+		});
+	}
+
+	let slot: googletag.Slot | null = null;
+
+	onMount(async () => {
+		await loadGptScript();
+
+		window.googletag.cmd.push(() => {
+			const api = window.googletag;
+			if (!api) return;
+
+			// Guard: if this div is already bound, reuse/skip instead of redefining
+			const existing = api
+				.pubads()
+				.getSlots()
+				.find((s) => s.getSlotElementId() === adSlotId);
+			if (existing) {
+				api.display(adSlotId);
+				return;
+			}
+
+			slot = api.defineSlot(adUnitPath, slotSizes, adSlotId);
+			if (!slot) return;
+
+			slot.addService(api.pubads());
+			slot.setTargeting('slot', 'top-above-nav');
+			slot.setTargeting('slot-fabric', 'fabric1');
+
+			api.pubads().setTargeting('at', `commdev-${template}-test`);
+			api.enableServices();
+			api.display(adSlotId);
+
+			const el = document.getElementById(adSlotId);
+			if (el) el.dataset.gptLoaded = 'true';
+		});
+	});
+
+	onDestroy(() => {
+		if (!browser) return;
+		window.googletag?.cmd.push(() => {
+			if (slot) {
+				window.googletag!.destroySlots([slot]);
+				slot = null;
+			}
+		});
+	});
+</script>
+
+<h1>Guardian Ad</h1>
+<h2>loaded from GAM</h2>
+
+<div class="ad-wrapper">
+	<div id={adSlotId} class="ad"></div>
+</div>
+
+<style lang="scss">
+	h1 {
+		font-size: 16px;
+		color: #052962;
+		margin-bottom: 4px;
+	}
+
+	h2 {
+		font-size: 12px;
+		font-weight: 400;
+		color: #767676;
+		margin: 0 0 20px;
+	}
+
+	.ad-wrapper {
+		display: flex;
+		justify-content: center;
+		width: 100%;
+	}
+
+	.ad {
+		background: #fff;
+		border: 1px dashed #ccc;
+		width: 100%;
+		max-width: 1200px;
+		min-height: 250px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.ad :global(iframe) {
+		max-width: 100%;
+	}
+</style>

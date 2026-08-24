@@ -39,9 +39,18 @@
 			}
 
 			if (!source) return;
-			if (!('frameElement' in source)) return;
 
-			const iframe = source.frameElement as HTMLIFrameElement;
+			let iframe: HTMLIFrameElement;
+			try {
+				if (!('frameElement' in source)) return;
+				iframe = source.frameElement as HTMLIFrameElement;
+			} catch (e) {
+				if (e instanceof DOMException && e.name === 'SecurityError') {
+					// Cross-origin frame – ignore
+					return;
+				}
+				throw e;
+			}
 
 			switch (data.type) {
 				case 'set-ad-height':

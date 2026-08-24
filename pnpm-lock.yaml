@@ -45,6 +45,9 @@ importers:
       '@types/eslint':
         specifier: 9.6.1
         version: 9.6.1
+      '@types/google-publisher-tag':
+        specifier: 1.20260810.0
+        version: 1.20260810.0
       '@types/jsdom':
         specifier: 28.0.1
         version: 28.0.1
@@ -1197,6 +1200,9 @@ packages:
 
   '@types/estree@1.0.9':
     resolution: {integrity: sha512-GhdPgy1el4/ImP05X05Uw4cw2/M93BCUmnEvWZNStlCzEKME4Fkk+YpoA5OiHNQmoS7Cafb8Xa3Pya8m1Qrzeg==}
+
+  '@types/google-publisher-tag@1.20260810.0':
+    resolution: {integrity: sha512-/cBH1JSIvttAqMicE14gtHmfyLgUIPg/4zzh9VWe41IvahP6Z93fHUUnih1nKc7ax86vTZsr2RkG9l+FLR7kjg==}
 
   '@types/jsdom@28.0.1':
     resolution: {integrity: sha512-GJq2QE4TAZ5ajSoCasn5DOFm8u1mI3tIFvM5tIq3W5U/RTB6gsHwc6Yhpl91X9VSDOUVblgXmG+2+sSvFQrdlw==}
@@ -4616,6 +4622,8 @@ snapshots:
   '@types/estree@1.0.8': {}
 
   '@types/estree@1.0.9': {}
+
+  '@types/google-publisher-tag@1.20260810.0': {}
 
   '@types/jsdom@28.0.1':
     dependencies:
