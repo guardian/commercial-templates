@@ -22,6 +22,13 @@ const templates = [
 	'public-good',
 ];
 
+const templatesWithVideos = [
+	'fabric-video',
+	'fabric-video-xl',
+	'fabric-custom',
+	'fabric-custom-xl',
+];
+
 test.describe('GAM Ad Test - Visual Regression', () => {
 	templates.forEach((template) => {
 		test(`${template} - Ad loads with test parameter`, async ({ page }) => {
@@ -37,10 +44,20 @@ test.describe('GAM Ad Test - Visual Regression', () => {
 
 			// Wait for the ad container to be visible and videos to load
 			await expect(adContainer).toBeVisible({ timeout: 20000 });
+
+			// Wait for ad content to fully render and stabilise
+			await page.waitForLoadState('networkidle');
+			await page.waitForTimeout(1000);
+			if (templatesWithVideos.includes(template)) {
+				// Wait for video to load and play
+				await page.waitForTimeout(20000);
+			}
+
 			// Take screenshot for visual regression
-			await expect(adContainer).toHaveScreenshot(`GAM-${template}.png`, {
+			await expect(page).toHaveScreenshot(`GAM-${template}.png`, {
 				maxDiffPixelRatio: 0.01,
 				timeout: 20000,
+				fullPage: true,
 			});
 		});
 	});
