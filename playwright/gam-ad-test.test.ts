@@ -2,7 +2,6 @@ import { expect, test } from '@playwright/test';
 
 const viewport = { width: 1600, height: 1000 };
 
-// Templates to test with GAM
 const templates = [
 	'events-multiple',
 	'fabric',
@@ -39,21 +38,15 @@ test.describe('GAM Ad Test - Visual Regression', () => {
 				{ waitUntil: 'networkidle' }
 			);
 
-			// Wait for the ad container to be visible
 			const adContainer = page.locator('#dfp-ad--top-above-nav');
 
-			// Wait for the ad container to be visible and videos to load
 			await expect(adContainer).toBeVisible({ timeout: 20000 });
 
-			// Wait for ad content to fully render and stabilise
-			await page.waitForLoadState('networkidle');
-			await page.waitForTimeout(1000);
 			if (templatesWithVideos.includes(template)) {
-				// Wait for video to load and play
+				// Wait for video to play
 				await page.waitForTimeout(20000);
 			}
 
-			// Take screenshot for visual regression
 			await expect(page).toHaveScreenshot(`GAM-${template}.png`, {
 				maxDiffPixelRatio: 0.01,
 				timeout: 20000,
