@@ -18,7 +18,7 @@ const templates = [
 	'capi-single-paidfor',
 	'capi-multiple-paidfor',
 	'capi-multiple-hosted',
-	'mobile-revealer'
+	'mobile-revealer',
 ];
 
 const templatesWithVideos = [
