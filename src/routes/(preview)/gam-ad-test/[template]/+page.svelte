@@ -14,29 +14,25 @@
 	const adUnitPath = '/59666047/theguardian.com/sport/article/ng';
 	const slotSizes: Array<[number, number] | 'fluid'> = ['fluid'];
 
-	function loadGptScript(): Promise<void> {
-		if (!browser) return Promise.resolve();
+	function ensureGptScript(): void {
+		if (!browser) return;
 
-		if (document.querySelector('script[data-gpt="true"]')) {
-			// already loading/loaded — resolve via the queue, don't inject again
-			return new Promise((res) => window.googletag.cmd.push(() => res()));
-		}
+		// cmd.push still adds to the queue before gpt.js loads
+		window.googletag = window.googletag || { cmd: [] };
 
-		return new Promise((resolve, reject) => {
-			const s = document.createElement('script');
-			s.async = true;
-			s.src = 'https://securepubads.g.doubleclick.net/tag/js/gpt.js';
-			s.dataset.gpt = 'true';
-			s.onload = () => resolve();
-			s.onerror = () => reject(new Error('Failed to load GPT script'));
-			document.head.appendChild(s);
-		});
+		if (document.querySelector('script[data-gpt="true"]')) return;
+
+		const s = document.createElement('script');
+		s.async = true;
+		s.src = 'https://securepubads.g.doubleclick.net/tag/js/gpt.js';
+		s.dataset.gpt = 'true';
+		document.head.appendChild(s);
 	}
 
 	let slot: googletag.Slot | null = null;
 
-	onMount(async () => {
-		await loadGptScript();
+	onMount(() => {
+		ensureGptScript();
 
 		window.googletag.cmd.push(() => {
 			const api = window.googletag;
