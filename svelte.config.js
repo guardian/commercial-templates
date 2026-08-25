@@ -44,7 +44,7 @@ const config = {
 				: [
 						'*',
 						...templateNames.map((name) => `/preview/${name}/`),
-						...templateNames.map((name) => `/gam-ad-test/${name}`),
+						...templateNames.map((name) => `/gam-ad-test/${name}/`),
 					],
 		},
 	},
