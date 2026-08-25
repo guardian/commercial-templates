@@ -22,7 +22,7 @@
 
 		if (document.querySelector('script[data-gpt="true"]')) {
 			// already loading/loaded — resolve via the queue, don't inject again
-			return new Promise((res) => window.googletag!.cmd.push(() => res()));
+			return new Promise((res) => window.googletag.cmd.push(() => res()));
 		}
 
 		return new Promise((resolve, reject) => {
@@ -59,9 +59,8 @@
 			if (!slot) return;
 
 			slot.addService(api.pubads());
-			slot.setTargeting('slot', 'top-above-nav');
-
-			api.pubads().setTargeting('at', `commdev-${template}-test`);
+			slot.setConfig({ targeting: { slot: 'top-above-nav' } });
+			api.setConfig({ targeting: { at: `commdev-${template}-test` } });
 			api.enableServices();
 			api.display(adSlotId);
 
@@ -72,9 +71,9 @@
 
 	onDestroy(() => {
 		if (!browser) return;
-		window.googletag?.cmd.push(() => {
+		window.googletag.cmd.push(() => {
 			if (slot) {
-				window.googletag!.destroySlots([slot]);
+				window.googletag.destroySlots([slot]);
 				slot = null;
 			}
 		});
