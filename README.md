@@ -96,6 +96,23 @@ Each test consists of two main steps - taking the reference screenshots, and the
 
 The easiest way to add a visual regression test for a template is to copy an existing test, update the test URLs and names, and make any changes needed for that specific template test to run reliably.
 
+### End to End Visual Regression Testing
+
+There are also a suite of end to end visual regression tests that you can run on the test templates in GAM.
+These tests are run with the other visual regression tests, there are reference screenshots stored in the `playwright` folder
+
+The tests line items are created in GAM on this order [Comm Dev Test Order](https://admanager.google.com/59666047#delivery/order/order_overview/order_id=3988242945)
+They all target an adtest `adtest=commdev-{template}-test` this is how we render them on localhost
+
+When upgrading dependencies (especially Vite and Svelte), it is a good idea to run these tests on your branch to ensure that the templates are still rendering correctly through GAM.
+
+1. Create you PR and add the `deploy-test` label to the PR, this will trigger the workflow to deploy the templates to GAM test native styles.
+2. Once the workflow has completed, you can run `pnpm dev` and check the new version test templates are rendering on localhost:7777
+(they have a cache in GAM so need to wait 20ish minutes before you will see the templates from your branch)
+Look for the comment in the DOM
+```<!-- DO NOT EDIT -- FILE GENERATED AND DEPLOYED AUTOMATICALLY FROM https://github.com/guardian/commercial-templates ON ${dateLabel} -->```
+3. Run the visual regression tests with `pnpm test:e2e`
+
 ## Deploying to Github Pages
 
 Deploying is done via building the project using the static adapter, and then
