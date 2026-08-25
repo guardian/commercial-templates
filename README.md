@@ -106,7 +106,7 @@ They all target an adtest `adtest=commdev-{template}-test` this is how we render
 
 When upgrading dependencies (especially Vite and Svelte), it is a good idea to run these tests on your branch to ensure that the templates are still rendering correctly through GAM.
 
-1. Create you PR and add the `deploy-test` label to the PR, this will trigger the workflow to deploy the templates to GAM test native styles.
+1. Create your PR and add the `deploy-test` label to the PR, this will trigger the workflow to deploy the templates to GAM test native styles.
 2. Once the workflow has completed, you can run `pnpm dev` and check the new version test templates are rendering on localhost:7777
    (they have a cache in GAM so need to wait 20ish minutes before you will see the templates from your branch)
    Look for the comment in the DOM
