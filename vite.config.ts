@@ -3,7 +3,6 @@ import { sveltekit } from '@sveltejs/kit/vite';
 import { extractTemplateAssets } from './src/vite/vite-plugin-extract-assets';
 import { transformGAMVariables } from './src/vite/vite-plugin-transform-gam-variables';
 
-// default to true, but can be disabled by setting HMR_OVERLAY=false in .env
 const hmrOverlay = process.env.HMR_OVERLAY !== 'false';
 
 /** @type {import('vite').UserConfig} */
