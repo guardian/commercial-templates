@@ -13,8 +13,9 @@
 	const adSlotId = 'dfp-ad--top-above-nav';
 	const adUnitPath = '/59666047/theguardian.com/sport/article/ng';
 	const slotSizes: Array<[number, number] | 'fluid'> = ['fluid'];
+	let slot: googletag.Slot | null = null;
 
-	function ensureGptScript(): void {
+	const ensureGptScript = () => {
 		if (!browser) return;
 
 		// cmd.push still adds to the queue before gpt.js loads
@@ -27,9 +28,7 @@
 		s.src = 'https://securepubads.g.doubleclick.net/tag/js/gpt.js';
 		s.dataset.gpt = 'true';
 		document.head.appendChild(s);
-	}
-
-	let slot: googletag.Slot | null = null;
+	};
 
 	onMount(() => {
 		ensureGptScript();
