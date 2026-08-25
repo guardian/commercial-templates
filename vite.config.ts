@@ -16,8 +16,8 @@ const config = {
 	server: {
 		hmr: {
 			overlay: false,
-		}
-	}
+		},
+	},
 };
 
 export default config;

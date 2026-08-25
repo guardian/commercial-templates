@@ -35,7 +35,7 @@ test.describe('GAM Ad Test - Visual Regression', () => {
 
 			await page.goto(
 				`http://localhost:7777/commercial-templates/gam-ad-test/${template}/`,
-				{ waitUntil: 'networkidle' }
+				{ waitUntil: 'networkidle' },
 			);
 
 			const adContainer = page.locator('#dfp-ad--top-above-nav');
