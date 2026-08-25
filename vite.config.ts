@@ -3,6 +3,8 @@ import { sveltekit } from '@sveltejs/kit/vite';
 import { extractTemplateAssets } from './src/vite/vite-plugin-extract-assets';
 import { transformGAMVariables } from './src/vite/vite-plugin-transform-gam-variables';
 
+const hmrOverlay = process.env.HMR_OVERLAY !== 'false';
+
 /** @type {import('vite').UserConfig} */
 const config = {
 	plugins: [transformGAMVariables(), sveltekit(), extractTemplateAssets()],
@@ -15,7 +17,7 @@ const config = {
 	},
 	server: {
 		hmr: {
-			overlay: false,
+			overlay: hmrOverlay,
 		},
 	},
 };

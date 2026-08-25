@@ -34,7 +34,7 @@ jobs:
         run: pnpm playwright install --with-deps chromium
 
       - name: Start Commercial Templates
-        run: pnpm dev & npx wait-on -v -i 1000 http://localhost:7777
+        run: pnpm dev:ci & npx wait-on -v -i 1000 http://localhost:7777
 
       - name: Run Playwright
         continue-on-error: true

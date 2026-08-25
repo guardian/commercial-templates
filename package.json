@@ -6,6 +6,7 @@
 		"preinstall": "npx only-allow pnpm",
 		"prepare": "husky && svelte-kit sync",
 		"dev": "vite dev --port 7777",
+		"dev:ci": "HMR_OVERLAY=false vite dev --port 7777",
 		"storybook": "storybook dev -p 6006",
 		"storybook:build": "storybook build",
 		"chromatic": "chromatic --build-script-name=storybook:build --exit-zero-on-changes",
