@@ -98,6 +98,9 @@ The easiest way to add a visual regression test for a template is to copy an exi
 
 ### End to End Visual Regression Testing
 
+> [!NOTE]
+> The public-good and interscroller templates are not currently tested in this way.
+
 There are also a suite of end to end visual regression tests that you can run on the test templates in GAM.
 These tests are run with the other visual regression tests, there are reference screenshots stored in the `playwright` folder
 

@@ -2,6 +2,7 @@ import { expect, test } from '@playwright/test';
 
 const viewport = { width: 1600, height: 1000 };
 
+// e2e test the test templates that will render without the commercial js needed.
 const templates = [
 	'events-multiple',
 	'fabric',
@@ -17,8 +18,7 @@ const templates = [
 	'capi-single-paidfor',
 	'capi-multiple-paidfor',
 	'capi-multiple-hosted',
-	'mobile-revealer',
-	'public-good',
+	'mobile-revealer'
 ];
 
 const templatesWithVideos = [
