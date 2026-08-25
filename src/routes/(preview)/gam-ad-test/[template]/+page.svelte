@@ -17,9 +17,6 @@
 	function loadGptScript(): Promise<void> {
 		if (!browser) return Promise.resolve();
 
-		window.googletag =
-			window.googletag || ({ cmd: [] } as unknown as typeof googletag);
-
 		if (document.querySelector('script[data-gpt="true"]')) {
 			// already loading/loaded — resolve via the queue, don't inject again
 			return new Promise((res) => window.googletag.cmd.push(() => res()));
@@ -45,7 +42,6 @@
 			const api = window.googletag;
 			if (!api) return;
 
-			// Guard: if this div is already bound, reuse/skip instead of redefining
 			const existing = api
 				.pubads()
 				.getSlots()
