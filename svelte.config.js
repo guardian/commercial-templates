@@ -41,7 +41,11 @@ const config = {
 			crawl: false,
 			entries: buildRoute
 				? undefined
-				: ['*', ...templateNames.map((name) => `/preview/${name}/`)],
+				: [
+						'*',
+						...templateNames.map((name) => `/preview/${name}/`),
+						...templateNames.map((name) => `/gam-ad-test/${name}/`),
+					],
 		},
 	},
 };

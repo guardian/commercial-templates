@@ -2,6 +2,7 @@
 	import Previews from '$lib/Previews.svelte';
 	import Warning from '$lib/Warning.svelte';
 	import type { PageData } from './$types';
+	import { resolve } from '$app/paths';
 
 	interface Props {
 		data: PageData;
@@ -35,8 +36,12 @@
 			>Preview in GAM</a
 		>
 		<br />
+		<a href={resolve(`/gam-ad-test/${template}/`)}>
+			View test native style loaded from gam
+		</a>
+		<br />
 		<a href={`https://www.theguardian.com/uk?adtest=commdev-${template}-test`}
-			>View test native style on site</a
+			>View test native style on theguardian.com/uk</a
 		>
 	</div>
 {/if}

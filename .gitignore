@@ -6,7 +6,8 @@ node_modules
 /build-static
 /storybook-static
 /test-results
-/playwright/reference-images
+/playwright/reference-images/*
+!/playwright/reference-images/GAM-*
 
 .env
 .env.*

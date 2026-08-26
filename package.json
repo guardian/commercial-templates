@@ -6,6 +6,7 @@
 		"preinstall": "npx only-allow pnpm",
 		"prepare": "husky && svelte-kit sync",
 		"dev": "vite dev --port 7777",
+		"dev:ci": "HMR_OVERLAY=false vite dev --port 7777",
 		"storybook": "storybook dev -p 6006",
 		"storybook:build": "storybook build",
 		"chromatic": "chromatic --build-script-name=storybook:build --exit-zero-on-changes",
@@ -45,6 +46,8 @@
 		"eslint:fix": "eslint . --fix",
 		"prettier:check": "prettier --check .",
 		"prettier:fix": "prettier --write .",
+		"test:update-gam-snapshots": "playwright test gam-ad-test --update-snapshots",
+		"test:e2e": "playwright test playwright/gam-ad-test.test.ts",
 		"lint-staged": "lint-staged"
 	},
 	"devDependencies": {
@@ -59,6 +62,7 @@
 		"@sveltejs/kit": "2.57.1",
 		"@sveltejs/vite-plugin-svelte": "4.0.4",
 		"@types/eslint": "9.6.1",
+		"@types/google-publisher-tag": "1.20260810.0",
 		"@types/jsdom": "28.0.1",
 		"@types/node": "25.6.0",
 		"chromatic": "18.0.1",
