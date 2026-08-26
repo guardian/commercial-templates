@@ -64,7 +64,7 @@
 		"@types/eslint": "9.6.1",
 		"@types/google-publisher-tag": "1.20260810.0",
 		"@types/jsdom": "28.0.1",
-		"@types/node": "25.6.0",
+		"@types/node": "26.1.1",
 		"chromatic": "18.0.1",
 		"dotenv": "^17.4.2",
 		"eslint": "9.39.4",
