@@ -21,7 +21,7 @@ describe('escapeScriptMarkup', () => {
 		);
 	});
 
-	it('separates tag-like operators without changing their semantics', () => {
+	it('spaces tag-like "<" operators without changing their semantics', () => {
 		const code = `for(let i=0;i<n;i++){mask=1<<i}`;
 		expect(escapeScriptMarkup(code)).toBe(`for(let i=0;i< n;i++){mask=1<< i}`);
 	});
@@ -48,6 +48,11 @@ describe('escapeScriptMarkup', () => {
 		expect(escaped).toBe(
 			`for(let index=0;index< items.length;index++){render("\\x3cdiv>\\x3c/div>")}`,
 		);
+	});
+
+	it('removes the server-rendered tracking macro from executable code', () => {
+		const code = `const tracking = \`[%thirdPartyJSTracking%]\`;`;
+		expect(escapeScriptMarkup(code)).toBe(`const tracking = \`\`;`);
 	});
 
 	it('preserves the runtime value: un-escaping "\\x3c" returns the original source', () => {

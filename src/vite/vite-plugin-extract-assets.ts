@@ -4,6 +4,7 @@ import { JSDOM } from 'jsdom';
 import { parseAst, type Plugin } from 'vite';
 
 const buildTemplate = process.env.BUILD_TEMPLATE;
+const thirdPartyTrackingMacro = '[%thirdPartyJSTracking%]';
 
 /**
  * Extract CSS styles from the DOM
@@ -68,8 +69,12 @@ type TextRange = { start: number; end: number };
  * so we never change the wrong one.
  */
 export const escapeScriptMarkup = (code: string): string => {
-	if (!code.includes('<')) {
-		return code;
+	// This macro is rendered into the body by SSR. If it remains in Svelte's
+	// hydration bundle, GAM replaces it with a <script> inside this script.
+	const scriptCode = code.replaceAll(thirdPartyTrackingMacro, '');
+
+	if (!scriptCode.includes('<')) {
+		return scriptCode;
 	}
 
 	// Find where every literal lives in the script. This includes strings,
@@ -90,7 +95,7 @@ export const escapeScriptMarkup = (code: string): string => {
 		return Object.values(node).flat().filter(isAstNode).flatMap(findTextRanges);
 	};
 
-	const textRanges = findTextRanges(parseAst(code)).sort(
+	const textRanges = findTextRanges(parseAst(scriptCode)).sort(
 		(a, b) => a.start - b.start,
 	);
 
@@ -98,11 +103,11 @@ export const escapeScriptMarkup = (code: string): string => {
 	let result = '';
 	let position = 0;
 	for (const { start, end } of textRanges) {
-		result += code.slice(position, start);
-		result += code.slice(start, end).replaceAll('<', '\\x3c');
+		result += scriptCode.slice(position, start);
+		result += scriptCode.slice(start, end).replaceAll('<', '\\x3c');
 		position = end;
 	}
-	result += code.slice(position);
+	result += scriptCode.slice(position);
 
 	// Vite 8's Rolldown minifier emits comparisons like `index<items.length`,
 	// which GAM can mistake for an opening tag.
