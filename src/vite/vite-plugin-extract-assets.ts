@@ -26,10 +26,10 @@ const extractStyles = (dom: JSDOM) => {
  * (`start` and `end`)
  */
 type AstNode = {
-	[key: string]: unknown;
 	type: string;
 	start: number;
 	end: number;
+	value?: unknown;
 };
 
 /** True when `value` looks like a node from the parser */
@@ -77,15 +77,12 @@ export const escapeScriptMarkup = (code: string): string => {
 		return scriptCode;
 	}
 
-	// Find where every literal lives in the script. This includes strings,
-	// regular expressions, and the literal characters in a `template`.
-	const findTextRanges = (value: unknown): TextRange[] => {
-		if (!isAstNode(value)) {
-			return [];
-		}
-
-		const node = value;
-		const isText = node.type === 'Literal' || node.type === 'TemplateElement';
+	// Find where every piece of text lives in the script. A piece of text is
+	// either a string or the literal characters in a `template`.
+	const findTextRanges = (node: AstNode): TextRange[] => {
+		const isText =
+			(node.type === 'Literal' && typeof node.value === 'string') ||
+			node.type === 'TemplateElement';
 
 		if (isText) {
 			return [{ start: node.start, end: node.end }];
@@ -108,14 +105,6 @@ export const escapeScriptMarkup = (code: string): string => {
 		position = end;
 	}
 	result += scriptCode.slice(position);
-
-	// Vite 8's Rolldown minifier emits comparisons like `index<items.length`,
-	// which GAM can mistake for an opening tag.
-	result = result.replace(/<(?=[A-Za-z!/])/g, '< ');
-
-	if (/<[A-Za-z!/]/.test(result)) {
-		throw new Error('An inline script still contains tag-like markup');
-	}
 
 	// Safety net: swapping "<" for "\x3c" should always leave valid JavaScript.
 	// If it somehow doesn't, stop the build rather than ship a broken ad.

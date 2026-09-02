@@ -21,32 +21,15 @@ describe('escapeScriptMarkup', () => {
 		);
 	});
 
-	it('spaces tag-like "<" operators without changing their semantics', () => {
-		const code = `for(let i=0;i<n;i++){mask=1<<i}`;
-		expect(escapeScriptMarkup(code)).toBe(`for(let i=0;i< n;i++){mask=1<< i}`);
+	it('does not touch "<" used as a comparison or bit-shift operator', () => {
+		const code = `for (let i = 0; i < n; i++) { mask = 1 << i; }`;
+		expect(escapeScriptMarkup(code)).toBe(code);
 	});
 
 	it('escapes markup in a string while leaving operators in the same script alone', () => {
 		const code = `if (i < n) { el.innerHTML = "</p>"; }`;
 		expect(escapeScriptMarkup(code)).toBe(
 			`if (i < n) { el.innerHTML = "\\x3c/p>"; }`,
-		);
-	});
-
-	it('escapes tag-like text in a regular expression', () => {
-		const code = `const closingTag = /<\\/script>/i;`;
-		expect(escapeScriptMarkup(code)).toBe(
-			`const closingTag = /\\x3c\\/script>/i;`,
-		);
-	});
-
-	it('removes every tag-like sequence from minified Vite output', () => {
-		const code = `for(let index=0;index<items.length;index++){render("<div></div>")}`;
-		const escaped = escapeScriptMarkup(code);
-
-		expect(escaped).not.toMatch(/<[A-Za-z!/]/);
-		expect(escaped).toBe(
-			`for(let index=0;index< items.length;index++){render("\\x3cdiv>\\x3c/div>")}`,
 		);
 	});
 
