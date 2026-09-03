@@ -2,6 +2,6 @@ export const gamVariables = {
 	DapAssetsFolder: 'GooglePixel2',
 	TrackingPixel: '',
 	ResearchPixel: '',
-	ViewabilityTracker: '<img src="">',
+	ViewabilityTracker: `<img src="">`,
 	ShowLabel: 'yes',
 };
