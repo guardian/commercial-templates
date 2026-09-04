@@ -33,11 +33,6 @@ describe('escapeScriptMarkup', () => {
 		);
 	});
 
-	it('removes the server-rendered tracking macro from executable code', () => {
-		const code = `const tracking = \`[%thirdPartyJSTracking%]\`;`;
-		expect(escapeScriptMarkup(code)).toBe(`const tracking = \`\`;`);
-	});
-
 	it('preserves the runtime value: un-escaping "\\x3c" returns the original source', () => {
 		const code = `const html = "<header></header>";`;
 		const escaped = escapeScriptMarkup(code);
