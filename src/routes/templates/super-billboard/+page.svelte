@@ -32,16 +32,10 @@
 	let isExpanded = $state(true);
 
 	onMount(async () => {
-		//need to look at messenger and value
-		post({ type: 'reset-height', value: { height: true } });
-		browser &&
-			post({
-				type: 'resize',
-				value: {
-					height: isExpanded ? expandImageEl?.height : collapsedImageEl?.height,
-				},
-			});
-
+		// this will tell frontend to reset the min height on a fluid ad slot
+		// to 'auto' instead of 250px
+		//@ts-ignore
+		post({ type: 'reset-height', value: true });
 		UI?.classList.add('show');
 
 		if (TrackingPixel) {
@@ -55,17 +49,10 @@
 
 	const toggleExpand = () => {
 		isExpanded = !isExpanded;
-		browser &&
-			post({
-				type: 'resize',
-				value: {
-					height: isExpanded ? expandImageEl?.height : collapsedImageEl?.height,
-				},
-			});
+		resizeFrameHeight();
 	};
 
 	const resizeFrameHeight = () => {
-		console.log('resizeFrameHeight');
 		browser &&
 			post({
 				type: 'resize',
@@ -89,7 +76,12 @@
 		<div class={[isExpanded ? 'expanded' : '', 'panels']}>
 			<picture>
 				<source media="(max-width: 740px )" srcset={ExpandedMobile} />
-				<img bind:this={expandImageEl} src={ExpandedDesktop} alt="" />
+				<img
+					onload={() => resizeFrameHeight()}
+					bind:this={expandImageEl}
+					src={ExpandedDesktop}
+					alt=""
+				/>
 			</picture>
 		</div>
 	</a>
