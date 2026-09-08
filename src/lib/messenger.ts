@@ -14,8 +14,6 @@ type StandardMessage<Type = string, Data = unknown> = {
 	value: Data;
 };
 
-type ResetHeight = StandardMessage<'reset-height', { height?: boolean }>;
-
 type ResizeMessage = StandardMessage<
 	'set-ad-height' | 'resize',
 	{ width?: number | string; height?: number | string }
@@ -68,8 +66,7 @@ export type Message =
 	| StringMessage
 	| BackgroundMessage
 	| FabricBackgroundMessage
-	| VideoProgressMessage
-	| ResetHeight;
+	| VideoProgressMessage;
 
 type MessengerResponse = {
 	id: string;
