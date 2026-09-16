@@ -4,7 +4,7 @@
 	import type { PageData } from './$types';
 	import { building } from '$app/environment';
 	import { post } from '$lib/messenger';
-	import { browser } from '$app/environment';
+	import Resizer from '$lib/components/Resizer.svelte';
 
 	import ExpandedIcon from '$lib/components/icons/ExpandedIcon.svelte';
 	import CollapsedIcon from '$lib/components/icons/CollapsedIcon.svelte';
@@ -24,18 +24,14 @@
 		CollapsedMobile,
 	} = data;
 
-	let UI: HTMLElement | undefined = $state();
-
 	let expandImageEl: HTMLImageElement | null = null;
 	let collapsedImageEl: HTMLImageElement | null = null;
 
+	let UI: HTMLElement | undefined = $state();
 	let isExpanded = $state(true);
+	let height: number = $state(0);
 
 	onMount(async () => {
-		// this will tell frontend to reset the min height on a fluid ad slot
-		// to 'auto' instead of 250px
-		//@ts-ignore
-		post({ type: 'reset-height', value: true });
 		UI?.classList.add('show');
 
 		if (TrackingPixel) {
@@ -47,19 +43,28 @@
 		}
 	});
 
-	const toggleExpand = () => {
-		isExpanded = !isExpanded;
-		resizeFrameHeight();
+	const resetAdslot = () => {
+		//after expanded image has loaded set the
+		//initial height of the ad slot
+		resizeFrameHeight().then(() => {
+			// this will tell frontend to reset the min height on a fluid ad slot
+			// to 'auto' instead of 250px
+			//@ts-ignore
+			post({ type: 'reset-height', value: true });
+		});
 	};
 
-	const resizeFrameHeight = () => {
-		browser &&
-			post({
-				type: 'resize',
-				value: {
-					height: isExpanded ? expandImageEl?.height : collapsedImageEl?.height,
-				},
-			});
+	const toggleExpand = () => {
+		isExpanded = !isExpanded;
+		if (expandImageEl != null && collapsedImageEl != null) {
+			height = isExpanded ? expandImageEl.height : collapsedImageEl.height;
+		}
+	};
+
+	const resizeFrameHeight = async () => {
+		if (expandImageEl != null && collapsedImageEl != null) {
+			height = isExpanded ? expandImageEl?.height : collapsedImageEl?.height;
+		}
 	};
 </script>
 
@@ -70,17 +75,20 @@
 		<div class={[!isExpanded ? 'expanded' : '', 'panels']}>
 			<picture>
 				<source media="(max-width: 740px )" srcset={CollapsedMobile} />
-				<img bind:this={collapsedImageEl} src={CollapsedDesktop} alt="" />
+
+				<!-- svelte-ignore a11y_missing_attribute -->
+				<img bind:this={collapsedImageEl} src={CollapsedDesktop} />
 			</picture>
 		</div>
 		<div class={[isExpanded ? 'expanded' : '', 'panels']}>
 			<picture>
 				<source media="(max-width: 740px )" srcset={ExpandedMobile} />
+
+				<!-- svelte-ignore a11y_missing_attribute -->
 				<img
-					onload={() => resizeFrameHeight()}
+					onload={() => resetAdslot()}
 					bind:this={expandImageEl}
 					src={ExpandedDesktop}
-					alt=""
 				/>
 			</picture>
 		</div>
@@ -96,6 +104,7 @@
 		</button>
 	</div>
 </div>
+<Resizer {height} />
 
 {@html ViewabilityTracker}
 
@@ -116,6 +125,7 @@
 		outline: none;
 		border: none;
 		background-color: transparent;
+		cursor: pointer;
 	}
 
 	.panels {
