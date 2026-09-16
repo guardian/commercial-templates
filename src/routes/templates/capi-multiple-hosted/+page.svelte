@@ -174,7 +174,7 @@
 		aside {
 			grid-template-columns: 140px 1fr;
 			gap: 21px;
-			padding-right: 10px;
+			padding-right: 30px;
 		}
 	}
 
@@ -185,7 +185,7 @@
 			 * Equivalent of 60px grid column + 20px gap
 			 * @todo - replace this with the Guardian grid
 			 */
-			padding-right: 80px;
+			padding-right: 100px;
 		}
 		.cards-container {
 			max-width: 960px;
