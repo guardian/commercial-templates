@@ -106,7 +106,7 @@
 			{#each cards as card}
 				<CapiHostedCard {card} {singleCard} />
 			{/each}
-			{#if cards.length < 4}
+			{#if !singleCard && cards.length < 4}
 				{#each Array(4 - cards.length) as _}
 					<div class="card-filler"></div>
 				{/each}
