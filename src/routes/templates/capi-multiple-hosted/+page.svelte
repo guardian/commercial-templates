@@ -106,6 +106,11 @@
 			{#each cards as card}
 				<CapiHostedCard {card} {singleCard} />
 			{/each}
+			{#if cards.length < 4}
+				{#each Array(4 - cards.length) as _}
+					<div class="card-filler"></div>
+				{/each}
+			{/if}
 		</div>
 	{/if}
 </aside>
@@ -120,7 +125,6 @@
 	}
 
 	aside {
-		max-width: 1300px;
 		position: relative;
 		display: grid;
 		gap: 1em;
@@ -139,11 +143,10 @@
 		display: grid;
 		grid-template-columns: 1fr;
 		row-gap: 0.5em;
-		background: var(--neutral-97);
+		background: var(--neutral-93);
 		position: relative;
 		margin-top: 6px;
 	}
-
 	@media (min-width: 425px) {
 		aside {
 			padding: 0 20px 20px;
@@ -171,7 +174,7 @@
 		aside {
 			grid-template-columns: 140px 1fr;
 			gap: 21px;
-			margin-right: 10px;
+			padding-right: 10px;
 		}
 	}
 
@@ -182,7 +185,10 @@
 			 * Equivalent of 60px grid column + 20px gap
 			 * @todo - replace this with the Guardian grid
 			 */
-			margin-right: 80px;
+			padding-right: 80px;
+		}
+		.cards-container {
+			max-width: 960px;
 		}
 	}
 </style>
