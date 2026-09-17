@@ -49,7 +49,6 @@
 		resizeFrameHeight().then(() => {
 			// this will tell frontend to reset the min height on a fluid ad slot
 			// to 'auto' instead of 250px
-			//@ts-ignore
 			post({ type: 'reset-height', value: true });
 		});
 	};
