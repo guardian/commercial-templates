@@ -19,6 +19,8 @@ type ResizeMessage = StandardMessage<
 	{ width?: number | string; height?: number | string }
 >;
 
+type ResetHeight = StandardMessage<'reset-height', boolean>;
+
 type BackgroundMessage = StandardMessage<
 	'background',
 	{
@@ -52,7 +54,8 @@ type StringMessage = StandardMessage<
 	| 'passback-refresh'
 	| 'viewport'
 	| 'scroll'
-	| 'init-video',
+	| 'init-video'
+	| 'reset-height',
 	string
 >;
 
@@ -66,7 +69,8 @@ export type Message =
 	| StringMessage
 	| BackgroundMessage
 	| FabricBackgroundMessage
-	| VideoProgressMessage;
+	| VideoProgressMessage
+	| ResetHeight;
 
 type MessengerResponse = {
 	id: string;
