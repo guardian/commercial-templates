@@ -19,7 +19,7 @@ type ResizeMessage = StandardMessage<
 	{ width?: number | string; height?: number | string }
 >;
 
-type ResetHeight = StandardMessage<'reset-height', true>;
+type ResetHeight = StandardMessage<'reset-height', boolean>;
 
 type BackgroundMessage = StandardMessage<
 	'background',
