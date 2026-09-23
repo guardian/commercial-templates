@@ -137,7 +137,7 @@
 
 	.ui {
 		opacity: 0;
-		z-index: 5;
+		z-index: 1;
 		position: absolute;
 		top: 20px;
 		left: calc(100% - (46px * 1.5));
