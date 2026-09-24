@@ -38,6 +38,10 @@ updates:
           - '*eslint*'
           - '*prettier*'
           - 'typescript'
+          - 'vite'
+          - 'vitest'
+          - 'svelte*'
+          - '@sveltejs/*'
       devDependenciesMinor:
         dependency-type: 'development'
         update-types:
@@ -50,6 +54,18 @@ updates:
           - '*eslint*'
           - '*prettier*'
           - 'typescript'
+          - 'vite'
+          - 'vitest'
+          - 'svelte*'
+          - '@sveltejs/*'
+      vite:
+        patterns:
+          - 'vite'
+          - 'vitest'
+      svelte:
+        patterns:
+          - 'svelte*'
+          - '@sveltejs/*'
   - package-ecosystem: 'github-actions'
     directory: '/'
     schedule:
