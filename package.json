@@ -87,8 +87,8 @@
 		"svelte-preprocess": "6.0.3",
 		"tslib": "2.8.1",
 		"typescript": "6.0.3",
-		"vite": "5.4.21",
-		"vitest": "3.2.6"
+		"vite": "8.2.2",
+		"vitest": "4.1.11"
 	},
 	"type": "module",
 	"packageManager": "pnpm@10.30.3",
