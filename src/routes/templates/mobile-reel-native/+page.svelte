@@ -3,7 +3,7 @@
 	import { post } from '$lib/messenger';
 	import { building } from '$app/environment';
 	import type { PageData } from './$types';
-	import { CACHE_BUST } from '$lib/gam';
+	import { clickMacro, DEST_URL } from '$lib/gam';
 
 	import MobileReelItem from '$lib/components/MobileReelItem.svelte';
 
@@ -31,6 +31,11 @@
 		SlideFive,
 		SlideFiveVideo,
 		SlideFiveMediaType,
+		PosterImageOne,
+		PosterImageTwo,
+		PosterImageThree,
+		PosterImageFour,
+		PosterImageFive,
 		TrackingPixel,
 		ResearchPixel,
 		ViewabilityTracker,
@@ -49,9 +54,11 @@
 </script>
 
 <div class="ad-container" style:--backgroundColor={BackgroundColor}>
-	<div class="header">
-		<img src={Header} alt="" />
-	</div>
+	<a class="mobile-container" href={clickMacro(DEST_URL)} target="_blank">
+		<div class="header">
+			<img src={Header} alt="" />
+		</div>
+	</a>
 	<div
 		role="region"
 		aria-label="Image carousel"
@@ -62,19 +69,19 @@
 			<MobileReelItem
 				image={SlideOne}
 				videoSource={SlideOneVideo}
-				posterImage={''}
+				posterImage={PosterImageOne}
 				mediaType={SlideOneMediaType}
 			/>
 			<MobileReelItem
 				image={SlideTwo}
 				videoSource={SlideTwoVideo}
-				posterImage={''}
+				posterImage={PosterImageTwo}
 				mediaType={SlideTwoMediaType}
 			/>
 			<MobileReelItem
 				image={SlideThree}
 				videoSource={SlideThreeVideo}
-				posterImage={''}
+				posterImage={PosterImageThree}
 				mediaType={SlideThreeMediaType}
 			/>
 
@@ -82,7 +89,7 @@
 				<MobileReelItem
 					image={SlideFour}
 					videoSource={SlideFourVideo}
-					posterImage={''}
+					posterImage={PosterImageFour}
 					mediaType={SlideFourMediaType}
 				/>
 			{/if}
@@ -91,11 +98,10 @@
 				<MobileReelItem
 					image={SlideFive}
 					videoSource={SlideFiveVideo}
-					posterImage={''}
+					posterImage={PosterImageFive}
 					mediaType={SlideFiveMediaType}
 				/>
 			{/if}
-			<div class="space"></div>
 		</div>
 	</div>
 </div>
@@ -134,17 +140,12 @@
 		background: var(--backgroundColor);
 	}
 
-	.space {
-		flex: 1 0 36px;
-		height: 100%;
-	}
-
 	.carousel--container {
 		width: 100%;
 		display: block;
 		padding-block-start: 36px;
 		padding-block-end: 36px;
-		padding-inline-start: 36px;
+		padding-inline-start: 0px;
 
 		& .slides {
 			display: flex;

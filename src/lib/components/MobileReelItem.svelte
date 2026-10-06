@@ -1,17 +1,27 @@
 <script lang="ts">
+	import { palette } from '@guardian/source/foundations';
+	import type { MediaType } from '$lib/types/media';
+
 	interface Props {
-		image: string;
-		videoSource: string;
-		posterImage: string;
-		mediaType: string;
+		image?: string;
+		videoSource?: string;
+		posterImage?: string;
+		mediaType: MediaType;
+		backgroundColor: string;
 	}
 
-	let { videoSource, posterImage, image, mediaType } = $props();
+	let {
+		videoSource,
+		posterImage,
+		image,
+		mediaType,
+		backgroundColor = palette.neutral[100],
+	} = $props();
 </script>
 
 <!-- svelte-ignore a11y_click_events_have_key_events -->
 <!-- svelte-ignore a11y_no_static_element_interactions -->
-<div class="slide">
+<div class="slide" style:--backgroundColor={backgroundColor}>
 	{#if mediaType == 'video'}
 		<video
 			autoplay
@@ -31,8 +41,6 @@
 <style lang="scss">
 	.slide {
 		--border-radius: 20px;
-		--neutral-grey: transparent;
-		--light-grey: #606060;
 		--slide-width: 330px;
 		--slide-height: 330px;
 	}
@@ -46,11 +54,15 @@
 		height: var(--slide-height);
 		justify-content: center;
 		align-items: center;
-		background-color: var(--neutral-grey);
+		background-color: var(--backGroundColor);
 		transition:
 			opacity 0.3s ease-in-out,
 			transform 0.3s ease-in-out;
 		scroll-snap-align: center;
+
+		&:first-child {
+			padding-left: 10px;
+		}
 	}
 
 	video {
