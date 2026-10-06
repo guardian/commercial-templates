@@ -9,20 +9,26 @@ export const gamVariables = {
 	SlideThree: '',
 	SlideFour:
 		'https://adops-assets.global.ssl.fastly.net/dap-fabrics/DAP_mobile_scroller/slide-3.png',
-	SlideFive: '',
+	SlideFive:
+		'https://adops-assets.global.ssl.fastly.net/dap-fabrics/DAP_mobile_scroller/slide-3.png',
 	SlideOneVideo: '',
 	SlideTwoVideo: '',
 	SlideThreeVideo:
 		'https://adops-assets.global.ssl.fastly.net/dap-fabrics/DAP_mobile_scroller/slide-1.mp4',
-	SlideFourVideo: '',
-	SlideFiveVideo:
+	SlideFourVideo:
 		'https://adops-assets.global.ssl.fastly.net/dap-fabrics/DAP_mobile_scroller/slide-1.mp4',
+	SlideFiveVideo: '',
+	PosterImageOne: '',
+	PosterImageTwo: '',
+	PosterImageThree: '',
+	PosterImageFour: '',
+	PosterImageFive: '',
 	TrackingPixel: '',
 	ResearchPixel: '',
 	ViewabilityTracker: '',
 	SlideOneMediaType: 'image',
 	SlideTwoMediaType: 'image',
 	SlideThreeMediaType: 'video',
-	SlideFourMediaType: 'image',
-	SlideFiveMediaType: 'video',
+	SlideFourMediaType: 'video',
+	SlideFiveMediaType: 'image',
 };
