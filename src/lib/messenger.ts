@@ -64,13 +64,16 @@ type VideoProgressMessage = StandardMessage<
 	{ progress: number }
 >;
 
+type SdcRender = StandardMessage<'sdc-render', Record<string, string>>;
+
 export type Message =
 	| ResizeMessage
 	| StringMessage
 	| BackgroundMessage
 	| FabricBackgroundMessage
 	| VideoProgressMessage
-	| ResetHeight;
+	| ResetHeight
+	| SdcRender;
 
 type MessengerResponse = {
 	id: string;
