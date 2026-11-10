@@ -20,8 +20,20 @@
 		});
 	};
 
+	const resetHeight = () => {
+		post({
+			type: 'reset-height',
+			value: true,
+		});
+	};
+
 	onMount(() => {
 		renderSdcMessage();
 		console.log('NBA creative rendering');
+
+		if (data.ResetHeight) {
+			resetHeight();
+			console.log('NBA creative resetting min height on slot');
+		}
 	});
 </script>
