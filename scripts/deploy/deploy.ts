@@ -183,7 +183,7 @@ const uploadTemplate = async (
 
 	if (missingFiles.length > 0) {
 		console.error(
-			`[!] ERROR: Template "${dirName}" is missing required files: ${missingFiles.join(', ')}. All templates must have ad.json, index.html, and style.css for automatic deployment to GAM.`,
+			`[!] ERROR: Template "${dirName}" is missing required files: ${missingFiles.join(', ')}. All templates must have ad.json, index.html for automatic deployment to GAM.`,
 		);
 		return false;
 	}
@@ -195,8 +195,8 @@ const uploadTemplate = async (
 	try {
 		css = readFileSync(resolve(root, dirName, 'style.css'), 'utf8');
 	} catch (error) {
-		const message = formatUnknownError(error);
-		console.warn(`[!] WARN: Failed to read CSS file for template "${dirName}": ${message}`,)
+		// Warn to console but continue regardless as this shouldn't block deployment
+		console.log(`[i] No CSS file found for template "${dirName}"`)
 	}
 
 	try {
