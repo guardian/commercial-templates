@@ -193,9 +193,15 @@ const uploadTemplate = async (
 	let css = '';
 
 	try {
+		css = readFileSync(resolve(root, dirName, 'style.css'), 'utf8');
+	} catch (error) {
+		const message = formatUnknownError(error);
+		console.warn(`[!] WARN: Failed to read CSS file for template "${dirName}": ${message}`,)
+	}
+
+	try {
 		infoJson = readFileSync(resolve(root, dirName, 'ad.json'), 'utf8');
 		html = readFileSync(resolve(root, dirName, 'index.html'), 'utf8');
-		css = readFileSync(resolve(root, dirName, 'style.css'), 'utf8');
 	} catch (error) {
 		const message = formatUnknownError(error);
 		console.error(
