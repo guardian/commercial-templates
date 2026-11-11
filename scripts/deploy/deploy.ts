@@ -4,7 +4,8 @@ import { createInterface } from 'node:readline/promises';
 import { fileURLToPath } from 'node:url';
 import { inspect } from 'node:util';
 import type {
-	NativeStyleService} from '@guardian/google-admanager-api';
+	NativeStyleService
+} from '@guardian/google-admanager-api';
 import {
 	AdManagerClient,
 	GoogleSACredential,
@@ -175,7 +176,7 @@ const uploadTemplate = async (
 	dirName: string,
 	dryRunMode: boolean,
 ): Promise<boolean> => {
-	const requiredFiles = ['ad.json', 'index.html', 'style.css'];
+	const requiredFiles = ['ad.json', 'index.html'];
 	const missingFiles = requiredFiles.filter(
 		(fileName) => !existsSync(resolve(root, dirName, fileName)),
 	);
