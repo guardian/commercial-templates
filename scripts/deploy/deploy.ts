@@ -4,7 +4,8 @@ import { createInterface } from 'node:readline/promises';
 import { fileURLToPath } from 'node:url';
 import { inspect } from 'node:util';
 import type {
-	NativeStyleService} from '@guardian/google-admanager-api';
+	NativeStyleService
+} from '@guardian/google-admanager-api';
 import {
 	AdManagerClient,
 	GoogleSACredential,
@@ -175,14 +176,14 @@ const uploadTemplate = async (
 	dirName: string,
 	dryRunMode: boolean,
 ): Promise<boolean> => {
-	const requiredFiles = ['ad.json', 'index.html', 'style.css'];
+	const requiredFiles = ['ad.json', 'index.html'];
 	const missingFiles = requiredFiles.filter(
 		(fileName) => !existsSync(resolve(root, dirName, fileName)),
 	);
 
 	if (missingFiles.length > 0) {
 		console.error(
-			`[!] ERROR: Template "${dirName}" is missing required files: ${missingFiles.join(', ')}. All templates must have ad.json, index.html, and style.css for automatic deployment to GAM.`,
+			`[!] ERROR: Template "${dirName}" is missing required files: ${missingFiles.join(', ')}. All templates must have ad.json, index.html for automatic deployment to GAM.`,
 		);
 		return false;
 	}
@@ -192,9 +193,15 @@ const uploadTemplate = async (
 	let css = '';
 
 	try {
+		css = readFileSync(resolve(root, dirName, 'style.css'), 'utf8');
+	} catch (error) {
+		// Warn to console but continue regardless as this shouldn't block deployment
+		console.log(`[i] No CSS file found for template "${dirName}"`)
+	}
+
+	try {
 		infoJson = readFileSync(resolve(root, dirName, 'ad.json'), 'utf8');
 		html = readFileSync(resolve(root, dirName, 'index.html'), 'utf8');
-		css = readFileSync(resolve(root, dirName, 'style.css'), 'utf8');
 	} catch (error) {
 		const message = formatUnknownError(error);
 		console.error(
