@@ -1,13 +1,6 @@
 <script lang="ts">
 	import { post } from '$lib/messenger';
 	import { onMount } from 'svelte';
-	import type { PageData } from './$types';
-
-	interface Props {
-		data: PageData;
-	}
-
-	let { data }: Props = $props();
 
 	const renderSdcMessage = () => {
 		post({
@@ -20,20 +13,8 @@
 		});
 	};
 
-	const resetHeight = () => {
-		post({
-			type: 'reset-height',
-			value: true,
-		});
-	};
-
 	onMount(() => {
 		renderSdcMessage();
 		console.log('NBA creative rendering');
-
-		if (data.ResetHeight) {
-			resetHeight();
-			console.log('NBA creative resetting min height on slot');
-		}
 	});
 </script>
