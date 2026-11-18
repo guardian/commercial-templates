@@ -1,3 +1,4 @@
+import { execSync } from "node:child_process"
 import { existsSync, readdirSync, readFileSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { createInterface } from 'node:readline/promises';
@@ -35,8 +36,9 @@ const networkCodeRaw = process.env.GAM_NETWORK_CODE;
 const serviceAccountKeyRaw = process.env.SERVICE_ACCOUNT_KEY_FILE;
 
 const dateLabel = new Date().toLocaleDateString('en-US');
-const htmlPrefix = `<!-- DO NOT EDIT -- FILE GENERATED AND DEPLOYED AUTOMATICALLY FROM https://github.com/guardian/commercial-templates ON ${dateLabel} -->`;
-const cssPrefix = `/* DO NOT EDIT -- FILE GENERATED AND DEPLOYED AUTOMATICALLY FROM https://github.com/guardian/commercial-templates ON ${dateLabel} */`;
+const commitSha = execSync('git rev-parse --short HEAD').toString().trim();
+const htmlPrefix = `<!-- DO NOT EDIT -- FILE GENERATED AND DEPLOYED AUTOMATICALLY FROM https://github.com/guardian/commercial-templates ON ${dateLabel} with commit ${commitSha} -->`;
+const cssPrefix = `/* DO NOT EDIT -- FILE GENERATED AND DEPLOYED AUTOMATICALLY FROM https://github.com/guardian/commercial-templates ON ${dateLabel} with commit ${commitSha} */`;
 const dryRun = process.argv.includes('--dry-run');
 const ciMode = process.argv.includes('--ci');
 const useProductionStyleIds = process.argv.includes('--production');
