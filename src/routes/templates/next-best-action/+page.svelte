@@ -6,7 +6,6 @@
 		post({
 			type: 'sdc-render',
 			value: {
-				clickMacro: '%%CLICK_URL_UNESC%%',
 				pb: '%%PATTERN:nba_pb%%',
 				id: '%%PATTERN:nba_id%%',
 			},
